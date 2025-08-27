@@ -119,7 +119,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private ProductRecognitionHandler productRecognitionHandler;
     private BarcodeTracker barcodeTracker;
     private EntityBarcodeTracker entityBarcodeTracker;
-    private String selectedModel = BARCODE_DETECTION;
+    private String selectedModel = ENTITY_ANALYZER;
     private String previousSelectedModel = "";
     private boolean isSpinnerInitialized = false;
     private static final String STATE_SELECTED_MODEL = "selected_model";
@@ -138,7 +138,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            selectedModel = savedInstanceState.getString(STATE_SELECTED_MODEL, BARCODE_DETECTION);
+            selectedModel = savedInstanceState.getString(STATE_SELECTED_MODEL, ENTITY_ANALYZER);
         }
 
         binding = ActivityCameraXlivePreviewBinding.inflate(getLayoutInflater());
@@ -167,6 +167,12 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         ArrayAdapter<String> dataAdapter = getStringArrayAdapter();
         // attaching data adapter to spinner
         binding.spinner.setAdapter(dataAdapter);
+        
+        // Set the spinner to the initial selected model
+        int initialPosition = dataAdapter.getPosition(selectedModel);
+        if (initialPosition >= 0) {
+            binding.spinner.setSelection(initialPosition);
+        }
 
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
