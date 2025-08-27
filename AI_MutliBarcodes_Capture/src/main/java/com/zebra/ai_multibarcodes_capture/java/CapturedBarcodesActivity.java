@@ -187,10 +187,10 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
 
             fileWriter.close();
 
-            Toast.makeText(this, "File saved at: " + newFile.getPath(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "File saved at: " + newFile.getPath(), Toast.LENGTH_LONG).show();
 
         } catch (IOException e) {
-            Toast.makeText(this, "Error saving file: " + newFile.getPath(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error saving file: " + newFile.getPath(), Toast.LENGTH_LONG).show();
             Log.e(TAG, "Error saving file:" + newFile.getPath());
             e.printStackTrace();
         }
