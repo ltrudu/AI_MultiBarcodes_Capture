@@ -27,5 +27,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "AISuite_QuickStart"
-include(":app")
+include(":AI_MutliBarcodes_Capture")
  
