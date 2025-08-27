@@ -65,9 +65,4 @@ dependencies {
     //Below dependency is to get Barcode Localizer model for AI Suite SDK
     implementation(libs.barcode.localizer) { artifact { type = "aar" } }
 
-    //Below dependency is to get OCR model for AI Suite SDK
-    implementation(libs.text.ocr.recognizer) { artifact { type = "aar" } }
-
-    //Below dependency is to get product Recognition model for AI Suite SDK
-    implementation(libs.product.and.shelf.recognizer) { artifact { type = "aar" } }
 }

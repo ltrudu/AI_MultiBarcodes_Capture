@@ -47,9 +47,7 @@ import com.zebra.aisuite_quickstart.java.analyzers.barcodetracker.BarcodeTracker
 import com.zebra.aisuite_quickstart.java.analyzers.barcodetracker.BarcodeTrackerGraphic;
 
 
-import com.zebra.aisuite_quickstart.java.lowlevel.productrecognitionsample.ProductRecognitionAnalyzer;
-import com.zebra.aisuite_quickstart.java.lowlevel.productrecognitionsample.ProductRecognitionGraphic;
-import com.zebra.aisuite_quickstart.java.lowlevel.productrecognitionsample.ProductRecognitionHandler;
+
 import com.zebra.aisuite_quickstart.java.viewfinder.EntityBarcodeTracker;
 import com.zebra.aisuite_quickstart.java.viewfinder.EntityViewGraphic;
 
@@ -86,7 +84,7 @@ import java.util.concurrent.Executors;
 
  * Note: Ensure that the appropriate permissions are configured in the AndroidManifest to utilize camera capabilities.
  */
-public class CameraXLivePreviewActivity extends AppCompatActivity implements ProductRecognitionAnalyzer.DetectionCallback, BarcodeTracker.DetectionCallback, EntityBarcodeTracker.DetectionCallback {
+public class CameraXLivePreviewActivity extends AppCompatActivity implements BarcodeTracker.DetectionCallback, EntityBarcodeTracker.DetectionCallback {
 
     private ActivityCameraXlivePreviewBinding binding;
     private final String TAG = "CameraXLivePreviewActivityJava";
@@ -94,7 +92,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Pro
     
     
     private static final String ENTITY_ANALYZER = "Tracker";
-    private static final String PRODUCT_RECOGNITION = "Product Recognition";
+    
     private static final String ENTITY_VIEW_FINDER = "Entity Viewfinder";
     private final float SIMILARITY_THRESHOLD = 0.65f;
     @Nullable
@@ -112,7 +110,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Pro
     private final ExecutorService taskExecutor = Executors.newFixedThreadPool(3);
     
     
-    private ProductRecognitionHandler productRecognitionHandler;
     private BarcodeTracker barcodeTracker;
     private EntityBarcodeTracker entityBarcodeTracker;
     private String selectedModel = ENTITY_ANALYZER;
@@ -318,13 +315,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Pro
                         barcodeTracker.stopAnalyzing();
                     }
                     break;
-
-                case PRODUCT_RECOGNITION:
-                    Log.i(TAG, "Stopping the recognition analyzer");
-                    if (productRecognitionHandler != null && productRecognitionHandler.getProductRecognitionAnalyzer() != null) {
-                        productRecognitionHandler.getProductRecognitionAnalyzer().stopAnalyzing();
-                    }
-                    break;
                 default:
                     Log.e(TAG, "Invalid selected option: " + previousSelectedModel);
             }
@@ -351,13 +341,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Pro
                         barcodeTracker.stop();
                     }
                     break;
-
-                case PRODUCT_RECOGNITION:
-                    Log.i(TAG, "Disposing the recognition analyzer");
-                    if (productRecognitionHandler != null) {
-                        productRecognitionHandler.stop();
-                    }
-                    break;
                 default:
                     Log.e(TAG, "Invalid selected option: " + previousSelectedModel);
             }
@@ -373,7 +356,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Pro
         
         
         options.add(ENTITY_ANALYZER);
-        options.add(PRODUCT_RECOGNITION);
         options.add(ENTITY_VIEW_FINDER);
 
         // Creating adapter for spinner
@@ -563,56 +545,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Pro
         }
     }
 
-    // Handles product recognition results and updates the graphical overlay
-    @Override
-    public void onDetectionRecognitionResult(BBox[] detections, BBox[] products, Recognizer.Recognition[] recognitions) {
-        runOnUiThread(() -> {
-
-            binding.graphicOverlay.clear();
-            if (detections != null) {
-                List<Rect> labelShelfRects = new ArrayList<>();
-                List<Rect> labelPegRects = new ArrayList<>();
-                List<Rect> shelfRects = new ArrayList<>();
-                List<Rect> recognizedRects = new ArrayList<>();
-                List<String> decodedStrings = new ArrayList<>();
-                BBox[] labelShelfObjects = Arrays.stream(detections).filter(x -> x.cls == 2).toArray(BBox[]::new);
-                BBox[] labelPegObjects = Arrays.stream(detections).filter(x -> x.cls == 3).toArray(BBox[]::new);
-                BBox[] shelfObjects = Arrays.stream(detections).filter(x -> x.cls == 4).toArray(BBox[]::new);
-                for (BBox bBox : labelShelfObjects) {
-                    Rect rect = new Rect((int) bBox.xmin, (int) bBox.ymin, (int) bBox.xmax, (int) bBox.ymax);
-                    Rect overlayRect = mapBoundingBoxToOverlay(rect);
-                    labelShelfRects.add(overlayRect);
-                }
-                for (BBox bBox : labelPegObjects) {
-                    Rect rect = new Rect((int) bBox.xmin, (int) bBox.ymin, (int) bBox.xmax, (int) bBox.ymax);
-                    Rect overlayRect = mapBoundingBoxToOverlay(rect);
-                    labelPegRects.add(overlayRect);
-                }
-                for (BBox bBox : shelfObjects) {
-                    Rect rect = new Rect((int) bBox.xmin, (int) bBox.ymin, (int) bBox.xmax, (int) bBox.ymax);
-                    Rect overlayRect = mapBoundingBoxToOverlay(rect);
-                    shelfRects.add(overlayRect);
-                }
-                if (recognitions.length == 0) {
-                    decodedStrings.add("No products found");
-                    recognizedRects.add(new Rect(250, 250, 0, 0));
-                } else {
-                    Log.v(TAG, "products length :" + products.length + " recognitions length: " + recognitions.length);
-                    for (int i = 0; i < products.length; i++) {
-                        if (recognitions[i].similarity[0] > SIMILARITY_THRESHOLD) {
-                            BBox bBox = products[i];
-                            Rect rect = new Rect((int) bBox.xmin, (int) bBox.ymin, (int) bBox.xmax, (int) bBox.ymax);
-                            Rect overlayRect = mapBoundingBoxToOverlay(rect);
-                            recognizedRects.add(overlayRect);
-                            decodedStrings.add(recognitions[i].sku[0]);
-                        }
-                    }
-                }
-                binding.graphicOverlay.add(new ProductRecognitionGraphic(binding.graphicOverlay, labelShelfRects, labelPegRects, shelfRects, recognizedRects, decodedStrings));
-            }
-        });
-    }
-
     private void bindAnalysisUseCase() {
         if (cameraProvider == null) {
             return;
@@ -633,13 +565,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Pro
                     Log.i(TAG, "Using Entity Analyzer");
                     executors.execute(() -> {
                         barcodeTracker = new BarcodeTracker(this, this, analysisUseCase);
-                    });
-
-                    break;
-                case PRODUCT_RECOGNITION:
-                    Log.i(TAG, "Using Product Recognition");
-                    executors.execute(() -> {
-                        productRecognitionHandler = new ProductRecognitionHandler(CameraXLivePreviewActivity.this, CameraXLivePreviewActivity.this, analysisUseCase);
                     });
 
                     break;
