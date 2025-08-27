@@ -46,9 +46,7 @@ import com.zebra.aisuite_quickstart.databinding.ActivityCameraXlivePreviewBindin
 import com.zebra.aisuite_quickstart.java.analyzers.barcodetracker.BarcodeTracker;
 import com.zebra.aisuite_quickstart.java.analyzers.barcodetracker.BarcodeTrackerGraphic;
 
-import com.zebra.aisuite_quickstart.java.detectors.textocrsample.OCRGraphic;
-import com.zebra.aisuite_quickstart.java.detectors.textocrsample.OCRHandler;
-import com.zebra.aisuite_quickstart.java.detectors.textocrsample.TextOCRAnalyzer;
+
 import com.zebra.aisuite_quickstart.java.lowlevel.productrecognitionsample.ProductRecognitionAnalyzer;
 import com.zebra.aisuite_quickstart.java.lowlevel.productrecognitionsample.ProductRecognitionGraphic;
 import com.zebra.aisuite_quickstart.java.lowlevel.productrecognitionsample.ProductRecognitionHandler;
@@ -88,13 +86,13 @@ import java.util.concurrent.Executors;
 
  * Note: Ensure that the appropriate permissions are configured in the AndroidManifest to utilize camera capabilities.
  */
-public class CameraXLivePreviewActivity extends AppCompatActivity implements TextOCRAnalyzer.DetectionCallback, ProductRecognitionAnalyzer.DetectionCallback, BarcodeTracker.DetectionCallback, EntityBarcodeTracker.DetectionCallback {
+public class CameraXLivePreviewActivity extends AppCompatActivity implements ProductRecognitionAnalyzer.DetectionCallback, BarcodeTracker.DetectionCallback, EntityBarcodeTracker.DetectionCallback {
 
     private ActivityCameraXlivePreviewBinding binding;
     private final String TAG = "CameraXLivePreviewActivityJava";
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     
-    private static final String TEXT_OCR_DETECTION = "OCR";
+    
     private static final String ENTITY_ANALYZER = "Tracker";
     private static final String PRODUCT_RECOGNITION = "Product Recognition";
     private static final String ENTITY_VIEW_FINDER = "Entity Viewfinder";
@@ -113,7 +111,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Tex
     private final ExecutorService executors = Executors.newFixedThreadPool(3);
     private final ExecutorService taskExecutor = Executors.newFixedThreadPool(3);
     
-    private OCRHandler ocrHandler;
+    
     private ProductRecognitionHandler productRecognitionHandler;
     private BarcodeTracker barcodeTracker;
     private EntityBarcodeTracker entityBarcodeTracker;
@@ -307,12 +305,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Tex
         try {
             switch (previousSelectedModel) {
                 
-                case TEXT_OCR_DETECTION:
-                    Log.i(TAG, "Stopping the ocr analyzer");
-                    if (ocrHandler != null && ocrHandler.getOCRAnalyzer() != null) {
-                        ocrHandler.getOCRAnalyzer().stopAnalyzing();
-                    }
-                    break;
+                
                 case ENTITY_VIEW_FINDER:
                     Log.i(TAG, "Stopping the entity view tracker analyzer");
                     if (entityBarcodeTracker != null) {
@@ -344,12 +337,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Tex
         try {
             switch (previousSelectedModel) {
                 
-                case TEXT_OCR_DETECTION:
-                    Log.i(TAG, "Disposing the ocr analyzer");
-                    if (ocrHandler != null) {
-                        ocrHandler.stop();
-                    }
-                    break;
+                
                 case ENTITY_VIEW_FINDER:
                     Log.i(TAG, "Disposing the entity view tracker analyzer");
                     if (entityBarcodeTracker != null) {
@@ -383,7 +371,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Tex
         List<String> options = new ArrayList<>();
 
         
-        options.add(TEXT_OCR_DETECTION);
+        
         options.add(ENTITY_ANALYZER);
         options.add(PRODUCT_RECOGNITION);
         options.add(ENTITY_VIEW_FINDER);
@@ -487,38 +475,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Tex
 
     
 
-    // Handles text OCR detection results and updates the graphical overlay
-    @Override
-    public void onDetectionTextResult(List<ParagraphEntity> list) {
-        List<Rect> rects = new ArrayList<>();
-        List<String> decodedStrings = new ArrayList<>();
-        runOnUiThread(() -> {
-            binding.graphicOverlay.clear();
-            for (ParagraphEntity entity : list) {
-                Line[] lines = entity.getTextParagraph().lines;
-                for (Line line : lines) {
-
-                    for (Word word : line.words) {
-                        ComplexBBox bbox = word.bbox;
-
-                        if (bbox != null && bbox.x != null && bbox.y != null && bbox.x.length >= 3 && bbox.y.length >= 3) {
-                            float minX = bbox.x[0], maxX = bbox.x[2], minY = bbox.y[0], maxY = bbox.y[2];
-
-                            Rect rect = new Rect((int) minX, (int) minY, (int) maxX, (int) maxY);
-                            Rect overlayRect = mapBoundingBoxToOverlay(rect);
-                            String decodedValue = word.decodes[0].content;
-                            rects.add(overlayRect);
-                            decodedStrings.add(decodedValue);
-
-                        }
-                    }
-                }
-
-                binding.graphicOverlay.add(new OCRGraphic(binding.graphicOverlay, rects, decodedStrings));
-            }
-        });
-
-    }
+    
 
     // Handles entity tracking results and updates the graphical overlay
     @Override
@@ -665,13 +622,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Tex
         try {
             switch (selectedModel) {
                 
-                case TEXT_OCR_DETECTION:
-                    Log.i(TAG, "Using Text OCR");
-                    executors.execute(() -> {
-                        ocrHandler = new OCRHandler(this, this, analysisUseCase);
-
-                    });
-                    break;
+                
                 case ENTITY_VIEW_FINDER:
                     Log.i(TAG, "Using Entity View Analyzer");
                     executors.execute(() -> {
