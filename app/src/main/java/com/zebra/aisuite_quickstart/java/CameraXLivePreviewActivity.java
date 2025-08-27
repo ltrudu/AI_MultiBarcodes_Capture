@@ -585,7 +585,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 for (BarcodeEntity bEntity : barcodeEntities) {
                     Bundle barcodeBundle = new Bundle();
                     barcodeBundle.putString("value", bEntity.getValue());
-                    barcodeBundle.putString("symbology", bEntity.getSymbology());
+                    barcodeBundle.putInt("symbology", bEntity.getSymbology());
+                    barcodeBundle.putInt("hashcode", bEntity.hashCode());
                     barcodeDataList.add(barcodeBundle);
                 }
 
