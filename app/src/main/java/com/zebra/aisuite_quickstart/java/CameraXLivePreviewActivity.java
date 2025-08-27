@@ -45,9 +45,7 @@ import com.zebra.aisuite_quickstart.R;
 import com.zebra.aisuite_quickstart.databinding.ActivityCameraXlivePreviewBinding;
 import com.zebra.aisuite_quickstart.java.analyzers.barcodetracker.BarcodeTracker;
 import com.zebra.aisuite_quickstart.java.analyzers.barcodetracker.BarcodeTrackerGraphic;
-import com.zebra.aisuite_quickstart.java.detectors.barcodedecodersample.BarcodeAnalyzer;
-import com.zebra.aisuite_quickstart.java.detectors.barcodedecodersample.BarcodeGraphic;
-import com.zebra.aisuite_quickstart.java.detectors.barcodedecodersample.BarcodeHandler;
+
 import com.zebra.aisuite_quickstart.java.detectors.textocrsample.OCRGraphic;
 import com.zebra.aisuite_quickstart.java.detectors.textocrsample.OCRHandler;
 import com.zebra.aisuite_quickstart.java.detectors.textocrsample.TextOCRAnalyzer;
@@ -90,12 +88,12 @@ import java.util.concurrent.Executors;
 
  * Note: Ensure that the appropriate permissions are configured in the AndroidManifest to utilize camera capabilities.
  */
-public class CameraXLivePreviewActivity extends AppCompatActivity implements BarcodeAnalyzer.DetectionCallback, TextOCRAnalyzer.DetectionCallback, ProductRecognitionAnalyzer.DetectionCallback, BarcodeTracker.DetectionCallback, EntityBarcodeTracker.DetectionCallback {
+public class CameraXLivePreviewActivity extends AppCompatActivity implements TextOCRAnalyzer.DetectionCallback, ProductRecognitionAnalyzer.DetectionCallback, BarcodeTracker.DetectionCallback, EntityBarcodeTracker.DetectionCallback {
 
     private ActivityCameraXlivePreviewBinding binding;
     private final String TAG = "CameraXLivePreviewActivityJava";
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
-    private static final String BARCODE_DETECTION = "Barcode";
+    
     private static final String TEXT_OCR_DETECTION = "OCR";
     private static final String ENTITY_ANALYZER = "Tracker";
     private static final String PRODUCT_RECOGNITION = "Product Recognition";
@@ -114,7 +112,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private ResolutionSelector resolutionSelector;
     private final ExecutorService executors = Executors.newFixedThreadPool(3);
     private final ExecutorService taskExecutor = Executors.newFixedThreadPool(3);
-    private BarcodeHandler barcodeHandler;
+    
     private OCRHandler ocrHandler;
     private ProductRecognitionHandler productRecognitionHandler;
     private BarcodeTracker barcodeTracker;
@@ -138,7 +136,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            selectedModel = savedInstanceState.getString(STATE_SELECTED_MODEL, ENTITY_ANALYZER);
+                        selectedModel = savedInstanceState.getString(STATE_SELECTED_MODEL, ENTITY_ANALYZER);
         }
 
         binding = ActivityCameraXlivePreviewBinding.inflate(getLayoutInflater());
@@ -308,12 +306,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private void stopAnalyzing() {
         try {
             switch (previousSelectedModel) {
-                case BARCODE_DETECTION:
-                    Log.i(TAG, "Stopping the barcode analyzer");
-                    if (barcodeHandler != null && barcodeHandler.getBarcodeAnalyzer() != null) {
-                        barcodeHandler.getBarcodeAnalyzer().stopAnalyzing();
-                    }
-                    break;
+                
                 case TEXT_OCR_DETECTION:
                     Log.i(TAG, "Stopping the ocr analyzer");
                     if (ocrHandler != null && ocrHandler.getOCRAnalyzer() != null) {
@@ -350,12 +343,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     public void disposeModels() {
         try {
             switch (previousSelectedModel) {
-                case BARCODE_DETECTION:
-                    Log.i(TAG, "Disposing the barcode analyzer");
-                    if (barcodeHandler != null) {
-                        barcodeHandler.stop();
-                    }
-                    break;
+                
                 case TEXT_OCR_DETECTION:
                     Log.i(TAG, "Disposing the ocr analyzer");
                     if (ocrHandler != null) {
@@ -394,7 +382,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private ArrayAdapter<String> getStringArrayAdapter() {
         List<String> options = new ArrayList<>();
 
-        options.add(BARCODE_DETECTION);
+        
         options.add(TEXT_OCR_DETECTION);
         options.add(ENTITY_ANALYZER);
         options.add(PRODUCT_RECOGNITION);
@@ -497,36 +485,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         }
     }
 
-    // Handles barcode detection results and updates the graphical overlay
-    @Override
-    public void onDetectionResult(List<BarcodeEntity> result) {
-        List<Rect> rects = new ArrayList<>();
-        List<String> decodedStrings = new ArrayList<>();
-
-
-        runOnUiThread(() -> {
-            binding.graphicOverlay.clear();
-            if (result != null) {
-
-                for (BarcodeEntity bb : result) {
-                    Rect rect = bb.getBoundingBox();
-                    if (rect != null) {
-                        Log.d(TAG, String.format("Original bbox: %s", rect));
-                        Rect overlayRect = mapBoundingBoxToOverlay(rect);
-                        Log.d(TAG, String.format("Mapped bbox: %s", overlayRect));
-                        rects.add(overlayRect);
-                        decodedStrings.add(bb.getValue());
-                    }
-                    Log.e(TAG, "Detected entity - Value: " + bb.getValue());
-                    Log.e(TAG, "Detected entity - Symbology: " + bb.getSymbology());
-                }
-
-
-                binding.graphicOverlay.add(new BarcodeGraphic(binding.graphicOverlay, rects, decodedStrings));
-            }
-        });
-
-    }
+    
 
     // Handles text OCR detection results and updates the graphical overlay
     @Override
@@ -705,14 +664,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         try {
             switch (selectedModel) {
-                case BARCODE_DETECTION:
-                    Log.i(TAG, "Using Barcode Decoder");
-                    executors.execute(() -> {
-                        barcodeHandler = new BarcodeHandler(this, this, analysisUseCase);
-
-                    });
-
-                    break;
+                
                 case TEXT_OCR_DETECTION:
                     Log.i(TAG, "Using Text OCR");
                     executors.execute(() -> {
