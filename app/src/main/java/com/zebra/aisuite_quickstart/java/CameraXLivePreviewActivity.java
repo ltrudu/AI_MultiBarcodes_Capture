@@ -92,9 +92,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     
     
     private static final String ENTITY_ANALYZER = "Tracker";
-    
-    private static final String ENTITY_VIEW_FINDER = "Entity Viewfinder";
-    private final float SIMILARITY_THRESHOLD = 0.65f;
     @Nullable
     private Camera camera;
     @Nullable
@@ -116,7 +113,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private String previousSelectedModel = "";
     private boolean isSpinnerInitialized = false;
     private static final String STATE_SELECTED_MODEL = "selected_model";
-    private boolean isEntityViewFinder = false;
     private EntityViewController entityViewController;
     private EntityViewGraphic entityViewGraphic;
     private boolean isIconStyleEnable = false;
@@ -171,18 +167,13 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                 selectedModel = adapterView.getItemAtPosition(pos).toString();
-                isEntityViewFinder = selectedModel.equals(ENTITY_VIEW_FINDER);
 
                 Log.e(TAG, "selected option is " + selectedModel);
 
-                // Lock orientation when Entity Viewfinder is selected
-                if (isEntityViewFinder) {
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
-                    Log.d(TAG, "Orientation locked for Entity Viewfinder mode");
-                } else {
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                    Log.d(TAG, "Orientation unlocked for " + selectedModel + " mode");
-                }
+
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                Log.d(TAG, "Orientation unlocked for " + selectedModel + " mode");
+
 
                 initialRotation = getWindow().getDecorView().getDisplay().getRotation();
                 if (initialRotation == 0 || initialRotation == 2) {
@@ -301,14 +292,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private void stopAnalyzing() {
         try {
             switch (previousSelectedModel) {
-                
-                
-                case ENTITY_VIEW_FINDER:
-                    Log.i(TAG, "Stopping the entity view tracker analyzer");
-                    if (entityBarcodeTracker != null) {
-                        entityBarcodeTracker.stopAnalyzing();
-                    }
-                    break;
                 case ENTITY_ANALYZER:
                     Log.i(TAG, "Stopping the entity tracker analyzer");
                     if (barcodeTracker != null) {
@@ -326,15 +309,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     public void disposeModels() {
         try {
             switch (previousSelectedModel) {
-                
-                
-                case ENTITY_VIEW_FINDER:
-                    Log.i(TAG, "Disposing the entity view tracker analyzer");
-                    if (entityBarcodeTracker != null) {
-                        entityBarcodeTracker.stop();
-                        entityBarcodeTracker = null;
-                    }
-                    break;
                 case ENTITY_ANALYZER:
                     Log.i(TAG, "Disposing the entity tracker analyzer");
                     if (barcodeTracker != null) {
@@ -356,7 +330,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         
         
         options.add(ENTITY_ANALYZER);
-        options.add(ENTITY_VIEW_FINDER);
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_style, options);
@@ -553,14 +526,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         try {
             switch (selectedModel) {
-                
-                
-                case ENTITY_VIEW_FINDER:
-                    Log.i(TAG, "Using Entity View Analyzer");
-                    executors.execute(() -> {
-                        entityBarcodeTracker = new EntityBarcodeTracker(this, this, analysisUseCase);
-                    });
-                    break;
                 case ENTITY_ANALYZER:
                     Log.i(TAG, "Using Entity Analyzer");
                     executors.execute(() -> {
@@ -601,17 +566,11 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 .build();
 
         previewUseCase = builder.build();
-        binding.previewView.setVisibility(isEntityViewFinder ? View.GONE : View.VISIBLE);
-        binding.entityView.setVisibility(isEntityViewFinder ? View.VISIBLE : View.GONE);
-        if(isEntityViewFinder) {
-            previewUseCase.setSurfaceProvider(entityViewController.getSurfaceProvider());
-        } else {
-            previewUseCase.setSurfaceProvider(binding.previewView.getSurfaceProvider());
-        }
+        binding.previewView.setVisibility(View.VISIBLE);
+        binding.entityView.setVisibility(View.GONE);
+        previewUseCase.setSurfaceProvider(binding.previewView.getSurfaceProvider());
+
         camera = cameraProvider.bindToLifecycle(/* lifecycleOwner= */ this, cameraSelector, previewUseCase, analysisUseCase);
-        if(isEntityViewFinder){
-            entityViewController.setCameraController(camera);
-        }
     }
 
     public void onBackPressed() {
