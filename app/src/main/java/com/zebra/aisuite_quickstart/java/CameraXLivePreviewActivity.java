@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -106,7 +107,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private ResolutionSelector resolutionSelector;
     private final ExecutorService executors = Executors.newFixedThreadPool(3);
     private final ExecutorService taskExecutor = Executors.newFixedThreadPool(3);
-    
+
+    private Button captureButton;
+    private Button closeButton;
     
     private BarcodeTracker barcodeTracker;
     private EntityBarcodeTracker entityBarcodeTracker;
@@ -122,6 +125,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private android.graphics.RectF pendingCropRegion = null;
     private int initialRotation = Surface.ROTATION_0;
 
+    List<? extends Entity> entitiesHolder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,10 +140,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-        
-        if (savedInstanceState != null) {
-                        selectedModel = savedInstanceState.getString(STATE_SELECTED_MODEL, ENTITY_ANALYZER);
-        }
 
         binding = ActivityCameraXlivePreviewBinding.inflate(getLayoutInflater());
         cameraSelector = new CameraSelector.Builder().requireLensFacing(lensFacing).build();
@@ -164,19 +165,36 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                             Log.d(TAG, "Orientation unlocked for " + selectedModel + " mode");
 
-                            initialRotation = getWindow().getDecorView().getDisplay().getRotation();
-                            if (initialRotation == 0 || initialRotation == 2) {
-                                imageWidth = selectedSize.getHeight();
-                                imageHeight = selectedSize.getWidth();
-                            } else {
-                                imageWidth = selectedSize.getWidth();
-                                imageHeight = selectedSize.getHeight();
-                            }
-                            Log.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
+                                Display display = getWindowManager().getDefaultDisplay();
+                                initialRotation = display != null ? display.getRotation() : Surface.ROTATION_0;
+                                if (initialRotation == 0 || initialRotation == 2) {
+                                    imageWidth = selectedSize.getHeight();
+                                    imageHeight = selectedSize.getWidth();
+                                } else {
+                                    imageWidth = selectedSize.getWidth();
+                                    imageHeight = selectedSize.getHeight();
+                                }
+                                Log.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
 
 
                             bindAllCameraUseCases();
                         });
+
+        captureButton = findViewById(R.id.captureButton);
+        captureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                captureData();
+            }
+        });
+
+        closeButton = findViewById(R.id.closeButton);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         initEntityView();
     }
@@ -281,27 +299,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         }
     }
 
-    @NonNull
-    private ArrayAdapter<String> getStringArrayAdapter() {
-        List<String> options = new ArrayList<>();
-
-        
-        
-        options.add(ENTITY_ANALYZER);
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_style, options);
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        return dataAdapter;
-    }
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle bundle) {
-        super.onSaveInstanceState(bundle);
-        bundle.putString(STATE_SELECTED_MODEL, selectedModel);
-    }
-
     private Rect mapBoundingBoxToOverlay(Rect bbox) {
 
         Display display = getWindowManager().getDefaultDisplay();
@@ -398,6 +395,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         List<? extends Entity> entities;
         if(barcodeTracker.getBarcodeDecoder()!=null) {
             entities = result.getValue(barcodeTracker.getBarcodeDecoder());
+            entitiesHolder = entities;
         } else {
             entities = null;
         }
@@ -420,7 +418,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                                 hashCode = hashCode.substring(hashCode.length() - 4);
 
                             }
-                            decodedStrings.add(hashCode + ":" + bEntity.getValue());
+                            decodedStrings.add(bEntity.getValue());
                             Log.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
                         }
                     }
@@ -570,5 +568,38 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             Log.v(TAG, "Camera Unbounded");
         }
     }
+
+    private void captureData() {
+        if(entitiesHolder != null) {
+            List<BarcodeEntity> barcodeEntities = new ArrayList<>();
+            for (Entity entity : entitiesHolder) {
+                if (entity instanceof BarcodeEntity) {
+                    BarcodeEntity bEntity = (BarcodeEntity) entity;
+                    barcodeEntities.add(bEntity);
+                    Log.d(TAG, "Barcode read.\nValue:" + bEntity.getValue() + "\nSymbology:" + bEntity.getSymbology() + "\nHashcode:" + bEntity.hashCode());
+                }
+            }
+            if(barcodeEntities.size() > 0)
+            {
+                ArrayList<Bundle> barcodeDataList = new ArrayList<>();
+                for (BarcodeEntity bEntity : barcodeEntities) {
+                    Bundle barcodeBundle = new Bundle();
+                    barcodeBundle.putString("value", bEntity.getValue());
+                    barcodeBundle.putString("symbology", bEntity.getSymbology());
+                    barcodeDataList.add(barcodeBundle);
+                }
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("barcodeDataList", barcodeDataList);
+
+                // TODO: Create an Intent and pass this bundle to the new activity.
+                // Example:
+                // Intent intent = new Intent(this, TargetActivity.class);
+                // intent.putExtras(bundle);
+                // startActivity(intent);
+            }
+        }
+    }
+
 
 }

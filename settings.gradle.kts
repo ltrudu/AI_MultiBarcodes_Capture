@@ -19,6 +19,7 @@ dependencyResolutionManagement {
         maven {
             url =uri("https://zebratech.jfrog.io/artifactory/emc-mvn-ext")
         }
+        maven { url = uri("https://jitpack.io") }
         flatDir {
             dirs("libs")
         }

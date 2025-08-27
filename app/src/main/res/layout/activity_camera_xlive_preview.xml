@@ -42,9 +42,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/closeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Close"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/captureButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Capture"
+            android:layout_weight="1"
             />
     </LinearLayout>
 

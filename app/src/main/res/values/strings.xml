@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">AI DC QuickStart Sample</string>
+    <string name="app_name">AI MultiBarcode Capture</string>
     <string name="start_capture_button_text">Start Capture</string>
+    <string name="loading_status">Loading Application</string>
 </resources>

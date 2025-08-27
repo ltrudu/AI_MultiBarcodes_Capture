@@ -65,4 +65,6 @@ dependencies {
     //Below dependency is to get Barcode Localizer model for AI Suite SDK
     implementation(libs.barcode.localizer) { artifact { type = "aar" } }
 
+    // Dependency for CriticalPermissionHelper
+    implementation(libs.criticalpermissionhelper)
 }
