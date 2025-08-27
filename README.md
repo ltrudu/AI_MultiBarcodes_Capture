@@ -2,6 +2,8 @@
 
 A sample that demonstrates the Zebra AI Vision SDK multiple barcodes tracker capabilities.
 
+<img width="1080" height="2160" alt="AI_MultiBarcodes_Capture" src="https://github.com/user-attachments/assets/193c25e9-d6a9-4cdd-96c9-02c6d2958cde" />
+
 For more information on the SDK, check:
 https://techdocs.zebra.com/ai-datacapture/latest/about/
 
