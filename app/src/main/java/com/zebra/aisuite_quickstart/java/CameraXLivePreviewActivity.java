@@ -9,6 +9,7 @@ import android.util.Size;
 import android.view.Display;
 import android.view.Surface;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
@@ -110,8 +111,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private BarcodeTracker barcodeTracker;
     private EntityBarcodeTracker entityBarcodeTracker;
     private String selectedModel = ENTITY_ANALYZER;
-    private String previousSelectedModel = "";
-    private boolean isSpinnerInitialized = false;
     private static final String STATE_SELECTED_MODEL = "selected_model";
     private EntityViewController entityViewController;
     private EntityViewGraphic entityViewGraphic;
@@ -126,6 +125,17 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Enable immersive full-screen mode
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        
         if (savedInstanceState != null) {
                         selectedModel = savedInstanceState.getString(STATE_SELECTED_MODEL, ENTITY_ANALYZER);
         }
@@ -150,60 +160,23 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                         provider -> {
                             cameraProvider = provider;
                             Log.v(TAG, "Binding all camera");
+
+                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                            Log.d(TAG, "Orientation unlocked for " + selectedModel + " mode");
+
+                            initialRotation = getWindow().getDecorView().getDisplay().getRotation();
+                            if (initialRotation == 0 || initialRotation == 2) {
+                                imageWidth = selectedSize.getHeight();
+                                imageHeight = selectedSize.getWidth();
+                            } else {
+                                imageWidth = selectedSize.getWidth();
+                                imageHeight = selectedSize.getHeight();
+                            }
+                            Log.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
+
+
                             bindAllCameraUseCases();
                         });
-
-        ArrayAdapter<String> dataAdapter = getStringArrayAdapter();
-        // attaching data adapter to spinner
-        binding.spinner.setAdapter(dataAdapter);
-        
-        // Set the spinner to the initial selected model
-        int initialPosition = dataAdapter.getPosition(selectedModel);
-        if (initialPosition >= 0) {
-            binding.spinner.setSelection(initialPosition);
-        }
-
-        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-                selectedModel = adapterView.getItemAtPosition(pos).toString();
-
-                Log.e(TAG, "selected option is " + selectedModel);
-
-
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                Log.d(TAG, "Orientation unlocked for " + selectedModel + " mode");
-
-
-                initialRotation = getWindow().getDecorView().getDisplay().getRotation();
-                if (initialRotation == 0 || initialRotation == 2) {
-                    imageWidth = selectedSize.getHeight();
-                    imageHeight = selectedSize.getWidth();
-                } else {
-                    imageWidth = selectedSize.getWidth();
-                    imageHeight = selectedSize.getHeight();
-                }
-                Log.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
-
-                if (!isSpinnerInitialized) {
-                    isSpinnerInitialized = true;
-                } else {
-                    if (entityViewGraphic != null)
-                        entityViewGraphic.clear();
-                    runOnUiThread(() -> binding.graphicOverlay.clear());
-                    stopAnalyzing();
-                    unBindCameraX();
-                    disposeModels();
-                    bindPreviewUseCase();
-                    bindAnalysisUseCase();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // No action needed
-            }
-        });
 
         initEntityView();
     }
@@ -291,35 +264,20 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     private void stopAnalyzing() {
         try {
-            switch (previousSelectedModel) {
-                case ENTITY_ANALYZER:
-                    Log.i(TAG, "Stopping the entity tracker analyzer");
-                    if (barcodeTracker != null) {
-                        barcodeTracker.stopAnalyzing();
-                    }
-                    break;
-                default:
-                    Log.e(TAG, "Invalid selected option: " + previousSelectedModel);
-            }
+            barcodeTracker.stopAnalyzing();
         } catch (Exception e) {
-            Log.e(TAG, "Can not stop the analyzer: " + previousSelectedModel, e);
+            Log.e(TAG, "Can not stop the analyzer: " + ENTITY_ANALYZER, e);
         }
     }
 
     public void disposeModels() {
         try {
-            switch (previousSelectedModel) {
-                case ENTITY_ANALYZER:
-                    Log.i(TAG, "Disposing the entity tracker analyzer");
-                    if (barcodeTracker != null) {
-                        barcodeTracker.stop();
-                    }
-                    break;
-                default:
-                    Log.e(TAG, "Invalid selected option: " + previousSelectedModel);
+            Log.i(TAG, "Disposing the entity tracker analyzer");
+            if (barcodeTracker != null) {
+                barcodeTracker.stop();
             }
-        } catch (Exception e) {
-            Log.e(TAG, "Can not dispose the analyzer: " + previousSelectedModel, e);
+      } catch (Exception e) {
+            Log.e(TAG, "Can not dispose the analyzer: " + ENTITY_ANALYZER, e);
         }
     }
 
@@ -522,22 +480,13 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         if (cameraProvider == null) {
             return;
         }
-        previousSelectedModel = selectedModel;
-
         try {
-            switch (selectedModel) {
-                case ENTITY_ANALYZER:
-                    Log.i(TAG, "Using Entity Analyzer");
-                    executors.execute(() -> {
-                        barcodeTracker = new BarcodeTracker(this, this, analysisUseCase);
-                    });
-
-                    break;
-                default:
-                    throw new IllegalStateException("Invalid model name");
-            }
+            Log.i(TAG, "Using Entity Analyzer");
+            executors.execute(() -> {
+                barcodeTracker = new BarcodeTracker(this, this, analysisUseCase);
+            });
         } catch (Exception e) {
-            Log.e(TAG, "Can not create model for : " + selectedModel, e);
+            Log.e(TAG, "Can not create model for : " + ENTITY_ANALYZER, e);
             return;
         }
         cameraProvider.bindToLifecycle(/* lifecycleOwner= */ this, cameraSelector, analysisUseCase);
@@ -597,7 +546,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             }
             Log.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
         }
-       if(isSpinnerInitialized) bindAllCameraUseCases();
+        bindAllCameraUseCases();
     }
     public void onPause() {
         super.onPause();
