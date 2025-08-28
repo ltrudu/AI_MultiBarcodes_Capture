@@ -2,7 +2,6 @@ package com.zebra.ai_multibarcodes_capture.java;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +21,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.zebra.ai_multibarcodes_capture.R;
+import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
+import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,8 +54,6 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     }
 
     private static final String TAG = "CapturedBarcodes";
-    private static final String TARGET_FOLDER = "AI_MultiBarcodes_Capture";
-    private static final String PREFIX = "Session_";
 
     private List<BarcodeData> barcodesDataList;
     private ListView barcodesListView;
@@ -129,7 +126,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveDate();
+                saveData();
             }
         });
     }
@@ -163,11 +160,11 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         }
     }
 
-    private void saveDate()
+    private void saveData()
     {
         // Retrieve Today Folder
-        File todayFolder = getTodayFolder();
-        String fileName = createNewFileName();
+        File todayFolder = FileUtil.getTodayFolder();
+        String fileName = FileUtil.createNewFileName(Constants.FILEBROWSER_DEFAULT_PREFIX);
         File newFile = new File(todayFolder, fileName + ".txt");
         try {
             if(newFile.exists())
@@ -193,44 +190,6 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             Toast.makeText(this, "Error saving file: " + newFile.getPath(), Toast.LENGTH_LONG).show();
             Log.e(TAG, "Error saving file:" + newFile.getPath());
             e.printStackTrace();
-        }
-    }
-
-    public static String createNewFileName()
-    {
-        Date nowDate = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");
-        String currentDateandTime = sdf.format(nowDate);
-        String newFileName = PREFIX + currentDateandTime;
-        return newFileName;
-    }
-
-    private String getTodayDateString()
-    {
-        Date nowDate = new Date();
-        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
-        String currentDate = sdf2.format(nowDate);
-        return currentDate;
-    }
-
-    private File getTodayFolder()
-    {
-        File targetFolder = null;
-        File dateFolder = null;
-        try {
-            targetFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), TARGET_FOLDER);
-            if (targetFolder.exists() == false) {
-                targetFolder.mkdirs();
-            }
-            dateFolder = new File(targetFolder, getTodayDateString());
-            if (dateFolder.exists() == false) {
-                dateFolder.mkdirs();
-            }
-            return dateFolder;
-        }
-        catch (Exception e)
-        {
-            return null;
         }
     }
 }
