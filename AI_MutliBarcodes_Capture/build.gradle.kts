@@ -67,4 +67,8 @@ dependencies {
 
     // Dependency for CriticalPermissionHelper
     implementation(libs.criticalpermissionhelper)
+
+    // For Excel Export
+    implementation(libs.poi)
+    implementation(libs.poiooxml)
 }

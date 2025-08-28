@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#4286f4</color>
+    <color name="zebra">#FF0073E6</color>
+    <color name="line_color_light">#000000</color> <!-- Black for light theme -->
+    <color name="line_color_dark">#FFFFFF</color> <!-- White for dark theme -->
 </resources>

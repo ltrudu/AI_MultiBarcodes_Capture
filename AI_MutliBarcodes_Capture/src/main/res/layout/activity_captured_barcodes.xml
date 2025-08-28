@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".java.CapturedBarcodesActivity">
 
     <ListView
@@ -21,24 +22,23 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="#000"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/closeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Close"
             android:layout_weight="1"
-            />
+            android:backgroundTint="@color/zebra"
+            android:text="Close" />
 
         <Button
             android:id="@+id/saveData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save"
             android:layout_weight="1"
-            />
+            android:backgroundTint="@color/zebra"
+            android:text="Save" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
