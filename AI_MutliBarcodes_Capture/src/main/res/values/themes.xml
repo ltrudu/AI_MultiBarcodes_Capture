@@ -3,6 +3,7 @@
     <style name="Base.Theme.AIMultiBarcodes_Capture" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/zebra</item>
     </style>
 
     <style name="Theme.MultiBarcodesCapture" parent="Base.Theme.AIMultiBarcodes_Capture" />
@@ -14,6 +15,7 @@
         <item name="actionBarStyle">@style/MyActionBarStyle</item>
         <item name="toolbarStyle">@style/MyToolbarStyle</item>
         <item name="colorControlNormal">@color/white</item>
+        <item name="android:statusBarColor">@color/zebra</item>
     </style>
 
     <style name="MyActionBarStyle" parent="Widget.AppCompat.ActionBar">

@@ -2,6 +2,7 @@ package com.zebra.ai_multibarcodes_capture.filemanagement;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class FileUtil {
+    private static final String TAG = "FileUtil";
     public static File getLatestModifiedFile(String directoryPath, String extension) {
         File directory = new File(directoryPath);
         List<File> files = new ArrayList<>();
@@ -134,6 +136,20 @@ public class FileUtil {
             fileToDelete.delete();
     }
 
+    public static boolean deleteFolderRecursively(File folder) {
+        if (folder.isDirectory()) {
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (!deleteFolderRecursively(file)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return folder.delete();
+    }
+
     public static File copyToFolder(File sourceFile, File destinationFolder)
     {
         try {
@@ -168,7 +184,10 @@ public class FileUtil {
         File cacheDir = context.getExternalCacheDir();
         File destCacheDir = new File(cacheDir, Constants.PROVIDER_CACHE_FOLDER);
         if(destCacheDir.exists() == false)
+        {
+            Log.d(TAG, "Creating directory: " + destCacheDir.getAbsolutePath());
             destCacheDir.mkdirs();
+        }
         File cacheFile = copyToFolder(source, destCacheDir);
         return cacheFile;
     }
@@ -192,7 +211,7 @@ public class FileUtil {
     public static String getTodayDateString()
     {
         Date nowDate = new Date();
-        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault());
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());
         String currentDate = dateFormat.format(nowDate);
         return currentDate;
     }
@@ -203,6 +222,7 @@ public class FileUtil {
         try {
             targetFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), Constants.FILE_TARGET_FOLDER);
             if (targetFolder.exists() == false) {
+                Log.d(TAG, "Creating directory: " + targetFolder.getAbsolutePath());
                 targetFolder.mkdirs();
             }
             return targetFolder;
@@ -213,7 +233,7 @@ public class FileUtil {
         }
     }
 
-    public static File getTodayFolder()
+    public static File getTodayFolder(boolean create)
     {
         File targetFolder = null;
         File dateFolder = null;
@@ -221,7 +241,8 @@ public class FileUtil {
             targetFolder = getBaseFolder();
             if(targetFolder != null) {
                 dateFolder = new File(targetFolder, getTodayDateString());
-                if (dateFolder.exists() == false) {
+                if (create && dateFolder.exists() == false) {
+                    Log.d(TAG, "Creating directory: " + dateFolder.getAbsolutePath());
                     dateFolder.mkdirs();
                 }
             }

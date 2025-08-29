@@ -5,11 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,12 +34,10 @@ public class BrowserActivity extends AppCompatActivity {
     private FileAdapter fileAdapter;
     private ArrayList<File> filesList;
     private ListView listView;
-    private Button btnDeleteSelectedFiles;
-    private Button btnOpenFile;
+    private Button btnSelectOneFile;
     private Button btnReload;
     private Button btnClose;
     private Button btnShare;
-    private Button btnRename;
     private View viewOverlay;
 
     ConstraintLayout clFileList;
@@ -116,6 +111,16 @@ public class BrowserActivity extends AppCompatActivity {
                             createNewFolder();
                             return true;
                         }
+                        else if(id == R.id.action_delete)
+                        {
+                            deleteSelectedFiles();
+                            return true;
+                        }
+                        else if(id == R.id.action_rename)
+                        {
+                            renameSelectedFile();
+                            return true;
+                        }
                         return false;
                     }
                 });
@@ -173,26 +178,8 @@ public class BrowserActivity extends AppCompatActivity {
             return false; // Let the ListView handle single taps for selection
         });
 
-        getFileList();
-
-        btnDeleteSelectedFiles = findViewById(R.id.btDeleteSelected);
-        btnDeleteSelectedFiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteSelectedFiles();
-            }
-        });
-
-        btnRename = findViewById(R.id.btRenameSelected);
-        btnRename.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                renameSelectedFile();
-            }
-        });
-
-        btnOpenFile = findViewById(R.id.btSelectOneFile);
-        btnOpenFile.setOnClickListener(new View.OnClickListener() {
+        btnSelectOneFile = findViewById(R.id.btSelectOneFile);
+        btnSelectOneFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finishWithFileSelectArguments();
@@ -225,13 +212,15 @@ public class BrowserActivity extends AppCompatActivity {
             }
         });
 
-        //btnReload.setVisibility(View.VISIBLE);
-        btnOpenFile.setVisibility(View.VISIBLE);
-        btnDeleteSelectedFiles.setVisibility(View.VISIBLE);
+        btnSelectOneFile.setVisibility(View.VISIBLE);
         btnShare.setVisibility(View.VISIBLE);
     }
 
-    
+    @Override
+    protected void onResume() {
+        getFileList();
+        super.onResume();
+    }
 
     private void navigateToFolder(File folder) {
         if (folder.getName().equals("..")) {
@@ -339,7 +328,7 @@ public class BrowserActivity extends AppCompatActivity {
                                 fileName.renameTo(newFile);
                                 filesList.add(newFile);
                                 fileAdapter.notifyDataSetChanged();
-                                clFileList.setVisibility(View.VISIBLE);
+                                viewOverlay.setVisibility(View.GONE);
                                 clPopup.setVisibility(View.GONE);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -349,7 +338,7 @@ public class BrowserActivity extends AppCompatActivity {
                 }
             });
 
-            clFileList.setVisibility(View.GONE);
+            viewOverlay.setVisibility(View.VISIBLE);
             clPopup.setVisibility(View.VISIBLE);
         }
         else
@@ -362,14 +351,14 @@ public class BrowserActivity extends AppCompatActivity {
     {
         ((TextView)findViewById(R.id.txtTitle)).setText("Créer");
         ((TextView)findViewById(R.id.txtMessage)).setText("Créer un nouveau dossier");
-        ((EditText)findViewById(R.id.etData)).setText("");
+        ((EditText)findViewById(R.id.etData)).setText(FileUtil.getTodayFolder(false).getName());
         ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.GONE);
         btPopupYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String newFolder = ((EditText) findViewById(R.id.etData)).getText().toString();
                 if (newFolder.isEmpty() == false) {
-                    File newFile = new File(currentFolder, newFolder + fileExtension);
+                    File newFile = new File(currentFolder, newFolder);
                     if(newFile.exists())
                     {
                         Toast.makeText(BrowserActivity.this, "Le dossier existe déjà.", Toast.LENGTH_LONG).show();
@@ -438,21 +427,73 @@ public class BrowserActivity extends AppCompatActivity {
 
     private void deleteSelectedFiles() {
         SparseBooleanArray idPositions = listView.getCheckedItemPositions();
-        ArrayList<File> toDelete = new ArrayList<>();
         int id = 0;
         for (File file : filesList) {
             if(idPositions.get(id) == true) {
                 if (file.getName().equals("..")) {
-                    Toast.makeText(this, "Impossible de supprimer les dossiers ou le dossier parent.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Impossible de supprimer le dossier parent.", Toast.LENGTH_LONG).show();
                     continue;
                 }
-                toDelete.add(file);
-                file.delete();
+                if(file.isDirectory())
+                {
+                    deleteFolder(file);
+                }
+                else {
+                    deleteFile(file);
+                }
             }
             id++;
         }
-        filesList.removeAll(toDelete);
-        fileAdapter.notifyDataSetChanged();
+    }
+
+    private void deleteFile(File file)
+    {
+        ((TextView)findViewById(R.id.txtTitle)).setText("Delete File");
+        ((TextView)findViewById(R.id.txtMessage)).setText("Are you sure ?");
+        ((EditText)findViewById(R.id.etData)).setText(file.getName());
+        ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.VISIBLE);
+        ((TextView)findViewById(R.id.txtDataLabelRight)).setText(fileExtension);
+        btPopupYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(file.exists())
+                {
+                    file.delete();
+                    filesList.remove(file);
+                    fileAdapter.notifyDataSetChanged();
+                }
+                viewOverlay.setVisibility(View.GONE);
+                clPopup.setVisibility(View.GONE);
+            }
+        });
+
+        viewOverlay.setVisibility(View.VISIBLE);
+        clPopup.setVisibility(View.VISIBLE);
+    }
+
+
+    private void deleteFolder(File file)
+    {
+        ((TextView)findViewById(R.id.txtTitle)).setText("Delete Folder");
+        ((TextView)findViewById(R.id.txtMessage)).setText("Are you sure ?");
+        ((EditText)findViewById(R.id.etData)).setText(file.getName());
+        ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.GONE);
+        btPopupYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(file.exists())
+                {
+                    FileUtil.deleteFolderRecursively(file);
+                    filesList.remove(file);
+                    fileAdapter.notifyDataSetChanged();
+                }
+                viewOverlay.setVisibility(View.GONE);
+                clPopup.setVisibility(View.GONE);
+            }
+        });
+
+        viewOverlay.setVisibility(View.VISIBLE);
+        clPopup.setVisibility(View.VISIBLE);
     }
 
     private String getMimeType()

@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,11 +25,20 @@ public class FileAdapter extends ArrayAdapter<File> {
     public View getView(int position, View convertView, ViewGroup parent) {
         File file = getItem(position);
 
-        if (convertView == null) {
-            //convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_multiple_choice, parent, false);
-            convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_single_choice, parent, false);
+        TextView textView; // Use TextView as common base, then cast if needed
+        if (file.getName().equals("..")) {
+            if (convertView == null || ! (convertView.getTag() instanceof String) || !((String) convertView.getTag()).equals("parent_dir")) {
+                convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+                convertView.setTag("parent_dir");
+            }
+            textView = (TextView) convertView.findViewById(android.R.id.text1);
+        } else {
+            if (convertView == null || ! (convertView.getTag() instanceof String) || !((String) convertView.getTag()).equals("file_folder")) {
+                convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_single_choice, parent, false);
+                convertView.setTag("file_folder");
+            }
+            textView = (CheckedTextView) convertView.findViewById(android.R.id.text1);
         }
-        CheckedTextView textView = convertView.findViewById(android.R.id.text1);
         
         String displayName;
         if (file.getName().equals("..")) {

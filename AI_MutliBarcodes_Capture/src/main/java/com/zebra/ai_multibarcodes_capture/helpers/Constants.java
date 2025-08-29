@@ -25,4 +25,9 @@ public class Constants {
     public static final String FILEBROWSER_RESULT_FILE_EXTENSION = "RESULT_FILE_EXTENSION";
     public static final String FILEBROWSER_RESULT_FILEPATH = "RESULT_FILEPATH";
 
+    public static final String CAPTURE_FILE_PATH = "CAPTURE_FILE_PATH";
+
+    public static final String PREFERENCES_LAST_SESSION_FILE = "lastsessionfile";
+
+
 }
