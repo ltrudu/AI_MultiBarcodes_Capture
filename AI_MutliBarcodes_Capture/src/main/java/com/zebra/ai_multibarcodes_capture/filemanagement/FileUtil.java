@@ -208,6 +208,13 @@ public class FileUtil {
         return fileName;
     }
 
+    public static String createNewFileAndReturnFullPath(File folder, String prefix, EExportMode exportMode) throws IOException {
+        String fileName = createNewFileName(prefix);
+        File newFile = new File(folder, fileName + exportMode.getExtension());
+        newFile.createNewFile();
+        return newFile.getPath();
+    }
+
     public static String getTodayDateString()
     {
         Date nowDate = new Date();

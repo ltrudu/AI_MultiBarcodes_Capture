@@ -8,6 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +20,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -27,8 +32,10 @@ import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.java.CameraXLivePreviewActivity;
+import com.zebra.ai_multibarcodes_capture.settings.SettingsActivity;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * The EntryChoiceActivity class is an Android activity that serves as an entry point for selecting
@@ -70,8 +77,6 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
     EExportMode eExportMode = EExportMode.TEXT;
 
-    TextView tvSessionFile;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +91,37 @@ public class EntryChoiceActivity extends AppCompatActivity {
             Log.e(TAG, "AI Vision SDK Initialization failed");
         }
 
+        setSupportActionBar(binding.tbEntry);
+        binding.tbEntry.setNavigationIcon(R.drawable.ic_menu_white);
+        binding.tbEntry.setNavigationOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 PopupMenu popup = new PopupMenu(EntryChoiceActivity.this, view);
+                 MenuInflater inflater = popup.getMenuInflater();
+                 inflater.inflate(R.menu.entry_menu, popup.getMenu());
+                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                     @Override
+                     public boolean onMenuItemClick(MenuItem menuItem) {
+                         int id = menuItem.getItemId();
+                         if (id == R.id.action_manage_sessions) {
+                             Intent intent = new Intent(EntryChoiceActivity.this, BrowserActivity.class);
+                             File todayFolderPath = FileUtil.getBaseFolder();
+                             intent.putExtra(Constants.FILEBROWSER_EXTRA_FOLDER_PATH, todayFolderPath.getPath());
+                             intent.putExtra(Constants.FILEBROWSER_EXTRA_EXTENSION, eExportMode.getExtension());
+
+                             resultBrowseFile.launch(intent);
+
+                         } else if (id == R.id.action_settings) {
+                             Intent intent = new Intent(EntryChoiceActivity.this, SettingsActivity.class);
+                             startActivity(intent);
+                         }
+                         return false;
+                     }
+                 });
+                 popup.show();
+             }
+         });
+
         binding.btStartCapture.setEnabled(false);
         binding.btStartCapture.setOnClickListener(v -> {
             Intent mainIntent = new Intent(this, CameraXLivePreviewActivity.class);
@@ -93,19 +129,17 @@ public class EntryChoiceActivity extends AppCompatActivity {
             startActivity(mainIntent);
         });
 
-        tvSessionFile = findViewById(R.id.txtSession);
-
         binding.btLoadLastSession.setOnClickListener(v -> {
             sessionFilePathString = PreferencesHelper.getLastSelectedSession(this);
             if(sessionFilePathString != null) {
                 File sessionFile = new File(sessionFilePathString);
                 if(sessionFile.exists()) {
-                    tvSessionFile.setText(sessionFilePathString);
+                    binding.txtSession.setText(sessionFilePathString);
                     binding.btStartCapture.setEnabled(true);
                 }
                 else {
                     Toast.makeText(this, "Last session file not found.", Toast.LENGTH_LONG).show();
-                    tvSessionFile.setText(R.string.select_session_file);
+                    binding.txtSession.setText(R.string.select_session_file);
                     binding.btStartCapture.setEnabled(false);
                 }
             }
@@ -116,13 +150,39 @@ public class EntryChoiceActivity extends AppCompatActivity {
             }
         });
 
-        binding.btManageSessions.setOnClickListener(v -> {
-            Intent intent = new Intent(EntryChoiceActivity.this, BrowserActivity.class);
-            File todayFolderPath = FileUtil.getBaseFolder();
-            intent.putExtra(Constants.FILEBROWSER_EXTRA_FOLDER_PATH, todayFolderPath.getPath());
-            intent.putExtra(Constants.FILEBROWSER_EXTRA_EXTENSION, eExportMode.getExtension());
-
-            resultBrowseFile.launch(intent);
+        binding.bCreateNewSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                File todayFolder = FileUtil.getTodayFolder(true);
+                try {
+                    sessionFilePathString = FileUtil.createNewFileAndReturnFullPath(todayFolder, Constants.FILE_DEFAULT_PREFIX, EExportMode.TEXT);
+                    if(sessionFilePathString != null)
+                    {
+                        binding.txtSession.setText(sessionFilePathString);
+                        binding.btStartCapture.setEnabled(true);
+                    }
+                } catch (IOException e) {
+                    Toast.makeText(EntryChoiceActivity.this,"Error creating new session: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    if(sessionFilePathString == null) {
+                        binding.btStartCapture.setEnabled(false);
+                        binding.txtSession.setText(R.string.select_session_file);
+                    }
+                    else
+                    {
+                        File sessionFile = new File(sessionFilePathString);
+                        if(sessionFile.exists())
+                        {
+                            binding.txtSession.setText(sessionFilePathString);
+                            binding.btStartCapture.setEnabled(true);
+                        }
+                        else
+                        {
+                            binding.btStartCapture.setEnabled(false);
+                            binding.txtSession.setText(R.string.select_session_file);
+                        }
+                    }
+                }
+            }
         });
 
         resultBrowseFile = registerForActivityResult(
@@ -138,20 +198,20 @@ public class EntryChoiceActivity extends AppCompatActivity {
                         sessionFilePathString = resultData;
                          if(sessionFilePathString.isEmpty() == false)
                         {
-                            tvSessionFile.setText(sessionFilePathString);
+                            binding.txtSession.setText(sessionFilePathString);
                             binding.btStartCapture.setEnabled(true);
                         }
                         else
                         {
                             binding.btStartCapture.setEnabled(false);
-                            tvSessionFile.setText(R.string.select_session_file);
+                            binding.txtSession.setText(R.string.select_session_file);
                         }
                         PreferencesHelper.saveLastSessionFile(this, sessionFilePathString);
                     }
                     else
                     {
                         sessionFilePathString = null;
-                        tvSessionFile.setText(R.string.select_session_file);
+                        binding.txtSession.setText(R.string.select_session_file);
                     }
                 }
         );
