@@ -23,12 +23,23 @@ public class FileAdapter extends ArrayAdapter<File> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         File file = getItem(position);
+
         if (convertView == null) {
             //convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_multiple_choice, parent, false);
             convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_single_choice, parent, false);
         }
         CheckedTextView textView = convertView.findViewById(android.R.id.text1);
-        textView.setText(file.getName());
+        
+        String displayName;
+        if (file.getName().equals("..")) {
+            displayName = ".. (Parent Directory)";
+        } else if (file.isDirectory()) {
+            displayName = "📁 " + file.getName();
+        } else {
+            displayName = "📄 " + file.getName();
+        }
+        
+        textView.setText(displayName);
         return convertView;
     }
 }

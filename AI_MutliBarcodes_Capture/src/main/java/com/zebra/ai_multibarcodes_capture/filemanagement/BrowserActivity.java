@@ -5,10 +5,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +28,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
 
@@ -28,25 +37,28 @@ public class BrowserActivity extends AppCompatActivity {
     private FileAdapter fileAdapter;
     private ArrayList<File> filesList;
     private ListView listView;
-    private Button btnCreateFile;
     private Button btnDeleteSelectedFiles;
     private Button btnOpenFile;
     private Button btnReload;
     private Button btnClose;
     private Button btnShare;
     private Button btnRename;
+    private View viewOverlay;
 
     ConstraintLayout clFileList;
     ConstraintLayout clPopup;
     Button btPopupYes;
     Button btPopupNo;
+    Toolbar tbManage;
 
     private File baseFolder;
+    private File currentFolder;
     private int fileCounter = 0;
     private String filePrefix = Constants.FILE_DEFAULT_PREFIX;
     private String fileExtension = Constants.FILE_EXTENSION_TXT;
 
     private boolean bCanMultiSelect = false;
+    private GestureDetector gestureDetector;
 
 
     @Override
@@ -59,6 +71,7 @@ public class BrowserActivity extends AppCompatActivity {
 
         if (folderPath != null) {
             baseFolder = new File(folderPath);
+            currentFolder = baseFolder;
 
             // Ensure the directory exists
             if (!baseFolder.exists()) {
@@ -79,11 +92,43 @@ public class BrowserActivity extends AppCompatActivity {
         clPopup.setVisibility(View.GONE);
         clFileList.setVisibility(View.VISIBLE);
         btPopupNo = findViewById(R.id.btNo);
+        tbManage = findViewById(R.id.tbManage);
+        viewOverlay = findViewById(R.id.viewOverlay);
+
+        viewOverlay.setVisibility(View.GONE);
+
+        setSupportActionBar(tbManage);
+        tbManage.setNavigationIcon(R.drawable.ic_menu_white);
+        tbManage.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(BrowserActivity.this, view);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.browser_menu, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+                        if (id == R.id.action_new_file) {
+                            createNewFile();
+                            return true;
+                        } else if (id == R.id.action_new_folder) {
+                            createNewFolder();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                popup.show();
+            }
+        });
+
+
         btPopupNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewOverlay.setVisibility(View.GONE);
                 clPopup.setVisibility(View.GONE);
-                clFileList.setVisibility(View.VISIBLE);
             }
         });
         btPopupYes = findViewById(R.id.btYes);
@@ -107,15 +152,28 @@ public class BrowserActivity extends AppCompatActivity {
             listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         }
 
-        getFileList();
-
-        btnCreateFile = findViewById(R.id.btCreateFile);
-        btnCreateFile.setOnClickListener(new View.OnClickListener() {
+        // Add double-tap detection for folder navigation
+        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
-            public void onClick(View v) {
-                createNewFile();
+            public boolean onDoubleTap(MotionEvent e) {
+                int position = listView.pointToPosition((int) e.getX(), (int) e.getY());
+                if (position != ListView.INVALID_POSITION) {
+                    File selectedFile = filesList.get(position);
+                    if (selectedFile.isDirectory() || selectedFile.getName().equals("..")) {
+                        navigateToFolder(selectedFile);
+                        return true;
+                    }
+                }
+                return false;
             }
         });
+
+        listView.setOnTouchListener((v, event) -> {
+            gestureDetector.onTouchEvent(event);
+            return false; // Let the ListView handle single taps for selection
+        });
+
+        getFileList();
 
         btnDeleteSelectedFiles = findViewById(R.id.btDeleteSelected);
         btnDeleteSelectedFiles.setOnClickListener(new View.OnClickListener() {
@@ -170,8 +228,23 @@ public class BrowserActivity extends AppCompatActivity {
         //btnReload.setVisibility(View.VISIBLE);
         btnOpenFile.setVisibility(View.VISIBLE);
         btnDeleteSelectedFiles.setVisibility(View.VISIBLE);
-        btnCreateFile.setVisibility(View.VISIBLE);
         btnShare.setVisibility(View.VISIBLE);
+    }
+
+    
+
+    private void navigateToFolder(File folder) {
+        if (folder.getName().equals("..")) {
+            // Navigate to parent directory
+            currentFolder = currentFolder.getParentFile();
+            if (currentFolder == null || !currentFolder.getAbsolutePath().startsWith(baseFolder.getAbsolutePath())) {
+                currentFolder = baseFolder;
+            }
+        } else if (folder.isDirectory()) {
+            // Navigate to subdirectory
+            currentFolder = folder;
+        }
+        getFileList();
     }
 
     private void finishWithFileSelectArguments()
@@ -180,11 +253,15 @@ public class BrowserActivity extends AppCompatActivity {
         int fileNamePosition = listView.getCheckedItemPosition();
         if(fileNamePosition != -1) {
             File fileName = filesList.get(fileNamePosition);
-            resultIntent.putExtra(Constants.FILEBROWSER_RESULT_FILENAME, FileUtil.getFileNameWithoutExtension(fileName));
-            resultIntent.putExtra(Constants.FILEBROWSER_RESULT_FILE_EXTENSION, FileUtil.getFileExtension(fileName));
-            resultIntent.putExtra(Constants.FILEBROWSER_RESULT_FILEPATH, fileName.getPath());
-            setResult(RESULT_OK, resultIntent);
-            finish();
+            if (fileName.isFile()) {
+                resultIntent.putExtra(Constants.FILEBROWSER_RESULT_FILENAME, FileUtil.getFileNameWithoutExtension(fileName));
+                resultIntent.putExtra(Constants.FILEBROWSER_RESULT_FILE_EXTENSION, FileUtil.getFileExtension(fileName));
+                resultIntent.putExtra(Constants.FILEBROWSER_RESULT_FILEPATH, fileName.getPath());
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            } else {
+                Toast.makeText(this, "Veuillez sélectionner un fichier, pas un dossier.", Toast.LENGTH_LONG).show();
+            }
         }
         else
         {
@@ -193,25 +270,40 @@ public class BrowserActivity extends AppCompatActivity {
     }
 
     private void getFileList() {
-        File[] files = baseFolder.listFiles();
+        File[] files = currentFolder.listFiles();
         if(filesList == null)
             filesList = new ArrayList<>();
         filesList.clear();
         fileCounter = 0;
+        
+        // Add parent directory (..) if not at base folder
+        if (!currentFolder.equals(baseFolder)) {
+            File parentDir = new File("..");
+            filesList.add(parentDir);
+        }
+        
         if (files != null) {
+            // First add directories
             for (File file : files) {
-                if(file.getName().contains(fileExtension)) {
+                if (file.isDirectory()) {
+                    filesList.add(file);
+                }
+            }
+            
+            // Then add files with the specified extension
+            for (File file : files) {
+                if (file.isFile() && file.getName().contains(fileExtension)) {
                     filesList.add(file);
                     fileCounter++;
                 }
             }
+            
             if(fileAdapter == null)
             {
                 fileAdapter = new FileAdapter(BrowserActivity.this,filesList );
                 listView.setAdapter(fileAdapter);
             }
             fileAdapter.notifyDataSetChanged();
-
         }
     }
 
@@ -220,6 +312,10 @@ public class BrowserActivity extends AppCompatActivity {
         final int fileNamePosition = listView.getCheckedItemPosition();
         if(fileNamePosition != -1) {
             final File fileName = filesList.get(fileNamePosition);
+            if (fileName.getName().equals("..") || fileName.isDirectory()) {
+                Toast.makeText(this, "Impossible de renommer les dossiers ou le dossier parent.", Toast.LENGTH_LONG).show();
+                return;
+            }
             ((TextView)findViewById(R.id.txtTitle)).setText("Renommer");
             ((TextView)findViewById(R.id.txtMessage)).setText("Renommer un fichier");
             ((EditText)findViewById(R.id.etData)).setText(FileUtil.getFileNameWithoutExtension(fileName));
@@ -230,11 +326,11 @@ public class BrowserActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     String newFileName = ((EditText) findViewById(R.id.etData)).getText().toString();
                     if (newFileName.isEmpty() == false) {
-                        File newFile = new File(baseFolder, newFileName + fileExtension);
+                        File newFile = new File(currentFolder, newFileName + fileExtension);
                         if(newFile.exists())
                         {
                             Toast.makeText(BrowserActivity.this, "Le fichier existe déjà.", Toast.LENGTH_LONG).show();
-                            clFileList.setVisibility(View.VISIBLE);
+                            viewOverlay.setVisibility(View.GONE);
                             clPopup.setVisibility(View.GONE);
                             return;
                         }
@@ -262,6 +358,45 @@ public class BrowserActivity extends AppCompatActivity {
         }
     }
 
+    private void createNewFolder()
+    {
+        ((TextView)findViewById(R.id.txtTitle)).setText("Créer");
+        ((TextView)findViewById(R.id.txtMessage)).setText("Créer un nouveau dossier");
+        ((EditText)findViewById(R.id.etData)).setText("");
+        ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.GONE);
+        btPopupYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newFolder = ((EditText) findViewById(R.id.etData)).getText().toString();
+                if (newFolder.isEmpty() == false) {
+                    File newFile = new File(currentFolder, newFolder + fileExtension);
+                    if(newFile.exists())
+                    {
+                        Toast.makeText(BrowserActivity.this, "Le dossier existe déjà.", Toast.LENGTH_LONG).show();
+                        viewOverlay.setVisibility(View.GONE);
+                        clPopup.setVisibility(View.GONE);
+                        return;
+                    }
+                    try {
+                        if (newFile.mkdir()) {
+                            filesList.add(newFile);
+                            fileCounter++;
+                            fileAdapter.notifyDataSetChanged();
+                            viewOverlay.setVisibility(View.GONE);
+                            clPopup.setVisibility(View.GONE);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(BrowserActivity.this, "Failed to create folder:" + newFolder, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        viewOverlay.setVisibility(View.VISIBLE);
+        clPopup.setVisibility(View.VISIBLE);
+    }
+
     private void createNewFile() {
         ((TextView)findViewById(R.id.txtTitle)).setText("Créer");
         ((TextView)findViewById(R.id.txtMessage)).setText("Créer un nouveau fichier");
@@ -273,7 +408,7 @@ public class BrowserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String newFileName = ((EditText) findViewById(R.id.etData)).getText().toString();
                 if (newFileName.isEmpty() == false) {
-                    File newFile = new File(baseFolder, newFileName + fileExtension);
+                    File newFile = new File(currentFolder, newFileName + fileExtension);
                     if(newFile.exists())
                     {
                         Toast.makeText(BrowserActivity.this, "Le fichier existe déjà.", Toast.LENGTH_LONG).show();
@@ -286,7 +421,7 @@ public class BrowserActivity extends AppCompatActivity {
                             filesList.add(newFile);
                             fileCounter++;
                             fileAdapter.notifyDataSetChanged();
-                            clFileList.setVisibility(View.VISIBLE);
+                            viewOverlay.setVisibility(View.GONE);
                             clPopup.setVisibility(View.GONE);
                         }
                     } catch (IOException e) {
@@ -297,9 +432,8 @@ public class BrowserActivity extends AppCompatActivity {
             }
         });
 
-        clFileList.setVisibility(View.GONE);
+        viewOverlay.setVisibility(View.VISIBLE);
         clPopup.setVisibility(View.VISIBLE);
-
     }
 
     private void deleteSelectedFiles() {
@@ -308,6 +442,10 @@ public class BrowserActivity extends AppCompatActivity {
         int id = 0;
         for (File file : filesList) {
             if(idPositions.get(id) == true) {
+                if (file.getName().equals("..")) {
+                    Toast.makeText(this, "Impossible de supprimer les dossiers ou le dossier parent.", Toast.LENGTH_LONG).show();
+                    continue;
+                }
                 toDelete.add(file);
                 file.delete();
             }
@@ -346,6 +484,10 @@ public class BrowserActivity extends AppCompatActivity {
         int fileNamePosition = listView.getCheckedItemPosition();
         if(fileNamePosition != -1) {
             File fileName = filesList.get(fileNamePosition);
+            if (fileName.getName().equals("..") || fileName.isDirectory()) {
+                Toast.makeText(this, "Impossible de partager les dossiers.", Toast.LENGTH_LONG).show();
+                return;
+            }
             File cacheFile = FileUtil.copyToCacheFolder(this, fileName);
 
             Uri processedFileURIForShareTo = FileProvider.getUriForFile(BrowserActivity.this, Constants.PROVIDER_AUTHORITY, cacheFile);

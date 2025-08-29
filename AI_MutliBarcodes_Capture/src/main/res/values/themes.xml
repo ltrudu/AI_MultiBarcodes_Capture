@@ -5,5 +5,30 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.AISuite_QuickStart" parent="Base.Theme.AIMultiBarcodes_Capture" />
+    <style name="Theme.MultiBarcodesCapture" parent="Base.Theme.AIMultiBarcodes_Capture" />
+
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AIMultiBarcodes_Capture_ActionBar" parent="Theme.Material3.DayNight">
+
+        <!-- Customize your light theme here. -->
+        <item name="actionBarStyle">@style/MyActionBarStyle</item>
+        <item name="toolbarStyle">@style/MyToolbarStyle</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="MyActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@color/zebra</item>
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <style name="MyActionBarTitleText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyToolbarStyle" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">@color/white</item>
+        <item name="background">@color/zebra</item>
+    </style>
+
+    <style name="Theme.MultiBarcodesCapture_AB" parent="Base.Theme.AIMultiBarcodes_Capture_ActionBar" />
 </resources>

@@ -27,6 +27,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         tvStatus = findViewById(R.id.tvStatus);
         tvLoading = findViewById(R.id.tvLoading);
+
         if (MainApplication.permissionGranted == false) {
             setTitle(R.string.app_name);
             startPointsAnimations(getString(R.string.app_name), getString(R.string.loading_status));

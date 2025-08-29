@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_new_file"
+        android:title="New File"
+        android:showAsAction="never" />
+    <item
+        android:id="@+id/action_new_folder"
+        android:title="New Folder"
+        android:showAsAction="never" />
+</menu>
