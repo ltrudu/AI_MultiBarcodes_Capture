@@ -63,7 +63,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
     // Define a request code for camera permission
     private static final int REQUEST_CAMERA_PERMISSION = 200;
 
-    private String sessionFileName;
+    private String sessionFile;
 
     private ActivityResultLauncher<Intent> resultBrowseFile;
 
@@ -85,6 +85,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
             Log.e(TAG, "AI Vision SDK Initialization failed");
         }
 
+        binding.btStartCapture.setEnabled(false);
         binding.btStartCapture.setOnClickListener(v -> {
             Intent mainIntent = new Intent(this, CameraXLivePreviewActivity.class);
             startActivity(mainIntent);
@@ -94,8 +95,8 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
         binding.btManageSessions.setOnClickListener(v -> {
             Intent intent = new Intent(EntryChoiceActivity.this, BrowserActivity.class);
-            String todayFolderPath = FileUtil.getTodayFolder().getPath();
-            intent.putExtra(Constants.FILEBROWSER_EXTRA_FOLDER_PATH, todayFolderPath);
+            File todayFolderPath = FileUtil.getBaseFolder();
+            intent.putExtra(Constants.FILEBROWSER_EXTRA_FOLDER_PATH, todayFolderPath.getPath());
             intent.putExtra(Constants.FILEBROWSER_EXTRA_EXTENSION, eExportMode.getExtension());
 
             resultBrowseFile.launch(intent);
@@ -110,16 +111,24 @@ public class EntryChoiceActivity extends AppCompatActivity {
                             Toast.makeText(EntryChoiceActivity.this, "Missing filename", Toast.LENGTH_LONG).show();
                             return;
                         }
-                        String resultData = result.getData().getStringExtra(Constants.FILEBROWSER_RESULT_FILENAME);
+                        String resultData = result.getData().getStringExtra(Constants.FILEBROWSER_RESULT_FILEPATH);
                         File fileWithFolder = new File(FileUtil.getTodayFolder(), resultData + eExportMode.getExtension());
-                        sessionFileName = resultData;
-                        tvSessionFile.setText(sessionFileName + eExportMode.getExtension());
+                        sessionFile = resultData;
+                        tvSessionFile.setText(sessionFile);
+                        if(sessionFile.isEmpty() == false)
+                        {
+                            binding.btStartCapture.setEnabled(true);
+                        }
+                        else
+                        {
+                            binding.btStartCapture.setEnabled(false);
+                        }
                     }
                     else
                     {
-                        if(sessionFileName.isEmpty())
+                        if(sessionFile.isEmpty())
                         {
-                            sessionFileName = FileUtil.createNewFileName(Constants.FILEBROWSER_DEFAULT_PREFIX);
+                            sessionFile = FileUtil.createNewFileName(Constants.FILEBROWSER_DEFAULT_PREFIX);
                         }
                     }
                 }

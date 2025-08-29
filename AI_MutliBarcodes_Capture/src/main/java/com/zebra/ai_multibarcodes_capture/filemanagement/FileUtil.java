@@ -195,18 +195,37 @@ public class FileUtil {
         return currentDate;
     }
 
-    public static File getTodayFolder()
+    public static File getBaseFolder()
     {
         File targetFolder = null;
-        File dateFolder = null;
         try {
             targetFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), Constants.FILE_TARGET_FOLDER);
             if (targetFolder.exists() == false) {
                 targetFolder.mkdirs();
             }
-            dateFolder = new File(targetFolder, getTodayDateString());
-            if (dateFolder.exists() == false) {
-                dateFolder.mkdirs();
+            return targetFolder;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    public static File getTodayFolder()
+    {
+        File targetFolder = null;
+        File dateFolder = null;
+        try {
+            targetFolder = getBaseFolder();
+            if(targetFolder != null) {
+                dateFolder = new File(targetFolder, getTodayDateString());
+                if (dateFolder.exists() == false) {
+                    dateFolder.mkdirs();
+                }
+            }
+            else
+            {
+                return null;
             }
             return dateFolder;
         }
