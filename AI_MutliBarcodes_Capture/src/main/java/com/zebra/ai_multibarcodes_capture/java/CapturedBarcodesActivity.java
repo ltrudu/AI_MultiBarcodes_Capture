@@ -1,6 +1,7 @@
 package com.zebra.ai_multibarcodes_capture.java;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,9 +28,13 @@ import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class CapturedBarcodesActivity extends AppCompatActivity {
@@ -65,6 +70,8 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     private Map<String, Integer> barcodeQuantityMap;
     private Map<String, Integer> barcodeSymbologyMap;
 
+    private String captureFilePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +83,8 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             return insets;
         });
 
+        Intent intent = getIntent();
+        captureFilePath = intent.getStringExtra(Constants.CAPTURE_FILE_PATH);
 
         // Retrieve data from bundle passed by CaptureData method of CameraXLivePreviewActivity and add them to the barcodesDataList
         barcodesDataList = new ArrayList<>();
@@ -163,32 +172,41 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     private void saveData()
     {
         // Retrieve Today Folder
-        File todayFolder = FileUtil.getTodayFolder();
-        String fileName = FileUtil.createNewFileName(Constants.FILEBROWSER_DEFAULT_PREFIX);
-        File newFile = new File(todayFolder, fileName + ".txt");
+        File targetFile = new File(captureFilePath);
         try {
-            if(newFile.exists())
-                newFile.delete();
-            newFile.createNewFile();
+            Date currentDate = new Date();
+            DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+            String currentDateString = dateFormat.format(currentDate) + " " + sdf.format(currentDate);
+
+            if(targetFile.length() == 0) {
+                FileWriter headerFileWriter = new FileWriter(targetFile, true);
+                headerFileWriter.append("-----------------------------------------\n");
+                headerFileWriter.append("Capture file:" + targetFile.getName() + "\n");
+                headerFileWriter.append("Created the:" + currentDateString + "\n");
+                headerFileWriter.append("-----------------------------------------\n");
+                headerFileWriter.close();
+            }
+
             // Append data to the file
-            FileWriter fileWriter = new FileWriter(newFile, true);
-            fileWriter.append(fileName + "\n----------------------------------------------\n");
+            FileWriter fileWriter = new FileWriter(targetFile, true);
 
             for (Map.Entry<String, Integer> entry : barcodeQuantityMap.entrySet()) {
                 String value = entry.getKey();
                 int quantity = entry.getValue();
                 int symbology = barcodeSymbologyMap.getOrDefault(value, 0); // Get symbology, default to 0 if not found (shouldn't happen)
-                String data = "Value:" + value + "\nSymbology:" + symbology + "\nQuantity:" + quantity + "\n----------------------------------------------\n";
+                String data = "Value:" + value + "\nSymbology:" + symbology + "\nQuantity:" + quantity + "\nCapture Date:" + currentDateString + "\n-----------------------------------------\n";
                 fileWriter.append(data);
             }
 
             fileWriter.close();
 
-            Toast.makeText(this, "File saved at: " + newFile.getPath(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "File saved at: " + targetFile.getPath(), Toast.LENGTH_LONG).show();
+            finish();
 
         } catch (IOException e) {
-            Toast.makeText(this, "Error saving file: " + newFile.getPath(), Toast.LENGTH_LONG).show();
-            Log.e(TAG, "Error saving file:" + newFile.getPath());
+            Toast.makeText(this, "Error saving file: " + targetFile.getPath(), Toast.LENGTH_LONG).show();
+            Log.e(TAG, "Error saving file:" + targetFile.getPath());
             e.printStackTrace();
         }
     }

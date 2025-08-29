@@ -35,21 +35,17 @@
                     android:id="@+id/btSelectOneFile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/zebra"
                     android:layout_weight="0.3"
+                    android:backgroundTint="@color/zebra"
                     android:text="Selectionner" />
 
-                <Button
-                    android:id="@+id/btOuvrir"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:backgroundTint="@color/zebra"
-                    android:backgroundTintMode="add"
-                    android:text="Ouvrir"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    app:cornerRadius="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btShare"
@@ -61,52 +57,11 @@
                     android:textColor="@color/white"
                     app:cornerRadius="16dp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btRenameSelected"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:backgroundTint="@color/zebra"
-                    android:text="Renommer"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textColorLink="@color/design_default_color_primary_variant"
-                    app:cornerRadius="16dp" />
-
-                <Button
-                    android:id="@+id/btDeleteSelected"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:backgroundTint="@color/zebra"
-                    android:text="Effacer"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textColorLink="@color/design_default_color_primary_variant"
-                    app:cornerRadius="16dp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
                 <Button
                     android:id="@+id/btReload"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.3"
                     android:backgroundTint="@color/zebra"
                     android:text="Raffraichir"
                     android:textAlignment="center"
@@ -119,7 +74,7 @@
                     android:id="@+id/btClose"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.3"
                     android:backgroundTint="@color/zebra"
                     android:text="Fermer"
                     android:textAlignment="center"
@@ -160,6 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/semi_transparent"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

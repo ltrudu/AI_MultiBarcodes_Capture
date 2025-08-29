@@ -25,6 +25,7 @@ import com.zebra.ai_multibarcodes_capture.filemanagement.BrowserActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.java.CameraXLivePreviewActivity;
 
 import java.io.File;
@@ -63,7 +64,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
     // Define a request code for camera permission
     private static final int REQUEST_CAMERA_PERMISSION = 200;
 
-    private String sessionFile;
+    private String sessionFilePathString;
 
     private ActivityResultLauncher<Intent> resultBrowseFile;
 
@@ -88,10 +89,32 @@ public class EntryChoiceActivity extends AppCompatActivity {
         binding.btStartCapture.setEnabled(false);
         binding.btStartCapture.setOnClickListener(v -> {
             Intent mainIntent = new Intent(this, CameraXLivePreviewActivity.class);
+            mainIntent.putExtra(Constants.CAPTURE_FILE_PATH, sessionFilePathString);
             startActivity(mainIntent);
         });
 
         tvSessionFile = findViewById(R.id.txtSession);
+
+        binding.btLoadLastSession.setOnClickListener(v -> {
+            sessionFilePathString = PreferencesHelper.getLastSelectedSession(this);
+            if(sessionFilePathString != null) {
+                File sessionFile = new File(sessionFilePathString);
+                if(sessionFile.exists()) {
+                    tvSessionFile.setText(sessionFilePathString);
+                    binding.btStartCapture.setEnabled(true);
+                }
+                else {
+                    Toast.makeText(this, "Last session file not found.", Toast.LENGTH_LONG).show();
+                    tvSessionFile.setText(R.string.select_session_file);
+                    binding.btStartCapture.setEnabled(false);
+                }
+            }
+            else
+            {
+                Toast.makeText(this, "No session file saved in preferences.", Toast.LENGTH_LONG).show();
+                binding.btStartCapture.setEnabled(false);
+            }
+        });
 
         binding.btManageSessions.setOnClickListener(v -> {
             Intent intent = new Intent(EntryChoiceActivity.this, BrowserActivity.class);
@@ -112,24 +135,23 @@ public class EntryChoiceActivity extends AppCompatActivity {
                             return;
                         }
                         String resultData = result.getData().getStringExtra(Constants.FILEBROWSER_RESULT_FILEPATH);
-                        File fileWithFolder = new File(FileUtil.getTodayFolder(), resultData + eExportMode.getExtension());
-                        sessionFile = resultData;
-                        tvSessionFile.setText(sessionFile);
-                        if(sessionFile.isEmpty() == false)
+                        sessionFilePathString = resultData;
+                         if(sessionFilePathString.isEmpty() == false)
                         {
+                            tvSessionFile.setText(sessionFilePathString);
                             binding.btStartCapture.setEnabled(true);
                         }
                         else
                         {
                             binding.btStartCapture.setEnabled(false);
+                            tvSessionFile.setText(R.string.select_session_file);
                         }
+                        PreferencesHelper.saveLastSessionFile(this, sessionFilePathString);
                     }
                     else
                     {
-                        if(sessionFile.isEmpty())
-                        {
-                            sessionFile = FileUtil.createNewFileName(Constants.FILEBROWSER_DEFAULT_PREFIX);
-                        }
+                        sessionFilePathString = null;
+                        tvSessionFile.setText(R.string.select_session_file);
                     }
                 }
         );

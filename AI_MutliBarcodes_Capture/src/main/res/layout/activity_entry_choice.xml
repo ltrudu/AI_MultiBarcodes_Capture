@@ -22,12 +22,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/btLoadLastSession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/zebra"
+        android:enabled="true"
+        android:text="Load Last Session"
+        app:layout_constraintTop_toBottomOf="@id/btStartCapture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btManageSessions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/zebra"
         android:text="Manage Sessions"
-        app:layout_constraintTop_toBottomOf="@id/btStartCapture"
+        app:layout_constraintTop_toBottomOf="@id/btLoadLastSession"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

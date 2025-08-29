@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ExportWriters {
-    private void appendDataToTxtFile(File dataFile, String source, String data, String symbology) {
+    public static void appendDataToTxtFile(File dataFile, String data) {
         try {
             // Create the file if it doesn't exist
             if (!dataFile.exists()) {
@@ -36,21 +36,21 @@ public class ExportWriters {
         }
     }
 
-    private void appendDataToCsvFile(File dataFile, String source, String data, String symbology, Date nowDate) {
+    public static void appendDataToCsvFile(File dataFile, String data, String symbology, Date nowDate) {
         try {
             // Create the file if it doesn't exist
             if (!dataFile.exists()) {
                 dataFile.createNewFile();
                 // Append data to the file
                 FileWriter fileWriter = new FileWriter(dataFile, true); // Append mode
-                fileWriter.append("Heure;Source;Symbologie;Donnee" + "\n");
+                fileWriter.append("Heure;Symbologie;Donnee" + "\n");
                 fileWriter.close();
             }
             SimpleDateFormat sdf = new SimpleDateFormat("HHmmss");
             String currentTime = sdf.format(nowDate);
             // Append data to the file
             FileWriter fileWriter = new FileWriter(dataFile, true); // Append mode
-            fileWriter.append(currentTime + ";" + source + ";" + symbology + ";" + data + "\n");
+            fileWriter.append(currentTime + ";" + symbology + ";" + data + "\n");
             fileWriter.close();
         } catch (IOException e) {
             // Handle exceptions, e.g., log the error
@@ -58,7 +58,7 @@ public class ExportWriters {
         }
     }
 
-    private void appendDataToExcelFile(File dataFile, String source, String data, String symbology, Date nowDate) {
+    public static void appendDataToExcelFile(File dataFile, String data, String symbology, Date nowDate) {
         Workbook workbook = null;
         FileInputStream fis = null;
         FileOutputStream fos = null;
@@ -71,7 +71,7 @@ public class ExportWriters {
 
                 // Create header row
                 Row headerRow = sheet.createRow(0);
-                String[] headers = {"Heure", "Source", "Symbologie", "Donnee"};
+                String[] headers = {"Heure", "Symbologie", "Donnee"};
                 for (int i = 0; i < headers.length; i++) {
                     Cell cell = headerRow.createCell(i);
                     cell.setCellValue(headers[i]);
@@ -108,13 +108,12 @@ public class ExportWriters {
             timeCell.setCellValue(currentTime);
             timeCell.setCellStyle(timeStyle);
 
-            row.createCell(1).setCellValue(source);
-            row.createCell(2).setCellValue(symbology);
+            row.createCell(1).setCellValue(symbology);
 
             // Integer cell style (0 decimals)
             CellStyle integerStyle = workbook.createCellStyle();
             integerStyle.setDataFormat(createHelper.createDataFormat().getFormat("0"));
-            Cell dataCell = row.createCell(3);
+            Cell dataCell = row.createCell(2);
             dataCell.setCellValue(data);
             dataCell.setCellStyle(integerStyle);
 
