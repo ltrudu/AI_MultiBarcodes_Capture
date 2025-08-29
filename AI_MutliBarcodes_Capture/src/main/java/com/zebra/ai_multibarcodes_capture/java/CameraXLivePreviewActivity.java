@@ -37,6 +37,7 @@ import com.zebra.ai.vision.viewfinder.listners.EntityViewResizeSpecs;
 import com.zebra.ai_multibarcodes_capture.CameraXViewModel;
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
+import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTracker;
 import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTrackerGraphic;
 
@@ -118,6 +119,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     List<? extends Entity> entitiesHolder;
 
+    private String captureFilePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +134,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+
+        Intent intent = getIntent();
+        captureFilePath = intent.getStringExtra(Constants.CAPTURE_FILE_PATH);
 
         binding = ActivityCameraXlivePreviewBinding.inflate(getLayoutInflater());
         cameraSelector = new CameraSelector.Builder().requireLensFacing(lensFacing).build();
@@ -585,6 +591,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 bundle.putParcelableArrayList("barcodeDataList", barcodeDataList);
 
                 Intent intent = new Intent(this, CapturedBarcodesActivity.class);
+                intent.putExtra(Constants.CAPTURE_FILE_PATH, captureFilePath);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AISuite_QuickStart">
+        android:theme="@style/Theme.MultiBarcodesCapture">
         <activity
             android:name=".java.CapturedBarcodesActivity"
             android:exported="false" />
@@ -19,6 +19,9 @@
         <activity
             android:name=".java.CameraXLivePreviewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+
+        <activity android:name=".filemanagement.BrowserActivity"
             android:exported="false" />
 
         <activity
