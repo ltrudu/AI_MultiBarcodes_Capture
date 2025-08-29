@@ -24,6 +24,9 @@
         <activity android:name=".filemanagement.BrowserActivity"
             android:exported="false" />
 
+        <activity android:name=".settings.SettingsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">

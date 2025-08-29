@@ -19,7 +19,7 @@ public class PreferencesHelper {
         // Get the SharedPreferences.Editor object to make changes
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(Constants.PREFERENCES_LAST_SESSION_FILE, filePath);
+        editor.putString(Constants.SHARED_PREFERENCES_LAST_SESSION_FILE, filePath);
 
         // Commit the changes
         editor.commit();
@@ -31,7 +31,7 @@ public class PreferencesHelper {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
 
         // Retrieve the stored integer value, with a default value of 0 if not found
-        String filePath = sharedPreferences.getString(Constants.PREFERENCES_LAST_SESSION_FILE, null);
+        String filePath = sharedPreferences.getString(Constants.SHARED_PREFERENCES_LAST_SESSION_FILE, null);
         return filePath;
     }
 }

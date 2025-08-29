@@ -140,11 +140,11 @@ public class BrowserActivity extends AppCompatActivity {
 
         fileExtension = intent.getStringExtra(Constants.FILEBROWSER_EXTRA_EXTENSION);
         if(fileExtension == null)
-            fileExtension = Constants.FILEBROWSER_DEFAULT_EXTENSION;
+            fileExtension = Constants.FILE_DEFAULT_EXTENSION;
 
         filePrefix = intent.getStringExtra(Constants.FILEBROWSER_EXTRA_PREFIX);
         if(filePrefix == null)
-            filePrefix = Constants.FILEBROWSER_DEFAULT_PREFIX;
+            filePrefix = Constants.FILE_DEFAULT_PREFIX;
 
         bCanMultiSelect = intent.getBooleanExtra(Constants.FILEBROWSER_EXTRA_MULTISELECT, false);
 
