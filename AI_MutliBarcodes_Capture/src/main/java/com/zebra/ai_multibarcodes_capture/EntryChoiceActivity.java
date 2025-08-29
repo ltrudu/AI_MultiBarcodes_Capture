@@ -8,8 +8,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +21,14 @@ import androidx.core.content.ContextCompat;
 
 import com.zebra.ai.vision.detector.AIVisionSDK;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityEntryChoiceBinding;
+import com.zebra.ai_multibarcodes_capture.filemanagement.BrowserActivity;
+import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
+import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
+import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.java.CameraXLivePreviewActivity;
+
+import java.io.File;
 
 /**
  * The EntryChoiceActivity class is an Android activity that serves as an entry point for selecting
@@ -54,6 +64,14 @@ public class EntryChoiceActivity extends AppCompatActivity {
     // Define a request code for camera permission
     private static final int REQUEST_CAMERA_PERMISSION = 200;
 
+    private String sessionFilePathString;
+
+    private ActivityResultLauncher<Intent> resultBrowseFile;
+
+    EExportMode eExportMode = EExportMode.TEXT;
+
+    TextView tvSessionFile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,12 +86,75 @@ public class EntryChoiceActivity extends AppCompatActivity {
             Log.e(TAG, "AI Vision SDK Initialization failed");
         }
 
-        binding.javaEntryPoint.setOnClickListener(v -> {
+        binding.btStartCapture.setEnabled(false);
+        binding.btStartCapture.setOnClickListener(v -> {
             Intent mainIntent = new Intent(this, CameraXLivePreviewActivity.class);
+            mainIntent.putExtra(Constants.CAPTURE_FILE_PATH, sessionFilePathString);
             startActivity(mainIntent);
         });
 
-        
+        tvSessionFile = findViewById(R.id.txtSession);
+
+        binding.btLoadLastSession.setOnClickListener(v -> {
+            sessionFilePathString = PreferencesHelper.getLastSelectedSession(this);
+            if(sessionFilePathString != null) {
+                File sessionFile = new File(sessionFilePathString);
+                if(sessionFile.exists()) {
+                    tvSessionFile.setText(sessionFilePathString);
+                    binding.btStartCapture.setEnabled(true);
+                }
+                else {
+                    Toast.makeText(this, "Last session file not found.", Toast.LENGTH_LONG).show();
+                    tvSessionFile.setText(R.string.select_session_file);
+                    binding.btStartCapture.setEnabled(false);
+                }
+            }
+            else
+            {
+                Toast.makeText(this, "No session file saved in preferences.", Toast.LENGTH_LONG).show();
+                binding.btStartCapture.setEnabled(false);
+            }
+        });
+
+        binding.btManageSessions.setOnClickListener(v -> {
+            Intent intent = new Intent(EntryChoiceActivity.this, BrowserActivity.class);
+            File todayFolderPath = FileUtil.getBaseFolder();
+            intent.putExtra(Constants.FILEBROWSER_EXTRA_FOLDER_PATH, todayFolderPath.getPath());
+            intent.putExtra(Constants.FILEBROWSER_EXTRA_EXTENSION, eExportMode.getExtension());
+
+            resultBrowseFile.launch(intent);
+        });
+
+        resultBrowseFile = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        if(result.getData() == null)
+                        {
+                            Toast.makeText(EntryChoiceActivity.this, "Missing filename", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        String resultData = result.getData().getStringExtra(Constants.FILEBROWSER_RESULT_FILEPATH);
+                        sessionFilePathString = resultData;
+                         if(sessionFilePathString.isEmpty() == false)
+                        {
+                            tvSessionFile.setText(sessionFilePathString);
+                            binding.btStartCapture.setEnabled(true);
+                        }
+                        else
+                        {
+                            binding.btStartCapture.setEnabled(false);
+                            tvSessionFile.setText(R.string.select_session_file);
+                        }
+                        PreferencesHelper.saveLastSessionFile(this, sessionFilePathString);
+                    }
+                    else
+                    {
+                        sessionFilePathString = null;
+                        tvSessionFile.setText(R.string.select_session_file);
+                    }
+                }
+        );
     }
 
     @Override
