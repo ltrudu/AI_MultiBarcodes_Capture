@@ -2,7 +2,9 @@
 package com.zebra.ai_multibarcodes_capture;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,6 +38,11 @@ import com.zebra.ai_multibarcodes_capture.settings.SettingsActivity;
 
 import java.io.File;
 import java.io.IOException;
+
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.FILE_DEFAULT_EXTENSION;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.FILE_DEFAULT_PREFIX;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_EXTENSION;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_PREFIX;
 
 /**
  * The EntryChoiceActivity class is an Android activity that serves as an entry point for selecting
@@ -74,7 +81,9 @@ public class EntryChoiceActivity extends AppCompatActivity {
     private String sessionFilePathString;
 
     private ActivityResultLauncher<Intent> resultBrowseFile;
+    private ActivityResultLauncher<Intent> resultSettings;
 
+    String filePrefix = FILE_DEFAULT_PREFIX;
     EExportMode eExportMode = EExportMode.TEXT;
 
     @Override
@@ -90,6 +99,9 @@ public class EntryChoiceActivity extends AppCompatActivity {
         } catch (UnsupportedOperationException ex) {
             Log.e(TAG, "AI Vision SDK Initialization failed");
         }
+
+        // load preferences
+        loadPreferences();
 
         setSupportActionBar(binding.tbEntry);
         binding.tbEntry.setNavigationIcon(R.drawable.ic_menu_white);
@@ -113,7 +125,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
                          } else if (id == R.id.action_settings) {
                              Intent intent = new Intent(EntryChoiceActivity.this, SettingsActivity.class);
-                             startActivity(intent);
+                             resultSettings.launch(intent);
                          }
                          return false;
                      }
@@ -136,6 +148,9 @@ public class EntryChoiceActivity extends AppCompatActivity {
                 if(sessionFile.exists()) {
                     binding.txtSession.setText(sessionFilePathString);
                     binding.btStartCapture.setEnabled(true);
+                    String fileExtension = FileUtil.getFileExtension(sessionFile);
+                    eExportMode = EExportMode.fromExtension(fileExtension);
+                    PreferencesHelper.saveCurrentExtension(this, fileExtension);
                 }
                 else {
                     Toast.makeText(this, "Last session file not found.", Toast.LENGTH_LONG).show();
@@ -155,7 +170,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
             public void onClick(View view) {
                 File todayFolder = FileUtil.getTodayFolder(true);
                 try {
-                    sessionFilePathString = FileUtil.createNewFileAndReturnFullPath(todayFolder, Constants.FILE_DEFAULT_PREFIX, EExportMode.TEXT);
+                    sessionFilePathString = FileUtil.createNewFileAndReturnFullPath(todayFolder, filePrefix, eExportMode);
                     if(sessionFilePathString != null)
                     {
                         binding.txtSession.setText(sessionFilePathString);
@@ -184,6 +199,21 @@ public class EntryChoiceActivity extends AppCompatActivity {
                 }
             }
         });
+
+        resultSettings = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result ->{
+                    if(result.getResultCode() == RESULT_OK) {
+                        loadPreferences();
+                        if (sessionFilePathString != null && sessionFilePathString.isEmpty() == false) {
+                            String sessionExtension = FileUtil.getFileExtension(new File(sessionFilePathString));
+                            EExportMode sessionMode = EExportMode.fromExtension(sessionExtension);
+                            if (sessionMode.equals(eExportMode) == false) {
+                                binding.btStartCapture.setEnabled(false);
+                                binding.txtSession.setText(R.string.select_session_file);
+                            }
+                        }
+                    }
+                });
 
         resultBrowseFile = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -231,6 +261,17 @@ public class EntryChoiceActivity extends AppCompatActivity {
         } catch (UnsupportedOperationException ex) {
             runOnUiThread(() -> showErrorDialog(ex.getMessage()));
         }
+    }
+
+    private void loadPreferences()
+    {
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+
+        // Retrieve the stored integer value, with a default value of 0 if not found
+        filePrefix = sharedPreferences.getString(SHARED_PREFERENCES_PREFIX, FILE_DEFAULT_PREFIX);
+        String extension = sharedPreferences.getString(SHARED_PREFERENCES_EXTENSION, FILE_DEFAULT_EXTENSION);
+        eExportMode = EExportMode.fromExtension(extension);
     }
 
     /**

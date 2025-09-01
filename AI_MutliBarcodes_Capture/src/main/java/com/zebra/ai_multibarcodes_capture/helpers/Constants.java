@@ -1,19 +1,16 @@
 package com.zebra.ai_multibarcodes_capture.helpers;
 
+import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
+
 public class Constants {
     // Sharing provider
     public static final String PROVIDER_AUTHORITY = "com.zebra.ai_multibarcodes_capture.fileprovider";
     public static final String PROVIDER_CACHE_FOLDER = "temp_files";
 
-    // Extensions Constants
-    public static final String FILE_EXTENSION_TXT = ".txt";
-    public static final String FILE_EXTENSION_CSV = ".csv";
-    public static final String FILE_EXTENSION_XLSX = ".xlsx";
-
     // File constants
     public static final String FILE_TARGET_FOLDER = "AI_MultiBarcodes_Capture";
     public static final String FILE_DEFAULT_PREFIX = "MySession_";
-    public static final String FILE_DEFAULT_EXTENSION = FILE_EXTENSION_TXT;
+    public static final String FILE_DEFAULT_EXTENSION = EExportMode.TEXT.getExtension();
 
     // File Browser Constants
     public static final String FILEBROWSER_EXTRA_FOLDER_PATH = "FOLDER_PATH";

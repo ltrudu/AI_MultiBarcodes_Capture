@@ -80,7 +80,7 @@ public class FileUtil {
         if (dotIndex == -1 || dotIndex == fileName.length() - 1) {
             return ""; // No extension found or empty extension
         } else {
-            return fileName.substring(dotIndex + 1); // Return extension only
+            return fileName.substring(dotIndex); // Return extension with the .
         }
     }
 

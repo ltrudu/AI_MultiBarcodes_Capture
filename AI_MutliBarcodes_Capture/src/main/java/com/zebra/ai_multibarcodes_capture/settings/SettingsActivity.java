@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.R;
+import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +25,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     private EditText etPrefix;
     private RadioButton rbCSV, rbTXT, rbXSLX;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,12 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        loadPreferences();
+        super.onResume();
+    }
+
+    private void loadPreferences()
+    {
         // Get the SharedPreferences object
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
@@ -76,7 +83,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
-        super.onResume();
     }
 
     private void savePreferences()
@@ -98,32 +104,34 @@ public class SettingsActivity extends AppCompatActivity {
         // Commit the changes
         editor.commit();
 
+        Toast.makeText(this, "Settings saved successfully", Toast.LENGTH_LONG).show();
+
     }
 
     private String getSelectedExtension()
     {
         if(rbCSV.isChecked())
-            return FILE_EXTENSION_CSV;
+            return EExportMode.CSV.getExtension();
         else if(rbXSLX.isChecked())
-            return FILE_EXTENSION_XLSX;
-        return FILE_EXTENSION_TXT;
+            return EExportMode.EXCEL.getExtension();
+        return EExportMode.TEXT.getExtension();
     }
 
     private void selectExtensionRadioButton(String extension)
     {
         switch (extension)
         {
-            case FILE_EXTENSION_CSV:
+            case ".csv":
                 rbXSLX.setChecked(false);
                 rbTXT.setChecked(false);
                 rbCSV.setChecked(true);
                 break;
-            case FILE_EXTENSION_TXT:
+            case ".txt":
                 rbXSLX.setChecked(false);
                 rbTXT.setChecked(true);
                 rbCSV.setChecked(false);
                 break;
-            case FILE_EXTENSION_XLSX:
+            case ".xslx":
                 rbXSLX.setChecked(true);
                 rbTXT.setChecked(false);
                 rbCSV.setChecked(false);

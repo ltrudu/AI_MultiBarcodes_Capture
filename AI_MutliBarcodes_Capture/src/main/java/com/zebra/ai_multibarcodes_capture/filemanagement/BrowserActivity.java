@@ -50,7 +50,7 @@ public class BrowserActivity extends AppCompatActivity {
     private File currentFolder;
     private int fileCounter = 0;
     private String filePrefix = Constants.FILE_DEFAULT_PREFIX;
-    private String fileExtension = Constants.FILE_EXTENSION_TXT;
+    private String fileExtension = EExportMode.TEXT.getExtension();
 
     private boolean bCanMultiSelect = false;
     private GestureDetector gestureDetector;
