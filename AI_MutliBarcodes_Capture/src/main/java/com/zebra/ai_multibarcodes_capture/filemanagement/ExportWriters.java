@@ -37,7 +37,7 @@ public class ExportWriters {
             }
             catch (Exception e)
             {
-                Toast.makeText(context, "Error, could not create file: " + captureFilePath, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.error_could_not_create_file, captureFilePath), Toast.LENGTH_LONG).show();
                 return false;
             }
         }
@@ -75,6 +75,8 @@ public class ExportWriters {
 
         for (Map.Entry<String, Integer> entry : barcodeQuantityMap.entrySet()) {
             String value = entry.getKey();
+            if(value.isEmpty())
+                continue;
             int quantity = entry.getValue();
             int symbology = barcodeSymbologyMap.getOrDefault(value, 0); // Get symbology, default to 0 if not found (shouldn't happen)
             String data = "Value:" + value + "\nSymbology:" + symbology + "\nQuantity:" + quantity + "\nCapture Date:" + currentDateString + "\n-----------------------------------------\n";
@@ -83,10 +85,10 @@ public class ExportWriters {
 
         fileWriter.close();
 
-        Toast.makeText(context, "File saved at: " + targetFile.getPath(), Toast.LENGTH_LONG).show();
+        Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, targetFile.getPath()), Toast.LENGTH_LONG).show();
         return true;
     } catch (IOException e) {
-        Toast.makeText(context, "Error saving file: " + targetFile.getPath(), Toast.LENGTH_LONG).show();
+        Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.error_saving_file, targetFile.getPath()), Toast.LENGTH_LONG).show();
         Log.e(TAG, "Error saving file:" + targetFile.getPath());
         e.printStackTrace();
         return false;
@@ -110,16 +112,18 @@ public class ExportWriters {
 
             for (Map.Entry<String, Integer> entry : barcodeQuantityMap.entrySet()) {
                 String value = entry.getKey();
+                if(value.isEmpty())
+                    continue;
                 int quantity = entry.getValue();
                 int symbology = barcodeSymbologyMap.getOrDefault(value, 0); // Get symbology, default to 0 if not found (shouldn't happen)
                 String data = currentTime + ";" + symbology + ";" + value + ";" + quantity + "\n";
                 fileWriter.append(data);
             }
             fileWriter.close();
-            Toast.makeText(context, "File saved at: " + dataFile.getPath(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, dataFile.getPath()), Toast.LENGTH_LONG).show();
             return true;
         } catch (IOException e) {
-            Toast.makeText(context, "Error saving file: " + dataFile.getPath(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.error_saving_file, dataFile.getPath()), Toast.LENGTH_LONG).show();
             Log.e(TAG, "Error saving file:" + dataFile.getPath());
             e.printStackTrace();
             return false;
@@ -156,6 +160,8 @@ public class ExportWriters {
 
             for (Map.Entry<String, Integer> entry : barcodeQuantityMap.entrySet()) {
                 String value = entry.getKey();
+                if(value.isEmpty())
+                    continue;
                 int quantity = entry.getValue();
                 int symbology = barcodeSymbologyMap.getOrDefault(value, 0); // Get symbology, default to 0 if not found (shouldn't happen)
 
@@ -214,7 +220,7 @@ public class ExportWriters {
             try {
                 if (workbook != null) workbook.close();
                 if (fos != null) fos.close();
-                Toast.makeText(context, "File saved at: " + dataFile.getPath(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, dataFile.getPath()), Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 Log.e("ExcelAppend", "Error closing resources", e);
             }

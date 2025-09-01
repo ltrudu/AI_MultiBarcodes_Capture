@@ -3,4 +3,86 @@
     <string name="start_capture_button_text">Start Capture</string>
     <string name="loading_status">Loading Application</string>
     <string name="select_session_file">Select a session file or create a new one.</string>
+    
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Retrieving Permissions</string>
+    
+    <!-- Browser Activity -->
+    <string name="select">Select</string>
+    <string name="share">Share</string>
+    <string name="refresh">Refresh</string>
+    <string name="close">Close</string>
+    <string name="manage_sessions">Manage Sessions</string>
+    <string name="create_new">Create New</string>
+    <string name="enter_new_file_name">Enter new file name</string>
+    <string name="default_session_name">MySession_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    
+    <!-- Captured Barcodes Activity -->
+    <string name="save">Save</string>
+    
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Start Capture</string>
+    <string name="load_last_session">Load Last Session</string>
+    <string name="create_new_session">Create New Session</string>
+    <string name="selected_session">Selected Session</string>
+    <string name="select_session_to_start">Select A Session To Start Capture</string>
+    
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Setup</string>
+    <string name="prefix">Prefix:</string>
+    <string name="prefix_hint">Prefix_</string>
+    <string name="file_type">File type</string>
+    <string name="text_file">Text File</string>
+    <string name="csv_file">CSV File</string>
+    <string name="excel_file">Excel File</string>
+    <string name="validate">Validate</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- Camera Activity -->
+    <string name="capture">Capture</string>
+    
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK Initialization failed</string>
+    <string name="folder_path_missing">Folder path is missing!</string>
+    <string name="folder_path_missing_toast">Folder path is missing !!!</string>
+    <string name="error_could_not_create_file">Error, could not create file: %s</string>
+    <string name="file_saved_at">File saved at: %s</string>
+    <string name="error_saving_file">Error saving file: %s</string>
+    <string name="error_saving_last_selected_file">Error saving last selected file</string>
+    <string name="settings_saved_successfully">Settings saved successfully</string>
+    
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Please select a file, not a folder.</string>
+    <string name="please_select_file">Please select a file.</string>
+    <string name="cannot_rename_folders_or_parent">Cannot rename folders or the parent folder.</string>
+    <string name="file_already_exists">File already exists.</string>
+    <string name="error_renaming_file">Error renaming file</string>
+    <string name="folder_already_exists">Folder already exists.</string>
+    <string name="failed_to_create_folder">Failed to create folder: %s</string>
+    <string name="failed_to_create_file">Failed to create file</string>
+    <string name="cannot_delete_parent_folder">Cannot delete the parent folder.</string>
+    <string name="cannot_share_folders">Cannot share folders.</string>
+    
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Last session file not found.</string>
+    <string name="no_session_file_saved">No session file saved in preferences.</string>
+    <string name="error_creating_new_session">Error creating new session: %s</string>
+    <string name="missing_filename">Missing filename</string>
+    <string name="camera_permission_required">Camera permission is required to use this feature</string>
+    
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj creation time =%d milli sec</string>
+    <string name="barcode_decoder_disposed">Barcode decoder is disposed</string>
+    <string name="orientation_unlocked">Orientation unlocked for %s mode</string>
+    <string name="applied_viewfinder_resize_immediately">Applied viewfinder resize specs immediately</string>
+    <string name="stored_pending_viewfinder_resize">Stored pending viewfinder resize data for later application</string>
+    <string name="applied_pending_viewfinder_resize">Applied pending viewfinder resize data from stored values</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker is ready, applying pending configurations</string>
+    <string name="handle_view_entity_result">Handle View Entity - Result received</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker decoder available, entities count: %s</string>
+    <string name="processing_entities">Processing %d entities for entity view</string>
+    <string name="rendered_entities">Rendered entities on entity view</string>
 </resources>

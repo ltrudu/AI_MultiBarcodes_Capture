@@ -45,10 +45,13 @@
             android:id="@+id/closeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Close"
+            android:text="@string/close"
             android:backgroundTint="@color/zebra"
             android:textColor="@color/white"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
+            app:cornerRadius="0dp"
             />
 
         <Button
@@ -57,8 +60,11 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/zebra"
             android:textColor="@color/white"
-            android:text="Capture"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/capture"
             android:layout_weight="1"
+            app:cornerRadius="0dp"
             />
     </LinearLayout>
 

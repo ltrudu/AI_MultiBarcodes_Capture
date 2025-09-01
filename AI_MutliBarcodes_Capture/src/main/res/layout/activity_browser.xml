@@ -35,9 +35,12 @@
                     android:id="@+id/btSelectOneFile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="0.3"
                     android:backgroundTint="@color/zebra"
-                    android:text="Selectionner" />
+                    android:text="@string/select"
+                    app:cornerRadius="0dp" />
 
             </LinearLayout>
 
@@ -51,11 +54,13 @@
                     android:id="@+id/btShare"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="0.3"
                     android:backgroundTint="@color/zebra"
-                    android:text="Partager"
+                    android:text="@string/share"
                     android:textColor="@color/white"
-                    app:cornerRadius="16dp" />
+                    app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/btReload"
@@ -63,23 +68,25 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
                     android:backgroundTint="@color/zebra"
-                    android:text="Raffraichir"
+                    android:text="@string/refresh"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textColorLink="@color/design_default_color_primary_variant"
                     android:visibility="gone"
-                    app:cornerRadius="16dp" />
+                    app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/btClose"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="0.3"
                     android:backgroundTint="@color/zebra"
-                    android:text="Fermer"
+                    android:text="@string/close"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    app:cornerRadius="16dp" />
+                    app:cornerRadius="0dp" />
 
             </LinearLayout>
 
@@ -106,7 +113,7 @@
             android:theme="@style/Theme.MultiBarcodesCapture_AB"
             app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Manage Sessions"
+            app:title="@string/manage_sessions"
             app:titleTextColor="@color/white"
             android:backgroundTint="@color/zebra"/>
 
@@ -148,14 +155,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center|center_horizontal"
-                android:text="Create New" />
+                android:text="@string/create_new" />
 
             <TextView
                 android:id="@+id/txtMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|center_horizontal"
-                android:text="Enter new file name" />
+                android:text="@string/enter_new_file_name" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -171,14 +178,14 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="MySession_" />
+                    android:text="@string/default_session_name" />
 
                 <TextView
                     android:id="@+id/txtDataLabelRight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
-                    android:text=".txt"
+                    android:text="@string/file_extension_txt"
                     android:visibility="visible" />
             </LinearLayout>
 
@@ -196,7 +203,8 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/zebra"
-                    android:text="Oui" />
+                    android:text="@string/yes"
+                    app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/btNo"
@@ -206,7 +214,8 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/zebra"
-                    android:text="Non" />
+                    android:text="@string/no"
+                    app:cornerRadius="0dp" />
             </LinearLayout>
 
 

@@ -104,7 +104,7 @@ public class SettingsActivity extends AppCompatActivity {
         // Commit the changes
         editor.commit();
 
-        Toast.makeText(this, "Settings saved successfully", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.settings_saved_successfully), Toast.LENGTH_LONG).show();
 
     }
 
