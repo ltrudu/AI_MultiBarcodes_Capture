@@ -94,8 +94,11 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             ArrayList<Bundle> barcodeBundles = bundle.getParcelableArrayList("barcodeDataList");
             if (barcodeBundles != null) {
                 for (Bundle barcodeBundle : barcodeBundles) {
+                    String value = barcodeBundle.getString("value");
+                    if(value.isEmpty())
+                        continue;
                     BarcodeData barcodeData = new BarcodeData();
-                    barcodeData.value = barcodeBundle.getString("value");
+                    barcodeData.value = value;
                     barcodeData.symbology = barcodeBundle.getInt("symbology");
                     barcodeData.hashcode = barcodeBundle.getInt("hashcode");
                     barcodesDataList.add(barcodeData);

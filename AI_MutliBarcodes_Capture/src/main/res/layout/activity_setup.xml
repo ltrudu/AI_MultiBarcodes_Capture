@@ -18,7 +18,7 @@
         android:fitsSystemWindows="true"
         android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Setup"
+        app:title="@string/setup"
         app:titleTextColor="@color/white"
         android:backgroundTint="@color/zebra"/>
 
@@ -35,14 +35,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
-            android:text="Préfixe:" />
+            android:text="@string/prefix" />
 
         <EditText
             android:id="@+id/etPrefix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Prefix_" />
+            android:hint="@string/prefix_hint" />
 
     </LinearLayout>
 
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Type de fichier" />
+            android:text="@string/file_type" />
 
         <RadioGroup
             android:id="@+id/rbFileType"
@@ -69,20 +69,20 @@
                 android:id="@+id/rbTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fichier Texte" />
+                android:text="@string/text_file" />
 
             <RadioButton
                 android:id="@+id/rbCSV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fichier CSV"
+                android:text="@string/csv_file"
                 android:visibility="visible" />
 
             <RadioButton
                 android:id="@+id/rbXSLX"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fichier Excel"
+                android:text="@string/excel_file"
                 android:visibility="visible" />
         </RadioGroup>
 
@@ -98,16 +98,22 @@
             android:id="@+id/btOK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/zebra"
-            android:text="Valider" />
+            android:text="@string/validate"
+            app:cornerRadius="0dp" />
 
         <Button
             android:id="@+id/btCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/zebra"
-            android:text="Annuler" />
+            android:text="@string/cancel"
+            app:cornerRadius="0dp" />
     </LinearLayout>
 </RelativeLayout>

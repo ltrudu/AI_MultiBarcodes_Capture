@@ -25,42 +25,45 @@
 
     <Button
         android:id="@+id/btStartCapture"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/zebra"
         android:enabled="false"
-        android:text="Start Capture"
+        android:text="@string/start_capture"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:cornerRadius="0dp" />
 
     <Button
         android:id="@+id/btLoadLastSession"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/zebra"
         android:enabled="true"
-        android:text="Load Last Session"
+        android:text="@string/load_last_session"
         app:layout_constraintTop_toBottomOf="@id/btStartCapture"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="0dp" />
 
     <Button
         android:id="@+id/b_create_new_session"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/zebra"
-        android:text="Create New Session"
+        android:text="@string/create_new_session"
         app:layout_constraintTop_toBottomOf="@id/btLoadLastSession"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="0dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selected Session"
+        android:text="@string/selected_session"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@id/txtSession"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Select A Session To Start Capture"
+        android:text="@string/select_session_to_start"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 

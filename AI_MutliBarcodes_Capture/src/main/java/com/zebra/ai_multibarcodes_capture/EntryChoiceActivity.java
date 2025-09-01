@@ -97,7 +97,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
             boolean isInitDone = AIVisionSDK.getInstance(this.getApplicationContext()).init();
             Log.i(TAG, "AI Vision SDK Init ret = " + isInitDone);
         } catch (UnsupportedOperationException ex) {
-            Log.e(TAG, "AI Vision SDK Initialization failed");
+            Log.e(TAG, getString(R.string.ai_vision_sdk_init_failed));
         }
 
         // load preferences
@@ -153,14 +153,14 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     PreferencesHelper.saveCurrentExtension(this, fileExtension);
                 }
                 else {
-                    Toast.makeText(this, "Last session file not found.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.last_session_file_not_found), Toast.LENGTH_LONG).show();
                     binding.txtSession.setText(R.string.select_session_file);
                     binding.btStartCapture.setEnabled(false);
                 }
             }
             else
             {
-                Toast.makeText(this, "No session file saved in preferences.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.no_session_file_saved), Toast.LENGTH_LONG).show();
                 binding.btStartCapture.setEnabled(false);
             }
         });
@@ -175,9 +175,11 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     {
                         binding.txtSession.setText(sessionFilePathString);
                         binding.btStartCapture.setEnabled(true);
+                        PreferencesHelper.saveLastSessionFile(EntryChoiceActivity.this, sessionFilePathString);
+
                     }
                 } catch (IOException e) {
-                    Toast.makeText(EntryChoiceActivity.this,"Error creating new session: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(EntryChoiceActivity.this, getString(R.string.error_creating_new_session, e.getMessage()), Toast.LENGTH_LONG).show();
                     if(sessionFilePathString == null) {
                         binding.btStartCapture.setEnabled(false);
                         binding.txtSession.setText(R.string.select_session_file);
@@ -221,7 +223,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     if (result.getResultCode() == RESULT_OK) {
                         if(result.getData() == null)
                         {
-                            Toast.makeText(EntryChoiceActivity.this, "Missing filename", Toast.LENGTH_LONG).show();
+                            Toast.makeText(EntryChoiceActivity.this, getString(R.string.missing_filename), Toast.LENGTH_LONG).show();
                             return;
                         }
                         String resultData = result.getData().getStringExtra(Constants.FILEBROWSER_RESULT_FILEPATH);
@@ -352,7 +354,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Log.v(TAG, "Camera permission granted");
             } else {
-                Toast.makeText(this, "Camera permission is required to use this feature", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.camera_permission_required), Toast.LENGTH_SHORT).show();
                 showNonCancellablePermissionRationaleDialog();
             }
         } else {

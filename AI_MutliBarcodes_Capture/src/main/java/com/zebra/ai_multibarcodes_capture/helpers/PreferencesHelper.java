@@ -10,7 +10,7 @@ public class PreferencesHelper {
     {
         if(filePath == null || filePath.isEmpty())
         {
-            Toast.makeText(context, "Error saving last selected file", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.error_saving_last_selected_file), Toast.LENGTH_SHORT).show();
             return;
         }
         // Get the SharedPreferences object

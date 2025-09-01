@@ -76,8 +76,8 @@ public class BrowserActivity extends AppCompatActivity {
             // Use the folder path as needed
             Log.d("Folder Path", "The folder path is: " + baseFolder.getPath());
         } else {
-            Log.e("Folder Path", "Folder path is missing!");
-            Toast.makeText(this, "Folder path is missing !!!", Toast.LENGTH_LONG).show();
+            Log.e("Folder Path", getString(R.string.folder_path_missing));
+            Toast.makeText(this, getString(R.string.folder_path_missing_toast), Toast.LENGTH_LONG).show();
             finish();
         }
 
@@ -249,12 +249,12 @@ public class BrowserActivity extends AppCompatActivity {
                 setResult(RESULT_OK, resultIntent);
                 finish();
             } else {
-                Toast.makeText(this, "Veuillez sélectionner un fichier, pas un dossier.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.please_select_file_not_folder), Toast.LENGTH_LONG).show();
             }
         }
         else
         {
-            Toast.makeText(this, "Selectionnez un fichier s'il vous plait.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_select_file), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -302,7 +302,7 @@ public class BrowserActivity extends AppCompatActivity {
         if(fileNamePosition != -1) {
             final File fileName = filesList.get(fileNamePosition);
             if (fileName.getName().equals("..") || fileName.isDirectory()) {
-                Toast.makeText(this, "Impossible de renommer les dossiers ou le dossier parent.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.cannot_rename_folders_or_parent), Toast.LENGTH_LONG).show();
                 return;
             }
             ((TextView)findViewById(R.id.txtTitle)).setText("Renommer");
@@ -318,7 +318,7 @@ public class BrowserActivity extends AppCompatActivity {
                         File newFile = new File(currentFolder, newFileName + fileExtension);
                         if(newFile.exists())
                         {
-                            Toast.makeText(BrowserActivity.this, "Le fichier existe déjà.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(BrowserActivity.this, getString(R.string.file_already_exists), Toast.LENGTH_LONG).show();
                             viewOverlay.setVisibility(View.GONE);
                             clPopup.setVisibility(View.GONE);
                             return;
@@ -332,7 +332,7 @@ public class BrowserActivity extends AppCompatActivity {
                                 clPopup.setVisibility(View.GONE);
                         } catch (Exception e) {
                             e.printStackTrace();
-                            Toast.makeText(BrowserActivity.this, "Erreur pour renommer le fichier", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BrowserActivity.this, getString(R.string.error_renaming_file), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -343,7 +343,7 @@ public class BrowserActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, "Selectionnez un fichier s'il vous plait.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_select_file), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -361,7 +361,7 @@ public class BrowserActivity extends AppCompatActivity {
                     File newFile = new File(currentFolder, newFolder);
                     if(newFile.exists())
                     {
-                        Toast.makeText(BrowserActivity.this, "Le dossier existe déjà.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(BrowserActivity.this, getString(R.string.folder_already_exists), Toast.LENGTH_LONG).show();
                         viewOverlay.setVisibility(View.GONE);
                         clPopup.setVisibility(View.GONE);
                         return;
@@ -376,7 +376,7 @@ public class BrowserActivity extends AppCompatActivity {
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(BrowserActivity.this, "Failed to create folder:" + newFolder, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BrowserActivity.this, getString(R.string.failed_to_create_folder, newFolder), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -415,7 +415,7 @@ public class BrowserActivity extends AppCompatActivity {
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
-                        Toast.makeText(BrowserActivity.this, "Failed to create file", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BrowserActivity.this, getString(R.string.failed_to_create_file), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -431,7 +431,7 @@ public class BrowserActivity extends AppCompatActivity {
         for (File file : filesList) {
             if(idPositions.get(id) == true) {
                 if (file.getName().equals("..")) {
-                    Toast.makeText(this, "Impossible de supprimer le dossier parent.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.cannot_delete_parent_folder), Toast.LENGTH_LONG).show();
                     continue;
                 }
                 if(file.isDirectory())
@@ -526,7 +526,7 @@ public class BrowserActivity extends AppCompatActivity {
         if(fileNamePosition != -1) {
             File fileName = filesList.get(fileNamePosition);
             if (fileName.getName().equals("..") || fileName.isDirectory()) {
-                Toast.makeText(this, "Impossible de partager les dossiers.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.cannot_share_folders), Toast.LENGTH_LONG).show();
                 return;
             }
             File cacheFile = FileUtil.copyToCacheFolder(this, fileName);
@@ -541,7 +541,7 @@ public class BrowserActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, "Selectionnez un fichier s'il vous plait.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_select_file), Toast.LENGTH_LONG).show();
         }
     }
 }
