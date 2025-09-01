@@ -22,6 +22,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.zebra.ai_multibarcodes_capture.R;
+import com.zebra.ai_multibarcodes_capture.filemanagement.ExportWriters;
 import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 
@@ -171,43 +172,14 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
 
     private void saveData()
     {
-        // Retrieve Today Folder
-        File targetFile = new File(captureFilePath);
-        try {
-            Date currentDate = new Date();
-            DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault());
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-            String currentDateString = dateFormat.format(currentDate) + " " + sdf.format(currentDate);
-
-            if(targetFile.length() == 0) {
-                FileWriter headerFileWriter = new FileWriter(targetFile, true);
-                headerFileWriter.append("-----------------------------------------\n");
-                headerFileWriter.append("Capture file:" + targetFile.getName() + "\n");
-                headerFileWriter.append("Created the:" + currentDateString + "\n");
-                headerFileWriter.append("-----------------------------------------\n");
-                headerFileWriter.close();
-            }
-
-            // Append data to the file
-            FileWriter fileWriter = new FileWriter(targetFile, true);
-
-            for (Map.Entry<String, Integer> entry : barcodeQuantityMap.entrySet()) {
-                String value = entry.getKey();
-                int quantity = entry.getValue();
-                int symbology = barcodeSymbologyMap.getOrDefault(value, 0); // Get symbology, default to 0 if not found (shouldn't happen)
-                String data = "Value:" + value + "\nSymbology:" + symbology + "\nQuantity:" + quantity + "\nCapture Date:" + currentDateString + "\n-----------------------------------------\n";
-                fileWriter.append(data);
-            }
-
-            fileWriter.close();
-
-            Toast.makeText(this, "File saved at: " + targetFile.getPath(), Toast.LENGTH_LONG).show();
+        Date currentDate = new Date();
+        if(ExportWriters.saveData(this, captureFilePath, barcodeQuantityMap, barcodeSymbologyMap, currentDate))
+        {
             finish();
-
-        } catch (IOException e) {
-            Toast.makeText(this, "Error saving file: " + targetFile.getPath(), Toast.LENGTH_LONG).show();
-            Log.e(TAG, "Error saving file:" + targetFile.getPath());
-            e.printStackTrace();
+        }
+        else
+        {
+            // Do nothing as the user was informed with a toast of the problem.
         }
     }
 }

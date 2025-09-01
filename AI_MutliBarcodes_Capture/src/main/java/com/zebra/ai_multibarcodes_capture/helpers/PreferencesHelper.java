@@ -34,6 +34,29 @@ public class PreferencesHelper {
         String filePath = sharedPreferences.getString(Constants.SHARED_PREFERENCES_LAST_SESSION_FILE, null);
         return filePath;
     }
+
+    public static void saveCurrentExtension(Context context, String extension)
+    {
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        // Get the SharedPreferences.Editor object to make changes
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(Constants.SHARED_PREFERENCES_EXTENSION, extension);
+
+        // Commit the changes
+        editor.commit();
+
+    }
+
+    public static String getCurrentExtension(Context context)
+    {
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        String extension = sharedPreferences.getString(Constants.SHARED_PREFERENCES_EXTENSION, Constants.FILE_DEFAULT_EXTENSION);
+        return extension;
+    }
+
 }
 
 
