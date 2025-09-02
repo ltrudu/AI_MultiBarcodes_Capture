@@ -268,7 +268,7 @@ public class ExportWriters {
 
         fileWriter.close();
 
-        Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, targetFile.getPath()), Toast.LENGTH_LONG).show();
+        Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, targetFile.getPath()), Toast.LENGTH_SHORT).show();
         return true;
     } catch (IOException e) {
         Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.error_saving_file, targetFile.getPath()), Toast.LENGTH_LONG).show();
@@ -423,7 +423,7 @@ public class ExportWriters {
                 fileWriter.append(data);
             }
             fileWriter.close();
-            Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, dataFile.getPath()), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, dataFile.getPath()), Toast.LENGTH_SHORT).show();
             return true;
         } catch (IOException e) {
             Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.error_saving_file, dataFile.getPath()), Toast.LENGTH_LONG).show();
@@ -714,7 +714,7 @@ public class ExportWriters {
             try {
                 if (workbook != null) workbook.close();
                 if (fos != null) fos.close();
-                Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, dataFile.getPath()), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, dataFile.getPath()), Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
                 Log.e("ExcelAppend", "Error closing resources", e);
             }

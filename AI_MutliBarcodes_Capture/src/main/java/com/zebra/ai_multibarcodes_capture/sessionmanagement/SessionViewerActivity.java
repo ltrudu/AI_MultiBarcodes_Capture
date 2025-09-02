@@ -25,9 +25,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.filemanagement.ExportWriters;
+import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,6 +59,8 @@ public class SessionViewerActivity extends AppCompatActivity {
     private ListView barcodesListView;
     private Button closeButton;
     private Button saveButton;
+
+    private static final int TRANSLATION_X = -180;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,9 +129,10 @@ public class SessionViewerActivity extends AppCompatActivity {
     }
 
     private void saveSessionData() {
-        // TODO: Implement session data sharing functionality
-        Toast.makeText(this, "Share functionality not yet implemented", Toast.LENGTH_SHORT).show();
-    }
+        File sessionFile = new File(sessionFilePath);
+        sessionFile.delete();
+        ExportWriters.saveData(this, sessionFilePath, loadedData.barcodeQuantityMap, loadedData.barcodeSymbologyMap, loadedData.barcodeDateMap);
+     }
 
     private class BarcodeAdapter extends ArrayAdapter<DisplayBarcodeData> {
 
@@ -199,7 +204,7 @@ public class SessionViewerActivity extends AppCompatActivity {
                                 isSwipeActive = true;
                                 // Show trash can by sliding foreground to the left
                                 holder.foregroundContainer.animate()
-                                    .translationX(-120) // Show trash can area
+                                    .translationX(TRANSLATION_X) // Show trash can area
                                     .setDuration(200)
                                     .start();
                             }
@@ -252,7 +257,7 @@ public class SessionViewerActivity extends AppCompatActivity {
                 if (Math.abs(diffX) > Math.abs(diffY) && diffX < -100 && Math.abs(velocityX) > 100) {
                     // Show trash can
                     holder.foregroundContainer.animate()
-                        .translationX(-120)
+                        .translationX(TRANSLATION_X)
                         .setDuration(300)
                         .start();
                     return true;
@@ -282,8 +287,6 @@ public class SessionViewerActivity extends AppCompatActivity {
             
             // Refresh the ListView
             setupListView();
-            
-            Toast.makeText(this, "Item removed: " + barcode.value, Toast.LENGTH_SHORT).show();
         }
     }
 }
