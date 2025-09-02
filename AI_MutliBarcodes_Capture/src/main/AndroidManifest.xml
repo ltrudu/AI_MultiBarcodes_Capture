@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="com.symbol.emdk.permission.EMDK" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <queries>
-        <package android:name="com.symbol.emdk.emdkservice" />
-    </queries>
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-
     <application
         android:name=".MainApplication"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,10 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MultiBarcodesCapture">
-
-        <uses-library
-            android:name="com.symbol.emdk"
-            android:required="true" />
+        <activity
+            android:name=".sessionmanagement.SessionViewerActivity"
+            android:exported="false" />
 
         <activity
             android:name=".java.CapturedBarcodesActivity"
@@ -38,13 +24,12 @@
             android:name=".java.CameraXLivePreviewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
-
-        <activity android:name=".filemanagement.BrowserActivity"
+        <activity
+            android:name=".filemanagement.BrowserActivity"
             android:exported="false" />
-
-        <activity android:name=".settings.SettingsActivity"
+        <activity
+            android:name=".settings.SettingsActivity"
             android:exported="false" />
-
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -54,12 +39,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".EntryChoiceActivity"
-            android:exported="false">
-        </activity>
-
+            android:exported="false"></activity>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.zebra.ai_multibarcodes_capture.fileprovider"
@@ -70,7 +52,22 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <uses-library
+            android:name="com.symbol.emdk"
+            android:required="true" />
     </application>
+    <queries>
+        <package android:name="com.symbol.emdk.emdkservice" />
+    </queries>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-permission android:name="com.symbol.emdk.permission.EMDK" />
+
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

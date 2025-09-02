@@ -28,6 +28,145 @@ public class Constants {
     public static final String SHARED_PREFERENCES_LAST_SESSION_FILE = "lastsessionfile";
     public static final String SHARED_PREFERENCES_PREFIX = "prefix";
     public static final String SHARED_PREFERENCES_EXTENSION = "extension";
+    
+    // Barcode symbology preferences
+    public static final String SHARED_PREFERENCES_AUSTRALIAN_POSTAL = "AUSTRALIAN_POSTAL";
+    public static final boolean SHARED_PREFERENCES_AUSTRALIAN_POSTAL_DEFAULT = EBarcodesSymbologies.AUSTRALIAN_POSTAL.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_AZTEC = "AZTEC";
+    public static final boolean SHARED_PREFERENCES_AZTEC_DEFAULT = EBarcodesSymbologies.AZTEC.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_CANADIAN_POSTAL = "CANADIAN_POSTAL";
+    public static final boolean SHARED_PREFERENCES_CANADIAN_POSTAL_DEFAULT = EBarcodesSymbologies.CANADIAN_POSTAL.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_CHINESE_2OF5 = "CHINESE_2OF5";
+    public static final boolean SHARED_PREFERENCES_CHINESE_2OF5_DEFAULT = EBarcodesSymbologies.CHINESE_2OF5.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_CODABAR = "CODABAR";
+    public static final boolean SHARED_PREFERENCES_CODABAR_DEFAULT = EBarcodesSymbologies.CODABAR.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_CODE11 = "CODE11";
+    public static final boolean SHARED_PREFERENCES_CODE11_DEFAULT = EBarcodesSymbologies.CODE11.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_CODE39 = "CODE39";
+    public static final boolean SHARED_PREFERENCES_CODE39_DEFAULT = EBarcodesSymbologies.CODE39.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_CODE93 = "CODE93";
+    public static final boolean SHARED_PREFERENCES_CODE93_DEFAULT = EBarcodesSymbologies.CODE93.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_CODE128 = "CODE128";
+    public static final boolean SHARED_PREFERENCES_CODE128_DEFAULT = EBarcodesSymbologies.CODE128.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_COMPOSITE_AB = "COMPOSITE_AB";
+    public static final boolean SHARED_PREFERENCES_COMPOSITE_AB_DEFAULT = EBarcodesSymbologies.COMPOSITE_AB.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_COMPOSITE_C = "COMPOSITE_C";
+    public static final boolean SHARED_PREFERENCES_COMPOSITE_C_DEFAULT = EBarcodesSymbologies.COMPOSITE_C.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_D2OF5 = "D2OF5";
+    public static final boolean SHARED_PREFERENCES_D2OF5_DEFAULT = EBarcodesSymbologies.D2OF5.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_DATAMATRIX = "DATAMATRIX";
+    public static final boolean SHARED_PREFERENCES_DATAMATRIX_DEFAULT = EBarcodesSymbologies.DATAMATRIX.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_DOTCODE = "DOTCODE";
+    public static final boolean SHARED_PREFERENCES_DOTCODE_DEFAULT = EBarcodesSymbologies.DOTCODE.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_DUTCH_POSTAL = "DUTCH_POSTAL";
+    public static final boolean SHARED_PREFERENCES_DUTCH_POSTAL_DEFAULT = EBarcodesSymbologies.DUTCH_POSTAL.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_EAN_8 = "EAN_8";
+    public static final boolean SHARED_PREFERENCES_EAN_8_DEFAULT = EBarcodesSymbologies.EAN_8.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_EAN_13 = "EAN_13";
+    public static final boolean SHARED_PREFERENCES_EAN_13_DEFAULT = EBarcodesSymbologies.EAN_13.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_FINNISH_POSTAL_4S = "FINNISH_POSTAL_4S";
+    public static final boolean SHARED_PREFERENCES_FINNISH_POSTAL_4S_DEFAULT = EBarcodesSymbologies.FINNISH_POSTAL_4S.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_GRID_MATRIX = "GRID_MATRIX";
+    public static final boolean SHARED_PREFERENCES_GRID_MATRIX_DEFAULT = EBarcodesSymbologies.GRID_MATRIX.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_GS1_DATABAR = "GS1_DATABAR";
+    public static final boolean SHARED_PREFERENCES_GS1_DATABAR_DEFAULT = EBarcodesSymbologies.GS1_DATABAR.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_GS1_DATABAR_EXPANDED = "GS1_DATABAR_EXPANDED";
+    public static final boolean SHARED_PREFERENCES_GS1_DATABAR_EXPANDED_DEFAULT = EBarcodesSymbologies.GS1_DATABAR_EXPANDED.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_GS1_DATABAR_LIM = "GS1_DATABAR_LIM";
+    public static final boolean SHARED_PREFERENCES_GS1_DATABAR_LIM_DEFAULT = EBarcodesSymbologies.GS1_DATABAR_LIM.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_GS1_DATAMATRIX = "GS1_DATAMATRIX";
+    public static final boolean SHARED_PREFERENCES_GS1_DATAMATRIX_DEFAULT = EBarcodesSymbologies.GS1_DATAMATRIX.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_GS1_QRCODE = "GS1_QRCODE";
+    public static final boolean SHARED_PREFERENCES_GS1_QRCODE_DEFAULT = EBarcodesSymbologies.GS1_QRCODE.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_HANXIN = "HANXIN";
+    public static final boolean SHARED_PREFERENCES_HANXIN_DEFAULT = EBarcodesSymbologies.HANXIN.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_I2OF5 = "I2OF5";
+    public static final boolean SHARED_PREFERENCES_I2OF5_DEFAULT = EBarcodesSymbologies.I2OF5.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_JAPANESE_POSTAL = "JAPANESE_POSTAL";
+    public static final boolean SHARED_PREFERENCES_JAPANESE_POSTAL_DEFAULT = EBarcodesSymbologies.JAPANESE_POSTAL.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_KOREAN_3OF5 = "KOREAN_3OF5";
+    public static final boolean SHARED_PREFERENCES_KOREAN_3OF5_DEFAULT = EBarcodesSymbologies.KOREAN_3OF5.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_MAILMARK = "MAILMARK";
+    public static final boolean SHARED_PREFERENCES_MAILMARK_DEFAULT = EBarcodesSymbologies.MAILMARK.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_MATRIX_2OF5 = "MATRIX_2OF5";
+    public static final boolean SHARED_PREFERENCES_MATRIX_2OF5_DEFAULT = EBarcodesSymbologies.MATRIX_2OF5.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_MAXICODE = "MAXICODE";
+    public static final boolean SHARED_PREFERENCES_MAXICODE_DEFAULT = EBarcodesSymbologies.MAXICODE.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_MICROPDF = "MICROPDF";
+    public static final boolean SHARED_PREFERENCES_MICROPDF_DEFAULT = EBarcodesSymbologies.MICROPDF.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_MICROQR = "MICROQR";
+    public static final boolean SHARED_PREFERENCES_MICROQR_DEFAULT = EBarcodesSymbologies.MICROQR.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_MSI = "MSI";
+    public static final boolean SHARED_PREFERENCES_MSI_DEFAULT = EBarcodesSymbologies.MSI.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_PDF417 = "PDF417";
+    public static final boolean SHARED_PREFERENCES_PDF417_DEFAULT = EBarcodesSymbologies.PDF417.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_QRCODE = "QRCODE";
+    public static final boolean SHARED_PREFERENCES_QRCODE_DEFAULT = EBarcodesSymbologies.QRCODE.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_TLC39 = "TLC39";
+    public static final boolean SHARED_PREFERENCES_TLC39_DEFAULT = EBarcodesSymbologies.TLC39.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_TRIOPTIC39 = "TRIOPTIC39";
+    public static final boolean SHARED_PREFERENCES_TRIOPTIC39_DEFAULT = EBarcodesSymbologies.TRIOPTIC39.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_UK_POSTAL = "UK_POSTAL";
+    public static final boolean SHARED_PREFERENCES_UK_POSTAL_DEFAULT = EBarcodesSymbologies.UK_POSTAL.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_UPC_A = "UPC_A";
+    public static final boolean SHARED_PREFERENCES_UPC_A_DEFAULT = EBarcodesSymbologies.UPC_A.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_UPC_E = "UPC_E";
+    public static final boolean SHARED_PREFERENCES_UPC_E_DEFAULT = EBarcodesSymbologies.UPC_E.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_UPCE0 = "UPCE1";
+    public static final boolean SHARED_PREFERENCES_UPCE0_DEFAULT = EBarcodesSymbologies.UPCE1.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_USPLANET = "USPLANET";
+    public static final boolean SHARED_PREFERENCES_USPLANET_DEFAULT = EBarcodesSymbologies.USPLANET.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_USPOSTNET = "USPOSTNET";
+    public static final boolean SHARED_PREFERENCES_USPOSTNET_DEFAULT = EBarcodesSymbologies.USPOSTNET.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_US4STATE = "US4STATE";
+    public static final boolean SHARED_PREFERENCES_US4STATE_DEFAULT = EBarcodesSymbologies.US4STATE.getDefaultStatus();
+    
+    public static final String SHARED_PREFERENCES_US4STATE_FICS = "US4STATE_FICS";
+    public static final boolean SHARED_PREFERENCES_US4STATE_FICS_DEFAULT = EBarcodesSymbologies.US4STATE_FICS.getDefaultStatus();
 
 
 }

@@ -17,7 +17,6 @@
         android:elevation="4dp"
         android:fitsSystemWindows="true"
         android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent"
         app:title="@string/setup"
         app:titleTextColor="@color/white"
         android:backgroundTint="@color/zebra"/>
@@ -47,6 +46,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llFiletypes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/llPrefix"
@@ -56,9 +56,12 @@
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/file_type" />
+            android:layout_height="48dp"
+            android:background="@color/zebra"
+            android:backgroundTint="@color/zebra"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/file_type"
+            android:textColor="@color/white" />
 
         <RadioGroup
             android:id="@+id/rbFileType"
@@ -69,12 +72,17 @@
                 android:id="@+id/rbTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/zebra"
+                android:buttonTint="@color/zebra"
+                android:checked="true"
                 android:text="@string/text_file" />
 
             <RadioButton
                 android:id="@+id/rbCSV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:backgroundTint="@color/zebra"
                 android:text="@string/csv_file"
                 android:visibility="visible" />
 
@@ -82,6 +90,8 @@
                 android:id="@+id/rbXSLX"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:backgroundTint="@color/zebra"
                 android:text="@string/excel_file"
                 android:visibility="visible" />
         </RadioGroup>
@@ -89,6 +99,386 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llSymbologyTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/zebra"
+        android:background="@color/zebra"
+        android:layout_below="@id/llFiletypes"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="Symbologies"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_weight="0.6" />
+
+        <CheckBox
+            android:id="@+id/cbOpenSymbologies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:buttonTint="@color/white" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_weight="0.2" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/svSymbologies"
+        android:layout_below="@id/llSymbologyTitle"
+        android:layout_above="@id/llSettingsActions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/cbAUSTRALIAN_POSTAL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="AUSTRALIAN POSTAL" />
+
+            <CheckBox
+                android:id="@+id/cbAZTEC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="AZTEC" />
+
+            <CheckBox
+                android:id="@+id/cbCANADIAN_POSTAL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="CANADIAN POSTAL" />
+
+            <CheckBox
+                android:id="@+id/cbCHINESE_2OF5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="CHINESE 2OF5" />
+
+            <CheckBox
+                android:id="@+id/cbCODABAR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="CODABAR" />
+
+            <CheckBox
+                android:id="@+id/cbCODE11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="CODE11" />
+
+            <CheckBox
+                android:id="@+id/cbCODE39"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="CODE39" />
+
+            <CheckBox
+                android:id="@+id/cbCODE93"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="CODE93" />
+
+            <CheckBox
+                android:id="@+id/cbCODE128"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="CODE128" />
+
+            <CheckBox
+                android:id="@+id/cbCOMPOSITE_AB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="COMPOSITE AB" />
+
+            <CheckBox
+                android:id="@+id/cbCOMPOSITE_C"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="COMPOSITE C" />
+
+            <CheckBox
+                android:id="@+id/cbD2OF5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="D2OF5" />
+
+            <CheckBox
+                android:id="@+id/cbDATAMATRIX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="DATAMATRIX" />
+
+            <CheckBox
+                android:id="@+id/cbDOTCODE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="DOTCODE" />
+
+            <CheckBox
+                android:id="@+id/cbDUTCH_POSTAL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="DUTCH POSTAL" />
+
+            <CheckBox
+                android:id="@+id/cbEAN_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="EAN 8" />
+
+            <CheckBox
+                android:id="@+id/cbEAN_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="EAN 13" />
+
+            <CheckBox
+                android:id="@+id/cbFINNISH_POSTAL_4S"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="FINNISH POSTAL 4S" />
+
+            <CheckBox
+                android:id="@+id/cbGRID_MATRIX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="GRID MATRIX" />
+
+            <CheckBox
+                android:id="@+id/cbGS1_DATABAR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="GS1 DATABAR" />
+
+            <CheckBox
+                android:id="@+id/cbGS1_DATABAR_EXPANDED"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="GS1 DATABAR EXPANDED" />
+
+            <CheckBox
+                android:id="@+id/cbGS1_DATABAR_LIM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="GS1 DATABAR LIM" />
+
+            <CheckBox
+                android:id="@+id/cbGS1_DATAMATRIX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="GS1 DATAMATRIX" />
+
+            <CheckBox
+                android:id="@+id/cbGS1_QRCODE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="GS1 QRCODE" />
+
+            <CheckBox
+                android:id="@+id/cbHANXIN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="HANXIN" />
+
+            <CheckBox
+                android:id="@+id/cbI2OF5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="I2OF5" />
+
+            <CheckBox
+                android:id="@+id/cbJAPANESE_POSTAL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="JAPANESE POSTAL" />
+
+            <CheckBox
+                android:id="@+id/cbKOREAN_3OF5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="KOREAN 3OF5" />
+
+            <CheckBox
+                android:id="@+id/cbMAILMARK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="MAILMARK" />
+
+            <CheckBox
+                android:id="@+id/cbMATRIX_2OF5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="MATRIX 2OF5" />
+
+            <CheckBox
+                android:id="@+id/cbMAXICODE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="MAXICODE" />
+
+            <CheckBox
+                android:id="@+id/cbMICROPDF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="MICROPDF" />
+
+            <CheckBox
+                android:id="@+id/cbMICROQR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="MICROQR" />
+
+            <CheckBox
+                android:id="@+id/cbMSI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="MSI" />
+
+            <CheckBox
+                android:id="@+id/cbPDF417"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="PDF417" />
+
+            <CheckBox
+                android:id="@+id/cbQRCODE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="QRCODE" />
+
+            <CheckBox
+                android:id="@+id/cbTLC39"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="TLC39" />
+
+            <CheckBox
+                android:id="@+id/cbTRIOPTIC39"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="TRIOPTIC39" />
+
+            <CheckBox
+                android:id="@+id/cbUK_POSTAL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="UK POSTAL" />
+
+            <CheckBox
+                android:id="@+id/cbUPC_A"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="UPC A" />
+
+            <CheckBox
+                android:id="@+id/cbUPC_E"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="UPC E" />
+
+            <CheckBox
+                android:id="@+id/cbUPCE1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="UPCE1" />
+
+            <CheckBox
+                android:id="@+id/cbUSPLANET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="USPLANET" />
+
+            <CheckBox
+                android:id="@+id/cbUSPOSTNET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="USPOSTNET" />
+
+            <CheckBox
+                android:id="@+id/cbUS4STATE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="US4STATE" />
+
+            <CheckBox
+                android:id="@+id/cbUS4STATE_FICS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/zebra"
+                android:text="US4STATE FICS" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/llSettingsActions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

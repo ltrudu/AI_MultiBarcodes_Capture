@@ -34,6 +34,7 @@ import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.java.CameraXLivePreviewActivity;
+import com.zebra.ai_multibarcodes_capture.sessionmanagement.SessionViewerActivity;
 import com.zebra.ai_multibarcodes_capture.settings.SettingsActivity;
 
 import java.io.File;
@@ -141,6 +142,13 @@ public class EntryChoiceActivity extends AppCompatActivity {
             startActivity(mainIntent);
         });
 
+        binding.btViewSessionData.setEnabled(false);
+        binding.btViewSessionData.setOnClickListener(v ->{
+            Intent mainIntent = new Intent(this, SessionViewerActivity.class);
+            mainIntent.putExtra(Constants.CAPTURE_FILE_PATH, sessionFilePathString);
+            startActivity(mainIntent);
+        });
+
         binding.btLoadLastSession.setOnClickListener(v -> {
             sessionFilePathString = PreferencesHelper.getLastSelectedSession(this);
             if(sessionFilePathString != null) {
@@ -148,6 +156,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                 if(sessionFile.exists()) {
                     binding.txtSession.setText(sessionFilePathString);
                     binding.btStartCapture.setEnabled(true);
+                    binding.btViewSessionData.setEnabled(true);
                     String fileExtension = FileUtil.getFileExtension(sessionFile);
                     eExportMode = EExportMode.fromExtension(fileExtension);
                     PreferencesHelper.saveCurrentExtension(this, fileExtension);
@@ -156,12 +165,14 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     Toast.makeText(this, getString(R.string.last_session_file_not_found), Toast.LENGTH_LONG).show();
                     binding.txtSession.setText(R.string.select_session_file);
                     binding.btStartCapture.setEnabled(false);
+                    binding.btViewSessionData.setEnabled(false);
                 }
             }
             else
             {
                 Toast.makeText(this, getString(R.string.no_session_file_saved), Toast.LENGTH_LONG).show();
                 binding.btStartCapture.setEnabled(false);
+                binding.btViewSessionData.setEnabled(false);
             }
         });
 
@@ -175,6 +186,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     {
                         binding.txtSession.setText(sessionFilePathString);
                         binding.btStartCapture.setEnabled(true);
+                        binding.btViewSessionData.setEnabled(true);
                         PreferencesHelper.saveLastSessionFile(EntryChoiceActivity.this, sessionFilePathString);
 
                     }
@@ -182,6 +194,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     Toast.makeText(EntryChoiceActivity.this, getString(R.string.error_creating_new_session, e.getMessage()), Toast.LENGTH_LONG).show();
                     if(sessionFilePathString == null) {
                         binding.btStartCapture.setEnabled(false);
+                        binding.btViewSessionData.setEnabled(false);
                         binding.txtSession.setText(R.string.select_session_file);
                     }
                     else
@@ -191,10 +204,12 @@ public class EntryChoiceActivity extends AppCompatActivity {
                         {
                             binding.txtSession.setText(sessionFilePathString);
                             binding.btStartCapture.setEnabled(true);
+                            binding.btViewSessionData.setEnabled(true);
                         }
                         else
                         {
                             binding.btStartCapture.setEnabled(false);
+                            binding.btViewSessionData.setEnabled(false);
                             binding.txtSession.setText(R.string.select_session_file);
                         }
                     }
@@ -211,6 +226,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                             EExportMode sessionMode = EExportMode.fromExtension(sessionExtension);
                             if (sessionMode.equals(eExportMode) == false) {
                                 binding.btStartCapture.setEnabled(false);
+                                binding.btViewSessionData.setEnabled(false);
                                 binding.txtSession.setText(R.string.select_session_file);
                             }
                         }
@@ -232,10 +248,12 @@ public class EntryChoiceActivity extends AppCompatActivity {
                         {
                             binding.txtSession.setText(sessionFilePathString);
                             binding.btStartCapture.setEnabled(true);
+                            binding.btViewSessionData.setEnabled(true);
                         }
                         else
                         {
                             binding.btStartCapture.setEnabled(false);
+                            binding.btViewSessionData.setEnabled(false);
                             binding.txtSession.setText(R.string.select_session_file);
                         }
                         PreferencesHelper.saveLastSessionFile(this, sessionFilePathString);

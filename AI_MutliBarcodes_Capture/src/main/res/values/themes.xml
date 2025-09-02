@@ -2,8 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AIMultiBarcodes_Capture" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/zebra</item>
+        <item name="colorSecondary">@color/zebra</item>
+        <item name="colorTertiary">@color/zebra</item>
         <item name="android:statusBarColor">@color/zebra</item>
+        <item name="colorAccent">@color/zebra</item>
+        <item name="colorControlActivated">@color/zebra</item>
+        <item name="android:colorControlActivated">@color/zebra</item>
     </style>
 
     <style name="Theme.MultiBarcodesCapture" parent="Base.Theme.AIMultiBarcodes_Capture" />

@@ -35,7 +35,7 @@ import java.util.List;
  * typically within an Android application.
  */
 public class BarcodeTrackerGraphic extends GraphicOverlay.Graphic {
-    private final Paint boxPaint;
+    private final Paint boxPaintValid;
     private final Paint contentRectPaint;
     private final Paint contentTextPaint;
     private final List<Rect> boundingBoxes = new ArrayList<>();
@@ -56,10 +56,10 @@ public class BarcodeTrackerGraphic extends GraphicOverlay.Graphic {
         overlay.clear();
 
         // Initialize the paint for drawing bounding boxes
-        boxPaint = new Paint();
-        boxPaint.setColor(Color.GREEN);
-        boxPaint.setStyle(Paint.Style.STROKE);
-        boxPaint.setStrokeWidth(6f);
+        boxPaintValid = new Paint();
+        boxPaintValid.setColor(Color.GREEN);
+        boxPaintValid.setStyle(Paint.Style.STROKE);
+        boxPaintValid.setStrokeWidth(6f);
 
         // Initialize the paint for drawing content rectangles
         contentRectPaint = new Paint();
@@ -108,20 +108,22 @@ public class BarcodeTrackerGraphic extends GraphicOverlay.Graphic {
      */
     @Override
     public void draw(Canvas canvas) {
-        // Draw bounding boxes
-        for (Rect rect : boundingBoxes) {
-            canvas.drawRect(rect, boxPaint);
-        }
-
         // Draw the text content of the barcode
         for (int i = 0; i < decodedValues.size(); i++) {
             if (!decodedValues.get(i).trim().isEmpty()) {
+
+                Rect bbox = boundingBoxes.get(i);
+                String decodedValue = decodedValues.get(i);
+
+
+                canvas.drawRect(bbox, boxPaintValid);
+
                 // Draw the rectangle for barcode content
                 canvas.drawRect(contentRectBoxes.get(i), contentRectPaint);
 
                 // Draw the text
                 canvas.drawText(
-                        decodedValues.get(i),
+                        decodedValue,
                         boundingBoxes.get(i).left + contentPadding,
                         boundingBoxes.get(i).bottom + contentPadding * 2,
                         contentTextPaint

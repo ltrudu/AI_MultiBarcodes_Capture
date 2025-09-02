@@ -25,6 +25,7 @@ import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.filemanagement.ExportWriters;
 import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -51,11 +52,13 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         String value;
         int symbology;
         int quantity;
+        Date date;
 
-        public DisplayBarcodeData(String value, int symbology, int quantity) {
+        public DisplayBarcodeData(String value, int symbology, int quantity, Date date) {
             this.value = value;
             this.symbology = symbology;
             this.quantity = quantity;
+            this.date = date;
         }
     }
 
@@ -70,12 +73,16 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
 
     private Map<String, Integer> barcodeQuantityMap;
     private Map<String, Integer> barcodeSymbologyMap;
+    private Map<String, Date> barcodesDateMap;
 
     private String captureFilePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        Date currentDate = new Date();
+        
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_captured_barcodes);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -109,10 +116,12 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         // Process barcodesDataList to count quantities
         barcodeQuantityMap = new HashMap<>();
         barcodeSymbologyMap = new HashMap<>(); // To store symbology for each unique barcode
+        barcodesDateMap = new HashMap<>();
 
         for (BarcodeData data : barcodesDataList) {
             barcodeQuantityMap.put(data.value, barcodeQuantityMap.getOrDefault(data.value, 0) + 1);
             barcodeSymbologyMap.put(data.value, data.symbology); // Assuming symbology is consistent for a given value
+            barcodesDateMap.put(data.value, currentDate);
         }
 
         List<DisplayBarcodeData> displayList = new ArrayList<>();
@@ -120,7 +129,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             String value = entry.getKey();
             int quantity = entry.getValue();
             int symbology = barcodeSymbologyMap.getOrDefault(value, 0); // Get symbology, default to 0 if not found (shouldn't happen)
-            displayList.add(new DisplayBarcodeData(value, symbology, quantity));
+            displayList.add(new DisplayBarcodeData(value, symbology, quantity, currentDate));
         }
 
         barcodesListView = findViewById(R.id.barcodes_list_view);
@@ -146,6 +155,9 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
 
     private static class BarcodeAdapter extends ArrayAdapter<DisplayBarcodeData> {
 
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        
         public BarcodeAdapter(@NonNull Context context, List<DisplayBarcodeData> barcodes) {
             super(context, 0, barcodes);
         }
@@ -162,11 +174,16 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             TextView valueTextView = convertView.findViewById(R.id.barcode_value);
             TextView symbologyTextView = convertView.findViewById(R.id.barcode_symbology);
             TextView quantityTextView = convertView.findViewById(R.id.barcode_quantity);
+            TextView dateTextView = convertView.findViewById(R.id.barcode_date);
 
             if (barcode != null) {
+                String barcodeDateString = dateFormat.format(barcode.date) + " " + sdf.format(barcode.date);
+
                 valueTextView.setText("Value: " + barcode.value);
-                symbologyTextView.setText("Symbology: " + barcode.symbology);
+                EBarcodesSymbologies symbology = EBarcodesSymbologies.fromInt(barcode.symbology);
+                symbologyTextView.setText("Symbology: " + symbology.getName());
                 quantityTextView.setText("Quantity: " + barcode.quantity);
+                dateTextView.setText("Date: " + barcodeDateString);
             }
 
             return convertView;
@@ -176,7 +193,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     private void saveData()
     {
         Date currentDate = new Date();
-        if(ExportWriters.saveData(this, captureFilePath, barcodeQuantityMap, barcodeSymbologyMap, currentDate))
+        if(ExportWriters.saveData(this, captureFilePath, barcodeQuantityMap, barcodeSymbologyMap, barcodesDateMap))
         {
             finish();
         }
