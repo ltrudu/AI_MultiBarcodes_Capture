@@ -112,7 +112,7 @@ public class EntityBarcodeTracker {
                         executor,
                         this::handleEntities
                 );
-                imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(context), entityTrackerAnalyzer);
+                imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(context), (ImageAnalysis.Analyzer) entityTrackerAnalyzer);
                 Log.d(TAG, "Entity Tracker BarcodeDecoder() obj creation time =" + (System.currentTimeMillis() - m_Start) + " milli sec");
 
                 // Notify that the tracker is ready

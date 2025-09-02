@@ -46,6 +46,11 @@ public class EntityViewGraphic {
             .setStroke(5f, Color.rgb(0, 255, 0))
             .build();
 
+
+    private final StylePen doNothingPen = new BoundingBoxDrawPen.Builder()
+            .setStroke(5f, Color.rgb(255, 0, 0))
+            .build();
+
     private final StylePen detectIconPen = new IconDrawPen.Builder().setIconStyle(IconStyle.DETECTION_ONLY)
             .build();
 
@@ -91,6 +96,8 @@ public class EntityViewGraphic {
      * @param bEntity The BarcodeEntity to be added and rendered.
      */
     public void addEntity(BarcodeEntity bEntity) {
+        if(bEntity.getSymbology() == -1)
+            return;
         if (isEnableIconStyle) {
             createAndDrawIconPen(bEntity);
         } else {

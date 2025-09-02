@@ -2,6 +2,7 @@
 package com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.camera.core.ImageAnalysis;
@@ -15,6 +16,8 @@ import com.zebra.ai.vision.detector.InferencerOptions;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
 /**
  * The BarcodeTracker class is responsible for setting up and managing the process
@@ -77,7 +80,7 @@ public class BarcodeTracker {
         this.callback = callback;
         this.executor = Executors.newSingleThreadExecutor();
         this.imageAnalysis = imageAnalysis;
-        initializeBarcodeDecoder();
+        initializeBarcodeDecoder(context);
     }
 
     /**
@@ -85,14 +88,13 @@ public class BarcodeTracker {
      * and detection parameters. This method sets up the necessary components for analyzing
      * and decoding barcodes from image data.
      */
-    public void initializeBarcodeDecoder() {
+    public void initializeBarcodeDecoder(Context context) {
         try {
             BarcodeDecoder.Settings decoderSettings = new BarcodeDecoder.Settings(mavenModelName);
             Integer[] rpo = new Integer[1];
             rpo[0] = InferencerOptions.DSP;
 
-            decoderSettings.Symbology.CODE39.enable(true);
-            decoderSettings.Symbology.CODE128.enable(true);
+            setAvailableSymbologiesFromPreferences(context, decoderSettings);
 
             decoderSettings.detectorSetting.inferencerOptions.runtimeProcessorOrder = rpo;
             decoderSettings.detectorSetting.inferencerOptions.defaultDims.height = 640;
@@ -107,7 +109,7 @@ public class BarcodeTracker {
                         executor,
                         this::handleEntities
                 );
-                imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(context), entityTrackerAnalyzer);
+                imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(context), (ImageAnalysis.Analyzer) entityTrackerAnalyzer);
                 Log.d(TAG, "Entity Tracker BarcodeDecoder() obj creation time =" + (System.currentTimeMillis() - m_Start) + " milli sec");
             }).exceptionally(e -> {
                 if (e instanceof AIVisionSDKLicenseException) {
@@ -120,6 +122,57 @@ public class BarcodeTracker {
         } catch (Exception ex) {
             Log.e(TAG, "Model Loading: Entity Tracker Barcode decoder returned with exception " + ex.getMessage());
         }
+    }
+
+    private static void setAvailableSymbologiesFromPreferences(Context context, BarcodeDecoder.Settings decoderSettings) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        
+        decoderSettings.Symbology.AUSTRALIAN_POSTAL.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_AUSTRALIAN_POSTAL, SHARED_PREFERENCES_AUSTRALIAN_POSTAL_DEFAULT));
+        decoderSettings.Symbology.AZTEC.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_AZTEC, SHARED_PREFERENCES_AZTEC_DEFAULT));
+        decoderSettings.Symbology.CANADIAN_POSTAL.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_CANADIAN_POSTAL, SHARED_PREFERENCES_CANADIAN_POSTAL_DEFAULT));
+        decoderSettings.Symbology.CHINESE_2OF5.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_CHINESE_2OF5, SHARED_PREFERENCES_CHINESE_2OF5_DEFAULT));
+        decoderSettings.Symbology.CODABAR.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_CODABAR, SHARED_PREFERENCES_CODABAR_DEFAULT));
+        decoderSettings.Symbology.CODE11.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_CODE11, SHARED_PREFERENCES_CODE11_DEFAULT));
+        decoderSettings.Symbology.CODE39.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_CODE39, SHARED_PREFERENCES_CODE39_DEFAULT));
+        decoderSettings.Symbology.CODE93.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_CODE93, SHARED_PREFERENCES_CODE93_DEFAULT));
+        decoderSettings.Symbology.CODE128.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_CODE128, SHARED_PREFERENCES_CODE128_DEFAULT));
+        decoderSettings.Symbology.COMPOSITE_AB.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_COMPOSITE_AB, SHARED_PREFERENCES_COMPOSITE_AB_DEFAULT));
+        decoderSettings.Symbology.COMPOSITE_C.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_COMPOSITE_C, SHARED_PREFERENCES_COMPOSITE_C_DEFAULT));
+        decoderSettings.Symbology.D2OF5.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_D2OF5, SHARED_PREFERENCES_D2OF5_DEFAULT));
+        decoderSettings.Symbology.DATAMATRIX.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_DATAMATRIX, SHARED_PREFERENCES_DATAMATRIX_DEFAULT));
+        decoderSettings.Symbology.DOTCODE.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_DOTCODE, SHARED_PREFERENCES_DOTCODE_DEFAULT));
+        decoderSettings.Symbology.DUTCH_POSTAL.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_DUTCH_POSTAL, SHARED_PREFERENCES_DUTCH_POSTAL_DEFAULT));
+        decoderSettings.Symbology.EAN8.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_EAN_8, SHARED_PREFERENCES_EAN_8_DEFAULT));
+        decoderSettings.Symbology.EAN13.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_EAN_13, SHARED_PREFERENCES_EAN_13_DEFAULT));
+        decoderSettings.Symbology.FINNISH_POSTAL_4S.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_FINNISH_POSTAL_4S, SHARED_PREFERENCES_FINNISH_POSTAL_4S_DEFAULT));
+        decoderSettings.Symbology.GRID_MATRIX.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_GRID_MATRIX, SHARED_PREFERENCES_GRID_MATRIX_DEFAULT));
+        decoderSettings.Symbology.GS1_DATABAR.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_GS1_DATABAR, SHARED_PREFERENCES_GS1_DATABAR_DEFAULT));
+        decoderSettings.Symbology.GS1_DATABAR_EXPANDED.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_GS1_DATABAR_EXPANDED, SHARED_PREFERENCES_GS1_DATABAR_EXPANDED_DEFAULT));
+        decoderSettings.Symbology.GS1_DATABAR_LIM.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_GS1_DATABAR_LIM, SHARED_PREFERENCES_GS1_DATABAR_LIM_DEFAULT));
+        decoderSettings.Symbology.GS1_DATAMATRIX.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_GS1_DATAMATRIX, SHARED_PREFERENCES_GS1_DATAMATRIX_DEFAULT));
+        decoderSettings.Symbology.GS1_QRCODE.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_GS1_QRCODE, SHARED_PREFERENCES_GS1_QRCODE_DEFAULT));
+        decoderSettings.Symbology.HANXIN.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_HANXIN, SHARED_PREFERENCES_HANXIN_DEFAULT));
+        decoderSettings.Symbology.I2OF5.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_I2OF5, SHARED_PREFERENCES_I2OF5_DEFAULT));
+        decoderSettings.Symbology.JAPANESE_POSTAL.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_JAPANESE_POSTAL, SHARED_PREFERENCES_JAPANESE_POSTAL_DEFAULT));
+        decoderSettings.Symbology.KOREAN_3OF5.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_KOREAN_3OF5, SHARED_PREFERENCES_KOREAN_3OF5_DEFAULT));
+        decoderSettings.Symbology.MAILMARK.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_MAILMARK, SHARED_PREFERENCES_MAILMARK_DEFAULT));
+        decoderSettings.Symbology.MATRIX_2OF5.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_MATRIX_2OF5, SHARED_PREFERENCES_MATRIX_2OF5_DEFAULT));
+        decoderSettings.Symbology.MAXICODE.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_MAXICODE, SHARED_PREFERENCES_MAXICODE_DEFAULT));
+        decoderSettings.Symbology.MICROPDF.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_MICROPDF, SHARED_PREFERENCES_MICROPDF_DEFAULT));
+        decoderSettings.Symbology.MICROQR.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_MICROQR, SHARED_PREFERENCES_MICROQR_DEFAULT));
+        decoderSettings.Symbology.MSI.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_MSI, SHARED_PREFERENCES_MSI_DEFAULT));
+        decoderSettings.Symbology.PDF417.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_PDF417, SHARED_PREFERENCES_PDF417_DEFAULT));
+        decoderSettings.Symbology.QRCODE.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_QRCODE, SHARED_PREFERENCES_QRCODE_DEFAULT));
+        decoderSettings.Symbology.TLC39.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_TLC39, SHARED_PREFERENCES_TLC39_DEFAULT));
+        decoderSettings.Symbology.TRIOPTIC39.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_TRIOPTIC39, SHARED_PREFERENCES_TRIOPTIC39_DEFAULT));
+        decoderSettings.Symbology.UK_POSTAL.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_UK_POSTAL, SHARED_PREFERENCES_UK_POSTAL_DEFAULT));
+        decoderSettings.Symbology.UPCA.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_UPC_A, SHARED_PREFERENCES_UPC_A_DEFAULT));
+        decoderSettings.Symbology.UPCEAN.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_UPC_E, SHARED_PREFERENCES_UPC_E_DEFAULT));
+        decoderSettings.Symbology.UPCE0.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_UPCE0, SHARED_PREFERENCES_UPCE0_DEFAULT));
+        decoderSettings.Symbology.USPLANET.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_USPLANET, SHARED_PREFERENCES_USPLANET_DEFAULT));
+        decoderSettings.Symbology.USPOSTNET.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_USPOSTNET, SHARED_PREFERENCES_USPOSTNET_DEFAULT));
+        decoderSettings.Symbology.US4STATE.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_US4STATE, SHARED_PREFERENCES_US4STATE_DEFAULT));
+        decoderSettings.Symbology.US4STATE_FICS.enable(sharedPreferences.getBoolean(SHARED_PREFERENCES_US4STATE_FICS, SHARED_PREFERENCES_US4STATE_FICS_DEFAULT));
     }
 
     /**
