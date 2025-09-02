@@ -151,6 +151,7 @@ public class FileAdapter extends ArrayAdapter<File> {
         
         // ALWAYS hide the red background by default - only show during actual swipe
         if (holder.backgroundContainer != null) {
+            android.util.Log.d("FileAdapter", "HIDING background by default for: " + file.getName());
             holder.backgroundContainer.setVisibility(View.GONE);
         }
         
@@ -226,13 +227,14 @@ public class FileAdapter extends ArrayAdapter<File> {
                         
                         // Only intercept if this is clearly a horizontal left swipe
                         // Need significant horizontal movement with minimal vertical movement
-                        if (Math.abs(moveX) > 120 && Math.abs(moveY) < 30 && moveX < -100) {
+                        if (Math.abs(moveX) > 120 && Math.abs(moveY) < 40 && moveX < -100) {
                             if (!isSwipeActive) {
                                 android.util.Log.d("FileAdapter", "Triggering swipe animation in ACTION_MOVE for: " + file.getName() + " - setting translationX to " + SWIPE_DISTANCE_X);
                                 isSwipeActive = true;
                                 touchHandled = true;
                                 // Show the red background first, then slide foreground
                                 if (holder.backgroundContainer != null) {
+                                    android.util.Log.d("FileAdapter", "SHOWING background for animation trigger for: " + file.getName());
                                     holder.backgroundContainer.setVisibility(View.VISIBLE);
                                 }
                                 // Show trash can by sliding foreground to the left
@@ -293,6 +295,7 @@ public class FileAdapter extends ArrayAdapter<File> {
                                 .withEndAction(() -> {
                                     // Hide background after animation completes
                                     if (holder.backgroundContainer != null) {
+                                        android.util.Log.d("FileAdapter", "HIDING background after reset animation for: " + file.getName());
                                         holder.backgroundContainer.setVisibility(View.GONE);
                                     }
                                 })
@@ -425,10 +428,11 @@ public class FileAdapter extends ArrayAdapter<File> {
             android.util.Log.d("FileAdapter", "onFling: diffX=" + diffX + " diffY=" + diffY + " velocityX=" + velocityX + " velocityY=" + velocityY + " for " + file.getName());
             
             // Check for left swipe - be very strict to avoid accidental triggers
-            if (Math.abs(diffX) > Math.abs(diffY) && diffX < -150 && Math.abs(velocityX) > 200 && Math.abs(diffY) < 50) {
+            if (Math.abs(diffX) > Math.abs(diffY) && diffX < -120 && Math.abs(velocityX) > 200 && Math.abs(diffY) < 50) {
                 android.util.Log.d("FileAdapter", "Triggering swipe animation in onFling for: " + file.getName() + " - setting translationX to " + SWIPE_DISTANCE_X);
                 // Show the red background first, then slide foreground
                 if (holder.backgroundContainer != null) {
+                    android.util.Log.d("FileAdapter", "SHOWING background for onFling trigger for: " + file.getName());
                     holder.backgroundContainer.setVisibility(View.VISIBLE);
                 }
                 // Show trash can
