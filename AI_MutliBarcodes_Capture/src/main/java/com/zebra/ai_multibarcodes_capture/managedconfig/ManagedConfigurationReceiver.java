@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 /**
  * BroadcastReceiver that handles managed configuration changes.
@@ -27,7 +28,7 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         
         if (Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED.equals(action)) {
-            Log.d(TAG, "Managed configuration changed, updating SharedPreferences");
+            LogUtils.d(TAG, "Managed configuration changed, updating SharedPreferences");
             
             RestrictionsManager restrictionsManager = 
                 (RestrictionsManager) context.getSystemService(Context.RESTRICTIONS_SERVICE);
@@ -36,7 +37,7 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
                 Bundle restrictions = restrictionsManager.getApplicationRestrictions();
                 updateSharedPreferences(context, restrictions);
             } else {
-                Log.w(TAG, "RestrictionsManager is null");
+                LogUtils.w(TAG, "RestrictionsManager is null");
             }
         }
     }
@@ -57,7 +58,7 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
                 String prefix = restrictions.getString("prefix");
                 if (prefix != null && !prefix.trim().isEmpty()) {
                     editor.putString(Constants.SHARED_PREFERENCES_PREFIX, prefix);
-                    Log.d(TAG, "Updated prefix: " + prefix);
+                    LogUtils.d(TAG, "Updated prefix: " + prefix);
                 }
             }
 
@@ -66,7 +67,7 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
                 String extension = restrictions.getString("extension");
                 if (extension != null && !extension.trim().isEmpty()) {
                     editor.putString(Constants.SHARED_PREFERENCES_EXTENSION, extension);
-                    Log.d(TAG, "Updated extension: " + extension);
+                    LogUtils.d(TAG, "Updated extension: " + extension);
                 }
             }
 
@@ -80,15 +81,15 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
 
             // Apply all changes atomically
             editor.apply();
-            Log.d(TAG, "Successfully updated SharedPreferences with managed configuration");
+            LogUtils.d(TAG, "Successfully updated SharedPreferences with managed configuration");
 
             // Notify SettingsActivity if it's currently open (will only be received if registered)
-            Log.d(TAG, "Sending reload preferences intent to SettingsActivity");
+            LogUtils.d(TAG, "Sending reload preferences intent to SettingsActivity");
             Intent reloadIntent = new Intent(ACTION_RELOAD_PREFERENCES);
             context.sendBroadcast(reloadIntent);
 
         } catch (Exception e) {
-            Log.e(TAG, "Error updating SharedPreferences with managed configuration", e);
+            LogUtils.e(TAG, "Error updating SharedPreferences with managed configuration", e);
         }
     }
 
@@ -98,7 +99,7 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
      * @param barcodeSymbologies Bundle containing barcode symbology settings
      */
     private void updateBarcodeSymbologies(SharedPreferences.Editor editor, Bundle barcodeSymbologies) {
-        Log.d(TAG, "Updating barcode symbologies from managed configuration");
+        LogUtils.d(TAG, "Updating barcode symbologies from managed configuration");
 
         // Postal barcodes
         updateBooleanSetting(editor, barcodeSymbologies, "AUSTRALIAN_POSTAL", Constants.SHARED_PREFERENCES_AUSTRALIAN_POSTAL);
@@ -175,7 +176,7 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
         if (bundle.containsKey(configKey)) {
             boolean value = bundle.getBoolean(configKey);
             editor.putBoolean(prefKey, value);
-            Log.d(TAG, "Updated " + configKey + ": " + value);
+            LogUtils.d(TAG, "Updated " + configKey + ": " + value);
         }
     }
 
@@ -185,7 +186,7 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
      * @param context Application context
      */
     public static void applyManagedConfiguration(Context context) {
-        Log.d(TAG, "Manually applying managed configuration");
+        LogUtils.d(TAG, "Manually applying managed configuration");
         
         RestrictionsManager restrictionsManager = 
             (RestrictionsManager) context.getSystemService(Context.RESTRICTIONS_SERVICE);
@@ -196,10 +197,10 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
                 ManagedConfigurationReceiver receiver = new ManagedConfigurationReceiver();
                 receiver.updateSharedPreferences(context, restrictions);
             } else {
-                Log.d(TAG, "No managed configuration restrictions found");
+                LogUtils.d(TAG, "No managed configuration restrictions found");
             }
         } else {
-            Log.w(TAG, "RestrictionsManager is null");
+            LogUtils.w(TAG, "RestrictionsManager is null");
         }
     }
 

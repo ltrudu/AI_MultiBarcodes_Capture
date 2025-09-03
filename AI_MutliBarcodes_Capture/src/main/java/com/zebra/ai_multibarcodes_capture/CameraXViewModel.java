@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import java.util.concurrent.ExecutionException;
 
@@ -39,7 +40,7 @@ public final class CameraXViewModel extends AndroidViewModel {
                             cameraProviderLiveData.setValue(cameraProviderFuture.get());
                         } catch (ExecutionException | InterruptedException e) {
                             // Handle any errors (including cancellation) here.
-                            Log.e(TAG, "Unhandled exception", e);
+                            LogUtils.e(TAG, "Unhandled exception", e);
                         }
                     },
                     ContextCompat.getMainExecutor(getApplication()));

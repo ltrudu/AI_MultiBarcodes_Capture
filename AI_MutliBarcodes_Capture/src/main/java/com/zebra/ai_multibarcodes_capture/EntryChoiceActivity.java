@@ -34,6 +34,7 @@ import com.zebra.ai_multibarcodes_capture.filemanagement.BrowserActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.java.CameraXLivePreviewActivity;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
@@ -95,7 +96,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES.equals(intent.getAction())) {
-                Log.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
+                LogUtils.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -117,9 +118,9 @@ public class EntryChoiceActivity extends AppCompatActivity {
         // Initializing the AI Vision SDK
         try {
             boolean isInitDone = AIVisionSDK.getInstance(this.getApplicationContext()).init();
-            Log.i(TAG, "AI Vision SDK Init ret = " + isInitDone);
+            LogUtils.i(TAG, "AI Vision SDK Init ret = " + isInitDone);
         } catch (UnsupportedOperationException ex) {
-            Log.e(TAG, getString(R.string.ai_vision_sdk_init_failed));
+            LogUtils.e(TAG, getString(R.string.ai_vision_sdk_init_failed));
         }
 
         // load preferences
@@ -297,16 +298,16 @@ public class EntryChoiceActivity extends AppCompatActivity {
         // Initializing the AI Vision SDK
         try {
             boolean isInitDone = AIVisionSDK.getInstance(this.getApplicationContext()).init();
-            Log.i(TAG, "AI Vision SDK Init = " + isInitDone);
-            Log.i(TAG, "AI Vision SDK version = " + AIVisionSDK.getInstance(this.getApplicationContext()).getSDKVersion());
+            LogUtils.i(TAG, "AI Vision SDK Init = " + isInitDone);
+            LogUtils.i(TAG, "AI Vision SDK version = " + AIVisionSDK.getInstance(this.getApplicationContext()).getSDKVersion());
         } catch (UnsupportedOperationException ex) {
             runOnUiThread(() -> showErrorDialog(ex.getMessage()));
         }
 
         // Register the BroadcastReceiver to listen for managed configuration changes
         IntentFilter filter = new IntentFilter(ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES);
-        registerReceiver(reloadPreferencesReceiver, filter);
-        Log.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
+        registerReceiver(reloadPreferencesReceiver, filter, RECEIVER_NOT_EXPORTED);
+        LogUtils.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
     }
 
     @Override
@@ -316,10 +317,10 @@ public class EntryChoiceActivity extends AppCompatActivity {
         // Unregister the BroadcastReceiver
         try {
             unregisterReceiver(reloadPreferencesReceiver);
-            Log.d(TAG, "Unregistered BroadcastReceiver for managed configuration changes");
+            LogUtils.d(TAG, "Unregistered BroadcastReceiver for managed configuration changes");
         } catch (IllegalArgumentException e) {
             // Receiver was not registered, ignore
-            Log.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
+            LogUtils.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
         }
     }
 
@@ -370,7 +371,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                         REQUEST_CAMERA_PERMISSION);
             }
         } else {
-            Log.v(TAG, "Camera permission granted");
+            LogUtils.v(TAG, "Camera permission granted");
         }
     }
 
@@ -410,7 +411,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.v(TAG, "Camera permission granted");
+                LogUtils.v(TAG, "Camera permission granted");
             } else {
                 Toast.makeText(this, getString(R.string.camera_permission_required), Toast.LENGTH_SHORT).show();
                 showNonCancellablePermissionRationaleDialog();

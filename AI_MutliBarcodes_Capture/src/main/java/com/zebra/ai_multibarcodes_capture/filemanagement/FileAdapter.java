@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zebra.ai_multibarcodes_capture.R;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -136,7 +137,7 @@ public class FileAdapter extends ArrayAdapter<File> {
         }
         // Aggressively reset any leftover swipe animation state
         float currentTranslationX = holder.foregroundContainer.getTranslationX();
-        android.util.Log.d("FileAdapter", "RESETTING view state for " + file.getName() + " - current translationX: " + currentTranslationX);
+        LogUtils.d("FileAdapter", "RESETTING view state for " + file.getName() + " - current translationX: " + currentTranslationX);
         
         // Cancel any running animations
         holder.foregroundContainer.clearAnimation();
@@ -151,7 +152,7 @@ public class FileAdapter extends ArrayAdapter<File> {
         
         // ALWAYS hide the red background by default - only show during actual swipe
         if (holder.backgroundContainer != null) {
-            android.util.Log.d("FileAdapter", "HIDING background by default for: " + file.getName());
+            LogUtils.d("FileAdapter", "HIDING background by default for: " + file.getName());
             holder.backgroundContainer.setVisibility(View.GONE);
         }
         
@@ -167,16 +168,16 @@ public class FileAdapter extends ArrayAdapter<File> {
         float afterResetTranslationX = holder.foregroundContainer.getTranslationX();
         int backgroundVisibility = holder.backgroundContainer != null ? holder.backgroundContainer.getVisibility() : View.GONE;
         float backgroundAlpha = holder.backgroundContainer != null ? holder.backgroundContainer.getAlpha() : 0.0f;
-        android.util.Log.d("FileAdapter", "AFTER RESET for " + file.getName() + " - translationX: " + afterResetTranslationX + 
+        LogUtils.d("FileAdapter", "AFTER RESET for " + file.getName() + " - translationX: " + afterResetTranslationX + 
             ", background visibility: " + backgroundVisibility + ", background alpha: " + backgroundAlpha);
         
         // Setup touch handling - background is hidden by default for ALL items
         if (!file.getName().equals("..")) {
-            android.util.Log.d("FileAdapter", "Setting up SWIPE gesture for: " + file.getName());
+            LogUtils.d("FileAdapter", "Setting up SWIPE gesture for: " + file.getName());
             // Regular files and folders get full swipe gesture support
             setupSwipeGesture(holder, position, file);
         } else {
-            android.util.Log.d("FileAdapter", "Setting up PARENT TAP for: " + file.getName());
+            LogUtils.d("FileAdapter", "Setting up PARENT TAP for: " + file.getName());
             // Parent directory only needs tap handling, no swipe
             setupParentDirectoryTap(holder, file);
         }
@@ -197,12 +198,12 @@ public class FileAdapter extends ArrayAdapter<File> {
             
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                android.util.Log.d("FileAdapter", "=== SWIPE TOUCH EVENT for " + file.getName() + " ===");
-                android.util.Log.d("FileAdapter", "Event action: " + event.getAction() + " at (" + event.getX() + ", " + event.getY() + ")");
+                LogUtils.d("FileAdapter", "=== SWIPE TOUCH EVENT for " + file.getName() + " ===");
+                LogUtils.d("FileAdapter", "Event action: " + event.getAction() + " at (" + event.getX() + ", " + event.getY() + ")");
                 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        android.util.Log.d("FileAdapter", "ACTION_DOWN for " + file.getName());
+                        LogUtils.d("FileAdapter", "ACTION_DOWN for " + file.getName());
                         initialX = event.getX();
                         initialY = event.getY();
                         isSwipeActive = false;
@@ -210,31 +211,31 @@ public class FileAdapter extends ArrayAdapter<File> {
                         gestureDetectorUsed = false;
                         // Store the down event for potential gesture detection later
                         downEvent = MotionEvent.obtain(event);
-                        android.util.Log.d("FileAdapter", "ACTION_DOWN returning false for " + file.getName());
+                        LogUtils.d("FileAdapter", "ACTION_DOWN returning false for " + file.getName());
                         // Never consume DOWN events - let ListView handle them
                         return false;
                         
                     case MotionEvent.ACTION_MOVE:
-                        android.util.Log.d("FileAdapter", "ACTION_MOVE for " + file.getName());
+                        LogUtils.d("FileAdapter", "ACTION_MOVE for " + file.getName());
                         if (touchHandled) {
-                            android.util.Log.d("FileAdapter", "ACTION_MOVE already handled, returning true for " + file.getName());
+                            LogUtils.d("FileAdapter", "ACTION_MOVE already handled, returning true for " + file.getName());
                             return true; // Already handling this touch sequence
                         }
                         
                         float moveX = event.getX() - initialX;
                         float moveY = event.getY() - initialY;
-                        android.util.Log.d("FileAdapter", "ACTION_MOVE delta: (" + moveX + ", " + moveY + ") for " + file.getName());
+                        LogUtils.d("FileAdapter", "ACTION_MOVE delta: (" + moveX + ", " + moveY + ") for " + file.getName());
                         
                         // Only intercept if this is clearly a horizontal left swipe
                         // Need significant horizontal movement with minimal vertical movement
                         if (Math.abs(moveX) > 120 && Math.abs(moveY) < 40 && moveX < -100) {
                             if (!isSwipeActive) {
-                                android.util.Log.d("FileAdapter", "Triggering swipe animation in ACTION_MOVE for: " + file.getName() + " - setting translationX to " + SWIPE_DISTANCE_X);
+                                LogUtils.d("FileAdapter", "Triggering swipe animation in ACTION_MOVE for: " + file.getName() + " - setting translationX to " + SWIPE_DISTANCE_X);
                                 isSwipeActive = true;
                                 touchHandled = true;
                                 // Show the red background first, then slide foreground
                                 if (holder.backgroundContainer != null) {
-                                    android.util.Log.d("FileAdapter", "SHOWING background for animation trigger for: " + file.getName());
+                                    LogUtils.d("FileAdapter", "SHOWING background for animation trigger for: " + file.getName());
                                     holder.backgroundContainer.setVisibility(View.VISIBLE);
                                 }
                                 // Show trash can by sliding foreground to the left
@@ -245,13 +246,13 @@ public class FileAdapter extends ArrayAdapter<File> {
                                 // Prevent ListView from scrolling
                                 v.getParent().requestDisallowInterceptTouchEvent(true);
                             }
-                            android.util.Log.d("FileAdapter", "ACTION_MOVE swipe active, returning true for " + file.getName());
+                            LogUtils.d("FileAdapter", "ACTION_MOVE swipe active, returning true for " + file.getName());
                             return true;
                         }
                         
                         // Only check gesture detector for potential swipes when there's significant movement
                         if (Math.abs(moveX) > 30 || Math.abs(moveY) > 30) {
-                            android.util.Log.d("FileAdapter", "ACTION_MOVE activating gesture detector for " + file.getName());
+                            LogUtils.d("FileAdapter", "ACTION_MOVE activating gesture detector for " + file.getName());
                             if (downEvent != null) {
                                 gestureDetector.onTouchEvent(downEvent);
                                 downEvent = null; // Only send once
@@ -262,11 +263,11 @@ public class FileAdapter extends ArrayAdapter<File> {
                             }
                         }
                         
-                        android.util.Log.d("FileAdapter", "ACTION_MOVE returning false for " + file.getName());
+                        LogUtils.d("FileAdapter", "ACTION_MOVE returning false for " + file.getName());
                         return false;
                         
                     case MotionEvent.ACTION_UP:
-                        android.util.Log.d("FileAdapter", "ACTION_UP for " + file.getName());
+                        LogUtils.d("FileAdapter", "ACTION_UP for " + file.getName());
                         // Clean up stored event
                         if (downEvent != null) {
                             downEvent.recycle();
@@ -274,20 +275,20 @@ public class FileAdapter extends ArrayAdapter<File> {
                         }
                         
                         if (isSwipeActive || touchHandled) {
-                            android.util.Log.d("FileAdapter", "ACTION_UP swipe was active, returning true for " + file.getName());
+                            LogUtils.d("FileAdapter", "ACTION_UP swipe was active, returning true for " + file.getName());
                             // We handled this as a swipe
                             return true;
                         }
                         
                         // If gesture detector was used, send the UP event too
                         if (gestureDetectorUsed) {
-                            android.util.Log.d("FileAdapter", "ACTION_UP sending to gesture detector for " + file.getName());
+                            LogUtils.d("FileAdapter", "ACTION_UP sending to gesture detector for " + file.getName());
                             gestureDetector.onTouchEvent(event);
                         }
                         
                         // Check if view moved during touch
                         if (holder.foregroundContainer.getTranslationX() != 0) {
-                            android.util.Log.d("FileAdapter", "ACTION_UP resetting partial movement for " + file.getName());
+                            LogUtils.d("FileAdapter", "ACTION_UP resetting partial movement for " + file.getName());
                             // Reset any partial movement and hide background
                             holder.foregroundContainer.animate()
                                 .translationX(0)
@@ -295,7 +296,7 @@ public class FileAdapter extends ArrayAdapter<File> {
                                 .withEndAction(() -> {
                                     // Hide background after animation completes
                                     if (holder.backgroundContainer != null) {
-                                        android.util.Log.d("FileAdapter", "HIDING background after reset animation for: " + file.getName());
+                                        LogUtils.d("FileAdapter", "HIDING background after reset animation for: " + file.getName());
                                         holder.backgroundContainer.setVisibility(View.GONE);
                                     }
                                 })
@@ -307,19 +308,19 @@ public class FileAdapter extends ArrayAdapter<File> {
                         float deltaX = event.getX() - initialX;
                         float deltaY = event.getY() - initialY;
                         float distance = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                        android.util.Log.d("FileAdapter", "ACTION_UP tap check: distance=" + distance + " for " + file.getName());
+                        LogUtils.d("FileAdapter", "ACTION_UP tap check: distance=" + distance + " for " + file.getName());
                         
                         if (distance < 20) {  // This is a tap
-                            android.util.Log.d("FileAdapter", "ACTION_UP detected tap for " + file.getName());
+                            LogUtils.d("FileAdapter", "ACTION_UP detected tap for " + file.getName());
                             // Handle folder navigation or file selection
                             if (file.isDirectory() || file.getName().equals("..")) {
-                                android.util.Log.d("FileAdapter", "ACTION_UP calling folder click for " + file.getName());
+                                LogUtils.d("FileAdapter", "ACTION_UP calling folder click for " + file.getName());
                                 if (folderClickListener != null) {
                                     folderClickListener.onFolderClick(file);
                                     return true;
                                 }
                             } else if (file.isFile()) {
-                                android.util.Log.d("FileAdapter", "ACTION_UP toggling file selection for " + file.getName());
+                                LogUtils.d("FileAdapter", "ACTION_UP toggling file selection for " + file.getName());
                                 // For files, toggle selection on tap
                                 if (selectedPosition == position) {
                                     clearSelection();
@@ -330,7 +331,7 @@ public class FileAdapter extends ArrayAdapter<File> {
                             }
                         }
                         
-                        android.util.Log.d("FileAdapter", "ACTION_UP returning false for " + file.getName());
+                        LogUtils.d("FileAdapter", "ACTION_UP returning false for " + file.getName());
                         return false;
                         
                     case MotionEvent.ACTION_CANCEL:
@@ -351,54 +352,54 @@ public class FileAdapter extends ArrayAdapter<File> {
         holder.trashIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.util.Log.d("FileAdapter", "Trash icon clicked for: " + file.getName());
+                LogUtils.d("FileAdapter", "Trash icon clicked for: " + file.getName());
                 if (deleteListener != null) {
                     deleteListener.onFileDelete(file, position);
                 } else {
-                    android.util.Log.d("FileAdapter", "Delete listener is null!");
+                    LogUtils.d("FileAdapter", "Delete listener is null!");
                 }
             }
         });
     }
 
     private void setupParentDirectoryTap(ViewHolder holder, File file) {
-        android.util.Log.d("FileAdapter", "Setting up parent directory tap for: " + file.getName());
+        LogUtils.d("FileAdapter", "Setting up parent directory tap for: " + file.getName());
         holder.foregroundContainer.setOnTouchListener(new View.OnTouchListener() {
             private float initialX = 0;
             private float initialY = 0;
             
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                android.util.Log.d("FileAdapter", "=== PARENT TOUCH EVENT for " + file.getName() + " ===");
-                android.util.Log.d("FileAdapter", "Parent event action: " + event.getAction() + " at (" + event.getX() + ", " + event.getY() + ")");
+                LogUtils.d("FileAdapter", "=== PARENT TOUCH EVENT for " + file.getName() + " ===");
+                LogUtils.d("FileAdapter", "Parent event action: " + event.getAction() + " at (" + event.getX() + ", " + event.getY() + ")");
                 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        android.util.Log.d("FileAdapter", "Parent ACTION_DOWN for " + file.getName());
+                        LogUtils.d("FileAdapter", "Parent ACTION_DOWN for " + file.getName());
                         initialX = event.getX();
                         initialY = event.getY();
-                        android.util.Log.d("FileAdapter", "Parent ACTION_DOWN returning false for " + file.getName());
+                        LogUtils.d("FileAdapter", "Parent ACTION_DOWN returning false for " + file.getName());
                         return false;
                         
                     case MotionEvent.ACTION_UP:
-                        android.util.Log.d("FileAdapter", "Parent ACTION_UP for " + file.getName());
+                        LogUtils.d("FileAdapter", "Parent ACTION_UP for " + file.getName());
                         // Check if this was a tap (minimal movement)
                         float deltaX = event.getX() - initialX;
                         float deltaY = event.getY() - initialY;
                         float distance = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                        android.util.Log.d("FileAdapter", "Parent ACTION_UP distance: " + distance + " for " + file.getName());
+                        LogUtils.d("FileAdapter", "Parent ACTION_UP distance: " + distance + " for " + file.getName());
                         
                         if (distance < 20) {  // This is a tap
-                            android.util.Log.d("FileAdapter", "Parent ACTION_UP detected tap, calling folder click for " + file.getName());
+                            LogUtils.d("FileAdapter", "Parent ACTION_UP detected tap, calling folder click for " + file.getName());
                             if (folderClickListener != null) {
                                 folderClickListener.onFolderClick(file);
                                 return true;
                             }
                         }
-                        android.util.Log.d("FileAdapter", "Parent ACTION_UP returning false for " + file.getName());
+                        LogUtils.d("FileAdapter", "Parent ACTION_UP returning false for " + file.getName());
                         return false;
                 }
-                android.util.Log.d("FileAdapter", "Parent default returning false for " + file.getName());
+                LogUtils.d("FileAdapter", "Parent default returning false for " + file.getName());
                 return false;
             }
         });
@@ -417,22 +418,22 @@ public class FileAdapter extends ArrayAdapter<File> {
         
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            android.util.Log.d("FileAdapter", "=== GESTURE onFling for " + file.getName() + " ===");
+            LogUtils.d("FileAdapter", "=== GESTURE onFling for " + file.getName() + " ===");
             if (e1 == null || e2 == null) {
-                android.util.Log.d("FileAdapter", "onFling: e1 or e2 is null, returning false for " + file.getName());
+                LogUtils.d("FileAdapter", "onFling: e1 or e2 is null, returning false for " + file.getName());
                 return false;
             }
             
             float diffX = e2.getX() - e1.getX();
             float diffY = e2.getY() - e1.getY();
-            android.util.Log.d("FileAdapter", "onFling: diffX=" + diffX + " diffY=" + diffY + " velocityX=" + velocityX + " velocityY=" + velocityY + " for " + file.getName());
+            LogUtils.d("FileAdapter", "onFling: diffX=" + diffX + " diffY=" + diffY + " velocityX=" + velocityX + " velocityY=" + velocityY + " for " + file.getName());
             
             // Check for left swipe - be very strict to avoid accidental triggers
             if (Math.abs(diffX) > Math.abs(diffY) && diffX < -120 && Math.abs(velocityX) > 200 && Math.abs(diffY) < 50) {
-                android.util.Log.d("FileAdapter", "Triggering swipe animation in onFling for: " + file.getName() + " - setting translationX to " + SWIPE_DISTANCE_X);
+                LogUtils.d("FileAdapter", "Triggering swipe animation in onFling for: " + file.getName() + " - setting translationX to " + SWIPE_DISTANCE_X);
                 // Show the red background first, then slide foreground
                 if (holder.backgroundContainer != null) {
-                    android.util.Log.d("FileAdapter", "SHOWING background for onFling trigger for: " + file.getName());
+                    LogUtils.d("FileAdapter", "SHOWING background for onFling trigger for: " + file.getName());
                     holder.backgroundContainer.setVisibility(View.VISIBLE);
                 }
                 // Show trash can
@@ -443,7 +444,7 @@ public class FileAdapter extends ArrayAdapter<File> {
                 return true;
             }
             
-            android.util.Log.d("FileAdapter", "onFling: conditions not met, returning false for " + file.getName());
+            LogUtils.d("FileAdapter", "onFling: conditions not met, returning false for " + file.getName());
             return false;
         }
     }

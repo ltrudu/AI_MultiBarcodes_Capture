@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
 import androidx.activity.EdgeToEdge;
@@ -56,7 +57,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES.equals(intent.getAction())) {
-                Log.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
+                LogUtils.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -177,7 +178,7 @@ public class SettingsActivity extends AppCompatActivity {
         // Register the BroadcastReceiver to listen for managed configuration changes
         IntentFilter filter = new IntentFilter(ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES);
         registerReceiver(reloadPreferencesReceiver, filter);
-        Log.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
+        LogUtils.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
     }
 
     @Override
@@ -187,10 +188,10 @@ public class SettingsActivity extends AppCompatActivity {
         // Unregister the BroadcastReceiver
         try {
             unregisterReceiver(reloadPreferencesReceiver);
-            Log.d(TAG, "Unregistered BroadcastReceiver for managed configuration changes");
+            LogUtils.d(TAG, "Unregistered BroadcastReceiver for managed configuration changes");
         } catch (IllegalArgumentException e) {
             // Receiver was not registered, ignore
-            Log.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
+            LogUtils.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
         }
     }
 

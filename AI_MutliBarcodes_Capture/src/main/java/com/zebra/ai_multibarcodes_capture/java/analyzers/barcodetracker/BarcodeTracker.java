@@ -12,6 +12,7 @@ import com.zebra.ai.vision.analyzer.tracking.EntityTrackerAnalyzer;
 import com.zebra.ai.vision.detector.AIVisionSDKLicenseException;
 import com.zebra.ai.vision.detector.BarcodeDecoder;
 import com.zebra.ai.vision.detector.InferencerOptions;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -110,17 +111,17 @@ public class BarcodeTracker {
                         this::handleEntities
                 );
                 imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(context), (ImageAnalysis.Analyzer) entityTrackerAnalyzer);
-                Log.d(TAG, "Entity Tracker BarcodeDecoder() obj creation time =" + (System.currentTimeMillis() - m_Start) + " milli sec");
+                LogUtils.d(TAG, "Entity Tracker BarcodeDecoder() obj creation time =" + (System.currentTimeMillis() - m_Start) + " milli sec");
             }).exceptionally(e -> {
                 if (e instanceof AIVisionSDKLicenseException) {
-                    Log.e(TAG, "AIVisionSDKLicenseException: Barcode Decoder object creation failed, " + e.getMessage());
+                    LogUtils.e(TAG, "AIVisionSDKLicenseException: Barcode Decoder object creation failed, " + e.getMessage());
                 } else {
-                    Log.e(TAG, "Fatal error: decoder creation failed - " + e.getMessage());
+                    LogUtils.e(TAG, "Fatal error: decoder creation failed - " + e.getMessage());
                 }
                 return null;
             });
         } catch (Exception ex) {
-            Log.e(TAG, "Model Loading: Entity Tracker Barcode decoder returned with exception " + ex.getMessage());
+            LogUtils.e(TAG, "Model Loading: Entity Tracker Barcode decoder returned with exception " + ex.getMessage());
         }
     }
 
@@ -200,7 +201,7 @@ public class BarcodeTracker {
     public void stop() {
         if (barcodeDecoder != null) {
             barcodeDecoder.dispose();
-            Log.d(TAG, "Barcode decoder is disposed");
+            LogUtils.d(TAG, "Barcode decoder is disposed");
         }
     }
 
