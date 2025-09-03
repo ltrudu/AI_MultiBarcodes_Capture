@@ -22,6 +22,8 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -30,6 +32,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.zebra.ai_multibarcodes_capture.R;
+import com.zebra.ai_multibarcodes_capture.dataeditor.BarcodeDataEditorActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.SessionsFilesHelpers;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
@@ -69,10 +72,13 @@ public class SessionViewerActivity extends AppCompatActivity {
     private Button saveButton;
     private Button mergeButton;
 
-    private static final int TRANSLATION_X = -180;
+    private static final int TRANSLATION_X = -360; // Updated for two icons (60dp each)
 
     List<DisplayBarcodeData> displayList;
     BarcodeAdapter adapter;
+
+    // ActivityResultLauncher for BarcodeDataEditorActivity
+    private ActivityResultLauncher<Intent> barcodeEditorLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +91,39 @@ public class SessionViewerActivity extends AppCompatActivity {
         // Setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        
+        // Initialize ActivityResultLauncher for BarcodeDataEditorActivity
+        barcodeEditorLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    // Handle the result from BarcodeDataEditorActivity
+                    Intent data = result.getData();
+                    int position = data.getIntExtra(Constants.EXTRA_POSITION, -1);
+                    if (position >= 0 && position < displayList.size()) {
+                        // Update the item with new data
+                        String newValue = data.getStringExtra(Constants.EXTRA_VALUE);
+                        int newSymbology = data.getIntExtra(Constants.EXTRA_SYMBOLOGY, EBarcodesSymbologies.UNKNOWN.getIntValue());
+                        int newQuantity = data.getIntExtra(Constants.EXTRA_QUANTITY, 1);
+                        // Update the display list
+                        DisplayBarcodeData item = displayList.get(position);
+                        item.value = newValue;
+                        item.symbology = newSymbology;
+                        item.quantity = newQuantity;
+                        // Reset all swipe states before refreshing
+                        resetAllSwipeStates();
+                        // Refresh the adapter
+                        adapter.notifyDataSetChanged();
+                        // Mark save button as update
+                        saveButton.setText(R.string.update);
+                    }
+                }
+                else
+                {
+                    resetAllSwipeStates();
+                }
+            }
+        );
         
         Intent intent = getIntent();
         sessionFilePath = intent.getStringExtra(Constants.CAPTURE_FILE_PATH);
@@ -192,6 +231,7 @@ public class SessionViewerActivity extends AppCompatActivity {
                 holder = new ViewHolder();
                 holder.foregroundContainer = convertView.findViewById(R.id.foreground_container);
                 holder.backgroundContainer = convertView.findViewById(R.id.background_container);
+                holder.editIcon = convertView.findViewById(R.id.edit_icon);
                 holder.trashIcon = convertView.findViewById(R.id.trash_icon);
                 holder.valueTextView = convertView.findViewById(R.id.barcode_value);
                 holder.symbologyTextView = convertView.findViewById(R.id.barcode_symbology);
@@ -265,6 +305,14 @@ public class SessionViewerActivity extends AppCompatActivity {
                 }
             });
 
+            // Setup edit icon click listener
+            holder.editIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openBarcodeEditor(position, barcode);
+                }
+            });
+
             // Setup trash can click listener
             holder.trashIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -310,11 +358,38 @@ public class SessionViewerActivity extends AppCompatActivity {
     private static class ViewHolder {
         View foregroundContainer;
         View backgroundContainer;
+        ImageView editIcon;
         ImageView trashIcon;
         TextView valueTextView;
         TextView symbologyTextView;
         TextView quantityTextView;
         TextView dateTextView;
+    }
+
+    private void openBarcodeEditor(int position, DisplayBarcodeData barcode) {
+        if (barcode != null) {
+            Intent intent = new Intent(SessionViewerActivity.this, BarcodeDataEditorActivity.class);
+            intent.putExtra(Constants.EXTRA_POSITION, position);
+            intent.putExtra(Constants.EXTRA_VALUE, barcode.value);
+            intent.putExtra(Constants.EXTRA_SYMBOLOGY, barcode.symbology);
+            intent.putExtra(Constants.EXTRA_QUANTITY, barcode.quantity);
+            intent.putExtra(Constants.EXTRA_DATE, barcode.date.getTime()); // Convert Date to long
+            
+            barcodeEditorLauncher.launch(intent);
+        }
+    }
+    
+    private void resetAllSwipeStates() {
+        // Reset swipe state for all visible views
+        for (int i = 0; i < barcodesListView.getChildCount(); i++) {
+            View child = barcodesListView.getChildAt(i);
+            if (child != null) {
+                View foregroundContainer = child.findViewById(R.id.foreground_container);
+                if (foregroundContainer != null) {
+                    foregroundContainer.setTranslationX(0);
+                }
+            }
+        }
     }
 
     private void removeItem(int position, DisplayBarcodeData barcode) {

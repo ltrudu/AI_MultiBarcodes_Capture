@@ -168,5 +168,12 @@ public class Constants {
     public static final String SHARED_PREFERENCES_US4STATE_FICS = "US4STATE_FICS";
     public static final boolean SHARED_PREFERENCES_US4STATE_FICS_DEFAULT = EBarcodesSymbologies.US4STATE_FICS.getDefaultStatus();
 
+    // BarcodeDataEditor Intent Extras
+    public static final String EXTRA_POSITION = "position";
+    public static final String EXTRA_VALUE = "value";
+    public static final String EXTRA_SYMBOLOGY = "symbology";
+    public static final String EXTRA_QUANTITY = "quantity";
+    public static final String EXTRA_DATE = "date";
+
 
 }
