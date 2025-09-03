@@ -23,6 +23,7 @@
     <!-- Session Barcodes Strings -->
     <string name="addtofile">Add to File</string>
     <string name="save">Save</string>
+    <string name="update">Update File</string>
     <string name="merge">Merge Quantities</string>
 
     <!-- Entry Choice Activity -->

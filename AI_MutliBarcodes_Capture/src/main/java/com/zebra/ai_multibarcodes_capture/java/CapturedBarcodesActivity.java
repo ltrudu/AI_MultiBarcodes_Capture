@@ -70,12 +70,15 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
 
     private Button closeButton;
     private Button saveButton;
+    private Button mergeButton;
 
     private SessionData sessionData;
 
     private String captureFilePath;
 
     SessionData SessionData;
+
+    private Boolean hasDataBeenMerged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +106,9 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         // Initialize the list we'll use to display barcodes
        displayList = new ArrayList<>();
         Integer barcodeUniqueIndex = -1;
-        if(SessionData != null && SessionData.barcodeValues != null && SessionData.barcodeValues.size() > 0)
+        if(SessionData != null && SessionData.barcodeValuesMap != null && SessionData.barcodeValuesMap.size() > 0)
         {
-            for (Map.Entry<Integer, String> entry : SessionData.barcodeValues.entrySet()) {
+            for (Map.Entry<Integer, String> entry : SessionData.barcodeValuesMap.entrySet()) {
                 Integer barcodeUniqueID = entry.getKey();
                 if(barcodeUniqueID > barcodeUniqueIndex)
                     barcodeUniqueIndex = barcodeUniqueID;
@@ -201,6 +204,14 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
                 saveData();
             }
         });
+
+        mergeButton = findViewById(R.id.mergeData);
+        mergeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mergeData();
+            }
+        });
     }
 
     public static Integer getKeyFromValue(HashMap<Integer, String> map, String value) {
@@ -269,7 +280,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         {
             if(entry.loaded == false)
             {
-                newBarcodes.barcodeValues.put(uniqueId, entry.value);
+                newBarcodes.barcodeValuesMap.put(uniqueId, entry.value);
                 newBarcodes.barcodeDateMap.put(uniqueId, entry.date);
                 newBarcodes.barcodeQuantityMap.put(uniqueId, entry.quantity);
                 newBarcodes.barcodeSymbologyMap.put(uniqueId, entry.symbology);
@@ -279,9 +290,66 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         return newBarcodes;
     }
 
+    private void mergeData()
+    {
+        HashMap<Integer, String> barcodeValuesMap;
+        HashMap<Integer, Integer> barcodeQuantityMap;
+        HashMap<Integer, Integer> barcodeSymbologyMap;
+        HashMap<Integer, Date> barcodesDateMap;
+
+        barcodeValuesMap = new HashMap<>();
+        barcodeQuantityMap = new HashMap<>();
+        barcodeSymbologyMap = new HashMap<>(); // To store symbology for each unique barcode
+        barcodesDateMap = new HashMap<>();
+
+        Integer barcodeUniqueIndex = 0;
+        for (DisplayBarcodeData displayBarcodeData : displayList) {
+            Integer existingData = getKeyFromValue(barcodeValuesMap, displayBarcodeData.value);
+            if(existingData != null)
+            {
+                // We suppose that the same value has the same symbology
+                // We just update the quantity
+                Integer currentQuantity = barcodeQuantityMap.getOrDefault(existingData, 0);
+                barcodeQuantityMap.replace(existingData, currentQuantity + displayBarcodeData.quantity);
+            }
+            else {
+                // We have a new barcode
+                barcodeValuesMap.put(barcodeUniqueIndex, displayBarcodeData.value);
+                barcodeQuantityMap.put(barcodeUniqueIndex, displayBarcodeData.quantity);
+                barcodeSymbologyMap.put(barcodeUniqueIndex, displayBarcodeData.symbology); // Assuming symbology is consistent for a given value
+                barcodesDateMap.put(barcodeUniqueIndex, displayBarcodeData.date);
+                barcodeUniqueIndex++;
+            }
+        }
+
+        Date currentDate = new Date();
+
+        List<DisplayBarcodeData> targetList = new ArrayList<>();
+        for (Map.Entry<Integer, String> entry : barcodeValuesMap.entrySet()) {
+            barcodeUniqueIndex = entry.getKey();
+            String value = entry.getValue();
+            int quantity = barcodeQuantityMap.getOrDefault(barcodeUniqueIndex, 1);
+            int symbology = barcodeSymbologyMap.getOrDefault(barcodeUniqueIndex, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
+            targetList.add(new DisplayBarcodeData(false, value, symbology, quantity, currentDate));
+        }
+
+        displayList.clear();
+        displayList.addAll(targetList);
+        barcodeAdapter.notifyDataSetChanged();
+
+        hasDataBeenMerged = true;
+    }
+
     private void saveData()
     {
         SessionData newBarcodes = sessionDataFromDisplayList(displayList);
+        if(hasDataBeenMerged)
+        {
+            // We need to erase old session file and create a new one because the data have been merged
+            File sessionFile = new File(captureFilePath);
+            if(sessionFile.exists())
+                sessionFile.delete();
+        }
         if(SessionsFilesHelpers.saveData(this, captureFilePath, newBarcodes))
         {
             finish();

@@ -86,7 +86,7 @@ public class SessionsFilesHelpers {
         SessionData.barcodeQuantityMap = new HashMap<>();
         SessionData.barcodeSymbologyMap = new HashMap<>();
         SessionData.barcodeDateMap = new HashMap<>();
-        SessionData.barcodeValues = new HashMap<>();
+        SessionData.barcodeValuesMap = new HashMap<>();
 
         if (!sessionFile.exists() || sessionFile.length() == 0) {
             Log.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
@@ -129,7 +129,7 @@ public class SessionsFilesHelpers {
                     // We've reached the end of a barcode entry, process it
                     if (currentValue != null && !currentValue.isEmpty()) {
                         // Add new barcode
-                        SessionData.barcodeValues.put(barcodeUniqueIndex, currentValue);
+                        SessionData.barcodeValuesMap.put(barcodeUniqueIndex, currentValue);
                         // Add to quantity map
                         SessionData.barcodeQuantityMap.put(barcodeUniqueIndex,
                             SessionData.barcodeQuantityMap.getOrDefault(currentValue, 0) + 
@@ -255,7 +255,7 @@ public class SessionsFilesHelpers {
         // Append data to the file
         FileWriter fileWriter = new FileWriter(targetFile, true);
 
-        for (Map.Entry<Integer, String> entry : sessionData.barcodeValues.entrySet()) {
+        for (Map.Entry<Integer, String> entry : sessionData.barcodeValuesMap.entrySet()) {
             Integer barcodeUniqueID = entry.getKey();
             String value = entry.getValue();
             if(value.isEmpty())
@@ -286,7 +286,7 @@ public class SessionsFilesHelpers {
         SessionData.barcodeQuantityMap = new HashMap<>();
         SessionData.barcodeSymbologyMap = new HashMap<>();
         SessionData.barcodeDateMap = new HashMap<>();
-        SessionData.barcodeValues = new HashMap<>();
+        SessionData.barcodeValuesMap = new HashMap<>();
         Integer barcodeUniqueIndex = 0;
 
         if (!sessionFile.exists() || sessionFile.length() == 0) {
@@ -330,7 +330,7 @@ public class SessionsFilesHelpers {
                         }
 
                         // Insert new barcode
-                        SessionData.barcodeValues.put(barcodeUniqueIndex, barcodeValue);
+                        SessionData.barcodeValuesMap.put(barcodeUniqueIndex, barcodeValue);
 
                         // Parse quantity
                         int quantity = 1;
@@ -420,7 +420,7 @@ public class SessionsFilesHelpers {
             // Append data to the file
             FileWriter fileWriter = new FileWriter(dataFile, true); // Append mode
 
-            for (Map.Entry<Integer, String> entry : sessionData.barcodeValues.entrySet()) {
+            for (Map.Entry<Integer, String> entry : sessionData.barcodeValuesMap.entrySet()) {
                 Integer barcodeUniqueID = entry.getKey();
                 String value = entry.getValue();
                 if(value.isEmpty())
@@ -449,7 +449,7 @@ public class SessionsFilesHelpers {
         SessionData.barcodeQuantityMap = new HashMap<>();
         SessionData.barcodeSymbologyMap = new HashMap<>();
         SessionData.barcodeDateMap = new HashMap<>();
-        SessionData.barcodeValues = new HashMap<>();
+        SessionData.barcodeValuesMap = new HashMap<>();
         Integer barcodeUniqueIndex = 0;
 
         if (!sessionFile.exists() || sessionFile.length() == 0) {
@@ -492,7 +492,7 @@ public class SessionsFilesHelpers {
                     barcodeValue = barcodeValue.trim();
 
                     // Insert new barcode
-                    SessionData.barcodeValues.put(barcodeUniqueIndex, barcodeValue);
+                    SessionData.barcodeValuesMap.put(barcodeUniqueIndex, barcodeValue);
                     
                     // Extract quantity
                     int quantity = 1; // Default quantity
@@ -667,7 +667,7 @@ public class SessionsFilesHelpers {
             // Get the first sheet
             Sheet sheet = workbook.getSheetAt(0);
 
-            for (Map.Entry<Integer, String> entry : sessionData.barcodeValues.entrySet()) {
+            for (Map.Entry<Integer, String> entry : sessionData.barcodeValuesMap.entrySet()) {
                 Integer barcodeUniqueIdentifier = entry.getKey();
                 String value = entry.getValue();
                 if(value.isEmpty())
