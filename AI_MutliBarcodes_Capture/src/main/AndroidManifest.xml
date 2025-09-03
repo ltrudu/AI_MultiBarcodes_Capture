@@ -13,13 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MultiBarcodesCapture">
         <activity
+            android:name=".dataeditor.BarcodeDataEditorActivity"
+            android:exported="false" />
+        <activity
             android:name=".sessionmanagement.SessionViewerActivity"
             android:exported="false" />
-
         <activity
             android:name=".java.CapturedBarcodesActivity"
             android:exported="false" />
-
         <activity
             android:name=".java.CameraXLivePreviewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -41,7 +42,8 @@
         </activity>
         <activity
             android:name=".EntryChoiceActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.zebra.ai_multibarcodes_capture.fileprovider"
@@ -56,18 +58,18 @@
             android:name="com.symbol.emdk"
             android:required="true" />
     </application>
+
     <queries>
         <package android:name="com.symbol.emdk.emdkservice" />
     </queries>
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="com.symbol.emdk.permission.EMDK" />
-
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>
