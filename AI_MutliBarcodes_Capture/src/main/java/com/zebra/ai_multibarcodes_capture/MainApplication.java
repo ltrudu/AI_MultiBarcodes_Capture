@@ -39,6 +39,9 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // Initialize LogUtils for feedback reporting
+        LogUtils.initialize(this);
+
         // Register managed configuration receiver dynamically (required for Android 8.0+)
         registerManagedConfigurationReceiver();
 
