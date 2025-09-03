@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -79,6 +82,8 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     SessionData SessionData;
 
     private Boolean hasDataBeenMerged = false;
+
+    private static final int TRANSLATION_X = -180;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,38 +242,142 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            ViewHolder holder;
+            
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_barcode, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_barcode_swipeable, parent, false);
+                holder = new ViewHolder();
+                holder.foregroundContainer = convertView.findViewById(R.id.foreground_container);
+                holder.backgroundContainer = convertView.findViewById(R.id.background_container);
+                holder.trashIcon = convertView.findViewById(R.id.trash_icon);
+                holder.valueTextView = convertView.findViewById(R.id.barcode_value);
+                holder.symbologyTextView = convertView.findViewById(R.id.barcode_symbology);
+                holder.quantityTextView = convertView.findViewById(R.id.barcode_quantity);
+                holder.dateTextView = convertView.findViewById(R.id.barcode_date);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
             }
 
             DisplayBarcodeData barcode = getItem(position);
 
-            LinearLayout llRowLayout = convertView.findViewById(R.id.llRowLayout);
-            TextView valueTextView = convertView.findViewById(R.id.barcode_value);
-            TextView symbologyTextView = convertView.findViewById(R.id.barcode_symbology);
-            TextView quantityTextView = convertView.findViewById(R.id.barcode_quantity);
-            TextView dateTextView = convertView.findViewById(R.id.barcode_date);
+            // Always reset the foreground position to prevent recycled views from showing swiped state
+            holder.foregroundContainer.setTranslationX(0);
+            // Clear any existing listeners to prevent conflicts
+            holder.foregroundContainer.setOnTouchListener(null);
+            holder.trashIcon.setOnClickListener(null);
 
             if (barcode != null) {
                 String barcodeDateString = dateFormat.format(barcode.date) + " " + sdf.format(barcode.date);
 
-                valueTextView.setText("Value: " + barcode.value);
+                holder.valueTextView.setText("Value: " + barcode.value);
                 EBarcodesSymbologies symbology = EBarcodesSymbologies.fromInt(barcode.symbology);
-                symbologyTextView.setText("Symbology: " + symbology.getName());
-                quantityTextView.setText("Quantity: " + barcode.quantity);
-                dateTextView.setText("Date: " + barcodeDateString);
+                holder.symbologyTextView.setText("Symbology: " + symbology.getName());
+                holder.quantityTextView.setText("Quantity: " + barcode.quantity);
+                holder.dateTextView.setText("Date: " + barcodeDateString);
 
                 if(barcode.loaded == false)
                 {
-                    llRowLayout.setBackgroundColor(context.getColor(R.color.pastelbluelight));
+                    holder.foregroundContainer.setBackgroundColor(context.getColor(R.color.pastelbluelight));
                 }
                 else
                 {
-                    llRowLayout.setBackgroundColor(Color.WHITE);
+                    holder.foregroundContainer.setBackgroundColor(Color.WHITE);
                 }
             }
 
+            // Setup swipe gesture detector only for newly captured barcodes (loaded == false)
+            if (barcode != null && barcode.loaded == false) {
+                setupSwipeGesture(holder, position, barcode);
+            }
+
             return convertView;
+        }
+
+        private void setupSwipeGesture(ViewHolder holder, int position, DisplayBarcodeData barcode) {
+            GestureDetector gestureDetector = new GestureDetector(getContext(), new SwipeGestureListener(holder, position, barcode));
+            
+            holder.foregroundContainer.setOnTouchListener(new View.OnTouchListener() {
+                private float initialX = 0;
+                private boolean isSwipeActive = false;
+                
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    gestureDetector.onTouchEvent(event);
+                    
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            initialX = event.getX();
+                            isSwipeActive = false;
+                            break;
+                            
+                        case MotionEvent.ACTION_MOVE:
+                            float deltaX = event.getX() - initialX;
+                            if (deltaX < -50 && !isSwipeActive) { // Swipe left threshold
+                                isSwipeActive = true;
+                                // Show trash can by sliding foreground to the left
+                                holder.foregroundContainer.animate()
+                                    .translationX(TRANSLATION_X) // Show trash can area
+                                    .setDuration(200)
+                                    .start();
+                            }
+                            break;
+                            
+                        case MotionEvent.ACTION_UP:
+                        case MotionEvent.ACTION_CANCEL:
+                            if (!isSwipeActive) {
+                                // Reset position if not fully swiped
+                                holder.foregroundContainer.animate()
+                                    .translationX(0)
+                                    .setDuration(200)
+                                    .start();
+                            }
+                            break;
+                    }
+                    
+                    return true; // Consume the touch event
+                }
+            });
+
+            // Setup trash can click listener
+            holder.trashIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((CapturedBarcodesActivity) context).removeItem(position, barcode);
+                }
+            });
+        }
+
+        private class SwipeGestureListener extends GestureDetector.SimpleOnGestureListener {
+            private ViewHolder holder;
+            private int position;
+            private DisplayBarcodeData barcode;
+            
+            public SwipeGestureListener(ViewHolder holder, int position, DisplayBarcodeData barcode) {
+                this.holder = holder;
+                this.position = position;
+                this.barcode = barcode;
+            }
+            
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                if (e1 == null || e2 == null) return false;
+                
+                float diffX = e2.getX() - e1.getX();
+                float diffY = e2.getY() - e1.getY();
+                
+                // Check for left swipe
+                if (Math.abs(diffX) > Math.abs(diffY) && diffX < -100 && Math.abs(velocityX) > 100) {
+                    // Show trash can
+                    holder.foregroundContainer.animate()
+                        .translationX(TRANSLATION_X)
+                        .setDuration(300)
+                        .start();
+                    return true;
+                }
+                
+                return false;
+            }
         }
     }
 
@@ -338,6 +447,8 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         barcodeAdapter.notifyDataSetChanged();
 
         hasDataBeenMerged = true;
+
+        saveButton.setText(R.string.update);
     }
 
     private void saveData()
@@ -357,6 +468,26 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         else
         {
             // Do nothing as the user was informed with a toast of the problem.
+        }
+    }
+
+    private static class ViewHolder {
+        View foregroundContainer;
+        View backgroundContainer;
+        ImageView trashIcon;
+        TextView valueTextView;
+        TextView symbologyTextView;
+        TextView quantityTextView;
+        TextView dateTextView;
+    }
+
+    public void removeItem(int position, DisplayBarcodeData barcode) {
+        if (barcode != null && position < displayList.size()) {
+            // Remove from display list
+            displayList.remove(position);
+            
+            // Force a complete refresh of all views to reset their state
+            barcodeAdapter.notifyDataSetChanged();
         }
     }
 }
