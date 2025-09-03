@@ -1,15 +1,22 @@
 package com.zebra.ai_multibarcodes_capture;
 
 import android.app.Application;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.zebra.criticalpermissionshelper.CriticalPermissionsHelper;
 import com.zebra.criticalpermissionshelper.EPermissionType;
 import com.zebra.criticalpermissionshelper.IResultCallbacks;
+import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
 public class MainApplication extends Application {
+
+    private static final String TAG = "MainApplication";
+    private ManagedConfigurationReceiver managedConfigReceiver;
 
     public interface iMainApplicationCallback
     {
@@ -30,6 +37,12 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // Register managed configuration receiver dynamically (required for Android 8.0+)
+        registerManagedConfigurationReceiver();
+
+        // Apply managed configuration on startup
+        ManagedConfigurationReceiver.applyManagedConfiguration(this);
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
@@ -66,5 +79,34 @@ public class MainApplication extends Application {
                 });
             }
         }, S_FAKE_DELAY); // Let's add some S_FAKE_DELAY like in music production
+    }
+
+    /**
+     * Register the ManagedConfigurationReceiver dynamically
+     * This is required for Android 8.0+ due to broadcast limitations
+     */
+    private void registerManagedConfigurationReceiver() {
+        try {
+            managedConfigReceiver = new ManagedConfigurationReceiver();
+            IntentFilter filter = new IntentFilter(Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED);
+            registerReceiver(managedConfigReceiver, filter);
+            Log.d(TAG, "ManagedConfigurationReceiver registered dynamically");
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to register ManagedConfigurationReceiver", e);
+        }
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        // Unregister the managed configuration receiver
+        if (managedConfigReceiver != null) {
+            try {
+                unregisterReceiver(managedConfigReceiver);
+                Log.d(TAG, "ManagedConfigurationReceiver unregistered");
+            } catch (IllegalArgumentException e) {
+                Log.d(TAG, "ManagedConfigurationReceiver was not registered, ignoring unregister attempt");
+            }
+        }
     }
 }

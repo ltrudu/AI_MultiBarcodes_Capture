@@ -54,6 +54,13 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!-- Managed Configuration Support - Registered dynamically in Application class -->
+
+        <!-- App Restrictions Metadata -->
+        <meta-data
+            android:name="android.content.APP_RESTRICTIONS"
+            android:resource="@xml/app_restrictions" />
+
         <uses-library
             android:name="com.symbol.emdk"
             android:required="true" />

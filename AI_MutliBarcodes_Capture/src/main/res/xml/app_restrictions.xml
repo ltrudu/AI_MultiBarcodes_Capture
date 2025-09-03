@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<restrictions xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- File Prefix Configuration -->
+    <restriction
+        android:key="prefix"
+        android:title="File Prefix"
+        description="Default prefix for exported files"
+        android:restrictionType="string"
+        android:defaultValue="MySession_" />
+
+    <!-- Export File Type Configuration -->
+    <restriction
+        android:key="extension"
+        android:title="Export File Type"
+        description="Default file type for exports"
+        android:restrictionType="choice"
+        android:defaultValue=".txt"
+        android:entries="@array/export_file_types"
+        android:entryValues="@array/export_file_values" />
+
+    <!-- Barcode Symbologies Configuration (Nested Bundle) -->
+    <restriction
+        android:key="barcode_symbologies"
+        android:title="Barcode Symbologies"
+        description="Configure which barcode symbologies are enabled"
+        android:restrictionType="bundle">
+
+        <!-- Postal Barcodes -->
+        <restriction
+            android:key="AUSTRALIAN_POSTAL"
+            android:title="Australian Postal"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="CANADIAN_POSTAL"
+            android:title="Canadian Postal"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="DUTCH_POSTAL"
+            android:title="Dutch Postal"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="FINNISH_POSTAL_4S"
+            android:title="Finnish Postal 4S"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="JAPANESE_POSTAL"
+            android:title="Japanese Postal"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="UK_POSTAL"
+            android:title="UK Postal"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="USPLANET"
+            android:title="US Planet"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="USPOSTNET"
+            android:title="US Postnet"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="US4STATE"
+            android:title="US 4State"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="US4STATE_FICS"
+            android:title="US 4State FICS"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="MAILMARK"
+            android:title="Mailmark"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <!-- 2D Matrix Codes -->
+        <restriction
+            android:key="AZTEC"
+            android:title="Aztec"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="DATAMATRIX"
+            android:title="Data Matrix"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="QRCODE"
+            android:title="QR Code"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="MICROQR"
+            android:title="Micro QR"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="MAXICODE"
+            android:title="MaxiCode"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="PDF417"
+            android:title="PDF417"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="MICROPDF"
+            android:title="Micro PDF"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="DOTCODE"
+            android:title="DotCode"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="GRID_MATRIX"
+            android:title="Grid Matrix"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="HANXIN"
+            android:title="Han Xin"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <!-- Linear 1D Barcodes -->
+        <restriction
+            android:key="CODE39"
+            android:title="Code 39"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="CODE128"
+            android:title="Code 128"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="CODE93"
+            android:title="Code 93"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="CODE11"
+            android:title="Code 11"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="CODABAR"
+            android:title="Codabar"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="MSI"
+            android:title="MSI"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <!-- EAN/UPC Codes -->
+        <restriction
+            android:key="EAN_8"
+            android:title="EAN-8"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="EAN_13"
+            android:title="EAN-13"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="UPC_A"
+            android:title="UPC-A"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="UPC_E"
+            android:title="UPC-E"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="UPCE1"
+            android:title="UPC-E1"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <!-- GS1 DataBar -->
+        <restriction
+            android:key="GS1_DATABAR"
+            android:title="GS1 DataBar"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="GS1_DATABAR_EXPANDED"
+            android:title="GS1 DataBar Expanded"
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
+        <restriction
+            android:key="GS1_DATABAR_LIM"
+            android:title="GS1 DataBar Limited"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="GS1_DATAMATRIX"
+            android:title="GS1 DataMatrix"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="GS1_QRCODE"
+            android:title="GS1 QR Code"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <!-- 2 of 5 Variants -->
+        <restriction
+            android:key="CHINESE_2OF5"
+            android:title="Chinese 2 of 5"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="D2OF5"
+            android:title="Discrete 2 of 5"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="I2OF5"
+            android:title="Interleaved 2 of 5"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="MATRIX_2OF5"
+            android:title="Matrix 2 of 5"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="KOREAN_3OF5"
+            android:title="Korean 3 of 5"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <!-- Composite Codes -->
+        <restriction
+            android:key="COMPOSITE_AB"
+            android:title="Composite A/B"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="COMPOSITE_C"
+            android:title="Composite C"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <!-- Other Codes -->
+        <restriction
+            android:key="TLC39"
+            android:title="TLC39"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <restriction
+            android:key="TRIOPTIC39"
+            android:title="Trioptic 39"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+    </restriction>
+
+</restrictions>

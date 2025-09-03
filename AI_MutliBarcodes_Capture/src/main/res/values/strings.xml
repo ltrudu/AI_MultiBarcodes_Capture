@@ -91,4 +91,18 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker decoder available, entities count: %s</string>
     <string name="processing_entities">Processing %d entities for entity view</string>
     <string name="rendered_entities">Rendered entities on entity view</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Text File (.txt)</item>
+        <item>CSV File (.csv)</item>
+        <item>Excel File (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
 </resources>

@@ -2,8 +2,10 @@
 package com.zebra.ai_multibarcodes_capture;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -34,6 +36,7 @@ import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.java.CameraXLivePreviewActivity;
+import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 import com.zebra.ai_multibarcodes_capture.sessionmanagement.SessionViewerActivity;
 import com.zebra.ai_multibarcodes_capture.settings.SettingsActivity;
 
@@ -86,6 +89,24 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
     String filePrefix = FILE_DEFAULT_PREFIX;
     EExportMode eExportMode = EExportMode.TEXT;
+
+    // BroadcastReceiver to listen for managed configuration reload requests
+    private BroadcastReceiver reloadPreferencesReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES.equals(intent.getAction())) {
+                Log.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadPreferences();
+                        Toast.makeText(EntryChoiceActivity.this, 
+                            "Settings updated by administrator", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -280,6 +301,25 @@ public class EntryChoiceActivity extends AppCompatActivity {
             Log.i(TAG, "AI Vision SDK version = " + AIVisionSDK.getInstance(this.getApplicationContext()).getSDKVersion());
         } catch (UnsupportedOperationException ex) {
             runOnUiThread(() -> showErrorDialog(ex.getMessage()));
+        }
+
+        // Register the BroadcastReceiver to listen for managed configuration changes
+        IntentFilter filter = new IntentFilter(ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES);
+        registerReceiver(reloadPreferencesReceiver, filter);
+        Log.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        
+        // Unregister the BroadcastReceiver
+        try {
+            unregisterReceiver(reloadPreferencesReceiver);
+            Log.d(TAG, "Unregistered BroadcastReceiver for managed configuration changes");
+        } catch (IllegalArgumentException e) {
+            // Receiver was not registered, ignore
+            Log.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
         }
     }
 
