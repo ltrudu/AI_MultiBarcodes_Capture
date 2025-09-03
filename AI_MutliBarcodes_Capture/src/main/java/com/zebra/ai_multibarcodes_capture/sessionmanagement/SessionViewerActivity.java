@@ -24,10 +24,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.zebra.ai_multibarcodes_capture.R;
-import com.zebra.ai_multibarcodes_capture.filemanagement.ExportWriters;
-import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
+import com.zebra.ai_multibarcodes_capture.filemanagement.SessionsFilesHelpers;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
+import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -55,7 +55,7 @@ public class SessionViewerActivity extends AppCompatActivity {
     }
 
     private String sessionFilePath;
-    private ExportWriters.loadedData loadedData;
+    private SessionData SessionData;
     private ListView barcodesListView;
     private Button closeButton;
     private Button saveButton;
@@ -76,8 +76,8 @@ public class SessionViewerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         sessionFilePath = intent.getStringExtra(Constants.CAPTURE_FILE_PATH);
 
-        loadedData = ExportWriters.loadData(this, sessionFilePath);
-        if(loadedData == null)
+        SessionData = SessionsFilesHelpers.loadData(this, sessionFilePath);
+        if(SessionData == null)
         {
             Toast.makeText(this, getString(R.string.error_loading_data, sessionFilePath), Toast.LENGTH_LONG).show();
             finish();
@@ -109,15 +109,15 @@ public class SessionViewerActivity extends AppCompatActivity {
     }
 
     private void setupListView() {
-        // Convert loadedData to display list (same format as CapturedBarcodesActivity)
+        // Convert SessionData to display list (same format as CapturedBarcodesActivity)
         List<DisplayBarcodeData> displayList = new ArrayList<>();
         
-        if (loadedData.barcodeQuantityMap != null) {
-            for (Map.Entry<Integer, String> entry : loadedData.barcodeValues.entrySet()) {
+        if (SessionData.barcodeQuantityMap != null) {
+            for (Map.Entry<Integer, String> entry : SessionData.barcodeValues.entrySet()) {
                 String value = entry.getValue();
-                int quantity = loadedData.barcodeQuantityMap.getOrDefault(entry.getKey(), 1);
-                int symbology = loadedData.barcodeSymbologyMap.getOrDefault(entry.getKey(), EBarcodesSymbologies.UNKNOWN.getIntValue());
-                Date date = loadedData.barcodeDateMap.getOrDefault(entry.getKey(), new Date());
+                int quantity = SessionData.barcodeQuantityMap.getOrDefault(entry.getKey(), 1);
+                int symbology = SessionData.barcodeSymbologyMap.getOrDefault(entry.getKey(), EBarcodesSymbologies.UNKNOWN.getIntValue());
+                Date date = SessionData.barcodeDateMap.getOrDefault(entry.getKey(), new Date());
                 
                 displayList.add(new DisplayBarcodeData(value, symbology, quantity, date));
             }
@@ -131,7 +131,7 @@ public class SessionViewerActivity extends AppCompatActivity {
     private void saveSessionData() {
         File sessionFile = new File(sessionFilePath);
         sessionFile.delete();
-        ExportWriters.saveData(this, sessionFilePath, loadedData.barcodeValues, loadedData.barcodeQuantityMap, loadedData.barcodeSymbologyMap, loadedData.barcodeDateMap);
+        SessionsFilesHelpers.saveData(this, sessionFilePath, SessionData);
      }
 
     private class BarcodeAdapter extends ArrayAdapter<DisplayBarcodeData> {
@@ -280,10 +280,10 @@ public class SessionViewerActivity extends AppCompatActivity {
 
     private void removeItem(int position, DisplayBarcodeData barcode) {
         if (barcode != null) {
-            // Remove from loadedData maps
-            loadedData.barcodeQuantityMap.remove(barcode.value);
-            loadedData.barcodeSymbologyMap.remove(barcode.value);
-            loadedData.barcodeDateMap.remove(barcode.value);
+            // Remove from SessionData maps
+            SessionData.barcodeQuantityMap.remove(barcode.value);
+            SessionData.barcodeSymbologyMap.remove(barcode.value);
+            SessionData.barcodeDateMap.remove(barcode.value);
             
             // Refresh the ListView
             setupListView();
