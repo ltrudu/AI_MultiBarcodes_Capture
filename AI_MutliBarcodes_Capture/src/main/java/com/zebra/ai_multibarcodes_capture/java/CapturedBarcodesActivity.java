@@ -2,6 +2,7 @@ package com.zebra.ai_multibarcodes_capture.java;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,8 +55,10 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         int symbology;
         int quantity;
         Date date;
+        boolean loaded = false;
 
-        public DisplayBarcodeData(String value, int symbology, int quantity, Date date) {
+        public DisplayBarcodeData(Boolean loaded, String value, int symbology, int quantity, Date date) {
+            this.loaded = loaded;
             this.value = value;
             this.symbology = symbology;
             this.quantity = quantity;
@@ -64,18 +68,22 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
 
     private static final String TAG = "CapturedBarcodes";
 
-    private List<BarcodeData> barcodesDataList;
     private ListView barcodesListView;
+    List<DisplayBarcodeData> displayList;
+    BarcodeAdapter barcodeAdapter;
 
     private Button closeButton;
     private Button saveButton;
 
 
-    private Map<String, Integer> barcodeQuantityMap;
-    private Map<String, Integer> barcodeSymbologyMap;
-    private Map<String, Date> barcodesDateMap;
+    private Map<Integer, String> barcodeValuesMap;
+    private Map<Integer, Integer> barcodeQuantityMap;
+    private Map<Integer, Integer> barcodeSymbologyMap;
+    private Map<Integer, Date> barcodesDateMap;
 
     private String captureFilePath;
+
+    ExportWriters.loadedData loadedData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +102,32 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         captureFilePath = intent.getStringExtra(Constants.CAPTURE_FILE_PATH);
 
+        File captureFile = new File(captureFilePath);
+        if(captureFile.length() > 0)
+        {
+            loadedData = ExportWriters.loadData(this, captureFilePath);
+        }
+
+        // Initialize the list we'll use to display barcodes
+       displayList = new ArrayList<>();
+        if(loadedData.barcodeValues != null && loadedData.barcodeValues.size() > 0)
+        {
+            for (Map.Entry<Integer, String> entry : loadedData.barcodeValues.entrySet()) {
+                Integer barcodeUniqueID = entry.getKey();
+                String value = entry.getValue();
+                if(value.isEmpty())
+                    continue;
+                int quantity = loadedData.barcodeQuantityMap.getOrDefault(barcodeUniqueID, 1);
+                int symbology = loadedData.barcodeSymbologyMap.getOrDefault(barcodeUniqueID, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
+                Date date = loadedData.barcodeDateMap.getOrDefault(barcodeUniqueID, currentDate);
+                displayList.add(new DisplayBarcodeData(true, value, symbology, quantity, date));
+            }
+
+        }
+
+
         // Retrieve data from bundle passed by CaptureData method of CameraXLivePreviewActivity and add them to the barcodesDataList
-        barcodesDataList = new ArrayList<>();
+        List<BarcodeData> barcodesDataList = new ArrayList<>();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             ArrayList<Bundle> barcodeBundles = bundle.getParcelableArrayList("barcodeDataList");
@@ -114,27 +146,32 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         }
 
         // Process barcodesDataList to count quantities
+        barcodeValuesMap = new HashMap<>();
         barcodeQuantityMap = new HashMap<>();
         barcodeSymbologyMap = new HashMap<>(); // To store symbology for each unique barcode
         barcodesDateMap = new HashMap<>();
 
+        Integer barcodeUniqueIndex = 0;
         for (BarcodeData data : barcodesDataList) {
-            barcodeQuantityMap.put(data.value, barcodeQuantityMap.getOrDefault(data.value, 0) + 1);
-            barcodeSymbologyMap.put(data.value, data.symbology); // Assuming symbology is consistent for a given value
-            barcodesDateMap.put(data.value, currentDate);
+            barcodeValuesMap.put(barcodeUniqueIndex, data.value);
+            barcodeQuantityMap.put(barcodeUniqueIndex, barcodeQuantityMap.getOrDefault(data.value, 0) + 1);
+            barcodeSymbologyMap.put(barcodeUniqueIndex, data.symbology); // Assuming symbology is consistent for a given value
+            barcodesDateMap.put(barcodeUniqueIndex, currentDate);
+            barcodeUniqueIndex++;
         }
 
-        List<DisplayBarcodeData> displayList = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : barcodeQuantityMap.entrySet()) {
-            String value = entry.getKey();
-            int quantity = entry.getValue();
-            int symbology = barcodeSymbologyMap.getOrDefault(value, 0); // Get symbology, default to 0 if not found (shouldn't happen)
-            displayList.add(new DisplayBarcodeData(value, symbology, quantity, currentDate));
+        for (Map.Entry<Integer, String> entry : barcodeValuesMap.entrySet()) {
+            barcodeUniqueIndex = entry.getKey();
+            String value = entry.getValue();
+            int quantity = barcodeQuantityMap.getOrDefault(barcodeUniqueIndex, 1);
+            int symbology = barcodeSymbologyMap.getOrDefault(barcodeUniqueIndex, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
+            displayList.add(new DisplayBarcodeData(false, value, symbology, quantity, currentDate));
         }
 
         barcodesListView = findViewById(R.id.barcodes_list_view);
-        BarcodeAdapter adapter = new BarcodeAdapter(this, displayList);
-        barcodesListView.setAdapter(adapter);
+        barcodeAdapter = new BarcodeAdapter(this, displayList);
+        barcodesListView.setAdapter(barcodeAdapter);
+        barcodesListView.setSelection(barcodeAdapter.getCount() - 1);
 
         closeButton = findViewById(R.id.closeButton);
         closeButton.setOnClickListener(new View.OnClickListener() {
@@ -157,9 +194,11 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
 
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault());
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-        
+        Context context;
+
         public BarcodeAdapter(@NonNull Context context, List<DisplayBarcodeData> barcodes) {
             super(context, 0, barcodes);
+            this.context = context;
         }
 
         @NonNull
@@ -171,6 +210,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
 
             DisplayBarcodeData barcode = getItem(position);
 
+            LinearLayout llRowLayout = convertView.findViewById(R.id.llRowLayout);
             TextView valueTextView = convertView.findViewById(R.id.barcode_value);
             TextView symbologyTextView = convertView.findViewById(R.id.barcode_symbology);
             TextView quantityTextView = convertView.findViewById(R.id.barcode_quantity);
@@ -184,6 +224,15 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
                 symbologyTextView.setText("Symbology: " + symbology.getName());
                 quantityTextView.setText("Quantity: " + barcode.quantity);
                 dateTextView.setText("Date: " + barcodeDateString);
+
+                if(barcode.loaded == false)
+                {
+                    llRowLayout.setBackgroundColor(context.getColor(R.color.pastelbluelight));
+                }
+                else
+                {
+                    llRowLayout.setBackgroundColor(Color.WHITE);
+                }
             }
 
             return convertView;
@@ -193,7 +242,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     private void saveData()
     {
         Date currentDate = new Date();
-        if(ExportWriters.saveData(this, captureFilePath, barcodeQuantityMap, barcodeSymbologyMap, barcodesDateMap))
+        if(ExportWriters.saveData(this, captureFilePath, barcodeValuesMap, barcodeQuantityMap, barcodeSymbologyMap, barcodesDateMap))
         {
             finish();
         }

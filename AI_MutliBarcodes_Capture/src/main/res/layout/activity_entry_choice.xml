@@ -23,52 +23,51 @@
         app:titleTextColor="@color/white"
         android:backgroundTint="@color/zebra"/>
 
-    <Button
-        android:id="@+id/btStartCapture"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/zebra"
-        android:enabled="false"
-        android:text="@string/start_capture"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cornerRadius="0dp" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btStartCapture"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/zebra"
+            android:enabled="false"
+            android:text="@string/start_capture"
+            app:cornerRadius="0dp" />
 
-    <Button
-        android:id="@+id/btLoadLastSession"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/zebra"
-        android:enabled="true"
-        android:text="@string/load_last_session"
-        app:layout_constraintTop_toBottomOf="@id/btStartCapture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:cornerRadius="0dp" />
+        <Button
+            android:id="@+id/btLoadLastSession"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/zebra"
+            android:enabled="true"
+            android:text="@string/load_last_session"
+            app:cornerRadius="0dp" />
 
-    <Button
-        android:id="@+id/b_create_new_session"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/zebra"
-        android:text="@string/create_new_session"
-        app:layout_constraintTop_toBottomOf="@id/btLoadLastSession"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:cornerRadius="0dp" />
+        <Button
+            android:id="@+id/b_create_new_session"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/zebra"
+            android:text="@string/create_new_session"
+            app:cornerRadius="0dp" />
 
-    <Button
-        android:id="@+id/btViewSessionData"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/zebra"
-        android:text="@string/view_session_data"
-        app:layout_constraintTop_toBottomOf="@id/b_create_new_session"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:cornerRadius="0dp" />
+        <Button
+            android:id="@+id/btViewSessionData"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/zebra"
+            android:text="@string/view_session_data"
+            app:cornerRadius="0dp" />
+    </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/textView3"

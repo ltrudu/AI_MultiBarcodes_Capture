@@ -20,8 +20,10 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <!-- Captured Barcodes Activity -->
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Add to File</string>
     <string name="save">Save</string>
+    <string name="merge">Merge Quantities</string>
 
     <!-- Entry Choice Activity -->
     <string name="start_capture">Start Capture</string>

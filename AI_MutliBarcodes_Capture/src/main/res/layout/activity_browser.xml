@@ -42,14 +42,6 @@
                     android:text="@string/select"
                     app:cornerRadius="0dp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
                 <Button
                     android:id="@+id/btShare"
                     android:layout_width="0dp"
@@ -61,6 +53,14 @@
                     android:text="@string/share"
                     android:textColor="@color/white"
                     app:cornerRadius="0dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btReload"
@@ -86,6 +86,7 @@
                     android:text="@string/close"
                     android:textAlignment="center"
                     android:textColor="@color/white"
+                    android:visibility="gone"
                     app:cornerRadius="0dp" />
 
             </LinearLayout>
