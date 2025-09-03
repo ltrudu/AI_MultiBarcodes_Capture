@@ -11,7 +11,7 @@ android {
         noCompress.add("tar.crypt")
     }
     defaultConfig {
-        applicationId = "com.zebra.ai_multibarcodes_capture"
+        applicationId = "com.zebra.ai_multibarcodes_capture.dev"
         minSdk = 30
         targetSdk = 35
         versionCode = 10

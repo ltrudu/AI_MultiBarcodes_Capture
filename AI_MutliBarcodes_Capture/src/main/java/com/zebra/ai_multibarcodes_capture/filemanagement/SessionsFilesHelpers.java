@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -89,7 +90,7 @@ public class SessionsFilesHelpers {
         SessionData.barcodeValuesMap = new HashMap<>();
 
         if (!sessionFile.exists() || sessionFile.length() == 0) {
-            Log.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
+            LogUtils.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
             return SessionData;
         }
 
@@ -119,7 +120,7 @@ public class SessionsFilesHelpers {
                     try {
                         currentQuantity = Integer.parseInt(line.substring("Quantity:".length()).trim());
                     } catch (NumberFormatException e) {
-                        Log.w(TAG, "Invalid quantity format: " + line);
+                        LogUtils.w(TAG, "Invalid quantity format: " + line);
                         currentQuantity = 1; // Default to 1 if parsing fails
                     }
                 } else if (line.startsWith("Capture Date:")) {
@@ -161,11 +162,11 @@ public class SessionsFilesHelpers {
                 }
             }
             
-            Log.d(TAG, "Successfully loaded " + SessionData.barcodeQuantityMap.size() + 
+            LogUtils.d(TAG, "Successfully loaded " + SessionData.barcodeQuantityMap.size() + 
                   " barcodes from file: " + sessionFile.getName());
             
         } catch (IOException e) {
-            Log.e(TAG, "Error reading session file: " + sessionFile.getPath(), e);
+            LogUtils.e(TAG, "Error reading session file: " + sessionFile.getPath(), e);
             Toast.makeText(context, "Error reading session file: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
@@ -202,7 +203,7 @@ public class SessionsFilesHelpers {
                     return new Date(datePortion.getTime() + 
                                    (timePortion.getTime() % (24 * 60 * 60 * 1000)));
                 } catch (ParseException e) {
-                    Log.w(TAG, "Could not parse date with full format, trying alternative formats");
+                    LogUtils.w(TAG, "Could not parse date with full format, trying alternative formats");
                 }
             }
             
@@ -224,11 +225,11 @@ public class SessionsFilesHelpers {
             }
             
         } catch (Exception e) {
-            Log.w(TAG, "Error parsing date: " + dateString, e);
+            LogUtils.w(TAG, "Error parsing date: " + dateString, e);
         }
         
         // If all else fails, return current date
-        Log.w(TAG, "Could not parse date, using current date: " + dateString);
+        LogUtils.w(TAG, "Could not parse date, using current date: " + dateString);
         return new Date();
     }
 
@@ -274,7 +275,7 @@ public class SessionsFilesHelpers {
         return true;
     } catch (IOException e) {
         Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.error_saving_file, targetFile.getPath()), Toast.LENGTH_LONG).show();
-        Log.e(TAG, "Error saving file:" + targetFile.getPath());
+        LogUtils.e(TAG, "Error saving file:" + targetFile.getPath());
         e.printStackTrace();
         return false;
     }
@@ -290,7 +291,7 @@ public class SessionsFilesHelpers {
         Integer barcodeUniqueIndex = 0;
 
         if (!sessionFile.exists() || sessionFile.length() == 0) {
-            Log.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
+            LogUtils.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
             return SessionData;
         }
 
@@ -337,7 +338,7 @@ public class SessionsFilesHelpers {
                         try {
                             quantity = Integer.parseInt(quantityString);
                         } catch (NumberFormatException e) {
-                            Log.w(TAG, "Invalid quantity format in CSV: " + quantityString + ", using default 1");
+                            LogUtils.w(TAG, "Invalid quantity format in CSV: " + quantityString + ", using default 1");
                         }
                         
                         // Add to quantity map (accumulate if barcode already exists)
@@ -361,21 +362,21 @@ public class SessionsFilesHelpers {
                         }
                         
                     } catch (Exception e) {
-                        Log.w(TAG, "Error parsing CSV line: " + line, e);
+                        LogUtils.w(TAG, "Error parsing CSV line: " + line, e);
                         // Continue processing other lines
                     }
                 } else {
-                    Log.w(TAG, "Invalid CSV line format (expected 4 parts): " + line);
+                    LogUtils.w(TAG, "Invalid CSV line format (expected 4 parts): " + line);
                 }
                 // Increment unique index
                 barcodeUniqueIndex++;
             }
             
-            Log.d(TAG, "Successfully loaded " + SessionData.barcodeQuantityMap.size() + 
+            LogUtils.d(TAG, "Successfully loaded " + SessionData.barcodeQuantityMap.size() + 
                   " barcodes from CSV file: " + sessionFile.getName());
             
         } catch (IOException e) {
-            Log.e(TAG, "Error reading CSV session file: " + sessionFile.getPath(), e);
+            LogUtils.e(TAG, "Error reading CSV session file: " + sessionFile.getPath(), e);
             Toast.makeText(context, "Error reading CSV session file: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
@@ -400,7 +401,7 @@ public class SessionsFilesHelpers {
             return fullFormat.parse(todayDateString + " " + timeString);
             
         } catch (ParseException e) {
-            Log.w(TAG, "Could not parse time string: " + timeString, e);
+            LogUtils.w(TAG, "Could not parse time string: " + timeString, e);
             return new Date(); // Return current date/time if parsing fails
         }
     }
@@ -437,7 +438,7 @@ public class SessionsFilesHelpers {
             return true;
         } catch (IOException e) {
             Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.error_saving_file, dataFile.getPath()), Toast.LENGTH_LONG).show();
-            Log.e(TAG, "Error saving file:" + dataFile.getPath());
+            LogUtils.e(TAG, "Error saving file:" + dataFile.getPath());
             e.printStackTrace();
             return false;
         }
@@ -453,7 +454,7 @@ public class SessionsFilesHelpers {
         Integer barcodeUniqueIndex = 0;
 
         if (!sessionFile.exists() || sessionFile.length() == 0) {
-            Log.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
+            LogUtils.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
             return SessionData;
         }
 
@@ -507,7 +508,7 @@ public class SessionsFilesHelpers {
                                 }
                             }
                         } catch (Exception e) {
-                            Log.w(TAG, "Invalid quantity in Excel row " + rowIndex + ", using default 1", e);
+                            LogUtils.w(TAG, "Invalid quantity in Excel row " + rowIndex + ", using default 1", e);
                         }
                     }
                     
@@ -536,16 +537,16 @@ public class SessionsFilesHelpers {
                     barcodeUniqueIndex++;
                     
                 } catch (Exception e) {
-                    Log.w(TAG, "Error processing Excel row " + rowIndex, e);
+                    LogUtils.w(TAG, "Error processing Excel row " + rowIndex, e);
                     // Continue processing other rows
                 }
             }
             
-            Log.d(TAG, "Successfully loaded " + SessionData.barcodeQuantityMap.size() + 
+            LogUtils.d(TAG, "Successfully loaded " + SessionData.barcodeQuantityMap.size() + 
                   " unique barcodes from " + processedRows + " rows in Excel file: " + sessionFile.getName());
             
         } catch (Exception e) {
-            Log.e(TAG, "Error reading Excel session file: " + sessionFile.getPath(), e);
+            LogUtils.e(TAG, "Error reading Excel session file: " + sessionFile.getPath(), e);
             Toast.makeText(context, "Error reading Excel session file: " + e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             // Close resources
@@ -553,7 +554,7 @@ public class SessionsFilesHelpers {
                 if (workbook != null) workbook.close();
                 if (fis != null) fis.close();
             } catch (IOException e) {
-                Log.w(TAG, "Error closing Excel file resources", e);
+                LogUtils.w(TAG, "Error closing Excel file resources", e);
             }
         }
 
@@ -593,7 +594,7 @@ public class SessionsFilesHelpers {
                 try {
                     return cell.getRichStringCellValue().getString();
                 } catch (Exception e) {
-                    Log.w(TAG, "Could not evaluate formula cell", e);
+                    LogUtils.w(TAG, "Could not evaluate formula cell", e);
                     return cell.getCellFormula();
                 }
             case BLANK:
@@ -631,7 +632,7 @@ public class SessionsFilesHelpers {
                 }
             }
         } catch (Exception e) {
-            Log.w(TAG, "Error extracting date from Excel cell", e);
+            LogUtils.w(TAG, "Error extracting date from Excel cell", e);
         }
         
         return new Date(); // Return current date if parsing fails
@@ -723,7 +724,7 @@ public class SessionsFilesHelpers {
             fos = new FileOutputStream(dataFile);
             workbook.write(fos);
         } catch (Exception e) {
-            Log.e("ExcelAppend", "Error appending to Excel file", e);
+            LogUtils.e("ExcelAppend", "Error appending to Excel file", e);
             e.printStackTrace();
             return false;
         } finally {
@@ -733,7 +734,7 @@ public class SessionsFilesHelpers {
                 if (fos != null) fos.close();
                 Toast.makeText(context, context.getString(com.zebra.ai_multibarcodes_capture.R.string.file_saved_at, dataFile.getPath()), Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
-                Log.e("ExcelAppend", "Error closing resources", e);
+                LogUtils.e("ExcelAppend", "Error closing resources", e);
             }
 
         }

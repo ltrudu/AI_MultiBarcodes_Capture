@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,9 +72,9 @@ public class BrowserActivity extends AppCompatActivity {
             }
 
             // Use the folder path as needed
-            Log.d("Folder Path", "The folder path is: " + baseFolder.getPath());
+            LogUtils.d("Folder Path", "The folder path is: " + baseFolder.getPath());
         } else {
-            Log.e("Folder Path", getString(R.string.folder_path_missing));
+            LogUtils.e("Folder Path", getString(R.string.folder_path_missing));
             Toast.makeText(this, getString(R.string.folder_path_missing_toast), Toast.LENGTH_LONG).show();
             finish();
         }

@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -185,7 +186,7 @@ public class FileUtil {
         File destCacheDir = new File(cacheDir, Constants.PROVIDER_CACHE_FOLDER);
         if(destCacheDir.exists() == false)
         {
-            Log.d(TAG, "Creating directory: " + destCacheDir.getAbsolutePath());
+            LogUtils.d(TAG, "Creating directory: " + destCacheDir.getAbsolutePath());
             destCacheDir.mkdirs();
         }
         File cacheFile = copyToFolder(source, destCacheDir);
@@ -229,7 +230,7 @@ public class FileUtil {
         try {
             targetFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), Constants.FILE_TARGET_FOLDER);
             if (targetFolder.exists() == false) {
-                Log.d(TAG, "Creating directory: " + targetFolder.getAbsolutePath());
+                LogUtils.d(TAG, "Creating directory: " + targetFolder.getAbsolutePath());
                 targetFolder.mkdirs();
             }
             return targetFolder;
@@ -249,7 +250,7 @@ public class FileUtil {
             if(targetFolder != null) {
                 dateFolder = new File(targetFolder, getTodayDateString());
                 if (create && dateFolder.exists() == false) {
-                    Log.d(TAG, "Creating directory: " + dateFolder.getAbsolutePath());
+                    LogUtils.d(TAG, "Creating directory: " + dateFolder.getAbsolutePath());
                     dateFolder.mkdirs();
                 }
             }

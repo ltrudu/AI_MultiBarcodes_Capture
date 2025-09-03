@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.zebra.criticalpermissionshelper.CriticalPermissionsHelper;
 import com.zebra.criticalpermissionshelper.EPermissionType;
 import com.zebra.criticalpermissionshelper.IResultCallbacks;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
 public class MainApplication extends Application {
@@ -90,9 +91,9 @@ public class MainApplication extends Application {
             managedConfigReceiver = new ManagedConfigurationReceiver();
             IntentFilter filter = new IntentFilter(Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED);
             registerReceiver(managedConfigReceiver, filter);
-            Log.d(TAG, "ManagedConfigurationReceiver registered dynamically");
+            LogUtils.d(TAG, "ManagedConfigurationReceiver registered dynamically");
         } catch (Exception e) {
-            Log.e(TAG, "Failed to register ManagedConfigurationReceiver", e);
+            LogUtils.e(TAG, "Failed to register ManagedConfigurationReceiver", e);
         }
     }
 
@@ -103,9 +104,9 @@ public class MainApplication extends Application {
         if (managedConfigReceiver != null) {
             try {
                 unregisterReceiver(managedConfigReceiver);
-                Log.d(TAG, "ManagedConfigurationReceiver unregistered");
+                LogUtils.d(TAG, "ManagedConfigurationReceiver unregistered");
             } catch (IllegalArgumentException e) {
-                Log.d(TAG, "ManagedConfigurationReceiver was not registered, ignoring unregister attempt");
+                LogUtils.d(TAG, "ManagedConfigurationReceiver was not registered, ignoring unregister attempt");
             }
         }
     }

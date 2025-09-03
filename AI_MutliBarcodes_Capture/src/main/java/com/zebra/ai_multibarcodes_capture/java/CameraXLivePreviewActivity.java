@@ -42,6 +42,7 @@ import com.zebra.ai_multibarcodes_capture.CameraXViewModel;
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTracker;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTrackerGraphic;
@@ -94,7 +95,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         @Override
         public void onReceive(Context context, Intent intent) {
             if (ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES.equals(intent.getAction())) {
-                Log.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
+                LogUtils.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -181,10 +182,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                         this,
                         provider -> {
                             cameraProvider = provider;
-                            Log.v(TAG, "Binding all camera");
+                            LogUtils.v(TAG, "Binding all camera");
 
                             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                            Log.d(TAG, "Orientation unlocked for " + selectedModel + " mode");
+                            LogUtils.d(TAG, "Orientation unlocked for " + selectedModel + " mode");
 
                                 Display display = getWindowManager().getDefaultDisplay();
                                 initialRotation = display != null ? display.getRotation() : Surface.ROTATION_0;
@@ -195,7 +196,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                                     imageWidth = selectedSize.getWidth();
                                     imageHeight = selectedSize.getHeight();
                                 }
-                                Log.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
+                                LogUtils.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
 
 
                             bindAllCameraUseCases();
@@ -241,16 +242,16 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                     // Clear any pending data
                     pendingTransformMatrix = null;
                     pendingCropRegion = null;
-                    Log.d(TAG, "Applied viewfinder resize specs immediately");
+                    LogUtils.d(TAG, "Applied viewfinder resize specs immediately");
                 } else {
                     // Analyzer not ready yet, extract and store the actual VALUES
 
                     try {
                         pendingTransformMatrix = new android.graphics.Matrix(entityViewResizeSpecs.getSensorToViewMatrix());
                         pendingCropRegion = new android.graphics.RectF(entityViewResizeSpecs.getViewfinderFOVCropRegion());
-                        Log.d(TAG, "Stored pending viewfinder resize data for later application");
+                        LogUtils.d(TAG, "Stored pending viewfinder resize data for later application");
                     } catch (Exception e) {
-                        Log.e(TAG, "Failed to extract resize spec values", e);
+                        LogUtils.e(TAG, "Failed to extract resize spec values", e);
                         pendingTransformMatrix = null;
                         pendingCropRegion = null;
                     }
@@ -272,9 +273,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 // Use our safely stored copies of the values
                 entityBarcodeTracker.getEntityTrackerAnalyzer().updateTransform(pendingTransformMatrix);
                 entityBarcodeTracker.getEntityTrackerAnalyzer().setCropRect(pendingCropRegion);
-                Log.d(TAG, "Applied pending viewfinder resize data from stored values");
+                LogUtils.d(TAG, "Applied pending viewfinder resize data from stored values");
             } catch (Exception e) {
-                Log.e(TAG, "Failed to apply pending resize data", e);
+                LogUtils.e(TAG, "Failed to apply pending resize data", e);
             } finally {
                 // Clear the stored values
                 pendingTransformMatrix = null;
@@ -288,7 +289,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
      * This ensures proper setup of the analyzer with any pending configurations
      */
     public void onEntityBarcodeTrackerReady() {
-        Log.d(TAG, "EntityBarcodeTracker is ready, applying pending configurations");
+        LogUtils.d(TAG, "EntityBarcodeTracker is ready, applying pending configurations");
         applyPendingResizeSpecs();
     }
 
@@ -305,18 +306,18 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         try {
             barcodeTracker.stopAnalyzing();
         } catch (Exception e) {
-            Log.e(TAG, "Can not stop the analyzer: " + ENTITY_ANALYZER, e);
+            LogUtils.e(TAG, "Can not stop the analyzer: " + ENTITY_ANALYZER, e);
         }
     }
 
     public void disposeModels() {
         try {
-            Log.i(TAG, "Disposing the entity tracker analyzer");
+            LogUtils.i(TAG, "Disposing the entity tracker analyzer");
             if (barcodeTracker != null) {
                 barcodeTracker.stop();
             }
       } catch (Exception e) {
-            Log.e(TAG, "Can not dispose the analyzer: " + ENTITY_ANALYZER, e);
+            LogUtils.e(TAG, "Can not dispose the analyzer: " + ENTITY_ANALYZER, e);
         }
     }
 
@@ -399,7 +400,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                         bbox.right
                 );
             default:
-                Log.w(TAG, "Unknown relative rotation: " + relativeRotation + ", using original bbox");
+                LogUtils.w(TAG, "Unknown relative rotation: " + relativeRotation + ", using original bbox");
                 return new Rect(bbox);
         }
     }
@@ -440,7 +441,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
                             }
                             decodedStrings.add(bEntity.getValue());
-                            Log.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
+                            LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
                         }
                     }
 
@@ -455,7 +456,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     // Handles entities for the entity view tracker and updates the graphical overlay
     @Override
     public void handleEntitiesForEntityView(EntityTrackerAnalyzer.Result result) {
-        Log.d(TAG,"Handle View Entity - Result received");
+        LogUtils.d(TAG,"Handle View Entity - Result received");
 
         // Apply any pending resize specs now that the analyzer is ready
         applyPendingResizeSpecs();
@@ -463,35 +464,35 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         List<? extends Entity> entities = null;
         if(entityBarcodeTracker != null && entityBarcodeTracker.getBarcodeDecoder() != null) {
             entities = result.getValue(entityBarcodeTracker.getBarcodeDecoder());
-            Log.d(TAG, "EntityBarcodeTracker decoder available, entities count: " + (entities != null ? entities.size() : "null"));
+            LogUtils.d(TAG, "EntityBarcodeTracker decoder available, entities count: " + (entities != null ? entities.size() : "null"));
         } else {
-            Log.w(TAG, "EntityBarcodeTracker or decoder is null - tracker: " + (entityBarcodeTracker != null) + ", decoder: " + (entityBarcodeTracker != null && entityBarcodeTracker.getBarcodeDecoder() != null));
+            LogUtils.w(TAG, "EntityBarcodeTracker or decoder is null - tracker: " + (entityBarcodeTracker != null) + ", decoder: " + (entityBarcodeTracker != null && entityBarcodeTracker.getBarcodeDecoder() != null));
         }
 
         if(entityViewGraphic != null) {
             entityViewGraphic.clear();
         } else {
-            Log.w(TAG, "EntityViewGraphic is null");
+            LogUtils.w(TAG, "EntityViewGraphic is null");
         }
 
         if (entities != null) {
-            Log.d(TAG, "Processing " + entities.size() + " entities for entity view");
+            LogUtils.d(TAG, "Processing " + entities.size() + " entities for entity view");
             for (Entity entity : entities) {
                 if (entity instanceof BarcodeEntity) {
                     BarcodeEntity bEntity = (BarcodeEntity) entity;
                     Rect rect = bEntity.getBoundingBox();
                     if (rect != null) {
-                        Log.d(TAG, "Adding entity to view - Value: " + bEntity.getValue() + ", BBox: " + rect);
+                        LogUtils.d(TAG, "Adding entity to view - Value: " + bEntity.getValue() + ", BBox: " + rect);
                         entityViewGraphic.addEntity(bEntity);
                     } else {
-                        Log.w(TAG, "Entity has null bounding box - Value: " + bEntity.getValue());
+                        LogUtils.w(TAG, "Entity has null bounding box - Value: " + bEntity.getValue());
                     }
                 }
             }
             entityViewGraphic.render();
-            Log.d(TAG, "Rendered entities on entity view");
+            LogUtils.d(TAG, "Rendered entities on entity view");
         } else {
-            Log.w(TAG, "No entities to process for entity view");
+            LogUtils.w(TAG, "No entities to process for entity view");
         }
     }
 
@@ -500,12 +501,12 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             return;
         }
         try {
-            Log.i(TAG, "Using Entity Analyzer");
+            LogUtils.i(TAG, "Using Entity Analyzer");
             executors.execute(() -> {
                 barcodeTracker = new BarcodeTracker(this, this, analysisUseCase);
             });
         } catch (Exception e) {
-            Log.e(TAG, "Can not create model for : " + ENTITY_ANALYZER, e);
+            LogUtils.e(TAG, "Can not create model for : " + ENTITY_ANALYZER, e);
             return;
         }
         cameraProvider.bindToLifecycle(/* lifecycleOwner= */ this, cameraSelector, analysisUseCase);
@@ -547,11 +548,11 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     public void onResume() {
         super.onResume();
-        Log.v(TAG, "OnResume called");
+        LogUtils.v(TAG, "OnResume called");
 
         int currentRotation = getWindowManager().getDefaultDisplay().getRotation();
         if (currentRotation != initialRotation) {
-            Log.d(TAG, "Rotation changed during pause, updating initialRotation from " + initialRotation + " to " + currentRotation);
+            LogUtils.d(TAG, "Rotation changed during pause, updating initialRotation from " + initialRotation + " to " + currentRotation);
             initialRotation = currentRotation;
 
             // check if the device rotation is changes when suspended (0-> 0°, 2 -> 270°)
@@ -563,26 +564,26 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 imageWidth = selectedSize.getWidth();
                 imageHeight = selectedSize.getHeight();
             }
-            Log.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
+            LogUtils.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
         }
         bindAllCameraUseCases();
 
         // Register the BroadcastReceiver to listen for managed configuration changes
         IntentFilter filter = new IntentFilter(ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES);
         registerReceiver(reloadPreferencesReceiver, filter);
-        Log.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
+        LogUtils.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
     }
     public void onPause() {
         super.onPause();
-        Log.v(TAG, "onPause called");
+        LogUtils.v(TAG, "onPause called");
 
         // Unregister the BroadcastReceiver
         try {
             unregisterReceiver(reloadPreferencesReceiver);
-            Log.d(TAG, "Unregistered BroadcastReceiver for managed configuration changes");
+            LogUtils.d(TAG, "Unregistered BroadcastReceiver for managed configuration changes");
         } catch (IllegalArgumentException e) {
             // Receiver was not registered, ignore
-            Log.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
+            LogUtils.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
         }
 
         stopAnalyzing();
@@ -601,7 +602,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         if (cameraProvider != null) {
             // As required by CameraX API, unbinds all use cases before trying to re-bind any of them.
             cameraProvider.unbindAll();
-            Log.v(TAG, "Camera Unbounded");
+            LogUtils.v(TAG, "Camera Unbounded");
         }
     }
 
@@ -612,7 +613,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 if (entity instanceof BarcodeEntity) {
                     BarcodeEntity bEntity = (BarcodeEntity) entity;
                     barcodeEntities.add(bEntity);
-                    Log.d(TAG, "Barcode read.\nValue:" + bEntity.getValue() + "\nSymbology:" + bEntity.getSymbology() + "\nHashcode:" + bEntity.hashCode());
+                    LogUtils.d(TAG, "Barcode read.\nValue:" + bEntity.getValue() + "\nSymbology:" + bEntity.getSymbology() + "\nHashcode:" + bEntity.hashCode());
                 }
             }
             if(barcodeEntities.size() > 0)
