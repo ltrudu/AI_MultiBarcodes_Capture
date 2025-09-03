@@ -1,9 +1,13 @@
 package com.zebra.ai_multibarcodes_capture.settings;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,6 +20,7 @@ import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
+import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +35,8 @@ import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private static final String TAG = "SettingsActivity";
+
     private EditText etPrefix;
     private RadioButton rbCSV, rbTXT, rbXSLX;
     private CheckBox cbOpenSymbologies;
@@ -43,6 +50,24 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox cbMICROPDF, cbMICROQR, cbMSI, cbPDF417, cbQRCODE, cbTLC39, cbTRIOPTIC39;
     private CheckBox cbUK_POSTAL, cbUPC_A, cbUPC_E, cbUPCE1, cbUSPLANET, cbUSPOSTNET;
     private CheckBox cbUS4STATE, cbUS4STATE_FICS;
+
+    // BroadcastReceiver to listen for managed configuration reload requests
+    private BroadcastReceiver reloadPreferencesReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES.equals(intent.getAction())) {
+                Log.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadPreferences();
+                        Toast.makeText(SettingsActivity.this, 
+                            "Settings updated by administrator", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +173,25 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onResume() {
         loadPreferences();
         super.onResume();
+        
+        // Register the BroadcastReceiver to listen for managed configuration changes
+        IntentFilter filter = new IntentFilter(ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES);
+        registerReceiver(reloadPreferencesReceiver, filter);
+        Log.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        
+        // Unregister the BroadcastReceiver
+        try {
+            unregisterReceiver(reloadPreferencesReceiver);
+            Log.d(TAG, "Unregistered BroadcastReceiver for managed configuration changes");
+        } catch (IllegalArgumentException e) {
+            // Receiver was not registered, ignore
+            Log.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
+        }
     }
 
     private void loadPreferences()

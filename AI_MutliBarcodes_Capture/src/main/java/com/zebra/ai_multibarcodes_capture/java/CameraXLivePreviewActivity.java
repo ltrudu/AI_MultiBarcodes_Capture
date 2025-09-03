@@ -1,7 +1,10 @@
 // Copyright 2025 Zebra Technologies Corporation and/or its affiliates. All rights reserved.
 package com.zebra.ai_multibarcodes_capture.java;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -12,6 +15,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +43,7 @@ import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTracker;
+import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTrackerGraphic;
 
 
@@ -83,6 +88,25 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private ActivityCameraXlivePreviewBinding binding;
     private final String TAG = "CameraXLivePreviewActivityJava";
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
+
+    // BroadcastReceiver to listen for managed configuration reload requests
+    private BroadcastReceiver reloadPreferencesReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES.equals(intent.getAction())) {
+                Log.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(CameraXLivePreviewActivity.this, 
+                            "Barcode settings updated by administrator - returning to main screen", 
+                            Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                });
+            }
+        }
+    };
     
     
     private static final String ENTITY_ANALYZER = "Tracker";
@@ -542,10 +566,25 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             Log.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
         }
         bindAllCameraUseCases();
+
+        // Register the BroadcastReceiver to listen for managed configuration changes
+        IntentFilter filter = new IntentFilter(ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES);
+        registerReceiver(reloadPreferencesReceiver, filter);
+        Log.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
     }
     public void onPause() {
         super.onPause();
         Log.v(TAG, "onPause called");
+
+        // Unregister the BroadcastReceiver
+        try {
+            unregisterReceiver(reloadPreferencesReceiver);
+            Log.d(TAG, "Unregistered BroadcastReceiver for managed configuration changes");
+        } catch (IllegalArgumentException e) {
+            // Receiver was not registered, ignore
+            Log.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
+        }
+
         stopAnalyzing();
         unBindCameraX();
         disposeModels();
