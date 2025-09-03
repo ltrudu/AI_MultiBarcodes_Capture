@@ -3,7 +3,10 @@ package com.zebra.ai_multibarcodes_capture.java;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,6 +23,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -91,13 +96,14 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         
         Date currentDate = new Date();
         
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_captured_barcodes);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        
+        // Configure system bars
+        configureSystemBars();
+        
+        // Setup toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         captureFilePath = intent.getStringExtra(Constants.CAPTURE_FILE_PATH);
@@ -488,6 +494,33 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             
             // Force a complete refresh of all views to reset their state
             barcodeAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void configureSystemBars() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        
+        // Set status bar color to zebra blue
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.zebra));
+        
+        // Set navigation bar color to black for consistent theming
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setNavigationBarColor(ContextCompat.getColor(this, android.R.color.black));
+        }
+        
+        // Set status bar text to light (white) to contrast with blue background
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decorView = window.getDecorView();
+            // Remove SYSTEM_UI_FLAG_LIGHT_STATUS_BAR to use light (white) text
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+        
+        // Set navigation bar text to light (white)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            View decorView = window.getDecorView();
+            // Remove SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR to use light (white) icons
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
     }
 }

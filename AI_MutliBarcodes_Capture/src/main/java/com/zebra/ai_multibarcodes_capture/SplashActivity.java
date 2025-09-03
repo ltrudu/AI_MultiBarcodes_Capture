@@ -1,13 +1,18 @@
 package com.zebra.ai_multibarcodes_capture;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -23,7 +28,10 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        
+        // Configure system bars to match the theme
+        configureSystemBars();
+        
         setContentView(R.layout.activity_splash);
         tvStatus = findViewById(R.id.tvStatus);
         tvLoading = findViewById(R.id.tvLoading);
@@ -70,11 +78,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
             };
 
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return insets;
-            });
+            // System bars are now handled by configureSystemBars() method
         }
         else
         {
@@ -82,6 +86,33 @@ public class SplashActivity extends AppCompatActivity {
             Intent intent = new Intent(SplashActivity.this, EntryChoiceActivity.class);
             startActivity(intent);
             finish();
+        }
+    }
+
+    private void configureSystemBars() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        
+        // Set status bar color to zebra blue
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.zebra));
+        
+        // Set navigation bar color to black for consistent theming
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setNavigationBarColor(ContextCompat.getColor(this, android.R.color.black));
+        }
+        
+        // Set status bar text to light (white) to contrast with blue background
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decorView = window.getDecorView();
+            // Remove SYSTEM_UI_FLAG_LIGHT_STATUS_BAR to use light (white) text
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+        
+        // Set navigation bar text to light (white)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            View decorView = window.getDecorView();
+            // Remove SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR to use light (white) icons
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
     }
 
