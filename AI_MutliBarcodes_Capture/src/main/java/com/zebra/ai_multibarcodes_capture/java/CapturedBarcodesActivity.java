@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -24,14 +22,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.zebra.ai_multibarcodes_capture.R;
-import com.zebra.ai_multibarcodes_capture.filemanagement.ExportWriters;
-import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
+import com.zebra.ai_multibarcodes_capture.filemanagement.SessionsFilesHelpers;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
+import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -75,15 +71,11 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     private Button closeButton;
     private Button saveButton;
 
-
-    private Map<Integer, String> barcodeValuesMap;
-    private Map<Integer, Integer> barcodeQuantityMap;
-    private Map<Integer, Integer> barcodeSymbologyMap;
-    private Map<Integer, Date> barcodesDateMap;
+    private SessionData sessionData;
 
     private String captureFilePath;
 
-    ExportWriters.loadedData loadedData;
+    SessionData SessionData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,24 +97,28 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         File captureFile = new File(captureFilePath);
         if(captureFile.length() > 0)
         {
-            loadedData = ExportWriters.loadData(this, captureFilePath);
+            SessionData = SessionsFilesHelpers.loadData(this, captureFilePath);
         }
 
         // Initialize the list we'll use to display barcodes
        displayList = new ArrayList<>();
-        if(loadedData.barcodeValues != null && loadedData.barcodeValues.size() > 0)
+        Integer barcodeUniqueIndex = -1;
+        if(SessionData != null && SessionData.barcodeValues != null && SessionData.barcodeValues.size() > 0)
         {
-            for (Map.Entry<Integer, String> entry : loadedData.barcodeValues.entrySet()) {
+            for (Map.Entry<Integer, String> entry : SessionData.barcodeValues.entrySet()) {
                 Integer barcodeUniqueID = entry.getKey();
+                if(barcodeUniqueID > barcodeUniqueIndex)
+                    barcodeUniqueIndex = barcodeUniqueID;
                 String value = entry.getValue();
                 if(value.isEmpty())
                     continue;
-                int quantity = loadedData.barcodeQuantityMap.getOrDefault(barcodeUniqueID, 1);
-                int symbology = loadedData.barcodeSymbologyMap.getOrDefault(barcodeUniqueID, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
-                Date date = loadedData.barcodeDateMap.getOrDefault(barcodeUniqueID, currentDate);
+                int quantity = SessionData.barcodeQuantityMap.getOrDefault(barcodeUniqueID, 1);
+                int symbology = SessionData.barcodeSymbologyMap.getOrDefault(barcodeUniqueID, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
+                Date date = SessionData.barcodeDateMap.getOrDefault(barcodeUniqueID, currentDate);
                 displayList.add(new DisplayBarcodeData(true, value, symbology, quantity, date));
             }
-
+            // Increment barcodeUnique index to prevent merging
+            barcodeUniqueIndex++;
         }
 
 
@@ -146,18 +142,35 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         }
 
         // Process barcodesDataList to count quantities
+        if(sessionData == null)
+            sessionData = new SessionData();
+
+        HashMap<Integer, String> barcodeValuesMap;
+        HashMap<Integer, Integer> barcodeQuantityMap;
+        HashMap<Integer, Integer> barcodeSymbologyMap;
+        HashMap<Integer, Date> barcodesDateMap;
+
         barcodeValuesMap = new HashMap<>();
         barcodeQuantityMap = new HashMap<>();
         barcodeSymbologyMap = new HashMap<>(); // To store symbology for each unique barcode
         barcodesDateMap = new HashMap<>();
 
-        Integer barcodeUniqueIndex = 0;
         for (BarcodeData data : barcodesDataList) {
-            barcodeValuesMap.put(barcodeUniqueIndex, data.value);
-            barcodeQuantityMap.put(barcodeUniqueIndex, barcodeQuantityMap.getOrDefault(data.value, 0) + 1);
-            barcodeSymbologyMap.put(barcodeUniqueIndex, data.symbology); // Assuming symbology is consistent for a given value
-            barcodesDateMap.put(barcodeUniqueIndex, currentDate);
-            barcodeUniqueIndex++;
+            Integer existingData = getKeyFromValue(barcodeValuesMap, data.value);
+            if(existingData != null)
+            {
+                // We suppose that the same value has the same symbology
+                // We just update the quantity
+                barcodeQuantityMap.replace(existingData, barcodeQuantityMap.getOrDefault(existingData, 0) + 1);
+            }
+            else {
+                // We have a new barcode
+                barcodeValuesMap.put(barcodeUniqueIndex, data.value);
+                barcodeQuantityMap.put(barcodeUniqueIndex, 1);
+                barcodeSymbologyMap.put(barcodeUniqueIndex, data.symbology); // Assuming symbology is consistent for a given value
+                barcodesDateMap.put(barcodeUniqueIndex, currentDate);
+                barcodeUniqueIndex++;
+            }
         }
 
         for (Map.Entry<Integer, String> entry : barcodeValuesMap.entrySet()) {
@@ -188,6 +201,15 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
                 saveData();
             }
         });
+    }
+
+    public static Integer getKeyFromValue(HashMap<Integer, String> map, String value) {
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            if (entry.getValue().equals(value)) {
+                return entry.getKey();
+            }
+        }
+        return null; // Return null if the value is not found
     }
 
     private static class BarcodeAdapter extends ArrayAdapter<DisplayBarcodeData> {
@@ -239,10 +261,28 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         }
     }
 
+    private SessionData sessionDataFromDisplayList(List<DisplayBarcodeData> dataList)
+    {
+        SessionData newBarcodes = new SessionData();
+        Integer uniqueId = 0;
+        for(DisplayBarcodeData entry : dataList)
+        {
+            if(entry.loaded == false)
+            {
+                newBarcodes.barcodeValues.put(uniqueId, entry.value);
+                newBarcodes.barcodeDateMap.put(uniqueId, entry.date);
+                newBarcodes.barcodeQuantityMap.put(uniqueId, entry.quantity);
+                newBarcodes.barcodeSymbologyMap.put(uniqueId, entry.symbology);
+                uniqueId++;
+            }
+        }
+        return newBarcodes;
+    }
+
     private void saveData()
     {
-        Date currentDate = new Date();
-        if(ExportWriters.saveData(this, captureFilePath, barcodeValuesMap, barcodeQuantityMap, barcodeSymbologyMap, barcodesDateMap))
+        SessionData newBarcodes = sessionDataFromDisplayList(displayList);
+        if(SessionsFilesHelpers.saveData(this, captureFilePath, newBarcodes))
         {
             finish();
         }

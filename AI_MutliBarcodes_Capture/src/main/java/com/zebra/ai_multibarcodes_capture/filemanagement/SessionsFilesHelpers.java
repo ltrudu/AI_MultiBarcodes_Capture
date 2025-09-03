@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
+import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -30,19 +31,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ExportWriters {
+public class SessionsFilesHelpers {
 
-    private static final String TAG = "ExportWriters";
-
-    public static class loadedData
-    {
-        public Map<Integer, String> barcodeValues;
-        public Map<Integer, Integer> barcodeQuantityMap;
-        public Map<Integer, Integer> barcodeSymbologyMap;
-        public Map<Integer, Date> barcodeDateMap;
-    }
-
-    public static loadedData loadData(Context context, String sessionFilePath)
+    private static final String TAG = "SessionsFilesHelpers";
+    
+    public static SessionData loadData(Context context, String sessionFilePath)
     {
         // Retrieve Today Folder
         File targetFile = new File(sessionFilePath);
@@ -61,7 +54,7 @@ public class ExportWriters {
                 return loadDataTXT(context, targetFile);
         }
     }
-    public static boolean saveData(Context context, String captureFilePath, Map<Integer, String> barcodeValueMap, Map<Integer, Integer> barcodeQuantityMap, Map<Integer, Integer> barcodeSymbologyMap, Map<Integer, Date> barcodeDateMap)
+    public static boolean saveData(Context context, String captureFilePath, SessionData sessionData)
     {
         // Retrieve Today Folder
         File targetFile = new File(captureFilePath);
@@ -79,25 +72,25 @@ public class ExportWriters {
         switch(fileExtension)
         {
             case ".csv":
-                return saveDataCSV(context, targetFile, barcodeValueMap, barcodeQuantityMap,barcodeSymbologyMap, barcodeDateMap);
+                return saveDataCSV(context, targetFile, sessionData);
             case ".xlsx":
-                return saveDataXSLX(context, targetFile, barcodeValueMap, barcodeQuantityMap, barcodeSymbologyMap, barcodeDateMap);
+                return saveDataXSLX(context, targetFile, sessionData);
             default:
-                return saveDataTXT(context, targetFile, barcodeValueMap, barcodeQuantityMap, barcodeSymbologyMap, barcodeDateMap);
+                return saveDataTXT(context, targetFile, sessionData);
         }
     }
 
-    public static loadedData loadDataTXT(Context context, File sessionFile)
+    public static SessionData loadDataTXT(Context context, File sessionFile)
     {
-        loadedData loadedData = new loadedData();
-        loadedData.barcodeQuantityMap = new HashMap<>();
-        loadedData.barcodeSymbologyMap = new HashMap<>();
-        loadedData.barcodeDateMap = new HashMap<>();
-        loadedData.barcodeValues = new HashMap<>();
+        SessionData SessionData = new SessionData();
+        SessionData.barcodeQuantityMap = new HashMap<>();
+        SessionData.barcodeSymbologyMap = new HashMap<>();
+        SessionData.barcodeDateMap = new HashMap<>();
+        SessionData.barcodeValues = new HashMap<>();
 
         if (!sessionFile.exists() || sessionFile.length() == 0) {
             Log.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
-            return loadedData;
+            return SessionData;
         }
 
         try (Scanner scanner = new Scanner(sessionFile)) {
@@ -136,23 +129,23 @@ public class ExportWriters {
                     // We've reached the end of a barcode entry, process it
                     if (currentValue != null && !currentValue.isEmpty()) {
                         // Add new barcode
-                        loadedData.barcodeValues.put(barcodeUniqueIndex, currentValue);
+                        SessionData.barcodeValues.put(barcodeUniqueIndex, currentValue);
                         // Add to quantity map
-                        loadedData.barcodeQuantityMap.put(barcodeUniqueIndex,
-                            loadedData.barcodeQuantityMap.getOrDefault(currentValue, 0) + 
+                        SessionData.barcodeQuantityMap.put(barcodeUniqueIndex,
+                            SessionData.barcodeQuantityMap.getOrDefault(currentValue, 0) + 
                             (currentQuantity != null ? currentQuantity : 1));
                         
                         // Add to symbology map
                         if (currentSymbology != null) {
                             EBarcodesSymbologies symbology = EBarcodesSymbologies.fromName(currentSymbology);
-                            loadedData.barcodeSymbologyMap.put(barcodeUniqueIndex, symbology.getIntValue());
+                            SessionData.barcodeSymbologyMap.put(barcodeUniqueIndex, symbology.getIntValue());
                         }
                         
                         // Add to date map (use the most recent date if barcode appears multiple times)
                         if (currentDate != null) {
-                            Date existingDate = loadedData.barcodeDateMap.get(currentValue);
+                            Date existingDate = SessionData.barcodeDateMap.get(currentValue);
                             if (existingDate == null || currentDate.after(existingDate)) {
-                                loadedData.barcodeDateMap.put(barcodeUniqueIndex, currentDate);
+                                SessionData.barcodeDateMap.put(barcodeUniqueIndex, currentDate);
                             }
                         }
                     }
@@ -168,7 +161,7 @@ public class ExportWriters {
                 }
             }
             
-            Log.d(TAG, "Successfully loaded " + loadedData.barcodeQuantityMap.size() + 
+            Log.d(TAG, "Successfully loaded " + SessionData.barcodeQuantityMap.size() + 
                   " barcodes from file: " + sessionFile.getName());
             
         } catch (IOException e) {
@@ -176,7 +169,7 @@ public class ExportWriters {
             Toast.makeText(context, "Error reading session file: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        return loadedData;
+        return SessionData;
     }
     
     /**
@@ -239,7 +232,7 @@ public class ExportWriters {
         return new Date();
     }
 
-    public static boolean saveDataTXT(Context context, File targetFile, Map<Integer, String> barcodeValueMap, Map<Integer, Integer> barcodeQuantityMap, Map<Integer, Integer> barcodeSymbologyMap, Map<Integer, Date> barcodeDateMap)
+    public static boolean saveDataTXT(Context context, File targetFile, SessionData sessionData)
 	{
 		try
 		{
@@ -262,14 +255,14 @@ public class ExportWriters {
         // Append data to the file
         FileWriter fileWriter = new FileWriter(targetFile, true);
 
-        for (Map.Entry<Integer, String> entry : barcodeValueMap.entrySet()) {
+        for (Map.Entry<Integer, String> entry : sessionData.barcodeValues.entrySet()) {
             Integer barcodeUniqueID = entry.getKey();
             String value = entry.getValue();
             if(value.isEmpty())
                 continue;
-            int quantity = barcodeQuantityMap.getOrDefault(barcodeUniqueID, 1);
-            int symbology = barcodeSymbologyMap.getOrDefault(barcodeUniqueID, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
-            String barcodeDateString = dateFormat.format(barcodeDateMap.getOrDefault(barcodeUniqueID, currentDate)) + " " + sdf.format(barcodeDateMap.getOrDefault(barcodeUniqueID, currentDate));
+            int quantity = sessionData.barcodeQuantityMap.getOrDefault(barcodeUniqueID, 1);
+            int symbology = sessionData.barcodeSymbologyMap.getOrDefault(barcodeUniqueID, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
+            String barcodeDateString = dateFormat.format(sessionData.barcodeDateMap.getOrDefault(barcodeUniqueID, currentDate)) + " " + sdf.format(sessionData.barcodeDateMap.getOrDefault(barcodeUniqueID, currentDate));
             EBarcodesSymbologies symbologyEnum = EBarcodesSymbologies.fromInt(symbology);
             String data = "Value:" + value + "\nSymbology:" + symbologyEnum.getName() + "\nQuantity:" + quantity + "\nCapture Date:" + barcodeDateString + "\n-----------------------------------------\n";
             fileWriter.append(data);
@@ -287,18 +280,18 @@ public class ExportWriters {
     }
     }
 
-    public static loadedData loadDataCSV(Context context, File sessionFile)
+    public static SessionData loadDataCSV(Context context, File sessionFile)
     {
-        loadedData loadedData = new loadedData();
-        loadedData.barcodeQuantityMap = new HashMap<>();
-        loadedData.barcodeSymbologyMap = new HashMap<>();
-        loadedData.barcodeDateMap = new HashMap<>();
-        loadedData.barcodeValues = new HashMap<>();
+        SessionData SessionData = new SessionData();
+        SessionData.barcodeQuantityMap = new HashMap<>();
+        SessionData.barcodeSymbologyMap = new HashMap<>();
+        SessionData.barcodeDateMap = new HashMap<>();
+        SessionData.barcodeValues = new HashMap<>();
         Integer barcodeUniqueIndex = 0;
 
         if (!sessionFile.exists() || sessionFile.length() == 0) {
             Log.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
-            return loadedData;
+            return SessionData;
         }
 
         try (Scanner scanner = new Scanner(sessionFile)) {
@@ -337,7 +330,7 @@ public class ExportWriters {
                         }
 
                         // Insert new barcode
-                        loadedData.barcodeValues.put(barcodeUniqueIndex, barcodeValue);
+                        SessionData.barcodeValues.put(barcodeUniqueIndex, barcodeValue);
 
                         // Parse quantity
                         int quantity = 1;
@@ -348,22 +341,22 @@ public class ExportWriters {
                         }
                         
                         // Add to quantity map (accumulate if barcode already exists)
-                        loadedData.barcodeQuantityMap.put(barcodeUniqueIndex,
-                            loadedData.barcodeQuantityMap.getOrDefault(barcodeValue, 0) + quantity);
+                        SessionData.barcodeQuantityMap.put(barcodeUniqueIndex,
+                            SessionData.barcodeQuantityMap.getOrDefault(barcodeValue, 0) + quantity);
                         
                         // Add to symbology map
                         if (!symbologyName.isEmpty()) {
                             EBarcodesSymbologies symbology = EBarcodesSymbologies.fromName(symbologyName);
-                            loadedData.barcodeSymbologyMap.put(barcodeUniqueIndex, symbology.getIntValue());
+                            SessionData.barcodeSymbologyMap.put(barcodeUniqueIndex, symbology.getIntValue());
                         }
                         
                         // Parse and add to date map
                         Date currentDate = parseDateFromTimeString(timeString);
                         if (currentDate != null) {
                             // Use the most recent date if barcode appears multiple times
-                            Date existingDate = loadedData.barcodeDateMap.get(barcodeValue);
+                            Date existingDate = SessionData.barcodeDateMap.get(barcodeValue);
                             if (existingDate == null || currentDate.after(existingDate)) {
-                                loadedData.barcodeDateMap.put(barcodeUniqueIndex, currentDate);
+                                SessionData.barcodeDateMap.put(barcodeUniqueIndex, currentDate);
                             }
                         }
                         
@@ -378,7 +371,7 @@ public class ExportWriters {
                 barcodeUniqueIndex++;
             }
             
-            Log.d(TAG, "Successfully loaded " + loadedData.barcodeQuantityMap.size() + 
+            Log.d(TAG, "Successfully loaded " + SessionData.barcodeQuantityMap.size() + 
                   " barcodes from CSV file: " + sessionFile.getName());
             
         } catch (IOException e) {
@@ -386,7 +379,7 @@ public class ExportWriters {
             Toast.makeText(context, "Error reading CSV session file: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        return loadedData;
+        return SessionData;
     }
     
     /**
@@ -412,7 +405,7 @@ public class ExportWriters {
         }
     }
 
-    public static boolean saveDataCSV(Context context, File dataFile, Map<Integer, String> barcodeValueMap, Map<Integer, Integer> barcodeQuantityMap, Map<Integer, Integer> barcodeSymbologyMap, Map<Integer, Date> barcodeDateMap) {
+    public static boolean saveDataCSV(Context context, File dataFile, SessionData sessionData) {
         try {
             // Create the file if it doesn't exist
             if (!dataFile.exists() || (dataFile.exists() && dataFile.length() == 0)) {
@@ -427,14 +420,14 @@ public class ExportWriters {
             // Append data to the file
             FileWriter fileWriter = new FileWriter(dataFile, true); // Append mode
 
-            for (Map.Entry<Integer, String> entry : barcodeValueMap.entrySet()) {
+            for (Map.Entry<Integer, String> entry : sessionData.barcodeValues.entrySet()) {
                 Integer barcodeUniqueID = entry.getKey();
                 String value = entry.getValue();
                 if(value.isEmpty())
                     continue;
-                int quantity = barcodeQuantityMap.getOrDefault(barcodeUniqueID, 1);
-                int symbology = barcodeSymbologyMap.getOrDefault(barcodeUniqueID, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
-                String currentTime = sdf.format(barcodeDateMap.getOrDefault(barcodeUniqueID, currentDate));
+                int quantity = sessionData.barcodeQuantityMap.getOrDefault(barcodeUniqueID, 1);
+                int symbology = sessionData.barcodeSymbologyMap.getOrDefault(barcodeUniqueID, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
+                String currentTime = sdf.format(sessionData.barcodeDateMap.getOrDefault(barcodeUniqueID, currentDate));
                 EBarcodesSymbologies symbologyEnum = EBarcodesSymbologies.fromInt(symbology);
                 String data = currentTime + ";" + symbologyEnum.getName() + ";" + value + ";" + quantity + "\n";
                 fileWriter.append(data);
@@ -450,18 +443,18 @@ public class ExportWriters {
         }
     }
 
-    public static loadedData loadDataXSLX(Context context, File sessionFile)
+    public static SessionData loadDataXSLX(Context context, File sessionFile)
     {
-        loadedData loadedData = new loadedData();
-        loadedData.barcodeQuantityMap = new HashMap<>();
-        loadedData.barcodeSymbologyMap = new HashMap<>();
-        loadedData.barcodeDateMap = new HashMap<>();
-        loadedData.barcodeValues = new HashMap<>();
+        SessionData SessionData = new SessionData();
+        SessionData.barcodeQuantityMap = new HashMap<>();
+        SessionData.barcodeSymbologyMap = new HashMap<>();
+        SessionData.barcodeDateMap = new HashMap<>();
+        SessionData.barcodeValues = new HashMap<>();
         Integer barcodeUniqueIndex = 0;
 
         if (!sessionFile.exists() || sessionFile.length() == 0) {
             Log.w(TAG, "Session file does not exist or is empty: " + sessionFile.getPath());
-            return loadedData;
+            return SessionData;
         }
 
         Workbook workbook = null;
@@ -499,7 +492,7 @@ public class ExportWriters {
                     barcodeValue = barcodeValue.trim();
 
                     // Insert new barcode
-                    loadedData.barcodeValues.put(barcodeUniqueIndex, barcodeValue);
+                    SessionData.barcodeValues.put(barcodeUniqueIndex, barcodeValue);
                     
                     // Extract quantity
                     int quantity = 1; // Default quantity
@@ -519,23 +512,23 @@ public class ExportWriters {
                     }
                     
                     // Add to quantity map (accumulate if barcode already exists)
-                    loadedData.barcodeQuantityMap.put(barcodeUniqueIndex,
-                        loadedData.barcodeQuantityMap.getOrDefault(barcodeValue, 0) + quantity);
+                    SessionData.barcodeQuantityMap.put(barcodeUniqueIndex,
+                        SessionData.barcodeQuantityMap.getOrDefault(barcodeValue, 0) + quantity);
                     
                     // Extract symbology
                     String symbologyName = getCellValueAsString(symbologyCell);
                     if (symbologyName != null && !symbologyName.trim().isEmpty()) {
                         EBarcodesSymbologies symbology = EBarcodesSymbologies.fromName(symbologyName.trim());
-                        loadedData.barcodeSymbologyMap.put(barcodeUniqueIndex, symbology.getIntValue());
+                        SessionData.barcodeSymbologyMap.put(barcodeUniqueIndex, symbology.getIntValue());
                     }
                     
                     // Extract time/date
                     Date currentDate = extractDateFromCell(timeCell);
                     if (currentDate != null) {
                         // Use the most recent date if barcode appears multiple times
-                        Date existingDate = loadedData.barcodeDateMap.get(barcodeValue);
+                        Date existingDate = SessionData.barcodeDateMap.get(barcodeValue);
                         if (existingDate == null || currentDate.after(existingDate)) {
-                            loadedData.barcodeDateMap.put(barcodeUniqueIndex, currentDate);
+                            SessionData.barcodeDateMap.put(barcodeUniqueIndex, currentDate);
                         }
                     }
                     
@@ -548,7 +541,7 @@ public class ExportWriters {
                 }
             }
             
-            Log.d(TAG, "Successfully loaded " + loadedData.barcodeQuantityMap.size() + 
+            Log.d(TAG, "Successfully loaded " + SessionData.barcodeQuantityMap.size() + 
                   " unique barcodes from " + processedRows + " rows in Excel file: " + sessionFile.getName());
             
         } catch (Exception e) {
@@ -564,7 +557,7 @@ public class ExportWriters {
             }
         }
 
-        return loadedData;
+        return SessionData;
     }
     
     /**
@@ -644,7 +637,7 @@ public class ExportWriters {
         return new Date(); // Return current date if parsing fails
     }
 
-    public static boolean saveDataXSLX(Context context, File dataFile, Map<Integer, String> barcodeValueMap, Map<Integer, Integer> barcodeQuantityMap, Map<Integer, Integer> barcodeSymbologyMap, Map<Integer, Date> barcodeDateMap) {
+    public static boolean saveDataXSLX(Context context, File dataFile, SessionData sessionData) {
         Workbook workbook = null;
         FileInputStream fis = null;
         FileOutputStream fos = null;
@@ -674,13 +667,13 @@ public class ExportWriters {
             // Get the first sheet
             Sheet sheet = workbook.getSheetAt(0);
 
-            for (Map.Entry<Integer, String> entry : barcodeValueMap.entrySet()) {
+            for (Map.Entry<Integer, String> entry : sessionData.barcodeValues.entrySet()) {
                 Integer barcodeUniqueIdentifier = entry.getKey();
                 String value = entry.getValue();
                 if(value.isEmpty())
                     continue;
-                int quantity = barcodeQuantityMap.getOrDefault(barcodeUniqueIdentifier, 1);
-                int symbology = barcodeSymbologyMap.getOrDefault(barcodeUniqueIdentifier, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
+                int quantity = sessionData.barcodeQuantityMap.getOrDefault(barcodeUniqueIdentifier, 1);
+                int symbology = sessionData.barcodeSymbologyMap.getOrDefault(barcodeUniqueIdentifier, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
 
                 // Get the last row number and create a new row
                 int lastRowNum = sheet.getLastRowNum();
@@ -703,7 +696,7 @@ public class ExportWriters {
 
                 // Get current time
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-                String currentTime = sdf.format(barcodeDateMap.getOrDefault(barcodeUniqueIdentifier, currentDate));
+                String currentTime = sdf.format(sessionData.barcodeDateMap.getOrDefault(barcodeUniqueIdentifier, currentDate));
 
                 // Time cell as numeric with time format
                 Cell timeCell = row.createCell(0);
