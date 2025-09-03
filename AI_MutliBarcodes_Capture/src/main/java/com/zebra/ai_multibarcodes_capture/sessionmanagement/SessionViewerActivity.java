@@ -113,11 +113,11 @@ public class SessionViewerActivity extends AppCompatActivity {
         List<DisplayBarcodeData> displayList = new ArrayList<>();
         
         if (loadedData.barcodeQuantityMap != null) {
-            for (Map.Entry<String, Integer> entry : loadedData.barcodeQuantityMap.entrySet()) {
-                String value = entry.getKey();
-                int quantity = entry.getValue();
-                int symbology = loadedData.barcodeSymbologyMap.getOrDefault(value, EBarcodesSymbologies.UNKNOWN.getIntValue());
-                Date date = loadedData.barcodeDateMap.getOrDefault(value, new Date());
+            for (Map.Entry<Integer, String> entry : loadedData.barcodeValues.entrySet()) {
+                String value = entry.getValue();
+                int quantity = loadedData.barcodeQuantityMap.getOrDefault(entry.getKey(), 1);
+                int symbology = loadedData.barcodeSymbologyMap.getOrDefault(entry.getKey(), EBarcodesSymbologies.UNKNOWN.getIntValue());
+                Date date = loadedData.barcodeDateMap.getOrDefault(entry.getKey(), new Date());
                 
                 displayList.add(new DisplayBarcodeData(value, symbology, quantity, date));
             }
@@ -131,7 +131,7 @@ public class SessionViewerActivity extends AppCompatActivity {
     private void saveSessionData() {
         File sessionFile = new File(sessionFilePath);
         sessionFile.delete();
-        ExportWriters.saveData(this, sessionFilePath, loadedData.barcodeQuantityMap, loadedData.barcodeSymbologyMap, loadedData.barcodeDateMap);
+        ExportWriters.saveData(this, sessionFilePath, loadedData.barcodeValues, loadedData.barcodeQuantityMap, loadedData.barcodeSymbologyMap, loadedData.barcodeDateMap);
      }
 
     private class BarcodeAdapter extends ArrayAdapter<DisplayBarcodeData> {

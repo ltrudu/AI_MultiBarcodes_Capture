@@ -28,11 +28,23 @@
             android:id="@+id/closeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/zebra"
+            android:text="@string/close"
+            android:visibility="gone"
+            app:cornerRadius="0dp" />
+
+        <Button
+            android:id="@+id/mergeData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/zebra"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="@string/close"
+            android:text="@string/merge"
             app:cornerRadius="0dp" />
 
         <Button
@@ -43,7 +55,7 @@
             android:backgroundTint="@color/zebra"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="@string/save"
+            android:text="@string/addtofile"
             app:cornerRadius="0dp" />
     </LinearLayout>
 
