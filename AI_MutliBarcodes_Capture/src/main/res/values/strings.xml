@@ -54,6 +54,8 @@
     <string name="folder_path_missing_toast">Folder path is missing !!!</string>
     <string name="error_could_not_create_file">Error, could not create file: %s</string>
     <string name="error_could_not_open_file">Error, could not open file: %s</string>
+    <string name="error_file_does_not_exist">Error, file does not exist: %s</string>
+    <string name="error_file_is_empty">Error, file is empty: %s</string>
     <string name="error_loading_data">Error, could not load data in file: %s</string>
     <string name="file_saved_at">File saved at: %s</string>
     <string name="error_saving_file">Error saving file: %s</string>

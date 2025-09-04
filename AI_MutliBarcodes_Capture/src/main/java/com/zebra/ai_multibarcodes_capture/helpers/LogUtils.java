@@ -155,7 +155,7 @@ public class LogUtils {
             // Send via email as backup or if EMM is not available
             if (!emmSent) {
                 sendErrorReportViaEmail(errorReport);
-            } 
+            }
         } catch (Exception e) {
             // Failsafe: don't crash if feedback reporting fails
             Log.e("LogUtils", "Failed to report error to feedback channel", e);
