@@ -2,6 +2,11 @@
 
 A comprehensive Android enterprise application demonstrating Zebra AI Vision SDK capabilities for simultaneous multi-barcode detection, tracking, and session-based data management with enterprise deployment features.
 
+Please note that this is a Work In Progress.
+
+Report any issues using the Issues manager of the original repository:
+https://github.com/ltrudu/AI_MutliBarcodes_Capture
+
 ## 🚀 Key Features
 
 ### **🔍 Advanced Barcode Detection**
