@@ -4,7 +4,7 @@ import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 
 public class Constants {
     // Sharing provider
-    public static final String PROVIDER_AUTHORITY = "com.zebra.ai_multibarcodes_capture.fileprovider";
+    public static final String PROVIDER_AUTHORITY = "com.zebra.ai_multibarcodes_capture.dev.fileprovider";
     public static final String PROVIDER_CACHE_FOLDER = "temp_files";
 
     // File constants
