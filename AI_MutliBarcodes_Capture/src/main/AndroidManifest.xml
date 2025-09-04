@@ -46,7 +46,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.zebra.ai_multibarcodes_capture.fileprovider"
+            android:authorities="com.zebra.ai_multibarcodes_capture.dev.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
