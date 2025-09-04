@@ -20,10 +20,10 @@
         android:strokeColor="@color/zebra"
         android:strokeWidth="2"
         android:strokeLineCap="round"
-        android:pathData="m16,13l-6,6"/>
+        android:pathData="M12,11v6"/>
     <path
         android:strokeColor="@color/zebra"
         android:strokeWidth="2"
         android:strokeLineCap="round"
-        android:pathData="m10,13l6,6"/>
+        android:pathData="m15,14l-3,3 -3,-3"/>
 </vector>
