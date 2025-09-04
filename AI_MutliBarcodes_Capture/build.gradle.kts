@@ -12,7 +12,7 @@ android {
     }
     defaultConfig {
         applicationId = "com.zebra.ai_multibarcodes_capture.dev"
-        minSdk = 30
+        minSdk = 34
         targetSdk = 35
         versionCode = 14
         versionName = "1.14"
