@@ -206,14 +206,18 @@
     <TextView
         android:id="@+id/txtSession"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
         android:text="@string/select_session_to_start"
         android:textAlignment="center"
         android:gravity="center"
-        android:padding="16dp"
-        android:textSize="14sp"
+        android:padding="5dp"
         android:textColor="@color/black"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="18sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="4"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
