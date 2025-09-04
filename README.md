@@ -44,13 +44,17 @@ A comprehensive Android enterprise application demonstrating Zebra AI Vision SDK
 
 ## 📱 Screenshots
 
-<img width="216" height="432" alt="Entry Choice Screen" src="https://github.com/user-attachments/assets/028c1c4f-637d-4644-ad02-cd5275e277e4" />
-<img width="216" height="432" alt="Camera Preview with Detection" src="https://github.com/user-attachments/assets/5a0f1d9d-72c2-4d00-bcd0-22dbe83acb32" />
-<img width="216" height="432" alt="Captured Barcodes View" src="https://github.com/user-attachments/assets/0b25a5a5-bcd7-4108-9ae8-879a82dec6bf" />
-<img width="216" height="432" alt="Session Management" src="https://github.com/user-attachments/assets/2c6e2338-18f4-40f7-bc69-bb5ec238fb0f" />
-<img width="216" height="432" alt="Settings Configuration" src="https://github.com/user-attachments/assets/61588c9d-01d0-4661-8b6f-01b016fe9678" />
-<img width="216" height="432" alt="File Browser" src="https://github.com/user-attachments/assets/be843e3a-9f2b-4649-98c9-874f57dbd352" />
-<img width="216" height="432" alt="Barcode Data Editor" src="https://github.com/user-attachments/assets/99693cbc-105f-4817-9f94-5c68bf774865" />
+<img width="216" height="432" alt="Entry Choice Screen" src="https://github.com/user-attachments/assets/c531d739-63c0-4e59-b8c8-7fc3b3899122" />
+<img width="216" height="432" alt="Entry Choice Screen Menu" src="https://github.com/user-attachments/assets/1d02443f-b6c3-4dfe-8097-65951b6bf51f" />
+<img width="216" height="432" alt="Camera Preview with Detection" src="https://github.com/user-attachments/assets/bfa7b4dc-6595-4991-8ea5-494ce4a88aa7" />
+<img width="216" height="432" alt="Captured Barcodes View" src="https://github.com/user-attachments/assets/1602cd78-0f2f-4344-9f36-364268a3b0df" />
+<img width="216" height="432" alt="Session Management Folders" src="https://github.com/user-attachments/assets/69b7ec1a-f087-48e1-809e-55a9ab34ef47" />
+<img width="216" height="432" alt="Session Management File With Selection" src="https://github.com/user-attachments/assets/eeafe15b-3762-458c-bdb8-ecdf9dcaa7f5" />
+<img width="216" height="432" alt="Session Management Menu" src="https://github.com/user-attachments/assets/5f70cade-5a57-44b9-a7e9-60c06f742e7a" />
+<img width="216" height="432" alt="Settings Configuration" src="https://github.com/user-attachments/assets/83f092b9-41be-4346-a29b-a3931aa70707" />
+<img width="216" height="432" alt="Session Data Editor" src="https://github.com/user-attachments/assets/c4e2279f-fb38-4211-974a-1f821e2e6307" />
+<img width="216" height="432" alt="Session Data Editor Row Swipe Left" src="https://github.com/user-attachments/assets/ac8e3dfa-e95f-4fd7-af73-ef4767eeb0d1" />
+<img width="216" height="432" alt="Barcode Quantity Editor" src="https://github.com/user-attachments/assets/030c9577-0a36-47f7-840b-685d1bf0301f" />
 
 ## 🏗️ Architecture
 
