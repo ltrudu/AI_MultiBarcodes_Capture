@@ -107,7 +107,8 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 - **Export Format**: Choose between TXT, CSV, or XLSX
 - **Barcode Symbologies**: Enable/disable specific barcode types
 - **Real-time Updates**: Configuration changes applied without restart
-- More information on Managed Configuration here: [link](https://github.com/ZebraDevs/AI_MutliBarcodes_Capture/blob/master/MANAGED_CONFIGURATION.md)
+  
+- **More information on Managed Configuration here**: [Documentation](https://github.com/ZebraDevs/AI_MutliBarcodes_Capture/blob/master/MANAGED_CONFIGURATION.md)
 
 ### **Supported Barcode Types**
 **2D Codes**: QR Code, Data Matrix, Aztec, PDF417, MaxiCode, and more  
