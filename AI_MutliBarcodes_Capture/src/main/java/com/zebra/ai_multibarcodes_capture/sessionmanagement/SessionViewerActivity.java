@@ -454,6 +454,7 @@ public class SessionViewerActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         SessionViewerActivity.this.saveButton.setText(R.string.update);
+        SessionViewerActivity.this.mergeButton.setVisibility(View.GONE);
 
     }
 

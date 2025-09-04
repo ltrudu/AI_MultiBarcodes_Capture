@@ -110,7 +110,11 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         // Setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
+        closeButton = findViewById(R.id.closeButton);
+        saveButton = findViewById(R.id.saveData);
+        mergeButton = findViewById(R.id.mergeData);
+
         // Initialize ActivityResultLauncher for BarcodeDataEditorActivity
         barcodeEditorLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -149,6 +153,14 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         if(captureFile.length() > 0)
         {
             SessionData = SessionsFilesHelpers.loadData(this, captureFilePath);
+            if(SessionData.barcodeValuesMap != null && SessionData.barcodeValuesMap.size() > 0)
+            {
+                mergeButton.setVisibility(View.VISIBLE);
+            }
+        }
+        else
+        {
+            mergeButton.setVisibility(View.GONE);
         }
 
         // Initialize the list we'll use to display barcodes
@@ -237,7 +249,6 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         barcodesListView.setAdapter(barcodeAdapter);
         barcodesListView.setSelection(barcodeAdapter.getCount() - 1);
 
-        closeButton = findViewById(R.id.closeButton);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -245,7 +256,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             }
         });
 
-        saveButton = findViewById(R.id.saveData);
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -253,7 +264,6 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             }
         });
 
-        mergeButton = findViewById(R.id.mergeData);
         mergeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -500,6 +510,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         barcodeAdapter.notifyDataSetChanged();
 
         hasDataBeenMerged = true;
+        mergeButton.setVisibility(View.GONE);
 
         saveButton.setText(R.string.update);
     }
