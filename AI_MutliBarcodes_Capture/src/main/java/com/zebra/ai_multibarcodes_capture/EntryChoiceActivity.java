@@ -163,18 +163,18 @@ public class EntryChoiceActivity extends AppCompatActivity {
                 result -> {
                     File sessionFileCaptured = new File(sessionFilePathString);
                     if(sessionFileCaptured.exists())
-                        binding.btViewSessionData.setEnabled(sessionFileCaptured.length() > 0);
+                        setCardEnabled(binding.cardViewSessionData, sessionFileCaptured.length() > 0);
                 });
 
-        binding.btStartCapture.setEnabled(false);
-        binding.btStartCapture.setOnClickListener(v -> {
+        setCardEnabled(binding.cardStartCapture, false);
+        binding.cardStartCapture.setOnClickListener(v -> {
             Intent mainIntent = new Intent(this, CameraXLivePreviewActivity.class);
             mainIntent.putExtra(Constants.CAPTURE_FILE_PATH, sessionFilePathString);
             resultCapture.launch(mainIntent);
         });
 
-        binding.btViewSessionData.setEnabled(false);
-        binding.btViewSessionData.setOnClickListener(v ->{
+        setCardEnabled(binding.cardViewSessionData, false);
+        binding.cardViewSessionData.setOnClickListener(v ->{
             File sessionFile = new File(sessionFilePathString);
             if(sessionFile.exists() == false)
             {
@@ -191,17 +191,17 @@ public class EntryChoiceActivity extends AppCompatActivity {
             startActivity(mainIntent);
         });
 
-        binding.btLoadLastSession.setOnClickListener(v -> {
+        binding.cardLoadLastSession.setOnClickListener(v -> {
             sessionFilePathString = PreferencesHelper.getLastSelectedSession(this);
             if(sessionFilePathString != null) {
                 File sessionFile = new File(sessionFilePathString);
                 if(sessionFile.exists()) {
                     binding.txtSession.setText(sessionFilePathString);
-                    binding.btStartCapture.setEnabled(true);
+                    setCardEnabled(binding.cardStartCapture, true);
                     if(sessionFile.exists())
-                        binding.btViewSessionData.setEnabled(sessionFile.length() > 0);
+                        setCardEnabled(binding.cardViewSessionData, sessionFile.length() > 0);
                     else
-                        binding.btViewSessionData.setEnabled(false);
+                        setCardEnabled(binding.cardViewSessionData, false);
                     String fileExtension = FileUtil.getFileExtension(sessionFile);
                     eExportMode = EExportMode.fromExtension(fileExtension);
                     PreferencesHelper.saveCurrentExtension(this, fileExtension);
@@ -209,19 +209,19 @@ public class EntryChoiceActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(this, getString(R.string.last_session_file_not_found), Toast.LENGTH_LONG).show();
                     binding.txtSession.setText(R.string.select_session_file);
-                    binding.btStartCapture.setEnabled(false);
-                    binding.btViewSessionData.setEnabled(false);
+                    setCardEnabled(binding.cardStartCapture, false);
+                    setCardEnabled(binding.cardViewSessionData, false);
                 }
             }
             else
             {
                 Toast.makeText(this, getString(R.string.no_session_file_saved), Toast.LENGTH_LONG).show();
-                binding.btStartCapture.setEnabled(false);
-                binding.btViewSessionData.setEnabled(false);
+                setCardEnabled(binding.cardStartCapture, false);
+                setCardEnabled(binding.cardViewSessionData, false);
             }
         });
 
-        binding.bCreateNewSession.setOnClickListener(new View.OnClickListener() {
+        binding.cardCreateNewSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 File todayFolder = FileUtil.getTodayFolder(true);
@@ -230,16 +230,16 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     if(sessionFilePathString != null)
                     {
                         binding.txtSession.setText(sessionFilePathString);
-                        binding.btStartCapture.setEnabled(true);
-                        binding.btViewSessionData.setEnabled(false);
+                        setCardEnabled(binding.cardStartCapture, true);
+                        setCardEnabled(binding.cardViewSessionData, false);
                         PreferencesHelper.saveLastSessionFile(EntryChoiceActivity.this, sessionFilePathString);
 
                     }
                 } catch (IOException e) {
                     Toast.makeText(EntryChoiceActivity.this, getString(R.string.error_creating_new_session, e.getMessage()), Toast.LENGTH_LONG).show();
                     if(sessionFilePathString == null) {
-                        binding.btStartCapture.setEnabled(false);
-                        binding.btViewSessionData.setEnabled(false);
+                        setCardEnabled(binding.cardStartCapture, false);
+                        setCardEnabled(binding.cardViewSessionData, false);
                         binding.txtSession.setText(R.string.select_session_file);
                     }
                     else
@@ -248,13 +248,13 @@ public class EntryChoiceActivity extends AppCompatActivity {
                         if(sessionFile.exists())
                         {
                             binding.txtSession.setText(sessionFilePathString);
-                            binding.btStartCapture.setEnabled(true);
-                            binding.btViewSessionData.setEnabled(sessionFile.length() > 0);
+                            setCardEnabled(binding.cardStartCapture, true);
+                            setCardEnabled(binding.cardViewSessionData, sessionFile.length() > 0);
                         }
                         else
                         {
-                            binding.btStartCapture.setEnabled(false);
-                            binding.btViewSessionData.setEnabled(false);
+                            setCardEnabled(binding.cardStartCapture, false);
+                            setCardEnabled(binding.cardViewSessionData, false);
                             binding.txtSession.setText(R.string.select_session_file);
                         }
                     }
@@ -270,17 +270,17 @@ public class EntryChoiceActivity extends AppCompatActivity {
                             File sessionFile = new File(sessionFilePathString);
                             if(sessionFile.exists())
                             {
-                                binding.btViewSessionData.setEnabled(sessionFile.length() > 0);
+                                setCardEnabled(binding.cardViewSessionData, sessionFile.length() > 0);
                             }
                             else
                             {
-                                binding.btViewSessionData.setEnabled(false);
+                                setCardEnabled(binding.cardViewSessionData, false);
                             }
                             String sessionExtension = FileUtil.getFileExtension(new File(sessionFilePathString));
                             EExportMode sessionMode = EExportMode.fromExtension(sessionExtension);
                             if (sessionMode.equals(eExportMode) == false) {
-                                binding.btStartCapture.setEnabled(false);
-                                binding.btViewSessionData.setEnabled(false);
+                                setCardEnabled(binding.cardStartCapture, false);
+                                setCardEnabled(binding.cardViewSessionData, false);
                                 binding.txtSession.setText(R.string.select_session_file);
                             }
                         }
@@ -301,17 +301,17 @@ public class EntryChoiceActivity extends AppCompatActivity {
                          if(sessionFilePathString.isEmpty() == false)
                         {
                             binding.txtSession.setText(sessionFilePathString);
-                            binding.btStartCapture.setEnabled(true);
+                            setCardEnabled(binding.cardStartCapture, true);
                             File sessionFile = new File(sessionFilePathString);
                             if(sessionFile.exists())
-                                binding.btViewSessionData.setEnabled(sessionFile.length() > 0);
+                                setCardEnabled(binding.cardViewSessionData, sessionFile.length() > 0);
                             else
-                                binding.btViewSessionData.setEnabled(true);
+                                setCardEnabled(binding.cardViewSessionData, true);
                         }
                         else
                         {
-                            binding.btStartCapture.setEnabled(false);
-                            binding.btViewSessionData.setEnabled(false);
+                            setCardEnabled(binding.cardStartCapture, false);
+                            setCardEnabled(binding.cardViewSessionData, false);
                             binding.txtSession.setText(R.string.select_session_file);
                         }
                         PreferencesHelper.saveLastSessionFile(this, sessionFilePathString);
@@ -438,6 +438,18 @@ public class EntryChoiceActivity extends AppCompatActivity {
         Uri uri = Uri.fromParts("package", getPackageName(), null);
         intent.setData(uri);
         startActivity(intent);
+    }
+
+    /**
+     * Helper method to enable/disable card views with visual feedback
+     * @param cardView The card layout to enable/disable
+     * @param enabled Whether the card should be enabled
+     */
+    private void setCardEnabled(View cardView, boolean enabled) {
+        cardView.setEnabled(enabled);
+        cardView.setClickable(enabled);
+        cardView.setFocusable(enabled);
+        cardView.setAlpha(enabled ? 1.0f : 0.5f);
     }
 
     @Override
