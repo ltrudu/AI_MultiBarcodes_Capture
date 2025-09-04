@@ -86,8 +86,6 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 - **Android 14+ (API 35)**: Minimum supported version
 - **Target SDK 35**: Android 14+ optimization
 - **Java 1.8**: Language compatibility
-- **Camera Permission**: Required for barcode scanning
-- **Storage Permission**: For session file management
 
 ### **Dependencies**
 - **Zebra AI Vision SDK**: v3.0.2 - Core barcode detection engine
@@ -96,6 +94,7 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 - **Apache POI**: v5.2.3 - Excel export capabilities
 - **Gson**: v2.13.1 - JSON serialization
 - **Material Design Components**: v1.12.0 - UI framework
+- **Critical Permission Helper**: 0.8.1 - Automatically grant critical permissions (Camera, Manage All Files) [CriticalPermissionHelper Repository](https://github.com/ltrudu/CriticalPermissionsHelper)
 
 ### **Build Configuration**
 - **Android Gradle Plugin**: 8.11.0
