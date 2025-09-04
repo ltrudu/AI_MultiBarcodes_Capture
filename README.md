@@ -144,7 +144,7 @@ https://github.com/ZebraDevs/AISuite_Android_Samples
 *Please be aware that this library / application / sample is provided as a community project without any guarantee of support*
 
 For technical questions and community support:
-- GitHub Issues: Report bugs and feature requests
+- GitHub Issues: Report bugs and feature requests in the original repository: [link](https://github.com/ltrudu/AI_MutliBarcodes_Capture)
 - Zebra Developer Portal: Technical documentation and resources
 - Community Forums: Connect with other developers
 
