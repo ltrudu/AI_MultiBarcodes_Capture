@@ -124,7 +124,10 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 3. Point camera at barcodes for automatic detection
 4. Tap "Capture" to save detected barcodes
 5. Review and edit captured data
-6. Export to desired format (TXT/CSV/XLSX)
+6. Swipe left a captured barcode data row to access to delete button or edit button
+7. Use edit button to change quantity
+8. Use the merge button to merge quantities if there were previously scanned data in the session
+9. Export to desired format (TXT/CSV/XLSX)
 
 ### **Enterprise Deployment**
 1. Configure barcode symbologies via EMM console
