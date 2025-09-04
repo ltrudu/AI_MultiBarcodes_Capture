@@ -78,7 +78,7 @@ A comprehensive Android enterprise application demonstrating Zebra AI Vision SDK
 ## 🔧 Technical Specifications
 
 ### **Requirements**
-- **Android 11+ (API 30)**: Minimum supported version
+- **Android 14+ (API 35)**: Minimum supported version
 - **Target SDK 35**: Android 14+ optimization
 - **Java 1.8**: Language compatibility
 - **Camera Permission**: Required for barcode scanning
