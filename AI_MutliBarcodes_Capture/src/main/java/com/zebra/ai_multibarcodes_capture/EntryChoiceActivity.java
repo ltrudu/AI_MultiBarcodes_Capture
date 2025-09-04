@@ -19,6 +19,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallerLauncher;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -87,6 +88,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<Intent> resultBrowseFile;
     private ActivityResultLauncher<Intent> resultSettings;
+    private ActivityResultLauncher<Intent> resultCapture;
 
     String filePrefix = FILE_DEFAULT_PREFIX;
     EExportMode eExportMode = EExportMode.TEXT;
@@ -157,15 +159,33 @@ public class EntryChoiceActivity extends AppCompatActivity {
              }
          });
 
+        resultCapture = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    File sessionFileCaptured = new File(sessionFilePathString);
+                    if(sessionFileCaptured.exists())
+                        binding.btViewSessionData.setEnabled(sessionFileCaptured.length() > 0);
+                });
+
         binding.btStartCapture.setEnabled(false);
         binding.btStartCapture.setOnClickListener(v -> {
             Intent mainIntent = new Intent(this, CameraXLivePreviewActivity.class);
             mainIntent.putExtra(Constants.CAPTURE_FILE_PATH, sessionFilePathString);
-            startActivity(mainIntent);
+            resultCapture.launch(mainIntent);
         });
 
         binding.btViewSessionData.setEnabled(false);
         binding.btViewSessionData.setOnClickListener(v ->{
+            File sessionFile = new File(sessionFilePathString);
+            if(sessionFile.exists() == false)
+            {
+                Toast.makeText(this, getString(R.string.error_file_does_not_exist, sessionFilePathString), Toast.LENGTH_LONG).show();
+                return;
+            }
+            if(sessionFile.length() <= 0)
+            {
+                Toast.makeText(this, getString(R.string.error_file_is_empty, sessionFilePathString), Toast.LENGTH_LONG).show();
+                return;
+            }
             Intent mainIntent = new Intent(this, SessionViewerActivity.class);
             mainIntent.putExtra(Constants.CAPTURE_FILE_PATH, sessionFilePathString);
             startActivity(mainIntent);
@@ -178,7 +198,10 @@ public class EntryChoiceActivity extends AppCompatActivity {
                 if(sessionFile.exists()) {
                     binding.txtSession.setText(sessionFilePathString);
                     binding.btStartCapture.setEnabled(true);
-                    binding.btViewSessionData.setEnabled(true);
+                    if(sessionFile.exists())
+                        binding.btViewSessionData.setEnabled(sessionFile.length() > 0);
+                    else
+                        binding.btViewSessionData.setEnabled(false);
                     String fileExtension = FileUtil.getFileExtension(sessionFile);
                     eExportMode = EExportMode.fromExtension(fileExtension);
                     PreferencesHelper.saveCurrentExtension(this, fileExtension);
@@ -208,7 +231,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     {
                         binding.txtSession.setText(sessionFilePathString);
                         binding.btStartCapture.setEnabled(true);
-                        binding.btViewSessionData.setEnabled(true);
+                        binding.btViewSessionData.setEnabled(false);
                         PreferencesHelper.saveLastSessionFile(EntryChoiceActivity.this, sessionFilePathString);
 
                     }
@@ -226,7 +249,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                         {
                             binding.txtSession.setText(sessionFilePathString);
                             binding.btStartCapture.setEnabled(true);
-                            binding.btViewSessionData.setEnabled(true);
+                            binding.btViewSessionData.setEnabled(sessionFile.length() > 0);
                         }
                         else
                         {
@@ -244,6 +267,15 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     if(result.getResultCode() == RESULT_OK) {
                         loadPreferences();
                         if (sessionFilePathString != null && sessionFilePathString.isEmpty() == false) {
+                            File sessionFile = new File(sessionFilePathString);
+                            if(sessionFile.exists())
+                            {
+                                binding.btViewSessionData.setEnabled(sessionFile.length() > 0);
+                            }
+                            else
+                            {
+                                binding.btViewSessionData.setEnabled(false);
+                            }
                             String sessionExtension = FileUtil.getFileExtension(new File(sessionFilePathString));
                             EExportMode sessionMode = EExportMode.fromExtension(sessionExtension);
                             if (sessionMode.equals(eExportMode) == false) {
@@ -270,7 +302,11 @@ public class EntryChoiceActivity extends AppCompatActivity {
                         {
                             binding.txtSession.setText(sessionFilePathString);
                             binding.btStartCapture.setEnabled(true);
-                            binding.btViewSessionData.setEnabled(true);
+                            File sessionFile = new File(sessionFilePathString);
+                            if(sessionFile.exists())
+                                binding.btViewSessionData.setEnabled(sessionFile.length() > 0);
+                            else
+                                binding.btViewSessionData.setEnabled(true);
                         }
                         else
                         {

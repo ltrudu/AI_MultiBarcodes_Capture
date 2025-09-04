@@ -93,7 +93,7 @@ public class MainApplication extends Application {
         try {
             managedConfigReceiver = new ManagedConfigurationReceiver();
             IntentFilter filter = new IntentFilter(Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED);
-            registerReceiver(managedConfigReceiver, filter);
+            registerReceiver(managedConfigReceiver, filter, RECEIVER_EXPORTED);
             LogUtils.d(TAG, "ManagedConfigurationReceiver registered dynamically");
         } catch (Exception e) {
             LogUtils.e(TAG, "Failed to register ManagedConfigurationReceiver", e);

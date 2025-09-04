@@ -570,7 +570,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         // Register the BroadcastReceiver to listen for managed configuration changes
         IntentFilter filter = new IntentFilter(ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES);
-        registerReceiver(reloadPreferencesReceiver, filter);
+        registerReceiver(reloadPreferencesReceiver, filter, RECEIVER_NOT_EXPORTED);
         LogUtils.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
     }
     public void onPause() {
