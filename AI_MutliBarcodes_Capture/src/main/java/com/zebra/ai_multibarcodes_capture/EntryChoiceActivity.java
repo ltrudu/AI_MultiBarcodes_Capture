@@ -136,6 +136,18 @@ public class EntryChoiceActivity extends AppCompatActivity {
                  PopupMenu popup = new PopupMenu(EntryChoiceActivity.this, view);
                  MenuInflater inflater = popup.getMenuInflater();
                  inflater.inflate(R.menu.entry_menu, popup.getMenu());
+                 
+                 // Force PopupMenu to show icons
+                 try {
+                     java.lang.reflect.Field mFieldPopup = popup.getClass().getDeclaredField("mPopup");
+                     mFieldPopup.setAccessible(true);
+                     Object menuPopupHelper = mFieldPopup.get(popup);
+                     java.lang.reflect.Method setForceIcons = menuPopupHelper.getClass().getDeclaredMethod("setForceShowIcon", boolean.class);
+                     setForceIcons.invoke(menuPopupHelper, true);
+                 } catch (Exception e) {
+                     LogUtils.e(TAG, "Failed to force show icons in popup menu", e);
+                 }
+                 
                  popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                      @Override
                      public boolean onMenuItemClick(MenuItem menuItem) {

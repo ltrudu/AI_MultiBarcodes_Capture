@@ -3,9 +3,11 @@
     <item
         android:id="@+id/action_manage_sessions"
         android:title="Manage Sessions"
+        android:icon="@drawable/ic_menu_manage_sessions"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
         android:title="Settings"
+        android:icon="@drawable/ic_menu_settings"
         app:showAsAction="never" />
 </menu>
