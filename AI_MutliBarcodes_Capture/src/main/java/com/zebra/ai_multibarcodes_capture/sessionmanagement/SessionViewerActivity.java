@@ -209,8 +209,7 @@ public class SessionViewerActivity extends AppCompatActivity {
         sessionFile.delete();
         SessionData = sessionDataFromDisplayList(displayList);
         SessionsFilesHelpers.saveData(this, sessionFilePath, SessionData);
-        finish();
-     }
+    }
 
     private class BarcodeAdapter extends ArrayAdapter<DisplayBarcodeData> {
 
@@ -455,6 +454,8 @@ public class SessionViewerActivity extends AppCompatActivity {
 
         SessionViewerActivity.this.saveButton.setText(R.string.update);
         SessionViewerActivity.this.mergeButton.setVisibility(View.GONE);
+
+        Toast.makeText(this, "Session data merged.", Toast.LENGTH_SHORT).show();
 
     }
 
