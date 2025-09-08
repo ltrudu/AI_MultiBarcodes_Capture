@@ -52,12 +52,14 @@ import java.util.Map;
 public class SessionViewerActivity extends AppCompatActivity {
 
     private static class DisplayBarcodeData {
+        Integer key;
         String value;
         int symbology;
         int quantity;
         Date date;
 
-        public DisplayBarcodeData(String value, int symbology, int quantity, Date date) {
+        public DisplayBarcodeData(Integer key, String value, int symbology, int quantity, Date date) {
+            this.key = key;
             this.value = value;
             this.symbology = symbology;
             this.quantity = quantity;
@@ -179,7 +181,7 @@ public class SessionViewerActivity extends AppCompatActivity {
                 int symbology = SessionData.barcodeSymbologyMap.getOrDefault(entry.getKey(), EBarcodesSymbologies.UNKNOWN.getIntValue());
                 Date date = SessionData.barcodeDateMap.getOrDefault(entry.getKey(), new Date());
                 
-                displayList.add(new DisplayBarcodeData(value, symbology, quantity, date));
+                displayList.add(new DisplayBarcodeData(entry.getKey(), value, symbology, quantity, date));
             }
         }
 
@@ -394,9 +396,10 @@ public class SessionViewerActivity extends AppCompatActivity {
     private void removeItem(int position, DisplayBarcodeData barcode) {
         if (barcode != null) {
             // Remove from SessionData maps
-            SessionData.barcodeQuantityMap.remove(barcode.value);
-            SessionData.barcodeSymbologyMap.remove(barcode.value);
-            SessionData.barcodeDateMap.remove(barcode.value);
+            SessionData.barcodeValuesMap.remove(barcode.key);
+            SessionData.barcodeQuantityMap.remove(barcode.key);
+            SessionData.barcodeSymbologyMap.remove(barcode.key);
+            SessionData.barcodeDateMap.remove(barcode.key);
             
             // Refresh the ListView
             setupListView();
@@ -445,7 +448,7 @@ public class SessionViewerActivity extends AppCompatActivity {
             String value = entry.getValue();
             int quantity = barcodeQuantityMap.getOrDefault(barcodeUniqueIndex, 1);
             int symbology = barcodeSymbologyMap.getOrDefault(barcodeUniqueIndex, EBarcodesSymbologies.UNKNOWN.getIntValue()); // Get symbology, default to 0 if not found (shouldn't happen)
-            targetList.add(new DisplayBarcodeData(value, symbology, quantity, currentDate));
+            targetList.add(new DisplayBarcodeData(barcodeUniqueIndex, value, symbology, quantity, currentDate));
         }
 
         displayList.clear();
