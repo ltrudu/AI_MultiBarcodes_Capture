@@ -7,6 +7,23 @@ A comprehensive Android enterprise application demonstrating Zebra AI Vision SDK
 Report any issues using the Issues manager of the original repository:
 https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
+## 📅 What's New
+
+### **September 9, 2025**
+**Implement interactive capture zone with barcode filtering**
+
+Add a complete capture zone system that allows users to define a rectangular area for focused barcode scanning:
+
+• Interactive capture zone overlay with drag, resize, and corner anchor controls  
+• Visual toggle icon in top-right corner with enabled/disabled states using alpha transparency  
+• Real-time barcode filtering - only process barcodes within the capture zone boundaries  
+• Persistent settings that save zone position, size, and enabled state across app sessions  
+• Comprehensive capture data filtering - only capture barcodes within the defined zone  
+• Force portrait mode across entire application for consistent user experience  
+• Enhanced logging and error handling for capture zone operations  
+
+The capture zone provides users with precise control over barcode detection, allowing them to focus on specific areas of the camera view while ignoring barcodes outside the defined region. When enabled, both the real-time preview and final capture results only include barcodes that intersect with the capture zone.
+
 ## 🚀 Key Features
 
 ### **🔍 Advanced Barcode Detection**
