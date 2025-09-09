@@ -12,7 +12,7 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 ### **Version 1.20**
 **Comprehensive language selection system with 71+ language support**
 
-Add complete internationalization (i18n) capabilities with comprehensive language selection and localization:
+Add complete internationalization capabilities with comprehensive language selection and localization:
 
 • Language selection dropdown in settings with native language names and Unicode flag emojis (🇫🇷 Français, 🇪🇸 Español, 🇩🇪 Deutsch, etc.)
 • Support for 71+ languages including System Language option with automatic detection
