@@ -14,7 +14,7 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 Add complete internationalization capabilities with comprehensive language selection and localization:
 
-• Language selection dropdown in settings with native language names and Unicode flag emojis (🇫🇷 Français, 🇪🇸 Español, 🇩🇪 Deutsch, etc.)
+• Language selection dropdown in settings with native language names and Unicode flag emojis
 • Support for 71+ languages including System Language option with automatic detection
 • Validation-based language switching - changes apply only when settings are confirmed, not immediately
 • Complete string externalization with translations for all supported languages
