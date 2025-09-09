@@ -9,7 +9,7 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
-### **September 9, 2025**
+### **Version 1.17**
 **Implement interactive capture zone with barcode filtering**
 
 Add a complete capture zone system that allows users to define a rectangular area for focused barcode scanning:
