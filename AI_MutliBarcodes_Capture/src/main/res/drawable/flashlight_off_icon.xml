@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <!-- Flashlight body -->
+    <path
+        android:pathData="M9,2 L15,2 L15,6 L9,6 Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#000000"
+        android:strokeWidth="1" />
+    
+    <!-- Flashlight neck -->
+    <path
+        android:pathData="M8,6 L16,6 L15,8 L9,8 Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#000000"
+        android:strokeWidth="1" />
+    
+    <!-- Flashlight main body -->
+    <path
+        android:pathData="M9,8 L15,8 L15,20 L9,20 Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#000000"
+        android:strokeWidth="1" />
+    
+    <!-- Power button -->
+    <path
+        android:pathData="M10.5,10 L13.5,10 L13.5,11.5 L10.5,11.5 Z"
+        android:fillColor="#666666" />
+    
+    <!-- Light beam (off - no beam) -->
+    
+</vector>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <!-- Flashlight body -->
+    <path
+        android:pathData="M9,2 L15,2 L15,6 L9,6 Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#000000"
+        android:strokeWidth="1" />
+    
+    <!-- Flashlight neck -->
+    <path
+        android:pathData="M8,6 L16,6 L15,8 L9,8 Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#000000"
+        android:strokeWidth="1" />
+    
+    <!-- Flashlight main body -->
+    <path
+        android:pathData="M9,8 L15,8 L15,20 L9,20 Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#000000"
+        android:strokeWidth="1" />
+    
+    <!-- Power button (active/pressed) -->
+    <path
+        android:pathData="M10.5,10 L13.5,10 L13.5,11.5 L10.5,11.5 Z"
+        android:fillColor="#FFD700" />
+    
+    <!-- Light beam (on - visible beam) -->
+    <path
+        android:pathData="M10,2 L14,2 L16,0 L8,0 Z"
+        android:fillColor="#FFFF80"
+        android:alpha="0.8" />
+    
+    <!-- Light rays -->
+    <path
+        android:pathData="M5,1 L7,1"
+        android:strokeColor="#FFFF80"
+        android:strokeWidth="2" />
+    <path
+        android:pathData="M17,1 L19,1"
+        android:strokeColor="#FFFF80"
+        android:strokeWidth="2" />
+    <path
+        android:pathData="M3,3 L5,3"
+        android:strokeColor="#FFFF80"
+        android:strokeWidth="2" />
+    <path
+        android:pathData="M19,3 L21,3"
+        android:strokeColor="#FFFF80"
+        android:strokeWidth="2" />
+    
+</vector>
