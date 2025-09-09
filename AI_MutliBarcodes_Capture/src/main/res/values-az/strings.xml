@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Çoklu Barkod Yakalama</string>
+    <string name="start_capture_button_text">Yakalamanı Başlat</string>
+    <string name="loading_status">Tətbiq Yüklənir</string>
+    <string name="select_session_file">Sessiya faylını seçin və ya yenisini yaradın.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">İcazələr Alınır</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Seç</string>
+    <string name="share">Paylaş</string>
+    <string name="refresh">Yenilə</string>
+    <string name="close">Bağla</string>
+    <string name="manage_sessions">Sessiyaları İdarə Et</string>
+    <string name="create_new">Yeni Yarat</string>
+    <string name="enter_new_file_name">Yeni fayl adını daxil edin</string>
+    <string name="default_session_name">Mənim Sessiyam_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Bəli</string>
+    <string name="no">Xeyr</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Fayla Əlavə Et</string>
+    <string name="save">Saxla</string>
+    <string name="update">Faylı Yenilə</string>
+    <string name="merge">Miqdarları Birləşdir</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Yakalamanı Başlat</string>
+    <string name="load_last_session">Son Sessiya Yükle</string>
+    <string name="create_new_session">Yeni Sessiya Yarat</string>
+    <string name="view_session_data">Sessiya Məlumatlarına Bax</string>
+    <string name="selected_session">Seçilmiş Sessiya</string>
+    <string name="select_session_to_start">Yakalamanı Başlatmaq üçün Sessiya Seç</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Quraşdırma</string>
+    <string name="prefix">Prefiks:</string>
+    <string name="prefix_hint">Prefiks_</string>
+    <string name="file_type">Fayl növü</string>
+    <string name="text_file">Mətn Faylı</string>
+    <string name="csv_file">CSV Faylı</string>
+    <string name="excel_file">Excel Faylı</string>
+    <string name="language">Dil</string>
+    <string name="system_language">Sistem Dili</string>
+    <string name="validate">Təsdiq Et</string>
+    <string name="cancel">Ləğv Et</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Yakala</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK başlatılması uğursuz oldu</string>
+    <string name="folder_path_missing">Qovluq yolu əskikdir!</string>
+    <string name="folder_path_missing_toast">Qovluq yolu əskikdir !!!</string>
+    <string name="error_could_not_create_file">Xəta, fayl yaradıla bilmədi: %s</string>
+    <string name="error_could_not_open_file">Xəta, fayl açıla bilmədi: %s</string>
+    <string name="error_file_does_not_exist">Xəta, fayl mövcud deyil: %s</string>
+    <string name="error_file_is_empty">Xəta, fayl boşdur: %s</string>
+    <string name="error_loading_data">Xəta, faylda məlumat yüklənə bilmədi: %s</string>
+    <string name="file_saved_at">Fayl saxlanıldı: %s</string>
+    <string name="error_saving_file">Fayl saxlama xətası: %s</string>
+    <string name="error_saving_last_selected_file">Son seçilmiş faylı saxlama xətası</string>
+    <string name="settings_saved_successfully">Ayarlar uğurla saxlanıldı</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">Xahiş edirik fayl seçin, qovluq deyil.</string>
+    <string name="please_select_file">Xahiş edirik fayl seçin.</string>
+    <string name="cannot_rename_folders_or_parent">Qovluqları və ya ana qovluğu yenidən adlandıra bilməzsiniz.</string>
+    <string name="file_already_exists">Fayl artıq mövcuddur.</string>
+    <string name="error_renaming_file">Faylı yenidən adlandırma xətası</string>
+    <string name="folder_already_exists">Qovluq artıq mövcuddur.</string>
+    <string name="failed_to_create_folder">Qovluq yaradılması uğursuz oldu: %s</string>
+    <string name="failed_to_create_file">Fayl yaradılması uğursuz oldu</string>
+    <string name="cannot_delete_parent_folder">Ana qovluğu silə bilməzsiniz.</string>
+    <string name="cannot_share_folders">Qovluqları paylaşa bilməzsiniz.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Son sessiya faylı tapılmadı.</string>
+    <string name="no_session_file_saved">Tərcihlər içində heç bir sessiya faylı saxlanılmayıb.</string>
+    <string name="error_creating_new_session">Yeni sessiya yaratma xətası: %s</string>
+    <string name="missing_filename">Fayl adı əskikdir</string>
+    <string name="camera_permission_required">Bu xüsusiyyəti istifadə etmək üçün kamera icazəsi tələb olunur</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obyektinin yaradılma vaxtı =%d milli san</string>
+    <string name="barcode_decoder_disposed">Barkod dekoderi silinmişdir</string>
+    <string name="orientation_unlocked">Yönləndirmə %s rejimi üçün açıldı</string>
+    <string name="applied_viewfinder_resize_immediately">Görüntü axtarıcı ölçü dəyişikliyi spesifikasiyaları dərhal tətbiq edildi</string>
+    <string name="stored_pending_viewfinder_resize">Gözləyən görüntü axtarıcı ölçü dəyişikliyi məlumatları sonraya tətbiq üçün saxlanıldı</string>
+    <string name="applied_pending_viewfinder_resize">Gözləyən görüntü axtarıcı ölçü dəyişikliyi məlumatları saxlanılan dəyərlərdən tətbiq edildi</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker hazırdır, gözləyən konfiqurasiyaları tətbiq edir</string>
+    <string name="handle_view_entity_result">Görünüş Varlığını İdarə Et - Nəticə alındı</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekoder mövcuddur, varlıqların sayı: %s</string>
+    <string name="processing_entities">Varlıq görünüşü üçün %d varlıq işlənir</string>
+    <string name="rendered_entities">Varlıqlar varlıq görünüşünün üzərində göstərildi</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Barkod Dəyəri</string>
+    <string name="symbology">Simvoloji</string>
+    <string name="unknown">NAMƏLUM</string>
+    <string name="quantity">Miqdar</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Yakalama Tarixi</string>
+    <string name="date">Tarix</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Fənəri dəyişdir</string>
+    <string name="toggle_capture_zone">Yakalama zonasını dəyişdir</string>
+    <string name="edit_item">Elementi redaktə et</string>
+    <string name="delete_item">Elementi sil</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Dəyər: %s</string>
+    <string name="symbology_label">Simvoloji: %s</string>
+    <string name="quantity_label">Miqdar: %d</string>
+    <string name="date_label">Tarix: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">İcazələrin Verilməsində Uğur.</string>
+    <string name="session_data_merged">Sessiya məlumatları birləşdirildi.</string>
+    <string name="error_reported">Xəta bildirildi: %s</string>
+    <string name="error_reading_session_file">Sessiya faylını oxuma xətası: %s</string>
+    <string name="error_reading_csv_session_file">CSV sessiya faylını oxuma xətası: %s</string>
+    <string name="error_reading_excel_session_file">Excel sessiya faylını oxuma xətası: %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">Yenidən Adlandır</string>
+    <string name="rename_file">Faylı yenidən adlandır</string>
+    <string name="create">Yarat</string>
+    <string name="create_new_folder">Yeni qovluq yarat</string>
+    <string name="create_new_file">Yeni fayl yarat</string>
+    <string name="delete_file">Faylı Sil</string>
+    <string name="delete_folder">Qovluğu Sil</string>
+    <string name="are_you_sure">Əminsiniz?</string>
+    <string name="file_exists_already">Fayl artıq mövcuddur.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Ayarlar</string>
+    <string name="activity_captured_barcodes">Yakalanmış Barkodlar</string>
+    <string name="activity_session_data">Sessiya Məlumatları</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Sessiyaları İdarə Et</string>
+    <string name="menu_settings">Ayarlar</string>
+    <string name="menu_new_file">Yeni Fayl</string>
+    <string name="menu_new_folder">Yeni Qovluq</string>
+    <string name="menu_rename">Yenidən Adlandır</string>
+    <string name="menu_delete">Sil</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Mətn Faylı (.txt)</item>
+        <item>CSV Faylı (.csv)</item>
+        <item>Excel Faylı (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

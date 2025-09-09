@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">Capture Multi Codes-barres IA</string>
+    <string name="start_capture_button_text">Démarrer la capture</string>
+    <string name="loading_status">Chargement de l\'application</string>
+    <string name="select_session_file">Sélectionnez un fichier de session ou créez-en un nouveau.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Récupération des autorisations</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Sélectionner</string>
+    <string name="share">Partager</string>
+    <string name="refresh">Actualiser</string>
+    <string name="close">Fermer</string>
+    <string name="manage_sessions">Gérer les sessions</string>
+    <string name="create_new">Créer nouveau</string>
+    <string name="enter_new_file_name">Entrez le nom du nouveau fichier</string>
+    <string name="default_session_name">MaSession_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Ajouter au fichier</string>
+    <string name="save">Enregistrer</string>
+    <string name="update">Mettre à jour le fichier</string>
+    <string name="merge">Fusionner les quantités</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Démarrer la capture</string>
+    <string name="load_last_session">Charger la dernière session</string>
+    <string name="create_new_session">Créer une nouvelle session</string>
+    <string name="view_session_data">Voir les données de session</string>
+    <string name="selected_session">Session sélectionnée</string>
+    <string name="select_session_to_start">Sélectionnez une session pour commencer la capture</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Configuration</string>
+    <string name="prefix">Préfixe :</string>
+    <string name="prefix_hint">Préfixe_</string>
+    <string name="file_type">Type de fichier</string>
+    <string name="text_file">Fichier texte</string>
+    <string name="csv_file">Fichier CSV</string>
+    <string name="excel_file">Fichier Excel</string>
+    <string name="language">Langue</string>
+    <string name="system_language">Langue du système</string>
+    <string name="validate">Valider</string>
+    <string name="cancel">Annuler</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Capturer</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Échec de l\'initialisation du SDK AI Vision</string>
+    <string name="folder_path_missing">Le chemin du dossier est manquant !</string>
+    <string name="folder_path_missing_toast">Le chemin du dossier est manquant !!!</string>
+    <string name="error_could_not_create_file">Erreur, impossible de créer le fichier : %s</string>
+    <string name="error_could_not_open_file">Erreur, impossible d\'ouvrir le fichier : %s</string>
+    <string name="error_file_does_not_exist">Erreur, le fichier n\'existe pas : %s</string>
+    <string name="error_file_is_empty">Erreur, le fichier est vide : %s</string>
+    <string name="error_loading_data">Erreur, impossible de charger les données du fichier : %s</string>
+    <string name="file_saved_at">Fichier enregistré à : %s</string>
+    <string name="error_saving_file">Erreur lors de l\'enregistrement du fichier : %s</string>
+    <string name="error_saving_last_selected_file">Erreur lors de l\'enregistrement du dernier fichier sélectionné</string>
+    <string name="settings_saved_successfully">Paramètres enregistrés avec succès</string>
+
+    <!-- French Toast Messages -->
+    <string name="please_select_file_not_folder">Veuillez sélectionner un fichier, pas un dossier.</string>
+    <string name="please_select_file">Veuillez sélectionner un fichier.</string>
+    <string name="cannot_rename_folders_or_parent">Impossible de renommer les dossiers ou le dossier parent.</string>
+    <string name="file_already_exists">Le fichier existe déjà.</string>
+    <string name="error_renaming_file">Erreur lors du renommage du fichier</string>
+    <string name="folder_already_exists">Le dossier existe déjà.</string>
+    <string name="failed_to_create_folder">Impossible de créer le dossier : %s</string>
+    <string name="failed_to_create_file">Impossible de créer le fichier</string>
+    <string name="cannot_delete_parent_folder">Impossible de supprimer le dossier parent.</string>
+    <string name="cannot_share_folders">Impossible de partager les dossiers.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Fichier de dernière session introuvable.</string>
+    <string name="no_session_file_saved">Aucun fichier de session enregistré dans les préférences.</string>
+    <string name="error_creating_new_session">Erreur lors de la création de la nouvelle session : %s</string>
+    <string name="missing_filename">Nom de fichier manquant</string>
+    <string name="camera_permission_required">L\'autorisation de caméra est requise pour utiliser cette fonctionnalité</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Temps de création de l\'objet Entity Tracker BarcodeDecoder() = %d millisecondes</string>
+    <string name="barcode_decoder_disposed">Le décodeur de codes-barres est supprimé</string>
+    <string name="orientation_unlocked">Orientation déverrouillée pour le mode %s</string>
+    <string name="applied_viewfinder_resize_immediately">Spécifications de redimensionnement du viseur appliquées immédiatement</string>
+    <string name="stored_pending_viewfinder_resize">Données de redimensionnement du viseur en attente stockées pour application ultérieure</string>
+    <string name="applied_pending_viewfinder_resize">Données de redimensionnement du viseur en attente appliquées à partir des valeurs stockées</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker est prêt, application des configurations en attente</string>
+    <string name="handle_view_entity_result">Gérer l\'entité de vue - Résultat reçu</string>
+    <string name="entity_tracker_decoder_available">Décodeur EntityBarcodeTracker disponible, nombre d\'entités : %s</string>
+    <string name="processing_entities">Traitement de %d entités pour la vue d\'entité</string>
+    <string name="rendered_entities">Entités rendues sur la vue d\'entité</string>
+
+    <!-- Barcode Symbologies (kept in English as requested) -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Valeur du code-barres</string>
+    <string name="symbology">Symbologie</string>
+    <string name="unknown">INCONNU</string>
+    <string name="quantity">Quantité</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Date de capture</string>
+    <string name="date">Date</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Activer/désactiver la lampe torche</string>
+    <string name="toggle_capture_zone">Activer/désactiver la zone de capture</string>
+    <string name="edit_item">Modifier l\'élément</string>
+    <string name="delete_item">Supprimer l\'élément</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Valeur : %s</string>
+    <string name="symbology_label">Symbologie : %s</string>
+    <string name="quantity_label">Quantité : %d</string>
+    <string name="date_label">Date : %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Succès de l\'octroi des autorisations.</string>
+    <string name="session_data_merged">Données de session fusionnées.</string>
+    <string name="error_reported">Erreur signalée : %s</string>
+    <string name="error_reading_session_file">Erreur lors de la lecture du fichier de session : %s</string>
+    <string name="error_reading_csv_session_file">Erreur lors de la lecture du fichier de session CSV : %s</string>
+    <string name="error_reading_excel_session_file">Erreur lors de la lecture du fichier de session Excel : %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">Renommer</string>
+    <string name="rename_file">Renommer un fichier</string>
+    <string name="create">Créer</string>
+    <string name="create_new_folder">Créer un nouveau dossier</string>
+    <string name="create_new_file">Créer un nouveau fichier</string>
+    <string name="delete_file">Supprimer le fichier</string>
+    <string name="delete_folder">Supprimer le dossier</string>
+    <string name="are_you_sure">Êtes-vous sûr ?</string>
+    <string name="file_exists_already">Le fichier existe déjà.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Paramètres</string>
+    <string name="activity_captured_barcodes">Codes-barres capturés</string>
+    <string name="activity_session_data">Données de session</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Gérer les sessions</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="menu_new_file">Nouveau fichier</string>
+    <string name="menu_new_folder">Nouveau dossier</string>
+    <string name="menu_rename">Renommer</string>
+    <string name="menu_delete">Supprimer</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Fichier texte (.txt)</item>
+        <item>Fichier CSV (.csv)</item>
+        <item>Fichier Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

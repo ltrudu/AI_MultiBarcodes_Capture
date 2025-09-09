@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI 多條碼擷取</string>
+    <string name="start_capture_button_text">開始擷取</string>
+    <string name="loading_status">正在載入應用程式</string>
+    <string name="select_session_file">選擇一個工作階段檔案或建立一個新的。</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">取得權限中</string>
+
+    <!-- Browser Activity -->
+    <string name="select">選擇</string>
+    <string name="share">分享</string>
+    <string name="refresh">重新整理</string>
+    <string name="close">關閉</string>
+    <string name="manage_sessions">管理工作階段</string>
+    <string name="create_new">建立新的</string>
+    <string name="enter_new_file_name">輸入新檔案名稱</string>
+    <string name="default_session_name">我的工作階段_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">加入至檔案</string>
+    <string name="save">儲存</string>
+    <string name="update">更新檔案</string>
+    <string name="merge">合併數量</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">開始擷取</string>
+    <string name="load_last_session">載入最後一次工作階段</string>
+    <string name="create_new_session">建立新工作階段</string>
+    <string name="view_session_data">檢視工作階段資料</string>
+    <string name="selected_session">選定的工作階段</string>
+    <string name="select_session_to_start">選擇一個工作階段以開始擷取</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">設定</string>
+    <string name="prefix">前綴：</string>
+    <string name="prefix_hint">前綴_</string>
+    <string name="file_type">檔案類型</string>
+    <string name="text_file">文字檔案</string>
+    <string name="csv_file">CSV檔案</string>
+    <string name="excel_file">Excel檔案</string>
+    <string name="language">語言</string>
+    <string name="system_language">系統語言</string>
+    <string name="validate">驗證</string>
+    <string name="cancel">取消</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">擷取</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK 初始化失敗</string>
+    <string name="folder_path_missing">資料夾路徑遺失！</string>
+    <string name="folder_path_missing_toast">資料夾路徑遺失 !!!</string>
+    <string name="error_could_not_create_file">錯誤，無法建立檔案：%s</string>
+    <string name="error_could_not_open_file">錯誤，無法開啟檔案：%s</string>
+    <string name="error_file_does_not_exist">錯誤，檔案不存在：%s</string>
+    <string name="error_file_is_empty">錯誤，檔案為空：%s</string>
+    <string name="error_loading_data">錯誤，無法在檔案中載入資料：%s</string>
+    <string name="file_saved_at">檔案儲存於：%s</string>
+    <string name="error_saving_file">儲存檔案時發生錯誤：%s</string>
+    <string name="error_saving_last_selected_file">儲存最後選擇的檔案時發生錯誤</string>
+    <string name="settings_saved_successfully">設定儲存成功</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">請選擇檔案，而不是資料夾。</string>
+    <string name="please_select_file">請選擇一個檔案。</string>
+    <string name="cannot_rename_folders_or_parent">無法重新命名資料夾或上層資料夾。</string>
+    <string name="file_already_exists">檔案已存在。</string>
+    <string name="error_renaming_file">重新命名檔案時發生錯誤</string>
+    <string name="folder_already_exists">資料夾已存在。</string>
+    <string name="failed_to_create_folder">建立資料夾失敗：%s</string>
+    <string name="failed_to_create_file">建立檔案失敗</string>
+    <string name="cannot_delete_parent_folder">無法刪除上層資料夾。</string>
+    <string name="cannot_share_folders">無法分享資料夾。</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">未找到最後一次工作階段檔案。</string>
+    <string name="no_session_file_saved">在偏好設定中沒有儲存工作階段檔案。</string>
+    <string name="error_creating_new_session">建立新工作階段時發生錯誤：%s</string>
+    <string name="missing_filename">缺少檔案名稱</string>
+    <string name="camera_permission_required">需要相機權限才能使用此功能</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() 物件建立時間 =%d 毫秒</string>
+    <string name="barcode_decoder_disposed">條碼解碼器已釋放</string>
+    <string name="orientation_unlocked">已為 %s 模式解鎖方向</string>
+    <string name="applied_viewfinder_resize_immediately">立即套用觀景窗調整大小規格</string>
+    <string name="stored_pending_viewfinder_resize">儲存待處理的觀景窗調整大小資料以供稍後套用</string>
+    <string name="applied_pending_viewfinder_resize">從儲存的值套用待處理的觀景窗調整大小資料</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker 已就緒，正在套用待處理的設定</string>
+    <string name="handle_view_entity_result">處理檢視實體 - 收到結果</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker 解碼器可用，實體數量：%s</string>
+    <string name="processing_entities">正在為實體檢視處理 %d 個實體</string>
+    <string name="rendered_entities">在實體檢視上轉譯實體</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">條碼值</string>
+    <string name="symbology">符號學</string>
+    <string name="unknown">未知</string>
+    <string name="quantity">數量</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">擷取日期</string>
+    <string name="date">日期</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">切換手電筒</string>
+    <string name="toggle_capture_zone">切換擷取區域</string>
+    <string name="edit_item">編輯項目</string>
+    <string name="delete_item">刪除項目</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">值：%s</string>
+    <string name="symbology_label">符號學：%s</string>
+    <string name="quantity_label">數量：%d</string>
+    <string name="date_label">日期：%s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">成功授予權限。</string>
+    <string name="session_data_merged">工作階段資料已合併。</string>
+    <string name="error_reported">報告的錯誤：%s</string>
+    <string name="error_reading_session_file">讀取工作階段檔案時發生錯誤：%s</string>
+    <string name="error_reading_csv_session_file">讀取CSV工作階段檔案時發生錯誤：%s</string>
+    <string name="error_reading_excel_session_file">讀取Excel工作階段檔案時發生錯誤：%s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">重新命名</string>
+    <string name="rename_file">重新命名檔案</string>
+    <string name="create">建立</string>
+    <string name="create_new_folder">建立新資料夾</string>
+    <string name="create_new_file">建立新檔案</string>
+    <string name="delete_file">刪除檔案</string>
+    <string name="delete_folder">刪除資料夾</string>
+    <string name="are_you_sure">您確定嗎？</string>
+    <string name="file_exists_already">檔案已經存在。</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">設定</string>
+    <string name="activity_captured_barcodes">擷取的條碼</string>
+    <string name="activity_session_data">工作階段資料</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">管理工作階段</string>
+    <string name="menu_settings">設定</string>
+    <string name="menu_new_file">新檔案</string>
+    <string name="menu_new_folder">新資料夾</string>
+    <string name="menu_rename">重新命名</string>
+    <string name="menu_delete">刪除</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>文字檔案 (.txt)</item>
+        <item>CSV檔案 (.csv)</item>
+        <item>Excel檔案 (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

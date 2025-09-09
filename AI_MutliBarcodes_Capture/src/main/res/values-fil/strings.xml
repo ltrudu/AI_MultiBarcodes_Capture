@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Simulan ang Pagkuha</string>
+    <string name="loading_status">Naglo-load ang Application</string>
+    <string name="select_session_file">Pumili ng session file o gumawa ng bago.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Kinukuha ang mga Pahintulot</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Piliin</string>
+    <string name="share">Ibahagi</string>
+    <string name="refresh">I-refresh</string>
+    <string name="close">Isara</string>
+    <string name="manage_sessions">Pamahalaan ang mga Session</string>
+    <string name="create_new">Gumawa ng Bago</string>
+    <string name="enter_new_file_name">Ilagay ang pangalan ng bagong file</string>
+    <string name="default_session_name">AkingSession_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Oo</string>
+    <string name="no">Hindi</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Idagdag sa File</string>
+    <string name="save">I-save</string>
+    <string name="update">I-update ang File</string>
+    <string name="merge">Pagsama-samahin ang mga Dami</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Simulan ang Pagkuha</string>
+    <string name="load_last_session">I-load ang Huling Session</string>
+    <string name="create_new_session">Gumawa ng Bagong Session</string>
+    <string name="view_session_data">Tingnan ang Data ng Session</string>
+    <string name="selected_session">Napilin na Session</string>
+    <string name="select_session_to_start">Pumili ng Session para Simulan ang Pagkuha</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Pag-setup</string>
+    <string name="prefix">Prefix:</string>
+    <string name="prefix_hint">Prefix_</string>
+    <string name="file_type">Uri ng file</string>
+    <string name="text_file">Text File</string>
+    <string name="csv_file">CSV File</string>
+    <string name="excel_file">Excel File</string>
+    <string name="language">Wika</string>
+    <string name="system_language">Wika ng Sistema</string>
+    <string name="validate">I-validate</string>
+    <string name="cancel">Kanselahin</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Kumuha</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Hindi nagtagumpay ang AI Vision SDK Initialization</string>
+    <string name="folder_path_missing">Nawawala ang folder path!</string>
+    <string name="folder_path_missing_toast">Nawawala ang folder path !!!</string>
+    <string name="error_could_not_create_file">Error, hindi makagawa ng file: %s</string>
+    <string name="error_could_not_open_file">Error, hindi mabuksan ang file: %s</string>
+    <string name="error_file_does_not_exist">Error, hindi umiiral ang file: %s</string>
+    <string name="error_file_is_empty">Error, walang laman ang file: %s</string>
+    <string name="error_loading_data">Error, hindi ma-load ang data sa file: %s</string>
+    <string name="file_saved_at">Na-save ang file sa: %s</string>
+    <string name="error_saving_file">Error sa pag-save ng file: %s</string>
+    <string name="error_saving_last_selected_file">Error sa pag-save ng huling napilin na file</string>
+    <string name="settings_saved_successfully">Matagumpay na na-save ang mga setting</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Pumili ng file, hindi folder.</string>
+    <string name="please_select_file">Pumili ng file.</string>
+    <string name="cannot_rename_folders_or_parent">Hindi maaaring palitan ang pangalan ng mga folder o parent folder.</string>
+    <string name="file_already_exists">Umiiral na ang file.</string>
+    <string name="error_renaming_file">Error sa pagpapalit ng pangalan ng file</string>
+    <string name="folder_already_exists">Umiiral na ang folder.</string>
+    <string name="failed_to_create_folder">Hindi nakagawa ng folder: %s</string>
+    <string name="failed_to_create_file">Hindi nakagawa ng file</string>
+    <string name="cannot_delete_parent_folder">Hindi maaaring tanggalin ang parent folder.</string>
+    <string name="cannot_share_folders">Hindi maibahagi ang mga folder.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Hindi natagpuan ang huling session file.</string>
+    <string name="no_session_file_saved">Walang session file na na-save sa preferences.</string>
+    <string name="error_creating_new_session">Error sa paggawa ng bagong session: %s</string>
+    <string name="missing_filename">Nawawalang filename</string>
+    <string name="camera_permission_required">Kailangan ang camera permission para gamitin ang feature na ito</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj creation time =%d milli sec</string>
+    <string name="barcode_decoder_disposed">Na-dispose na ang barcode decoder</string>
+    <string name="orientation_unlocked">Na-unlock ang orientation para sa %s mode</string>
+    <string name="applied_viewfinder_resize_immediately">Kaagad na na-apply ang viewfinder resize specs</string>
+    <string name="stored_pending_viewfinder_resize">Nai-store ang pending viewfinder resize data para sa hinaharap na application</string>
+    <string name="applied_pending_viewfinder_resize">Na-apply ang pending viewfinder resize data mula sa naka-store na values</string>
+    <string name="entity_tracker_ready">Handa na ang EntityBarcodeTracker, ina-apply ang mga pending configuration</string>
+    <string name="handle_view_entity_result">Handle View Entity - Natanggap ang Result</string>
+    <string name="entity_tracker_decoder_available">Available ang EntityBarcodeTracker decoder, entities count: %s</string>
+    <string name="processing_entities">Pinoproseso ang %d entities para sa entity view</string>
+    <string name="rendered_entities">Na-render ang mga entity sa entity view</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Mga Symbology</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Halaga ng Barcode</string>
+    <string name="symbology">Symbology</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">Dami</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Petsa ng Pagkuha</string>
+    <string name="date">Petsa</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">I-toggle ang flashlight</string>
+    <string name="toggle_capture_zone">I-toggle ang capture zone</string>
+    <string name="edit_item">I-edit ang item</string>
+    <string name="delete_item">Tanggalin ang item</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Halaga: %s</string>
+    <string name="symbology_label">Symbology: %s</string>
+    <string name="quantity_label">Dami: %d</string>
+    <string name="date_label">Petsa: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Tagumpay sa Pagbibigay ng mga Pahintulot.</string>
+    <string name="session_data_merged">Pinagsama ang session data.</string>
+    <string name="error_reported">Naiulat ang error: %s</string>
+    <string name="error_reading_session_file">Error sa pagbasa ng session file: %s</string>
+    <string name="error_reading_csv_session_file">Error sa pagbasa ng CSV session file: %s</string>
+    <string name="error_reading_excel_session_file">Error sa pagbasa ng Excel session file: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Palitan ang Pangalan</string>
+    <string name="rename_file">Palitan ang pangalan ng file</string>
+    <string name="create">Gumawa</string>
+    <string name="create_new_folder">Gumawa ng bagong folder</string>
+    <string name="create_new_file">Gumawa ng bagong file</string>
+    <string name="delete_file">Tanggalin ang File</string>
+    <string name="delete_folder">Tanggalin ang Folder</string>
+    <string name="are_you_sure">Sigurado ka ba?</string>
+    <string name="file_exists_already">Umiiral na ang file.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Mga Setting</string>
+    <string name="activity_captured_barcodes">Mga Nakuhang Barcode</string>
+    <string name="activity_session_data">Data ng Session</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Pamahalaan ang mga Session</string>
+    <string name="menu_settings">Mga Setting</string>
+    <string name="menu_new_file">Bagong File</string>
+    <string name="menu_new_folder">Bagong Folder</string>
+    <string name="menu_rename">Palitan ang Pangalan</string>
+    <string name="menu_delete">Tanggalin</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Text File (.txt)</item>
+        <item>CSV File (.csv)</item>
+        <item>Excel File (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

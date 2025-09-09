@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Wielokodowe Przechwytywanie</string>
+    <string name="start_capture_button_text">Rozpocznij Przechwytywanie</string>
+    <string name="loading_status">Ładowanie Aplikacji</string>
+    <string name="select_session_file">Wybierz plik sesji lub utwórz nowy.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Pobieranie Uprawnień</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Wybierz</string>
+    <string name="share">Udostępnij</string>
+    <string name="refresh">Odśwież</string>
+    <string name="close">Zamknij</string>
+    <string name="manage_sessions">Zarządzaj Sesjami</string>
+    <string name="create_new">Utwórz Nowy</string>
+    <string name="enter_new_file_name">Wprowadź nazwę nowego pliku</string>
+    <string name="default_session_name">MojaSesja_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Dodaj do Pliku</string>
+    <string name="save">Zapisz</string>
+    <string name="update">Aktualizuj Plik</string>
+    <string name="merge">Połącz Ilości</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Rozpocznij Przechwytywanie</string>
+    <string name="load_last_session">Załaduj Ostatnią Sesję</string>
+    <string name="create_new_session">Utwórz Nową Sesję</string>
+    <string name="view_session_data">Zobacz Dane Sesji</string>
+    <string name="selected_session">Wybrana Sesja</string>
+    <string name="select_session_to_start">Wybierz Sesję aby Rozpocząć Przechwytywanie</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Konfiguracja</string>
+    <string name="prefix">Prefiks:</string>
+    <string name="prefix_hint">Prefiks_</string>
+    <string name="file_type">Typ pliku</string>
+    <string name="text_file">Plik Tekstowy</string>
+    <string name="csv_file">Plik CSV</string>
+    <string name="excel_file">Plik Excel</string>
+    <string name="language">Język</string>
+    <string name="system_language">Język systemu</string>
+    <string name="validate">Sprawdź</string>
+    <string name="cancel">Anuluj</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Przechwyć</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Inicjalizacja AI Vision SDK nie powiodła się</string>
+    <string name="folder_path_missing">Brak ścieżki do folderu!</string>
+    <string name="folder_path_missing_toast">Brak ścieżki do folderu !!!</string>
+    <string name="error_could_not_create_file">Błąd, nie można utworzyć pliku: %s</string>
+    <string name="error_could_not_open_file">Błąd, nie można otworzyć pliku: %s</string>
+    <string name="error_file_does_not_exist">Błąd, plik nie istnieje: %s</string>
+    <string name="error_file_is_empty">Błąd, plik jest pusty: %s</string>
+    <string name="error_loading_data">Błąd, nie można załadować danych w pliku: %s</string>
+    <string name="file_saved_at">Plik zapisany w: %s</string>
+    <string name="error_saving_file">Błąd zapisywania pliku: %s</string>
+    <string name="error_saving_last_selected_file">Błąd zapisywania ostatnio wybranego pliku</string>
+    <string name="settings_saved_successfully">Ustawienia zostały pomyślnie zapisane</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Proszę wybierz plik, nie folder.</string>
+    <string name="please_select_file">Proszę wybierz plik.</string>
+    <string name="cannot_rename_folders_or_parent">Nie można zmienić nazwy folderów lub folderu nadrzędnego.</string>
+    <string name="file_already_exists">Plik już istnieje.</string>
+    <string name="error_renaming_file">Błąd zmiany nazwy pliku</string>
+    <string name="folder_already_exists">Folder już istnieje.</string>
+    <string name="failed_to_create_folder">Nie udało się utworzyć folderu: %s</string>
+    <string name="failed_to_create_file">Nie udało się utworzyć pliku</string>
+    <string name="cannot_delete_parent_folder">Nie można usunąć folderu nadrzędnego.</string>
+    <string name="cannot_share_folders">Nie można udostępnić folderów.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Nie znaleziono ostatniego pliku sesji.</string>
+    <string name="no_session_file_saved">Brak zapisanego pliku sesji w preferencjach.</string>
+    <string name="error_creating_new_session">Błąd tworzenia nowej sesji: %s</string>
+    <string name="missing_filename">Brakuje nazwy pliku</string>
+    <string name="camera_permission_required">Wymagane jest uprawnienie do kamery aby używać tej funkcji</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Czas tworzenia obiektu Entity Tracker BarcodeDecoder() =%d milisekund</string>
+    <string name="barcode_decoder_disposed">Dekoder kodu kreskowego został usunięty</string>
+    <string name="orientation_unlocked">Orientacja odblokowana dla trybu %s</string>
+    <string name="applied_viewfinder_resize_immediately">Natychmiast zastosowano specyfikacje zmiany rozmiaru wizjera</string>
+    <string name="stored_pending_viewfinder_resize">Przechowano oczekujące dane zmiany rozmiaru wizjera do późniejszego zastosowania</string>
+    <string name="applied_pending_viewfinder_resize">Zastosowano oczekujące dane zmiany rozmiaru wizjera z przechowywanych wartości</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker jest gotowy, stosuje oczekujące konfiguracje</string>
+    <string name="handle_view_entity_result">Obsłuż Jednostkę Widoku - Wynik otrzymany</string>
+    <string name="entity_tracker_decoder_available">Dekoder EntityBarcodeTracker dostępny, liczba jednostek: %s</string>
+    <string name="processing_entities">Przetwarzanie %d jednostek dla widoku jednostek</string>
+    <string name="rendered_entities">Jednostki renderowane w widoku jednostek</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Wartość Kodu Kreskowego</string>
+    <string name="symbology">Symbologia</string>
+    <string name="unknown">NIEZNANY</string>
+    <string name="quantity">Ilość</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Data Przechwycenia</string>
+    <string name="date">Data</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Przełącz latarkę</string>
+    <string name="toggle_capture_zone">Przełącz strefę przechwytywania</string>
+    <string name="edit_item">Edytuj element</string>
+    <string name="delete_item">Usuń element</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Wartość: %s</string>
+    <string name="symbology_label">Symbologia: %s</string>
+    <string name="quantity_label">Ilość: %d</string>
+    <string name="date_label">Data: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Pomyślnie Przyznano Uprawnienia.</string>
+    <string name="session_data_merged">Dane sesji zostały połączone.</string>
+    <string name="error_reported">Zgłoszono błąd: %s</string>
+    <string name="error_reading_session_file">Błąd odczytu pliku sesji: %s</string>
+    <string name="error_reading_csv_session_file">Błąd odczytu pliku sesji CSV: %s</string>
+    <string name="error_reading_excel_session_file">Błąd odczytu pliku sesji Excel: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Zmień nazwę</string>
+    <string name="rename_file">Zmień nazwę pliku</string>
+    <string name="create">Utwórz</string>
+    <string name="create_new_folder">Utwórz nowy folder</string>
+    <string name="create_new_file">Utwórz nowy plik</string>
+    <string name="delete_file">Usuń Plik</string>
+    <string name="delete_folder">Usuń Folder</string>
+    <string name="are_you_sure">Czy jesteś pewien?</string>
+    <string name="file_exists_already">Plik już istnieje.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Ustawienia</string>
+    <string name="activity_captured_barcodes">Przechwycone Kody Kreskowe</string>
+    <string name="activity_session_data">Dane Sesji</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Zarządzaj Sesjami</string>
+    <string name="menu_settings">Ustawienia</string>
+    <string name="menu_new_file">Nowy Plik</string>
+    <string name="menu_new_folder">Nowy Folder</string>
+    <string name="menu_rename">Zmień nazwę</string>
+    <string name="menu_delete">Usuń</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Plik Tekstowy (.txt)</item>
+        <item>Plik CSV (.csv)</item>
+        <item>Plik Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

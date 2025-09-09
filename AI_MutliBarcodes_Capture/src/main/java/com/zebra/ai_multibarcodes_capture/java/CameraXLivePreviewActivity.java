@@ -44,6 +44,7 @@ import com.zebra.ai_multibarcodes_capture.CameraXViewModel;
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTracker;
@@ -908,5 +909,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         }
     }
 
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
+        Context context = LocaleHelper.setLocale(newBase, languageCode);
+        super.attachBaseContext(context);
+    }
 }

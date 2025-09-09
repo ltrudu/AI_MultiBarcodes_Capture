@@ -35,6 +35,7 @@ import com.zebra.ai_multibarcodes_capture.filemanagement.BrowserActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.java.CameraXLivePreviewActivity;
@@ -459,5 +460,12 @@ public class EntryChoiceActivity extends AppCompatActivity {
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
+        Context context = LocaleHelper.setLocale(newBase, languageCode);
+        super.attachBaseContext(context);
     }
 }

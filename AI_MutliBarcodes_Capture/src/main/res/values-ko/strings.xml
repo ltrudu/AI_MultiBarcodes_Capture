@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">캡처 시작</string>
+    <string name="loading_status">애플리케이션 로딩 중</string>
+    <string name="select_session_file">세션 파일을 선택하거나 새로 생성하세요.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">권한 가져오기</string>
+
+    <!-- Browser Activity -->
+    <string name="select">선택</string>
+    <string name="share">공유</string>
+    <string name="refresh">새로고침</string>
+    <string name="close">닫기</string>
+    <string name="manage_sessions">세션 관리</string>
+    <string name="create_new">새로 만들기</string>
+    <string name="enter_new_file_name">새 파일 이름을 입력하세요</string>
+    <string name="default_session_name">내세션_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">파일에 추가</string>
+    <string name="save">저장</string>
+    <string name="update">파일 업데이트</string>
+    <string name="merge">수량 병합</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">캡처 시작</string>
+    <string name="load_last_session">마지막 세션 로드</string>
+    <string name="create_new_session">새 세션 생성</string>
+    <string name="view_session_data">세션 데이터 보기</string>
+    <string name="selected_session">선택된 세션</string>
+    <string name="select_session_to_start">캡처를 시작할 세션을 선택하세요</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">설정</string>
+    <string name="prefix">접두사:</string>
+    <string name="prefix_hint">접두사_</string>
+    <string name="file_type">파일 유형</string>
+    <string name="text_file">텍스트 파일</string>
+    <string name="csv_file">CSV 파일</string>
+    <string name="excel_file">Excel 파일</string>
+    <string name="language">언어</string>
+    <string name="system_language">시스템 언어</string>
+    <string name="validate">유효성 검사</string>
+    <string name="cancel">취소</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">캡처</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK 초기화 실패</string>
+    <string name="folder_path_missing">폴더 경로가 없습니다!</string>
+    <string name="folder_path_missing_toast">폴더 경로가 없습니다 !!!</string>
+    <string name="error_could_not_create_file">오류, 파일을 생성할 수 없습니다: %s</string>
+    <string name="error_could_not_open_file">오류, 파일을 열 수 없습니다: %s</string>
+    <string name="error_file_does_not_exist">오류, 파일이 존재하지 않습니다: %s</string>
+    <string name="error_file_is_empty">오류, 파일이 비어있습니다: %s</string>
+    <string name="error_loading_data">오류, 파일에서 데이터를 로드할 수 없습니다: %s</string>
+    <string name="file_saved_at">파일이 저장되었습니다: %s</string>
+    <string name="error_saving_file">파일 저장 오류: %s</string>
+    <string name="error_saving_last_selected_file">마지막 선택 파일 저장 오류</string>
+    <string name="settings_saved_successfully">설정이 성공적으로 저장되었습니다</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">폴더가 아닌 파일을 선택해 주세요.</string>
+    <string name="please_select_file">파일을 선택해 주세요.</string>
+    <string name="cannot_rename_folders_or_parent">폴더나 상위 폴더의 이름을 바꿀 수 없습니다.</string>
+    <string name="file_already_exists">파일이 이미 존재합니다.</string>
+    <string name="error_renaming_file">파일 이름 바꾸기 오류</string>
+    <string name="folder_already_exists">폴더가 이미 존재합니다.</string>
+    <string name="failed_to_create_folder">폴더 생성 실패: %s</string>
+    <string name="failed_to_create_file">파일 생성 실패</string>
+    <string name="cannot_delete_parent_folder">상위 폴더를 삭제할 수 없습니다.</string>
+    <string name="cannot_share_folders">폴더를 공유할 수 없습니다.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">마지막 세션 파일을 찾을 수 없습니다.</string>
+    <string name="no_session_file_saved">환경설정에 저장된 세션 파일이 없습니다.</string>
+    <string name="error_creating_new_session">새 세션 생성 오류: %s</string>
+    <string name="missing_filename">파일명 누락</string>
+    <string name="camera_permission_required">이 기능을 사용하려면 카메라 권한이 필요합니다</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj 생성 시간 =%d 밀리 초</string>
+    <string name="barcode_decoder_disposed">바코드 디코더가 해제되었습니다</string>
+    <string name="orientation_unlocked">%s 모드에 대한 방향 잠금 해제</string>
+    <string name="applied_viewfinder_resize_immediately">뷰파인더 크기 조정 사양이 즉시 적용됨</string>
+    <string name="stored_pending_viewfinder_resize">나중에 적용하기 위해 대기 중인 뷰파인더 크기 조정 데이터 저장</string>
+    <string name="applied_pending_viewfinder_resize">저장된 값에서 대기 중인 뷰파인더 크기 조정 데이터 적용</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker 준비 완료, 대기 중인 구성 적용 중</string>
+    <string name="handle_view_entity_result">뷰 엔티티 처리 - 결과 수신</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker 디코더 사용 가능, 엔티티 수: %s</string>
+    <string name="processing_entities">엔티티 뷰를 위해 %d 엔티티 처리 중</string>
+    <string name="rendered_entities">엔티티 뷰에서 엔티티 렌더링</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">심볼로지</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">바코드 값</string>
+    <string name="symbology">심볼로지</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">수량</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">캡처 날짜</string>
+    <string name="date">날짜</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">손전등 토글</string>
+    <string name="toggle_capture_zone">캡처 영역 토글</string>
+    <string name="edit_item">항목 편집</string>
+    <string name="delete_item">항목 삭제</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">값: %s</string>
+    <string name="symbology_label">심볼로지: %s</string>
+    <string name="quantity_label">수량: %d</string>
+    <string name="date_label">날짜: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">권한 부여 성공.</string>
+    <string name="session_data_merged">세션 데이터가 병합되었습니다.</string>
+    <string name="error_reported">오류 보고됨: %s</string>
+    <string name="error_reading_session_file">세션 파일 읽기 오류: %s</string>
+    <string name="error_reading_csv_session_file">CSV 세션 파일 읽기 오류: %s</string>
+    <string name="error_reading_excel_session_file">Excel 세션 파일 읽기 오류: %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">이름 바꾸기</string>
+    <string name="rename_file">파일 이름 바꾸기</string>
+    <string name="create">만들기</string>
+    <string name="create_new_folder">새 폴더 만들기</string>
+    <string name="create_new_file">새 파일 만들기</string>
+    <string name="delete_file">파일 삭제</string>
+    <string name="delete_folder">폴더 삭제</string>
+    <string name="are_you_sure">확실합니까?</string>
+    <string name="file_exists_already">파일이 이미 존재합니다.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">설정</string>
+    <string name="activity_captured_barcodes">캡처된 바코드</string>
+    <string name="activity_session_data">세션 데이터</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">세션 관리</string>
+    <string name="menu_settings">설정</string>
+    <string name="menu_new_file">새 파일</string>
+    <string name="menu_new_folder">새 폴더</string>
+    <string name="menu_rename">이름 바꾸기</string>
+    <string name="menu_delete">삭제</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>텍스트 파일 (.txt)</item>
+        <item>CSV 파일 (.csv)</item>
+        <item>Excel 파일 (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

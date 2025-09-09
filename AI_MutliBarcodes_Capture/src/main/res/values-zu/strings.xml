@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Qala ukubamba</string>
+    <string name="loading_status">Ilayisha uhlelo lokusebenza</string>
+    <string name="select_session_file">Khetha ifayela yeseshini noma yakha esha.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Kuthola imvume</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Khetha</string>
+    <string name="share">Yabelana</string>
+    <string name="refresh">Vuselela</string>
+    <string name="close">Vala</string>
+    <string name="manage_sessions">Phatha iziseshini</string>
+    <string name="create_new">Yakha okusha</string>
+    <string name="enter_new_file_name">Faka igama lefayela esha</string>
+    <string name="default_session_name">ISeshinYami_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Yebo</string>
+    <string name="no">Cha</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Engeza kufayela</string>
+    <string name="save">Gcina</string>
+    <string name="update">Buyekeza ifayela</string>
+    <string name="merge">Hlanganisa amanani</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Qala ukubamba</string>
+    <string name="load_last_session">Layisha iseshini yokugcina</string>
+    <string name="create_new_session">Yakha iseshini esha</string>
+    <string name="view_session_data">Bona idatha yeseshini</string>
+    <string name="selected_session">Iseshini ekhethiwe</string>
+    <string name="select_session_to_start">Khetha iseshini ukuze uqale ukubamba</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Ukumisa</string>
+    <string name="prefix">Isandulelo:</string>
+    <string name="prefix_hint">Isandulelo_</string>
+    <string name="file_type">Uhlobo lwefayela</string>
+    <string name="text_file">Ifayela lombhalo</string>
+    <string name="csv_file">Ifayela ye-CSV</string>
+    <string name="excel_file">Ifayela le-Excel</string>
+    <string name="validate">Qinisekisa</string>
+    <string name="cancel">Khansela</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Bamba</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Ukuqala kwe-AI Vision SDK kuhlulekile</string>
+    <string name="folder_path_missing">Indlela yefolda ayikho!</string>
+    <string name="folder_path_missing_toast">Indlela yefolda ayikho !!!</string>
+    <string name="error_could_not_create_file">Iphutha, ayikwazanga ukwakha ifayela: %s</string>
+    <string name="error_could_not_open_file">Iphutha, ayikwazanga ukuvula ifayela: %s</string>
+    <string name="error_file_does_not_exist">Iphutha, ifayela alikho: %s</string>
+    <string name="error_file_is_empty">Iphutha, ifayela alinalutho: %s</string>
+    <string name="error_loading_data">Iphutha, ayikwazanga ukulayisha idatha efayeleni: %s</string>
+    <string name="file_saved_at">Ifayela ligcinwe ku: %s</string>
+    <string name="error_saving_file">Iphutha ekugcineni ifayela: %s</string>
+    <string name="error_saving_last_selected_file">Iphutha ekugcineni ifayela lokugcina elikhethiwe</string>
+    <string name="settings_saved_successfully">Izilungiselelo zigcinwe ngempumelelo</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Sicela ukhethe ifayela, hhayi ifolda.</string>
+    <string name="please_select_file">Sicela ukhethe ifayela.</string>
+    <string name="cannot_rename_folders_or_parent">Ayikwazi ukushintsha amagama amafolda noma ifolda yomzali.</string>
+    <string name="file_already_exists">Ifayela sele likhona.</string>
+    <string name="error_renaming_file">Iphutha ekushintheni igama lefayela</string>
+    <string name="folder_already_exists">Ifolda sele ikhona.</string>
+    <string name="failed_to_create_folder">Kuhluleke ukwakha ifolda: %s</string>
+    <string name="failed_to_create_file">Kuhluleke ukwakha ifayela</string>
+    <string name="cannot_delete_parent_folder">Ayikwazi ukususa ifolda yomzali.</string>
+    <string name="cannot_share_folders">Ayikwazi ukwabelana ngamafolda.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Ifayela leseshini lokugcina alitholakali.</string>
+    <string name="no_session_file_saved">Ayikho ifayela yeseshini egcinwe kuzintandokazi.</string>
+    <string name="error_creating_new_session">Iphutha ekwakheni iseshini esha: %s</string>
+    <string name="missing_filename">Igama lefayela alikho</string>
+    <string name="camera_permission_required">Imvume yekhamera idingakala ukusebenzisa lesi sici</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Isikhathi sokwakha i-Entity Tracker BarcodeDecoder() obj =%d ama-millisecond</string>
+    <string name="barcode_decoder_disposed">I-barcode decoder ilahlwe</string>
+    <string name="orientation_unlocked">Ukuqondiswa kuvuliwe kumodi ye-%s</string>
+    <string name="applied_viewfinder_resize_immediately">Ukucaciswa kokushintsha usayizi we-viewfinder kusetshenziswe ngokushesha</string>
+    <string name="stored_pending_viewfinder_resize">Idatha yokushintsha usayizi we-viewfinder elindile igcinwe ukuze isetshenziswe kamuva</string>
+    <string name="applied_pending_viewfinder_resize">Idatha yokushintsha usayizi we-viewfinder elindile isetshenziswe kusuka kumanani agciniwe</string>
+    <string name="entity_tracker_ready">I-EntityBarcodeTracker ilungile, isebenzisa izilungiselelo ezilindile</string>
+    <string name="handle_view_entity_result">Phatha i-View Entity - Umphumela utholiwe</string>
+    <string name="entity_tracker_decoder_available">I-EntityBarcodeTracker decoder iyatholakala, inani lamabhizinisi: %s</string>
+    <string name="processing_entities">Icubungula %d amabhizinisi ekubukeni amabhizinisi</string>
+    <string name="rendered_entities">Amabhizinisi anikwe ekubukeni amabhizinisi</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Ama-Symbology</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Inani le-Barcode</string>
+    <string name="symbology">I-Symbology</string>
+    <string name="unknown">AKWAZIWA</string>
+    <string name="quantity">Inani</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Usuku lokubamba</string>
+    <string name="date">Usuku</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Guqula isibani</string>
+    <string name="toggle_capture_zone">Guqula indawo yokubamba</string>
+    <string name="edit_item">Hlela into</string>
+    <string name="delete_item">Susa into</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Inani: %s</string>
+    <string name="symbology_label">I-Symbology: %s</string>
+    <string name="quantity_label">Inani: %d</string>
+    <string name="date_label">Usuku: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Impumelelo ekunikeni izimvume.</string>
+    <string name="session_data_merged">Idatha yeseshini ihlanganisiwe.</string>
+    <string name="error_reported">Iphutha libikiwe: %s</string>
+    <string name="error_reading_session_file">Iphutha ekufundeni ifayela yeseshini: %s</string>
+    <string name="error_reading_csv_session_file">Iphutha ekufundeni ifayela ye-CSV yeseshini: %s</string>
+    <string name="error_reading_excel_session_file">Iphutha ekufundeni ifayela le-Excel yeseshini: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Qamba kabusha</string>
+    <string name="rename_file">Qamba kabusha ifayela</string>
+    <string name="create">Yakha</string>
+    <string name="create_new_folder">Yakha ifolda esha</string>
+    <string name="create_new_file">Yakha ifayela esha</string>
+    <string name="delete_file">Susa ifayela</string>
+    <string name="delete_folder">Susa ifolda</string>
+    <string name="are_you_sure">Uqinisekile?</string>
+    <string name="file_exists_already">Ifayela sele likhona.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Izilungiselelo</string>
+    <string name="activity_captured_barcodes">Ama-Barcode abanjwe</string>
+    <string name="activity_session_data">Idatha yeseshini</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Phatha iziseshini</string>
+    <string name="menu_settings">Izilungiselelo</string>
+    <string name="menu_new_file">Ifayela esha</string>
+    <string name="menu_new_folder">Ifolda esha</string>
+    <string name="menu_rename">Qamba kabusha</string>
+    <string name="menu_delete">Susa</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Ifayela lombhalo (.txt)</item>
+        <item>Ifayela ye-CSV (.csv)</item>
+        <item>Ifayela le-Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

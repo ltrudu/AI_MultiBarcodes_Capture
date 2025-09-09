@@ -11,17 +11,22 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.R;
+import com.zebra.ai_multibarcodes_capture.adapters.LanguageAdapter;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
+import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
+import com.zebra.ai_multibarcodes_capture.models.LanguageItem;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +35,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.List;
 
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
@@ -42,6 +49,10 @@ public class SettingsActivity extends AppCompatActivity {
     private RadioButton rbCSV, rbTXT, rbXSLX;
     private CheckBox cbOpenSymbologies;
     private ScrollView svSymbologies;
+    private Spinner spinnerLanguage;
+    private LanguageAdapter languageAdapter;
+    private List<LanguageItem> languageList;
+    private String pendingLanguageCode = null; // Track pending language changes
     private CheckBox cbAUSTRALIAN_POSTAL, cbAZTEC, cbCANADIAN_POSTAL, cbCHINESE_2OF5, cbCODABAR;
     private CheckBox cbCODE11, cbCODE39, cbCODE93, cbCODE128, cbCOMPOSITE_AB, cbCOMPOSITE_C;
     private CheckBox cbD2OF5, cbDATAMATRIX, cbDOTCODE, cbDUTCH_POSTAL, cbEAN_8, cbEAN_13;
@@ -88,6 +99,10 @@ public class SettingsActivity extends AppCompatActivity {
         rbXSLX = findViewById(R.id.rbXSLX);
         cbOpenSymbologies = findViewById(R.id.cbOpenSymbologies);
         svSymbologies = findViewById(R.id.svSymbologies);
+        spinnerLanguage = findViewById(R.id.spinnerLanguage);
+        
+        // Setup language spinner
+        setupLanguageSpinner();
         
         // Initialize all barcode symbology checkboxes
         cbAUSTRALIAN_POSTAL = findViewById(R.id.cbAUSTRALIAN_POSTAL);
@@ -155,6 +170,8 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.btCancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Reset any pending language changes
+                pendingLanguageCode = null;
                 setResult(RESULT_CANCELED);
                 finish();
             }
@@ -277,11 +294,99 @@ public class SettingsActivity extends AppCompatActivity {
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
+        // Check if language has changed and needs to be applied
+        boolean languageChanged = false;
+        if (pendingLanguageCode != null) {
+            LogUtils.d(TAG, "Saving language change to: " + pendingLanguageCode);
+            LocaleHelper.saveLanguageChoice(this, pendingLanguageCode);
+            languageChanged = true;
+        }
+
         // Commit the changes
         editor.commit();
 
-        Toast.makeText(this, getString(R.string.settings_saved_successfully), Toast.LENGTH_LONG).show();
+        // Show success message and handle language change if needed
+        if (languageChanged) {
+            Toast.makeText(this, getString(R.string.settings_saved_successfully), Toast.LENGTH_SHORT).show();
+            applyLocaleChange(pendingLanguageCode);
+        } else {
+            Toast.makeText(this, getString(R.string.settings_saved_successfully), Toast.LENGTH_LONG).show();
+        }
 
+    }
+    
+    private void setupLanguageSpinner() {
+        languageList = LocaleHelper.getLanguageList(this);
+        languageAdapter = new LanguageAdapter(this, languageList);
+        spinnerLanguage.setAdapter(languageAdapter);
+        
+        // Set current selection
+        String currentLang = LocaleHelper.getCurrentLanguageCode(this);
+        LogUtils.d(TAG, "Current language code: " + currentLang);
+        
+        for (int i = 0; i < languageList.size(); i++) {
+            if (languageList.get(i).getLanguageCode().equals(currentLang)) {
+                spinnerLanguage.setSelection(i);
+                LogUtils.d(TAG, "Set spinner selection to position: " + i + " (" + languageList.get(i).getLanguageName() + ")");
+                break;
+            }
+        }
+        
+        spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                LanguageItem selectedLang = languageList.get(position);
+                String newLangCode = selectedLang.getLanguageCode();
+                String currentLangCode = LocaleHelper.getCurrentLanguageCode(SettingsActivity.this);
+                
+                // Only track as pending change, don't apply immediately
+                if (!newLangCode.equals(currentLangCode)) {
+                    LogUtils.d(TAG, "Language selection changed from " + currentLangCode + " to " + newLangCode + " (pending validation)");
+                    pendingLanguageCode = newLangCode;
+                } else {
+                    // Same as current, no pending change
+                    pendingLanguageCode = null;
+                }
+            }
+            
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+    }
+    
+    private void applyLocaleChange(String languageCode) {
+        LogUtils.d(TAG, "Applying locale change to: " + languageCode);
+        
+        // Show toast to indicate language change
+        Toast.makeText(this, "Language changed. Restarting app...", Toast.LENGTH_SHORT).show();
+        
+        // Restart the entire app to apply the new locale to all activities
+        // Use a delayed restart to ensure the toast is shown
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                restartApplication();
+            }
+        }, 1000); // 1 second delay
+    }
+    
+    private void restartApplication() {
+        // Clear all activities and restart from EntryChoiceActivity
+        Intent intent = new Intent(this, com.zebra.ai_multibarcodes_capture.EntryChoiceActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        
+        // Kill the current process to ensure clean restart
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+    
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
+        Context context = LocaleHelper.setLocale(newBase, languageCode);
+        super.attachBaseContext(context);
     }
 
     private void saveBarcodeSymbologies(SharedPreferences.Editor editor) {

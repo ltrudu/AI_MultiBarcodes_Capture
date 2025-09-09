@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">ضبط چند بارکد هوش مصنوعی</string>
+    <string name="start_capture_button_text">شروع ضبط</string>
+    <string name="loading_status">بارگیری اپلیکیشن</string>
+    <string name="select_session_file">یک فایل جلسه انتخاب کنید یا یکی جدید بسازید.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">دریافت مجوزها</string>
+
+    <!-- Browser Activity -->
+    <string name="select">انتخاب</string>
+    <string name="share">اشتراک‌گذاری</string>
+    <string name="refresh">به‌روزرسانی</string>
+    <string name="close">بستن</string>
+    <string name="manage_sessions">مدیریت جلسات</string>
+    <string name="create_new">ایجاد جدید</string>
+    <string name="enter_new_file_name">نام فایل جدید را وارد کنید</string>
+    <string name="default_session_name">جلسه_من_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">بله</string>
+    <string name="no">خیر</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">اضافه به فایل</string>
+    <string name="save">ذخیره</string>
+    <string name="update">به‌روزرسانی فایل</string>
+    <string name="merge">ادغام مقادیر</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">شروع ضبط</string>
+    <string name="load_last_session">بارگیری آخرین جلسه</string>
+    <string name="create_new_session">ایجاد جلسه جدید</string>
+    <string name="view_session_data">مشاهده داده‌های جلسه</string>
+    <string name="selected_session">جلسه انتخاب‌شده</string>
+    <string name="select_session_to_start">برای شروع ضبط یک جلسه انتخاب کنید</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">راه‌اندازی</string>
+    <string name="prefix">پیشوند:</string>
+    <string name="prefix_hint">پیشوند_</string>
+    <string name="file_type">نوع فایل</string>
+    <string name="text_file">فایل متنی</string>
+    <string name="csv_file">فایل CSV</string>
+    <string name="excel_file">فایل Excel</string>
+    <string name="validate">تایید</string>
+    <string name="cancel">لغو</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">ضبط</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">راه‌اندازی AI Vision SDK ناموفق بود</string>
+    <string name="folder_path_missing">مسیر پوشه موجود نیست!</string>
+    <string name="folder_path_missing_toast">مسیر پوشه موجود نیست !!!</string>
+    <string name="error_could_not_create_file">خطا، نمی‌توان فایل ایجاد کرد: %s</string>
+    <string name="error_could_not_open_file">خطا، نمی‌توان فایل باز کرد: %s</string>
+    <string name="error_file_does_not_exist">خطا، فایل وجود ندارد: %s</string>
+    <string name="error_file_is_empty">خطا، فایل خالی است: %s</string>
+    <string name="error_loading_data">خطا، نمی‌توان داده‌ها را در فایل بارگیری کرد: %s</string>
+    <string name="file_saved_at">فایل ذخیره شد در: %s</string>
+    <string name="error_saving_file">خطا در ذخیره فایل: %s</string>
+    <string name="error_saving_last_selected_file">خطا در ذخیره آخرین فایل انتخاب‌شده</string>
+    <string name="settings_saved_successfully">تنظیمات با موفقیت ذخیره شد</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">لطفاً فایل انتخاب کنید، نه پوشه.</string>
+    <string name="please_select_file">لطفاً فایل انتخاب کنید.</string>
+    <string name="cannot_rename_folders_or_parent">نمی‌توان پوشه‌ها یا پوشه والد را تغییر نام داد.</string>
+    <string name="file_already_exists">فایل از قبل وجود دارد.</string>
+    <string name="error_renaming_file">خطا در تغییر نام فایل</string>
+    <string name="folder_already_exists">پوشه از قبل وجود دارد.</string>
+    <string name="failed_to_create_folder">ایجاد پوشه ناموفق بود: %s</string>
+    <string name="failed_to_create_file">ایجاد فایل ناموفق بود</string>
+    <string name="cannot_delete_parent_folder">نمی‌توان پوشه والد را حذف کرد.</string>
+    <string name="cannot_share_folders">نمی‌توان پوشه‌ها را به اشتراک گذاشت.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">آخرین فایل جلسه یافت نشد.</string>
+    <string name="no_session_file_saved">هیچ فایل جلسه‌ای در ترجیحات ذخیره نشده است.</string>
+    <string name="error_creating_new_session">خطا در ایجاد جلسه جدید: %s</string>
+    <string name="missing_filename">نام فایل موجود نیست</string>
+    <string name="camera_permission_required">برای استفاده از این ویژگی مجوز دوربین مورد نیاز است</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">زمان ایجاد شیء Entity Tracker BarcodeDecoder() =%d میلی‌ثانیه</string>
+    <string name="barcode_decoder_disposed">رمزگشای بارکد از بین رفته</string>
+    <string name="orientation_unlocked">جهت‌گیری برای حالت %s باز شد</string>
+    <string name="applied_viewfinder_resize_immediately">مشخصات تغییر اندازه نماگر فوراً اعمال شد</string>
+    <string name="stored_pending_viewfinder_resize">داده‌های تغییر اندازه نماگر در انتظار برای اعمال بعدی ذخیره شد</string>
+    <string name="applied_pending_viewfinder_resize">داده‌های تغییر اندازه نماگر در انتظار از مقادیر ذخیره‌شده اعمال شد</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker آماده است، تنظیمات در انتظار اعمال می‌شود</string>
+    <string name="handle_view_entity_result">مدیریت موجودیت مشاهده - نتیجه دریافت شد</string>
+    <string name="entity_tracker_decoder_available">رمزگشای EntityBarcodeTracker در دسترس است، تعداد موجودیت‌ها: %s</string>
+    <string name="processing_entities">پردازش %d موجودیت برای نمای موجودیت</string>
+    <string name="rendered_entities">موجودیت‌ها در نمای موجودیت رندر شدند</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">مقدار بارکد</string>
+    <string name="symbology">نمادشناسی</string>
+    <string name="unknown">ناشناخته</string>
+    <string name="quantity">مقدار</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">تاریخ ضبط</string>
+    <string name="date">تاریخ</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">تغییر وضعیت چراغ قوه</string>
+    <string name="toggle_capture_zone">تغییر وضعیت ناحیه ضبط</string>
+    <string name="edit_item">ویرایش آیتم</string>
+    <string name="delete_item">حذف آیتم</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">مقدار: %s</string>
+    <string name="symbology_label">نمادشناسی: %s</string>
+    <string name="quantity_label">مقدار: %d</string>
+    <string name="date_label">تاریخ: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">موفقیت در اعطای مجوزها.</string>
+    <string name="session_data_merged">داده‌های جلسه ادغام شد.</string>
+    <string name="error_reported">خطا گزارش شد: %s</string>
+    <string name="error_reading_session_file">خطا در خواندن فایل جلسه: %s</string>
+    <string name="error_reading_csv_session_file">خطا در خواندن فایل جلسه CSV: %s</string>
+    <string name="error_reading_excel_session_file">خطا در خواندن فایل جلسه Excel: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">تغییر نام</string>
+    <string name="rename_file">تغییر نام فایل</string>
+    <string name="create">ایجاد</string>
+    <string name="create_new_folder">ایجاد پوشه جدید</string>
+    <string name="create_new_file">ایجاد فایل جدید</string>
+    <string name="delete_file">حذف فایل</string>
+    <string name="delete_folder">حذف پوشه</string>
+    <string name="are_you_sure">آیا مطمئن هستید؟</string>
+    <string name="file_exists_already">فایل از قبل وجود دارد.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">تنظیمات</string>
+    <string name="activity_captured_barcodes">بارکدهای ضبط‌شده</string>
+    <string name="activity_session_data">داده‌های جلسه</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">مدیریت جلسات</string>
+    <string name="menu_settings">تنظیمات</string>
+    <string name="menu_new_file">فایل جدید</string>
+    <string name="menu_new_folder">پوشه جدید</string>
+    <string name="menu_rename">تغییر نام</string>
+    <string name="menu_delete">حذف</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>فایل متنی (.txt)</item>
+        <item>فایل CSV (.csv)</item>
+        <item>فایل Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

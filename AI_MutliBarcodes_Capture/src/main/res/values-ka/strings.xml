@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">ჩაწერის დაწყება</string>
+    <string name="loading_status">აპლიკაციის ჩატვირთვა</string>
+    <string name="select_session_file">აირჩიეთ სესიის ფაილი ან შექმენით ახალი.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">ნებართვების მიღება</string>
+
+    <!-- Browser Activity -->
+    <string name="select">არჩევა</string>
+    <string name="share">გაზიარება</string>
+    <string name="refresh">განახლება</string>
+    <string name="close">დახურვა</string>
+    <string name="manage_sessions">სესიების მართვა</string>
+    <string name="create_new">ახლის შექმნა</string>
+    <string name="enter_new_file_name">შეიყვანეთ ახალი ფაილის სახელი</string>
+    <string name="default_session_name">ჩემიSesია_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">კი</string>
+    <string name="no">არა</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">ფაილში დამატება</string>
+    <string name="save">შენახვა</string>
+    <string name="update">ფაილის განახლება</string>
+    <string name="merge">რაოდენობების გაერთიანება</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">ჩაწერის დაწყება</string>
+    <string name="load_last_session">ბოლო სესიის ჩატვირთვა</string>
+    <string name="create_new_session">ახალი სესიის შექმნა</string>
+    <string name="view_session_data">სესიის მონაცემების ნახვა</string>
+    <string name="selected_session">არჩეული სესია</string>
+    <string name="select_session_to_start">აირჩიეთ სესია ჩაწერის დასაწყებად</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">კონფიგურაცია</string>
+    <string name="prefix">პრეფიქსი:</string>
+    <string name="prefix_hint">პრეფიქსი_</string>
+    <string name="file_type">ფაილის ტიპი</string>
+    <string name="text_file">ტექსტური ფაილი</string>
+    <string name="csv_file">CSV ფაილი</string>
+    <string name="excel_file">Excel ფაილი</string>
+    <string name="language">ენა</string>
+    <string name="system_language">სისტემის ენა</string>
+    <string name="validate">დადასტურება</string>
+    <string name="cancel">გაუქმება</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">ჩაწერა</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK ინიციალიზაცია ვერ მოხერხდა</string>
+    <string name="folder_path_missing">საქაღალდის გზა ვერ მოიძებნა!</string>
+    <string name="folder_path_missing_toast">საქაღალდის გზა ვერ მოიძებნა !!!</string>
+    <string name="error_could_not_create_file">შეცდომა, ფაილის შექმნა ვერ მოხერხდა: %s</string>
+    <string name="error_could_not_open_file">შეცდომა, ფაილის გახსნა ვერ მოხერხდა: %s</string>
+    <string name="error_file_does_not_exist">შეცდომა, ფაილი არ არსებობს: %s</string>
+    <string name="error_file_is_empty">შეცდომა, ფაილი ცარიელია: %s</string>
+    <string name="error_loading_data">შეცდომა, მონაცემების ჩატვირთვა ფაილში ვერ მოხერხდა: %s</string>
+    <string name="file_saved_at">ფაილი შენახულია მისამართზე: %s</string>
+    <string name="error_saving_file">შეცდომა ფაილის შენახვისას: %s</string>
+    <string name="error_saving_last_selected_file">შეცდომა ბოლოს არჩეული ფაილის შენახვისას</string>
+    <string name="settings_saved_successfully">პარამეტრები წარმატებით შენახულია</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">გთხოვთ, აირჩიეთ ფაილი, არა საქაღალდე.</string>
+    <string name="please_select_file">გთხოვთ, აირჩიეთ ფაილი.</string>
+    <string name="cannot_rename_folders_or_parent">საქაღალდეების ან მშობლის საქაღალდის სახელის შეცვლა შეუძლებელია.</string>
+    <string name="file_already_exists">ფაილი უკვე არსებობს.</string>
+    <string name="error_renaming_file">შეცდომა ფაილის სახელის შეცვლისას</string>
+    <string name="folder_already_exists">საქაღალდე უკვე არსებობს.</string>
+    <string name="failed_to_create_folder">საქაღალდის შექმნა ვერ მოხერხდა: %s</string>
+    <string name="failed_to_create_file">ფაილის შექმნა ვერ მოხერხდა</string>
+    <string name="cannot_delete_parent_folder">მშობლის საქაღალდის წაშლა შეუძლებელია.</string>
+    <string name="cannot_share_folders">საქაღალდეების გაზიარება შეუძლებელია.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">ბოლო სესიის ფაილი ვერ მოიძებნა.</string>
+    <string name="no_session_file_saved">პარამეტრებში სესიის ფაილი არ არის შენახული.</string>
+    <string name="error_creating_new_session">შეცდომა ახალი სესიის შექმნისას: %s</string>
+    <string name="missing_filename">ფაილის სახელი ვერ მოიძებნა</string>
+    <string name="camera_permission_required">კამერის ნებართვა საჭიროა ამ ფუნქციის გამოყენებისთვის</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj შექმნის დრო =%d მილი წმ</string>
+    <string name="barcode_decoder_disposed">ბარკოდის დეკოდერი განკარგულია</string>
+    <string name="orientation_unlocked">ორიენტაცია განბლოკილია %s რეჟიმისთვის</string>
+    <string name="applied_viewfinder_resize_immediately">ვიუფაინდერის ზომის შეცვლის სპექები გამოყენებულია დაუყოვნებლივ</string>
+    <string name="stored_pending_viewfinder_resize">ვიუფაინდერის მოლოდინის ზომის შეცვლის მონაცემები შენახულია შემდგომი გამოყენებისთვის</string>
+    <string name="applied_pending_viewfinder_resize">ვიუფაინდერის მოლოდინის ზომის შეცვლის მონაცემები გამოყენებულია შენახული მნიშვნელობებიდან</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker მზადაა, მოლოდინის კონფიგურაციების გამოყენება</string>
+    <string name="handle_view_entity_result">ხელი ვიუ ენთითი - შედეგი მიღებულია</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker დეკოდერი ხელმისაწვდომია, ენთითების რაოდენობა: %s</string>
+    <string name="processing_entities">%d ენთითის დამუშავება ენთითის ხედისთვის</string>
+    <string name="rendered_entities">ენთითები რენდერებულია ენთითის ხედში</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">სიმბოლოგიები</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">ბარკოდის მნიშვნელობა</string>
+    <string name="symbology">სიმბოლოგია</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">რაოდენობა</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">ჩაწერის თარიღი</string>
+    <string name="date">თარიღი</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">ჩაბოს ჩართვა/გამორთვა</string>
+    <string name="toggle_capture_zone">ჩაწერის ზონის ჩართვა/გამორთვა</string>
+    <string name="edit_item">ელემენტის რედაქტირება</string>
+    <string name="delete_item">ელემენტის წაშლა</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">მნიშვნელობა: %s</string>
+    <string name="symbology_label">სიმბოლოგია: %s</string>
+    <string name="quantity_label">რაოდენობა: %d</string>
+    <string name="date_label">თარიღი: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">ნებართვების მინიჭება წარმატებულია.</string>
+    <string name="session_data_merged">სესიის მონაცემები გაერთიანებულია.</string>
+    <string name="error_reported">შეცდომა დაფიქსირდა: %s</string>
+    <string name="error_reading_session_file">შეცდომა სესიის ფაილის კითხვისას: %s</string>
+    <string name="error_reading_csv_session_file">შეცდომა CSV სესიის ფაილის კითხვისას: %s</string>
+    <string name="error_reading_excel_session_file">შეცდომა Excel სესიის ფაილის კითხვისას: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">სახელის შეცვლა</string>
+    <string name="rename_file">ფაილის სახელის შეცვლა</string>
+    <string name="create">შექმნა</string>
+    <string name="create_new_folder">ახალი საქაღალდის შექმნა</string>
+    <string name="create_new_file">ახალი ფაილის შექმნა</string>
+    <string name="delete_file">ფაილის წაშლა</string>
+    <string name="delete_folder">საქაღალდის წაშლა</string>
+    <string name="are_you_sure">დარწმუნებული ხართ?</string>
+    <string name="file_exists_already">ფაილი უკვე არსებობს.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">პარამეტრები</string>
+    <string name="activity_captured_barcodes">ჩაწერილი ბარკოდები</string>
+    <string name="activity_session_data">სესიის მონაცემები</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">სესიების მართვა</string>
+    <string name="menu_settings">პარამეტრები</string>
+    <string name="menu_new_file">ახალი ფაილი</string>
+    <string name="menu_new_folder">ახალი საქაღალდე</string>
+    <string name="menu_rename">სახელის შეცვლა</string>
+    <string name="menu_delete">წაშლა</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>ტექსტური ფაილი (.txt)</item>
+        <item>CSV ფაილი (.csv)</item>
+        <item>Excel ფაილი (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

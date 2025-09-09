@@ -119,6 +119,23 @@ public class PreferencesHelper {
         LogUtils.d("PreferencesHelper_FLASHLIGHT", "Loading flashlight state: " + enabled + " (default: " + Constants.SHARED_PREFERENCES_FLASHLIGHT_ENABLED_DEFAULT + ")");
         return enabled;
     }
+    
+    // Language preferences methods
+    
+    public static void saveSelectedLanguage(Context context, String languageCode) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(Constants.SHARED_PREFERENCES_LANGUAGE, languageCode);
+        boolean success = editor.commit();
+        LogUtils.d("PreferencesHelper_LANGUAGE", "Saving language: " + languageCode + ", success: " + success);
+    }
+    
+    public static String getSelectedLanguage(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        String languageCode = sharedPreferences.getString(Constants.SHARED_PREFERENCES_LANGUAGE, Constants.SHARED_PREFERENCES_LANGUAGE_DEFAULT);
+        LogUtils.d("PreferencesHelper_LANGUAGE", "Loading language: " + languageCode + " (default: " + Constants.SHARED_PREFERENCES_LANGUAGE_DEFAULT + ")");
+        return languageCode;
+    }
 
 }
 

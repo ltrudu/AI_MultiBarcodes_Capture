@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Alusta jäädvustamist</string>
+    <string name="loading_status">Rakenduse laadimine</string>
+    <string name="select_session_file">Valige seansi fail või looge uus.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Õiguste hankimine</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Vali</string>
+    <string name="share">Jaga</string>
+    <string name="refresh">Värskenda</string>
+    <string name="close">Sulge</string>
+    <string name="manage_sessions">Halda seansse</string>
+    <string name="create_new">Loo uus</string>
+    <string name="enter_new_file_name">Sisesta uue faili nimi</string>
+    <string name="default_session_name">MinuSeanss_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Jah</string>
+    <string name="no">Ei</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Lisa faili</string>
+    <string name="save">Salvesta</string>
+    <string name="update">Värskenda faili</string>
+    <string name="merge">Ühenda kogused</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Alusta jäädvustamist</string>
+    <string name="load_last_session">Laadi viimane seanss</string>
+    <string name="create_new_session">Loo uus seanss</string>
+    <string name="view_session_data">Vaata seansi andmeid</string>
+    <string name="selected_session">Valitud seanss</string>
+    <string name="select_session_to_start">Valige seanss jäädvustamise alustamiseks</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Seadistus</string>
+    <string name="prefix">Eesliide:</string>
+    <string name="prefix_hint">Eesliide_</string>
+    <string name="file_type">Failitüüp</string>
+    <string name="text_file">Tekstifail</string>
+    <string name="csv_file">CSV fail</string>
+    <string name="excel_file">Excel fail</string>
+    <string name="language">Keel</string>
+    <string name="system_language">Süsteemi keel</string>
+    <string name="validate">Kinnita</string>
+    <string name="cancel">Tühista</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Jäädvusta</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK initsialiseerimine ebaõnnestus</string>
+    <string name="folder_path_missing">Kausta tee puudub!</string>
+    <string name="folder_path_missing_toast">Kausta tee puudub !!!</string>
+    <string name="error_could_not_create_file">Viga, ei suutnud luua faili: %s</string>
+    <string name="error_could_not_open_file">Viga, ei suutnud avada faili: %s</string>
+    <string name="error_file_does_not_exist">Viga, fail ei eksisteeri: %s</string>
+    <string name="error_file_is_empty">Viga, fail on tühi: %s</string>
+    <string name="error_loading_data">Viga, ei suutnud laadida andmeid failis: %s</string>
+    <string name="file_saved_at">Fail salvestatud asukohas: %s</string>
+    <string name="error_saving_file">Viga faili salvestamisel: %s</string>
+    <string name="error_saving_last_selected_file">Viga viimati valitud faili salvestamisel</string>
+    <string name="settings_saved_successfully">Seaded edukalt salvestatud</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Palun valige fail, mitte kaust.</string>
+    <string name="please_select_file">Palun valige fail.</string>
+    <string name="cannot_rename_folders_or_parent">Ei saa ümber nimetada kaustu või vanemkaustas.</string>
+    <string name="file_already_exists">Fail on juba olemas.</string>
+    <string name="error_renaming_file">Viga faili ümbernimetamisel</string>
+    <string name="folder_already_exists">Kaust on juba olemas.</string>
+    <string name="failed_to_create_folder">Kausta loomine ebaõnnestus: %s</string>
+    <string name="failed_to_create_file">Faili loomine ebaõnnestus</string>
+    <string name="cannot_delete_parent_folder">Ei saa kustutada vanemkaustas.</string>
+    <string name="cannot_share_folders">Ei saa jagada kaustu.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Viimast seansi faili ei leitud.</string>
+    <string name="no_session_file_saved">Ühtegi seansi faili pole eelistustes salvestatud.</string>
+    <string name="error_creating_new_session">Viga uue seansi loomisel: %s</string>
+    <string name="missing_filename">Puudub failinimi</string>
+    <string name="camera_permission_required">Selle funktsiooni kasutamiseks on vajalik kaamera luba</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj loomise aeg =%d milli sek</string>
+    <string name="barcode_decoder_disposed">Vöötkoodidekooder on likvideeritud</string>
+    <string name="orientation_unlocked">Orientatsioon vabastatud %s režiimi jaoks</string>
+    <string name="applied_viewfinder_resize_immediately">Otsija suuruse muutmise spetsifikatsioonid kohaldatud kohe</string>
+    <string name="stored_pending_viewfinder_resize">Salvestatud ootel otsija suuruse muutmise andmed hilisemaks rakendamiseks</string>
+    <string name="applied_pending_viewfinder_resize">Rakendatud ootel otsija suuruse muutmise andmed salvestatud väärtustest</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker on valmis, rakendatakse ootel konfiguratsioone</string>
+    <string name="handle_view_entity_result">Käsitle vaate üksust - Tulemus saadud</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekooder saadaval, üksuste arv: %s</string>
+    <string name="processing_entities">%d üksuse töötlemine üksuse vaate jaoks</string>
+    <string name="rendered_entities">Üksused renderdatud üksuse vaates</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Sümboloogiad</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Vöötkooditväärtus</string>
+    <string name="symbology">Sümboloogia</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">Kogus</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Jäädvustamise kuupäev</string>
+    <string name="date">Kuupäev</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Lülita taskulamp</string>
+    <string name="toggle_capture_zone">Lülita jäädvustustsoon</string>
+    <string name="edit_item">Redigeeri üksust</string>
+    <string name="delete_item">Kustuta üksus</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Väärtus: %s</string>
+    <string name="symbology_label">Sümboloogia: %s</string>
+    <string name="quantity_label">Kogus: %d</string>
+    <string name="date_label">Kuupäev: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Õiguste andmine õnnestus.</string>
+    <string name="session_data_merged">Seansi andmed ühendatud.</string>
+    <string name="error_reported">Viga teatatud: %s</string>
+    <string name="error_reading_session_file">Viga seansi faili lugemisel: %s</string>
+    <string name="error_reading_csv_session_file">Viga CSV seansi faili lugemisel: %s</string>
+    <string name="error_reading_excel_session_file">Viga Exceli seansi faili lugemisel: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Nimeta ümber</string>
+    <string name="rename_file">Nimeta fail ümber</string>
+    <string name="create">Loo</string>
+    <string name="create_new_folder">Loo uus kaust</string>
+    <string name="create_new_file">Loo uus fail</string>
+    <string name="delete_file">Kustuta fail</string>
+    <string name="delete_folder">Kustuta kaust</string>
+    <string name="are_you_sure">Kas olete kindel?</string>
+    <string name="file_exists_already">Fail on juba olemas.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Seaded</string>
+    <string name="activity_captured_barcodes">Jäädvustatud vöötkooodid</string>
+    <string name="activity_session_data">Seansi andmed</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Halda seansse</string>
+    <string name="menu_settings">Seaded</string>
+    <string name="menu_new_file">Uus fail</string>
+    <string name="menu_new_folder">Uus kaust</string>
+    <string name="menu_rename">Nimeta ümber</string>
+    <string name="menu_delete">Kustuta</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Tekstifail (.txt)</item>
+        <item>CSV fail (.csv)</item>
+        <item>Excel fail (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI Multi Capturas da Codas</string>
+    <string name="start_capture_button_text">Cumanzar la Captura</string>
+    <string name="loading_status">Chargiond l\'applicaziun</string>
+    <string name="select_session_file">Tscherni in datoteca da sessiun u creeschi ina nova.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Retschavond las permissiuns</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Tscherner</string>
+    <string name="share">Cundivider</string>
+    <string name="refresh">Actualisar</string>
+    <string name="close">Serrar</string>
+    <string name="manage_sessions">Administrar las sessiuns</string>
+    <string name="create_new">Crear nov</string>
+    <string name="enter_new_file_name">Endatar il nov num da datoteca</string>
+    <string name="default_session_name">MiaSessiun_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Gea</string>
+    <string name="no">Na</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Agiuntar a la datoteca</string>
+    <string name="save">Memorisar</string>
+    <string name="update">Actualisar la datoteca</string>
+    <string name="merge">Cumbinar las quantitads</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Cumanzar la captura</string>
+    <string name="load_last_session">Chargiar l\'ultima sessiun</string>
+    <string name="create_new_session">Crear ina nova sessiun</string>
+    <string name="view_session_data">Mussar las datas da sessiun</string>
+    <string name="selected_session">Sessiun tschernida</string>
+    <string name="select_session_to_start">Tscherner ina sessiun per cumanzar la captura</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Configuraziun</string>
+    <string name="prefix">Prefix:</string>
+    <string name="prefix_hint">Prefix_</string>
+    <string name="file_type">Tip da datoteca</string>
+    <string name="text_file">Datoteca da text</string>
+    <string name="csv_file">Datoteca CSV</string>
+    <string name="excel_file">Datoteca Excel</string>
+    <string name="validate">Validar</string>
+    <string name="cancel">Interrumper</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Captura</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Inizialisaziun da l\'AI Vision SDK fallida</string>
+    <string name="folder_path_missing">Il percurs dal dossier manca!</string>
+    <string name="folder_path_missing_toast">Il percurs dal dossier manca !!!</string>
+    <string name="error_could_not_create_file">Errur, impussibel da crear la datoteca: %s</string>
+    <string name="error_could_not_open_file">Errur, impussibel d\'avrir la datoteca: %s</string>
+    <string name="error_file_does_not_exist">Errur, la datoteca n\'exista betg: %s</string>
+    <string name="error_file_is_empty">Errur, la datoteca è vida: %s</string>
+    <string name="error_loading_data">Errur, impussibel da chargiar las datas en la datoteca: %s</string>
+    <string name="file_saved_at">Datoteca memorisada a: %s</string>
+    <string name="error_saving_file">Errur cun memorisar la datoteca: %s</string>
+    <string name="error_saving_last_selected_file">Errur cun memorisar l\'ultima datoteca tschernida</string>
+    <string name="settings_saved_successfully">Configuraziuns memorisadas cun success</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Per plaschair tscherner ina datoteca, betg in dossier.</string>
+    <string name="please_select_file">Per plaschair tscherner ina datoteca.</string>
+    <string name="cannot_rename_folders_or_parent">Impussibel da renumnar dossiers u il dossier da basa.</string>
+    <string name="file_already_exists">La datoteca exista gia.</string>
+    <string name="error_renaming_file">Errur cun renumnar la datoteca</string>
+    <string name="folder_already_exists">Il dossier exista gia.</string>
+    <string name="failed_to_create_folder">Impussibel da crear il dossier: %s</string>
+    <string name="failed_to_create_file">Impussibel da crear la datoteca</string>
+    <string name="cannot_delete_parent_folder">Impussibel da stizzar il dossier da basa.</string>
+    <string name="cannot_share_folders">Impussibel da cundivider dossiers.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">L\'ultima datoteca da sessiun betg chattada.</string>
+    <string name="no_session_file_saved">Nagina datoteca da sessiun memorisada en las preferenzas.</string>
+    <string name="error_creating_new_session">Errur cun crear ina nova sessiun: %s</string>
+    <string name="missing_filename">Num da datoteca manca</string>
+    <string name="camera_permission_required">La permissiun per la camera è necessaria per utilisar questa funcziun</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Temp da creaziun dal object Entity Tracker BarcodeDecoder() =%d millisecundas</string>
+    <string name="barcode_decoder_disposed">Il decodader da codas è vegnì eliminà</string>
+    <string name="orientation_unlocked">Orientaziun sblocchada per il modus %s</string>
+    <string name="applied_viewfinder_resize_immediately">Specificaziuns da midada da grondezza dal visualisader applitgadas immediatamain</string>
+    <string name="stored_pending_viewfinder_resize">Datas da midada da grondezza dal visualisader memorisadas per applicaziun pli tard</string>
+    <string name="applied_pending_viewfinder_resize">Datas da midada da grondezza dal visualisader applitgadas da las valurs memorisadas</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker è pront, applitgar las configuraziuns pendents</string>
+    <string name="handle_view_entity_result">Trattar l\'entitad da visualisaziun - Resultat retschavì</string>
+    <string name="entity_tracker_decoder_available">Decodader EntityBarcodeTracker disponibel, dumber d\'entitads: %s</string>
+    <string name="processing_entities">Elavurar %d entitads per la visualisaziun da l\'entitad</string>
+    <string name="rendered_entities">Entitads rendidas en la visualisaziun da l\'entitad</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Simbologias</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Valur da la coda</string>
+    <string name="symbology">Simbologia</string>
+    <string name="unknown">NUNENCONUSCHENT</string>
+    <string name="quantity">Quantitad</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Data da captura</string>
+    <string name="date">Data</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Midar la lumeglia</string>
+    <string name="toggle_capture_zone">Midar la zona da captura</string>
+    <string name="edit_item">Elavurar l\'element</string>
+    <string name="delete_item">Stizzar l\'element</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Valur: %s</string>
+    <string name="symbology_label">Simbologia: %s</string>
+    <string name="quantity_label">Quantitad: %d</string>
+    <string name="date_label">Data: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Success cun conceder las permissiuns.</string>
+    <string name="session_data_merged">Datas da sessiun combinadas.</string>
+    <string name="error_reported">Errur rapportà: %s</string>
+    <string name="error_reading_session_file">Errur cun leger la datoteca da sessiun: %s</string>
+    <string name="error_reading_csv_session_file">Errur cun leger la datoteca CSV da sessiun: %s</string>
+    <string name="error_reading_excel_session_file">Errur cun leger la datoteca Excel da sessiun: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Renumnar</string>
+    <string name="rename_file">Renumnar ina datoteca</string>
+    <string name="create">Crear</string>
+    <string name="create_new_folder">Crear in nov dossier</string>
+    <string name="create_new_file">Crear ina nova datoteca</string>
+    <string name="delete_file">Stizzar la datoteca</string>
+    <string name="delete_folder">Stizzar il dossier</string>
+    <string name="are_you_sure">Es ti segir?</string>
+    <string name="file_exists_already">La datoteca exista gia.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Configuraziuns</string>
+    <string name="activity_captured_barcodes">Codas capturadas</string>
+    <string name="activity_session_data">Datas da sessiun</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Administrar las sessiuns</string>
+    <string name="menu_settings">Configuraziuns</string>
+    <string name="menu_new_file">Nova datoteca</string>
+    <string name="menu_new_folder">Nov dossier</string>
+    <string name="menu_rename">Renumnar</string>
+    <string name="menu_delete">Stizzar</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Datoteca da text (.txt)</item>
+        <item>Datoteca CSV (.csv)</item>
+        <item>Datoteca Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

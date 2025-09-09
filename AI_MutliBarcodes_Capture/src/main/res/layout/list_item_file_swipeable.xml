@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="end|center_vertical"
             android:background="#FF4444"
-            android:contentDescription="Delete item"
+            android:contentDescription="@string/delete_item"
             android:clickable="true"
             android:focusable="true">
 

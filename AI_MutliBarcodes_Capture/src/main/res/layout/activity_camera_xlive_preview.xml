@@ -50,7 +50,7 @@
         android:layout_margin="16dp"
         android:background="@drawable/capture_zone_icon_background"
         android:src="@drawable/flashlight_off_icon"
-        android:contentDescription="Toggle flashlight"
+        android:contentDescription="@string/toggle_flashlight"
         android:scaleType="center"
         android:clickable="true"
         android:focusable="true"
@@ -64,46 +64,54 @@
         android:layout_margin="16dp"
         android:background="@drawable/capture_zone_icon_background"
         android:src="@drawable/capture_zone_icon_disabled"
-        android:contentDescription="Toggle capture zone"
+        android:contentDescription="@string/toggle_capture_zone"
         android:scaleType="center"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/control"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/white"
-        android:orientation="horizontal">
+        android:background="@color/white">
 
         <Button
             android:id="@+id/closeButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:text="@string/close"
             android:backgroundTint="@color/zebra"
             android:textColor="@color/white"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
+            android:layout_marginEnd="2.5dp"
+            android:textSize="12sp"
+            android:gravity="center"
             app:cornerRadius="0dp"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/captureButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
             android:id="@+id/captureButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:backgroundTint="@color/zebra"
             android:textColor="@color/white"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="2.5dp"
             android:layout_marginEnd="5dp"
             android:text="@string/capture"
-            android:layout_weight="1"
+            android:textSize="12sp"
+            android:gravity="center"
             app:cornerRadius="0dp"
-            />
-    </LinearLayout>
+            app:layout_constraintStart_toEndOf="@+id/closeButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Byrja upptöku</string>
+    <string name="loading_status">Hleður forriti</string>
+    <string name="select_session_file">Veldu lotuskrá eða búðu til nýja.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Sæki heimildir</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Velja</string>
+    <string name="share">Deila</string>
+    <string name="refresh">Uppfæra</string>
+    <string name="close">Loka</string>
+    <string name="manage_sessions">Stjórna lotum</string>
+    <string name="create_new">Búa til nýtt</string>
+    <string name="enter_new_file_name">Sláðu inn nafn nýrrar skráar</string>
+    <string name="default_session_name">MínLota_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Já</string>
+    <string name="no">Nei</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Bæta við skrá</string>
+    <string name="save">Vista</string>
+    <string name="update">Uppfæra skrá</string>
+    <string name="merge">Sameina magn</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Byrja upptöku</string>
+    <string name="load_last_session">Hlaða síðustu lotu</string>
+    <string name="create_new_session">Búa til nýja lotu</string>
+    <string name="view_session_data">Skoða lotugögn</string>
+    <string name="selected_session">Valin lota</string>
+    <string name="select_session_to_start">Veldu lotu til að byrja upptöku</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Uppsetning</string>
+    <string name="prefix">Forskeyti:</string>
+    <string name="prefix_hint">Forskeyti_</string>
+    <string name="file_type">Skráartegund</string>
+    <string name="text_file">Textaskrá</string>
+    <string name="csv_file">CSV skrá</string>
+    <string name="excel_file">Excel skrá</string>
+    <string name="language">Tungumál</string>
+    <string name="system_language">Kerfistungumál</string>
+    <string name="validate">Staðfesta</string>
+    <string name="cancel">Hætta við</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Taka</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK frumstilling mistókst</string>
+    <string name="folder_path_missing">Möppuslóð vantar!</string>
+    <string name="folder_path_missing_toast">Möppuslóð vantar !!!</string>
+    <string name="error_could_not_create_file">Villa, gat ekki búið til skrá: %s</string>
+    <string name="error_could_not_open_file">Villa, gat ekki opnað skrá: %s</string>
+    <string name="error_file_does_not_exist">Villa, skrá er ekki til: %s</string>
+    <string name="error_file_is_empty">Villa, skrá er tóm: %s</string>
+    <string name="error_loading_data">Villa, gat ekki hlaðið gögnum í skrá: %s</string>
+    <string name="file_saved_at">Skrá vistuð í: %s</string>
+    <string name="error_saving_file">Villa við vistun skráar: %s</string>
+    <string name="error_saving_last_selected_file">Villa við vistun síðustu valinnar skráar</string>
+    <string name="settings_saved_successfully">Stillingar vistaðar með góðum árangri</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">Vinsamlegast veldu skrá, ekki möppu.</string>
+    <string name="please_select_file">Vinsamlegast veldu skrá.</string>
+    <string name="cannot_rename_folders_or_parent">Get ekki endurnefnt möppur eða yfirmöppu.</string>
+    <string name="file_already_exists">Skrá er þegar til.</string>
+    <string name="error_renaming_file">Villa við endurnefningu skráar</string>
+    <string name="folder_already_exists">Mappa er þegar til.</string>
+    <string name="failed_to_create_folder">Mistókst að búa til möppu: %s</string>
+    <string name="failed_to_create_file">Mistókst að búa til skrá</string>
+    <string name="cannot_delete_parent_folder">Get ekki eytt yfirmöppu.</string>
+    <string name="cannot_share_folders">Get ekki deilt möppum.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Síðasta lotuskrá fannst ekki.</string>
+    <string name="no_session_file_saved">Engin lotuskrá vistuð í stillingum.</string>
+    <string name="error_creating_new_session">Villa við að búa til nýja lotu: %s</string>
+    <string name="missing_filename">Vantar skráarnafn</string>
+    <string name="camera_permission_required">Myndavélarheimild þörf til að nota þennan eiginleika</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() hlut stofnunartími =%d millisek</string>
+    <string name="barcode_decoder_disposed">Strikamerkjaafrákóðari hefur verið fargað</string>
+    <string name="orientation_unlocked">Stefna aflæst fyrir %s ham</string>
+    <string name="applied_viewfinder_resize_immediately">Viewfinder stærðarbreytingarforskriftir strax beitt</string>
+    <string name="stored_pending_viewfinder_resize">Geymd bið viewfinder stærðarbreytingargögn fyrir síðari beitingu</string>
+    <string name="applied_pending_viewfinder_resize">Beitt bið viewfinder stærðarbreytingargögnum úr vistuðum gildum</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker tilbúinn, beitir biðstillingum</string>
+    <string name="handle_view_entity_result">Meðhöndla Skoða Einingu - Útkoma móttekin</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker afrákóðari tiltækur, einingafjöldi: %s</string>
+    <string name="processing_entities">Vinnur %d einingar fyrir einingasýn</string>
+    <string name="rendered_entities">Einingar myndgerðar í einingasýn</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Táknmyndir</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Strikamerkjagildi</string>
+    <string name="symbology">Táknmynd</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">Magn</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Upptökudagsetning</string>
+    <string name="date">Dagsetning</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Kveikja/slökkva á ljós</string>
+    <string name="toggle_capture_zone">Kveikja/slökkva á upptökusvæði</string>
+    <string name="edit_item">Breyta hlut</string>
+    <string name="delete_item">Eyða hlut</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Gildi: %s</string>
+    <string name="symbology_label">Táknmynd: %s</string>
+    <string name="quantity_label">Magn: %d</string>
+    <string name="date_label">Dagsetning: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Árangur við veitingu heimilda.</string>
+    <string name="session_data_merged">Lotugögn sameinuð.</string>
+    <string name="error_reported">Villa tilkynnt: %s</string>
+    <string name="error_reading_session_file">Villa við lestur lotuskráar: %s</string>
+    <string name="error_reading_csv_session_file">Villa við lestur CSV lotuskráar: %s</string>
+    <string name="error_reading_excel_session_file">Villa við lestur Excel lotuskráar: %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">Endurnefna</string>
+    <string name="rename_file">Endurnefna skrá</string>
+    <string name="create">Búa til</string>
+    <string name="create_new_folder">Búa til nýja möppu</string>
+    <string name="create_new_file">Búa til nýja skrá</string>
+    <string name="delete_file">Eyða skrá</string>
+    <string name="delete_folder">Eyða möppu</string>
+    <string name="are_you_sure">Ertu viss?</string>
+    <string name="file_exists_already">Skráin er þegar til.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Stillingar</string>
+    <string name="activity_captured_barcodes">Tekin strikamerki</string>
+    <string name="activity_session_data">Lotugögn</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Stjórna lotum</string>
+    <string name="menu_settings">Stillingar</string>
+    <string name="menu_new_file">Ný skrá</string>
+    <string name="menu_new_folder">Ný mappa</string>
+    <string name="menu_rename">Endurnefna</string>
+    <string name="menu_delete">Eyða</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Textaskrá (.txt)</item>
+        <item>CSV skrá (.csv)</item>
+        <item>Excel skrá (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

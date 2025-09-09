@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI จับภาพบาร์โค้ดหลายรายการ</string>
+    <string name="start_capture_button_text">เริ่มการจับภาพ</string>
+    <string name="loading_status">กำลังโหลดแอปพลิเคชัน</string>
+    <string name="select_session_file">เลือกไฟล์เซสชันหรือสร้างใหม่</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">กำลังเรียกสิทธิ์</string>
+
+    <!-- Browser Activity -->
+    <string name="select">เลือก</string>
+    <string name="share">แชร์</string>
+    <string name="refresh">รีเฟรช</string>
+    <string name="close">ปิด</string>
+    <string name="manage_sessions">จัดการเซสชัน</string>
+    <string name="create_new">สร้างใหม่</string>
+    <string name="enter_new_file_name">ใส่ชื่อไฟล์ใหม่</string>
+    <string name="default_session_name">เซสชันของฉัน_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">ใช่</string>
+    <string name="no">ไม่ใช่</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">เพิ่มลงในไฟล์</string>
+    <string name="save">บันทึก</string>
+    <string name="update">อัปเดตไฟล์</string>
+    <string name="merge">รวมจำนวน</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">เริ่มการจับภาพ</string>
+    <string name="load_last_session">โหลดเซสชันล่าสุด</string>
+    <string name="create_new_session">สร้างเซสชันใหม่</string>
+    <string name="view_session_data">ดูข้อมูลเซสชัน</string>
+    <string name="selected_session">เซสชันที่เลือก</string>
+    <string name="select_session_to_start">เลือกเซสชันเพื่อเริ่มการจับภาพ</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">การตั้งค่า</string>
+    <string name="prefix">คำนำหน้า:</string>
+    <string name="prefix_hint">คำนำหน้า_</string>
+    <string name="file_type">ประเภทไฟล์</string>
+    <string name="text_file">ไฟล์ข้อความ</string>
+    <string name="csv_file">ไฟล์ CSV</string>
+    <string name="excel_file">ไฟล์ Excel</string>
+    <string name="validate">ตรวจสอบ</string>
+    <string name="cancel">ยกเลิก</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">จับภาพ</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">การเริ่มต้น AI Vision SDK ล้มเหลว</string>
+    <string name="folder_path_missing">เส้นทางโฟลเดอร์หายไป!</string>
+    <string name="folder_path_missing_toast">เส้นทางโฟลเดอร์หายไป !!!</string>
+    <string name="error_could_not_create_file">ข้อผิดพลาด ไม่สามารถสร้างไฟล์: %s</string>
+    <string name="error_could_not_open_file">ข้อผิดพลาด ไม่สามารถเปิดไฟล์: %s</string>
+    <string name="error_file_does_not_exist">ข้อผิดพลาด ไฟล์ไม่มีอยู่: %s</string>
+    <string name="error_file_is_empty">ข้อผิดพลาด ไฟล์ว่างเปล่า: %s</string>
+    <string name="error_loading_data">ข้อผิดพลาด ไม่สามารถโหลดข้อมูลในไฟล์: %s</string>
+    <string name="file_saved_at">ไฟล์บันทึกที่: %s</string>
+    <string name="error_saving_file">ข้อผิดพลาดในการบันทึกไฟล์: %s</string>
+    <string name="error_saving_last_selected_file">ข้อผิดพลาดในการบันทึกไฟล์ที่เลือกล่าสุด</string>
+    <string name="settings_saved_successfully">การตั้งค่าบันทึกเรียบร้อยแล้ว</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">กรุณาเลือกไฟล์ ไม่ใช่โฟลเดอร์</string>
+    <string name="please_select_file">กรุณาเลือกไฟล์</string>
+    <string name="cannot_rename_folders_or_parent">ไม่สามารถเปลี่ยนชื่อโฟลเดอร์หรือโฟลเดอร์หลัก</string>
+    <string name="file_already_exists">ไฟล์มีอยู่แล้ว</string>
+    <string name="error_renaming_file">ข้อผิดพลาดในการเปลี่ยนชื่อไฟล์</string>
+    <string name="folder_already_exists">โฟลเดอร์มีอยู่แล้ว</string>
+    <string name="failed_to_create_folder">ไม่สามารถสร้างโฟลเดอร์: %s</string>
+    <string name="failed_to_create_file">ไม่สามารถสร้างไฟล์</string>
+    <string name="cannot_delete_parent_folder">ไม่สามารถลบโฟลเดอร์หลัก</string>
+    <string name="cannot_share_folders">ไม่สามารถแชร์โฟลเดอร์</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">ไม่พบไฟล์เซสชันล่าสุด</string>
+    <string name="no_session_file_saved">ไม่มีไฟล์เซสชันที่บันทึกในค่ากำหนด</string>
+    <string name="error_creating_new_session">ข้อผิดพลาดในการสร้างเซสชันใหม่: %s</string>
+    <string name="missing_filename">ไม่มีชื่อไฟล์</string>
+    <string name="camera_permission_required">ต้องการสิทธิ์กล้องเพื่อใช้ฟีเจอร์นี้</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">เวลาสร้างออบเจ็กต์ Entity Tracker BarcodeDecoder() =%d มิลลิวินาที</string>
+    <string name="barcode_decoder_disposed">ดีโค้ดเดอร์บาร์โค้ดถูกทิ้ง</string>
+    <string name="orientation_unlocked">ปลดล็อกการวางแนวสำหรับโหมด %s</string>
+    <string name="applied_viewfinder_resize_immediately">ใช้ข้อมูลจำเพาะการปรับขนาดช่องมองทันที</string>
+    <string name="stored_pending_viewfinder_resize">จัดเก็บข้อมูลการปรับขนาดช่องมองที่รอดำเนินการไว้สำหรับการใช้งานภายหลัง</string>
+    <string name="applied_pending_viewfinder_resize">ใช้ข้อมูลการปรับขนาดช่องมองที่รอดำเนินการจากค่าที่จัดเก็บไว้</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker พร้อม กำลังใช้การกำหนดค่าที่รอดำเนินการ</string>
+    <string name="handle_view_entity_result">จัดการเอนทิตีมุมมอง - ได้รับผลลัพธ์</string>
+    <string name="entity_tracker_decoder_available">ดีโค้ดเดอร์ EntityBarcodeTracker พร้อมใช้งาน จำนวนเอนทิตี: %s</string>
+    <string name="processing_entities">กำลังประมวลผลเอนทิตี %d สำหรับมุมมองเอนทิตี</string>
+    <string name="rendered_entities">เรนเดอร์เอนทิตีในมุมมองเอนทิตี</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">สัญลักษณ์วิทยา</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">ค่าบาร์โค้ด</string>
+    <string name="symbology">สัญลักษณ์วิทยา</string>
+    <string name="unknown">ไม่ทราบ</string>
+    <string name="quantity">จำนวน</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">วันที่จับภาพ</string>
+    <string name="date">วันที่</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">เปิด/ปิดไฟฉาย</string>
+    <string name="toggle_capture_zone">เปิด/ปิดโซนจับภาพ</string>
+    <string name="edit_item">แก้ไขรายการ</string>
+    <string name="delete_item">ลบรายการ</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">ค่า: %s</string>
+    <string name="symbology_label">สัญลักษณ์วิทยา: %s</string>
+    <string name="quantity_label">จำนวน: %d</string>
+    <string name="date_label">วันที่: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">สำเร็จในการให้สิทธิ์</string>
+    <string name="session_data_merged">ข้อมูลเซสชันรวมแล้ว</string>
+    <string name="error_reported">รายงานข้อผิดพลาด: %s</string>
+    <string name="error_reading_session_file">ข้อผิดพลาดในการอ่านไฟล์เซสชัน: %s</string>
+    <string name="error_reading_csv_session_file">ข้อผิดพลาดในการอ่านไฟล์เซสชัน CSV: %s</string>
+    <string name="error_reading_excel_session_file">ข้อผิดพลาดในการอ่านไฟล์เซสชัน Excel: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">เปลี่ยนชื่อ</string>
+    <string name="rename_file">เปลี่ยนชื่อไฟล์</string>
+    <string name="create">สร้าง</string>
+    <string name="create_new_folder">สร้างโฟลเดอร์ใหม่</string>
+    <string name="create_new_file">สร้างไฟล์ใหม่</string>
+    <string name="delete_file">ลบไฟล์</string>
+    <string name="delete_folder">ลบโฟลเดอร์</string>
+    <string name="are_you_sure">คุณแน่ใจหรือไม่?</string>
+    <string name="file_exists_already">ไฟล์มีอยู่แล้ว</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">การตั้งค่า</string>
+    <string name="activity_captured_barcodes">บาร์โค้ดที่จับภาพ</string>
+    <string name="activity_session_data">ข้อมูลเซสชัน</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">จัดการเซสชัน</string>
+    <string name="menu_settings">การตั้งค่า</string>
+    <string name="menu_new_file">ไฟล์ใหม่</string>
+    <string name="menu_new_folder">โฟลเดอร์ใหม่</string>
+    <string name="menu_rename">เปลี่ยนชื่อ</string>
+    <string name="menu_delete">ลบ</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>ไฟล์ข้อความ (.txt)</item>
+        <item>ไฟล์ CSV (.csv)</item>
+        <item>ไฟล์ Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

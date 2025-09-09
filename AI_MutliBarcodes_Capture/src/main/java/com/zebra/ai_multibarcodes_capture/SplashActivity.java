@@ -1,5 +1,6 @@
 package com.zebra.ai_multibarcodes_capture;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -46,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             stopPointsAnimations();
-                            tvStatus.setText("Success Granting Permissions.");
+                            tvStatus.setText(getString(R.string.success_granting_permissions));
                             // Start MainActivity
                             Intent intent = new Intent(SplashActivity.this, EntryChoiceActivity.class);
                             startActivity(intent);
@@ -153,5 +156,12 @@ public class SplashActivity extends AppCompatActivity {
                 tvLoading.setText(R.string.loading_status);
             }
         });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
+        Context context = LocaleHelper.setLocale(newBase, languageCode);
+        super.attachBaseContext(context);
     }
 }

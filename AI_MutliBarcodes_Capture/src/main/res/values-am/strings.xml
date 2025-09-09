@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI ባለብዙ ባርኮድ መያዣ</string>
+    <string name="start_capture_button_text">መያዝን ጀምር</string>
+    <string name="loading_status">መተግበሪያ እየጫኑ</string>
+    <string name="select_session_file">የክፍል ሰሞን ፋይል ይምረጡ ወይም አዲስ ይፍጠሩ።</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">ፈቃዶችን እያገኙ</string>
+
+    <!-- Browser Activity -->
+    <string name="select">ምረጥ</string>
+    <string name="share">አጋራ</string>
+    <string name="refresh">አድስ</string>
+    <string name="close">ዝጋ</string>
+    <string name="manage_sessions">ክፍለ ሰዓቶችን አስተዳድር</string>
+    <string name="create_new">አዲስ ፍጠር</string>
+    <string name="enter_new_file_name">አዲስ ፋይል ስም ያስገቡ</string>
+    <string name="default_session_name">የእኔ ክፍለ ሰዓት_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">አዎ</string>
+    <string name="no">አይ</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">ወደ ፋይል አክል</string>
+    <string name="save">አስቀምጥ</string>
+    <string name="update">ፋይል አዘምን</string>
+    <string name="merge">ብዛቶችን አዋሃድ</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">መያዝን ጀምር</string>
+    <string name="load_last_session">የመጨረሻውን ክፍለ ሰዓት ጫን</string>
+    <string name="create_new_session">አዲስ ክፍለ ሰዓት ፍጠር</string>
+    <string name="view_session_data">የክፍለ ሰዓት መረጃ ይመልከቱ</string>
+    <string name="selected_session">የተመረጠ ክፍለ ሰዓት</string>
+    <string name="select_session_to_start">መያዝን ለመጀመር ክፍለ ሰዓት ይምረጡ</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">ማዋቀር</string>
+    <string name="prefix">ቅድመ ቃል፦</string>
+    <string name="prefix_hint">ቅድመ ቃል_</string>
+    <string name="file_type">የፋይል አይነት</string>
+    <string name="text_file">ጽሑፍ ፋይል</string>
+    <string name="csv_file">CSV ፋይል</string>
+    <string name="excel_file">ኤክሴል ፋይል</string>
+    <string name="language">ቋንቋ</string>
+    <string name="system_language">የስርዓት ቋንቋ</string>
+    <string name="validate">አረጋግጥ</string>
+    <string name="cancel">ሰርዝ</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">ይውሰዱ</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">የAI Vision SDK ማስጀመሪያ አልተሳካም</string>
+    <string name="folder_path_missing">የአቃፊ መንገድ ነገ!</string>
+    <string name="folder_path_missing_toast">የአቃፊ መንገድ ነገ !!!</string>
+    <string name="error_could_not_create_file">ስህተት፣ ፋይል መፍጠር አልተቻለም፦ %s</string>
+    <string name="error_could_not_open_file">ስህተት፣ ፋይል መክፈት አልተቻለም፦ %s</string>
+    <string name="error_file_does_not_exist">ስህተት፣ ፋይል አይኖርም፦ %s</string>
+    <string name="error_file_is_empty">ስህተት፣ ፋይል ባዶ ነው፦ %s</string>
+    <string name="error_loading_data">ስህተት፣ በፋይል ውስጥ መረጃ መጫን አልተቻለም፦ %s</string>
+    <string name="file_saved_at">ፋይል ተቀምጧል በ፦ %s</string>
+    <string name="error_saving_file">ፋይል ስማይስቀምጥ ስህተት፦ %s</string>
+    <string name="error_saving_last_selected_file">የመጨረሻውን የተመረጠ ፋይል ስማይስቀምጥ ስህተት</string>
+    <string name="settings_saved_successfully">ቅንብሮች በተሳካ ሁኔታ ተቀምጧል</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">እባክዎ ፋይል ይምረጡ፣ አቃፊ አይደለም።</string>
+    <string name="please_select_file">እባክዎ ፋይል ይምረጡ።</string>
+    <string name="cannot_rename_folders_or_parent">አቃፊዎችን ወይም የወላጅ አቃፊን ዳግም መሰየም አይችሉም።</string>
+    <string name="file_already_exists">ፋይል አስቀድሞ አለ።</string>
+    <string name="error_renaming_file">ፋይል ዳግም ስመሰየም ስህተት</string>
+    <string name="folder_already_exists">አቃፊ አስቀድሞ አለ।</string>
+    <string name="failed_to_create_folder">አቃፊ መፍጠር አልተሳካም፦ %s</string>
+    <string name="failed_to_create_file">ፋይል መፍጠር አልተሳካም</string>
+    <string name="cannot_delete_parent_folder">የወላጅ አቃፊን መሰረዝ አይችሉም።</string>
+    <string name="cannot_share_folders">አቃፊዎችን ማካፈል አይችሉም।</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">የመጨረሻው ክፍለ ሰዓት ፋይል አልተገኘም።</string>
+    <string name="no_session_file_saved">በምርጫዎች ውስጥ ምንም ክፍለ ሰዓት ፋይል አልተቀመጠም።</string>
+    <string name="error_creating_new_session">አዲስ ክፍለ ሰዓት መፍጠር ስህተት፦ %s</string>
+    <string name="missing_filename">የጎደለ ፋይል ስም</string>
+    <string name="camera_permission_required">ይህንን ባህሪ ለመጠቀም የካሜራ ፈቃድ ያስፈልጋል</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj ፈጣሪ ጊዜ =%d ሚሊ ሰከንድ</string>
+    <string name="barcode_decoder_disposed">Barcode decoder ወድቋል</string>
+    <string name="orientation_unlocked">አቅጣጫ ለ %s ሁኔታ ተከፈተ</string>
+    <string name="applied_viewfinder_resize_immediately">Viewfinder ዳግም መጠን ስፔሲፊኬሽኖች ወዲያውኑ ተተግብረዋል</string>
+    <string name="stored_pending_viewfinder_resize">በመጠባበቅ ላይ ያለ viewfinder ዳግም መጠን መረጃ ለኋለኛ ማመልከቻ ተቀምጧል</string>
+    <string name="applied_pending_viewfinder_resize">በመጠባበቅ ላይ ያለ viewfinder ዳግም መጠን መረጃ ከተቀመጡ ዋጋዎች ተተግብሯል</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker ዝግጁ ነው፣ በመጠባበቅ ላይ ያሉ ውቅሮችን ማመልከት</string>
+    <string name="handle_view_entity_result">የእይታ አካል መያዝ - ውጤት ተቀበለ</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker decoder ተዘጋጅቷል፣ የአካላት ቁጥር፦ %s</string>
+    <string name="processing_entities">%d አካላትን ለአካላት እይታ ማቀነባበር</string>
+    <string name="rendered_entities">አካላት በአካላት እይታ ላይ ቀርበዋል</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">የባርኮድ ዋጋ</string>
+    <string name="symbology">ሲምቦሎጂ</string>
+    <string name="unknown">ያልታወቀ</string>
+    <string name="quantity">ብዛት</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">የመያዝ ቀን</string>
+    <string name="date">ቀን</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">ፍላሽላይት ቀያይር</string>
+    <string name="toggle_capture_zone">የመያዣ ዞን ቀያይር</string>
+    <string name="edit_item">ንጥል አርትዕ</string>
+    <string name="delete_item">ንጥል ሰርዝ</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">ዋጋ፦ %s</string>
+    <string name="symbology_label">ሲምቦሎጂ፦ %s</string>
+    <string name="quantity_label">ብዛት፦ %d</string>
+    <string name="date_label">ቀን፦ %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">ፈቃዶችን በመስጠት ውሳኔ።</string>
+    <string name="session_data_merged">የክፍለ ሰዓት መረጃ ተዋህዷል።</string>
+    <string name="error_reported">ስህተት ተዘግቧል፦ %s</string>
+    <string name="error_reading_session_file">የክፍለ ሰዓት ፋይል ስንቅራ ስህተት፦ %s</string>
+    <string name="error_reading_csv_session_file">የCSV ክፍለ ሰዓት ፋይል ስንቅራ ስህተት፦ %s</string>
+    <string name="error_reading_excel_session_file">የEXCEL ክፍለ ሰዓት ፋይል ስንቅራ ስህተት፦ %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">ዳግም ሰይም</string>
+    <string name="rename_file">ፋይል ዳግም ሰይም</string>
+    <string name="create">ፍጠር</string>
+    <string name="create_new_folder">አዲስ አቃፊ ፍጠር</string>
+    <string name="create_new_file">አዲስ ፋይል ፍጠር</string>
+    <string name="delete_file">ፋይል ሰርዝ</string>
+    <string name="delete_folder">አቃፊ ሰርዝ</string>
+    <string name="are_you_sure">እርግጠኛ ነዎት?</string>
+    <string name="file_exists_already">ፋይሉ አስቀድሞ አለ።</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">ቅንብሮች</string>
+    <string name="activity_captured_barcodes">የተያዙ ባርኮዶች</string>
+    <string name="activity_session_data">የክፍለ ሰዓት መረጃ</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">ክፍለ ሰዓቶችን አስተዳድር</string>
+    <string name="menu_settings">ቅንብሮች</string>
+    <string name="menu_new_file">አዲስ ፋይል</string>
+    <string name="menu_new_folder">አዲስ አቃፊ</string>
+    <string name="menu_rename">ዳግም ሰይም</string>
+    <string name="menu_delete">ሰርዝ</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>ጽሑፍ ፋይል (.txt)</item>
+        <item>CSV ፋይል (.csv)</item>
+        <item>ኤክሴል ፋይል (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

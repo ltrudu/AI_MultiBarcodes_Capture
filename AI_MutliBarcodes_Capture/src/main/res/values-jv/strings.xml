@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Wiwiti Nangkep</string>
+    <string name="loading_status">Mbukak Aplikasi</string>
+    <string name="select_session_file">Pilih berkas sesi utawa gawe anyar.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Njupuk Ijin</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Pilih</string>
+    <string name="share">Enggo Bareng</string>
+    <string name="refresh">Seger Maneh</string>
+    <string name="close">Tutup</string>
+    <string name="manage_sessions">Atur Sesi</string>
+    <string name="create_new">Gawe Anyar</string>
+    <string name="enter_new_file_name">Lebokna jeneng berkas anyar</string>
+    <string name="default_session_name">SesikuKu_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Ya</string>
+    <string name="no">Ora</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Tambahna ing Berkas</string>
+    <string name="save">Simpen</string>
+    <string name="update">Anyari Berkas</string>
+    <string name="merge">Gabungna Jumlah</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Wiwiti Nangkep</string>
+    <string name="load_last_session">Bukak Sesi Pungkasan</string>
+    <string name="create_new_session">Gawe Sesi Anyar</string>
+    <string name="view_session_data">Deleng Data Sesi</string>
+    <string name="selected_session">Sesi Sing Dipilih</string>
+    <string name="select_session_to_start">Pilih Sesi Kanggo Wiwiti Nangkep</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Atur</string>
+    <string name="prefix">Ater-ater:</string>
+    <string name="prefix_hint">Ater-ater_</string>
+    <string name="file_type">Jinis berkas</string>
+    <string name="text_file">Berkas Teks</string>
+    <string name="csv_file">Berkas CSV</string>
+    <string name="excel_file">Berkas Excel</string>
+    <string name="language">Basa</string>
+    <string name="system_language">Basa Sistem</string>
+    <string name="validate">Validasi</string>
+    <string name="cancel">Wurung</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Nangkep</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Gagal ngawiti AI Vision SDK</string>
+    <string name="folder_path_missing">Dalan folder ilang!</string>
+    <string name="folder_path_missing_toast">Dalan folder ilang !!!</string>
+    <string name="error_could_not_create_file">Salah, ora bisa nggawe berkas: %s</string>
+    <string name="error_could_not_open_file">Salah, ora bisa mbukak berkas: %s</string>
+    <string name="error_file_does_not_exist">Salah, berkas ora ana: %s</string>
+    <string name="error_file_is_empty">Salah, berkas kosong: %s</string>
+    <string name="error_loading_data">Salah, ora bisa mbukak data ing berkas: %s</string>
+    <string name="file_saved_at">Berkas disimpen ing: %s</string>
+    <string name="error_saving_file">Salah nyimpen berkas: %s</string>
+    <string name="error_saving_last_selected_file">Salah nyimpen berkas pungkasan sing dipilih</string>
+    <string name="settings_saved_successfully">Pangaturan kasil disimpen</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">Mangga pilih berkas, dudu folder.</string>
+    <string name="please_select_file">Mangga pilih berkas.</string>
+    <string name="cannot_rename_folders_or_parent">Ora bisa ngganti jeneng folder utawa folder induk.</string>
+    <string name="file_already_exists">Berkas wis ana.</string>
+    <string name="error_renaming_file">Salah ngganti jeneng berkas</string>
+    <string name="folder_already_exists">Folder wis ana.</string>
+    <string name="failed_to_create_folder">Gagal nggawe folder: %s</string>
+    <string name="failed_to_create_file">Gagal nggawe berkas</string>
+    <string name="cannot_delete_parent_folder">Ora bisa mbusak folder induk.</string>
+    <string name="cannot_share_folders">Ora bisa enggo bareng folder.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Berkas sesi pungkasan ora ketemu.</string>
+    <string name="no_session_file_saved">Ora ana berkas sesi sing disimpen ing preferensi.</string>
+    <string name="error_creating_new_session">Salah nggawe sesi anyar: %s</string>
+    <string name="missing_filename">Jeneng berkas ilang</string>
+    <string name="camera_permission_required">Perlu ijin kamera kanggo nggunakake fitur iki</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Wektu nggawe Entity Tracker BarcodeDecoder() obj =%d mili detik</string>
+    <string name="barcode_decoder_disposed">Decoder barcode wis dibuwang</string>
+    <string name="orientation_unlocked">Orientasi dibukak kanggo mode %s</string>
+    <string name="applied_viewfinder_resize_immediately">Spek resize viewfinder langsung ditrapake</string>
+    <string name="stored_pending_viewfinder_resize">Data resize viewfinder sing nunggu disimpen kanggo ditrapake mengko</string>
+    <string name="applied_pending_viewfinder_resize">Data resize viewfinder sing nunggu ditrapake saka nilai sing disimpen</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker siap, nerapake konfigurasi sing nunggu</string>
+    <string name="handle_view_entity_result">Tangani Entitas Tampilan - Hasil ditampa</string>
+    <string name="entity_tracker_decoder_available">Decoder EntityBarcodeTracker kasedhiya, cacah entitas: %s</string>
+    <string name="processing_entities">Ngolah %d entitas kanggo tampilan entitas</string>
+    <string name="rendered_entities">Entitas dirender ing tampilan entitas</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Simbologi</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Nilai Barcode</string>
+    <string name="symbology">Simbologi</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">Jumlah</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Tanggal Nangkep</string>
+    <string name="date">Tanggal</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Nyalakno/pateni lampu</string>
+    <string name="toggle_capture_zone">Nyalakno/pateni zona nangkep</string>
+    <string name="edit_item">Sunting barang</string>
+    <string name="delete_item">Busak barang</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Nilai: %s</string>
+    <string name="symbology_label">Simbologi: %s</string>
+    <string name="quantity_label">Jumlah: %d</string>
+    <string name="date_label">Tanggal: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Kasil menehi ijin.</string>
+    <string name="session_data_merged">Data sesi digabung.</string>
+    <string name="error_reported">Salah dilaporke: %s</string>
+    <string name="error_reading_session_file">Salah maca berkas sesi: %s</string>
+    <string name="error_reading_csv_session_file">Salah maca berkas sesi CSV: %s</string>
+    <string name="error_reading_excel_session_file">Salah maca berkas sesi Excel: %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">Ganti Jeneng</string>
+    <string name="rename_file">Ganti jeneng berkas</string>
+    <string name="create">Gawe</string>
+    <string name="create_new_folder">Gawe folder anyar</string>
+    <string name="create_new_file">Gawe berkas anyar</string>
+    <string name="delete_file">Busak Berkas</string>
+    <string name="delete_folder">Busak Folder</string>
+    <string name="are_you_sure">Apa yakin?</string>
+    <string name="file_exists_already">Berkas wis ana.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Pangaturan</string>
+    <string name="activity_captured_barcodes">Barcode Sing Dijaluk</string>
+    <string name="activity_session_data">Data Sesi</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Atur Sesi</string>
+    <string name="menu_settings">Pangaturan</string>
+    <string name="menu_new_file">Berkas Anyar</string>
+    <string name="menu_new_folder">Folder Anyar</string>
+    <string name="menu_rename">Ganti Jeneng</string>
+    <string name="menu_delete">Busak</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Berkas Teks (.txt)</item>
+        <item>Berkas CSV (.csv)</item>
+        <item>Berkas Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

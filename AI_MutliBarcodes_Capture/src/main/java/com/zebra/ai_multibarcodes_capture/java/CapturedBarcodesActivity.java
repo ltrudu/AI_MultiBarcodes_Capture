@@ -36,6 +36,7 @@ import com.zebra.ai_multibarcodes_capture.dataeditor.BarcodeDataEditorActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.SessionsFilesHelpers;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
+import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
 
 import java.io.File;
@@ -325,11 +326,11 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             if (barcode != null) {
                 String barcodeDateString = dateFormat.format(barcode.date) + " " + sdf.format(barcode.date);
 
-                holder.valueTextView.setText("Value: " + barcode.value);
+                holder.valueTextView.setText(context.getString(R.string.value_label, barcode.value));
                 EBarcodesSymbologies symbology = EBarcodesSymbologies.fromInt(barcode.symbology);
-                holder.symbologyTextView.setText("Symbology: " + symbology.getName());
-                holder.quantityTextView.setText("Quantity: " + barcode.quantity);
-                holder.dateTextView.setText("Date: " + barcodeDateString);
+                holder.symbologyTextView.setText(context.getString(R.string.symbology_label, symbology.getName()));
+                holder.quantityTextView.setText(context.getString(R.string.quantity_label, barcode.quantity));
+                holder.dateTextView.setText(context.getString(R.string.date_label, barcodeDateString));
 
                 if(barcode.loaded == false)
                 {
@@ -607,5 +608,12 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             // Remove SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR to use light (white) icons
             decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
+        Context context = LocaleHelper.setLocale(newBase, languageCode);
+        super.attachBaseContext(context);
     }
 }

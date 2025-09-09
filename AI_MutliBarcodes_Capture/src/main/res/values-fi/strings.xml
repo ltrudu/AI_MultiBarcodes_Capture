@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Aloita Tallennus</string>
+    <string name="loading_status">Ladataan Sovellusta</string>
+    <string name="select_session_file">Valitse istuntotiedosto tai luo uusi.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Haetaan Käyttöoikeuksia</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Valitse</string>
+    <string name="share">Jaa</string>
+    <string name="refresh">Päivitä</string>
+    <string name="close">Sulje</string>
+    <string name="manage_sessions">Hallitse Istuntoja</string>
+    <string name="create_new">Luo Uusi</string>
+    <string name="enter_new_file_name">Anna uuden tiedoston nimi</string>
+    <string name="default_session_name">MinunIstunto_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Kyllä</string>
+    <string name="no">Ei</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Lisää Tiedostoon</string>
+    <string name="save">Tallenna</string>
+    <string name="update">Päivitä Tiedosto</string>
+    <string name="merge">Yhdistä Määrät</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Aloita Tallennus</string>
+    <string name="load_last_session">Lataa Viimeisin Istunto</string>
+    <string name="create_new_session">Luo Uusi Istunto</string>
+    <string name="view_session_data">Näytä Istunnon Tiedot</string>
+    <string name="selected_session">Valittu Istunto</string>
+    <string name="select_session_to_start">Valitse Istunto Tallennuksen Aloittamiseksi</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Asetukset</string>
+    <string name="prefix">Etuliite:</string>
+    <string name="prefix_hint">Etuliite_</string>
+    <string name="file_type">Tiedostotyyppi</string>
+    <string name="text_file">Tekstitiedosto</string>
+    <string name="csv_file">CSV-tiedosto</string>
+    <string name="excel_file">Excel-tiedosto</string>
+    <string name="language">Kieli</string>
+    <string name="system_language">Järjestelmän Kieli</string>
+    <string name="validate">Vahvista</string>
+    <string name="cancel">Peruuta</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Tallenna</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK alustus epäonnistui</string>
+    <string name="folder_path_missing">Kansion polku puuttuu!</string>
+    <string name="folder_path_missing_toast">Kansion polku puuttuu !!!</string>
+    <string name="error_could_not_create_file">Virhe, tiedostoa ei voitu luoda: %s</string>
+    <string name="error_could_not_open_file">Virhe, tiedostoa ei voitu avata: %s</string>
+    <string name="error_file_does_not_exist">Virhe, tiedostoa ei ole olemassa: %s</string>
+    <string name="error_file_is_empty">Virhe, tiedosto on tyhjä: %s</string>
+    <string name="error_loading_data">Virhe, tietoja ei voitu ladata tiedostosta: %s</string>
+    <string name="file_saved_at">Tiedosto tallennettu kohteeseen: %s</string>
+    <string name="error_saving_file">Virhe tiedoston tallennuksessa: %s</string>
+    <string name="error_saving_last_selected_file">Virhe viimeksi valitun tiedoston tallennuksessa</string>
+    <string name="settings_saved_successfully">Asetukset tallennettu onnistuneesti</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Valitse tiedosto, ei kansiota.</string>
+    <string name="please_select_file">Valitse tiedosto.</string>
+    <string name="cannot_rename_folders_or_parent">Kansioita tai yläkansiota ei voi nimetä uudelleen.</string>
+    <string name="file_already_exists">Tiedosto on jo olemassa.</string>
+    <string name="error_renaming_file">Virhe tiedoston uudelleennimeämisessä</string>
+    <string name="folder_already_exists">Kansio on jo olemassa.</string>
+    <string name="failed_to_create_folder">Kansion luonti epäonnistui: %s</string>
+    <string name="failed_to_create_file">Tiedoston luonti epäonnistui</string>
+    <string name="cannot_delete_parent_folder">Yläkansiota ei voi poistaa.</string>
+    <string name="cannot_share_folders">Kansioita ei voi jakaa.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Viimeisintä istuntotiedostoa ei löytynyt.</string>
+    <string name="no_session_file_saved">Asetuksiin ei ole tallennettu istuntotiedostoa.</string>
+    <string name="error_creating_new_session">Virhe uuden istunnon luomisessa: %s</string>
+    <string name="missing_filename">Tiedostonimi puuttuu</string>
+    <string name="camera_permission_required">Kameran käyttöoikeus vaaditaan tämän ominaisuuden käyttöön</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj luontiaika =%d millisekunttia</string>
+    <string name="barcode_decoder_disposed">Viivakoodin dekooderi on hävitetty</string>
+    <string name="orientation_unlocked">Suunta vapautettu %s tilaa varten</string>
+    <string name="applied_viewfinder_resize_immediately">Etsimen koon muutos sovellettiin välittömästi</string>
+    <string name="stored_pending_viewfinder_resize">Tallennettu odottava etsimen koon muutos myöhempää soveltamista varten</string>
+    <string name="applied_pending_viewfinder_resize">Sovellettiin odottava etsimen koon muutos tallennetuista arvoista</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker on valmis, sovelletaan odottavia konfiguraatioita</string>
+    <string name="handle_view_entity_result">Käsittele näkymän entiteettiä - Tulos vastaanotettu</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekooderi saatavilla, entiteettien määrä: %s</string>
+    <string name="processing_entities">Käsitellään %d entiteettiä entiteettinäkymää varten</string>
+    <string name="rendered_entities">Entiteetit renderöity entiteettinäkymässä</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologiat</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Viivakoodin Arvo</string>
+    <string name="symbology">Symbologia</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">Määrä</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Tallennuspäivä</string>
+    <string name="date">Päivämäärä</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Kytke taskulamppu</string>
+    <string name="toggle_capture_zone">Kytke tallennusalue</string>
+    <string name="edit_item">Muokkaa kohdetta</string>
+    <string name="delete_item">Poista kohde</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Arvo: %s</string>
+    <string name="symbology_label">Symbologia: %s</string>
+    <string name="quantity_label">Määrä: %d</string>
+    <string name="date_label">Päivämäärä: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Käyttöoikeuksien myöntäminen onnistui.</string>
+    <string name="session_data_merged">Istunnon tiedot yhdistetty.</string>
+    <string name="error_reported">Virhe raportoitu: %s</string>
+    <string name="error_reading_session_file">Virhe istuntotiedoston lukemisessa: %s</string>
+    <string name="error_reading_csv_session_file">Virhe CSV-istuntotiedoston lukemisessa: %s</string>
+    <string name="error_reading_excel_session_file">Virhe Excel-istuntotiedoston lukemisessa: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Nimeä Uudelleen</string>
+    <string name="rename_file">Nimeä tiedosto uudelleen</string>
+    <string name="create">Luo</string>
+    <string name="create_new_folder">Luo uusi kansio</string>
+    <string name="create_new_file">Luo uusi tiedosto</string>
+    <string name="delete_file">Poista Tiedosto</string>
+    <string name="delete_folder">Poista Kansio</string>
+    <string name="are_you_sure">Oletko varma?</string>
+    <string name="file_exists_already">Tiedosto on jo olemassa.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Asetukset</string>
+    <string name="activity_captured_barcodes">Tallennetut Viivakoodit</string>
+    <string name="activity_session_data">Istunnon Tiedot</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Hallitse Istuntoja</string>
+    <string name="menu_settings">Asetukset</string>
+    <string name="menu_new_file">Uusi Tiedosto</string>
+    <string name="menu_new_folder">Uusi Kansio</string>
+    <string name="menu_rename">Nimeä Uudelleen</string>
+    <string name="menu_delete">Poista</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Tekstitiedosto (.txt)</item>
+        <item>CSV-tiedosto (.csv)</item>
+        <item>Excel-tiedosto (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

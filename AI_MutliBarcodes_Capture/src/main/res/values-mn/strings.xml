@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI Олон Баркод Авах</string>
+    <string name="start_capture_button_text">Авалтыг Эхлүүлэх</string>
+    <string name="loading_status">Програм Ачаалж байна</string>
+    <string name="select_session_file">Сеансын файл сонгох эсвэл шинэ үүсгэх.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Зөвшөөрөл авч байна</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Сонгох</string>
+    <string name="share">Хуваалцах</string>
+    <string name="refresh">Сэргээх</string>
+    <string name="close">Хаах</string>
+    <string name="manage_sessions">Сеансуудыг Удирдах</string>
+    <string name="create_new">Шинэ Үүсгэх</string>
+    <string name="enter_new_file_name">Шинэ файлын нэр оруулах</string>
+    <string name="default_session_name">МинийСеанс_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Тийм</string>
+    <string name="no">Үгүй</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Файлд Нэмэх</string>
+    <string name="save">Хадгалах</string>
+    <string name="update">Файл Шинэчлэх</string>
+    <string name="merge">Тоо хэмжээ Нэгтгэх</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Авалтыг Эхлүүлэх</string>
+    <string name="load_last_session">Сүүлийн Сеансыг Ачаалах</string>
+    <string name="create_new_session">Шинэ Сеанс Үүсгэх</string>
+    <string name="view_session_data">Сеансын Өгөгдөл Харах</string>
+    <string name="selected_session">Сонгогдсон Сеанс</string>
+    <string name="select_session_to_start">Авалт Эхлүүлэхийн Тулд Сеанс Сонгох</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Тохиргоо</string>
+    <string name="prefix">Угтвар үг:</string>
+    <string name="prefix_hint">Угтвар_</string>
+    <string name="file_type">Файлын төрөл</string>
+    <string name="text_file">Текст Файл</string>
+    <string name="csv_file">CSV Файл</string>
+    <string name="excel_file">Excel Файл</string>
+    <string name="validate">Баталгаажуулах</string>
+    <string name="cancel">Цуцлах</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Авах</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK эхлэл амжилтгүй болсон</string>
+    <string name="folder_path_missing">Фолдерын зам алга!</string>
+    <string name="folder_path_missing_toast">Фолдерын зам алга !!!</string>
+    <string name="error_could_not_create_file">Алдаа, файл үүсгэж чадсангүй: %s</string>
+    <string name="error_could_not_open_file">Алдаа, файл нээж чадсангүй: %s</string>
+    <string name="error_file_does_not_exist">Алдаа, файл байхгүй байна: %s</string>
+    <string name="error_file_is_empty">Алдаа, файл хоосон байна: %s</string>
+    <string name="error_loading_data">Алдаа, файлаас өгөгдөл ачаалж чадсангүй: %s</string>
+    <string name="file_saved_at">Файл хадгалагдсан газар: %s</string>
+    <string name="error_saving_file">Файл хадгалахад алдаа гарлаа: %s</string>
+    <string name="error_saving_last_selected_file">Сүүлд сонгогдсон файлыг хадгалахад алдаа гарлаа</string>
+    <string name="settings_saved_successfully">Тохиргоо амжилттай хадгалагдлаа</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Фолдер биш файл сонгоно уу.</string>
+    <string name="please_select_file">Файл сонгоно уу.</string>
+    <string name="cannot_rename_folders_or_parent">Фолдер эсвэл эцэг фолдерын нэр өөрчлөх боломжгүй.</string>
+    <string name="file_already_exists">Файл аль хэдийн байна.</string>
+    <string name="error_renaming_file">Файлын нэр өөрчлөхөд алдаа гарлаа</string>
+    <string name="folder_already_exists">Фолдер аль хэдийн байна.</string>
+    <string name="failed_to_create_folder">Фолдер үүсгэж чадсангүй: %s</string>
+    <string name="failed_to_create_file">Файл үүсгэж чадсангүй</string>
+    <string name="cannot_delete_parent_folder">Эцэг фолдерыг устгах боломжгүй.</string>
+    <string name="cannot_share_folders">Фолдерууд хуваалцах боломжгүй.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Сүүлийн сеансын файл олдсонгүй.</string>
+    <string name="no_session_file_saved">Тохиргоонд хадгалагдсан сеансын файл алга.</string>
+    <string name="error_creating_new_session">Шинэ сеанс үүсгэхэд алдаа гарлаа: %s</string>
+    <string name="missing_filename">Файлын нэр алга</string>
+    <string name="camera_permission_required">Энэ функцийг ашиглахын тулд камерын зөвшөөрөл хэрэгтэй</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() объект үүсгэх хугацаа =%d миллисекунд</string>
+    <string name="barcode_decoder_disposed">Баркод декодер устгагдсан</string>
+    <string name="orientation_unlocked">%s горимд зориулагдсан чиглэл нээгдсэн</string>
+    <string name="applied_viewfinder_resize_immediately">Харагчийн хэмжээ өөрчлөх тодорхойлолтыг шууд хэрэгжүүлсэн</string>
+    <string name="stored_pending_viewfinder_resize">Дараачийн хэрэглээнд зориулж хүлээгдэж буй харагчийн хэмжээ өөрчлөх өгөгдлийг хадгалсан</string>
+    <string name="applied_pending_viewfinder_resize">Хадгалагдсан утгуудаас хүлээгдэж буй харагчийн хэмжээ өөрчлөх өгөгдлийг хэрэгжүүлсэн</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker бэлэн болсон, хүлээгдэж буй тохиргоонуудыг хэрэгжүүлж байна</string>
+    <string name="handle_view_entity_result">Харах Оролцогчийг Зохицуулах - Үр дүн хүлээн авсан</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker декодер боломжтой, оролцогчийн тоо: %s</string>
+    <string name="processing_entities">Оролцогчийн харагдахуунд зориулж %d оролцогчийг боловсруулж байна</string>
+    <string name="rendered_entities">Оролцогчдыг оролцогчийн харагдахуунд дүрслэв</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Баркодын Утга</string>
+    <string name="symbology">Символ Зүй</string>
+    <string name="unknown">МЭДЭГДЭХГҮЙ</string>
+    <string name="quantity">Тоо хэмжээ</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Авах Огноо</string>
+    <string name="date">Огноо</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Гэрлийн товчлуурыг солих</string>
+    <string name="toggle_capture_zone">Авах бүсийг солих</string>
+    <string name="edit_item">Зүйлийг засах</string>
+    <string name="delete_item">Зүйлийг устгах</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Утга: %s</string>
+    <string name="symbology_label">Символ Зүй: %s</string>
+    <string name="quantity_label">Тоо хэмжээ: %d</string>
+    <string name="date_label">Огноо: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Зөвшөөрөл Олгох Амжилттай Болсон.</string>
+    <string name="session_data_merged">Сеансын өгөгдөл нэгтгэгдэв.</string>
+    <string name="error_reported">Алдаа мэдэгдэв: %s</string>
+    <string name="error_reading_session_file">Сеансын файл унших алдаа: %s</string>
+    <string name="error_reading_csv_session_file">CSV сеансын файл унших алдаа: %s</string>
+    <string name="error_reading_excel_session_file">Excel сеансын файл унших алдаа: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Нэр Өөрчлөх</string>
+    <string name="rename_file">Файлын нэр өөрчлөх</string>
+    <string name="create">Үүсгэх</string>
+    <string name="create_new_folder">Шинэ фолдер үүсгэх</string>
+    <string name="create_new_file">Шинэ файл үүсгэх</string>
+    <string name="delete_file">Файл Устгах</string>
+    <string name="delete_folder">Фолдер Устгах</string>
+    <string name="are_you_sure">Та итгэлтэй байна уу?</string>
+    <string name="file_exists_already">Файл аль хэдийн байна.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Тохиргоо</string>
+    <string name="activity_captured_barcodes">Авагдсан Баркодууд</string>
+    <string name="activity_session_data">Сеансын Өгөгдөл</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Сеансуудыг Удирдах</string>
+    <string name="menu_settings">Тохиргоо</string>
+    <string name="menu_new_file">Шинэ Файл</string>
+    <string name="menu_new_folder">Шинэ Фолдер</string>
+    <string name="menu_rename">Нэр Өөрчлөх</string>
+    <string name="menu_delete">Устгах</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Текст Файл (.txt)</item>
+        <item>CSV Файл (.csv)</item>
+        <item>Excel Файл (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

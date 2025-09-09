@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Kelių Brūkšninių Kodų Fiksavimas</string>
+    <string name="start_capture_button_text">Pradėti Fiksavimą</string>
+    <string name="loading_status">Kraunama Programa</string>
+    <string name="select_session_file">Pasirinkite sesijos failą arba sukurkite naują.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Gaunami Leidimai</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Pasirinkti</string>
+    <string name="share">Dalintis</string>
+    <string name="refresh">Atnaujinti</string>
+    <string name="close">Uždaryti</string>
+    <string name="manage_sessions">Valdyti Sesijas</string>
+    <string name="create_new">Kurti Naują</string>
+    <string name="enter_new_file_name">Įveskite naujo failo pavadinimą</string>
+    <string name="default_session_name">ManoSesija_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Taip</string>
+    <string name="no">Ne</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Pridėti prie Failo</string>
+    <string name="save">Išsaugoti</string>
+    <string name="update">Atnaujinti Failą</string>
+    <string name="merge">Sujungti Kiekius</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Pradėti Fiksavimą</string>
+    <string name="load_last_session">Įkelti Paskutinę Sesiją</string>
+    <string name="create_new_session">Sukurti Naują Sesiją</string>
+    <string name="view_session_data">Žiūrėti Sesijos Duomenis</string>
+    <string name="selected_session">Pasirinkta Sesija</string>
+    <string name="select_session_to_start">Pasirinkite Sesiją Norint Pradėti Fiksavimą</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Nustatymas</string>
+    <string name="prefix">Priešdėlis:</string>
+    <string name="prefix_hint">Priešdėlis_</string>
+    <string name="file_type">Failo tipas</string>
+    <string name="text_file">Teksto Failas</string>
+    <string name="csv_file">CSV Failas</string>
+    <string name="excel_file">Excel Failas</string>
+    <string name="language">Kalba</string>
+    <string name="system_language">Sistemos Kalba</string>
+    <string name="validate">Patvirtinti</string>
+    <string name="cancel">Atšaukti</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Fiksuoti</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK inicializacija nepavyko</string>
+    <string name="folder_path_missing">Trūksta aplanko kelio!</string>
+    <string name="folder_path_missing_toast">Trūksta aplanko kelio !!!</string>
+    <string name="error_could_not_create_file">Klaida, nepavyko sukurti failo: %s</string>
+    <string name="error_could_not_open_file">Klaida, nepavyko atidaryti failo: %s</string>
+    <string name="error_file_does_not_exist">Klaida, failas neegzistuoja: %s</string>
+    <string name="error_file_is_empty">Klaida, failas tuščias: %s</string>
+    <string name="error_loading_data">Klaida, nepavyko įkelti duomenų faile: %s</string>
+    <string name="file_saved_at">Failas išsaugotas: %s</string>
+    <string name="error_saving_file">Klaida saugant failą: %s</string>
+    <string name="error_saving_last_selected_file">Klaida saugant paskutinį pasirinktą failą</string>
+    <string name="settings_saved_successfully">Nustatymai sėkmingai išsaugoti</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Prašome pasirinkti failą, ne aplanką.</string>
+    <string name="please_select_file">Prašome pasirinkti failą.</string>
+    <string name="cannot_rename_folders_or_parent">Negalima pervadinti aplankų ar tėvinio aplanko.</string>
+    <string name="file_already_exists">Failas jau egzistuoja.</string>
+    <string name="error_renaming_file">Klaida pervadinant failą</string>
+    <string name="folder_already_exists">Aplankas jau egzistuoja.</string>
+    <string name="failed_to_create_folder">Nepavyko sukurti aplanko: %s</string>
+    <string name="failed_to_create_file">Nepavyko sukurti failo</string>
+    <string name="cannot_delete_parent_folder">Negalima ištrinti tėvinio aplanko.</string>
+    <string name="cannot_share_folders">Negalima dalintis aplankais.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Paskutinė sesijos failas nerastas.</string>
+    <string name="no_session_file_saved">Sesijos failas neišsaugotas nustatymuose.</string>
+    <string name="error_creating_new_session">Klaida kuriant naują sesiją: %s</string>
+    <string name="missing_filename">Trūksta failo pavadinimo</string>
+    <string name="camera_permission_required">Kameros leidimas reikalingas naudoti šį funkcionalumą</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() objekto sukūrimo laikas =%d milisekundė</string>
+    <string name="barcode_decoder_disposed">Brūkšninio kodo dekoderis likviduotas</string>
+    <string name="orientation_unlocked">Orientacija atrakinta %s režimui</string>
+    <string name="applied_viewfinder_resize_immediately">Vaizdo ieškiklio dydžio keitimo specifikacijos pritaikytos iš karto</string>
+    <string name="stored_pending_viewfinder_resize">Išsaugoti laukiami vaizdo ieškiklio dydžio keitimo duomenys vėlesniam taikymui</string>
+    <string name="applied_pending_viewfinder_resize">Pritaikyti laukiami vaizdo ieškiklio dydžio keitimo duomenys iš išsaugotų reikšmių</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker paruoštas, taikomi laukiami konfigūravimai</string>
+    <string name="handle_view_entity_result">Tvarkyti Žiūrėjimo Esybę - Gautas rezultatas</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekoderis prieinamas, esybių skaičius: %s</string>
+    <string name="processing_entities">Apdorojamos %d esybės esybių peržiūrai</string>
+    <string name="rendered_entities">Esybės atvaizduotos esybių peržiūroje</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Brūkšninio Kodo Reikšmė</string>
+    <string name="symbology">Simbologija</string>
+    <string name="unknown">NEŽINOMA</string>
+    <string name="quantity">Kiekis</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Fiksavimo Data</string>
+    <string name="date">Data</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Perjungti žibintuvėlį</string>
+    <string name="toggle_capture_zone">Perjungti fiksavimo zoną</string>
+    <string name="edit_item">Redaguoti elementą</string>
+    <string name="delete_item">Ištrinti elementą</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Reikšmė: %s</string>
+    <string name="symbology_label">Simbologija: %s</string>
+    <string name="quantity_label">Kiekis: %d</string>
+    <string name="date_label">Data: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Leidimų Suteikimas Sėkmingas.</string>
+    <string name="session_data_merged">Sesijos duomenys sujungti.</string>
+    <string name="error_reported">Pranešta apie klaidą: %s</string>
+    <string name="error_reading_session_file">Klaida skaitant sesijos failą: %s</string>
+    <string name="error_reading_csv_session_file">Klaida skaitant CSV sesijos failą: %s</string>
+    <string name="error_reading_excel_session_file">Klaida skaitant Excel sesijos failą: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Pervardinti</string>
+    <string name="rename_file">Pervardinti failą</string>
+    <string name="create">Kurti</string>
+    <string name="create_new_folder">Sukurti naują aplanką</string>
+    <string name="create_new_file">Sukurti naują failą</string>
+    <string name="delete_file">Ištrinti Failą</string>
+    <string name="delete_folder">Ištrinti Aplanką</string>
+    <string name="are_you_sure">Ar esate tikri?</string>
+    <string name="file_exists_already">Failas jau egzistuoja.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Nustatymai</string>
+    <string name="activity_captured_barcodes">Fiksuoti Brūkšniniai Kodai</string>
+    <string name="activity_session_data">Sesijos Duomenys</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Valdyti Sesijas</string>
+    <string name="menu_settings">Nustatymai</string>
+    <string name="menu_new_file">Naujas Failas</string>
+    <string name="menu_new_folder">Naujas Aplankas</string>
+    <string name="menu_rename">Pervardinti</string>
+    <string name="menu_delete">Ištrinti</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Teksto Failas (.txt)</item>
+        <item>CSV Failas (.csv)</item>
+        <item>Excel Failas (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

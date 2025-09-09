@@ -1,5 +1,6 @@
 package com.zebra.ai_multibarcodes_capture.filemanagement;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import java.io.File;
@@ -333,8 +335,8 @@ public class BrowserActivity extends AppCompatActivity {
                 return;
             }
             final int fileNamePosition = fileAdapter.getSelectedPosition();
-            ((TextView)findViewById(R.id.txtTitle)).setText("Renommer");
-            ((TextView)findViewById(R.id.txtMessage)).setText("Renommer un fichier");
+            ((TextView)findViewById(R.id.txtTitle)).setText(getString(R.string.rename));
+            ((TextView)findViewById(R.id.txtMessage)).setText(getString(R.string.rename_file));
             ((EditText)findViewById(R.id.etData)).setText(FileUtil.getFileNameWithoutExtension(fileName));
             ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.VISIBLE);
             ((TextView)findViewById(R.id.txtDataLabelRight)).setText(fileExtension);
@@ -384,8 +386,8 @@ public class BrowserActivity extends AppCompatActivity {
 
     private void createNewFolder()
     {
-        ((TextView)findViewById(R.id.txtTitle)).setText("Créer");
-        ((TextView)findViewById(R.id.txtMessage)).setText("Créer un nouveau dossier");
+        ((TextView)findViewById(R.id.txtTitle)).setText(getString(R.string.create));
+        ((TextView)findViewById(R.id.txtMessage)).setText(getString(R.string.create_new_folder));
         ((EditText)findViewById(R.id.etData)).setText(FileUtil.getTodayFolder(false).getName());
         ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.GONE);
         btPopupYes.setOnClickListener(new View.OnClickListener() {
@@ -429,8 +431,8 @@ public class BrowserActivity extends AppCompatActivity {
     }
 
     private void createNewFile() {
-        ((TextView)findViewById(R.id.txtTitle)).setText("Créer");
-        ((TextView)findViewById(R.id.txtMessage)).setText("Créer un nouveau fichier");
+        ((TextView)findViewById(R.id.txtTitle)).setText(getString(R.string.create));
+        ((TextView)findViewById(R.id.txtMessage)).setText(getString(R.string.create_new_file));
         ((EditText)findViewById(R.id.etData)).setText(FileUtil.createNewFileName(filePrefix));
         ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.VISIBLE);
         ((TextView)findViewById(R.id.txtDataLabelRight)).setText(fileExtension);
@@ -442,7 +444,7 @@ public class BrowserActivity extends AppCompatActivity {
                     File newFile = new File(currentFolder, newFileName + fileExtension);
                     if(newFile.exists())
                     {
-                        Toast.makeText(BrowserActivity.this, "Le fichier existe déjà.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(BrowserActivity.this, getString(R.string.file_exists_already), Toast.LENGTH_LONG).show();
                         clFileList.setVisibility(View.VISIBLE);
                         clPopup.setVisibility(View.GONE);
                         return;
@@ -503,8 +505,8 @@ public class BrowserActivity extends AppCompatActivity {
 
     private void deleteFile(File file)
     {
-        ((TextView)findViewById(R.id.txtTitle)).setText("Delete File");
-        ((TextView)findViewById(R.id.txtMessage)).setText("Are you sure ?");
+        ((TextView)findViewById(R.id.txtTitle)).setText(getString(R.string.delete_file));
+        ((TextView)findViewById(R.id.txtMessage)).setText(getString(R.string.are_you_sure));
         ((EditText)findViewById(R.id.etData)).setText(file.getName());
         ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.VISIBLE);
         ((TextView)findViewById(R.id.txtDataLabelRight)).setText(fileExtension);
@@ -540,8 +542,8 @@ public class BrowserActivity extends AppCompatActivity {
 
     private void deleteFolder(File file)
     {
-        ((TextView)findViewById(R.id.txtTitle)).setText("Delete Folder");
-        ((TextView)findViewById(R.id.txtMessage)).setText("Are you sure ?");
+        ((TextView)findViewById(R.id.txtTitle)).setText(getString(R.string.delete_folder));
+        ((TextView)findViewById(R.id.txtMessage)).setText(getString(R.string.are_you_sure));
         ((EditText)findViewById(R.id.etData)).setText(file.getName());
         ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.GONE);
         btPopupYes.setOnClickListener(new View.OnClickListener() {
@@ -621,4 +623,10 @@ public class BrowserActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
+        Context context = LocaleHelper.setLocale(newBase, languageCode);
+        super.attachBaseContext(context);
+    }
 }
