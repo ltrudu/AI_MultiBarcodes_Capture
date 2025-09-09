@@ -26,7 +26,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".java.CameraXLivePreviewActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:configChanges="screenSize|keyboardHidden"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
