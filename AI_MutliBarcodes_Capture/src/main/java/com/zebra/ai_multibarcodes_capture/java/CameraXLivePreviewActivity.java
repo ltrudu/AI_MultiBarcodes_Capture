@@ -190,8 +190,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                             cameraProvider = provider;
                             LogUtils.v(TAG, "Binding all camera");
 
-                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                            LogUtils.d(TAG, "Orientation unlocked for " + selectedModel + " mode");
+                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                            LogUtils.d(TAG, "Orientation locked to portrait for " + selectedModel + " mode");
 
                                 Display display = getWindowManager().getDefaultDisplay();
                                 initialRotation = display != null ? display.getRotation() : Surface.ROTATION_0;
@@ -361,6 +361,33 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         LogUtils.d(TAG, "Capture zone settings loaded");
     }
 
+    private boolean isBarcodeInCaptureZone(Rect overlayRect) {
+        // If capture zone is not enabled or overlay is not available, allow all barcodes
+        if (captureZoneOverlay == null || !captureZoneOverlay.isVisible()) {
+            return true;
+        }
+        
+        // Get the capture zone bounds in overlay coordinates
+        RectF captureZone = captureZoneOverlay.getCaptureZone();
+        if (captureZone == null) {
+            return true; // Allow all barcodes if no capture zone is set
+        }
+        
+        // Convert RectF to Rect for intersection check
+        Rect captureZoneRect = new Rect(
+            (int) captureZone.left,
+            (int) captureZone.top,
+            (int) captureZone.right,
+            (int) captureZone.bottom
+        );
+        
+        // Check if the barcode rectangle intersects with the capture zone
+        boolean intersects = Rect.intersects(overlayRect, captureZoneRect);
+        
+        LogUtils.v(TAG, "Barcode rect: " + overlayRect + ", Capture zone: " + captureZoneRect + ", Intersects: " + intersects);
+        return intersects;
+    }
+
     private void toggleCaptureZone() {
         if (captureZoneOverlay != null && captureZoneToggleIcon != null) {
             boolean isCurrentlyVisible = captureZoneOverlay.isVisible();
@@ -521,17 +548,22 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                         Rect rect = bEntity.getBoundingBox();
                         if (rect != null) {
                             Rect overlayRect = mapBoundingBoxToOverlay(rect);
+                            
+                            // Only process barcode if it's inside the capture zone (when capture zone is enabled)
+                            if (isBarcodeInCaptureZone(overlayRect)) {
+                                rects.add(overlayRect);
+                                String hashCode = String.valueOf(bEntity.hashCode());
+                                // Ensure the string has at least 4 characters
+                                if (hashCode.length() >= 4) {
+                                    // Get the last four digits
+                                    hashCode = hashCode.substring(hashCode.length() - 4);
 
-                            rects.add(overlayRect);
-                            String hashCode = String.valueOf(bEntity.hashCode());
-                            // Ensure the string has at least 4 characters
-                            if (hashCode.length() >= 4) {
-                                // Get the last four digits
-                                hashCode = hashCode.substring(hashCode.length() - 4);
-
+                                }
+                                decodedStrings.add(bEntity.getValue());
+                                LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
+                            } else {
+                                LogUtils.v(TAG, "Barcode outside capture zone, ignoring: " + bEntity.getValue());
                             }
-                            decodedStrings.add(bEntity.getValue());
-                            LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
                         }
                     }
 
@@ -708,8 +740,20 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             for (Entity entity : entitiesHolder) {
                 if (entity instanceof BarcodeEntity) {
                     BarcodeEntity bEntity = (BarcodeEntity) entity;
-                    barcodeEntities.add(bEntity);
-                    LogUtils.d(TAG, "Barcode read.\nValue:" + bEntity.getValue() + "\nSymbology:" + bEntity.getSymbology() + "\nHashcode:" + bEntity.hashCode());
+                    
+                    // Check if barcode is in capture zone before adding to results
+                    Rect boundingBox = bEntity.getBoundingBox();
+                    if (boundingBox != null) {
+                        Rect overlayRect = mapBoundingBoxToOverlay(boundingBox);
+                        if (isBarcodeInCaptureZone(overlayRect)) {
+                            barcodeEntities.add(bEntity);
+                            LogUtils.d(TAG, "Barcode captured.\nValue:" + bEntity.getValue() + "\nSymbology:" + bEntity.getSymbology() + "\nHashcode:" + bEntity.hashCode());
+                        } else {
+                            LogUtils.d(TAG, "Barcode outside capture zone, not captured: " + bEntity.getValue());
+                        }
+                    } else {
+                        LogUtils.w(TAG, "Barcode has no bounding box, skipping: " + bEntity.getValue());
+                    }
                 }
             }
             if(barcodeEntities.size() > 0)
