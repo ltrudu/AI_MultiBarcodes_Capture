@@ -9,6 +9,20 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
+### **Version 1.20**
+**Comprehensive language selection system with 71+ language support**
+
+Add complete internationalization (i18n) capabilities with comprehensive language selection and localization:
+
+• Language selection dropdown in settings with native language names and Unicode flag emojis (🇫🇷 Français, 🇪🇸 Español, 🇩🇪 Deutsch, etc.)
+• Support for 71+ languages including System Language option with automatic detection
+• Validation-based language switching - changes apply only when settings are confirmed, not immediately
+• Complete string externalization with translations for all supported languages
+• Persistent language preference storage that survives app restarts and device reboots
+• Full application restart mechanism ensuring proper locale switching across all activities
+
+The language system provides enterprise-grade internationalization support, allowing users to override system language preferences while maintaining consistent UI theming and providing immediate visual feedback through country flag emojis.
+
 ### **Version 1.18**
 **Persistent flashlight toggle with automatic state restoration**
 
