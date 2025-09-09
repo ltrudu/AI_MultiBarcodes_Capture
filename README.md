@@ -9,6 +9,17 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
+### **Version 1.18**
+**Persistent flashlight toggle with automatic state restoration**
+
+Enhance camera functionality with persistent flashlight control that remembers user preferences across app sessions:
+
+• Flashlight toggle icon automatically restores previous on/off state when opening camera view
+• Flashlight setting persists through app restarts, activity navigation, and device orientation changes  
+• Improved user experience with consistent lighting preferences across barcode capture workflows
+
+Users can now toggle the flashlight on during scanning and expect it to remain active when returning to the camera view, providing continuous lighting support for challenging scanning environments without needing to manually re-enable the flashlight each time.
+
 ### **Version 1.17**
 **Implement interactive capture zone with barcode filtering**
 
