@@ -14,12 +14,12 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 Add complete internationalization capabilities with comprehensive language selection and localization:
 
-• Language selection dropdown in settings with native language names and Unicode flag emo
-• Support for 71+ languages including System Language option with automatic detection
-• Validation-based language switching - changes apply only when settings are confirmed, not immediately
-• Complete string externalization with translations for all supported languages
-• Persistent language preference storage that survives app restarts and device reboots
-• Full application restart mechanism ensuring proper locale switching across all activities
+• Language selection dropdown in settings with native language names and Unicode flag emo  
+• Support for 71+ languages including System Language option with automatic detection  
+• Validation-based language switching - changes apply only when settings are confirmed, not immediately  
+• Complete string externalization with translations for all supported languages  
+• Persistent language preference storage that survives app restarts and device reboots  
+• Full application restart mechanism ensuring proper locale switching across all activities  
 
 The language system provides enterprise-grade internationalization support, allowing users to override system language preferences while maintaining consistent UI theming and providing immediate visual feedback through country flag emojis.
 
@@ -28,9 +28,9 @@ The language system provides enterprise-grade internationalization support, allo
 
 Enhance camera functionality with persistent flashlight control that remembers user preferences across app sessions:
 
-• Flashlight toggle icon automatically restores previous on/off state when opening camera view
-• Flashlight setting persists through app restarts, activity navigation, and device orientation changes  
-• Improved user experience with consistent lighting preferences across barcode capture workflows
+• Flashlight toggle icon automatically restores previous on/off state when opening camera view  
+• Flashlight setting persists through app restarts, activity navigation, and device orientation changes    
+• Improved user experience with consistent lighting preferences across barcode capture workflows  
 
 Users can now toggle the flashlight on during scanning and expect it to remain active when returning to the camera view, providing continuous lighting support for challenging scanning environments without needing to manually re-enable the flashlight each time.
 
