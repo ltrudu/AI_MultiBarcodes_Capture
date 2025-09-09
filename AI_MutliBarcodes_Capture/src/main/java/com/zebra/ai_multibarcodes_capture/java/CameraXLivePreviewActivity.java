@@ -132,7 +132,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private Button captureButton;
     private Button closeButton;
     private ImageView captureZoneToggleIcon;
+    private ImageView flashlightToggleIcon;
     private CaptureZoneOverlay captureZoneOverlay;
+    private boolean isFlashlightOn = false;
     
     private BarcodeTracker barcodeTracker;
     private EntityBarcodeTracker entityBarcodeTracker;
@@ -229,6 +231,14 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             @Override
             public void onClick(View view) {
                 toggleCaptureZone();
+            }
+        });
+
+        flashlightToggleIcon = findViewById(R.id.flashlight_toggle_icon);
+        flashlightToggleIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleFlashlight();
             }
         });
 
@@ -360,6 +370,70 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         
         LogUtils.d(TAG, "Capture zone settings loaded");
     }
+    
+    private void loadFlashlightSettings() {
+        LogUtils.d(TAG, "=== loadFlashlightSettings() START ===");
+        
+        // Load flashlight enabled state
+        boolean wasFlashlightEnabled = PreferencesHelper.isFlashlightEnabled(this);
+        
+        LogUtils.d(TAG, "Loaded flashlight state from preferences: " + wasFlashlightEnabled);
+        LogUtils.d(TAG, "Current camera state: " + (camera != null ? "available" : "null"));
+        LogUtils.d(TAG, "Camera has flash unit: " + (camera != null && camera.getCameraInfo().hasFlashUnit()));
+        LogUtils.d(TAG, "Current isFlashlightOn field: " + isFlashlightOn);
+        LogUtils.d(TAG, "flashlightToggleIcon: " + (flashlightToggleIcon != null ? "available" : "null"));
+        
+        if (wasFlashlightEnabled && camera != null && camera.getCameraInfo().hasFlashUnit()) {
+            LogUtils.d(TAG, "Conditions met - restoring flashlight to ON state");
+            isFlashlightOn = true;
+            
+            try {
+                camera.getCameraControl().enableTorch(true);
+                LogUtils.d(TAG, "Camera torch enabled successfully");
+            } catch (Exception e) {
+                LogUtils.e(TAG, "Failed to enable camera torch", e);
+            }
+            
+            // Update icon to reflect restored state
+            if (flashlightToggleIcon != null) {
+                flashlightToggleIcon.setImageResource(R.drawable.flashlight_on_icon);
+                LogUtils.d(TAG, "Updated icon to flashlight_on_icon");
+            } else {
+                LogUtils.w(TAG, "Cannot update icon - flashlightToggleIcon is null");
+            }
+            
+            LogUtils.d(TAG, "Flashlight restored to ON state");
+        } else {
+            LogUtils.d(TAG, "Conditions not met - setting flashlight to OFF state");
+            LogUtils.d(TAG, "Reason: wasEnabled=" + wasFlashlightEnabled + 
+                      ", camera=" + (camera != null) + 
+                      ", hasFlash=" + (camera != null && camera.getCameraInfo().hasFlashUnit()));
+                      
+            isFlashlightOn = false;
+            
+            if (camera != null && camera.getCameraInfo().hasFlashUnit()) {
+                try {
+                    camera.getCameraControl().enableTorch(false);
+                    LogUtils.d(TAG, "Camera torch disabled successfully");
+                } catch (Exception e) {
+                    LogUtils.e(TAG, "Failed to disable camera torch", e);
+                }
+            }
+            
+            // Update icon to reflect off state
+            if (flashlightToggleIcon != null) {
+                flashlightToggleIcon.setImageResource(R.drawable.flashlight_off_icon);
+                LogUtils.d(TAG, "Updated icon to flashlight_off_icon");
+            } else {
+                LogUtils.w(TAG, "Cannot update icon - flashlightToggleIcon is null");
+            }
+            
+            LogUtils.d(TAG, "Flashlight set to OFF state");
+        }
+        
+        LogUtils.d(TAG, "Final isFlashlightOn field value: " + isFlashlightOn);
+        LogUtils.d(TAG, "=== loadFlashlightSettings() END ===");
+    }
 
     private boolean isBarcodeInCaptureZone(Rect overlayRect) {
         // If capture zone is not enabled or overlay is not available, allow all barcodes
@@ -408,6 +482,56 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             
             LogUtils.d(TAG, "Capture zone toggled to: " + newVisibility + ", saved to preferences");
         }
+    }
+
+    private void toggleFlashlight() {
+        LogUtils.d(TAG, "=== toggleFlashlight() START ===");
+        LogUtils.d(TAG, "Current isFlashlightOn: " + isFlashlightOn);
+        LogUtils.d(TAG, "Camera available: " + (camera != null));
+        LogUtils.d(TAG, "Has flash unit: " + (camera != null && camera.getCameraInfo().hasFlashUnit()));
+        
+        if (camera != null && camera.getCameraInfo().hasFlashUnit()) {
+            boolean oldState = isFlashlightOn;
+            isFlashlightOn = !isFlashlightOn;
+            
+            LogUtils.d(TAG, "Toggling flashlight from " + oldState + " to " + isFlashlightOn);
+            
+            try {
+                camera.getCameraControl().enableTorch(isFlashlightOn);
+                LogUtils.d(TAG, "Camera torch set to: " + isFlashlightOn);
+            } catch (Exception e) {
+                LogUtils.e(TAG, "Failed to set camera torch to " + isFlashlightOn, e);
+            }
+            
+            // Update icon to reflect flashlight state
+            if (flashlightToggleIcon != null) {
+                if (isFlashlightOn) {
+                    flashlightToggleIcon.setImageResource(R.drawable.flashlight_on_icon);
+                    LogUtils.d(TAG, "Updated icon to flashlight_on_icon");
+                } else {
+                    flashlightToggleIcon.setImageResource(R.drawable.flashlight_off_icon);
+                    LogUtils.d(TAG, "Updated icon to flashlight_off_icon");
+                }
+            } else {
+                LogUtils.w(TAG, "Cannot update icon - flashlightToggleIcon is null");
+            }
+            
+            // Save flashlight state to preferences
+            LogUtils.d(TAG, "About to save flashlight state: " + isFlashlightOn);
+            PreferencesHelper.saveFlashlightEnabled(this, isFlashlightOn);
+            LogUtils.d(TAG, "Flashlight state saved to preferences");
+            
+            LogUtils.d(TAG, "Flashlight toggled to: " + (isFlashlightOn ? "ON" : "OFF"));
+        } else {
+            LogUtils.w(TAG, "Camera not available or does not have flashlight");
+            if (flashlightToggleIcon != null) {
+                // Disable the icon if no flashlight is available
+                flashlightToggleIcon.setAlpha(0.3f);
+                LogUtils.d(TAG, "Set flashlight icon alpha to 0.3 (disabled)");
+            }
+        }
+        
+        LogUtils.d(TAG, "=== toggleFlashlight() END ===");
     }
 
     private void bindAllCameraUseCases() {
@@ -662,6 +786,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         previewUseCase.setSurfaceProvider(binding.previewView.getSurfaceProvider());
 
         camera = cameraProvider.bindToLifecycle(/* lifecycleOwner= */ this, cameraSelector, previewUseCase, analysisUseCase);
+        
+        // Load flashlight settings after camera is bound and available
+        LogUtils.d(TAG, "Camera bound successfully, loading flashlight settings");
+        loadFlashlightSettings();
     }
 
     public void onBackPressed() {
@@ -677,6 +805,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             LogUtils.d(TAG, "onResume - CaptureZoneOverlay dimensions: " + captureZoneOverlay.getWidth() + "x" + captureZoneOverlay.getHeight());
             loadCaptureZoneSettings();
         }
+        
+        // Flashlight settings are now loaded after camera is bound in bindPreviewUseCase()
 
         int currentRotation = getWindowManager().getDefaultDisplay().getRotation();
         if (currentRotation != initialRotation) {

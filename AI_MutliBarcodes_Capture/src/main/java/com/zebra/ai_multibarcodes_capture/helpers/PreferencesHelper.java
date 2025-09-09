@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
+
 public class PreferencesHelper {
 
     public static void saveLastSessionFile(Context context, String filePath)
@@ -99,6 +101,23 @@ public class PreferencesHelper {
     public static int getCaptureZoneHeight(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
         return sharedPreferences.getInt(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_HEIGHT, Constants.SHARED_PREFERENCES_CAPTURE_ZONE_HEIGHT_DEFAULT);
+    }
+    
+    // Flashlight preferences methods
+    
+    public static void saveFlashlightEnabled(Context context, boolean enabled) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(Constants.SHARED_PREFERENCES_FLASHLIGHT_ENABLED, enabled);
+        boolean success = editor.commit();
+        LogUtils.d("PreferencesHelper_FLASHLIGHT", "Saving flashlight state: " + enabled + ", success: " + success);
+    }
+    
+    public static boolean isFlashlightEnabled(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        boolean enabled = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_FLASHLIGHT_ENABLED, Constants.SHARED_PREFERENCES_FLASHLIGHT_ENABLED_DEFAULT);
+        LogUtils.d("PreferencesHelper_FLASHLIGHT", "Loading flashlight state: " + enabled + " (default: " + Constants.SHARED_PREFERENCES_FLASHLIGHT_ENABLED_DEFAULT + ")");
+        return enabled;
     }
 
 }

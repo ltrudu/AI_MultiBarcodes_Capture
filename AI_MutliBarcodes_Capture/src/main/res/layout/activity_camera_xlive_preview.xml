@@ -44,6 +44,20 @@
         app:layout_constraintBottom_toBottomOf="@id/preview_view" />
 
     <ImageView
+        android:id="@+id/flashlight_toggle_icon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/capture_zone_icon_background"
+        android:src="@drawable/flashlight_off_icon"
+        android:contentDescription="Toggle flashlight"
+        android:scaleType="center"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
         android:id="@+id/capture_zone_toggle_icon"
         android:layout_width="56dp"
         android:layout_height="56dp"

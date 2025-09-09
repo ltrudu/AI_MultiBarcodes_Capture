@@ -190,5 +190,9 @@ public class Constants {
     
     public static final String SHARED_PREFERENCES_CAPTURE_ZONE_HEIGHT = "CAPTURE_ZONE_HEIGHT";
     public static final int SHARED_PREFERENCES_CAPTURE_ZONE_HEIGHT_DEFAULT = -1; // -1 means not set
+    
+    // Flashlight preferences
+    public static final String SHARED_PREFERENCES_FLASHLIGHT_ENABLED = "FLASHLIGHT_ENABLED";
+    public static final boolean SHARED_PREFERENCES_FLASHLIGHT_ENABLED_DEFAULT = false;
 
 }
