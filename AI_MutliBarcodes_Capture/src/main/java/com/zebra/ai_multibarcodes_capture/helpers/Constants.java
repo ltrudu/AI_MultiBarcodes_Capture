@@ -175,5 +175,20 @@ public class Constants {
     public static final String EXTRA_QUANTITY = "quantity";
     public static final String EXTRA_DATE = "date";
 
+    // Capture Zone preferences
+    public static final String SHARED_PREFERENCES_CAPTURE_ZONE_ENABLED = "CAPTURE_ZONE_ENABLED";
+    public static final boolean SHARED_PREFERENCES_CAPTURE_ZONE_ENABLED_DEFAULT = false;
+    
+    public static final String SHARED_PREFERENCES_CAPTURE_ZONE_X = "CAPTURE_ZONE_X";
+    public static final int SHARED_PREFERENCES_CAPTURE_ZONE_X_DEFAULT = -1; // -1 means not set
+    
+    public static final String SHARED_PREFERENCES_CAPTURE_ZONE_Y = "CAPTURE_ZONE_Y";
+    public static final int SHARED_PREFERENCES_CAPTURE_ZONE_Y_DEFAULT = -1; // -1 means not set
+    
+    public static final String SHARED_PREFERENCES_CAPTURE_ZONE_WIDTH = "CAPTURE_ZONE_WIDTH";
+    public static final int SHARED_PREFERENCES_CAPTURE_ZONE_WIDTH_DEFAULT = -1; // -1 means not set
+    
+    public static final String SHARED_PREFERENCES_CAPTURE_ZONE_HEIGHT = "CAPTURE_ZONE_HEIGHT";
+    public static final int SHARED_PREFERENCES_CAPTURE_ZONE_HEIGHT_DEFAULT = -1; // -1 means not set
 
 }

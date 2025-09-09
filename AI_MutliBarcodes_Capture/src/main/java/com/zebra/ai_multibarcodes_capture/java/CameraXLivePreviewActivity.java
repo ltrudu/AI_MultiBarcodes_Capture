@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Size;
@@ -15,6 +16,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -43,6 +45,7 @@ import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
+import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTracker;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTrackerGraphic;
@@ -51,6 +54,7 @@ import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeT
 
 import com.zebra.ai_multibarcodes_capture.java.viewfinder.EntityBarcodeTracker;
 import com.zebra.ai_multibarcodes_capture.java.viewfinder.EntityViewGraphic;
+import com.zebra.ai_multibarcodes_capture.views.CaptureZoneOverlay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +131,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     private Button captureButton;
     private Button closeButton;
+    private ImageView captureZoneToggleIcon;
+    private CaptureZoneOverlay captureZoneOverlay;
     
     private BarcodeTracker barcodeTracker;
     private EntityBarcodeTracker entityBarcodeTracker;
@@ -218,7 +224,16 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             }
         });
 
+        captureZoneToggleIcon = findViewById(R.id.capture_zone_toggle_icon);
+        captureZoneToggleIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleCaptureZone();
+            }
+        });
+
         initEntityView();
+        initCaptureZone();
     }
 
     private void initEntityView() {
@@ -291,6 +306,81 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     public void onEntityBarcodeTrackerReady() {
         LogUtils.d(TAG, "EntityBarcodeTracker is ready, applying pending configurations");
         applyPendingResizeSpecs();
+    }
+
+    private void initCaptureZone() {
+        captureZoneOverlay = findViewById(R.id.capture_zone_overlay);
+        captureZoneOverlay.setCaptureZoneListener(new CaptureZoneOverlay.CaptureZoneListener() {
+            @Override
+            public void onCaptureZoneChanged(RectF captureZone) {
+                LogUtils.d(TAG, "Capture zone changed: " + captureZone.toString());
+                
+                int x = (int) captureZone.left;
+                int y = (int) captureZone.top;
+                int width = (int) captureZone.width();
+                int height = (int) captureZone.height();
+                
+                // Save capture zone dimensions to SharedPreferences
+                PreferencesHelper.saveCaptureZonePosition(CameraXLivePreviewActivity.this, x, y, width, height);
+                
+                LogUtils.d(TAG, "Capture zone dimensions saved to preferences: x=" + x + ", y=" + y + ", w=" + width + ", h=" + height);
+            }
+        });
+        
+        LogUtils.d(TAG, "Capture zone overlay initialized");
+    }
+
+    private void loadCaptureZoneSettings() {
+        // Load enabled state
+        boolean isEnabled = PreferencesHelper.isCaptureZoneEnabled(this);
+        
+        // Load dimensions if they exist
+        int x = PreferencesHelper.getCaptureZoneX(this);
+        int y = PreferencesHelper.getCaptureZoneY(this);
+        int width = PreferencesHelper.getCaptureZoneWidth(this);
+        int height = PreferencesHelper.getCaptureZoneHeight(this);
+        
+        LogUtils.d(TAG, "Loading capture zone settings - enabled: " + isEnabled + ", x=" + x + ", y=" + y + ", w=" + width + ", h=" + height);
+        
+        // Set visibility and icon state immediately
+        captureZoneOverlay.setVisible(isEnabled);
+        if (captureZoneToggleIcon != null) {
+            if (isEnabled) {
+                captureZoneToggleIcon.setImageResource(R.drawable.capture_zone_icon);
+            } else {
+                captureZoneToggleIcon.setImageResource(R.drawable.capture_zone_icon_disabled);
+            }
+        }
+        
+        // Store saved dimensions for later restoration
+        if (x != -1 && y != -1 && width != -1 && height != -1) {
+            captureZoneOverlay.setPendingDimensions(x, y, width, height);
+            LogUtils.d(TAG, "Stored pending dimensions: " + x + "," + y + "," + width + "x" + height);
+        }
+        
+        LogUtils.d(TAG, "Capture zone settings loaded");
+    }
+
+    private void toggleCaptureZone() {
+        if (captureZoneOverlay != null && captureZoneToggleIcon != null) {
+            boolean isCurrentlyVisible = captureZoneOverlay.isVisible();
+            boolean newVisibility = !isCurrentlyVisible;
+            captureZoneOverlay.setVisible(newVisibility);
+            
+            // Save the enabled state to SharedPreferences
+            PreferencesHelper.saveCaptureZoneEnabled(this, newVisibility);
+            
+            // Update icon drawable to reflect capture zone visibility
+            if (newVisibility) {
+                // Capture zone is now enabled - show normal icon
+                captureZoneToggleIcon.setImageResource(R.drawable.capture_zone_icon);
+            } else {
+                // Capture zone is now disabled - show disabled icon with forbidden sign
+                captureZoneToggleIcon.setImageResource(R.drawable.capture_zone_icon_disabled);
+            }
+            
+            LogUtils.d(TAG, "Capture zone toggled to: " + newVisibility + ", saved to preferences");
+        }
     }
 
     private void bindAllCameraUseCases() {
@@ -549,6 +639,12 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     public void onResume() {
         super.onResume();
         LogUtils.v(TAG, "OnResume called");
+        
+        // Load and apply capture zone settings
+        if (captureZoneOverlay != null) {
+            LogUtils.d(TAG, "onResume - CaptureZoneOverlay dimensions: " + captureZoneOverlay.getWidth() + "x" + captureZoneOverlay.getHeight());
+            loadCaptureZoneSettings();
+        }
 
         int currentRotation = getWindowManager().getDefaultDisplay().getRotation();
         if (currentRotation != initialRotation) {

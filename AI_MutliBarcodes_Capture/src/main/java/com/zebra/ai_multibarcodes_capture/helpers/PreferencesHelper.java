@@ -57,6 +57,50 @@ public class PreferencesHelper {
         return extension;
     }
 
+    // Capture Zone preferences methods
+    
+    public static void saveCaptureZoneEnabled(Context context, boolean enabled) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_ENABLED, enabled);
+        editor.apply();
+    }
+    
+    public static boolean isCaptureZoneEnabled(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_ENABLED, Constants.SHARED_PREFERENCES_CAPTURE_ZONE_ENABLED_DEFAULT);
+    }
+    
+    public static void saveCaptureZonePosition(Context context, int x, int y, int width, int height) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_X, x);
+        editor.putInt(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_Y, y);
+        editor.putInt(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_WIDTH, width);
+        editor.putInt(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_HEIGHT, height);
+        editor.apply();
+    }
+    
+    public static int getCaptureZoneX(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_X, Constants.SHARED_PREFERENCES_CAPTURE_ZONE_X_DEFAULT);
+    }
+    
+    public static int getCaptureZoneY(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_Y, Constants.SHARED_PREFERENCES_CAPTURE_ZONE_Y_DEFAULT);
+    }
+    
+    public static int getCaptureZoneWidth(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_WIDTH, Constants.SHARED_PREFERENCES_CAPTURE_ZONE_WIDTH_DEFAULT);
+    }
+    
+    public static int getCaptureZoneHeight(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(Constants.SHARED_PREFERENCES_CAPTURE_ZONE_HEIGHT, Constants.SHARED_PREFERENCES_CAPTURE_ZONE_HEIGHT_DEFAULT);
+    }
+
 }
 
 
