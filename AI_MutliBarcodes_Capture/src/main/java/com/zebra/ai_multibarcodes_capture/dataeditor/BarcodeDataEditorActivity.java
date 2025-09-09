@@ -1,5 +1,6 @@
 package com.zebra.ai_multibarcodes_capture.dataeditor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ import androidx.core.content.ContextCompat;
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
+import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 
 public class BarcodeDataEditorActivity extends AppCompatActivity {
 
@@ -192,5 +194,12 @@ public class BarcodeDataEditorActivity extends AppCompatActivity {
         resultIntent.putExtra(Constants.EXTRA_QUANTITY, barcodeQuantity);
         setResult(RESULT_OK, resultIntent);
         finish();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
+        Context context = LocaleHelper.setLocale(newBase, languageCode);
+        super.attachBaseContext(context);
     }
 }

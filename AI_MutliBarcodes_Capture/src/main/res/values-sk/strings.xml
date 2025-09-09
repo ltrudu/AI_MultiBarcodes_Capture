@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Spustiť zachytávanie</string>
+    <string name="loading_status">Načítava sa aplikácia</string>
+    <string name="select_session_file">Vyberte súbor relácie alebo vytvorte nový.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Získavanie povolení</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Vybrať</string>
+    <string name="share">Zdieľať</string>
+    <string name="refresh">Obnoviť</string>
+    <string name="close">Zavrieť</string>
+    <string name="manage_sessions">Spravovať relácie</string>
+    <string name="create_new">Vytvoriť nový</string>
+    <string name="enter_new_file_name">Zadajte názov nového súboru</string>
+    <string name="default_session_name">MojaRelacia_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Áno</string>
+    <string name="no">Nie</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Pridať do súboru</string>
+    <string name="save">Uložiť</string>
+    <string name="update">Aktualizovať súbor</string>
+    <string name="merge">Spojiť množstvá</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Spustiť zachytávanie</string>
+    <string name="load_last_session">Načítať poslednú reláciu</string>
+    <string name="create_new_session">Vytvoriť novú reláciu</string>
+    <string name="view_session_data">Zobraziť údaje relácie</string>
+    <string name="selected_session">Vybraná relácia</string>
+    <string name="select_session_to_start">Vyberte reláciu na spustenie zachytávania</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Nastavenie</string>
+    <string name="prefix">Predpona:</string>
+    <string name="prefix_hint">Predpona_</string>
+    <string name="file_type">Typ súboru</string>
+    <string name="text_file">Textový súbor</string>
+    <string name="csv_file">CSV súbor</string>
+    <string name="excel_file">Excel súbor</string>
+    <string name="validate">Potvrdiť</string>
+    <string name="cancel">Zrušiť</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Zachytiť</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Inicializácia AI Vision SDK zlyhala</string>
+    <string name="folder_path_missing">Cesta k priečinku chýba!</string>
+    <string name="folder_path_missing_toast">Cesta k priečinku chýba !!!</string>
+    <string name="error_could_not_create_file">Chyba, nemožno vytvoriť súbor: %s</string>
+    <string name="error_could_not_open_file">Chyba, nemožno otvoriť súbor: %s</string>
+    <string name="error_file_does_not_exist">Chyba, súbor neexistuje: %s</string>
+    <string name="error_file_is_empty">Chyba, súbor je prázdny: %s</string>
+    <string name="error_loading_data">Chyba, nemožno načítať údaje v súbore: %s</string>
+    <string name="file_saved_at">Súbor uložený v: %s</string>
+    <string name="error_saving_file">Chyba pri ukladaní súboru: %s</string>
+    <string name="error_saving_last_selected_file">Chyba pri ukladaní posledného vybraného súboru</string>
+    <string name="settings_saved_successfully">Nastavenia úspešne uložené</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Prosím, vyberte súbor, nie priečinok.</string>
+    <string name="please_select_file">Prosím, vyberte súbor.</string>
+    <string name="cannot_rename_folders_or_parent">Nemožno premenovať priečinky alebo nadradený priečinok.</string>
+    <string name="file_already_exists">Súbor už existuje.</string>
+    <string name="error_renaming_file">Chyba pri premenovávaní súboru</string>
+    <string name="folder_already_exists">Priečinok už existuje.</string>
+    <string name="failed_to_create_folder">Nepodarilo sa vytvoriť priečinok: %s</string>
+    <string name="failed_to_create_file">Nepodarilo sa vytvoriť súbor</string>
+    <string name="cannot_delete_parent_folder">Nemožno odstrániť nadradený priečinok.</string>
+    <string name="cannot_share_folders">Nemožno zdieľať priečinky.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Posledný súbor relácie nebol nájdený.</string>
+    <string name="no_session_file_saved">Žiadny súbor relácie uložený v nastaveniach.</string>
+    <string name="error_creating_new_session">Chyba pri vytváraní novej relácie: %s</string>
+    <string name="missing_filename">Chýba názov súboru</string>
+    <string name="camera_permission_required">Na použitie tejto funkcie je potrebné povolenie kamery</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Čas vytvorenia Entity Tracker BarcodeDecoder() obj =%d milisekúnd</string>
+    <string name="barcode_decoder_disposed">Dekodér čiarových kódov je uvoľnený</string>
+    <string name="orientation_unlocked">Orientácia odomknutá pre %s režim</string>
+    <string name="applied_viewfinder_resize_immediately">Špecifikácie zmeny veľkosti hľadáčika aplikované okamžite</string>
+    <string name="stored_pending_viewfinder_resize">Údaje čakajúcej zmeny veľkosti hľadáčika uložené na neskoršie použitie</string>
+    <string name="applied_pending_viewfinder_resize">Údaje čakajúcej zmeny veľkosti hľadáčika aplikované z uložených hodnôt</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker je pripravený, aplikujú sa čakajúce konfigurácie</string>
+    <string name="handle_view_entity_result">Spracovať View Entity - Výsledok prijatý</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekodér dostupný, počet entít: %s</string>
+    <string name="processing_entities">Spracováva sa %d entít pre zobrazenie entít</string>
+    <string name="rendered_entities">Entity vykreslené na zobrazení entít</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbológie</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Hodnota čiarového kódu</string>
+    <string name="symbology">Symbológia</string>
+    <string name="unknown">NEZNÁME</string>
+    <string name="quantity">Množstvo</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Dátum zachytenia</string>
+    <string name="date">Dátum</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Prepnúť baterku</string>
+    <string name="toggle_capture_zone">Prepnúť zónu zachytávania</string>
+    <string name="edit_item">Upraviť položku</string>
+    <string name="delete_item">Odstrániť položku</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Hodnota: %s</string>
+    <string name="symbology_label">Symbológia: %s</string>
+    <string name="quantity_label">Množstvo: %d</string>
+    <string name="date_label">Dátum: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Úspešné udelenie povolení.</string>
+    <string name="session_data_merged">Údaje relácie spojené.</string>
+    <string name="error_reported">Chyba hlásená: %s</string>
+    <string name="error_reading_session_file">Chyba pri čítaní súboru relácie: %s</string>
+    <string name="error_reading_csv_session_file">Chyba pri čítaní CSV súboru relácie: %s</string>
+    <string name="error_reading_excel_session_file">Chyba pri čítaní Excel súboru relácie: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Premenovať</string>
+    <string name="rename_file">Premenovať súbor</string>
+    <string name="create">Vytvoriť</string>
+    <string name="create_new_folder">Vytvoriť nový priečinok</string>
+    <string name="create_new_file">Vytvoriť nový súbor</string>
+    <string name="delete_file">Odstrániť súbor</string>
+    <string name="delete_folder">Odstrániť priečinok</string>
+    <string name="are_you_sure">Ste si istí?</string>
+    <string name="file_exists_already">Súbor už existuje.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Nastavenia</string>
+    <string name="activity_captured_barcodes">Zachytené čiarové kódy</string>
+    <string name="activity_session_data">Údaje relácie</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Spravovať relácie</string>
+    <string name="menu_settings">Nastavenia</string>
+    <string name="menu_new_file">Nový súbor</string>
+    <string name="menu_new_folder">Nový priečinok</string>
+    <string name="menu_rename">Premenovať</string>
+    <string name="menu_delete">Odstrániť</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Textový súbor (.txt)</item>
+        <item>CSV súbor (.csv)</item>
+        <item>Excel súbor (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

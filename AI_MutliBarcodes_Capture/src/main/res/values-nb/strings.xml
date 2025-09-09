@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI Multi Strekkode Fangst</string>
+    <string name="start_capture_button_text">Start Fangst</string>
+    <string name="loading_status">Laster Applikasjon</string>
+    <string name="select_session_file">Velg en øktfil eller opprett en ny.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Henter Tillatelser</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Velg</string>
+    <string name="share">Del</string>
+    <string name="refresh">Oppdater</string>
+    <string name="close">Lukk</string>
+    <string name="manage_sessions">Behandle Økter</string>
+    <string name="create_new">Opprett Ny</string>
+    <string name="enter_new_file_name">Skriv inn nytt filnavn</string>
+    <string name="default_session_name">MinØkt_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nei</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Legg til Fil</string>
+    <string name="save">Lagre</string>
+    <string name="update">Oppdater Fil</string>
+    <string name="merge">Slå sammen Antall</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Start Fangst</string>
+    <string name="load_last_session">Last Inn Siste Økt</string>
+    <string name="create_new_session">Opprett Ny Økt</string>
+    <string name="view_session_data">Se Øktdata</string>
+    <string name="selected_session">Valgt Økt</string>
+    <string name="select_session_to_start">Velg en Økt for å Starte Fangst</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Oppsett</string>
+    <string name="prefix">Prefiks:</string>
+    <string name="prefix_hint">Prefiks_</string>
+    <string name="file_type">Filtype</string>
+    <string name="text_file">Tekstfil</string>
+    <string name="csv_file">CSV-fil</string>
+    <string name="excel_file">Excel-fil</string>
+    <string name="validate">Bekreft</string>
+    <string name="cancel">Avbryt</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Fang</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK-initialisering mislyktes</string>
+    <string name="folder_path_missing">Mappesti mangler!</string>
+    <string name="folder_path_missing_toast">Mappesti mangler !!!</string>
+    <string name="error_could_not_create_file">Feil, kunne ikke opprette fil: %s</string>
+    <string name="error_could_not_open_file">Feil, kunne ikke åpne fil: %s</string>
+    <string name="error_file_does_not_exist">Feil, filen finnes ikke: %s</string>
+    <string name="error_file_is_empty">Feil, filen er tom: %s</string>
+    <string name="error_loading_data">Feil, kunne ikke laste data i fil: %s</string>
+    <string name="file_saved_at">Fil lagret på: %s</string>
+    <string name="error_saving_file">Feil ved lagring av fil: %s</string>
+    <string name="error_saving_last_selected_file">Feil ved lagring av sist valgte fil</string>
+    <string name="settings_saved_successfully">Innstillinger lagret med suksess</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Vennligst velg en fil, ikke en mappe.</string>
+    <string name="please_select_file">Vennligst velg en fil.</string>
+    <string name="cannot_rename_folders_or_parent">Kan ikke gi nytt navn til mapper eller overordnet mappe.</string>
+    <string name="file_already_exists">Filen finnes allerede.</string>
+    <string name="error_renaming_file">Feil ved omnavning av fil</string>
+    <string name="folder_already_exists">Mappen finnes allerede.</string>
+    <string name="failed_to_create_folder">Kunne ikke opprette mappe: %s</string>
+    <string name="failed_to_create_file">Kunne ikke opprette fil</string>
+    <string name="cannot_delete_parent_folder">Kan ikke slette overordnet mappe.</string>
+    <string name="cannot_share_folders">Kan ikke dele mapper.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Siste øktfil ikke funnet.</string>
+    <string name="no_session_file_saved">Ingen øktfil lagret i preferanser.</string>
+    <string name="error_creating_new_session">Feil ved opprettelse av ny økt: %s</string>
+    <string name="missing_filename">Manglende filnavn</string>
+    <string name="camera_permission_required">Kameratillatelse kreves for å bruke denne funksjonen</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() objektopprettelsestid =%d millisekunder</string>
+    <string name="barcode_decoder_disposed">Strekkodedekoder er disponert</string>
+    <string name="orientation_unlocked">Orientering låst opp for %s-modus</string>
+    <string name="applied_viewfinder_resize_immediately">Anvendte spesifikasjoner for endring av søkerstørrelse umiddelbart</string>
+    <string name="stored_pending_viewfinder_resize">Lagret ventende søkerstørrelse endringsdata for senere anvendelse</string>
+    <string name="applied_pending_viewfinder_resize">Anvendte ventende søkerstørrelse endringsdata fra lagrede verdier</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker er klar, anvender ventende konfigurasjoner</string>
+    <string name="handle_view_entity_result">Håndter Vis Entitet - Resultat mottatt</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekoder tilgjengelig, antall entiteter: %s</string>
+    <string name="processing_entities">Behandler %d entiteter for entitetsvisning</string>
+    <string name="rendered_entities">Entiteter gjengitt i entitetsvisning</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Strekkodeverdi</string>
+    <string name="symbology">Symbologi</string>
+    <string name="unknown">UKJENT</string>
+    <string name="quantity">Antall</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Fangstdato</string>
+    <string name="date">Dato</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Slå på/av lommelykt</string>
+    <string name="toggle_capture_zone">Slå på/av fangstsone</string>
+    <string name="edit_item">Rediger element</string>
+    <string name="delete_item">Slett element</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Verdi: %s</string>
+    <string name="symbology_label">Symbologi: %s</string>
+    <string name="quantity_label">Antall: %d</string>
+    <string name="date_label">Dato: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Suksess med å gi Tillatelser.</string>
+    <string name="session_data_merged">Øktdata sammenslått.</string>
+    <string name="error_reported">Feil rapportert: %s</string>
+    <string name="error_reading_session_file">Feil ved lesing av øktfil: %s</string>
+    <string name="error_reading_csv_session_file">Feil ved lesing av CSV øktfil: %s</string>
+    <string name="error_reading_excel_session_file">Feil ved lesing av Excel øktfil: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Gi nytt navn</string>
+    <string name="rename_file">Gi nytt navn til fil</string>
+    <string name="create">Opprett</string>
+    <string name="create_new_folder">Opprett ny mappe</string>
+    <string name="create_new_file">Opprett ny fil</string>
+    <string name="delete_file">Slett Fil</string>
+    <string name="delete_folder">Slett Mappe</string>
+    <string name="are_you_sure">Er du sikker?</string>
+    <string name="file_exists_already">Filen finnes allerede.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Innstillinger</string>
+    <string name="activity_captured_barcodes">Fangede Strekkoder</string>
+    <string name="activity_session_data">Øktdata</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Behandle Økter</string>
+    <string name="menu_settings">Innstillinger</string>
+    <string name="menu_new_file">Ny Fil</string>
+    <string name="menu_new_folder">Ny Mappe</string>
+    <string name="menu_rename">Gi nytt navn</string>
+    <string name="menu_delete">Slett</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Tekstfil (.txt)</item>
+        <item>CSV-fil (.csv)</item>
+        <item>Excel-fil (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

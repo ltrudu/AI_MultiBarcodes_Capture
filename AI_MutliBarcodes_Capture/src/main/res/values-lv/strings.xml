@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Svītrkodi Tveršana</string>
+    <string name="start_capture_button_text">Sākt Tveršanu</string>
+    <string name="loading_status">Ielādē Lietotni</string>
+    <string name="select_session_file">Izvēlieties sesijas failu vai izveidojiet jaunu.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Iegūst Atļaujas</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Izvēlēties</string>
+    <string name="share">Dalīties</string>
+    <string name="refresh">Atsvaidzināt</string>
+    <string name="close">Aizvērt</string>
+    <string name="manage_sessions">Pārvaldīt Sesijas</string>
+    <string name="create_new">Izveidot Jaunu</string>
+    <string name="enter_new_file_name">Ievadiet jauna faila nosaukumu</string>
+    <string name="default_session_name">ManaSesija_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Jā</string>
+    <string name="no">Nē</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Pievienot Failam</string>
+    <string name="save">Saglabāt</string>
+    <string name="update">Atjaunināt Failu</string>
+    <string name="merge">Apvienot Daudzumus</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Sākt Tveršanu</string>
+    <string name="load_last_session">Ielādēt Pēdējo Sesiju</string>
+    <string name="create_new_session">Izveidot Jaunu Sesiju</string>
+    <string name="view_session_data">Skatīt Sesijas Datus</string>
+    <string name="selected_session">Izvēlētā Sesija</string>
+    <string name="select_session_to_start">Izvēlieties Sesiju Lai Sāktu Tveršanu</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Iestatīšana</string>
+    <string name="prefix">Priedēklis:</string>
+    <string name="prefix_hint">Priedēklis_</string>
+    <string name="file_type">Faila tips</string>
+    <string name="text_file">Teksta Fails</string>
+    <string name="csv_file">CSV Fails</string>
+    <string name="excel_file">Excel Fails</string>
+    <string name="language">Valoda</string>
+    <string name="system_language">Sistēmas Valoda</string>
+    <string name="validate">Apstiprināt</string>
+    <string name="cancel">Atcelt</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Tvert</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK inicializācija neizdevās</string>
+    <string name="folder_path_missing">Mapes ceļš trūkst!</string>
+    <string name="folder_path_missing_toast">Mapes ceļš trūkst !!!</string>
+    <string name="error_could_not_create_file">Kļūda, nevarēja izveidot failu: %s</string>
+    <string name="error_could_not_open_file">Kļūda, nevarēja atvērt failu: %s</string>
+    <string name="error_file_does_not_exist">Kļūda, fails neexistē: %s</string>
+    <string name="error_file_is_empty">Kļūda, fails ir tukšs: %s</string>
+    <string name="error_loading_data">Kļūda, nevarēja ielādēt datus failā: %s</string>
+    <string name="file_saved_at">Fails saglabāts: %s</string>
+    <string name="error_saving_file">Kļūda saglabājot failu: %s</string>
+    <string name="error_saving_last_selected_file">Kļūda saglabājot pēdējo izvēlēto failu</string>
+    <string name="settings_saved_successfully">Iestatījumi veiksmīgi saglabāti</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Lūdzu izvēlieties failu, nevis mapi.</string>
+    <string name="please_select_file">Lūdzu izvēlieties failu.</string>
+    <string name="cannot_rename_folders_or_parent">Nevar pārdēvēt mapes vai vecākmapi.</string>
+    <string name="file_already_exists">Fails jau eksistē.</string>
+    <string name="error_renaming_file">Kļūda pārdēvējot failu</string>
+    <string name="folder_already_exists">Mape jau eksistē.</string>
+    <string name="failed_to_create_folder">Neizdevās izveidot mapi: %s</string>
+    <string name="failed_to_create_file">Neizdevās izveidot failu</string>
+    <string name="cannot_delete_parent_folder">Nevar dzēst vecākmapi.</string>
+    <string name="cannot_share_folders">Nevar dalīties ar mapēm.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Pēdējais sesijas fails nav atrasts.</string>
+    <string name="no_session_file_saved">Nav sesijas fails saglabāts preferencēs.</string>
+    <string name="error_creating_new_session">Kļūda veidojot jaunu sesiju: %s</string>
+    <string name="missing_filename">Trūkst faila nosaukums</string>
+    <string name="camera_permission_required">Kameras atļauja nepieciešama šīs funkcijas izmantošanai</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() objekta izveides laiks =%d millisekunde</string>
+    <string name="barcode_decoder_disposed">Svītrkoda dekoderis ir likvidēts</string>
+    <string name="orientation_unlocked">Orientācija atbloķēta %s režīmam</string>
+    <string name="applied_viewfinder_resize_immediately">Skatviskas izmēra maiņas specifikācijas uzreiz piemērotas</string>
+    <string name="stored_pending_viewfinder_resize">Saglabāti gaidošie skatviskas izmēra maiņas dati vēlākai piemērošanai</string>
+    <string name="applied_pending_viewfinder_resize">Piemēroti gaidošie skatviskas izmēra maiņas dati no saglabātajām vērtībām</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker ir gatavs, piemēro gaidošās konfigurācijas</string>
+    <string name="handle_view_entity_result">Apstrādāt Skatīt Entītiju - Rezultāts saņemts</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekoderis pieejams, entītiju skaits: %s</string>
+    <string name="processing_entities">Apstrādā %d entītijas entītiju skatam</string>
+    <string name="rendered_entities">Entītijas attēlotas entītiju skatā</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Svītrkoda Vērtība</string>
+    <string name="symbology">Simboloģija</string>
+    <string name="unknown">NEZINĀMS</string>
+    <string name="quantity">Daudzums</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Tveršanas Datums</string>
+    <string name="date">Datums</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Pārslēgt lukturīti</string>
+    <string name="toggle_capture_zone">Pārslēgt tveršanas zonu</string>
+    <string name="edit_item">Rediģēt vienumu</string>
+    <string name="delete_item">Dzēst vienumu</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Vērtība: %s</string>
+    <string name="symbology_label">Simboloģija: %s</string>
+    <string name="quantity_label">Daudzums: %d</string>
+    <string name="date_label">Datums: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Atļauju Piešķiršana Veiksmīga.</string>
+    <string name="session_data_merged">Sesijas dati apvienoti.</string>
+    <string name="error_reported">Ziņots par kļūdu: %s</string>
+    <string name="error_reading_session_file">Kļūda lasot sesijas failu: %s</string>
+    <string name="error_reading_csv_session_file">Kļūda lasot CSV sesijas failu: %s</string>
+    <string name="error_reading_excel_session_file">Kļūda lasot Excel sesijas failu: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Pārdēvēt</string>
+    <string name="rename_file">Pārdēvēt failu</string>
+    <string name="create">Izveidot</string>
+    <string name="create_new_folder">Izveidot jaunu mapi</string>
+    <string name="create_new_file">Izveidot jaunu failu</string>
+    <string name="delete_file">Dzēst Failu</string>
+    <string name="delete_folder">Dzēst Mapi</string>
+    <string name="are_you_sure">Vai esat pārliecināts?</string>
+    <string name="file_exists_already">Fails jau eksistē.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Iestatījumi</string>
+    <string name="activity_captured_barcodes">Tvērtie Svītrkodi</string>
+    <string name="activity_session_data">Sesijas Dati</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Pārvaldīt Sesijas</string>
+    <string name="menu_settings">Iestatījumi</string>
+    <string name="menu_new_file">Jauns Fails</string>
+    <string name="menu_new_folder">Jauna Mape</string>
+    <string name="menu_rename">Pārdēvēt</string>
+    <string name="menu_delete">Dzēst</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Teksta Fails (.txt)</item>
+        <item>CSV Fails (.csv)</item>
+        <item>Excel Fails (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

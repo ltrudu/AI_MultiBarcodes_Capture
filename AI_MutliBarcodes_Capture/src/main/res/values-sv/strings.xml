@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Starta inspelning</string>
+    <string name="loading_status">Laddar applikation</string>
+    <string name="select_session_file">Välj en sessionsfil eller skapa en ny.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Hämtar behörigheter</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Välj</string>
+    <string name="share">Dela</string>
+    <string name="refresh">Uppdatera</string>
+    <string name="close">Stäng</string>
+    <string name="manage_sessions">Hantera sessioner</string>
+    <string name="create_new">Skapa ny</string>
+    <string name="enter_new_file_name">Ange nytt filnamn</string>
+    <string name="default_session_name">MinSession_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Lägg till i fil</string>
+    <string name="save">Spara</string>
+    <string name="update">Uppdatera fil</string>
+    <string name="merge">Slå samman kvantiteter</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Starta inspelning</string>
+    <string name="load_last_session">Ladda senaste session</string>
+    <string name="create_new_session">Skapa ny session</string>
+    <string name="view_session_data">Visa sessionsdata</string>
+    <string name="selected_session">Vald session</string>
+    <string name="select_session_to_start">Välj en session för att starta inspelning</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Inställningar</string>
+    <string name="prefix">Prefix:</string>
+    <string name="prefix_hint">Prefix_</string>
+    <string name="file_type">Filtyp</string>
+    <string name="text_file">Textfil</string>
+    <string name="csv_file">CSV-fil</string>
+    <string name="excel_file">Excel-fil</string>
+    <string name="language">Språk</string>
+    <string name="system_language">Systemspråk</string>
+    <string name="validate">Validera</string>
+    <string name="cancel">Avbryt</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Fånga</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK-initialisering misslyckades</string>
+    <string name="folder_path_missing">Mappsökväg saknas!</string>
+    <string name="folder_path_missing_toast">Mappsökväg saknas !!!</string>
+    <string name="error_could_not_create_file">Fel, kunde inte skapa fil: %s</string>
+    <string name="error_could_not_open_file">Fel, kunde inte öppna fil: %s</string>
+    <string name="error_file_does_not_exist">Fel, filen existerar inte: %s</string>
+    <string name="error_file_is_empty">Fel, filen är tom: %s</string>
+    <string name="error_loading_data">Fel, kunde inte ladda data i fil: %s</string>
+    <string name="file_saved_at">Fil sparad på: %s</string>
+    <string name="error_saving_file">Fel vid sparande av fil: %s</string>
+    <string name="error_saving_last_selected_file">Fel vid sparande av senast valda fil</string>
+    <string name="settings_saved_successfully">Inställningar sparade framgångsrikt</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Vänligen välj en fil, inte en mapp.</string>
+    <string name="please_select_file">Vänligen välj en fil.</string>
+    <string name="cannot_rename_folders_or_parent">Kan inte byta namn på mappar eller föräldramapp.</string>
+    <string name="file_already_exists">Filen existerar redan.</string>
+    <string name="error_renaming_file">Fel vid namnbyte av fil</string>
+    <string name="folder_already_exists">Mappen existerar redan.</string>
+    <string name="failed_to_create_folder">Misslyckades med att skapa mapp: %s</string>
+    <string name="failed_to_create_file">Misslyckades med att skapa fil</string>
+    <string name="cannot_delete_parent_folder">Kan inte ta bort föräldramappen.</string>
+    <string name="cannot_share_folders">Kan inte dela mappar.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Senaste sessionsfilen hittades inte.</string>
+    <string name="no_session_file_saved">Ingen sessionsfil sparad i inställningar.</string>
+    <string name="error_creating_new_session">Fel vid skapande av ny session: %s</string>
+    <string name="missing_filename">Filnamn saknas</string>
+    <string name="camera_permission_required">Kamerabehörighet krävs för att använda denna funktion</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj skapandetid =%d millisekunder</string>
+    <string name="barcode_decoder_disposed">Streckkodsavkodare är bortskaffad</string>
+    <string name="orientation_unlocked">Orientering upplåst för %s-läge</string>
+    <string name="applied_viewfinder_resize_immediately">Tillämpade sökare storleksspecifikationer omedelbart</string>
+    <string name="stored_pending_viewfinder_resize">Lagrade väntande sökare storleksdata för senare tillämpning</string>
+    <string name="applied_pending_viewfinder_resize">Tillämpade väntande sökare storleksdata från lagrade värden</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker är redo, tillämpar väntande konfigurationer</string>
+    <string name="handle_view_entity_result">Hantera View Entity - Resultat mottaget</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker avkodare tillgänglig, antal entiteter: %s</string>
+    <string name="processing_entities">Bearbetar %d entiteter för entitetsvy</string>
+    <string name="rendered_entities">Entiteter renderade på entitetsvy</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Streckkodsvärde</string>
+    <string name="symbology">Symbologi</string>
+    <string name="unknown">OKÄND</string>
+    <string name="quantity">Kvantitet</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Inspelningsdatum</string>
+    <string name="date">Datum</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Växla ficklampa</string>
+    <string name="toggle_capture_zone">Växla inspelningszon</string>
+    <string name="edit_item">Redigera objekt</string>
+    <string name="delete_item">Ta bort objekt</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Värde: %s</string>
+    <string name="symbology_label">Symbologi: %s</string>
+    <string name="quantity_label">Kvantitet: %d</string>
+    <string name="date_label">Datum: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Framgång vid beviljande av behörigheter.</string>
+    <string name="session_data_merged">Sessionsdata sammanslagen.</string>
+    <string name="error_reported">Fel rapporterat: %s</string>
+    <string name="error_reading_session_file">Fel vid läsning av sessionsfil: %s</string>
+    <string name="error_reading_csv_session_file">Fel vid läsning av CSV-sessionsfil: %s</string>
+    <string name="error_reading_excel_session_file">Fel vid läsning av Excel-sessionsfil: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Byt namn</string>
+    <string name="rename_file">Byt namn på fil</string>
+    <string name="create">Skapa</string>
+    <string name="create_new_folder">Skapa ny mapp</string>
+    <string name="create_new_file">Skapa ny fil</string>
+    <string name="delete_file">Ta bort fil</string>
+    <string name="delete_folder">Ta bort mapp</string>
+    <string name="are_you_sure">Är du säker?</string>
+    <string name="file_exists_already">Filen existerar redan.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Inställningar</string>
+    <string name="activity_captured_barcodes">Fångade streckkoder</string>
+    <string name="activity_session_data">Sessionsdata</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Hantera sessioner</string>
+    <string name="menu_settings">Inställningar</string>
+    <string name="menu_new_file">Ny fil</string>
+    <string name="menu_new_folder">Ny mapp</string>
+    <string name="menu_rename">Byt namn</string>
+    <string name="menu_delete">Ta bort</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Textfil (.txt)</item>
+        <item>CSV-fil (.csv)</item>
+        <item>Excel-fil (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

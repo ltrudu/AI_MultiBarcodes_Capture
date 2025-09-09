@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Көп Баркод Тутуу</string>
+    <string name="start_capture_button_text">Тутуу Баштоо</string>
+    <string name="loading_status">Колдонмо Жүктөлүүдө</string>
+    <string name="select_session_file">Сеанс файлын тандаңыз же жаңысын түзүңүз.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Уруксаттарды Алуу</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Тандоо</string>
+    <string name="share">Бөлүшүү</string>
+    <string name="refresh">Жаңыртуу</string>
+    <string name="close">Жабуу</string>
+    <string name="manage_sessions">Сеанстарды Башкаруу</string>
+    <string name="create_new">Жаңы Түзүү</string>
+    <string name="enter_new_file_name">Жаңы файлдын атын киргизиңиз</string>
+    <string name="default_session_name">МенинСеансым_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Ооба</string>
+    <string name="no">Жок</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Файлга Кошуу</string>
+    <string name="save">Сактоо</string>
+    <string name="update">Файлды Жаңыртуу</string>
+    <string name="merge">Саныларды Бириктирүү</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Тутуу Баштоо</string>
+    <string name="load_last_session">Акыркы Сеансты Жүктөө</string>
+    <string name="create_new_session">Жаңы Сеанс Түзүү</string>
+    <string name="view_session_data">Сеанс Маалыматын Көрүү</string>
+    <string name="selected_session">Тандалган Сеанс</string>
+    <string name="select_session_to_start">Тутуу Баштоо үчүн Сеанс Тандаңыз</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Тууралоо</string>
+    <string name="prefix">Префикс:</string>
+    <string name="prefix_hint">Префикс_</string>
+    <string name="file_type">Файл түрү</string>
+    <string name="text_file">Текст Файлы</string>
+    <string name="csv_file">CSV Файлы</string>
+    <string name="excel_file">Excel Файлы</string>
+    <string name="language">Тил</string>
+    <string name="system_language">Система Тили</string>
+    <string name="validate">Текшерүү</string>
+    <string name="cancel">Жокко Чыгаруу</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Тутуу</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK инициализациясы аткарылбады</string>
+    <string name="folder_path_missing">Папканын жолу жок!</string>
+    <string name="folder_path_missing_toast">Папканын жолу жок !!!</string>
+    <string name="error_could_not_create_file">Ката, файл түзүлбөй калды: %s</string>
+    <string name="error_could_not_open_file">Ката, файл ачылбай калды: %s</string>
+    <string name="error_file_does_not_exist">Ката, файл жок: %s</string>
+    <string name="error_file_is_empty">Ката, файл бош: %s</string>
+    <string name="error_loading_data">Ката, файлдагы маалымат жүктөлбөй калды: %s</string>
+    <string name="file_saved_at">Файл сакталган жер: %s</string>
+    <string name="error_saving_file">Файлды сактоо катасы: %s</string>
+    <string name="error_saving_last_selected_file">Акырында тандалган файлды сактоо катасы</string>
+    <string name="settings_saved_successfully">Тууралоолор ийгиликтүү сакталды</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Сураныч, папка эмес, файлды тандаңыз.</string>
+    <string name="please_select_file">Сураныч, файлды тандаңыз.</string>
+    <string name="cannot_rename_folders_or_parent">Папкаларды же ата-эне папкасын кайра ат берүү мүмкүн эмес.</string>
+    <string name="file_already_exists">Файл мурдатан эле бар.</string>
+    <string name="error_renaming_file">Файлды кайра ат берүү катасы</string>
+    <string name="folder_already_exists">Папка мурдатан эле бар.</string>
+    <string name="failed_to_create_folder">Папка түзүү аткарылбады: %s</string>
+    <string name="failed_to_create_file">Файл түзүү аткарылбады</string>
+    <string name="cannot_delete_parent_folder">Ата-эне папкасын өчүрүү мүмкүн эмес.</string>
+    <string name="cannot_share_folders">Папкаларды бөлүшүү мүмкүн эмес.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Акыркы сеанс файлы табылган жок.</string>
+    <string name="no_session_file_saved">Тууралоолордо сеанс файлы сакталган эмес.</string>
+    <string name="error_creating_new_session">Жаңы сеанс түзүү катасы: %s</string>
+    <string name="missing_filename">Файл аты жок</string>
+    <string name="camera_permission_required">Бул өзгөчөлүктү колдонуу үчүн камера уруксаты керек</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() объектин түзүү убактысы =%d миллисекунд</string>
+    <string name="barcode_decoder_disposed">Баркод декодеру жок кылынды</string>
+    <string name="orientation_unlocked">%s режим үчүн багыт кулпусу ачылды</string>
+    <string name="applied_viewfinder_resize_immediately">Көрүүчүнүн өлчөмүн өзгөртүү спецификациялары дароо колдонулду</string>
+    <string name="stored_pending_viewfinder_resize">Кийин колдонуу үчүн көрүүчүнүн өлчөмүн өзгөртүү маалыматы сакталды</string>
+    <string name="applied_pending_viewfinder_resize">Сакталган баалуулуктардан көрүүчүнүн көзөмдөлүүдө турган өлчөмүн өзгөртүү маалыматы колдонулду</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker даяр, көзөмдөлүүдө турган конфигурацияларды колдонуу</string>
+    <string name="handle_view_entity_result">Көрүү Объектисин Иштетүү - Жыйынтык алынды</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker декодер жеткиликтүү, объекттердин саны: %s</string>
+    <string name="processing_entities">Объект көрүнүшү үчүн %d объект иштетилүүдө</string>
+    <string name="rendered_entities">Объекттер объект көрүнүшүндө көрсөтүлдү</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Баркод Маанилери</string>
+    <string name="symbology">Симвология</string>
+    <string name="unknown">БЕЛГИСИЗ</string>
+    <string name="quantity">Саны</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Тутуу Күнү</string>
+    <string name="date">Күн</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Чырактын күйүн өзгөртүү</string>
+    <string name="toggle_capture_zone">Тутуу зонасын өзгөртүү</string>
+    <string name="edit_item">Элементти өзгөртүү</string>
+    <string name="delete_item">Элементти өчүрүү</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Мааниси: %s</string>
+    <string name="symbology_label">Симвология: %s</string>
+    <string name="quantity_label">Саны: %d</string>
+    <string name="date_label">Күн: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Уруксаттарды Берүү Ийгиликтүү.</string>
+    <string name="session_data_merged">Сеанс маалыматы бириктирилди.</string>
+    <string name="error_reported">Ката билдирилди: %s</string>
+    <string name="error_reading_session_file">Сеанс файлын окуу катасы: %s</string>
+    <string name="error_reading_csv_session_file">CSV сеанс файлын окуу катасы: %s</string>
+    <string name="error_reading_excel_session_file">Excel сеанс файлын окуу катасы: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Кайра Ат Берүү</string>
+    <string name="rename_file">Файлды кайра ат берүү</string>
+    <string name="create">Түзүү</string>
+    <string name="create_new_folder">Жаңы папка түзүү</string>
+    <string name="create_new_file">Жаңы файл түзүү</string>
+    <string name="delete_file">Файлды Өчүрүү</string>
+    <string name="delete_folder">Папканы Өчүрүү</string>
+    <string name="are_you_sure">Сиз ишенесизби?</string>
+    <string name="file_exists_already">Файл мурдатан эле бар.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Тууралоолор</string>
+    <string name="activity_captured_barcodes">Тутулган Барколдор</string>
+    <string name="activity_session_data">Сеанс Маалыматы</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Сеанстарды Башкаруу</string>
+    <string name="menu_settings">Тууралоолор</string>
+    <string name="menu_new_file">Жаңы Файл</string>
+    <string name="menu_new_folder">Жаңы Папка</string>
+    <string name="menu_rename">Кайра Ат Берүү</string>
+    <string name="menu_delete">Өчүрүү</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Текст Файлы (.txt)</item>
+        <item>CSV Файлы (.csv)</item>
+        <item>Excel Файлы (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI ບາກັອດຫລາຍຕົວ ຂໍ້ມູນ</string>
+    <string name="start_capture_button_text">ເລີ່ມຖ່າຍຮູບ</string>
+    <string name="loading_status">ກໍາລັງໂຫລດແອັບພິເຄເຊີ</string>
+    <string name="select_session_file">ເລືອກໄຟລ໌ຊິວງ ຫຼື ສ້າງໃໝ່.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">ກໍາລັງຂໍສິດ</string>
+
+    <!-- Browser Activity -->
+    <string name="select">ເລືອກ</string>
+    <string name="share">ແບ່ງປັນ</string>
+    <string name="refresh">ອັບເດດ</string>
+    <string name="close">ປິດ</string>
+    <string name="manage_sessions">ຈັດການຊິວງ</string>
+    <string name="create_new">ສ້າງໃໝ່</string>
+    <string name="enter_new_file_name">ປ້ອນຊື່ໄຟລ໌ໃໝ່</string>
+    <string name="default_session_name">ຊິວງຂອງຂ້ອຍ_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">ແມ່ນ</string>
+    <string name="no">ບໍ່</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">ເພີ່ມໃສ່ໄຟລ໌</string>
+    <string name="save">ບັນທຶກ</string>
+    <string name="update">ອັບເດດໄຟລ໌</string>
+    <string name="merge">ລວມຈໍານວນ</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">ເລີ່ມຖ່າຍຮູບ</string>
+    <string name="load_last_session">ໂຫລດຊິວງສຸດທ້າຍ</string>
+    <string name="create_new_session">ສ້າງຊິວງໃໝ່</string>
+    <string name="view_session_data">ເບິ່ງຂໍ້ມູນຊິວງ</string>
+    <string name="selected_session">ຊິວງທີ່ເລືອກ</string>
+    <string name="select_session_to_start">ເລືອກຊິວງເພື່ອເລີ່ມຖ່າຍຮູບ</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">ການຕິດຕັ້ງ</string>
+    <string name="prefix">ຄໍານໍາຫນ້າ:</string>
+    <string name="prefix_hint">ຄໍານໍາຫນ້າ_</string>
+    <string name="file_type">ປະເພດໄຟລ໌</string>
+    <string name="text_file">ໄຟລ໌ຂໍ້ຄວາມ</string>
+    <string name="csv_file">ໄຟລ໌ CSV</string>
+    <string name="excel_file">ໄຟລ໌ Excel</string>
+    <string name="language">ພາສາ</string>
+    <string name="system_language">ພາສາລະບົບ</string>
+    <string name="validate">ກວດສອບ</string>
+    <string name="cancel">ຍົກເລີກ</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">ຖ່າຍຮູບ</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">ການເລີ່ມຕົ້ນ AI Vision SDK ລົ້ມເຫລວ</string>
+    <string name="folder_path_missing">ຂາດເສັ້ນທາງໂຟລເດີ!</string>
+    <string name="folder_path_missing_toast">ຂາດເສັ້ນທາງໂຟລເດີ !!!</string>
+    <string name="error_could_not_create_file">ຂໍ້ຜິດພາດ, ບໍ່ສາມາດສ້າງໄຟລ໌: %s</string>
+    <string name="error_could_not_open_file">ຂໍ້ຜິດພາດ, ບໍ່ສາມາດເປີດໄຟລ໌: %s</string>
+    <string name="error_file_does_not_exist">ຂໍ້ຜິດພາດ, ໄຟລ໌ບໍ່ມີ: %s</string>
+    <string name="error_file_is_empty">ຂໍ້ຜິດພາດ, ໄຟລ໌ວ່າງ: %s</string>
+    <string name="error_loading_data">ຂໍ້ຜິດພາດ, ບໍ່ສາມາດໂຫລດຂໍ້ມູນໃນໄຟລ໌: %s</string>
+    <string name="file_saved_at">ໄຟລ໌ບັນທຶກຢູ່: %s</string>
+    <string name="error_saving_file">ຂໍ້ຜິດພາດໃນການບັນທຶກໄຟລ໌: %s</string>
+    <string name="error_saving_last_selected_file">ຂໍ້ຜິດພາດໃນການບັນທຶກໄຟລ໌ທີ່ເລືອກສຸດທ້າຍ</string>
+    <string name="settings_saved_successfully">ບັນທຶກການຕິດຕັ້ງສໍາເລັດແລ້ວ</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">ກະລຸນາເລືອກໄຟລ໌, ບໍ່ແມ່ນໂຟລເດີ.</string>
+    <string name="please_select_file">ກະລຸນາເລືອກໄຟລ໌.</string>
+    <string name="cannot_rename_folders_or_parent">ບໍ່ສາມາດປ່ຽນຊື່ໂຟລເດີ ຫຼື ໂຟລເດີຫຼັກ.</string>
+    <string name="file_already_exists">ໄຟລ໌ມີຢູ່ແລ້ວ.</string>
+    <string name="error_renaming_file">ຂໍ້ຜິດພາດໃນການປ່ຽນຊື່ໄຟລ໌</string>
+    <string name="folder_already_exists">ໂຟລເດີມີຢູ່ແລ້ວ.</string>
+    <string name="failed_to_create_folder">ລົ້ມເຫລວໃນການສ້າງໂຟລເດີ: %s</string>
+    <string name="failed_to_create_file">ລົ້ມເຫລວໃນການສ້າງໄຟລ໌</string>
+    <string name="cannot_delete_parent_folder">ບໍ່ສາມາດລົບໂຟລເດີຫຼັກ.</string>
+    <string name="cannot_share_folders">ບໍ່ສາມາດແບ່ງປັນໂຟລເດີ.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">ບໍ່ພົບໄຟລ໌ຊິວງສຸດທ້າຍ.</string>
+    <string name="no_session_file_saved">ບໍ່ມີໄຟລ໌ຊິວງບັນທຶກໃນຄວາມຕ້ອງການ.</string>
+    <string name="error_creating_new_session">ຂໍ້ຜິດພາດໃນການສ້າງຊິວງໃໝ່: %s</string>
+    <string name="missing_filename">ຂາດຊື່ໄຟລ໌</string>
+    <string name="camera_permission_required">ຕ້ອງການສິດກ້ອງຖ່າຍຮູບເພື່ອໃຊ້ຄຸນສົມບັດນີ້</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">ເວລາສ້າງວັດຖຸ Entity Tracker BarcodeDecoder() =%d ມິນລິວິນາທີ</string>
+    <string name="barcode_decoder_disposed">ຕົວຖອດລະຫັດບາກັອດຖືກຍົກເລີກ</string>
+    <string name="orientation_unlocked">ການຈັດລຽງຖືກປົດລັອກສໍາລັບໂໝດ %s</string>
+    <string name="applied_viewfinder_resize_immediately">ໃຊ້ຄຸນລັກສະນະການປ່ຽນຂະໜາດຂອງຕົວຊອກຮູບທັນທີ</string>
+    <string name="stored_pending_viewfinder_resize">ບັນທຶກຂໍ້ມູນການປ່ຽນຂະໜາດຕົວຊອກຮູບທີ່ລໍຖ້າສໍາລັບການໃຊ້ໃນພາຍຫຼັງ</string>
+    <string name="applied_pending_viewfinder_resize">ໃຊ້ຂໍ້ມູນການປ່ຽນຂະໜາດຕົວຊອກຮູບທີ່ລໍຖ້າຈາກຄ່າທີ່ບັນທຶກໄວ້</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker ພ້ອມແລ້ວ, ໃຊ້ການຕັ້ງຄ່າທີ່ລໍຖ້າ</string>
+    <string name="handle_view_entity_result">ຈັດການກັບວັດຖຸທີ່ເບິ່ງ - ໄດ້ຮັບຜົນລັບ</string>
+    <string name="entity_tracker_decoder_available">ຕົວຖອດລະຫັດ EntityBarcodeTracker ພ້ອມໃຊ້, ຈໍານວນວັດຖຸ: %s</string>
+    <string name="processing_entities">ການປະມວນຜົນ %d ວັດຖຸສໍາລັບການເບິ່ງວັດຖຸ</string>
+    <string name="rendered_entities">ວັດຖຸທີ່ສະແດງຢູ່ໃນການເບິ່ງວັດຖຸ</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">ມູນຄ່າບາກັອດ</string>
+    <string name="symbology">ສັນຍາລັກ</string>
+    <string name="unknown">ບໍ່ຮູ້</string>
+    <string name="quantity">ຈໍານວນ</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">ວັນທີ່ຖ່າຍຮູບ</string>
+    <string name="date">ວັນທີ່</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">ເປີດປິດໄຟສ່ອງ</string>
+    <string name="toggle_capture_zone">ເປີດປິດໂຊນຖ່າຍຮູບ</string>
+    <string name="edit_item">ແກ້ໄຂລາຍການ</string>
+    <string name="delete_item">ລົບລາຍການ</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">ມູນຄ່າ: %s</string>
+    <string name="symbology_label">ສັນຍາລັກ: %s</string>
+    <string name="quantity_label">ຈໍານວນ: %d</string>
+    <string name="date_label">ວັນທີ່: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">ການອະນຸຍາດສິດສໍາເລັດ.</string>
+    <string name="session_data_merged">ຂໍ້ມູນຊິວງຖືກລວມແລ້ວ.</string>
+    <string name="error_reported">ລາຍງານຂໍ້ຜິດພາດ: %s</string>
+    <string name="error_reading_session_file">ຂໍ້ຜິດພາດໃນການອ່ານໄຟລ໌ຊິວງ: %s</string>
+    <string name="error_reading_csv_session_file">ຂໍ້ຜິດພາດໃນການອ່ານໄຟລ໌ຊິວງ CSV: %s</string>
+    <string name="error_reading_excel_session_file">ຂໍ້ຜິດພາດໃນການອ່ານໄຟລ໌ຊິວງ Excel: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">ປ່ຽນຊື່</string>
+    <string name="rename_file">ປ່ຽນຊື່ໄຟລ໌</string>
+    <string name="create">ສ້າງ</string>
+    <string name="create_new_folder">ສ້າງໂຟລເດີໃໝ່</string>
+    <string name="create_new_file">ສ້າງໄຟລ໌ໃໝ່</string>
+    <string name="delete_file">ລົບໄຟລ໌</string>
+    <string name="delete_folder">ລົບໂຟລເດີ</string>
+    <string name="are_you_sure">ທ່ານແນ່ໃຈບໍ່?</string>
+    <string name="file_exists_already">ໄຟລ໌ມີຢູ່ແລ້ວ.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">ການຕິດຕັ້ງ</string>
+    <string name="activity_captured_barcodes">ບາກັອດທີ່ຖ່າຍຮູບ</string>
+    <string name="activity_session_data">ຂໍ້ມູນຊິວງ</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">ຈັດການຊິວງ</string>
+    <string name="menu_settings">ການຕິດຕັ້ງ</string>
+    <string name="menu_new_file">ໄຟລ໌ໃໝ່</string>
+    <string name="menu_new_folder">ໂຟລເດີໃໝ່</string>
+    <string name="menu_rename">ປ່ຽນຊື່</string>
+    <string name="menu_delete">ລົບ</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>ໄຟລ໌ຂໍ້ຄວາມ (.txt)</item>
+        <item>ໄຟລ໌ CSV (.csv)</item>
+        <item>ໄຟລ໌ Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

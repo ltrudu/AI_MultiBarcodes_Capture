@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Código de Barras Capturar</string>
+    <string name="start_capture_button_text">Iniciar Captura</string>
+    <string name="loading_status">Carregando Aplicação</string>
+    <string name="select_session_file">Selecione um ficheiro de sessão ou crie um novo.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Obtendo Permissões</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Selecionar</string>
+    <string name="share">Partilhar</string>
+    <string name="refresh">Atualizar</string>
+    <string name="close">Fechar</string>
+    <string name="manage_sessions">Gerir Sessões</string>
+    <string name="create_new">Criar Novo</string>
+    <string name="enter_new_file_name">Introduza o nome do novo ficheiro</string>
+    <string name="default_session_name">MinhaSessao_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Adicionar ao Ficheiro</string>
+    <string name="save">Guardar</string>
+    <string name="update">Atualizar Ficheiro</string>
+    <string name="merge">Combinar Quantidades</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Iniciar Captura</string>
+    <string name="load_last_session">Carregar Última Sessão</string>
+    <string name="create_new_session">Criar Nova Sessão</string>
+    <string name="view_session_data">Ver Dados da Sessão</string>
+    <string name="selected_session">Sessão Selecionada</string>
+    <string name="select_session_to_start">Selecione uma Sessão para Iniciar a Captura</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Configuração</string>
+    <string name="prefix">Prefixo:</string>
+    <string name="prefix_hint">Prefixo_</string>
+    <string name="file_type">Tipo de ficheiro</string>
+    <string name="text_file">Ficheiro de Texto</string>
+    <string name="csv_file">Ficheiro CSV</string>
+    <string name="excel_file">Ficheiro Excel</string>
+    <string name="language">Idioma</string>
+    <string name="system_language">Idioma do sistema</string>
+    <string name="validate">Validar</string>
+    <string name="cancel">Cancelar</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Capturar</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">A inicialização do AI Vision SDK falhou</string>
+    <string name="folder_path_missing">Caminho da pasta em falta!</string>
+    <string name="folder_path_missing_toast">Caminho da pasta em falta !!!</string>
+    <string name="error_could_not_create_file">Erro, não foi possível criar o ficheiro: %s</string>
+    <string name="error_could_not_open_file">Erro, não foi possível abrir o ficheiro: %s</string>
+    <string name="error_file_does_not_exist">Erro, o ficheiro não existe: %s</string>
+    <string name="error_file_is_empty">Erro, o ficheiro está vazio: %s</string>
+    <string name="error_loading_data">Erro, não foi possível carregar dados no ficheiro: %s</string>
+    <string name="file_saved_at">Ficheiro guardado em: %s</string>
+    <string name="error_saving_file">Erro ao guardar ficheiro: %s</string>
+    <string name="error_saving_last_selected_file">Erro ao guardar o último ficheiro selecionado</string>
+    <string name="settings_saved_successfully">Definições guardadas com sucesso</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Por favor, selecione um ficheiro, não uma pasta.</string>
+    <string name="please_select_file">Por favor, selecione um ficheiro.</string>
+    <string name="cannot_rename_folders_or_parent">Não é possível renomear pastas ou a pasta principal.</string>
+    <string name="file_already_exists">O ficheiro já existe.</string>
+    <string name="error_renaming_file">Erro ao renomear o ficheiro</string>
+    <string name="folder_already_exists">A pasta já existe.</string>
+    <string name="failed_to_create_folder">Falha ao criar a pasta: %s</string>
+    <string name="failed_to_create_file">Falha ao criar o ficheiro</string>
+    <string name="cannot_delete_parent_folder">Não é possível eliminar a pasta principal.</string>
+    <string name="cannot_share_folders">Não é possível partilhar pastas.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Último ficheiro de sessão não encontrado.</string>
+    <string name="no_session_file_saved">Nenhum ficheiro de sessão guardado nas preferências.</string>
+    <string name="error_creating_new_session">Erro ao criar nova sessão: %s</string>
+    <string name="missing_filename">Nome do ficheiro em falta</string>
+    <string name="camera_permission_required">É necessária permissão da câmara para usar esta funcionalidade</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Tempo de criação do objeto Entity Tracker BarcodeDecoder() =%d milissegundos</string>
+    <string name="barcode_decoder_disposed">Descodificador de código de barras descartado</string>
+    <string name="orientation_unlocked">Orientação desbloqueada para o modo %s</string>
+    <string name="applied_viewfinder_resize_immediately">Especificações de redimensionamento do visor aplicadas imediatamente</string>
+    <string name="stored_pending_viewfinder_resize">Dados de redimensionamento do visor pendentes armazenados para aplicação posterior</string>
+    <string name="applied_pending_viewfinder_resize">Dados de redimensionamento do visor pendentes aplicados a partir de valores armazenados</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker está pronto, aplicando configurações pendentes</string>
+    <string name="handle_view_entity_result">Lidar com Entidade de Visualização - Resultado recebido</string>
+    <string name="entity_tracker_decoder_available">Descodificador EntityBarcodeTracker disponível, número de entidades: %s</string>
+    <string name="processing_entities">Processando %d entidades para visualização de entidades</string>
+    <string name="rendered_entities">Entidades renderizadas na visualização de entidades</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Valor do Código de Barras</string>
+    <string name="symbology">Simbologia</string>
+    <string name="unknown">DESCONHECIDO</string>
+    <string name="quantity">Quantidade</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Data de Captura</string>
+    <string name="date">Data</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Alternar lanterna</string>
+    <string name="toggle_capture_zone">Alternar zona de captura</string>
+    <string name="edit_item">Editar item</string>
+    <string name="delete_item">Eliminar item</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Valor: %s</string>
+    <string name="symbology_label">Simbologia: %s</string>
+    <string name="quantity_label">Quantidade: %d</string>
+    <string name="date_label">Data: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Sucesso ao Conceder Permissões.</string>
+    <string name="session_data_merged">Dados da sessão combinados.</string>
+    <string name="error_reported">Erro reportado: %s</string>
+    <string name="error_reading_session_file">Erro ao ler ficheiro de sessão: %s</string>
+    <string name="error_reading_csv_session_file">Erro ao ler ficheiro de sessão CSV: %s</string>
+    <string name="error_reading_excel_session_file">Erro ao ler ficheiro de sessão Excel: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Renomear</string>
+    <string name="rename_file">Renomear ficheiro</string>
+    <string name="create">Criar</string>
+    <string name="create_new_folder">Criar nova pasta</string>
+    <string name="create_new_file">Criar novo ficheiro</string>
+    <string name="delete_file">Eliminar Ficheiro</string>
+    <string name="delete_folder">Eliminar Pasta</string>
+    <string name="are_you_sure">Tem a certeza?</string>
+    <string name="file_exists_already">O ficheiro já existe.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Definições</string>
+    <string name="activity_captured_barcodes">Códigos de Barras Capturados</string>
+    <string name="activity_session_data">Dados da Sessão</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Gerir Sessões</string>
+    <string name="menu_settings">Definições</string>
+    <string name="menu_new_file">Novo Ficheiro</string>
+    <string name="menu_new_folder">Nova Pasta</string>
+    <string name="menu_rename">Renomear</string>
+    <string name="menu_delete">Eliminar</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Ficheiro de Texto (.txt)</item>
+        <item>Ficheiro CSV (.csv)</item>
+        <item>Ficheiro Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

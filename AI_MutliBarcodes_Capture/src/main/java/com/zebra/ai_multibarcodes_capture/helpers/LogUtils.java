@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.zebra.ai_multibarcodes_capture.R;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
@@ -414,7 +416,7 @@ public class LogUtils {
                 appContext.startActivity(emailIntent);
             } else {
                 // Fallback: show toast with error info
-                Toast.makeText(appContext, "Error reported: " + errorReport.substring(0, Math.min(100, errorReport.length())), Toast.LENGTH_LONG).show();
+                Toast.makeText(appContext, appContext.getString(R.string.error_reported, errorReport.substring(0, Math.min(100, errorReport.length()))), Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             Log.e("LogUtils", "Failed to send error report via email", e);

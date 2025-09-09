@@ -2,12 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_manage_sessions"
-        android:title="Manage Sessions"
+        android:title="@string/menu_manage_sessions"
         android:icon="@drawable/ic_menu_manage_sessions"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
-        android:title="Settings"
+        android:title="@string/menu_settings"
         android:icon="@drawable/ic_menu_settings"
         app:showAsAction="never" />
 </menu>

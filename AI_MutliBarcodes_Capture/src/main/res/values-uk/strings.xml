@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI Захоплення Кількох Штрихкодів</string>
+    <string name="start_capture_button_text">Почати захоплення</string>
+    <string name="loading_status">Завантажується додаток</string>
+    <string name="select_session_file">Виберіть файл сесії або створіть новий.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Отримання дозволів</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Вибрати</string>
+    <string name="share">Поділитися</string>
+    <string name="refresh">Оновити</string>
+    <string name="close">Закрити</string>
+    <string name="manage_sessions">Керування сесіями</string>
+    <string name="create_new">Створити нову</string>
+    <string name="enter_new_file_name">Введіть назву нового файлу</string>
+    <string name="default_session_name">МояСесія_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Додати до файлу</string>
+    <string name="save">Зберегти</string>
+    <string name="update">Оновити файл</string>
+    <string name="merge">Об\'єднати кількості</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Почати захоплення</string>
+    <string name="load_last_session">Завантажити останню сесію</string>
+    <string name="create_new_session">Створити нову сесію</string>
+    <string name="view_session_data">Переглянути дані сесії</string>
+    <string name="selected_session">Вибрана сесія</string>
+    <string name="select_session_to_start">Виберіть сесію для початку захоплення</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Налаштування</string>
+    <string name="prefix">Префікс:</string>
+    <string name="prefix_hint">Префікс_</string>
+    <string name="file_type">Тип файлу</string>
+    <string name="text_file">Текстовий файл</string>
+    <string name="csv_file">CSV файл</string>
+    <string name="excel_file">Excel файл</string>
+    <string name="validate">Перевірити</string>
+    <string name="cancel">Скасувати</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Захоплення</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Ініціалізація AI Vision SDK не вдалася</string>
+    <string name="folder_path_missing">Відсутній шлях до папки!</string>
+    <string name="folder_path_missing_toast">Відсутній шлях до папки !!!</string>
+    <string name="error_could_not_create_file">Помилка, не вдалося створити файл: %s</string>
+    <string name="error_could_not_open_file">Помилка, не вдалося відкрити файл: %s</string>
+    <string name="error_file_does_not_exist">Помилка, файл не існує: %s</string>
+    <string name="error_file_is_empty">Помилка, файл порожній: %s</string>
+    <string name="error_loading_data">Помилка, не вдалося завантажити дані з файлу: %s</string>
+    <string name="file_saved_at">Файл збережено в: %s</string>
+    <string name="error_saving_file">Помилка при збереженні файлу: %s</string>
+    <string name="error_saving_last_selected_file">Помилка при збереженні останнього вибраного файлу</string>
+    <string name="settings_saved_successfully">Налаштування успішно збережено</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Будь ласка, виберіть файл, а не папку.</string>
+    <string name="please_select_file">Будь ласка, виберіть файл.</string>
+    <string name="cannot_rename_folders_or_parent">Неможливо перейменувати папки або батьківську папку.</string>
+    <string name="file_already_exists">Файл уже існує.</string>
+    <string name="error_renaming_file">Помилка при перейменуванні файлу</string>
+    <string name="folder_already_exists">Папка уже існує.</string>
+    <string name="failed_to_create_folder">Не вдалося створити папку: %s</string>
+    <string name="failed_to_create_file">Не вдалося створити файл</string>
+    <string name="cannot_delete_parent_folder">Неможливо видалити батьківську папку.</string>
+    <string name="cannot_share_folders">Неможливо поділитися папками.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Останній файл сесії не знайдено.</string>
+    <string name="no_session_file_saved">Немає файлу сесії, збереженого в налаштуваннях.</string>
+    <string name="error_creating_new_session">Помилка при створенні нової сесії: %s</string>
+    <string name="missing_filename">Відсутня назва файлу</string>
+    <string name="camera_permission_required">Для використання цієї функції потрібен дозвіл камери</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Час створення об\'єкта Entity Tracker BarcodeDecoder() =%d мілісекунд</string>
+    <string name="barcode_decoder_disposed">Декодер штрихкодів видалено</string>
+    <string name="orientation_unlocked">Орієнтацію розблоковано для режиму %s</string>
+    <string name="applied_viewfinder_resize_immediately">Специфікації зміни розміру видошукача застосовано негайно</string>
+    <string name="stored_pending_viewfinder_resize">Дані очікуючої зміни розміру видошукача збережено для пізнішого застосування</string>
+    <string name="applied_pending_viewfinder_resize">Застосовано дані очікуючої зміни розміру видошукача із збережених значень</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker готовий, застосовуються очікуючі конфігурації</string>
+    <string name="handle_view_entity_result">Обробка сутності перегляду - Отримано результат</string>
+    <string name="entity_tracker_decoder_available">Декодер EntityBarcodeTracker доступний, кількість сутностей: %s</string>
+    <string name="processing_entities">Обробка %d сутностей для перегляду сутності</string>
+    <string name="rendered_entities">Сутності відрендерено в перегляді сутності</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Симвології</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Значення штрихкода</string>
+    <string name="symbology">Символогія</string>
+    <string name="unknown">НЕВІДОМО</string>
+    <string name="quantity">Кількість</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Дата захоплення</string>
+    <string name="date">Дата</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Увімкнути/вимкнути ліхтарик</string>
+    <string name="toggle_capture_zone">Увімкнути/вимкнути зону захоплення</string>
+    <string name="edit_item">Редагувати елемент</string>
+    <string name="delete_item">Видалити елемент</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Значення: %s</string>
+    <string name="symbology_label">Символогія: %s</string>
+    <string name="quantity_label">Кількість: %d</string>
+    <string name="date_label">Дата: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Дозволи успішно надано.</string>
+    <string name="session_data_merged">Дані сесії об\'єднано.</string>
+    <string name="error_reported">Помилку повідомлено: %s</string>
+    <string name="error_reading_session_file">Помилка при читанні файлу сесії: %s</string>
+    <string name="error_reading_csv_session_file">Помилка при читанні CSV файлу сесії: %s</string>
+    <string name="error_reading_excel_session_file">Помилка при читанні Excel файлу сесії: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Перейменувати</string>
+    <string name="rename_file">Перейменувати файл</string>
+    <string name="create">Створити</string>
+    <string name="create_new_folder">Створити нову папку</string>
+    <string name="create_new_file">Створити новий файл</string>
+    <string name="delete_file">Видалити файл</string>
+    <string name="delete_folder">Видалити папку</string>
+    <string name="are_you_sure">Ви впевнені?</string>
+    <string name="file_exists_already">Файл уже існує.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Налаштування</string>
+    <string name="activity_captured_barcodes">Захоплені штрихкоди</string>
+    <string name="activity_session_data">Дані сесії</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Керування сесіями</string>
+    <string name="menu_settings">Налаштування</string>
+    <string name="menu_new_file">Новий файл</string>
+    <string name="menu_new_folder">Нова папка</string>
+    <string name="menu_rename">Перейменувати</string>
+    <string name="menu_delete">Видалити</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Текстовий файл (.txt)</item>
+        <item>CSV файл (.csv)</item>
+        <item>Excel файл (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

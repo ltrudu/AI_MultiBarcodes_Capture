@@ -36,6 +36,7 @@ import com.zebra.ai_multibarcodes_capture.dataeditor.BarcodeDataEditorActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.SessionsFilesHelpers;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
+import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
 import com.zebra.ai_multibarcodes_capture.java.CapturedBarcodesActivity;
 
@@ -248,11 +249,11 @@ public class SessionViewerActivity extends AppCompatActivity {
             if (barcode != null) {
                 String barcodeDateString = dateFormat.format(barcode.date) + " " + sdf.format(barcode.date);
 
-                holder.valueTextView.setText("Value: " + barcode.value);
+                holder.valueTextView.setText(getContext().getString(R.string.value_label, barcode.value));
                 EBarcodesSymbologies symbology = EBarcodesSymbologies.fromInt(barcode.symbology);
-                holder.symbologyTextView.setText("Symbology: " + symbology.getName());
-                holder.quantityTextView.setText("Quantity: " + barcode.quantity);
-                holder.dateTextView.setText("Date: " + barcodeDateString);
+                holder.symbologyTextView.setText(getContext().getString(R.string.symbology_label, symbology.getName()));
+                holder.quantityTextView.setText(getContext().getString(R.string.quantity_label, barcode.quantity));
+                holder.dateTextView.setText(getContext().getString(R.string.date_label, barcodeDateString));
             }
 
             // Setup swipe gesture detector for this item
@@ -458,7 +459,7 @@ public class SessionViewerActivity extends AppCompatActivity {
         SessionViewerActivity.this.saveButton.setText(R.string.update);
         SessionViewerActivity.this.mergeButton.setVisibility(View.GONE);
 
-        Toast.makeText(this, "Session data merged.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.session_data_merged), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -496,5 +497,12 @@ public class SessionViewerActivity extends AppCompatActivity {
             // Remove SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR to use light (white) icons
             decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
+        Context context = LocaleHelper.setLocale(newBase, languageCode);
+        super.attachBaseContext(context);
     }
 }

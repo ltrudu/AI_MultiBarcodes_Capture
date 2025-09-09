@@ -2,22 +2,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_new_file"
-        android:title="New File"
+        android:title="@string/menu_new_file"
         android:icon="@drawable/ic_menu_new_file"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_new_folder"
-        android:title="New Folder"
+        android:title="@string/menu_new_folder"
         android:icon="@drawable/ic_menu_new_folder"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_rename"
-        android:title="Rename"
+        android:title="@string/menu_rename"
         android:icon="@drawable/ic_menu_rename"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_delete"
-        android:title="Delete"
+        android:title="@string/menu_delete"
         android:icon="@drawable/ic_delete_blue_24dp"
         app:showAsAction="never" />
 </menu>

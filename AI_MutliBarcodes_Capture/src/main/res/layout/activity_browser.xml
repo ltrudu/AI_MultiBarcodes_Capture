@@ -19,79 +19,91 @@
         app:layout_constraintTop_toBottomOf="parent">
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_actions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:minHeight="60dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+            <!-- First Row Buttons -->
+            <Button
+                android:id="@+id/btSelectOneFile"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:backgroundTint="@color/zebra"
+                android:text="@string/select"
+                android:textSize="12sp"
+                android:gravity="center"
+                app:cornerRadius="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btShare"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btReload" />
 
-                <Button
-                    android:id="@+id/btSelectOneFile"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="0.3"
-                    android:backgroundTint="@color/zebra"
-                    android:text="@string/select"
-                    app:cornerRadius="0dp" />
+            <Button
+                android:id="@+id/btShare"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="2.5dp"
+                android:backgroundTint="@color/zebra"
+                android:text="@string/share"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:gravity="center"
+                app:cornerRadius="0dp"
+                app:layout_constraintStart_toEndOf="@+id/btSelectOneFile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btClose" />
 
-                <Button
-                    android:id="@+id/btShare"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="0.3"
-                    android:backgroundTint="@color/zebra"
-                    android:text="@string/share"
-                    android:textColor="@color/white"
-                    app:cornerRadius="0dp" />
+            <!-- Second Row Buttons -->
+            <Button
+                android:id="@+id/btReload"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_marginTop="2.5dp"
+                android:backgroundTint="@color/zebra"
+                android:text="@string/refresh"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:visibility="gone"
+                app:cornerRadius="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btClose"
+                app:layout_constraintTop_toBottomOf="@+id/btSelectOneFile"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-            </LinearLayout>
+            <Button
+                android:id="@+id/btClose"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="2.5dp"
+                android:backgroundTint="@color/zebra"
+                android:text="@string/close"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:visibility="gone"
+                app:cornerRadius="0dp"
+                app:layout_constraintStart_toEndOf="@+id/btReload"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btShare"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btReload"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:backgroundTint="@color/zebra"
-                    android:text="@string/refresh"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textColorLink="@color/design_default_color_primary_variant"
-                    android:visibility="gone"
-                    app:cornerRadius="0dp" />
-
-                <Button
-                    android:id="@+id/btClose"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="0.3"
-                    android:backgroundTint="@color/zebra"
-                    android:text="@string/close"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:visibility="gone"
-                    app:cornerRadius="0dp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ListView
             android:id="@+id/lvFiles"

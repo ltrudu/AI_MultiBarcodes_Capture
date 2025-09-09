@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Բազմակի Գծապատիկ Գրավում</string>
+    <string name="start_capture_button_text">Սկսել Գրավումը</string>
+    <string name="loading_status">Բեռնում է հավելվածը</string>
+    <string name="select_session_file">Ընտրեք նիստի ֆայլ կամ ստեղծեք նոր մեկը:</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Թույլտվություններ ստանալ</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Ընտրել</string>
+    <string name="share">Կիսել</string>
+    <string name="refresh">Թարմացնել</string>
+    <string name="close">Փակել</string>
+    <string name="manage_sessions">Կառավարել նիստերը</string>
+    <string name="create_new">Ստեղծել նոր</string>
+    <string name="enter_new_file_name">Մուտքագրեք նոր ֆայլի անունը</string>
+    <string name="default_session_name">Իմ նիստը_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Այո</string>
+    <string name="no">Ոչ</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Ավելացնել ֆայլին</string>
+    <string name="save">Պահել</string>
+    <string name="update">Թարմացնել ֆայլը</string>
+    <string name="merge">Միաձուլել քանակները</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Սկսել Գրավումը</string>
+    <string name="load_last_session">Բեռնել վերջին նիստը</string>
+    <string name="create_new_session">Ստեղծել նոր նիست</string>
+    <string name="view_session_data">Դիտել նիստի տվյալները</string>
+    <string name="selected_session">Ընտրված նիստ</string>
+    <string name="select_session_to_start">Ընտրեք նիست՝ գրավումը սկսելու համար</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Կարգավորում</string>
+    <string name="prefix">Նախածանց՝</string>
+    <string name="prefix_hint">Նախածանց_</string>
+    <string name="file_type">Ֆայլի տեսակ</string>
+    <string name="text_file">Տեքստի ֆայլ</string>
+    <string name="csv_file">CSV ֆայլ</string>
+    <string name="excel_file">Excel ֆայլ</string>
+    <string name="language">Լեզու</string>
+    <string name="system_language">Համակարգի լեզու</string>
+    <string name="validate">Վավերացնել</string>
+    <string name="cancel">Չեղարկել</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Գրավել</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK սկզբնարկումը ձախողվեց</string>
+    <string name="folder_path_missing">Պանակի ճանապահը բացակայում է:</string>
+    <string name="folder_path_missing_toast">Պանակի ճանապահը բացակայում է !!!</string>
+    <string name="error_could_not_create_file">Սխալ, չհաջողվեց ֆայլ ստեղծել. %s</string>
+    <string name="error_could_not_open_file">Սխալ, չհաջողվեց ֆայլը բացել. %s</string>
+    <string name="error_file_does_not_exist">Սխալ, ֆայլը գոյություն չունի. %s</string>
+    <string name="error_file_is_empty">Սխալ, ֆայլը դատարկ է. %s</string>
+    <string name="error_loading_data">Սխալ, չհաջողվեց տվյալները բեռնել ֆայլում. %s</string>
+    <string name="file_saved_at">Ֆայլը պահվել է հետևյալ վայրում. %s</string>
+    <string name="error_saving_file">Ֆայլի պահպանման սխալ. %s</string>
+    <string name="error_saving_last_selected_file">Վերջին ընտրված ֆայլի պահպանման սխալ</string>
+    <string name="settings_saved_successfully">Կարգավորումները հաջողությամբ պահվեցին</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">Խնդրում ենք ընտրել ֆայլ, ոչ թե պանակ:</string>
+    <string name="please_select_file">Խնդրում ենք ընտրել ֆայլ:</string>
+    <string name="cannot_rename_folders_or_parent">Չեք կարող վերանվանել պանակները կամ ծնող պանակը:</string>
+    <string name="file_already_exists">Ֆայլը արդեն գոյություն ունի:</string>
+    <string name="error_renaming_file">Ֆայլի վերանվանման սխալ</string>
+    <string name="folder_already_exists">Պանակը արդեն գոյություն ունի:</string>
+    <string name="failed_to_create_folder">Պանակի ստեղծումը ձախողվեց. %s</string>
+    <string name="failed_to_create_file">Ֆայլի ստեղծումը ձախողվեց</string>
+    <string name="cannot_delete_parent_folder">Չեք կարող ջնջել ծնող պանակը:</string>
+    <string name="cannot_share_folders">Չեք կարող կիսել պանակները:</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Վերջին նիստի ֆայլը չգտնվեց:</string>
+    <string name="no_session_file_saved">Որևէ նիստի ֆայլ պահված չէ կարգավորումներում:</string>
+    <string name="error_creating_new_session">Նոր նիստի ստեղծման սխալ. %s</string>
+    <string name="missing_filename">Բացակայում է ֆայլի անունը</string>
+    <string name="camera_permission_required">Այս գործառույթն օգտագործելու համար անհրաժեշտ է տեսախցիկի թույլտվություն</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() օբյեկտի ստեղծման ժամանակ =%d միլի վրկ</string>
+    <string name="barcode_decoder_disposed">Գծապատիկ դեկոդերը հեռացված է</string>
+    <string name="orientation_unlocked">Կողմնորոշումն արգելաբացված է %s ռեժիմի համար</string>
+    <string name="applied_viewfinder_resize_immediately">Դիտափողի չափափոխման սպեցիֆիկացիաները կիրառվեցին անմիջապես</string>
+    <string name="stored_pending_viewfinder_resize">Դիտափողի չափափոխման սպասարկող տվյալները պահվեցին հետագա կիրառման համար</string>
+    <string name="applied_pending_viewfinder_resize">Դիտափողի չափափոխման սպասարկող տվյալները կիրառվեցին պահված արժեքներից</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker պատրաստ է, կիրառում է սպասարկող կարգավորումները</string>
+    <string name="handle_view_entity_result">Կարգավորել դիտման էությունը - արդյունքը ստացվեց</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker դեկոդերը հասանելի է, էությունների քանակ՝ %s</string>
+    <string name="processing_entities">Մշակվում են %d էություններ էության դիտման համար</string>
+    <string name="rendered_entities">Էությունները տեսադրվեցին էության դիտակետում</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Գծապատիկի արժեք</string>
+    <string name="symbology">Սիմվոլաբանություն</string>
+    <string name="unknown">ԱՆՀԱՅՏ</string>
+    <string name="quantity">Քանակ</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Գրավման ամսաթիվ</string>
+    <string name="date">Ամսաթիվ</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Փոխել լուսարձակը</string>
+    <string name="toggle_capture_zone">Փոխել գրավման գոտին</string>
+    <string name="edit_item">Խմբագրել նյութը</string>
+    <string name="delete_item">Ջնջել նյութը</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Արժեք՝ %s</string>
+    <string name="symbology_label">Սիմվոլաբանություն՝ %s</string>
+    <string name="quantity_label">Քանակ՝ %d</string>
+    <string name="date_label">Ամսաթիվ՝ %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Հաջողությամբ հատուկ թույլտվություններ:</string>
+    <string name="session_data_merged">Նիստի տվյալները միավորվեցին:</string>
+    <string name="error_reported">Սխալ գրանցված՝ %s</string>
+    <string name="error_reading_session_file">Նիստի ֆայլի կարդալու սխալ՝ %s</string>
+    <string name="error_reading_csv_session_file">CSV նիստի ֆայլի կարդալու սխալ՝ %s</string>
+    <string name="error_reading_excel_session_file">Excel նիստի ֆայլի կարդալու սխալ՝ %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">Վերանվանել</string>
+    <string name="rename_file">Վերանվանել ֆայլ</string>
+    <string name="create">Ստեղծել</string>
+    <string name="create_new_folder">Ստեղծել նոր պանակ</string>
+    <string name="create_new_file">Ստեղծել նոր ֆայլ</string>
+    <string name="delete_file">Ջնջել ֆայլ</string>
+    <string name="delete_folder">Ջնջել պանակ</string>
+    <string name="are_you_sure">Վստա՞հ եք:</string>
+    <string name="file_exists_already">Ֆայլն արդեն գոյություն ունի:</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Կարգավորումներ</string>
+    <string name="activity_captured_barcodes">Գրավված գծապատիկներ</string>
+    <string name="activity_session_data">Նիստի տվյալներ</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Կառավարել նիստերը</string>
+    <string name="menu_settings">Կարգավորումներ</string>
+    <string name="menu_new_file">Նոր ֆայլ</string>
+    <string name="menu_new_folder">Նոր պանակ</string>
+    <string name="menu_rename">Վերանվանել</string>
+    <string name="menu_delete">Ջնջել</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Տեքստի ֆայլ (.txt)</item>
+        <item>CSV ֆայլ (.csv)</item>
+        <item>Excel ֆայլ (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

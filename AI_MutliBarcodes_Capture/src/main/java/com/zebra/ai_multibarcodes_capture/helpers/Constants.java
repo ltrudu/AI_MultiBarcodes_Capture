@@ -194,5 +194,9 @@ public class Constants {
     // Flashlight preferences
     public static final String SHARED_PREFERENCES_FLASHLIGHT_ENABLED = "FLASHLIGHT_ENABLED";
     public static final boolean SHARED_PREFERENCES_FLASHLIGHT_ENABLED_DEFAULT = false;
+    
+    // Language preferences
+    public static final String SHARED_PREFERENCES_LANGUAGE = "SELECTED_LANGUAGE";
+    public static final String SHARED_PREFERENCES_LANGUAGE_DEFAULT = "system"; // "system" means use device language
 
 }

@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI Multi Barcode Tangkapan</string>
+    <string name="start_capture_button_text">Mulakan Tangkapan</string>
+    <string name="loading_status">Memuat Aplikasi</string>
+    <string name="select_session_file">Pilih fail sesi atau buat yang baharu.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Mendapatkan Keizinan</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Pilih</string>
+    <string name="share">Kongsi</string>
+    <string name="refresh">Segarkan</string>
+    <string name="close">Tutup</string>
+    <string name="manage_sessions">Urus Sesi</string>
+    <string name="create_new">Buat Baharu</string>
+    <string name="enter_new_file_name">Masukkan nama fail baharu</string>
+    <string name="default_session_name">SesiSaya_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Tambah ke Fail</string>
+    <string name="save">Simpan</string>
+    <string name="update">Kemaskini Fail</string>
+    <string name="merge">Gabung Kuantiti</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Mulakan Tangkapan</string>
+    <string name="load_last_session">Muat Sesi Terakhir</string>
+    <string name="create_new_session">Buat Sesi Baharu</string>
+    <string name="view_session_data">Lihat Data Sesi</string>
+    <string name="selected_session">Sesi Terpilih</string>
+    <string name="select_session_to_start">Pilih Sesi Untuk Memulakan Tangkapan</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Persediaan</string>
+    <string name="prefix">Awalan:</string>
+    <string name="prefix_hint">Awalan_</string>
+    <string name="file_type">Jenis fail</string>
+    <string name="text_file">Fail Teks</string>
+    <string name="csv_file">Fail CSV</string>
+    <string name="excel_file">Fail Excel</string>
+    <string name="validate">Sahkan</string>
+    <string name="cancel">Batal</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Tangkap</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Permulaan AI Vision SDK gagal</string>
+    <string name="folder_path_missing">Laluan folder tiada!</string>
+    <string name="folder_path_missing_toast">Laluan folder tiada !!!</string>
+    <string name="error_could_not_create_file">Ralat, tidak dapat mencipta fail: %s</string>
+    <string name="error_could_not_open_file">Ralat, tidak dapat membuka fail: %s</string>
+    <string name="error_file_does_not_exist">Ralat, fail tidak wujud: %s</string>
+    <string name="error_file_is_empty">Ralat, fail kosong: %s</string>
+    <string name="error_loading_data">Ralat, tidak dapat memuat data dalam fail: %s</string>
+    <string name="file_saved_at">Fail disimpan di: %s</string>
+    <string name="error_saving_file">Ralat menyimpan fail: %s</string>
+    <string name="error_saving_last_selected_file">Ralat menyimpan fail terakhir yang dipilih</string>
+    <string name="settings_saved_successfully">Tetapan berjaya disimpan</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Sila pilih fail, bukan folder.</string>
+    <string name="please_select_file">Sila pilih fail.</string>
+    <string name="cannot_rename_folders_or_parent">Tidak boleh menamakan semula folder atau folder induk.</string>
+    <string name="file_already_exists">Fail sudah wujud.</string>
+    <string name="error_renaming_file">Ralat menamakan semula fail</string>
+    <string name="folder_already_exists">Folder sudah wujud.</string>
+    <string name="failed_to_create_folder">Gagal mencipta folder: %s</string>
+    <string name="failed_to_create_file">Gagal mencipta fail</string>
+    <string name="cannot_delete_parent_folder">Tidak boleh memadam folder induk.</string>
+    <string name="cannot_share_folders">Tidak boleh berkongsi folder.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Fail sesi terakhir tidak dijumpai.</string>
+    <string name="no_session_file_saved">Tiada fail sesi disimpan dalam keutamaan.</string>
+    <string name="error_creating_new_session">Ralat mencipta sesi baharu: %s</string>
+    <string name="missing_filename">Nama fail tiada</string>
+    <string name="camera_permission_required">Keizinan kamera diperlukan untuk menggunakan ciri ini</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Masa penciptaan objek Entity Tracker BarcodeDecoder() =%d milisaat</string>
+    <string name="barcode_decoder_disposed">Penyahkod barcode telah dilupuskan</string>
+    <string name="orientation_unlocked">Orientasi dibuka kunci untuk mod %s</string>
+    <string name="applied_viewfinder_resize_immediately">Spesifikasi saiz semula pencari pandangan digunakan serta-merta</string>
+    <string name="stored_pending_viewfinder_resize">Data saiz semula pencari pandangan yang tertangguh disimpan untuk kegunaan kemudian</string>
+    <string name="applied_pending_viewfinder_resize">Data saiz semula pencari pandangan yang tertangguh digunakan daripada nilai yang disimpan</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker sedia, menggunakan konfigurasi yang tertangguh</string>
+    <string name="handle_view_entity_result">Kendalikan Entiti Pandangan - Keputusan diterima</string>
+    <string name="entity_tracker_decoder_available">Penyahkod EntityBarcodeTracker tersedia, bilangan entiti: %s</string>
+    <string name="processing_entities">Memproses %d entiti untuk pandangan entiti</string>
+    <string name="rendered_entities">Entiti dipaparkan dalam pandangan entiti</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Nilai Barcode</string>
+    <string name="symbology">Simbologi</string>
+    <string name="unknown">TIDAK DIKETAHUI</string>
+    <string name="quantity">Kuantiti</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Tarikh Tangkapan</string>
+    <string name="date">Tarikh</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Togol lampu suluh</string>
+    <string name="toggle_capture_zone">Togol zon tangkapan</string>
+    <string name="edit_item">Edit item</string>
+    <string name="delete_item">Padam item</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Nilai: %s</string>
+    <string name="symbology_label">Simbologi: %s</string>
+    <string name="quantity_label">Kuantiti: %d</string>
+    <string name="date_label">Tarikh: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Kejayaan Memberikan Keizinan.</string>
+    <string name="session_data_merged">Data sesi telah digabungkan.</string>
+    <string name="error_reported">Ralat dilaporkan: %s</string>
+    <string name="error_reading_session_file">Ralat membaca fail sesi: %s</string>
+    <string name="error_reading_csv_session_file">Ralat membaca fail sesi CSV: %s</string>
+    <string name="error_reading_excel_session_file">Ralat membaca fail sesi Excel: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Namakan Semula</string>
+    <string name="rename_file">Namakan semula fail</string>
+    <string name="create">Buat</string>
+    <string name="create_new_folder">Buat folder baharu</string>
+    <string name="create_new_file">Buat fail baharu</string>
+    <string name="delete_file">Padam Fail</string>
+    <string name="delete_folder">Padam Folder</string>
+    <string name="are_you_sure">Adakah anda pasti?</string>
+    <string name="file_exists_already">Fail sudah wujud.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Tetapan</string>
+    <string name="activity_captured_barcodes">Barcode Tertangkap</string>
+    <string name="activity_session_data">Data Sesi</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Urus Sesi</string>
+    <string name="menu_settings">Tetapan</string>
+    <string name="menu_new_file">Fail Baharu</string>
+    <string name="menu_new_folder">Folder Baharu</string>
+    <string name="menu_rename">Namakan Semula</string>
+    <string name="menu_delete">Padam</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Fail Teks (.txt)</item>
+        <item>Fail CSV (.csv)</item>
+        <item>Fail Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

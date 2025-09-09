@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI മൾട്ടി ബാർകോഡ് ക്യാപ്ചർ</string>
+    <string name="start_capture_button_text">ക്യാപ്ചർ ആരംഭിക്കുക</string>
+    <string name="loading_status">ആപ്ലിക്കേഷൻ ലോഡുചെയ്യുന്നു</string>
+    <string name="select_session_file">ഒരു സെഷൻ ഫയൽ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയതൊന്ന് സൃഷ്ടിക്കുക.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">അനുമതികൾ വീണ്ടെടുക്കുന്നു</string>
+
+    <!-- Browser Activity -->
+    <string name="select">തിരഞ്ഞെടുക്കുക</string>
+    <string name="share">പങ്കിടുക</string>
+    <string name="refresh">പുതുക്കുക</string>
+    <string name="close">അടയ്ക്കുക</string>
+    <string name="manage_sessions">സെഷനുകൾ കൈകാര്യം ചെയ്യുക</string>
+    <string name="create_new">പുതിയത് സൃഷ്ടിക്കുക</string>
+    <string name="enter_new_file_name">പുതിയ ഫയൽ നാമം നൽകുക</string>
+    <string name="default_session_name">എന്റെസെഷൻ_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">അതെ</string>
+    <string name="no">അല്ല</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">ഫയലിലേക്ക് ചേർക്കുക</string>
+    <string name="save">സംരക്ഷിക്കുക</string>
+    <string name="update">ഫയൽ അപ്ഡേറ്റ് ചെയ്യുക</string>
+    <string name="merge">അളവുകൾ ലയിപ്പിക്കുക</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">ക്യാപ്ചർ ആരംഭിക്കുക</string>
+    <string name="load_last_session">അവസാന സെഷൻ ലോഡുചെയ്യുക</string>
+    <string name="create_new_session">പുതിയ സെഷൻ സൃഷ്ടിക്കുക</string>
+    <string name="view_session_data">സെഷൻ ഡാറ്റ കാണുക</string>
+    <string name="selected_session">തിരഞ്ഞെടുത്ത സെഷൻ</string>
+    <string name="select_session_to_start">ക്യാപ്ചർ ആരംഭിക്കാൻ ഒരു സെഷൻ തിരഞ്ഞെടുക്കുക</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">സജ്ജീകരണം</string>
+    <string name="prefix">പ്രിഫിക്സ്:</string>
+    <string name="prefix_hint">പ്രിഫിക്സ്_</string>
+    <string name="file_type">ഫയൽ തരം</string>
+    <string name="text_file">ടെക്സ്റ്റ് ഫയൽ</string>
+    <string name="csv_file">CSV ഫയൽ</string>
+    <string name="excel_file">Excel ഫയൽ</string>
+    <string name="validate">സാധൂകരിക്കുക</string>
+    <string name="cancel">റദ്ദാക്കുക</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">ക്യാപ്ചർ</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK പ്രാരംഭീകരണം പരാജയപ്പെട്ടു</string>
+    <string name="folder_path_missing">ഫോൾഡർ പാത്ത് നഷ്ടപ്പെട്ടു!</string>
+    <string name="folder_path_missing_toast">ഫോൾഡർ പാത്ത് നഷ്ടപ്പെട്ടു !!!</string>
+    <string name="error_could_not_create_file">പിശക്, ഫയൽ സൃഷ്ടിക്കാൻ കഴിഞ്ഞില്ല: %s</string>
+    <string name="error_could_not_open_file">പിശക്, ഫയൽ തുറക്കാൻ കഴിഞ്ഞില്ല: %s</string>
+    <string name="error_file_does_not_exist">പിശക്, ഫയൽ നിലവിലില്ല: %s</string>
+    <string name="error_file_is_empty">പിശക്, ഫയൽ ശൂന്യമാണ്: %s</string>
+    <string name="error_loading_data">പിശക്, ഫയലിൽ ഡാറ്റ ലോഡുചെയ്യാൻ കഴിഞ്ഞില്ല: %s</string>
+    <string name="file_saved_at">ഫയൽ സംരക്ഷിച്ചിരിക്കുന്നു: %s</string>
+    <string name="error_saving_file">ഫയൽ സംരക്ഷിക്കുന്നതിൽ പിശക്: %s</string>
+    <string name="error_saving_last_selected_file">അവസാനം തിരഞ്ഞെടുത്ത ഫയൽ സംരക്ഷിക്കുന്നതിൽ പിശക്</string>
+    <string name="settings_saved_successfully">ക്രമീകരണങ്ങൾ വിജയകരമായി സംരക്ഷിച്ചു</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">ദയവായി ഫോൾഡറല്ല, ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
+    <string name="please_select_file">ദയവായി ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
+    <string name="cannot_rename_folders_or_parent">ഫോൾഡറുകളെയോ മാതൃഫോൾഡറിനെയോ പുനർനാമകരണം ചെയ്യാൻ കഴിയില്ല.</string>
+    <string name="file_already_exists">ഫയൽ ഇതിനകം നിലവിലുണ്ട്.</string>
+    <string name="error_renaming_file">ഫയൽ പുനർനാമകരണം ചെയ്യുന്നതിൽ പിശക്</string>
+    <string name="folder_already_exists">ഫോൾഡർ ഇതിനകം നിലവിലുണ്ട്.</string>
+    <string name="failed_to_create_folder">ഫോൾഡർ സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു: %s</string>
+    <string name="failed_to_create_file">ഫയൽ സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
+    <string name="cannot_delete_parent_folder">മാതൃഫോൾഡർ ഇല്ലാതാക്കാൻ കഴിയില്ല.</string>
+    <string name="cannot_share_folders">ഫോൾഡറുകൾ പങ്കിടാൻ കഴിയില്ല.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">അവസാന സെഷൻ ഫയൽ കണ്ടെത്തിയില്ല.</string>
+    <string name="no_session_file_saved">മുൻഗണനകളിൽ സെഷൻ ഫയൽ സംരക്ഷിച്ചിട്ടില്ല.</string>
+    <string name="error_creating_new_session">പുതിയ സെഷൻ സൃഷ്ടിക്കുന്നതിൽ പിശക്: %s</string>
+    <string name="missing_filename">ഫയൽ നാമം നഷ്ടപ്പെട്ടു</string>
+    <string name="camera_permission_required">ഈ ഫീച്ചർ ഉപയോഗിക്കുന്നതിന് ക്യാമറ അനുമതി ആവശ്യമാണ്</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() ഒബ്ജക്റ്റ് സൃഷ്ടിക്കുന്ന സമയം =%d മില്ലിസെക്കൻഡ്</string>
+    <string name="barcode_decoder_disposed">ബാർകോഡ് ഡീകോഡർ നിർത്തലാക്കി</string>
+    <string name="orientation_unlocked">%s മോഡിനായി ഓറിയന്റേഷൻ അൺലോക്കുചെയ്തു</string>
+    <string name="applied_viewfinder_resize_immediately">വ്യൂഫൈൻഡർ റീസൈസ് സ്പെസിഫിക്കേഷനുകൾ ഉടൻ പ്രയോഗിച്ചു</string>
+    <string name="stored_pending_viewfinder_resize">പിന്നീടുള്ള പ്രയോഗത്തിനായി തീർപ്പുകൽപ്പിക്കാത്ത വ്യൂഫൈൻഡർ റീസൈസ് ഡാറ്റ സൂക്ഷിച്ചു</string>
+    <string name="applied_pending_viewfinder_resize">സൂക്ഷിച്ച മൂല്യങ്ങളിൽ നിന്ന് തീർപ്പുകൽപ്പിക്കാത്ത വ്യൂഫൈൻഡർ റീസൈസ് ഡാറ്റ പ്രയോഗിച്ചു</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker തയ്യാറായി, തീർപ്പുകൽപ്പിക്കാത്ത കോൺഫിഗറേഷനുകൾ പ്രയോഗിക്കുന്നു</string>
+    <string name="handle_view_entity_result">വ്യൂ എന്റിറ്റി കൈകാര്യം ചെയ്യുക - ഫലം ലഭിച്ചു</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker ഡീകോഡർ ലഭ്യമാണ്, എന്റിറ്റികളുടെ എണ്ണം: %s</string>
+    <string name="processing_entities">എന്റിറ്റി വ്യൂവിനായി %d എന്റിറ്റികൾ പ്രോസസ്സുചെയ്യുന്നു</string>
+    <string name="rendered_entities">എന്റിറ്റി വ്യൂവിൽ എന്റിറ്റികൾ റെൻഡർ ചെയ്തു</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">ബാർകോഡ് മൂല്യം</string>
+    <string name="symbology">സിംബോളജി</string>
+    <string name="unknown">അജ്ഞാതം</string>
+    <string name="quantity">അളവ്</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">ക്യാപ്ചർ തീയതി</string>
+    <string name="date">തീയതി</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">ഫ്ലാഷ്‌ലൈറ്റ് ടോഗിൾ ചെയ്യുക</string>
+    <string name="toggle_capture_zone">ക്യാപ്ചർ സോൺ ടോഗിൾ ചെയ്യുക</string>
+    <string name="edit_item">ഇനം എഡിറ്റുചെയ്യുക</string>
+    <string name="delete_item">ഇനം ഇല്ലാതാക്കുക</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">മൂല്യം: %s</string>
+    <string name="symbology_label">സിംബോളജി: %s</string>
+    <string name="quantity_label">അളവ്: %d</string>
+    <string name="date_label">തീയതി: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">അനുമതികൾ നൽകുന്നതിൽ വിജയം.</string>
+    <string name="session_data_merged">സെഷൻ ഡാറ്റ ലയിപ്പിച്ചു.</string>
+    <string name="error_reported">പിശക് റിപ്പോർട്ടുചെയ്തു: %s</string>
+    <string name="error_reading_session_file">സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്: %s</string>
+    <string name="error_reading_csv_session_file">CSV സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്: %s</string>
+    <string name="error_reading_excel_session_file">Excel സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">പുനർനാമകരണം</string>
+    <string name="rename_file">ഫയൽ പുനർനാമകരണം ചെയ്യുക</string>
+    <string name="create">സൃഷ്ടിക്കുക</string>
+    <string name="create_new_folder">പുതിയ ഫോൾഡർ സൃഷ്ടിക്കുക</string>
+    <string name="create_new_file">പുതിയ ഫയൽ സൃഷ്ടിക്കുക</string>
+    <string name="delete_file">ഫയൽ ഇല്ലാതാക്കുക</string>
+    <string name="delete_folder">ഫോൾഡർ ഇല്ലാതാക്കുക</string>
+    <string name="are_you_sure">നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
+    <string name="file_exists_already">ഫയൽ ഇതിനകം നിലവിലുണ്ട്.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">ക്രമീകരണങ്ങൾ</string>
+    <string name="activity_captured_barcodes">ക്യാപ്ചർ ചെയ്ത ബാർകോഡുകൾ</string>
+    <string name="activity_session_data">സെഷൻ ഡാറ്റ</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">സെഷനുകൾ കൈകാര്യം ചെയ്യുക</string>
+    <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
+    <string name="menu_new_file">പുതിയ ഫയൽ</string>
+    <string name="menu_new_folder">പുതിയ ഫോൾഡർ</string>
+    <string name="menu_rename">പുനർനാമകരണം</string>
+    <string name="menu_delete">ഇല്ലാതാക്കുക</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>ടെക്സ്റ്റ് ഫയൽ (.txt)</item>
+        <item>CSV ഫയൽ (.csv)</item>
+        <item>Excel ഫയൽ (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

@@ -42,6 +42,8 @@
     <string name="text_file">Text File</string>
     <string name="csv_file">CSV File</string>
     <string name="excel_file">Excel File</string>
+    <string name="language">Language</string>
+    <string name="system_language">System Language</string>
     <string name="validate">Validate</string>
     <string name="cancel">Cancel</string>
 
@@ -94,6 +96,110 @@
     <string name="processing_entities">Processing %d entities for entity view</string>
     <string name="rendered_entities">Rendered entities on entity view</string>
 
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Symbologies</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Barcode Value</string>
+    <string name="symbology">Symbology</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">Quantity</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Capture Date</string>
+    <string name="date">Date</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Toggle flashlight</string>
+    <string name="toggle_capture_zone">Toggle capture zone</string>
+    <string name="edit_item">Edit item</string>
+    <string name="delete_item">Delete item</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Value: %s</string>
+    <string name="symbology_label">Symbology: %s</string>
+    <string name="quantity_label">Quantity: %d</string>
+    <string name="date_label">Date: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Success Granting Permissions.</string>
+    <string name="session_data_merged">Session data merged.</string>
+    <string name="error_reported">Error reported: %s</string>
+    <string name="error_reading_session_file">Error reading session file: %s</string>
+    <string name="error_reading_csv_session_file">Error reading CSV session file: %s</string>
+    <string name="error_reading_excel_session_file">Error reading Excel session file: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Rename</string>
+    <string name="rename_file">Rename a file</string>
+    <string name="create">Create</string>
+    <string name="create_new_folder">Create a new folder</string>
+    <string name="create_new_file">Create a new file</string>
+    <string name="delete_file">Delete File</string>
+    <string name="delete_folder">Delete Folder</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="file_exists_already">The file already exists.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Settings</string>
+    <string name="activity_captured_barcodes">Captured Barcodes</string>
+    <string name="activity_session_data">Session Data</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Manage Sessions</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_new_file">New File</string>
+    <string name="menu_new_folder">New Folder</string>
+    <string name="menu_rename">Rename</string>
+    <string name="menu_delete">Delete</string>
+
     <!-- Export File Type Arrays for Managed Configuration -->
     <string-array name="export_file_types">
         <item>Text File (.txt)</item>
@@ -105,6 +211,159 @@
         <item>.txt</item>
         <item>.csv</item>
         <item>.xlsx</item>
+    </string-array>
+
+    <!-- Language Selection Arrays -->
+    <string-array name="language_names">
+        <item>System Language</item>
+        <item>العربية</item>
+        <item>Afrikaans</item>
+        <item>Shqip</item>
+        <item>አማርኛ</item>
+        <item>Հայերեն</item>
+        <item>Azərbaycan</item>
+        <item>Беларуская</item>
+        <item>Bosanski</item>
+        <item>Български</item>
+        <item>မြန်မာ</item>
+        <item>Català</item>
+        <item>简体中文</item>
+        <item>繁體中文</item>
+        <item>Hrvatski</item>
+        <item>Čeština</item>
+        <item>Dansk</item>
+        <item>Nederlands</item>
+        <item>English</item>
+        <item>Eesti</item>
+        <item>Filipino</item>
+        <item>Suomi</item>
+        <item>Français</item>
+        <item>Galego</item>
+        <item>ქართული</item>
+        <item>Deutsch</item>
+        <item>Ελληνικά</item>
+        <item>ગુજરાતી</item>
+        <item>עברית</item>
+        <item>हिन्दी</item>
+        <item>Magyar</item>
+        <item>Íslenska</item>
+        <item>Bahasa Indonesia</item>
+        <item>Italiano</item>
+        <item>日本語</item>
+        <item>Basa Jawa</item>
+        <item>ಕನ್ನಡ</item>
+        <item>ខ្មែរ</item>
+        <item>한국어</item>
+        <item>Кыргызча</item>
+        <item>ລາວ</item>
+        <item>Latina</item>
+        <item>Latviešu</item>
+        <item>Lietuvių</item>
+        <item>Македонски</item>
+        <item>Bahasa Melayu</item>
+        <item>മലയാളം</item>
+        <item>मराठी</item>
+        <item>Монгол</item>
+        <item>नेपाली</item>
+        <item>Norsk bokmål</item>
+        <item>فارسی</item>
+        <item>Polski</item>
+        <item>Português</item>
+        <item>ਪੰਜਾਬੀ</item>
+        <item>Română</item>
+        <item>Rumantsch</item>
+        <item>Русский</item>
+        <item>Српски</item>
+        <item>සිංහල</item>
+        <item>Slovenčina</item>
+        <item>Slovenščina</item>
+        <item>Español</item>
+        <item>Kiswahili</item>
+        <item>Svenska</item>
+        <item>தமிழ்</item>
+        <item>తెలుగు</item>
+        <item>ไทย</item>
+        <item>Türkçe</item>
+        <item>Українська</item>
+        <item>اردو</item>
+        <item>Tiếng Việt</item>
+        <item>isiZulu</item>
+    </string-array>
+
+    <string-array name="language_codes">
+        <item>system</item>
+        <item>ar</item>
+        <item>af</item>
+        <item>sq</item>
+        <item>am</item>
+        <item>hy</item>
+        <item>az</item>
+        <item>be</item>
+        <item>bs</item>
+        <item>bg</item>
+        <item>my</item>
+        <item>ca</item>
+        <item>zh</item>
+        <item>zh-rTW</item>
+        <item>hr</item>
+        <item>cs</item>
+        <item>da</item>
+        <item>nl</item>
+        <item>en</item>
+        <item>et</item>
+        <item>fil</item>
+        <item>fi</item>
+        <item>fr</item>
+        <item>gl</item>
+        <item>ka</item>
+        <item>de</item>
+        <item>el</item>
+        <item>gu</item>
+        <item>he</item>
+        <item>hi</item>
+        <item>hu</item>
+        <item>is</item>
+        <item>id</item>
+        <item>it</item>
+        <item>ja</item>
+        <item>jv</item>
+        <item>kn</item>
+        <item>km</item>
+        <item>ko</item>
+        <item>ky</item>
+        <item>lo</item>
+        <item>la</item>
+        <item>lv</item>
+        <item>lt</item>
+        <item>mk</item>
+        <item>ms</item>
+        <item>ml</item>
+        <item>mr</item>
+        <item>mn</item>
+        <item>ne</item>
+        <item>nb</item>
+        <item>fa</item>
+        <item>pl</item>
+        <item>pt</item>
+        <item>pa</item>
+        <item>ro</item>
+        <item>rm</item>
+        <item>ru</item>
+        <item>sr</item>
+        <item>si</item>
+        <item>sk</item>
+        <item>sl</item>
+        <item>es</item>
+        <item>sw</item>
+        <item>sv</item>
+        <item>ta</item>
+        <item>te</item>
+        <item>th</item>
+        <item>tr</item>
+        <item>uk</item>
+        <item>ur</item>
+        <item>vi</item>
+        <item>zu</item>
     </string-array>
 
 </resources>

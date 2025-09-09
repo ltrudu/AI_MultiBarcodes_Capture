@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">कैप्चर शुरू करें</string>
+    <string name="loading_status">एप्लिकेशन लोड हो रहा है</string>
+    <string name="select_session_file">सत्र फ़ाइल चुनें या नई बनाएं।</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">अनुमतियाँ प्राप्त करना</string>
+
+    <!-- Browser Activity -->
+    <string name="select">चुनें</string>
+    <string name="share">साझा करें</string>
+    <string name="refresh">ताज़ा करें</string>
+    <string name="close">बंद करें</string>
+    <string name="manage_sessions">सत्र प्रबंधित करें</string>
+    <string name="create_new">नया बनाएं</string>
+    <string name="enter_new_file_name">नई फ़ाइल का नाम दर्ज करें</string>
+    <string name="default_session_name">मेरा सत्र_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">फ़ाइल में जोड़ें</string>
+    <string name="save">सहेजें</string>
+    <string name="update">फ़ाइल अपडेट करें</string>
+    <string name="merge">मात्रा मिलाएं</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">कैप्चर शुरू करें</string>
+    <string name="load_last_session">अंतिम सत्र लोड करें</string>
+    <string name="create_new_session">नया सत्र बनाएं</string>
+    <string name="view_session_data">सत्र डेटा देखें</string>
+    <string name="selected_session">चुना गया सत्र</string>
+    <string name="select_session_to_start">कैप्चर शुरू करने के लिए सत्र चुनें</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">सेटअप</string>
+    <string name="prefix">उपसर्ग:</string>
+    <string name="prefix_hint">उपसर्ग_</string>
+    <string name="file_type">फ़ाइल प्रकार</string>
+    <string name="text_file">टेक्स्ट फ़ाइल</string>
+    <string name="csv_file">CSV फ़ाइल</string>
+    <string name="excel_file">Excel फ़ाइल</string>
+    <string name="language">भाषा</string>
+    <string name="system_language">सिस्टम भाषा</string>
+    <string name="validate">सत्यापित करें</string>
+    <string name="cancel">रद्द करें</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">कैप्चर</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK प्रारंभीकरण विफल</string>
+    <string name="folder_path_missing">फ़ोल्डर पथ गुम है!</string>
+    <string name="folder_path_missing_toast">फ़ोल्डर पथ गुम है !!!</string>
+    <string name="error_could_not_create_file">त्रुटि, फ़ाइल बना नहीं सके: %s</string>
+    <string name="error_could_not_open_file">त्रुटि, फ़ाइल खोल नहीं सके: %s</string>
+    <string name="error_file_does_not_exist">त्रुटि, फ़ाइल मौजूद नहीं: %s</string>
+    <string name="error_file_is_empty">त्रुटि, फ़ाइल खाली है: %s</string>
+    <string name="error_loading_data">त्रुटि, फ़ाइल में डेटा लोड नहीं कर सके: %s</string>
+    <string name="file_saved_at">फ़ाइल यहाँ सहेजी गई: %s</string>
+    <string name="error_saving_file">फ़ाइल सहेजने में त्रुटि: %s</string>
+    <string name="error_saving_last_selected_file">अंतिम चुनी गई फ़ाइल सहेजने में त्रुटि</string>
+    <string name="settings_saved_successfully">सेटिंग्स सफलतापूर्वक सहेजी गईं</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">कृपया फ़ाइल चुनें, फ़ोल्डर नहीं।</string>
+    <string name="please_select_file">कृपया फ़ाइल चुनें।</string>
+    <string name="cannot_rename_folders_or_parent">फ़ोल्डरों या पेरेंट फ़ोल्डर का नाम बदला नहीं जा सकता।</string>
+    <string name="file_already_exists">फ़ाइल पहले से मौजूद है।</string>
+    <string name="error_renaming_file">फ़ाइल का नाम बदलने में त्रुटि</string>
+    <string name="folder_already_exists">फ़ोल्डर पहले से मौजूद है।</string>
+    <string name="failed_to_create_folder">फ़ोल्डर बनाने में विफल: %s</string>
+    <string name="failed_to_create_file">फ़ाइल बनाने में विफल</string>
+    <string name="cannot_delete_parent_folder">पेरेंट फ़ोल्डर हटाया नहीं जा सकता।</string>
+    <string name="cannot_share_folders">फ़ोल्डर साझा नहीं किए जा सकते।</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">अंतिम सत्र फ़ाइल नहीं मिली।</string>
+    <string name="no_session_file_saved">वरीयताओं में कोई सत्र फ़ाइल सहेजी नहीं गई।</string>
+    <string name="error_creating_new_session">नया सत्र बनाने में त्रुटि: %s</string>
+    <string name="missing_filename">फ़ाइलनाम गुम</string>
+    <string name="camera_permission_required">इस सुविधा का उपयोग करने के लिए कैमरा अनुमति आवश्यक है</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj निर्माण समय =%d मिली सेकंड</string>
+    <string name="barcode_decoder_disposed">बारकोड डिकोडर का निपटान हो गया</string>
+    <string name="orientation_unlocked">%s मोड के लिए ओरिएंटेशन अनलॉक</string>
+    <string name="applied_viewfinder_resize_immediately">व्यूफ़ाइंडर रीसाइज़ स्पेक्स तुरंत लागू</string>
+    <string name="stored_pending_viewfinder_resize">बाद में लागू करने के लिए पेंडिंग व्यूफ़ाइंडर रीसाइज़ डेटा संग्रहीत</string>
+    <string name="applied_pending_viewfinder_resize">संग्रहीत मानों से पेंडिंग व्यूफ़ाइंडर रीसाइज़ डेटा लागू</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker तैयार है, पेंडिंग कॉन्फ़िगरेशन लागू कर रहा है</string>
+    <string name="handle_view_entity_result">व्यू एंटिटी हैंडल - परिणाम प्राप्त</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker डिकोडर उपलब्ध, एंटिटीज की संख्या: %s</string>
+    <string name="processing_entities">एंटिटी व्यू के लिए %d एंटिटीज प्रोसेसिंग</string>
+    <string name="rendered_entities">एंटिटी व्यू में एंटिटीज रेंडर किए गए</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">प्रतीकीकरण</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">बारकोड मान</string>
+    <string name="symbology">प्रतीकीकरण</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">मात्रा</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">कैप्चर दिनांक</string>
+    <string name="date">दिनांक</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">फ़्लैशलाइट टॉगल करें</string>
+    <string name="toggle_capture_zone">कैप्चर ज़ोन टॉगल करें</string>
+    <string name="edit_item">आइटम संपादित करें</string>
+    <string name="delete_item">आइटम हटाएं</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">मान: %s</string>
+    <string name="symbology_label">प्रतीकीकरण: %s</string>
+    <string name="quantity_label">मात्रा: %d</string>
+    <string name="date_label">दिनांक: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">अनुमतियाँ देने में सफलता।</string>
+    <string name="session_data_merged">सत्र डेटा मिला दिया गया।</string>
+    <string name="error_reported">त्रुटि की रिपोर्ट: %s</string>
+    <string name="error_reading_session_file">सत्र फ़ाइल पढ़ने में त्रुटि: %s</string>
+    <string name="error_reading_csv_session_file">CSV सत्र फ़ाइल पढ़ने में त्रुटि: %s</string>
+    <string name="error_reading_excel_session_file">Excel सत्र फ़ाइल पढ़ने में त्रुटि: %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">नाम बदलें</string>
+    <string name="rename_file">फ़ाइल का नाम बदलें</string>
+    <string name="create">बनाएं</string>
+    <string name="create_new_folder">नया फ़ोल्डर बनाएं</string>
+    <string name="create_new_file">नई फ़ाइल बनाएं</string>
+    <string name="delete_file">फ़ाइल हटाएं</string>
+    <string name="delete_folder">फ़ोल्डर हटाएं</string>
+    <string name="are_you_sure">क्या आप सुनिश्चित हैं?</string>
+    <string name="file_exists_already">फ़ाइल पहले से मौजूद है।</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">सेटिंग्स</string>
+    <string name="activity_captured_barcodes">कैप्चर किए गए बारकोड</string>
+    <string name="activity_session_data">सत्र डेटा</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">सत्र प्रबंधित करें</string>
+    <string name="menu_settings">सेटिंग्स</string>
+    <string name="menu_new_file">नई फ़ाइल</string>
+    <string name="menu_new_folder">नया फ़ोल्डर</string>
+    <string name="menu_rename">नाम बदलें</string>
+    <string name="menu_delete">हटाएं</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>टेक्स्ट फ़ाइल (.txt)</item>
+        <item>CSV फ़ाइल (.csv)</item>
+        <item>Excel फ़ाइल (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

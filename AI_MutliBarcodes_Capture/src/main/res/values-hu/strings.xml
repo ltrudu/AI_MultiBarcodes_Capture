@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Rögzítés kezdése</string>
+    <string name="loading_status">Alkalmazás betöltése</string>
+    <string name="select_session_file">Válasszon ki egy munkamenet fájlt vagy hozzon létre újat.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Engedélyek megszerzése</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Kiválasztás</string>
+    <string name="share">Megosztás</string>
+    <string name="refresh">Frissítés</string>
+    <string name="close">Bezárás</string>
+    <string name="manage_sessions">Munkamenetek kezelése</string>
+    <string name="create_new">Új létrehozása</string>
+    <string name="enter_new_file_name">Adja meg az új fájl nevét</string>
+    <string name="default_session_name">Saját munkamenet_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Hozzáadás a fájlhoz</string>
+    <string name="save">Mentés</string>
+    <string name="update">Fájl frissítése</string>
+    <string name="merge">Mennyiségek egyesítése</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Rögzítés kezdése</string>
+    <string name="load_last_session">Utolsó munkamenet betöltése</string>
+    <string name="create_new_session">Új munkamenet létrehozása</string>
+    <string name="view_session_data">Munkamenet adatok megtekintése</string>
+    <string name="selected_session">Kiválasztott munkamenet</string>
+    <string name="select_session_to_start">Válasszon munkamenetet a rögzítés megkezdéséhez</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Beállítás</string>
+    <string name="prefix">Előtag:</string>
+    <string name="prefix_hint">Előtag_</string>
+    <string name="file_type">Fájl típus</string>
+    <string name="text_file">Szöveg fájl</string>
+    <string name="csv_file">CSV fájl</string>
+    <string name="excel_file">Excel fájl</string>
+    <string name="language">Nyelv</string>
+    <string name="system_language">Rendszer nyelv</string>
+    <string name="validate">Érvényesítés</string>
+    <string name="cancel">Mégse</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Rögzítés</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">AI Vision SDK inicializálás sikertelen</string>
+    <string name="folder_path_missing">A mappa útvonal hiányzik!</string>
+    <string name="folder_path_missing_toast">A mappa útvonal hiányzik !!!</string>
+    <string name="error_could_not_create_file">Hiba, nem lehetett létrehozni a fájlt: %s</string>
+    <string name="error_could_not_open_file">Hiba, nem lehetett megnyitni a fájlt: %s</string>
+    <string name="error_file_does_not_exist">Hiba, a fájl nem létezik: %s</string>
+    <string name="error_file_is_empty">Hiba, a fájl üres: %s</string>
+    <string name="error_loading_data">Hiba, nem lehetett betölteni az adatokat a fájlba: %s</string>
+    <string name="file_saved_at">Fájl mentve ide: %s</string>
+    <string name="error_saving_file">Hiba a fájl mentésekor: %s</string>
+    <string name="error_saving_last_selected_file">Hiba az utoljára kiválasztott fájl mentésekor</string>
+    <string name="settings_saved_successfully">Beállítások sikeresen mentve</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">Kérjük válasszon fájlt, ne mappát.</string>
+    <string name="please_select_file">Kérjük válasszon fájlt.</string>
+    <string name="cannot_rename_folders_or_parent">Nem lehet átnevezni a mappákat vagy a szülő mappát.</string>
+    <string name="file_already_exists">A fájl már létezik.</string>
+    <string name="error_renaming_file">Hiba a fájl átnevezésekor</string>
+    <string name="folder_already_exists">A mappa már létezik.</string>
+    <string name="failed_to_create_folder">Mappa létrehozása sikertelen: %s</string>
+    <string name="failed_to_create_file">Fájl létrehozása sikertelen</string>
+    <string name="cannot_delete_parent_folder">Nem lehet törölni a szülő mappát.</string>
+    <string name="cannot_share_folders">Nem lehet megosztani a mappákat.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Utolsó munkamenet fájl nem található.</string>
+    <string name="no_session_file_saved">Nincs munkamenet fájl mentve a beállításokban.</string>
+    <string name="error_creating_new_session">Hiba új munkamenet létrehozásakor: %s</string>
+    <string name="missing_filename">Hiányzó fájlnév</string>
+    <string name="camera_permission_required">Kamera engedély szükséges ezen funkció használatához</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj létrehozási idő =%d milli mp</string>
+    <string name="barcode_decoder_disposed">Vonalkód dekóder felszabadítva</string>
+    <string name="orientation_unlocked">Orientáció feloldva %s módhoz</string>
+    <string name="applied_viewfinder_resize_immediately">Kereső átméretezési specifikációk azonnal alkalmazva</string>
+    <string name="stored_pending_viewfinder_resize">Függőben lévő kereső átméretezési adatok tárolva későbbi alkalmazáshoz</string>
+    <string name="applied_pending_viewfinder_resize">Függőben lévő kereső átméretezési adatok alkalmazva tárolt értékekből</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker kész, függőben lévő konfigurációk alkalmazása</string>
+    <string name="handle_view_entity_result">Nézet entitás kezelése - Eredmény megkapva</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekóder elérhető, entitások száma: %s</string>
+    <string name="processing_entities">%d entitás feldolgozása entitás nézethez</string>
+    <string name="rendered_entities">Entitások renderelve entitás nézetben</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Szimbólumok</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Vonalkód érték</string>
+    <string name="symbology">Szimbólum</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">Mennyiség</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Rögzítési dátum</string>
+    <string name="date">Dátum</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Zseblámpa kapcsolása</string>
+    <string name="toggle_capture_zone">Rögzítési zóna kapcsolása</string>
+    <string name="edit_item">Elem szerkesztése</string>
+    <string name="delete_item">Elem törlése</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Érték: %s</string>
+    <string name="symbology_label">Szimbólum: %s</string>
+    <string name="quantity_label">Mennyiség: %d</string>
+    <string name="date_label">Dátum: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Engedélyek sikeres megadása.</string>
+    <string name="session_data_merged">Munkamenet adatok egyesítve.</string>
+    <string name="error_reported">Hiba jelentve: %s</string>
+    <string name="error_reading_session_file">Hiba munkamenet fájl olvasásakor: %s</string>
+    <string name="error_reading_csv_session_file">Hiba CSV munkamenet fájl olvasásakor: %s</string>
+    <string name="error_reading_excel_session_file">Hiba Excel munkamenet fájl olvasásakor: %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">Átnevezés</string>
+    <string name="rename_file">Fájl átnevezése</string>
+    <string name="create">Létrehozás</string>
+    <string name="create_new_folder">Új mappa létrehozása</string>
+    <string name="create_new_file">Új fájl létrehozása</string>
+    <string name="delete_file">Fájl törlése</string>
+    <string name="delete_folder">Mappa törlése</string>
+    <string name="are_you_sure">Biztos benne?</string>
+    <string name="file_exists_already">A fájl már létezik.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Beállítások</string>
+    <string name="activity_captured_barcodes">Rögzített vonalkódok</string>
+    <string name="activity_session_data">Munkamenet adatok</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Munkamenetek kezelése</string>
+    <string name="menu_settings">Beállítások</string>
+    <string name="menu_new_file">Új fájl</string>
+    <string name="menu_new_folder">Új mappa</string>
+    <string name="menu_rename">Átnevezés</string>
+    <string name="menu_delete">Törlés</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Szöveg fájl (.txt)</item>
+        <item>CSV fájl (.csv)</item>
+        <item>Excel fájl (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

@@ -24,7 +24,7 @@
                 android:id="@+id/edit_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:contentDescription="Edit item"
+                android:contentDescription="@string/edit_item"
                 android:src="@drawable/ic_edit_white_24dp" />
 
         </LinearLayout>
@@ -41,7 +41,7 @@
                 android:id="@+id/trash_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:contentDescription="Delete item"
+                android:contentDescription="@string/delete_item"
                 android:src="@drawable/ic_delete_white_24dp" />
 
         </LinearLayout>

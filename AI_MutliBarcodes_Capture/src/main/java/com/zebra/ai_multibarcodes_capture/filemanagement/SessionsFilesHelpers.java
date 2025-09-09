@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
@@ -167,7 +168,7 @@ public class SessionsFilesHelpers {
             
         } catch (IOException e) {
             LogUtils.e(TAG, "Error reading session file: " + sessionFile.getPath(), e);
-            Toast.makeText(context, "Error reading session file: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.error_reading_session_file, e.getMessage()), Toast.LENGTH_LONG).show();
         }
 
         return SessionData;
@@ -377,7 +378,7 @@ public class SessionsFilesHelpers {
             
         } catch (IOException e) {
             LogUtils.e(TAG, "Error reading CSV session file: " + sessionFile.getPath(), e);
-            Toast.makeText(context, "Error reading CSV session file: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.error_reading_csv_session_file, e.getMessage()), Toast.LENGTH_LONG).show();
         }
 
         return SessionData;
@@ -547,7 +548,7 @@ public class SessionsFilesHelpers {
             
         } catch (Exception e) {
             LogUtils.e(TAG, "Error reading Excel session file: " + sessionFile.getPath(), e);
-            Toast.makeText(context, "Error reading Excel session file: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.error_reading_excel_session_file, e.getMessage()), Toast.LENGTH_LONG).show();
         } finally {
             // Close resources
             try {

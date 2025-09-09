@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">Začni zajem</string>
+    <string name="loading_status">Nalaganje aplikacije</string>
+    <string name="select_session_file">Izberite datoteko seje ali ustvarite novo.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">Pridobivanje dovoljenj</string>
+
+    <!-- Browser Activity -->
+    <string name="select">Izberi</string>
+    <string name="share">Deli</string>
+    <string name="refresh">Osveži</string>
+    <string name="close">Zapri</string>
+    <string name="manage_sessions">Upravljaj seje</string>
+    <string name="create_new">Ustvari novo</string>
+    <string name="enter_new_file_name">Vnesite ime nove datoteke</string>
+    <string name="default_session_name">MojaSeja_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">Dodaj v datoteko</string>
+    <string name="save">Shrani</string>
+    <string name="update">Posodobi datoteko</string>
+    <string name="merge">Združi količine</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">Začni zajem</string>
+    <string name="load_last_session">Naloži zadnjo sejo</string>
+    <string name="create_new_session">Ustvari novo sejo</string>
+    <string name="view_session_data">Prikaži podatke seje</string>
+    <string name="selected_session">Izbrana seja</string>
+    <string name="select_session_to_start">Izberite sejo za začetek zajema</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">Nastavitev</string>
+    <string name="prefix">Predpona:</string>
+    <string name="prefix_hint">Predpona_</string>
+    <string name="file_type">Vrsta datoteke</string>
+    <string name="text_file">Besedilna datoteka</string>
+    <string name="csv_file">CSV datoteka</string>
+    <string name="excel_file">Excel datoteka</string>
+    <string name="validate">Preveri</string>
+    <string name="cancel">Prekliči</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">Zajemi</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">Inicializacija AI Vision SDK neuspešna</string>
+    <string name="folder_path_missing">Pot do mape manjka!</string>
+    <string name="folder_path_missing_toast">Pot do mape manjka !!!</string>
+    <string name="error_could_not_create_file">Napaka, datoteke ni bilo mogoče ustvariti: %s</string>
+    <string name="error_could_not_open_file">Napaka, datoteke ni bilo mogoče odpreti: %s</string>
+    <string name="error_file_does_not_exist">Napaka, datoteka ne obstaja: %s</string>
+    <string name="error_file_is_empty">Napaka, datoteka je prazna: %s</string>
+    <string name="error_loading_data">Napaka, podatkov v datoteki ni bilo mogoče naložiti: %s</string>
+    <string name="file_saved_at">Datoteka shranjena v: %s</string>
+    <string name="error_saving_file">Napaka pri shranjevanju datoteke: %s</string>
+    <string name="error_saving_last_selected_file">Napaka pri shranjevanju zadnje izbrane datoteke</string>
+    <string name="settings_saved_successfully">Nastavitve uspešno shranjene</string>
+
+    <!-- French Toast Messages (translated to English) -->
+    <string name="please_select_file_not_folder">Prosim, izberite datoteko, ne mape.</string>
+    <string name="please_select_file">Prosim, izberite datoteko.</string>
+    <string name="cannot_rename_folders_or_parent">Ni mogoče preimenovati map ali nadrejene mape.</string>
+    <string name="file_already_exists">Datoteka že obstaja.</string>
+    <string name="error_renaming_file">Napaka pri preimenovanju datoteke</string>
+    <string name="folder_already_exists">Mapa že obstaja.</string>
+    <string name="failed_to_create_folder">Ustvarjanje mape neuspešno: %s</string>
+    <string name="failed_to_create_file">Ustvarjanje datoteke neuspešno</string>
+    <string name="cannot_delete_parent_folder">Ni mogoče izbrisati nadrejene mape.</string>
+    <string name="cannot_share_folders">Ni mogoče deliti map.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">Datoteka zadnje seje ni bila najdena.</string>
+    <string name="no_session_file_saved">Nobena datoteka seje ni shranjena v nastavitvah.</string>
+    <string name="error_creating_new_session">Napaka pri ustvarjanju nove seje: %s</string>
+    <string name="missing_filename">Manjka ime datoteke</string>
+    <string name="camera_permission_required">Za uporabo te funkcije je potrebno dovoljenje kamere</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">Čas ustvarjanja Entity Tracker BarcodeDecoder() obj =%d milisekund</string>
+    <string name="barcode_decoder_disposed">Dekoder črtnih kod je zavržen</string>
+    <string name="orientation_unlocked">Orientacija odklenjena za %s način</string>
+    <string name="applied_viewfinder_resize_immediately">Specifikacije spremembe velikosti iskala takoj uporabljene</string>
+    <string name="stored_pending_viewfinder_resize">Podatki čakajoče spremembe velikosti iskala shranjeni za kasnejšo uporabo</string>
+    <string name="applied_pending_viewfinder_resize">Podatki čakajoče spremembe velikosti iskala uporabljeni iz shranjenih vrednosti</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker je pripravljen, uporabljam čakajoče konfiguracije</string>
+    <string name="handle_view_entity_result">Obravnavaj View Entity - Rezultat prejet</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekoder na voljo, število entitet: %s</string>
+    <string name="processing_entities">Obdelovanje %d entitet za prikaz entitet</string>
+    <string name="rendered_entities">Entitete prikazane na prikazu entitet</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">Simbologije</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">Vrednost črtne kode</string>
+    <string name="symbology">Simbologija</string>
+    <string name="unknown">NEZNANO</string>
+    <string name="quantity">Količina</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">Datum zajema</string>
+    <string name="date">Datum</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">Preklopi svetilko</string>
+    <string name="toggle_capture_zone">Preklopi območje zajema</string>
+    <string name="edit_item">Uredi element</string>
+    <string name="delete_item">Izbriši element</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">Vrednost: %s</string>
+    <string name="symbology_label">Simbologija: %s</string>
+    <string name="quantity_label">Količina: %d</string>
+    <string name="date_label">Datum: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">Uspešno odobrena dovoljenja.</string>
+    <string name="session_data_merged">Podatki seje združeni.</string>
+    <string name="error_reported">Napaka prijavljena: %s</string>
+    <string name="error_reading_session_file">Napaka pri branju datoteke seje: %s</string>
+    <string name="error_reading_csv_session_file">Napaka pri branju CSV datoteke seje: %s</string>
+    <string name="error_reading_excel_session_file">Napaka pri branju Excel datoteke seje: %s</string>
+
+    <!-- Dialog Messages (French -> English) -->
+    <string name="rename">Preimenuj</string>
+    <string name="rename_file">Preimenuj datoteko</string>
+    <string name="create">Ustvari</string>
+    <string name="create_new_folder">Ustvari novo mapo</string>
+    <string name="create_new_file">Ustvari novo datoteko</string>
+    <string name="delete_file">Izbriši datoteko</string>
+    <string name="delete_folder">Izbriši mapo</string>
+    <string name="are_you_sure">Ste prepričani?</string>
+    <string name="file_exists_already">Datoteka že obstaja.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">Nastavitve</string>
+    <string name="activity_captured_barcodes">Zajete črtne kode</string>
+    <string name="activity_session_data">Podatki seje</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">Upravljaj seje</string>
+    <string name="menu_settings">Nastavitve</string>
+    <string name="menu_new_file">Nova datoteka</string>
+    <string name="menu_new_folder">Nova mapa</string>
+    <string name="menu_rename">Preimenuj</string>
+    <string name="menu_delete">Izbriši</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>Besedilna datoteka (.txt)</item>
+        <item>CSV datoteka (.csv)</item>
+        <item>Excel datoteka (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>

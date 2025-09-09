@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">התחל לכידה</string>
+    <string name="loading_status">טוען אפליקציה</string>
+    <string name="select_session_file">בחר קובץ סשן או צור חדש.</string>
+
+    <!-- Splash Activity -->
+    <string name="retrieving_permissions">מקבל הרשאות</string>
+
+    <!-- Browser Activity -->
+    <string name="select">בחר</string>
+    <string name="share">שתף</string>
+    <string name="refresh">רענן</string>
+    <string name="close">סגור</string>
+    <string name="manage_sessions">נהל סשנים</string>
+    <string name="create_new">צור חדש</string>
+    <string name="enter_new_file_name">הכנס שם קובץ חדש</string>
+    <string name="default_session_name">הסשן שלי_</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+
+    <!-- Session Barcodes Strings -->
+    <string name="addtofile">הוסף לקובץ</string>
+    <string name="save">שמור</string>
+    <string name="update">עדכן קובץ</string>
+    <string name="merge">מזג כמויות</string>
+
+    <!-- Entry Choice Activity -->
+    <string name="start_capture">התחל לכידה</string>
+    <string name="load_last_session">טען סשן אחרון</string>
+    <string name="create_new_session">צור סשן חדש</string>
+    <string name="view_session_data">הצג נתוני סשן</string>
+    <string name="selected_session">סשן נבחר</string>
+    <string name="select_session_to_start">בחר סשן להתחלת לכידה</string>
+
+    <!-- Setup/Settings Activity -->
+    <string name="setup">הגדרה</string>
+    <string name="prefix">קידומת:</string>
+    <string name="prefix_hint">קידומת_</string>
+    <string name="file_type">סוג קובץ</string>
+    <string name="text_file">קובץ טקסט</string>
+    <string name="csv_file">קובץ CSV</string>
+    <string name="excel_file">קובץ Excel</string>
+    <string name="language">שפה</string>
+    <string name="system_language">שפת המערכת</string>
+    <string name="validate">אמת</string>
+    <string name="cancel">בטל</string>
+
+    <!-- Camera Activity -->
+    <string name="capture">לכוד</string>
+
+    <!-- Error Messages -->
+    <string name="ai_vision_sdk_init_failed">אתחול AI Vision SDK נכשל</string>
+    <string name="folder_path_missing">נתיב התיקייה חסר!</string>
+    <string name="folder_path_missing_toast">נתיב התיקייה חסר !!!</string>
+    <string name="error_could_not_create_file">שגיאה, לא ניתן ליצור קובץ: %s</string>
+    <string name="error_could_not_open_file">שגיאה, לא ניתן לפתוח קובץ: %s</string>
+    <string name="error_file_does_not_exist">שגיאה, הקובץ לא קיים: %s</string>
+    <string name="error_file_is_empty">שגיאה, הקובץ ריק: %s</string>
+    <string name="error_loading_data">שגיאה, לא ניתן לטעון נתונים בקובץ: %s</string>
+    <string name="file_saved_at">קובץ נשמר ב: %s</string>
+    <string name="error_saving_file">שגיאה בשמירת קובץ: %s</string>
+    <string name="error_saving_last_selected_file">שגיאה בשמירת הקובץ האחרון שנבחר</string>
+    <string name="settings_saved_successfully">הגדרות נשמרו בהצלחה</string>
+
+    <!-- Toast Messages -->
+    <string name="please_select_file_not_folder">אנא בחר קובץ, לא תיקייה.</string>
+    <string name="please_select_file">אנא בחר קובץ.</string>
+    <string name="cannot_rename_folders_or_parent">לא ניתן לשנות שם של תיקיות או תיקיית האב.</string>
+    <string name="file_already_exists">הקובץ כבר קיים.</string>
+    <string name="error_renaming_file">שגיאה בשינוי שם קובץ</string>
+    <string name="folder_already_exists">התיקייה כבר קיימת.</string>
+    <string name="failed_to_create_folder">נכשל ביצירת תיקייה: %s</string>
+    <string name="failed_to_create_file">נכשל ביצירת קובץ</string>
+    <string name="cannot_delete_parent_folder">לא ניתן למחוק את תיקיית האב.</string>
+    <string name="cannot_share_folders">לא ניתן לשתף תיקיות.</string>
+
+    <!-- Session Messages -->
+    <string name="last_session_file_not_found">קובץ הסשן האחרון לא נמצא.</string>
+    <string name="no_session_file_saved">אין קובץ סשן שמור בהעדפות.</string>
+    <string name="error_creating_new_session">שגיאה ביצירת סשן חדש: %s</string>
+    <string name="missing_filename">שם הקובץ חסר</string>
+    <string name="camera_permission_required">נדרשת הרשאת מצלמה לשימוש בתכונה זו</string>
+
+    <!-- Debug Messages -->
+    <string name="entity_tracker_creation_time">זמן יצירת Entity Tracker BarcodeDecoder() obj =%d מילי שניות</string>
+    <string name="barcode_decoder_disposed">מפענח הברקוד הושמד</string>
+    <string name="orientation_unlocked">כיוון נפתח עבור מצב %s</string>
+    <string name="applied_viewfinder_resize_immediately">מפרטי שינוי גודל viewfinder יושמו מיד</string>
+    <string name="stored_pending_viewfinder_resize">נתוני שינוי גודל viewfinder ממתינים נשמרו ליישום מאוחר יותר</string>
+    <string name="applied_pending_viewfinder_resize">נתוני שינוי גודל viewfinder ממתינים יושמו מערכים שמורים</string>
+    <string name="entity_tracker_ready">EntityBarcodeTracker מוכן, מיישם תצורות ממתינות</string>
+    <string name="handle_view_entity_result">טיפול בתוצאת ישות תצוגה - תוצאה התקבלה</string>
+    <string name="entity_tracker_decoder_available">מפענח EntityBarcodeTracker זמין, מספר ישויות: %s</string>
+    <string name="processing_entities">מעבד %d ישויות עבור תצוגת ישות</string>
+    <string name="rendered_entities">ישויות עובדו בתצוגת ישות</string>
+
+    <!-- Barcode Symbologies -->
+    <string name="symbologies">סימבולוגיות</string>
+    <string name="australian_postal">AUSTRALIAN POSTAL</string>
+    <string name="aztec">AZTEC</string>
+    <string name="canadian_postal">CANADIAN POSTAL</string>
+    <string name="chinese_2of5">CHINESE 2OF5</string>
+    <string name="codabar">CODABAR</string>
+    <string name="code11">CODE11</string>
+    <string name="code39">CODE39</string>
+    <string name="code93">CODE93</string>
+    <string name="code128">CODE128</string>
+    <string name="composite_ab">COMPOSITE AB</string>
+    <string name="composite_c">COMPOSITE C</string>
+    <string name="d2of5">D2OF5</string>
+    <string name="datamatrix">DATAMATRIX</string>
+    <string name="dotcode">DOTCODE</string>
+    <string name="dutch_postal">DUTCH POSTAL</string>
+    <string name="ean_8">EAN 8</string>
+    <string name="ean_13">EAN 13</string>
+    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
+    <string name="grid_matrix">GRID MATRIX</string>
+    <string name="gs1_databar">GS1 DATABAR</string>
+    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
+    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
+    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
+    <string name="gs1_qrcode">GS1 QRCODE</string>
+    <string name="hanxin">HANXIN</string>
+    <string name="i2of5">I2OF5</string>
+    <string name="japanese_postal">JAPANESE POSTAL</string>
+    <string name="korean_3of5">KOREAN 3OF5</string>
+    <string name="mailmark">MAILMARK</string>
+    <string name="matrix_2of5">MATRIX 2OF5</string>
+    <string name="maxicode">MAXICODE</string>
+    <string name="micropdf">MICROPDF</string>
+    <string name="microqr">MICROQR</string>
+    <string name="msi">MSI</string>
+    <string name="pdf417">PDF417</string>
+    <string name="qrcode">QRCODE</string>
+    <string name="tlc39">TLC39</string>
+    <string name="trioptic39">TRIOPTIC39</string>
+    <string name="uk_postal">UK POSTAL</string>
+    <string name="upc_a">UPC A</string>
+    <string name="upc_e">UPC E</string>
+    <string name="upce1">UPCE1</string>
+    <string name="usplanet">USPLANET</string>
+    <string name="uspostnet">USPOSTNET</string>
+    <string name="us4state">US4STATE</string>
+    <string name="us4state_fics">US4STATE FICS</string>
+
+    <!-- Barcode Data Editor -->
+    <string name="barcode_value">ערך ברקוד</string>
+    <string name="symbology">סימבולוגיה</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="quantity">כמות</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">תאריך לכידה</string>
+    <string name="date">תאריך</string>
+    <string name="quantity_hint">1</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="toggle_flashlight">החלף פנס</string>
+    <string name="toggle_capture_zone">החלף אזור לכידה</string>
+    <string name="edit_item">ערוך פריט</string>
+    <string name="delete_item">מחק פריט</string>
+
+    <!-- Display Labels -->
+    <string name="value_label">ערך: %s</string>
+    <string name="symbology_label">סימבולוגיה: %s</string>
+    <string name="quantity_label">כמות: %d</string>
+    <string name="date_label">תאריך: %s</string>
+
+    <!-- Additional Toast Messages -->
+    <string name="success_granting_permissions">הצלחה במתן הרשאות.</string>
+    <string name="session_data_merged">נתוני הסשן מוזגו.</string>
+    <string name="error_reported">שגיאה דווחה: %s</string>
+    <string name="error_reading_session_file">שגיאה בקריאת קובץ סשן: %s</string>
+    <string name="error_reading_csv_session_file">שגיאה בקריאת קובץ סשן CSV: %s</string>
+    <string name="error_reading_excel_session_file">שגיאה בקריאת קובץ סשן Excel: %s</string>
+
+    <!-- Dialog Messages -->
+    <string name="rename">שנה שם</string>
+    <string name="rename_file">שנה שם קובץ</string>
+    <string name="create">צור</string>
+    <string name="create_new_folder">צור תיקייה חדשה</string>
+    <string name="create_new_file">צור קובץ חדש</string>
+    <string name="delete_file">מחק קובץ</string>
+    <string name="delete_folder">מחק תיקייה</string>
+    <string name="are_you_sure">האם אתה בטוח?</string>
+    <string name="file_exists_already">הקובץ כבר קיים.</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_settings">הגדרות</string>
+    <string name="activity_captured_barcodes">ברקודים שנלכדו</string>
+    <string name="activity_session_data">נתוני סשן</string>
+
+    <!-- Menu Items -->
+    <string name="menu_manage_sessions">נהל סשנים</string>
+    <string name="menu_settings">הגדרות</string>
+    <string name="menu_new_file">קובץ חדש</string>
+    <string name="menu_new_folder">תיקייה חדשה</string>
+    <string name="menu_rename">שנה שם</string>
+    <string name="menu_delete">מחק</string>
+
+    <!-- Export File Type Arrays for Managed Configuration -->
+    <string-array name="export_file_types">
+        <item>קובץ טקסט (.txt)</item>
+        <item>קובץ CSV (.csv)</item>
+        <item>קובץ Excel (.xlsx)</item>
+    </string-array>
+
+    <string-array name="export_file_values">
+        <item>.txt</item>
+        <item>.csv</item>
+        <item>.xlsx</item>
+    </string-array>
+
+</resources>
