@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">క్యాప్చర్ ప్రారంభించండి</string>
     <string name="loading_status">అప్లికేషన్ లోడ్ చేయబడుతోంది</string>
     <string name="select_session_file">సెషన్ ఫైల్‌ను ఎంచుకోండి లేదా కొత్తది సృష్టించండి.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">అనుమతులను పొందుతున్నాం</string>
-
-    <!-- Browser Activity -->
     <string name="select">ఎంచుకోండి</string>
     <string name="share">షేర్ చేయండి</string>
     <string name="refresh">రిఫ్రెష్ చేయండి</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">అవును</string>
     <string name="no">లేదు</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">ఫైల్‌కు జోడించండి</string>
     <string name="save">సేవ్ చేయండి</string>
     <string name="update">ఫైల్‌ను అప్‌డేట్ చేయండి</string>
     <string name="merge">పరిమాణాలను విలీనం చేయండి</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">క్యాప్చర్ ప్రారంభించండి</string>
     <string name="load_last_session">చివరి సెషన్‌ను లోడ్ చేయండి</string>
     <string name="create_new_session">కొత్త సెషన్‌ను సృష్టించండి</string>
     <string name="view_session_data">సెషన్ డేటాను చూడండి</string>
     <string name="selected_session">ఎంచుకున్న సెషన్</string>
     <string name="select_session_to_start">క్యాప్చర్ ప్రారంభించడానికి సెషన్‌ను ఎంచుకోండి</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">సెటప్</string>
     <string name="prefix">ప్రిఫిక్స్:</string>
     <string name="prefix_hint">ప్రిఫిక్స్_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Excel ఫైల్</string>
     <string name="validate">ధృవీకరించండి</string>
     <string name="cancel">రద్దు చేయండి</string>
-
-    <!-- Camera Activity -->
     <string name="capture">క్యాప్చర్</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK ప్రారంభం విఫలమైంది</string>
     <string name="folder_path_missing">ఫోల్డర్ మార్గం లేదు!</string>
     <string name="folder_path_missing_toast">ఫోల్డర్ మార్గం లేదు !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">ఫైల్ సేవ్ చేయడంలో లోపం: %s</string>
     <string name="error_saving_last_selected_file">చివరిగా ఎంచుకున్న ఫైల్ సేవ్ చేయడంలో లోపం</string>
     <string name="settings_saved_successfully">సెట్టింగులు విజయవంతంగా సేవ్ చేయబడ్డాయి</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">దయచేసి ఫోల్డర్‌ని కాకుండా ఫైల్‌ను ఎంచుకోండి.</string>
     <string name="please_select_file">దయచేసి ఫైల్‌ను ఎంచుకోండి.</string>
     <string name="cannot_rename_folders_or_parent">ఫోల్డర్లు లేదా పేరెంట్ ఫోల్డర్ పేరు మార్చలేము.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">ఫైల్ సృష్టించడంలో విఫలమైంది</string>
     <string name="cannot_delete_parent_folder">పేరెంట్ ఫోల్డర్‌ను తొలగించలేము.</string>
     <string name="cannot_share_folders">ఫోల్డర్లను షేర్ చేయలేము.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">చివరి సెషన్ ఫైల్ కనుగొనబడలేదు.</string>
     <string name="no_session_file_saved">ప్రాధాన్యతలలో ఏ సెషన్ ఫైల్ సేవ్ చేయబడలేదు.</string>
     <string name="error_creating_new_session">కొత్త సెషన్ సృష్టించడంలో లోపం: %s</string>
     <string name="missing_filename">ఫైల్ పేరు లేదు</string>
     <string name="camera_permission_required">ఈ ఫీచర్‌ను ఉపయోగించడానికి కేమెరా అనుమతి అవసరం</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj సృష్టి సమయం =%d మిల్లీ సెకండ్</string>
     <string name="barcode_decoder_disposed">బార్‌కోడ్ డీకోడర్ తొలగించబడింది</string>
     <string name="orientation_unlocked">%s మోడ్ కోసం ధోరణి అన్‌లాక్ చేయబడింది</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker డీకోడర్ అందుబాటులో ఉంది, సంస్థల సంఖ్య: %s</string>
     <string name="processing_entities">సంస్థ వీక్షణ కోసం %d సంస్థలను ప్రాసెస్ చేస్తోంది</string>
     <string name="rendered_entities">సంస్థ వీక్షణలో సంస్థలు రెండర్ చేయబడ్డాయి</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">సింబాలజీలు</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">బార్‌కోడ్ విలువ</string>
     <string name="symbology">సింబాలజీ</string>
     <string name="unknown">తెలియదు</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">క్యాప్చర్ తేదీ</string>
     <string name="date">తేదీ</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">ఫ్లాష్‌లైట్‌ను టోగిల్ చేయండి</string>
     <string name="toggle_capture_zone">క్యాప్చర్ జోన్‌ను టోగిల్ చేయండి</string>
     <string name="edit_item">అంశాన్ని సవరించండి</string>
     <string name="delete_item">అంశాన్ని తొలగించండి</string>
-
-    <!-- Display Labels -->
     <string name="value_label">విలువ: %s</string>
     <string name="symbology_label">సింబాలజీ: %s</string>
     <string name="quantity_label">పరిమాణం: %d</string>
     <string name="date_label">తేదీ: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">అనుమతులను ఇవ్వడంలో విజయం.</string>
     <string name="session_data_merged">సెషన్ డేటా విలీనం చేయబడింది.</string>
     <string name="error_reported">లోపం నివేదించబడింది: %s</string>
     <string name="error_reading_session_file">సెషన్ ఫైల్ చదవడంలో లోపం: %s</string>
     <string name="error_reading_csv_session_file">CSV సెషన్ ఫైల్ చదవడంలో లోపం: %s</string>
     <string name="error_reading_excel_session_file">Excel సెషన్ ఫైల్ చదవడంలో లోపం: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">పేరు మార్చండి</string>
     <string name="rename_file">ఫైల్ పేరు మార్చండి</string>
     <string name="create">సృష్టించండి</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">ఫోల్డర్ తొలగించండి</string>
     <string name="are_you_sure">మీరు ఖచ్చితంగా ఉన్నారా?</string>
     <string name="file_exists_already">ఫైల్ ఇప్పటికే ఉంది.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">సెట్టింగులు</string>
     <string name="activity_captured_barcodes">క్యాప్చర్ చేసిన బార్‌కోడ్లు</string>
     <string name="activity_session_data">సెషన్ డేటా</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">సెషన్లను నిర్వహించండి</string>
     <string name="menu_settings">సెట్టింగులు</string>
     <string name="menu_new_file">కొత్త ఫైల్</string>
     <string name="menu_new_folder">కొత్త ఫోల్డర్</string>
     <string name="menu_rename">పేరు మార్చండి</string>
     <string name="menu_delete">తొలగించండి</string>
-
+    <string name="language">భాష</string>
+    <string name="system_language">సిస్టం భాష</string>
 </resources>

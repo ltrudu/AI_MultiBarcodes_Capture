@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Chụp Đa Mã Vạch</string>
     <string name="start_capture_button_text">Bắt Đầu Chụp</string>
     <string name="loading_status">Đang tải ứng dụng</string>
     <string name="select_session_file">Chọn một tệp phiên hoặc tạo một tệp mới.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Đang lấy quyền</string>
-
-    <!-- Browser Activity -->
     <string name="select">Chọn</string>
     <string name="share">Chia sẻ</string>
     <string name="refresh">Làm mới</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Thêm vào tệp</string>
     <string name="save">Lưu</string>
     <string name="update">Cập nhật tệp</string>
     <string name="merge">Hợp nhất số lượng</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Bắt đầu chụp</string>
     <string name="load_last_session">Tải phiên cuối</string>
     <string name="create_new_session">Tạo phiên mới</string>
     <string name="view_session_data">Xem dữ liệu phiên</string>
     <string name="selected_session">Phiên đã chọn</string>
     <string name="select_session_to_start">Chọn một phiên để bắt đầu chụp</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Thiết lập</string>
     <string name="prefix">Tiền tố:</string>
     <string name="prefix_hint">Tiền_tố_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Tệp Excel</string>
     <string name="validate">Xác thực</string>
     <string name="cancel">Hủy</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Chụp</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Khởi tạo AI Vision SDK thất bại</string>
     <string name="folder_path_missing">Thiếu đường dẫn thư mục!</string>
     <string name="folder_path_missing_toast">Thiếu đường dẫn thư mục !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">Lỗi khi lưu tệp: %s</string>
     <string name="error_saving_last_selected_file">Lỗi khi lưu tệp được chọn cuối cùng</string>
     <string name="settings_saved_successfully">Cài đặt đã được lưu thành công</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Vui lòng chọn một tệp, không phải thư mục.</string>
     <string name="please_select_file">Vui lòng chọn một tệp.</string>
     <string name="cannot_rename_folders_or_parent">Không thể đổi tên thư mục hoặc thư mục gốc.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">Không thể tạo tệp</string>
     <string name="cannot_delete_parent_folder">Không thể xóa thư mục gốc.</string>
     <string name="cannot_share_folders">Không thể chia sẻ thư mục.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Không tìm thấy tệp phiên cuối cùng.</string>
     <string name="no_session_file_saved">Không có tệp phiên nào được lưu trong tùy chọn.</string>
     <string name="error_creating_new_session">Lỗi khi tạo phiên mới: %s</string>
     <string name="missing_filename">Thiếu tên tệp</string>
     <string name="camera_permission_required">Cần quyền camera để sử dụng tính năng này</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Thời gian tạo đối tượng Entity Tracker BarcodeDecoder() =%d mili giây</string>
     <string name="barcode_decoder_disposed">Bộ giải mã mã vạch đã được hủy</string>
     <string name="orientation_unlocked">Hướng đã được mở khóa cho chế độ %s</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">Bộ giải mã EntityBarcodeTracker có sẵn, số lượng thực thể: %s</string>
     <string name="processing_entities">Đang xử lý %d thực thể cho chế độ xem thực thể</string>
     <string name="rendered_entities">Đã hiển thị các thực thể trên chế độ xem thực thể</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Ký hiệu học</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Giá trị mã vạch</string>
     <string name="symbology">Ký hiệu học</string>
     <string name="unknown">KHÔNG RÕ</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">Ngày chụp</string>
     <string name="date">Ngày</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Bật/tắt đèn flash</string>
     <string name="toggle_capture_zone">Bật/tắt vùng chụp</string>
     <string name="edit_item">Chỉnh sửa mục</string>
     <string name="delete_item">Xóa mục</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Giá trị: %s</string>
     <string name="symbology_label">Ký hiệu học: %s</string>
     <string name="quantity_label">Số lượng: %d</string>
     <string name="date_label">Ngày: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Cấp quyền thành công.</string>
     <string name="session_data_merged">Dữ liệu phiên đã được hợp nhất.</string>
     <string name="error_reported">Lỗi được báo cáo: %s</string>
     <string name="error_reading_session_file">Lỗi khi đọc tệp phiên: %s</string>
     <string name="error_reading_csv_session_file">Lỗi khi đọc tệp phiên CSV: %s</string>
     <string name="error_reading_excel_session_file">Lỗi khi đọc tệp phiên Excel: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Đổi tên</string>
     <string name="rename_file">Đổi tên một tệp</string>
     <string name="create">Tạo</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">Xóa thư mục</string>
     <string name="are_you_sure">Bạn có chắc chắn không?</string>
     <string name="file_exists_already">Tệp đã tồn tại.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Cài đặt</string>
     <string name="activity_captured_barcodes">Mã vạch đã chụp</string>
     <string name="activity_session_data">Dữ liệu phiên</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Quản lý phiên</string>
     <string name="menu_settings">Cài đặt</string>
     <string name="menu_new_file">Tệp mới</string>
     <string name="menu_new_folder">Thư mục mới</string>
     <string name="menu_rename">Đổi tên</string>
     <string name="menu_delete">Xóa</string>
-
+    <string name="language">Ngôn ngữ</string>
+    <string name="system_language">Ngôn ngữ hệ thống</string>
 </resources>

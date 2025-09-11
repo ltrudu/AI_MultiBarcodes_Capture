@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">Začni zajem</string>
     <string name="loading_status">Nalaganje aplikacije</string>
     <string name="select_session_file">Izberite datoteko seje ali ustvarite novo.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Pridobivanje dovoljenj</string>
-
-    <!-- Browser Activity -->
     <string name="select">Izberi</string>
     <string name="share">Deli</string>
     <string name="refresh">Osveži</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Da</string>
     <string name="no">Ne</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Dodaj v datoteko</string>
     <string name="save">Shrani</string>
     <string name="update">Posodobi datoteko</string>
     <string name="merge">Združi količine</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Začni zajem</string>
     <string name="load_last_session">Naloži zadnjo sejo</string>
     <string name="create_new_session">Ustvari novo sejo</string>
     <string name="view_session_data">Prikaži podatke seje</string>
     <string name="selected_session">Izbrana seja</string>
     <string name="select_session_to_start">Izberite sejo za začetek zajema</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Nastavitev</string>
     <string name="prefix">Predpona:</string>
     <string name="prefix_hint">Predpona_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Excel datoteka</string>
     <string name="validate">Preveri</string>
     <string name="cancel">Prekliči</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Zajemi</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Inicializacija AI Vision SDK neuspešna</string>
     <string name="folder_path_missing">Pot do mape manjka!</string>
     <string name="folder_path_missing_toast">Pot do mape manjka !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">Napaka pri shranjevanju datoteke: %s</string>
     <string name="error_saving_last_selected_file">Napaka pri shranjevanju zadnje izbrane datoteke</string>
     <string name="settings_saved_successfully">Nastavitve uspešno shranjene</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Prosim, izberite datoteko, ne mape.</string>
     <string name="please_select_file">Prosim, izberite datoteko.</string>
     <string name="cannot_rename_folders_or_parent">Ni mogoče preimenovati map ali nadrejene mape.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">Ustvarjanje datoteke neuspešno</string>
     <string name="cannot_delete_parent_folder">Ni mogoče izbrisati nadrejene mape.</string>
     <string name="cannot_share_folders">Ni mogoče deliti map.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Datoteka zadnje seje ni bila najdena.</string>
     <string name="no_session_file_saved">Nobena datoteka seje ni shranjena v nastavitvah.</string>
     <string name="error_creating_new_session">Napaka pri ustvarjanju nove seje: %s</string>
     <string name="missing_filename">Manjka ime datoteke</string>
     <string name="camera_permission_required">Za uporabo te funkcije je potrebno dovoljenje kamere</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Čas ustvarjanja Entity Tracker BarcodeDecoder() obj =%d milisekund</string>
     <string name="barcode_decoder_disposed">Dekoder črtnih kod je zavržen</string>
     <string name="orientation_unlocked">Orientacija odklenjena za %s način</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekoder na voljo, število entitet: %s</string>
     <string name="processing_entities">Obdelovanje %d entitet za prikaz entitet</string>
     <string name="rendered_entities">Entitete prikazane na prikazu entitet</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Simbologije</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Vrednost črtne kode</string>
     <string name="symbology">Simbologija</string>
     <string name="unknown">NEZNANO</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">Datum zajema</string>
     <string name="date">Datum</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Preklopi svetilko</string>
     <string name="toggle_capture_zone">Preklopi območje zajema</string>
     <string name="edit_item">Uredi element</string>
     <string name="delete_item">Izbriši element</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Vrednost: %s</string>
     <string name="symbology_label">Simbologija: %s</string>
     <string name="quantity_label">Količina: %d</string>
     <string name="date_label">Datum: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Uspešno odobrena dovoljenja.</string>
     <string name="session_data_merged">Podatki seje združeni.</string>
     <string name="error_reported">Napaka prijavljena: %s</string>
     <string name="error_reading_session_file">Napaka pri branju datoteke seje: %s</string>
     <string name="error_reading_csv_session_file">Napaka pri branju CSV datoteke seje: %s</string>
     <string name="error_reading_excel_session_file">Napaka pri branju Excel datoteke seje: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Preimenuj</string>
     <string name="rename_file">Preimenuj datoteko</string>
     <string name="create">Ustvari</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">Izbriši mapo</string>
     <string name="are_you_sure">Ste prepričani?</string>
     <string name="file_exists_already">Datoteka že obstaja.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Nastavitve</string>
     <string name="activity_captured_barcodes">Zajete črtne kode</string>
     <string name="activity_session_data">Podatki seje</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Upravljaj seje</string>
     <string name="menu_settings">Nastavitve</string>
     <string name="menu_new_file">Nova datoteka</string>
     <string name="menu_new_folder">Nova mapa</string>
     <string name="menu_rename">Preimenuj</string>
     <string name="menu_delete">Izbriši</string>
-
+    <string name="language">Jezik</string>
+    <string name="system_language">Sistemski jezik</string>
 </resources>

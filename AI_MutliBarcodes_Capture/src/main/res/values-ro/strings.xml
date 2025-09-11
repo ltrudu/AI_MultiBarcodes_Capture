@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Captură Multi Coduri de Bare</string>
     <string name="start_capture_button_text">Începe Captura</string>
     <string name="loading_status">Se încarcă aplicația</string>
     <string name="select_session_file">Selectați un fișier de sesiune sau creați unul nou.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Se preiau permisiunile</string>
-
-    <!-- Browser Activity -->
     <string name="select">Selectați</string>
     <string name="share">Împărtășiți</string>
     <string name="refresh">Reîmprospătați</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Da</string>
     <string name="no">Nu</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Adăugați în fișier</string>
     <string name="save">Salvați</string>
     <string name="update">Actualizați fișierul</string>
     <string name="merge">Îmbinați cantitățile</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Începe captura</string>
     <string name="load_last_session">Încărcați ultima sesiune</string>
     <string name="create_new_session">Creați sesiune nouă</string>
     <string name="view_session_data">Vizualizați datele sesiunii</string>
     <string name="selected_session">Sesiunea selectată</string>
     <string name="select_session_to_start">Selectați o sesiune pentru a începe captura</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Configurare</string>
     <string name="prefix">Prefix:</string>
     <string name="prefix_hint">Prefix_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Fișier Excel</string>
     <string name="validate">Validați</string>
     <string name="cancel">Anulați</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Captură</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Inițializarea AI Vision SDK a eșuat</string>
     <string name="folder_path_missing">Calea către dosar lipsește!</string>
     <string name="folder_path_missing_toast">Calea către dosar lipsește !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">Eroare la salvarea fișierului: %s</string>
     <string name="error_saving_last_selected_file">Eroare la salvarea ultimului fișier selectat</string>
     <string name="settings_saved_successfully">Setările au fost salvate cu succes</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Vă rugăm să selectați un fișier, nu un dosar.</string>
     <string name="please_select_file">Vă rugăm să selectați un fișier.</string>
     <string name="cannot_rename_folders_or_parent">Nu se pot redenumi dosarele sau dosarul părinte.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">Nu s-a putut crea fișierul</string>
     <string name="cannot_delete_parent_folder">Nu se poate șterge dosarul părinte.</string>
     <string name="cannot_share_folders">Nu se pot partaja dosarele.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Ultimul fișier de sesiune nu a fost găsit.</string>
     <string name="no_session_file_saved">Niciun fișier de sesiune salvat în preferințe.</string>
     <string name="error_creating_new_session">Eroare la crearea unei sesiuni noi: %s</string>
     <string name="missing_filename">Numele fișierului lipsește</string>
     <string name="camera_permission_required">Permisiunea pentru cameră este necesară pentru a folosi această funcție</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Timpul de creare al obiectului Entity Tracker BarcodeDecoder() =%d milisecunde</string>
     <string name="barcode_decoder_disposed">Decodorul de coduri de bare a fost eliminat</string>
     <string name="orientation_unlocked">Orientarea deblocată pentru modul %s</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">Decodorul EntityBarcodeTracker este disponibil, numărul de entități: %s</string>
     <string name="processing_entities">Se procesează %d entități pentru vizualizarea entității</string>
     <string name="rendered_entities">Entități redate în vizualizarea entității</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Simbologii</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Valoare cod de bare</string>
     <string name="symbology">Simbologie</string>
     <string name="unknown">NECUNOSCUT</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">Data capturii</string>
     <string name="date">Dată</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Comutați lanterna</string>
     <string name="toggle_capture_zone">Comutați zona de captură</string>
     <string name="edit_item">Editați elementul</string>
     <string name="delete_item">Ștergeți elementul</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Valoare: %s</string>
     <string name="symbology_label">Simbologie: %s</string>
     <string name="quantity_label">Cantitate: %d</string>
     <string name="date_label">Dată: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Succes în acordarea permisiunilor.</string>
     <string name="session_data_merged">Datele sesiunii au fost îmbinate.</string>
     <string name="error_reported">Eroare raportată: %s</string>
     <string name="error_reading_session_file">Eroare la citirea fișierului de sesiune: %s</string>
     <string name="error_reading_csv_session_file">Eroare la citirea fișierului CSV de sesiune: %s</string>
     <string name="error_reading_excel_session_file">Eroare la citirea fișierului Excel de sesiune: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Redenumiți</string>
     <string name="rename_file">Redenumiți un fișier</string>
     <string name="create">Creați</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">Ștergeți dosarul</string>
     <string name="are_you_sure">Sunteți sigur?</string>
     <string name="file_exists_already">Fișierul există deja.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Setări</string>
     <string name="activity_captured_barcodes">Coduri de bare capturate</string>
     <string name="activity_session_data">Date sesiune</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Gestionați sesiunile</string>
     <string name="menu_settings">Setări</string>
     <string name="menu_new_file">Fișier nou</string>
     <string name="menu_new_folder">Dosar nou</string>
     <string name="menu_rename">Redenumiți</string>
     <string name="menu_delete">Ștergeți</string>
-
+    <string name="language">Limba</string>
+    <string name="system_language">Limba sistemului</string>
 </resources>

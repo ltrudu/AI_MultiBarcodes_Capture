@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">Anza Kunasa</string>
     <string name="loading_status">Inapakia Programu</string>
     <string name="select_session_file">Chagua faili ya kipindi au unda mpya.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Inapata Ruhusa</string>
-
-    <!-- Browser Activity -->
     <string name="select">Chagua</string>
     <string name="share">Shiriki</string>
     <string name="refresh">Onyesha upya</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Ndiyo</string>
     <string name="no">Hapana</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Ongeza kwenye Faili</string>
     <string name="save">Hifadhi</string>
     <string name="update">Sasisha Faili</string>
     <string name="merge">Unganisha Idadi</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Anza Kunasa</string>
     <string name="load_last_session">Pakia Kipindi cha Mwisho</string>
     <string name="create_new_session">Unda Kipindi Kipya</string>
     <string name="view_session_data">Ona Data ya Kipindi</string>
     <string name="selected_session">Kipindi Kilichochaguliwa</string>
     <string name="select_session_to_start">Chagua Kipindi ili Uanze Kunasa</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Usanidi</string>
     <string name="prefix">Kiambishi:</string>
     <string name="prefix_hint">Kiambishi_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Faili ya Excel</string>
     <string name="validate">Thibitisha</string>
     <string name="cancel">Ghairi</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Nasa</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Kuanzisha AI Vision SDK kumeshindwa</string>
     <string name="folder_path_missing">Njia ya folda haipo!</string>
     <string name="folder_path_missing_toast">Njia ya folda haipo !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">Kosa wakati wa kuhifadhi faili: %s</string>
     <string name="error_saving_last_selected_file">Kosa wakati wa kuhifadhi faili iliyochaguliwa mwisho</string>
     <string name="settings_saved_successfully">Mipangilio imehifadhiwa kwa mafanikio</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Tafadhali chagua faili, si folda.</string>
     <string name="please_select_file">Tafadhali chagua faili.</string>
     <string name="cannot_rename_folders_or_parent">Haiwezi kubadilisha majina ya mafolda au folda ya mzazi.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">Imeshindwa kuunda faili</string>
     <string name="cannot_delete_parent_folder">Haiwezi kufuta folda ya mzazi.</string>
     <string name="cannot_share_folders">Haiwezi kushiriki mafolda.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Faili ya kipindi cha mwisho haipatikani.</string>
     <string name="no_session_file_saved">Hakuna faili ya kipindi iliyohifadhiwa katika mapendeleo.</string>
     <string name="error_creating_new_session">Kosa wakati wa kuunda kipindi kipya: %s</string>
     <string name="missing_filename">Jina la faili halikupatikana</string>
     <string name="camera_permission_required">Ruhusa ya kamera inahitajika kutumia kipengele hiki</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Muda wa kuunda Entity Tracker BarcodeDecoder() obj =%d millisekundi</string>
     <string name="barcode_decoder_disposed">Decoder ya barcode imetupwa</string>
     <string name="orientation_unlocked">Mwelekeo umefunguliwa kwa ajili ya hali ya %s</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker decoder inapatikana, idadi ya vyombo: %s</string>
     <string name="processing_entities">Inachakata %d vyombo kwa ajili ya muonekano wa vyombo</string>
     <string name="rendered_entities">Vyombo vimeonyeshwa kwenye muonekano wa vyombo</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Thamani ya Barcode</string>
     <string name="symbology">Symbology</string>
     <string name="unknown">HAIJULIKANI</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">Tarehe ya Kunasa</string>
     <string name="date">Tarehe</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Badilisha tochi</string>
     <string name="toggle_capture_zone">Badilisha eneo la kunasa</string>
     <string name="edit_item">Hariri kipengee</string>
     <string name="delete_item">Futa kipengee</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Thamani: %s</string>
     <string name="symbology_label">Symbology: %s</string>
     <string name="quantity_label">Idadi: %d</string>
     <string name="date_label">Tarehe: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Mafanikio ya kutoa ruhusa.</string>
     <string name="session_data_merged">Data ya kipindi imeunganishwa.</string>
     <string name="error_reported">Kosa limeripotiwa: %s</string>
     <string name="error_reading_session_file">Kosa wakati wa kusoma faili ya kipindi: %s</string>
     <string name="error_reading_csv_session_file">Kosa wakati wa kusoma faili ya CSV ya kipindi: %s</string>
     <string name="error_reading_excel_session_file">Kosa wakati wa kusoma faili ya Excel ya kipindi: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Badilisha jina</string>
     <string name="rename_file">Badilisha jina la faili</string>
     <string name="create">Unda</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">Futa Folda</string>
     <string name="are_you_sure">Je, una uhakika?</string>
     <string name="file_exists_already">Faili tayari ipo.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Mipangilio</string>
     <string name="activity_captured_barcodes">Barcodes Zilizokamatiwa</string>
     <string name="activity_session_data">Data ya Kipindi</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Simamia Vipindi</string>
     <string name="menu_settings">Mipangilio</string>
     <string name="menu_new_file">Faili Mpya</string>
     <string name="menu_new_folder">Folda Mpya</string>
     <string name="menu_rename">Badilisha jina</string>
     <string name="menu_delete">Futa</string>
-
+    <string name="language">Lugha</string>
+    <string name="system_language">Lugha ya Mfumo</string>
 </resources>

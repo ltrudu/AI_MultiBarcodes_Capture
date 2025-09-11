@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Захватање Више Баркодова</string>
     <string name="start_capture_button_text">Започни снимање</string>
     <string name="loading_status">Учитавање апликације</string>
     <string name="select_session_file">Изаберите датотеку сесије или креирајте нову.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Преузимање дозвола</string>
-
-    <!-- Browser Activity -->
     <string name="select">Изабери</string>
     <string name="share">Подели</string>
     <string name="refresh">Освежи</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Да</string>
     <string name="no">Не</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Додај у датотеку</string>
     <string name="save">Сачувај</string>
     <string name="update">Ажурирај датотеку</string>
     <string name="merge">Споји количине</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Започни снимање</string>
     <string name="load_last_session">Учитај последњу сесију</string>
     <string name="create_new_session">Креирај нову сесију</string>
     <string name="view_session_data">Погледај податке сесије</string>
     <string name="selected_session">Изабрана сесија</string>
     <string name="select_session_to_start">Изаберите сесију за почетак снимања</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Подешавање</string>
     <string name="prefix">Префикс:</string>
     <string name="prefix_hint">Префикс_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Excel датотека</string>
     <string name="validate">Валидирај</string>
     <string name="cancel">Откажи</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Снимање</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Иницијализација AI Vision SDK није успела</string>
     <string name="folder_path_missing">Недостаје путања фолдера!</string>
     <string name="folder_path_missing_toast">Недостаје путања фолдера !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">Грешка при чувању датотеке: %s</string>
     <string name="error_saving_last_selected_file">Грешка при чувању последње изабране датотеке</string>
     <string name="settings_saved_successfully">Подешавања су успешно сачувана</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Молимо изаберите датотеку, не фолдер.</string>
     <string name="please_select_file">Молимо изаберите датотеку.</string>
     <string name="cannot_rename_folders_or_parent">Није могуће преименовати фолдере или родитељски фолдер.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">Није могуће креирати датотеку</string>
     <string name="cannot_delete_parent_folder">Није могуће обрисати родитељски фолдер.</string>
     <string name="cannot_share_folders">Није могуће поделити фолдере.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Последња датотека сесије није пронађена.</string>
     <string name="no_session_file_saved">Нема сачуване датотеке сесије у подешавањима.</string>
     <string name="error_creating_new_session">Грешка при креирању нове сесије: %s</string>
     <string name="missing_filename">Недостаје назив датотеке</string>
     <string name="camera_permission_required">Потребна је дозвола за камеру за коришћење ове функције</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Време креирања Entity Tracker BarcodeDecoder() објекта =%d милисекунди</string>
     <string name="barcode_decoder_disposed">Декодер баркодова је уклоњен</string>
     <string name="orientation_unlocked">Оријентација откључана за %s режим</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker декодер доступан, број ентитета: %s</string>
     <string name="processing_entities">Обрађивање %d ентитета за приказ ентитета</string>
     <string name="rendered_entities">Ентитети рендеровани у приказу ентитета</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Симбологије</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Вредност баркода</string>
     <string name="symbology">Симбологија</string>
     <string name="unknown">НЕПОЗНАТО</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">Датум снимања</string>
     <string name="date">Датум</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Укључи/искључи блиц</string>
     <string name="toggle_capture_zone">Укључи/искључи зону снимања</string>
     <string name="edit_item">Уреди ставку</string>
     <string name="delete_item">Обриши ставку</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Вредност: %s</string>
     <string name="symbology_label">Симбологија: %s</string>
     <string name="quantity_label">Количина: %d</string>
     <string name="date_label">Датум: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Успешно додељене дозволе.</string>
     <string name="session_data_merged">Подаци сесије спојени.</string>
     <string name="error_reported">Пријављена грешка: %s</string>
     <string name="error_reading_session_file">Грешка при читању датотеке сесије: %s</string>
     <string name="error_reading_csv_session_file">Грешка при читању CSV датотеке сесије: %s</string>
     <string name="error_reading_excel_session_file">Грешка при читању Excel датотеке сесије: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Преименуј</string>
     <string name="rename_file">Преименуј датотеку</string>
     <string name="create">Креирај</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">Обриши фолдер</string>
     <string name="are_you_sure">Да ли сте сигурни?</string>
     <string name="file_exists_already">Датотека већ постоји.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Подешавања</string>
     <string name="activity_captured_barcodes">Снимљени баркодови</string>
     <string name="activity_session_data">Подаци сесије</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Управљање сесијама</string>
     <string name="menu_settings">Подешавања</string>
     <string name="menu_new_file">Нова датотека</string>
     <string name="menu_new_folder">Нови фолдер</string>
     <string name="menu_rename">Преименуј</string>
     <string name="menu_delete">Обриши</string>
-
+    <string name="language">Језик</string>
+    <string name="system_language">Језик система</string>
 </resources>

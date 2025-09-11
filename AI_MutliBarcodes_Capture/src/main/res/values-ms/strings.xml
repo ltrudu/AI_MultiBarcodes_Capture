@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcode Tangkapan</string>
     <string name="start_capture_button_text">Mulakan Tangkapan</string>
     <string name="loading_status">Memuat Aplikasi</string>
     <string name="select_session_file">Pilih fail sesi atau buat yang baharu.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Mendapatkan Keizinan</string>
-
-    <!-- Browser Activity -->
     <string name="select">Pilih</string>
     <string name="share">Kongsi</string>
     <string name="refresh">Segarkan</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Tambah ke Fail</string>
     <string name="save">Simpan</string>
     <string name="update">Kemaskini Fail</string>
     <string name="merge">Gabung Kuantiti</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Mulakan Tangkapan</string>
     <string name="load_last_session">Muat Sesi Terakhir</string>
     <string name="create_new_session">Buat Sesi Baharu</string>
     <string name="view_session_data">Lihat Data Sesi</string>
     <string name="selected_session">Sesi Terpilih</string>
     <string name="select_session_to_start">Pilih Sesi Untuk Memulakan Tangkapan</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Persediaan</string>
     <string name="prefix">Awalan:</string>
     <string name="prefix_hint">Awalan_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Fail Excel</string>
     <string name="validate">Sahkan</string>
     <string name="cancel">Batal</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Tangkap</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Permulaan AI Vision SDK gagal</string>
     <string name="folder_path_missing">Laluan folder tiada!</string>
     <string name="folder_path_missing_toast">Laluan folder tiada !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">Ralat menyimpan fail: %s</string>
     <string name="error_saving_last_selected_file">Ralat menyimpan fail terakhir yang dipilih</string>
     <string name="settings_saved_successfully">Tetapan berjaya disimpan</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Sila pilih fail, bukan folder.</string>
     <string name="please_select_file">Sila pilih fail.</string>
     <string name="cannot_rename_folders_or_parent">Tidak boleh menamakan semula folder atau folder induk.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">Gagal mencipta fail</string>
     <string name="cannot_delete_parent_folder">Tidak boleh memadam folder induk.</string>
     <string name="cannot_share_folders">Tidak boleh berkongsi folder.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Fail sesi terakhir tidak dijumpai.</string>
     <string name="no_session_file_saved">Tiada fail sesi disimpan dalam keutamaan.</string>
     <string name="error_creating_new_session">Ralat mencipta sesi baharu: %s</string>
     <string name="missing_filename">Nama fail tiada</string>
     <string name="camera_permission_required">Keizinan kamera diperlukan untuk menggunakan ciri ini</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Masa penciptaan objek Entity Tracker BarcodeDecoder() =%d milisaat</string>
     <string name="barcode_decoder_disposed">Penyahkod barcode telah dilupuskan</string>
     <string name="orientation_unlocked">Orientasi dibuka kunci untuk mod %s</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">Penyahkod EntityBarcodeTracker tersedia, bilangan entiti: %s</string>
     <string name="processing_entities">Memproses %d entiti untuk pandangan entiti</string>
     <string name="rendered_entities">Entiti dipaparkan dalam pandangan entiti</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Nilai Barcode</string>
     <string name="symbology">Simbologi</string>
     <string name="unknown">TIDAK DIKETAHUI</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">Tarikh Tangkapan</string>
     <string name="date">Tarikh</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Togol lampu suluh</string>
     <string name="toggle_capture_zone">Togol zon tangkapan</string>
     <string name="edit_item">Edit item</string>
     <string name="delete_item">Padam item</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Nilai: %s</string>
     <string name="symbology_label">Simbologi: %s</string>
     <string name="quantity_label">Kuantiti: %d</string>
     <string name="date_label">Tarikh: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Kejayaan Memberikan Keizinan.</string>
     <string name="session_data_merged">Data sesi telah digabungkan.</string>
     <string name="error_reported">Ralat dilaporkan: %s</string>
     <string name="error_reading_session_file">Ralat membaca fail sesi: %s</string>
     <string name="error_reading_csv_session_file">Ralat membaca fail sesi CSV: %s</string>
     <string name="error_reading_excel_session_file">Ralat membaca fail sesi Excel: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Namakan Semula</string>
     <string name="rename_file">Namakan semula fail</string>
     <string name="create">Buat</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">Padam Folder</string>
     <string name="are_you_sure">Adakah anda pasti?</string>
     <string name="file_exists_already">Fail sudah wujud.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Tetapan</string>
     <string name="activity_captured_barcodes">Barcode Tertangkap</string>
     <string name="activity_session_data">Data Sesi</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Urus Sesi</string>
     <string name="menu_settings">Tetapan</string>
     <string name="menu_new_file">Fail Baharu</string>
     <string name="menu_new_folder">Folder Baharu</string>
     <string name="menu_rename">Namakan Semula</string>
     <string name="menu_delete">Padam</string>
-
+    <string name="language">Bahasa</string>
+    <string name="system_language">Bahasa Sistem</string>
 </resources>

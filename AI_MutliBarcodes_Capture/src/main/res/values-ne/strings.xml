@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI बहु बारकोड क्याप्चर</string>
     <string name="start_capture_button_text">क्याप्चर सुरु गर्नुहोस्</string>
     <string name="loading_status">एप्लिकेसन लोड गर्दै</string>
     <string name="select_session_file">सत्र फाइल छान्नुहोस् वा नयाँ सिर्जना गर्नुहोस्।</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">अनुमतिहरू प्राप्त गर्दै</string>
-
-    <!-- Browser Activity -->
     <string name="select">छान्नुहोस्</string>
     <string name="share">साझा गर्नुहोस्</string>
     <string name="refresh">रिफ्रेस गर्नुहोस्</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">हो</string>
     <string name="no">होइन</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">फाइलमा थप्नुहोस्</string>
     <string name="save">सुरक्षित गर्नुहोस्</string>
     <string name="update">फाइल अद्यावधिक गर्नुहोस्</string>
     <string name="merge">मात्राहरू मिलाउनुहोस्</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">क्याप्चर सुरु गर्नुहोस्</string>
     <string name="load_last_session">अन्तिम सत्र लोड गर्नुहोस्</string>
     <string name="create_new_session">नयाँ सत्र सिर्जना गर्नुहोस्</string>
     <string name="view_session_data">सत्रको डेटा हेर्नुहोस्</string>
     <string name="selected_session">चयनित सत्र</string>
     <string name="select_session_to_start">क्याप्चर सुरु गर्न सत्र छान्नुहोस्</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">सेटअप</string>
     <string name="prefix">उपसर्ग:</string>
     <string name="prefix_hint">उपसर्ग_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Excel फाइल</string>
     <string name="validate">प्रमाणीकरण गर्नुहोस्</string>
     <string name="cancel">रद्द गर्नुहोस्</string>
-
-    <!-- Camera Activity -->
     <string name="capture">क्याप्चर</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK प्रारम्भीकरण असफल</string>
     <string name="folder_path_missing">फोल्डर पथ हराइरहेको!</string>
     <string name="folder_path_missing_toast">फोल्डर पथ हराइरहेको !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">फाइल सुरक्षित गर्न त्रुटि: %s</string>
     <string name="error_saving_last_selected_file">अन्तिम चयनित फाइल सुरक्षित गर्न त्रुटि</string>
     <string name="settings_saved_successfully">सेटिङहरू सफलतापूर्वक सुरक्षित गरिएको</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">कृपया फोल्डर नभएर फाइल छान्नुहोस्।</string>
     <string name="please_select_file">कृपया फाइल छान्नुहोस्।</string>
     <string name="cannot_rename_folders_or_parent">फोल्डरहरू वा अभिभावक फोल्डर पुन: नामाकरण गर्न सकिँदैन।</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">फाइल सिर्जना गर्न असफल</string>
     <string name="cannot_delete_parent_folder">अभिभावक फोल्डर मेटाउन सकिँदैन।</string>
     <string name="cannot_share_folders">फोल्डरहरू साझा गर्न सकिँदैन।</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">अन्तिम सत्र फाइल फेला परेन।</string>
     <string name="no_session_file_saved">प्राथमिकताहरूमा कुनै सत्र फाइल सुरक्षित गरिएको छैन।</string>
     <string name="error_creating_new_session">नयाँ सत्र सिर्जना गर्न त्रुटि: %s</string>
     <string name="missing_filename">फाइलको नाम हराइरहेको</string>
     <string name="camera_permission_required">यो सुविधा प्रयोग गर्न क्यामेरा अनुमति चाहिन्छ</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() वस्तु सिर्जना समय =%d मिलिसेकेन्ड</string>
     <string name="barcode_decoder_disposed">बारकोड डिकोडर डिस्पोज गरिएको</string>
     <string name="orientation_unlocked">%s मोडको लागि अभिमुखीकरण अनलक गरिएको</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker डिकोडर उपलब्ध छ, एन्टिटीहरूको संख्या: %s</string>
     <string name="processing_entities">एन्टिटी भ्यूको लागि %d एन्टिटीहरू प्रशोधन गर्दै</string>
     <string name="rendered_entities">एन्टिटी भ्यूमा एन्टिटीहरू रेन्डर गरिएको</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">बारकोड मान</string>
     <string name="symbology">सिम्बोलजी</string>
     <string name="unknown">अज्ञात</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">क्याप्चर मिति</string>
     <string name="date">मिति</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">फ्ल्यासलाइट टगल गर्नुहोस्</string>
     <string name="toggle_capture_zone">क्याप्चर क्षेत्र टगल गर्नुहोस्</string>
     <string name="edit_item">वस्तु सम्पादन गर्नुहोस्</string>
     <string name="delete_item">वस्तु मेटाउनुहोस्</string>
-
-    <!-- Display Labels -->
     <string name="value_label">मान: %s</string>
     <string name="symbology_label">सिम्बोलजी: %s</string>
     <string name="quantity_label">मात्रा: %d</string>
     <string name="date_label">मिति: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">अनुमतिहरू दिन सफल।</string>
     <string name="session_data_merged">सत्र डेटा मिलाइएको।</string>
     <string name="error_reported">त्रुटि रिपोर्ट गरिएको: %s</string>
     <string name="error_reading_session_file">सत्र फाइल पढ्न त्रुटि: %s</string>
     <string name="error_reading_csv_session_file">CSV सत्र फाइल पढ्न त्रुटि: %s</string>
     <string name="error_reading_excel_session_file">Excel सत्र फाइल पढ्न त्रुटि: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">पुन: नामकरण</string>
     <string name="rename_file">फाइल पुन: नामकरण गर्नुहोस्</string>
     <string name="create">सिर्जना गर्नुहोस्</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">फोल्डर मेटाउनुहोस्</string>
     <string name="are_you_sure">के तपाईं निश्चित हुनुहुन्छ?</string>
     <string name="file_exists_already">फाइल पहिले नै अवस्थित छ।</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">सेटिङहरू</string>
     <string name="activity_captured_barcodes">क्याप्चर गरिएका बारकोडहरू</string>
     <string name="activity_session_data">सत्र डेटा</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">सत्रहरू व्यवस्थापन गर्नुहोस्</string>
     <string name="menu_settings">सेटिङहरू</string>
     <string name="menu_new_file">नयाँ फाइल</string>
     <string name="menu_new_folder">नयाँ फोल्डर</string>
     <string name="menu_rename">पुन: नामकरण</string>
     <string name="menu_delete">मेटाउनुहोस्</string>
-
+    <string name="language">भाषा</string>
+    <string name="system_language">प्रणाली भाषा</string>
 </resources>

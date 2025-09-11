@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">பிடிப்பைத் தொடங்கு</string>
     <string name="loading_status">பயன்பாடு ஏற்றப்படுகிறது</string>
     <string name="select_session_file">அமர்வு கோப்பைத் தேர்ந்தெடுக்கவும் அல்லது புதியதை உருவாக்கவும்.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">அனுமதிகளைப் பெறுதல்</string>
-
-    <!-- Browser Activity -->
     <string name="select">தேர்ந்தெடு</string>
     <string name="share">பகிர்</string>
     <string name="refresh">புதுப்பி</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">ஆம்</string>
     <string name="no">இல்லை</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">கோப்பில் சேர்</string>
     <string name="save">சேமி</string>
     <string name="update">கோப்பைப் புதுப்பி</string>
     <string name="merge">அளவுகளை இணை</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">பிடிப்பைத் தொடங்கு</string>
     <string name="load_last_session">கடைசி அமர்வைப் ஏற்று</string>
     <string name="create_new_session">புதிய அமர்வை உருவாக்கு</string>
     <string name="view_session_data">அமர்வு தரவைக் காண்</string>
     <string name="selected_session">தேர்ந்தெடுக்கப்பட்ட அமர்வு</string>
     <string name="select_session_to_start">பிடிப்பைத் தொடங்க அமர்வைத் தேர்ந்தெடுக்கவும்</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">அமைப்பு</string>
     <string name="prefix">முன்னொட்டு:</string>
     <string name="prefix_hint">முன்னொட்டு_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Excel கோப்பு</string>
     <string name="validate">சரிபார்</string>
     <string name="cancel">ரத்து செய்</string>
-
-    <!-- Camera Activity -->
     <string name="capture">பிடி</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK துவக்கம் தோல்வியடைந்தது</string>
     <string name="folder_path_missing">கோப்புறை பாதை இல்லை!</string>
     <string name="folder_path_missing_toast">கோப்புறை பாதை இல்லை !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">கோப்பைச் சேமிக்கும்போது பிழை: %s</string>
     <string name="error_saving_last_selected_file">கடைசியாகத் தேர்ந்தெடுக்கப்பட்ட கோப்பைச் சேமிக்கும்போது பிழை</string>
     <string name="settings_saved_successfully">அமைப்புகள் வெற்றிகரமாக சேமிக்கப்பட்டன</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">தயவுசெய்து கோப்புறையைத் தேர்ந்தெடுக்காமல் கோப்பைத் தேர்ந்தெடுக்கவும்.</string>
     <string name="please_select_file">தயவுசெய்து ஒரு கோப்பைத் தேர்ந்தெடுக்கவும்.</string>
     <string name="cannot_rename_folders_or_parent">கோப்புறைகள் அல்லது பெற்றோர் கோப்புறைகளின் பெயரை மாற்ற முடியாது.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">கோப்பை உருவாக்க முடியவில்லை</string>
     <string name="cannot_delete_parent_folder">பெற்றோர் கோப்புறையை நீக்க முடியாது.</string>
     <string name="cannot_share_folders">கோப்புறைகளைப் பகிர முடியாது.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">கடைசி அமர்வு கோப்பு கிடைக்கவில்லை.</string>
     <string name="no_session_file_saved">விருப்பங்களில் எந்த அமர்வு கோப்பும் சேமிக்கப்படவில்லை.</string>
     <string name="error_creating_new_session">புதிய அமர்வை உருவாக்கும்போது பிழை: %s</string>
     <string name="missing_filename">கோப்பின் பெயர் இல்லை</string>
     <string name="camera_permission_required">இந்த அம்சத்தைப் பயன்படுத்த கேமரா அனுமதி தேவை</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj உருவாக்க நேரம் =%d மில்லி விநாடி</string>
     <string name="barcode_decoder_disposed">பார்கோடு டிகோடர் அகற்றப்பட்டது</string>
     <string name="orientation_unlocked">%s பயன்முறைக்கு திசையை திறத்தல்</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker டிகோடர் கிடைக்கின்றது, நிறுவனங்களின் எண்ணிக்கை: %s</string>
     <string name="processing_entities">நிறுவன காட்சிக்காக %d நிறுவனங்களைச் செயலாக்குதல்</string>
     <string name="rendered_entities">நிறுவனங்கள் நிறுவன காட்சியில் வழங்கப்பட்டன</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">சிம்பாலஜிகள்</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">பார்கோடு மதிப்பு</string>
     <string name="symbology">சிம்பாலஜி</string>
     <string name="unknown">தெரியாதது</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">பிடிப்பு தேதி</string>
     <string name="date">தேதி</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">ஒளிவீசியை மாற்று</string>
     <string name="toggle_capture_zone">பிடிப்பு வலயத்தை மாற்று</string>
     <string name="edit_item">பொருளைத் திருத்து</string>
     <string name="delete_item">பொருளை நீக்கு</string>
-
-    <!-- Display Labels -->
     <string name="value_label">மதிப்பு: %s</string>
     <string name="symbology_label">சிம்பாலஜி: %s</string>
     <string name="quantity_label">அளவு: %d</string>
     <string name="date_label">தேதி: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">அனுமதிகளை வழங்குவதில் வெற்றி.</string>
     <string name="session_data_merged">அமர்வு தரவு இணைக்கப்பட்டது.</string>
     <string name="error_reported">பிழை அறிக்கையிடப்பட்டது: %s</string>
     <string name="error_reading_session_file">அமர்வு கோப்பைப் படிக்கும்போது பிழை: %s</string>
     <string name="error_reading_csv_session_file">CSV அமர்வு கோப்பைப் படிக்கும்போது பிழை: %s</string>
     <string name="error_reading_excel_session_file">Excel அமர்வு கோப்பைப் படிக்கும்போது பிழை: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">பெயரை மாற்று</string>
     <string name="rename_file">கோப்பின் பெயரை மாற்று</string>
     <string name="create">உருவாக்கு</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">கோப்புறையை நீக்கு</string>
     <string name="are_you_sure">நீங்கள் நிச்சயமாக இருக்கிறீர்களா?</string>
     <string name="file_exists_already">கோப்பு ஏற்கனவே உள்ளது.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">அமைப்புகள்</string>
     <string name="activity_captured_barcodes">பிடிக்கப்பட்ட பார்கோடுகள்</string>
     <string name="activity_session_data">அமர்வு தரவு</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">அமர்வுகளை நிர்வகி</string>
     <string name="menu_settings">அமைப்புகள்</string>
     <string name="menu_new_file">புதிய கோப்பு</string>
     <string name="menu_new_folder">புதிய கோப்புறை</string>
     <string name="menu_rename">பெயரை மாற்று</string>
     <string name="menu_delete">நீக்கு</string>
-
+    <string name="language">மொழி</string>
+    <string name="system_language">கணினி மொழி</string>
 </resources>

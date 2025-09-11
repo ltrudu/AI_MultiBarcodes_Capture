@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">کیپچر شروع کریں</string>
     <string name="loading_status">ایپلیکیشن لوڈ ہو رہی ہے</string>
     <string name="select_session_file">سیشن فائل منتخب کریں یا نئی بنائیں۔</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">اجازات حاصل کی جا رہی ہیں</string>
-
-    <!-- Browser Activity -->
     <string name="select">منتخب کریں</string>
     <string name="share">شیئر کریں</string>
     <string name="refresh">تازہ کریں</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">ہاں</string>
     <string name="no">نہیں</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">فائل میں شامل کریں</string>
     <string name="save">محفوظ کریں</string>
     <string name="update">فائل اپڈیٹ کریں</string>
     <string name="merge">مقدار ضم کریں</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">کیپچر شروع کریں</string>
     <string name="load_last_session">آخری سیشن لوڈ کریں</string>
     <string name="create_new_session">نیا سیشن بنائیں</string>
     <string name="view_session_data">سیشن ڈیٹا دیکھیں</string>
     <string name="selected_session">منتخب شدہ سیشن</string>
     <string name="select_session_to_start">کیپچر شروع کرنے کے لیے سیشن منتخب کریں</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">سیٹ اپ</string>
     <string name="prefix">پیشوندی:</string>
     <string name="prefix_hint">پیشوندی_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">ایکسل فائل</string>
     <string name="validate">تصدیق کریں</string>
     <string name="cancel">منسوخ کریں</string>
-
-    <!-- Camera Activity -->
     <string name="capture">کیپچر</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK شروع کرنا ناکام</string>
     <string name="folder_path_missing">فولڈر پاتھ نہیں ملا!</string>
     <string name="folder_path_missing_toast">فولڈر پاتھ نہیں ملا !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">فائل محفوظ کرنے میں خرابی: %s</string>
     <string name="error_saving_last_selected_file">آخری منتخب کردہ فائل محفوظ کرنے میں خرابی</string>
     <string name="settings_saved_successfully">سیٹنگز کامیابی سے محفوظ ہوئیں</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">براہ کرم فولڈر نہیں بلکہ فائل منتخب کریں۔</string>
     <string name="please_select_file">براہ کرم فائل منتخب کریں۔</string>
     <string name="cannot_rename_folders_or_parent">فولڈر یا پیرنٹ فولڈر کا نام تبدیل نہیں کر سکتے۔</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">فائل بنانا ناکام</string>
     <string name="cannot_delete_parent_folder">پیرنٹ فولڈر حذف نہیں کر سکتے۔</string>
     <string name="cannot_share_folders">فولڈر شیئر نہیں کر سکتے۔</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">آخری سیشن فائل نہیں ملی۔</string>
     <string name="no_session_file_saved">ترجیحات میں کوئی سیشن فائل محفوظ نہیں۔</string>
     <string name="error_creating_new_session">نیا سیشن بناتے وقت خرابی: %s</string>
     <string name="missing_filename">فائل کا نام نہیں ملا</string>
     <string name="camera_permission_required">اس فیچر کو استعمال کرنے کے لیے کیمرا کی اجازت درکار ہے</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj بنانے کا وقت =%d ملی سیکنڈ</string>
     <string name="barcode_decoder_disposed">بارکوڈ ڈیکوڈر ضائع کر دیا گیا</string>
     <string name="orientation_unlocked">%s موڈ کے لیے اورینٹیشن کھل گئی</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker ڈیکوڈر دستیاب ہے، انٹٹیز کی تعداد: %s</string>
     <string name="processing_entities">انٹٹی ویو کے لیے %d انٹٹیز پروسیس کر رہا ہے</string>
     <string name="rendered_entities">انٹٹی ویو پر انٹٹیز رینڈر کی گئیں</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">سمبولوجیز</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">بارکوڈ ویلیو</string>
     <string name="symbology">سمبولوجی</string>
     <string name="unknown">نامعلوم</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">کیپچر کی تاریخ</string>
     <string name="date">تاریخ</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">ٹارچ آن آف کریں</string>
     <string name="toggle_capture_zone">کیپچر زون ٹوگل کریں</string>
     <string name="edit_item">آئٹم ایڈٹ کریں</string>
     <string name="delete_item">آئٹم حذف کریں</string>
-
-    <!-- Display Labels -->
     <string name="value_label">ویلیو: %s</string>
     <string name="symbology_label">سمبولوجی: %s</string>
     <string name="quantity_label">مقدار: %d</string>
     <string name="date_label">تاریخ: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">اجازات دینے میں کامیابی۔</string>
     <string name="session_data_merged">سیشن ڈیٹا ضم کر دیا گیا۔</string>
     <string name="error_reported">خرابی کی اطلاع: %s</string>
     <string name="error_reading_session_file">سیشن فائل پڑھنے میں خرابی: %s</string>
     <string name="error_reading_csv_session_file">CSV سیشن فائل پڑھنے میں خرابی: %s</string>
     <string name="error_reading_excel_session_file">ایکسل سیشن فائل پڑھنے میں خرابی: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">نام تبدیل کریں</string>
     <string name="rename_file">فائل کا نام تبدیل کریں</string>
     <string name="create">بنائیں</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">فولڈر حذف کریں</string>
     <string name="are_you_sure">کیا آپ کو یقین ہے؟</string>
     <string name="file_exists_already">فائل پہلے سے موجود ہے۔</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">سیٹنگز</string>
     <string name="activity_captured_barcodes">کیپچر شدہ بارکوڈز</string>
     <string name="activity_session_data">سیشن ڈیٹا</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">سیشن منیج کریں</string>
     <string name="menu_settings">سیٹنگز</string>
     <string name="menu_new_file">نئی فائل</string>
     <string name="menu_new_folder">نیا فولڈر</string>
     <string name="menu_rename">نام تبدیل کریں</string>
     <string name="menu_delete">حذف کریں</string>
-
+    <string name="language">زبان</string>
+    <string name="system_language">سسٹم کی زبان</string>
 </resources>

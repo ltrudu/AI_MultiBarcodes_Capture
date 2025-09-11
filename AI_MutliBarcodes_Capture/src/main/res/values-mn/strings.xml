@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Олон Баркод Авах</string>
     <string name="start_capture_button_text">Авалтыг Эхлүүлэх</string>
     <string name="loading_status">Програм Ачаалж байна</string>
     <string name="select_session_file">Сеансын файл сонгох эсвэл шинэ үүсгэх.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Зөвшөөрөл авч байна</string>
-
-    <!-- Browser Activity -->
     <string name="select">Сонгох</string>
     <string name="share">Хуваалцах</string>
     <string name="refresh">Сэргээх</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Тийм</string>
     <string name="no">Үгүй</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Файлд Нэмэх</string>
     <string name="save">Хадгалах</string>
     <string name="update">Файл Шинэчлэх</string>
     <string name="merge">Тоо хэмжээ Нэгтгэх</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Авалтыг Эхлүүлэх</string>
     <string name="load_last_session">Сүүлийн Сеансыг Ачаалах</string>
     <string name="create_new_session">Шинэ Сеанс Үүсгэх</string>
     <string name="view_session_data">Сеансын Өгөгдөл Харах</string>
     <string name="selected_session">Сонгогдсон Сеанс</string>
     <string name="select_session_to_start">Авалт Эхлүүлэхийн Тулд Сеанс Сонгох</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Тохиргоо</string>
     <string name="prefix">Угтвар үг:</string>
     <string name="prefix_hint">Угтвар_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Excel Файл</string>
     <string name="validate">Баталгаажуулах</string>
     <string name="cancel">Цуцлах</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Авах</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK эхлэл амжилтгүй болсон</string>
     <string name="folder_path_missing">Фолдерын зам алга!</string>
     <string name="folder_path_missing_toast">Фолдерын зам алга !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">Файл хадгалахад алдаа гарлаа: %s</string>
     <string name="error_saving_last_selected_file">Сүүлд сонгогдсон файлыг хадгалахад алдаа гарлаа</string>
     <string name="settings_saved_successfully">Тохиргоо амжилттай хадгалагдлаа</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Фолдер биш файл сонгоно уу.</string>
     <string name="please_select_file">Файл сонгоно уу.</string>
     <string name="cannot_rename_folders_or_parent">Фолдер эсвэл эцэг фолдерын нэр өөрчлөх боломжгүй.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">Файл үүсгэж чадсангүй</string>
     <string name="cannot_delete_parent_folder">Эцэг фолдерыг устгах боломжгүй.</string>
     <string name="cannot_share_folders">Фолдерууд хуваалцах боломжгүй.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Сүүлийн сеансын файл олдсонгүй.</string>
     <string name="no_session_file_saved">Тохиргоонд хадгалагдсан сеансын файл алга.</string>
     <string name="error_creating_new_session">Шинэ сеанс үүсгэхэд алдаа гарлаа: %s</string>
     <string name="missing_filename">Файлын нэр алга</string>
     <string name="camera_permission_required">Энэ функцийг ашиглахын тулд камерын зөвшөөрөл хэрэгтэй</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() объект үүсгэх хугацаа =%d миллисекунд</string>
     <string name="barcode_decoder_disposed">Баркод декодер устгагдсан</string>
     <string name="orientation_unlocked">%s горимд зориулагдсан чиглэл нээгдсэн</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker декодер боломжтой, оролцогчийн тоо: %s</string>
     <string name="processing_entities">Оролцогчийн харагдахуунд зориулж %d оролцогчийг боловсруулж байна</string>
     <string name="rendered_entities">Оролцогчдыг оролцогчийн харагдахуунд дүрслэв</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Баркодын Утга</string>
     <string name="symbology">Символ Зүй</string>
     <string name="unknown">МЭДЭГДЭХГҮЙ</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">Авах Огноо</string>
     <string name="date">Огноо</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Гэрлийн товчлуурыг солих</string>
     <string name="toggle_capture_zone">Авах бүсийг солих</string>
     <string name="edit_item">Зүйлийг засах</string>
     <string name="delete_item">Зүйлийг устгах</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Утга: %s</string>
     <string name="symbology_label">Символ Зүй: %s</string>
     <string name="quantity_label">Тоо хэмжээ: %d</string>
     <string name="date_label">Огноо: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Зөвшөөрөл Олгох Амжилттай Болсон.</string>
     <string name="session_data_merged">Сеансын өгөгдөл нэгтгэгдэв.</string>
     <string name="error_reported">Алдаа мэдэгдэв: %s</string>
     <string name="error_reading_session_file">Сеансын файл унших алдаа: %s</string>
     <string name="error_reading_csv_session_file">CSV сеансын файл унших алдаа: %s</string>
     <string name="error_reading_excel_session_file">Excel сеансын файл унших алдаа: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Нэр Өөрчлөх</string>
     <string name="rename_file">Файлын нэр өөрчлөх</string>
     <string name="create">Үүсгэх</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">Фолдер Устгах</string>
     <string name="are_you_sure">Та итгэлтэй байна уу?</string>
     <string name="file_exists_already">Файл аль хэдийн байна.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Тохиргоо</string>
     <string name="activity_captured_barcodes">Авагдсан Баркодууд</string>
     <string name="activity_session_data">Сеансын Өгөгдөл</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Сеансуудыг Удирдах</string>
     <string name="menu_settings">Тохиргоо</string>
     <string name="menu_new_file">Шинэ Файл</string>
     <string name="menu_new_folder">Шинэ Фолдер</string>
     <string name="menu_rename">Нэр Өөрчлөх</string>
     <string name="menu_delete">Устгах</string>
-
+    <string name="language">Хэл</string>
+    <string name="system_language">Системийн хэл</string>
 </resources>
