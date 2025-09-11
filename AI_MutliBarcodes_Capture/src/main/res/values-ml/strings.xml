@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI മൾട്ടി ബാർകോഡ് ക്യാപ്ചർ</string>
     <string name="start_capture_button_text">ക്യാപ്ചർ ആരംഭിക്കുക</string>
     <string name="loading_status">ആപ്ലിക്കേഷൻ ലോഡുചെയ്യുന്നു</string>
     <string name="select_session_file">ഒരു സെഷൻ ഫയൽ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയതൊന്ന് സൃഷ്ടിക്കുക.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">അനുമതികൾ വീണ്ടെടുക്കുന്നു</string>
-
-    <!-- Browser Activity -->
     <string name="select">തിരഞ്ഞെടുക്കുക</string>
     <string name="share">പങ്കിടുക</string>
     <string name="refresh">പുതുക്കുക</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">അതെ</string>
     <string name="no">അല്ല</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">ഫയലിലേക്ക് ചേർക്കുക</string>
     <string name="save">സംരക്ഷിക്കുക</string>
     <string name="update">ഫയൽ അപ്ഡേറ്റ് ചെയ്യുക</string>
     <string name="merge">അളവുകൾ ലയിപ്പിക്കുക</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">ക്യാപ്ചർ ആരംഭിക്കുക</string>
     <string name="load_last_session">അവസാന സെഷൻ ലോഡുചെയ്യുക</string>
     <string name="create_new_session">പുതിയ സെഷൻ സൃഷ്ടിക്കുക</string>
     <string name="view_session_data">സെഷൻ ഡാറ്റ കാണുക</string>
     <string name="selected_session">തിരഞ്ഞെടുത്ത സെഷൻ</string>
     <string name="select_session_to_start">ക്യാപ്ചർ ആരംഭിക്കാൻ ഒരു സെഷൻ തിരഞ്ഞെടുക്കുക</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">സജ്ജീകരണം</string>
     <string name="prefix">പ്രിഫിക്സ്:</string>
     <string name="prefix_hint">പ്രിഫിക്സ്_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Excel ഫയൽ</string>
     <string name="validate">സാധൂകരിക്കുക</string>
     <string name="cancel">റദ്ദാക്കുക</string>
-
-    <!-- Camera Activity -->
     <string name="capture">ക്യാപ്ചർ</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK പ്രാരംഭീകരണം പരാജയപ്പെട്ടു</string>
     <string name="folder_path_missing">ഫോൾഡർ പാത്ത് നഷ്ടപ്പെട്ടു!</string>
     <string name="folder_path_missing_toast">ഫോൾഡർ പാത്ത് നഷ്ടപ്പെട്ടു !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">ഫയൽ സംരക്ഷിക്കുന്നതിൽ പിശക്: %s</string>
     <string name="error_saving_last_selected_file">അവസാനം തിരഞ്ഞെടുത്ത ഫയൽ സംരക്ഷിക്കുന്നതിൽ പിശക്</string>
     <string name="settings_saved_successfully">ക്രമീകരണങ്ങൾ വിജയകരമായി സംരക്ഷിച്ചു</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">ദയവായി ഫോൾഡറല്ല, ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
     <string name="please_select_file">ദയവായി ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
     <string name="cannot_rename_folders_or_parent">ഫോൾഡറുകളെയോ മാതൃഫോൾഡറിനെയോ പുനർനാമകരണം ചെയ്യാൻ കഴിയില്ല.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">ഫയൽ സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <string name="cannot_delete_parent_folder">മാതൃഫോൾഡർ ഇല്ലാതാക്കാൻ കഴിയില്ല.</string>
     <string name="cannot_share_folders">ഫോൾഡറുകൾ പങ്കിടാൻ കഴിയില്ല.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">അവസാന സെഷൻ ഫയൽ കണ്ടെത്തിയില്ല.</string>
     <string name="no_session_file_saved">മുൻഗണനകളിൽ സെഷൻ ഫയൽ സംരക്ഷിച്ചിട്ടില്ല.</string>
     <string name="error_creating_new_session">പുതിയ സെഷൻ സൃഷ്ടിക്കുന്നതിൽ പിശക്: %s</string>
     <string name="missing_filename">ഫയൽ നാമം നഷ്ടപ്പെട്ടു</string>
     <string name="camera_permission_required">ഈ ഫീച്ചർ ഉപയോഗിക്കുന്നതിന് ക്യാമറ അനുമതി ആവശ്യമാണ്</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() ഒബ്ജക്റ്റ് സൃഷ്ടിക്കുന്ന സമയം =%d മില്ലിസെക്കൻഡ്</string>
     <string name="barcode_decoder_disposed">ബാർകോഡ് ഡീകോഡർ നിർത്തലാക്കി</string>
     <string name="orientation_unlocked">%s മോഡിനായി ഓറിയന്റേഷൻ അൺലോക്കുചെയ്തു</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker ഡീകോഡർ ലഭ്യമാണ്, എന്റിറ്റികളുടെ എണ്ണം: %s</string>
     <string name="processing_entities">എന്റിറ്റി വ്യൂവിനായി %d എന്റിറ്റികൾ പ്രോസസ്സുചെയ്യുന്നു</string>
     <string name="rendered_entities">എന്റിറ്റി വ്യൂവിൽ എന്റിറ്റികൾ റെൻഡർ ചെയ്തു</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">ബാർകോഡ് മൂല്യം</string>
     <string name="symbology">സിംബോളജി</string>
     <string name="unknown">അജ്ഞാതം</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">ക്യാപ്ചർ തീയതി</string>
     <string name="date">തീയതി</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">ഫ്ലാഷ്‌ലൈറ്റ് ടോഗിൾ ചെയ്യുക</string>
     <string name="toggle_capture_zone">ക്യാപ്ചർ സോൺ ടോഗിൾ ചെയ്യുക</string>
     <string name="edit_item">ഇനം എഡിറ്റുചെയ്യുക</string>
     <string name="delete_item">ഇനം ഇല്ലാതാക്കുക</string>
-
-    <!-- Display Labels -->
     <string name="value_label">മൂല്യം: %s</string>
     <string name="symbology_label">സിംബോളജി: %s</string>
     <string name="quantity_label">അളവ്: %d</string>
     <string name="date_label">തീയതി: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">അനുമതികൾ നൽകുന്നതിൽ വിജയം.</string>
     <string name="session_data_merged">സെഷൻ ഡാറ്റ ലയിപ്പിച്ചു.</string>
     <string name="error_reported">പിശക് റിപ്പോർട്ടുചെയ്തു: %s</string>
     <string name="error_reading_session_file">സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്: %s</string>
     <string name="error_reading_csv_session_file">CSV സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്: %s</string>
     <string name="error_reading_excel_session_file">Excel സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">പുനർനാമകരണം</string>
     <string name="rename_file">ഫയൽ പുനർനാമകരണം ചെയ്യുക</string>
     <string name="create">സൃഷ്ടിക്കുക</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">ഫോൾഡർ ഇല്ലാതാക്കുക</string>
     <string name="are_you_sure">നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
     <string name="file_exists_already">ഫയൽ ഇതിനകം നിലവിലുണ്ട്.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">ക്രമീകരണങ്ങൾ</string>
     <string name="activity_captured_barcodes">ക്യാപ്ചർ ചെയ്ത ബാർകോഡുകൾ</string>
     <string name="activity_session_data">സെഷൻ ഡാറ്റ</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">സെഷനുകൾ കൈകാര്യം ചെയ്യുക</string>
     <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
     <string name="menu_new_file">പുതിയ ഫയൽ</string>
     <string name="menu_new_folder">പുതിയ ഫോൾഡർ</string>
     <string name="menu_rename">പുനർനാമകരണം</string>
     <string name="menu_delete">ഇല്ലാതാക്കുക</string>
-
+    <string name="language">ഭാഷ</string>
+    <string name="system_language">സിസ്റ്റം ഭാഷ</string>
 </resources>

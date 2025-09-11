@@ -215,7 +215,7 @@
 
     <!-- Language Selection Arrays -->
     <string-array name="language_names">
-        <item>System Language</item>
+        <item>@string/system_language</item>
         <item>العربية</item>
         <item>Afrikaans</item>
         <item>Shqip</item>
@@ -223,6 +223,7 @@
         <item>Հայերեն</item>
         <item>Azərbaycan</item>
         <item>Беларуская</item>
+        <item>বাংলা</item>
         <item>Bosanski</item>
         <item>Български</item>
         <item>မြန်မာ</item>
@@ -299,6 +300,7 @@
         <item>hy</item>
         <item>az</item>
         <item>be</item>
+        <item>bn</item>
         <item>bs</item>
         <item>bg</item>
         <item>my</item>

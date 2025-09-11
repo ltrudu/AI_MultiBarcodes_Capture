@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">Spustiť zachytávanie</string>
     <string name="loading_status">Načítava sa aplikácia</string>
     <string name="select_session_file">Vyberte súbor relácie alebo vytvorte nový.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Získavanie povolení</string>
-
-    <!-- Browser Activity -->
     <string name="select">Vybrať</string>
     <string name="share">Zdieľať</string>
     <string name="refresh">Obnoviť</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Áno</string>
     <string name="no">Nie</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Pridať do súboru</string>
     <string name="save">Uložiť</string>
     <string name="update">Aktualizovať súbor</string>
     <string name="merge">Spojiť množstvá</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Spustiť zachytávanie</string>
     <string name="load_last_session">Načítať poslednú reláciu</string>
     <string name="create_new_session">Vytvoriť novú reláciu</string>
     <string name="view_session_data">Zobraziť údaje relácie</string>
     <string name="selected_session">Vybraná relácia</string>
     <string name="select_session_to_start">Vyberte reláciu na spustenie zachytávania</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Nastavenie</string>
     <string name="prefix">Predpona:</string>
     <string name="prefix_hint">Predpona_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Excel súbor</string>
     <string name="validate">Potvrdiť</string>
     <string name="cancel">Zrušiť</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Zachytiť</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Inicializácia AI Vision SDK zlyhala</string>
     <string name="folder_path_missing">Cesta k priečinku chýba!</string>
     <string name="folder_path_missing_toast">Cesta k priečinku chýba !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">Chyba pri ukladaní súboru: %s</string>
     <string name="error_saving_last_selected_file">Chyba pri ukladaní posledného vybraného súboru</string>
     <string name="settings_saved_successfully">Nastavenia úspešne uložené</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Prosím, vyberte súbor, nie priečinok.</string>
     <string name="please_select_file">Prosím, vyberte súbor.</string>
     <string name="cannot_rename_folders_or_parent">Nemožno premenovať priečinky alebo nadradený priečinok.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">Nepodarilo sa vytvoriť súbor</string>
     <string name="cannot_delete_parent_folder">Nemožno odstrániť nadradený priečinok.</string>
     <string name="cannot_share_folders">Nemožno zdieľať priečinky.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Posledný súbor relácie nebol nájdený.</string>
     <string name="no_session_file_saved">Žiadny súbor relácie uložený v nastaveniach.</string>
     <string name="error_creating_new_session">Chyba pri vytváraní novej relácie: %s</string>
     <string name="missing_filename">Chýba názov súboru</string>
     <string name="camera_permission_required">Na použitie tejto funkcie je potrebné povolenie kamery</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Čas vytvorenia Entity Tracker BarcodeDecoder() obj =%d milisekúnd</string>
     <string name="barcode_decoder_disposed">Dekodér čiarových kódov je uvoľnený</string>
     <string name="orientation_unlocked">Orientácia odomknutá pre %s režim</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekodér dostupný, počet entít: %s</string>
     <string name="processing_entities">Spracováva sa %d entít pre zobrazenie entít</string>
     <string name="rendered_entities">Entity vykreslené na zobrazení entít</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbológie</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Hodnota čiarového kódu</string>
     <string name="symbology">Symbológia</string>
     <string name="unknown">NEZNÁME</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">Dátum zachytenia</string>
     <string name="date">Dátum</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Prepnúť baterku</string>
     <string name="toggle_capture_zone">Prepnúť zónu zachytávania</string>
     <string name="edit_item">Upraviť položku</string>
     <string name="delete_item">Odstrániť položku</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Hodnota: %s</string>
     <string name="symbology_label">Symbológia: %s</string>
     <string name="quantity_label">Množstvo: %d</string>
     <string name="date_label">Dátum: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Úspešné udelenie povolení.</string>
     <string name="session_data_merged">Údaje relácie spojené.</string>
     <string name="error_reported">Chyba hlásená: %s</string>
     <string name="error_reading_session_file">Chyba pri čítaní súboru relácie: %s</string>
     <string name="error_reading_csv_session_file">Chyba pri čítaní CSV súboru relácie: %s</string>
     <string name="error_reading_excel_session_file">Chyba pri čítaní Excel súboru relácie: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Premenovať</string>
     <string name="rename_file">Premenovať súbor</string>
     <string name="create">Vytvoriť</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">Odstrániť priečinok</string>
     <string name="are_you_sure">Ste si istí?</string>
     <string name="file_exists_already">Súbor už existuje.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Nastavenia</string>
     <string name="activity_captured_barcodes">Zachytené čiarové kódy</string>
     <string name="activity_session_data">Údaje relácie</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Spravovať relácie</string>
     <string name="menu_settings">Nastavenia</string>
     <string name="menu_new_file">Nový súbor</string>
     <string name="menu_new_folder">Nový priečinok</string>
     <string name="menu_rename">Premenovať</string>
     <string name="menu_delete">Odstrániť</string>
-
+    <string name="language">Jazyk</string>
+    <string name="system_language">Systémový jazyk</string>
 </resources>

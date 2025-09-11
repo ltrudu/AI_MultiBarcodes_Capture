@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI බහු බාර්කෝඩ් ග්‍රහණය</string>
     <string name="start_capture_button_text">ග්‍රහණය ආරම්භ කරන්න</string>
     <string name="loading_status">යෙදුම පූරණය වෙමින්</string>
     <string name="select_session_file">සැසි ගොනුවක් තෝරන්න හෝ නව එකක් සාදන්න.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">අවසර ලබා ගනිමින්</string>
-
-    <!-- Browser Activity -->
     <string name="select">තෝරන්න</string>
     <string name="share">බෙදා ගන්න</string>
     <string name="refresh">නැවුම් කරන්න</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">ඔව්</string>
     <string name="no">නැත</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">ගොනුවට එක් කරන්න</string>
     <string name="save">සුරකින්න</string>
     <string name="update">ගොනුව යාවත්කාලීන කරන්න</string>
     <string name="merge">ප්‍රමාණ ඒකාබද්ධ කරන්න</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">ග්‍රහණය ආරම්භ කරන්න</string>
     <string name="load_last_session">අවසන් සැසිය පූරණය කරන්න</string>
     <string name="create_new_session">නව සැසියක් සාදන්න</string>
     <string name="view_session_data">සැසි දත්ත බලන්න</string>
     <string name="selected_session">තෝරාගත් සැසිය</string>
     <string name="select_session_to_start">ග්‍රහණය ආරම්භ කිරීම සඳහා සැසියක් තෝරන්න</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">සැකසුම</string>
     <string name="prefix">උපසර්ගය:</string>
     <string name="prefix_hint">උපසර්ගය_</string>
@@ -44,11 +35,7 @@
     <string name="excel_file">Excel ගොනුව</string>
     <string name="validate">වලංගු කරන්න</string>
     <string name="cancel">අවලංගු කරන්න</string>
-
-    <!-- Camera Activity -->
     <string name="capture">ග්‍රහණය</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK ආරම්භ කිරීම අසාර්ථක විය</string>
     <string name="folder_path_missing">ෆෝල්ඩර් මාර්ගය අස්ථානගත!</string>
     <string name="folder_path_missing_toast">ෆෝල්ඩර් මාර්ගය අස්ථානගත !!!</string>
@@ -61,8 +48,6 @@
     <string name="error_saving_file">ගොනුව සුරැකීමේ දෝෂය: %s</string>
     <string name="error_saving_last_selected_file">අවසන් තෝරාගත් ගොනුව සුරැකීමේ දෝෂය</string>
     <string name="settings_saved_successfully">සැකසුම් සාර්ථකව සුරකින ලදී</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">කරුණාකර ෆෝල්ඩරයක් නොවන ගොනුවක් තෝරන්න.</string>
     <string name="please_select_file">කරුණාකර ගොනුවක් තෝරන්න.</string>
     <string name="cannot_rename_folders_or_parent">ෆෝල්ඩර හෝ මව් ෆෝල්ඩරයේ නම වෙනස් කළ නොහැක.</string>
@@ -73,15 +58,11 @@
     <string name="failed_to_create_file">ගොනුව සෑදීමට අසමත් විය</string>
     <string name="cannot_delete_parent_folder">මව් ෆෝල්ඩරය මකා දැමිය නොහැක.</string>
     <string name="cannot_share_folders">ෆෝල්ඩර බෙදා ගත නොහැක.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">අවසන් සැසි ගොනුව හමු නොවීය.</string>
     <string name="no_session_file_saved">මනාප වල සුරකින ලද සැසි ගොනුවක් නැත.</string>
     <string name="error_creating_new_session">නව සැසියක් සෑදීමේ දෝෂය: %s</string>
     <string name="missing_filename">ගොනු නාමය නැත</string>
     <string name="camera_permission_required">මෙම විශේෂාංගය භාවිත කිරීමට කැමරා අවසරය අවශ්‍යය</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() වස්තුව සෑදීමේ කාලය =%d මිලි තත්පර</string>
     <string name="barcode_decoder_disposed">බාර්කෝඩ් විකේතකය ඉවත් කරන ලදී</string>
     <string name="orientation_unlocked">%s ප්‍රකාරය සඳහා දිශානතිය අගුලු හරින ලදී</string>
@@ -93,8 +74,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker විකේතකය තිබේ, ආයතන ගණන: %s</string>
     <string name="processing_entities">ආයතන දර්ශනය සඳහා ආයතන %d ක් සකසමින්</string>
     <string name="rendered_entities">ආයතන දර්ශනයේ ආයතන විදැහුම් කරන ලදී</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">සංකේත විද්‍යාව</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -142,8 +121,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">බාර්කෝඩ් අගය</string>
     <string name="symbology">සංකේත විද්‍යාව</string>
     <string name="unknown">නොදන්නා</string>
@@ -153,28 +130,20 @@
     <string name="capture_date">ග්‍රහණ දිනය</string>
     <string name="date">දිනය</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">ෆ්ලෑෂ්ලයිට් ටොගල් කරන්න</string>
     <string name="toggle_capture_zone">ග්‍රහණ කලාපය ටොගල් කරන්න</string>
     <string name="edit_item">අයිතමය සංස්කරණය කරන්න</string>
     <string name="delete_item">අයිතමය මකන්න</string>
-
-    <!-- Display Labels -->
     <string name="value_label">අගය: %s</string>
     <string name="symbology_label">සංකේත විද්‍යාව: %s</string>
     <string name="quantity_label">ප්‍රමාණය: %d</string>
     <string name="date_label">දිනය: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">අවසර ලබා දීම සාර්ථකයි.</string>
     <string name="session_data_merged">සැසි දත්ත ඒකාබද්ධ කරන ලදී.</string>
     <string name="error_reported">දෝෂය වාර්තා කරන ලදී: %s</string>
     <string name="error_reading_session_file">සැසි ගොනුව කියවීමේ දෝෂය: %s</string>
     <string name="error_reading_csv_session_file">CSV සැසි ගොනුව කියවීමේ දෝෂය: %s</string>
     <string name="error_reading_excel_session_file">Excel සැසි ගොනුව කියවීමේ දෝෂය: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">නම් කරන්න</string>
     <string name="rename_file">ගොනුවක් නම් කරන්න</string>
     <string name="create">සාදන්න</string>
@@ -184,18 +153,15 @@
     <string name="delete_folder">ෆෝල්ඩරය මකන්න</string>
     <string name="are_you_sure">ඔබට විශ්වාසද?</string>
     <string name="file_exists_already">ගොනුව දැනටමත් ඇත.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">සැකසුම්</string>
     <string name="activity_captured_barcodes">ග්‍රහණය කළ බාර්කෝඩ්</string>
     <string name="activity_session_data">සැසි දත්ත</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">සැසි කළමනාකරණය</string>
     <string name="menu_settings">සැකසුම්</string>
     <string name="menu_new_file">නව ගොනුව</string>
     <string name="menu_new_folder">නව ෆෝල්ඩරය</string>
     <string name="menu_rename">නම් කරන්න</string>
     <string name="menu_delete">මකන්න</string>
-
+    <string name="language">භාෂාව</string>
+    <string name="system_language">පද්ධති භාෂාව</string>
 </resources>
