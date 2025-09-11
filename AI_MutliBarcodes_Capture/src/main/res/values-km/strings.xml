@@ -200,17 +200,4 @@
     <string name="menu_rename">ប្តូរឈ្មោះ</string>
     <string name="menu_delete">លុប</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>ឯកសារអត្ថបទ (.txt)</item>
-        <item>ឯកសារ CSV (.csv)</item>
-        <item>ឯកសារ Excel (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

@@ -71,6 +71,15 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
                 }
             }
 
+            // Update language if provided
+            if (restrictions.containsKey("language")) {
+                String language = restrictions.getString("language");
+                if (language != null && !language.trim().isEmpty()) {
+                    editor.putString(Constants.SHARED_PREFERENCES_LANGUAGE, language);
+                    LogUtils.d(TAG, "Updated language: " + language);
+                }
+            }
+
             // Update barcode symbologies from nested bundle
             if (restrictions.containsKey("barcode_symbologies")) {
                 Bundle barcodeSymbologies = restrictions.getBundle("barcode_symbologies");

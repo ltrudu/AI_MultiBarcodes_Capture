@@ -200,17 +200,4 @@
     <string name="menu_rename">Yenidən Adlandır</string>
     <string name="menu_delete">Sil</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>Mətn Faylı (.txt)</item>
-        <item>CSV Faylı (.csv)</item>
-        <item>Excel Faylı (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

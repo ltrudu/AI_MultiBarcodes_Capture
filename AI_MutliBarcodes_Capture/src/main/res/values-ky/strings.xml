@@ -200,17 +200,4 @@
     <string name="menu_rename">Кайра Ат Берүү</string>
     <string name="menu_delete">Өчүрүү</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>Текст Файлы (.txt)</item>
-        <item>CSV Файлы (.csv)</item>
-        <item>Excel Файлы (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

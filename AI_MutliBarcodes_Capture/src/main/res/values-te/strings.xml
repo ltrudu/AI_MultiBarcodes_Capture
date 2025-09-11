@@ -198,17 +198,4 @@
     <string name="menu_rename">పేరు మార్చండి</string>
     <string name="menu_delete">తొలగించండి</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>టెక్స్ట్ ఫైల్ (.txt)</item>
-        <item>CSV ఫైల్ (.csv)</item>
-        <item>Excel ఫైల్ (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

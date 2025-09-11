@@ -200,17 +200,4 @@
     <string name="menu_rename">重命名</string>
     <string name="menu_delete">删除</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>文本文件 (.txt)</item>
-        <item>CSV文件 (.csv)</item>
-        <item>Excel文件 (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

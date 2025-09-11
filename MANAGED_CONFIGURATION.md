@@ -10,9 +10,10 @@ The app supports managed configuration through Android's Application Restriction
 
 The managed configuration is organized into the following sections:
 
-### 1. File Settings
+### 1. Application Settings
 - **Prefix** (`prefix`): Default prefix for exported files (string)
 - **Extension** (`extension`): Default file type for exports (choice: .txt, .csv, .xlsx)
+- **Language** (`language`): Default language for the application interface (dropdown with all supported languages)
 
 ### 2. Barcode Symbologies (Nested Bundle)
 All barcode symbologies are organized in a nested bundle called `barcode_symbologies`. This allows administrators to see them as a collapsed group when editing the configuration, improving the management experience.
@@ -59,6 +60,7 @@ All barcode symbologies are organized in a nested bundle called `barcode_symbolo
 2. **Configure App Restrictions** through your EMM/MDM console:
    - Set the file prefix (e.g., "Company_Scan_")
    - Choose default export format (.txt, .csv, or .xlsx)
+   - Select default application language from the dropdown (supports 67 languages plus system default)
    - Expand the "Barcode Symbologies" section to configure which barcode types are enabled
 3. **Push Configuration** to devices
 4. **Verify Application**: The app will automatically apply the new settings
@@ -69,6 +71,7 @@ All barcode symbologies are organized in a nested bundle called `barcode_symbolo
 {
   "prefix": "CompanyScans_",
   "extension": ".xlsx",
+  "language": "fr",
   "barcode_symbologies": {
     "CODE39": true,
     "CODE128": true,

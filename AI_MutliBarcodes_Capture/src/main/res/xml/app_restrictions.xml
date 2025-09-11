@@ -19,6 +19,16 @@
         android:entries="@array/export_file_types"
         android:entryValues="@array/export_file_values" />
 
+    <!-- Language Configuration -->
+    <restriction
+        android:key="language"
+        android:title="Application Language"
+        description="Default language for the application interface"
+        android:restrictionType="choice"
+        android:defaultValue="system"
+        android:entries="@array/language_names"
+        android:entryValues="@array/language_codes" />
+
     <!-- Barcode Symbologies Configuration (Nested Bundle) -->
     <restriction
         android:key="barcode_symbologies"

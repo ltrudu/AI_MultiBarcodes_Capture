@@ -200,17 +200,4 @@
     <string name="menu_rename">Преименувај</string>
     <string name="menu_delete">Избриши</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>Текстуална Датотека (.txt)</item>
-        <item>CSV Датотека (.csv)</item>
-        <item>Excel Датотека (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

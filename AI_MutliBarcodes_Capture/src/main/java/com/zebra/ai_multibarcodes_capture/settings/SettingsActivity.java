@@ -73,6 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         loadPreferences();
+                        reloadLanguageSpinner();
                         Toast.makeText(SettingsActivity.this, 
                             "Settings updated by administrator", Toast.LENGTH_SHORT).show();
                     }
@@ -354,6 +355,24 @@ public class SettingsActivity extends AppCompatActivity {
                 // Do nothing
             }
         });
+    }
+    
+    private void reloadLanguageSpinner() {
+        // Get the current language from preferences (which may have been updated by managed config)
+        String currentLang = LocaleHelper.getCurrentLanguageCode(this);
+        LogUtils.d(TAG, "Reloading language spinner with current language: " + currentLang);
+        
+        // Find the position of the current language in the list
+        for (int i = 0; i < languageList.size(); i++) {
+            if (languageList.get(i).getLanguageCode().equals(currentLang)) {
+                spinnerLanguage.setSelection(i);
+                LogUtils.d(TAG, "Updated spinner selection to position: " + i + " (" + languageList.get(i).getLanguageName() + ")");
+                break;
+            }
+        }
+        
+        // Reset any pending changes since we're reflecting managed configuration
+        pendingLanguageCode = null;
     }
     
     private void applyLocaleChange(String languageCode) {
