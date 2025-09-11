@@ -200,17 +200,4 @@
     <string name="menu_rename">Palitan ang Pangalan</string>
     <string name="menu_delete">Tanggalin</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>Text File (.txt)</item>
-        <item>CSV File (.csv)</item>
-        <item>Excel File (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

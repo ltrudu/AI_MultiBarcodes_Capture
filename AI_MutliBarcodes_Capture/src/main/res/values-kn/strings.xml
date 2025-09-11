@@ -200,17 +200,4 @@
     <string name="menu_rename">ಹೆಸರು ಬದಲಾಯಿಸಿ</string>
     <string name="menu_delete">ಅಳಿಸಿ</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>ಪಠ್ಯ ಫೈಲ್ (.txt)</item>
-        <item>CSV ಫೈಲ್ (.csv)</item>
-        <item>Excel ಫೈಲ್ (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

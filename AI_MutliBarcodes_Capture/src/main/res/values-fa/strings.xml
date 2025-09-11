@@ -198,17 +198,4 @@
     <string name="menu_rename">تغییر نام</string>
     <string name="menu_delete">حذف</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>فایل متنی (.txt)</item>
-        <item>فایل CSV (.csv)</item>
-        <item>فایل Excel (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

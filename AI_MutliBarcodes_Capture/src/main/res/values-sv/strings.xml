@@ -200,17 +200,4 @@
     <string name="menu_rename">Byt namn</string>
     <string name="menu_delete">Ta bort</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>Textfil (.txt)</item>
-        <item>CSV-fil (.csv)</item>
-        <item>Excel-fil (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

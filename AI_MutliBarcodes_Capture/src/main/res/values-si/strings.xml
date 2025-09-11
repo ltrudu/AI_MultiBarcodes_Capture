@@ -198,17 +198,4 @@
     <string name="menu_rename">නම් කරන්න</string>
     <string name="menu_delete">මකන්න</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>පෙළ ගොනුව (.txt)</item>
-        <item>CSV ගොනුව (.csv)</item>
-        <item>Excel ගොනුව (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

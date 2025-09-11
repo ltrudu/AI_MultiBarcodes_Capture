@@ -198,17 +198,4 @@
     <string name="menu_rename">Redenumiți</string>
     <string name="menu_delete">Ștergeți</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>Fișier text (.txt)</item>
-        <item>Fișier CSV (.csv)</item>
-        <item>Fișier Excel (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>

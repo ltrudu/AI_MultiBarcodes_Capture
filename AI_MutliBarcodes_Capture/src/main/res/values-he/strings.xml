@@ -200,17 +200,4 @@
     <string name="menu_rename">שנה שם</string>
     <string name="menu_delete">מחק</string>
 
-    <!-- Export File Type Arrays for Managed Configuration -->
-    <string-array name="export_file_types">
-        <item>קובץ טקסט (.txt)</item>
-        <item>קובץ CSV (.csv)</item>
-        <item>קובץ Excel (.xlsx)</item>
-    </string-array>
-
-    <string-array name="export_file_values">
-        <item>.txt</item>
-        <item>.csv</item>
-        <item>.xlsx</item>
-    </string-array>
-
 </resources>
