@@ -1,6 +1,8 @@
 package com.zebra.ai_multibarcodes_capture.helpers;
 
 import android.content.Context;
+
+import com.zebra.ai.vision.detector.InferencerOptions;
 import com.zebra.ai_multibarcodes_capture.R;
 
 public enum EInferenceType {
@@ -39,6 +41,21 @@ public enum EInferenceType {
             return toString();
         }
         return context.getString(shortDescriptionResId);
+    }
+
+    public int toInferencerOptions()
+    {
+        switch(this)
+        {
+            case DSP:
+                return InferencerOptions.DSP;
+            case CPU:
+                return InferencerOptions.CPU;
+            case GPU:
+                return InferencerOptions.GPU;
+            default:
+                return InferencerOptions.CPU;
+        }
     }
 
     public String getDescription(Context context) {

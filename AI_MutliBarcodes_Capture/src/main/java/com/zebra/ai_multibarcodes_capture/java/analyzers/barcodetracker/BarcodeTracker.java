@@ -12,6 +12,8 @@ import com.zebra.ai.vision.analyzer.tracking.EntityTrackerAnalyzer;
 import com.zebra.ai.vision.detector.AIVisionSDKLicenseException;
 import com.zebra.ai.vision.detector.BarcodeDecoder;
 import com.zebra.ai.vision.detector.InferencerOptions;
+import com.zebra.ai_multibarcodes_capture.helpers.EInferenceType;
+import com.zebra.ai_multibarcodes_capture.helpers.EModelInputSize;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import java.util.List;
@@ -93,13 +95,22 @@ public class BarcodeTracker {
         try {
             BarcodeDecoder.Settings decoderSettings = new BarcodeDecoder.Settings(mavenModelName);
             Integer[] rpo = new Integer[1];
-            rpo[0] = InferencerOptions.DSP;
+            
+            // Retrieve inference type from shared preferences
+            SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+            String inferenceTypeString = sharedPreferences.getString(SHARED_PREFERENCES_INFERENCE_TYPE, SHARED_PREFERENCES_INFERENCE_TYPE_DEFAULT);
+            EInferenceType inferenceType = EInferenceType.valueOf(inferenceTypeString);
+            rpo[0] = inferenceType.toInferencerOptions();
+
+            // Retrieve model input size from shared preferences
+            String modelInputSizeString = sharedPreferences.getString(SHARED_PREFERENCES_MODEL_INPUT_SIZE, SHARED_PREFERENCES_MODEL_INPUT_SIZE_DEFAULT);
+            EModelInputSize modelInputSize = EModelInputSize.valueOf(modelInputSizeString);
 
             setAvailableSymbologiesFromPreferences(context, decoderSettings);
 
             decoderSettings.detectorSetting.inferencerOptions.runtimeProcessorOrder = rpo;
-            decoderSettings.detectorSetting.inferencerOptions.defaultDims.height = 640;
-            decoderSettings.detectorSetting.inferencerOptions.defaultDims.width = 640;
+            decoderSettings.detectorSetting.inferencerOptions.defaultDims.height = modelInputSize.getHeight();
+            decoderSettings.detectorSetting.inferencerOptions.defaultDims.width = modelInputSize.getWidth();
 
             long m_Start = System.currentTimeMillis();
             BarcodeDecoder.getBarcodeDecoder(decoderSettings, executor).thenAccept(decoderInstance -> {

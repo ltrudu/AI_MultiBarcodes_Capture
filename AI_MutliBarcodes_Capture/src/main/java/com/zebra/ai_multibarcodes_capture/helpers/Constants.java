@@ -198,5 +198,17 @@ public class Constants {
     // Language preferences
     public static final String SHARED_PREFERENCES_LANGUAGE = "SELECTED_LANGUAGE";
     public static final String SHARED_PREFERENCES_LANGUAGE_DEFAULT = "system"; // "system" means use device language
+    
+    // Model Input Size preferences
+    public static final String SHARED_PREFERENCES_MODEL_INPUT_SIZE = "SHARED_PREFERENCES_MODEL_INPUT_SIZE";
+    public static final String SHARED_PREFERENCES_MODEL_INPUT_SIZE_DEFAULT = "MEDIUM";
+    
+    // Camera Resolution preferences
+    public static final String SHARED_PREFERENCES_CAMERA_RESOLUTION = "SHARED_PREFERENCES_CAMERA_RESOLUTION";
+    public static final String SHARED_PREFERENCES_CAMERA_RESOLUTION_DEFAULT = "MP_2";
+    
+    // Inference Type preferences
+    public static final String SHARED_PREFERENCES_INFERENCE_TYPE = "SHARED_PREFERENCES_INFERENCE_TYPE";
+    public static final String SHARED_PREFERENCES_INFERENCE_TYPE_DEFAULT = "DSP";
 
 }
