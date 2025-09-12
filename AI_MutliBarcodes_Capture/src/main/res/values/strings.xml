@@ -159,6 +159,7 @@
     <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Toggle flashlight</string>
     <string name="toggle_capture_zone">Toggle capture zone</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
     <string name="edit_item">Edit item</string>
     <string name="delete_item">Delete item</string>
 
