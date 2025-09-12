@@ -404,4 +404,48 @@
         <item>zu</item>
     </string-array>
 
+    <!-- Model Input Size Arrays for Managed Configuration -->
+    <string-array name="model_input_size_names">
+        <item>Small (640x640)</item>
+        <item>Medium (1280x1280)</item>
+        <item>Large (1600x1600)</item>
+    </string-array>
+
+    <string-array name="model_input_size_values">
+        <item>SMALL</item>
+        <item>MEDIUM</item>
+        <item>LARGE</item>
+    </string-array>
+
+    <!-- Camera Resolution Arrays for Managed Configuration -->
+    <string-array name="camera_resolution_names">
+        <item>1MP (1280 x 720)</item>
+        <item>2MP (1920 x 1080)</item>
+        <item>4MP (2688 x 1512)</item>
+        <item>8MP (3840 x 2160)</item>
+    </string-array>
+
+    <string-array name="camera_resolution_values">
+        <item>MP_1</item>
+        <item>MP_2</item>
+        <item>MP_4</item>
+        <item>MP_8</item>
+    </string-array>
+
+    <!-- Inference Type Arrays for Managed Configuration -->
+    <string-array name="inference_type_names">
+        <item>DSP (Digital Signal Processor)</item>
+        <item>GPU (Graphics Processing Unit)</item>
+        <item>CPU (Central Processing Unit)</item>
+    </string-array>
+
+    <string-array name="inference_type_values">
+        <item>DSP</item>
+        <item>GPU</item>
+        <item>CPU</item>
+    </string-array>
+
+    <!-- Managed Configuration Messages -->
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
+
 </resources>

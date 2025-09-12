@@ -105,7 +105,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     public void run() {
                         loadPreferences();
                         Toast.makeText(EntryChoiceActivity.this, 
-                            "Settings updated by administrator", Toast.LENGTH_SHORT).show();
+                            getString(R.string.managed_configuration_updated), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
