@@ -131,16 +131,17 @@
     <LinearLayout
         android:id="@+id/llSymbologyTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:backgroundTint="@color/zebra"
         android:background="@color/zebra"
         android:layout_below="@id/llLanguage"
         android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <View
             android:layout_width="0dp"
-            android:layout_height="5dp"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <TextView
@@ -148,25 +149,28 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center_horizontal|center_vertical"
             android:text="@string/symbologies"
             android:textColor="@color/white" />
 
         <View
             android:layout_width="0dp"
-            android:layout_height="5dp"
-            android:layout_weight="0.6" />
+            android:layout_height="match_parent"
+            android:layout_weight="0.4" />
 
-        <CheckBox
-            android:id="@+id/cbOpenSymbologies"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:buttonTint="@color/white" />
+        <ImageView
+            android:id="@+id/ivToggleSymbologies"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_expand_more_24"
+            android:contentDescription="@string/toggle_symbologies"
+            android:padding="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            app:tint="@color/white" />
 
         <View
             android:layout_width="0dp"
-            android:layout_height="5dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.2" />
     </LinearLayout>
 

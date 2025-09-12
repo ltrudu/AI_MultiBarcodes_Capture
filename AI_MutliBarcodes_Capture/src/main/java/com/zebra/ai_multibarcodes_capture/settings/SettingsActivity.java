@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -47,8 +48,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     private EditText etPrefix;
     private RadioButton rbCSV, rbTXT, rbXSLX;
-    private CheckBox cbOpenSymbologies;
+    private ImageView ivToggleSymbologies;
     private ScrollView svSymbologies;
+    private boolean isSymbologiesExpanded = false;
     private Spinner spinnerLanguage;
     private LanguageAdapter languageAdapter;
     private List<LanguageItem> languageList;
@@ -98,7 +100,7 @@ public class SettingsActivity extends AppCompatActivity {
         rbCSV = findViewById(R.id.rbCSV);
         rbTXT = findViewById(R.id.rbTxt);
         rbXSLX = findViewById(R.id.rbXSLX);
-        cbOpenSymbologies = findViewById(R.id.cbOpenSymbologies);
+        ivToggleSymbologies = findViewById(R.id.ivToggleSymbologies);
         svSymbologies = findViewById(R.id.svSymbologies);
         spinnerLanguage = findViewById(R.id.spinnerLanguage);
         
@@ -153,18 +155,16 @@ public class SettingsActivity extends AppCompatActivity {
         cbUS4STATE = findViewById(R.id.cbUS4STATE);
         cbUS4STATE_FICS = findViewById(R.id.cbUS4STATE_FICS);
 
-        // Initially hide the ScrollView
+        // Initially hide the ScrollView and set collapsed state
         svSymbologies.setVisibility(View.GONE);
+        isSymbologiesExpanded = false;
+        ivToggleSymbologies.setImageResource(R.drawable.ic_expand_less_24);
 
-        // Set up checkbox listener to show/hide symbologies ScrollView
-        cbOpenSymbologies.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        // Set up click listener for toggle ImageView
+        ivToggleSymbologies.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    svSymbologies.setVisibility(View.VISIBLE);
-                } else {
-                    svSymbologies.setVisibility(View.GONE);
-                }
+            public void onClick(View v) {
+                toggleSymbologies();
             }
         });
 
@@ -488,6 +488,18 @@ public class SettingsActivity extends AppCompatActivity {
 
         }
     }
+    private void toggleSymbologies() {
+        isSymbologiesExpanded = !isSymbologiesExpanded;
+        
+        if (isSymbologiesExpanded) {
+            svSymbologies.setVisibility(View.VISIBLE);
+            ivToggleSymbologies.setImageResource(R.drawable.ic_expand_more_24);
+        } else {
+            svSymbologies.setVisibility(View.GONE);
+            ivToggleSymbologies.setImageResource(R.drawable.ic_expand_less_24);
+        }
+    }
+
     private void configureSystemBars() {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
