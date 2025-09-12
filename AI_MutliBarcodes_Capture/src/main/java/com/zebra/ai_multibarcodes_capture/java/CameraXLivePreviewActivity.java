@@ -107,9 +107,13 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                     @Override
                     public void run() {
                         Toast.makeText(CameraXLivePreviewActivity.this, 
-                            "Barcode settings updated by administrator - returning to main screen", 
+                            getString(R.string.managed_configuration_updated), 
                             Toast.LENGTH_LONG).show();
+                        
+                        // Restart the activity to apply new settings
+                        Intent restartIntent = getIntent();
                         finish();
+                        startActivity(restartIntent);
                     }
                 });
             }

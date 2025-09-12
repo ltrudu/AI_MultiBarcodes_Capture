@@ -87,7 +87,7 @@ public class SettingsActivity extends AppCompatActivity {
                         loadPreferences();
                         reloadLanguageSpinner();
                         Toast.makeText(SettingsActivity.this, 
-                            "Settings updated by administrator", Toast.LENGTH_SHORT).show();
+                            getString(R.string.managed_configuration_updated), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

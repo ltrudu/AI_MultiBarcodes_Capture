@@ -88,12 +88,20 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
                 }
             }
 
+            // Update advanced settings from nested bundle
+            if (restrictions.containsKey("advanced_settings")) {
+                Bundle advancedSettings = restrictions.getBundle("advanced_settings");
+                if (advancedSettings != null) {
+                    updateAdvancedSettings(editor, advancedSettings);
+                }
+            }
+
             // Apply all changes atomically
             editor.apply();
             LogUtils.d(TAG, "Successfully updated SharedPreferences with managed configuration");
 
-            // Notify SettingsActivity if it's currently open (will only be received if registered)
-            LogUtils.d(TAG, "Sending reload preferences intent to SettingsActivity");
+            // Notify SettingsActivity and CameraXLivePreviewActivity if they're currently open (will only be received if registered)
+            LogUtils.d(TAG, "Sending reload preferences intent to registered activities");
             Intent reloadIntent = new Intent(ACTION_RELOAD_PREFERENCES);
             context.sendBroadcast(reloadIntent);
 
@@ -174,6 +182,24 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
     }
 
     /**
+     * Updates advanced settings preferences from the nested bundle
+     * @param editor SharedPreferences editor
+     * @param advancedSettings Bundle containing advanced settings
+     */
+    private void updateAdvancedSettings(SharedPreferences.Editor editor, Bundle advancedSettings) {
+        LogUtils.d(TAG, "Updating advanced settings from managed configuration");
+
+        // Update model input size
+        updateStringSetting(editor, advancedSettings, "model_input_size", Constants.SHARED_PREFERENCES_MODEL_INPUT_SIZE);
+        
+        // Update camera resolution
+        updateStringSetting(editor, advancedSettings, "camera_resolution", Constants.SHARED_PREFERENCES_CAMERA_RESOLUTION);
+        
+        // Update inference type
+        updateStringSetting(editor, advancedSettings, "inference_type", Constants.SHARED_PREFERENCES_INFERENCE_TYPE);
+    }
+
+    /**
      * Helper method to update a boolean setting from managed configuration
      * @param editor SharedPreferences editor
      * @param bundle Bundle containing the managed configuration values
@@ -186,6 +212,24 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
             boolean value = bundle.getBoolean(configKey);
             editor.putBoolean(prefKey, value);
             LogUtils.d(TAG, "Updated " + configKey + ": " + value);
+        }
+    }
+
+    /**
+     * Helper method to update a string setting from managed configuration
+     * @param editor SharedPreferences editor
+     * @param bundle Bundle containing the managed configuration values
+     * @param configKey Key in the managed configuration bundle
+     * @param prefKey Key in SharedPreferences
+     */
+    private void updateStringSetting(SharedPreferences.Editor editor, Bundle bundle, 
+                                   String configKey, String prefKey) {
+        if (bundle.containsKey(configKey)) {
+            String value = bundle.getString(configKey);
+            if (value != null && !value.trim().isEmpty()) {
+                editor.putString(prefKey, value);
+                LogUtils.d(TAG, "Updated " + configKey + ": " + value);
+            }
         }
     }
 

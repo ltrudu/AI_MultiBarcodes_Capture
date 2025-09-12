@@ -322,4 +322,43 @@
 
     </restriction>
 
+    <!-- Advanced Settings Configuration (Nested Bundle) -->
+    <restriction
+        android:key="advanced_settings"
+        android:title="Advanced Settings"
+        description="Advanced configuration settings for AI model and camera parameters"
+        android:restrictionType="bundle">
+
+        <!-- Model Input Size Configuration -->
+        <restriction
+            android:key="model_input_size"
+            android:title="Model Input Size"
+            description="Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes."
+            android:restrictionType="choice"
+            android:defaultValue="MEDIUM"
+            android:entries="@array/model_input_size_names"
+            android:entryValues="@array/model_input_size_values" />
+
+        <!-- Camera Resolution Configuration -->
+        <restriction
+            android:key="camera_resolution"
+            android:title="Camera Resolution"
+            description="Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low."
+            android:restrictionType="choice"
+            android:defaultValue="MP_2"
+            android:entries="@array/camera_resolution_names"
+            android:entryValues="@array/camera_resolution_values" />
+
+        <!-- Inference Type Configuration -->
+        <restriction
+            android:key="inference_type"
+            android:title="Inference Type"
+            description="Choose the processing unit for AI inference. DSP (Digital Signal Processor) is the best choice for optimal performance. GPU and CPU options are available for trial use if DSP is not available."
+            android:restrictionType="choice"
+            android:defaultValue="DSP"
+            android:entries="@array/inference_type_names"
+            android:entryValues="@array/inference_type_values" />
+
+    </restriction>
+
 </restrictions>
