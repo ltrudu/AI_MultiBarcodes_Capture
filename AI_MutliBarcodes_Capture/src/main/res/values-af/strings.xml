@@ -3,7 +3,7 @@
     <string name="app_name">AI Multi Strepieskode Vang</string>
     <string name="start_capture_button_text">Begin Vang</string>
     <string name="loading_status">Laai Toepassing</string>
-    <string name="select_session_file">Kies \&apos;n sessie lêer of skep \&apos;n nuwe een.</string>
+    <string name="select_session_file">Kies \'n sessie lêer of skep \'n nuwe een.</string>
     <string name="retrieving_permissions">Verkry Toestemmings</string>
     <string name="select">Kies</string>
     <string name="share">Deel</string>
@@ -25,7 +25,7 @@
     <string name="create_new_session">Skep Nuwe Sessie</string>
     <string name="view_session_data">Bekyk Sessie Data</string>
     <string name="selected_session">Gekose Sessie</string>
-    <string name="select_session_to_start">Kies \&apos;n Sessie om Vang te Begin</string>
+    <string name="select_session_to_start">Kies \'n Sessie om Vang te Begin</string>
     <string name="setup">Opstelling</string>
     <string name="prefix">Voorvoegsel:</string>
     <string name="prefix_hint">Voorvoegsel_</string>
@@ -50,8 +50,8 @@
     <string name="error_saving_file">Fout met stoor van lêer: %s</string>
     <string name="error_saving_last_selected_file">Fout met stoor van laaste gekose lêer</string>
     <string name="settings_saved_successfully">Instellings suksesvol gestoor</string>
-    <string name="please_select_file_not_folder">Kies asseblief \&apos;n lêer, nie \&apos;n vouer nie.</string>
-    <string name="please_select_file">Kies asseblief \&apos;n lêer.</string>
+    <string name="please_select_file_not_folder">Kies asseblief \'n lêer, nie \'n vouer nie.</string>
+    <string name="please_select_file">Kies asseblief \'n lêer.</string>
     <string name="cannot_rename_folders_or_parent">Kan nie vouers of die ouer vouer hernoem nie.</string>
     <string name="file_already_exists">Lêer bestaan reeds.</string>
     <string name="error_renaming_file">Fout met hernoem van lêer</string>
@@ -147,10 +147,10 @@
     <string name="error_reading_csv_session_file">Fout met lees van CSV sessie lêer: %s</string>
     <string name="error_reading_excel_session_file">Fout met lees van Excel sessie lêer: %s</string>
     <string name="rename">Hernoem</string>
-    <string name="rename_file">Hernoem \&apos;n lêer</string>
+    <string name="rename_file">Hernoem \'n lêer</string>
     <string name="create">Skep</string>
-    <string name="create_new_folder">Skep \&apos;n nuwe vouer</string>
-    <string name="create_new_file">Skep \&apos;n nuwe lêer</string>
+    <string name="create_new_folder">Skep \'n nuwe vouer</string>
+    <string name="create_new_file">Skep \'n nuwe lêer</string>
     <string name="delete_file">Skrap Lêer</string>
     <string name="delete_folder">Skrap Vouer</string>
     <string name="are_you_sure">Is jy seker?</string>
@@ -170,7 +170,7 @@
     <string name="camera_resolution_title">Resolusie</string>
     <string name="camera_resolution_description">Kamera resolusie is die aantal pixels in jou foto (bv., 1MP = 1280x720). Hoër resolusie vang meer detail vir klein of ver teks, maar gebruik meer krag en geheue. Voordele is beperk as die model invoer grootte laag is.</string>
     <string name="inference_processor_type_title">Inferensie (verwerker) Tipe</string>
-    <string name="inference_processor_type_description">Hierdie instelling kies watter tjip in jou toestel KI take laat loop, wat spoed en battery lewe beïnvloed. Nie alle toestelle het &apos;n DSP nie.</string>
+    <string name="inference_processor_type_description">Hierdie instelling kies watter tjip in jou toestel KI take laat loop, wat spoed en battery lewe beïnvloed. Nie alle toestelle het \'n DSP nie.</string>
     <string name="toggle_symbologies">Skakel simbologieë</string>
     <string name="toggle_file_types">Skakel lêer tipes</string>
     <string name="toggle_advanced">Skakel gevorderde instellings</string>

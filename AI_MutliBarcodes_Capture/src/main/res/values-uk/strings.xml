@@ -19,7 +19,7 @@
     <string name="addtofile">Додати до файлу</string>
     <string name="save">Зберегти</string>
     <string name="update">Оновити файл</string>
-    <string name="merge">Об\&apos;єднати кількості</string>
+    <string name="merge">Об\'єднати кількості</string>
     <string name="start_capture">Почати захоплення</string>
     <string name="load_last_session">Завантажити останню сесію</string>
     <string name="create_new_session">Створити нову сесію</string>
@@ -63,7 +63,7 @@
     <string name="error_creating_new_session">Помилка при створенні нової сесії: %s</string>
     <string name="missing_filename">Відсутня назва файлу</string>
     <string name="camera_permission_required">Для використання цієї функції потрібен дозвіл камери</string>
-    <string name="entity_tracker_creation_time">Час створення об\&apos;єкта Entity Tracker BarcodeDecoder() =%d мілісекунд</string>
+    <string name="entity_tracker_creation_time">Час створення об\'єкта Entity Tracker BarcodeDecoder() =%d мілісекунд</string>
     <string name="barcode_decoder_disposed">Декодер штрихкодів видалено</string>
     <string name="orientation_unlocked">Орієнтацію розблоковано для режиму %s</string>
     <string name="applied_viewfinder_resize_immediately">Специфікації зміни розміру видошукача застосовано негайно</string>
@@ -139,7 +139,7 @@
     <string name="quantity_label">Кількість: %d</string>
     <string name="date_label">Дата: %s</string>
     <string name="success_granting_permissions">Дозволи успішно надано.</string>
-    <string name="session_data_merged">Дані сесії об\&apos;єднано.</string>
+    <string name="session_data_merged">Дані сесії об\'єднано.</string>
     <string name="error_reported">Помилку повідомлено: %s</string>
     <string name="error_reading_session_file">Помилка при читанні файлу сесії: %s</string>
     <string name="error_reading_csv_session_file">Помилка при читанні CSV файлу сесії: %s</string>

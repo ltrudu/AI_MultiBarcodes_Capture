@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Capture Multi Codes-barres IA</string>
     <string name="start_capture_button_text">Démarrer la capture</string>
-    <string name="loading_status">Chargement de l\&apos;application</string>
+    <string name="loading_status">Chargement de l\'application</string>
     <string name="select_session_file">Sélectionnez un fichier de session ou créez-en un nouveau.</string>
     <string name="retrieving_permissions">Récupération des autorisations</string>
     <string name="select">Sélectionner</string>
@@ -38,17 +38,17 @@
     <string name="validate">Valider</string>
     <string name="cancel">Annuler</string>
     <string name="capture">Capturer</string>
-    <string name="ai_vision_sdk_init_failed">Échec de l\&apos;initialisation du SDK AI Vision</string>
+    <string name="ai_vision_sdk_init_failed">Échec de l\'initialisation du SDK AI Vision</string>
     <string name="folder_path_missing">Le chemin du dossier est manquant !</string>
     <string name="folder_path_missing_toast">Le chemin du dossier est manquant !!!</string>
     <string name="error_could_not_create_file">Erreur, impossible de créer le fichier : %s</string>
-    <string name="error_could_not_open_file">Erreur, impossible d\&apos;ouvrir le fichier : %s</string>
-    <string name="error_file_does_not_exist">Erreur, le fichier n\&apos;existe pas : %s</string>
+    <string name="error_could_not_open_file">Erreur, impossible d\'ouvrir le fichier : %s</string>
+    <string name="error_file_does_not_exist">Erreur, le fichier n\'existe pas : %s</string>
     <string name="error_file_is_empty">Erreur, le fichier est vide : %s</string>
     <string name="error_loading_data">Erreur, impossible de charger les données du fichier : %s</string>
     <string name="file_saved_at">Fichier enregistré à : %s</string>
-    <string name="error_saving_file">Erreur lors de l\&apos;enregistrement du fichier : %s</string>
-    <string name="error_saving_last_selected_file">Erreur lors de l\&apos;enregistrement du dernier fichier sélectionné</string>
+    <string name="error_saving_file">Erreur lors de l\'enregistrement du fichier : %s</string>
+    <string name="error_saving_last_selected_file">Erreur lors de l\'enregistrement du dernier fichier sélectionné</string>
     <string name="settings_saved_successfully">Paramètres enregistrés avec succès</string>
     <string name="please_select_file_not_folder">Veuillez sélectionner un fichier, pas un dossier.</string>
     <string name="please_select_file">Veuillez sélectionner un fichier.</string>
@@ -64,18 +64,18 @@
     <string name="no_session_file_saved">Aucun fichier de session enregistré dans les préférences.</string>
     <string name="error_creating_new_session">Erreur lors de la création de la nouvelle session : %s</string>
     <string name="missing_filename">Nom de fichier manquant</string>
-    <string name="camera_permission_required">L\&apos;autorisation de caméra est requise pour utiliser cette fonctionnalité</string>
-    <string name="entity_tracker_creation_time">Temps de création de l\&apos;objet Entity Tracker BarcodeDecoder() = %d millisecondes</string>
+    <string name="camera_permission_required">L\'autorisation de caméra est requise pour utiliser cette fonctionnalité</string>
+    <string name="entity_tracker_creation_time">Temps de création de l\'objet Entity Tracker BarcodeDecoder() = %d millisecondes</string>
     <string name="barcode_decoder_disposed">Le décodeur de codes-barres est supprimé</string>
     <string name="orientation_unlocked">Orientation déverrouillée pour le mode %s</string>
     <string name="applied_viewfinder_resize_immediately">Spécifications de redimensionnement du viseur appliquées immédiatement</string>
     <string name="stored_pending_viewfinder_resize">Données de redimensionnement du viseur en attente stockées pour application ultérieure</string>
     <string name="applied_pending_viewfinder_resize">Données de redimensionnement du viseur en attente appliquées à partir des valeurs stockées</string>
     <string name="entity_tracker_ready">EntityBarcodeTracker est prêt, application des configurations en attente</string>
-    <string name="handle_view_entity_result">Gérer l\&apos;entité de vue - Résultat reçu</string>
-    <string name="entity_tracker_decoder_available">Décodeur EntityBarcodeTracker disponible, nombre d\&apos;entités : %s</string>
-    <string name="processing_entities">Traitement de %d entités pour la vue d\&apos;entité</string>
-    <string name="rendered_entities">Entités rendues sur la vue d\&apos;entité</string>
+    <string name="handle_view_entity_result">Gérer l\'entité de vue - Résultat reçu</string>
+    <string name="entity_tracker_decoder_available">Décodeur EntityBarcodeTracker disponible, nombre d\'entités : %s</string>
+    <string name="processing_entities">Traitement de %d entités pour la vue d\'entité</string>
+    <string name="rendered_entities">Entités rendues sur la vue d\'entité</string>
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -134,13 +134,13 @@
     <string name="quantity_hint">1</string>
     <string name="toggle_flashlight">Activer/désactiver la lampe torche</string>
     <string name="toggle_capture_zone">Activer/désactiver la zone de capture</string>
-    <string name="edit_item">Modifier l\&apos;élément</string>
-    <string name="delete_item">Supprimer l\&apos;élément</string>
+    <string name="edit_item">Modifier l\'élément</string>
+    <string name="delete_item">Supprimer l\'élément</string>
     <string name="value_label">Valeur : %s</string>
     <string name="symbology_label">Symbologie : %s</string>
     <string name="quantity_label">Quantité : %d</string>
     <string name="date_label">Date : %s</string>
-    <string name="success_granting_permissions">Succès de l\&apos;octroi des autorisations.</string>
+    <string name="success_granting_permissions">Succès de l\'octroi des autorisations.</string>
     <string name="session_data_merged">Données de session fusionnées.</string>
     <string name="error_reported">Erreur signalée : %s</string>
     <string name="error_reading_session_file">Erreur lors de la lecture du fichier de session : %s</string>
@@ -165,12 +165,12 @@
     <string name="menu_rename">Renommer</string>
     <string name="menu_delete">Supprimer</string>
     <string name="advanced">Avancé</string>
-    <string name="model_input_size">Taille d&apos;entrée du modèle</string>
-    <string name="model_input_size_description">La taille d&apos;entrée du modèle est la résolution à laquelle votre image est redimensionnée avant l&apos;analyse IA. Les tailles plus petites sont plus rapides et utilisent moins de mémoire, tandis que les tailles plus grandes peuvent aider à détecter des codes-barres plus petits ou plus éloignés—mais utilisent aussi plus de puissance de traitement et de mémoire. Choisissez la taille d&apos;entrée pour équilibrer vitesse et précision selon vos besoins. Note : La taille d&apos;entrée du modèle peut être personnalisée par incréments de 32 en utilisant le SDK. Les options ci-dessous représentent quelques tailles génériques.</string>
+    <string name="model_input_size">Taille d\'entrée du modèle</string>
+    <string name="model_input_size_description">La taille d\'entrée du modèle est la résolution à laquelle votre image est redimensionnée avant l\'analyse IA. Les tailles plus petites sont plus rapides et utilisent moins de mémoire, tandis que les tailles plus grandes peuvent aider à détecter des codes-barres plus petits ou plus éloignés—mais utilisent aussi plus de puissance de traitement et de mémoire. Choisissez la taille d\'entrée pour équilibrer vitesse et précision selon vos besoins. Note : La taille d\'entrée du modèle peut être personnalisée par incréments de 32 en utilisant le SDK. Les options ci-dessous représentent quelques tailles génériques.</string>
     <string name="camera_resolution_title">Résolution</string>
-    <string name="camera_resolution_description">La résolution de la caméra est le nombre de pixels dans votre photo (ex., 1MP = 1280x720). Une résolution plus élevée capture plus de détails pour les petits textes ou éloignés mais utilise plus d&apos;énergie et de mémoire. Les avantages sont limités si la taille d&apos;entrée du modèle est faible.</string>
-    <string name="inference_processor_type_title">Type de processeur d&apos;inférence</string>
-    <string name="inference_processor_type_description">Ce paramètre choisit quelle puce de votre appareil exécute les tâches IA, affectant la vitesse et l&apos;autonomie de la batterie. Tous les appareils n&apos;ont pas un DSP.</string>
+    <string name="camera_resolution_description">La résolution de la caméra est le nombre de pixels dans votre photo (ex., 1MP = 1280x720). Une résolution plus élevée capture plus de détails pour les petits textes ou éloignés mais utilise plus d\'énergie et de mémoire. Les avantages sont limités si la taille d\'entrée du modèle est faible.</string>
+    <string name="inference_processor_type_title">Type de processeur d\'inférence</string>
+    <string name="inference_processor_type_description">Ce paramètre choisit quelle puce de votre appareil exécute les tâches IA, affectant la vitesse et l\'autonomie de la batterie. Tous les appareils n\'ont pas un DSP.</string>
     <string name="toggle_symbologies">Basculer les symbologies</string>
     <string name="toggle_file_types">Basculer les types de fichiers</string>
     <string name="toggle_advanced">Basculer les paramètres avancés</string>
@@ -191,8 +191,8 @@
     <string name="inference_type_dsp">DSP (Processeur de signal numérique)</string>
     <string name="inference_type_dsp_description">Meilleur choix</string>
     <string name="inference_type_gpu">GPU (Unité de traitement graphique)</string>
-    <string name="inference_type_gpu_description">Pour usage d&apos;essai si DSP non disponible</string>
+    <string name="inference_type_gpu_description">Pour usage d\'essai si DSP non disponible</string>
     <string name="inference_type_cpu">CPU (Unité de traitement centrale)</string>
-    <string name="inference_type_cpu_description">Pour usage d&apos;essai si DSP et GPU non disponibles</string>
-    <string name="managed_configuration_updated">Paramètres mis à jour par l&apos;administrateur</string>
+    <string name="inference_type_cpu_description">Pour usage d\'essai si DSP et GPU non disponibles</string>
+    <string name="managed_configuration_updated">Paramètres mis à jour par l\'administrateur</string>
 </resources>

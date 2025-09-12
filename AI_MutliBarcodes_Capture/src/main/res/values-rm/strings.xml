@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">AI Multi Capturas da Codas</string>
     <string name="start_capture_button_text">Cumanzar la Captura</string>
-    <string name="loading_status">Chargiond l\&apos;applicaziun</string>
+    <string name="loading_status">Chargiond l\'applicaziun</string>
     <string name="select_session_file">Tscherni in datoteca da sessiun u creeschi ina nova.</string>
     <string name="retrieving_permissions">Retschavond las permissiuns</string>
     <string name="select">Tscherner</string>
@@ -21,7 +21,7 @@
     <string name="update">Actualisar la datoteca</string>
     <string name="merge">Cumbinar las quantitads</string>
     <string name="start_capture">Cumanzar la captura</string>
-    <string name="load_last_session">Chargiar l\&apos;ultima sessiun</string>
+    <string name="load_last_session">Chargiar l\'ultima sessiun</string>
     <string name="create_new_session">Crear ina nova sessiun</string>
     <string name="view_session_data">Mussar las datas da sessiun</string>
     <string name="selected_session">Sessiun tschernida</string>
@@ -36,17 +36,17 @@
     <string name="validate">Validar</string>
     <string name="cancel">Interrumper</string>
     <string name="capture">Captura</string>
-    <string name="ai_vision_sdk_init_failed">Inizialisaziun da l\&apos;AI Vision SDK fallida</string>
+    <string name="ai_vision_sdk_init_failed">Inizialisaziun da l\'AI Vision SDK fallida</string>
     <string name="folder_path_missing">Il percurs dal dossier manca!</string>
     <string name="folder_path_missing_toast">Il percurs dal dossier manca !!!</string>
     <string name="error_could_not_create_file">Errur, impussibel da crear la datoteca: %s</string>
-    <string name="error_could_not_open_file">Errur, impussibel d\&apos;avrir la datoteca: %s</string>
-    <string name="error_file_does_not_exist">Errur, la datoteca n\&apos;exista betg: %s</string>
+    <string name="error_could_not_open_file">Errur, impussibel d\'avrir la datoteca: %s</string>
+    <string name="error_file_does_not_exist">Errur, la datoteca n\'exista betg: %s</string>
     <string name="error_file_is_empty">Errur, la datoteca è vida: %s</string>
     <string name="error_loading_data">Errur, impussibel da chargiar las datas en la datoteca: %s</string>
     <string name="file_saved_at">Datoteca memorisada a: %s</string>
     <string name="error_saving_file">Errur cun memorisar la datoteca: %s</string>
-    <string name="error_saving_last_selected_file">Errur cun memorisar l\&apos;ultima datoteca tschernida</string>
+    <string name="error_saving_last_selected_file">Errur cun memorisar l\'ultima datoteca tschernida</string>
     <string name="settings_saved_successfully">Configuraziuns memorisadas cun success</string>
     <string name="please_select_file_not_folder">Per plaschair tscherner ina datoteca, betg in dossier.</string>
     <string name="please_select_file">Per plaschair tscherner ina datoteca.</string>
@@ -58,7 +58,7 @@
     <string name="failed_to_create_file">Impussibel da crear la datoteca</string>
     <string name="cannot_delete_parent_folder">Impussibel da stizzar il dossier da basa.</string>
     <string name="cannot_share_folders">Impussibel da cundivider dossiers.</string>
-    <string name="last_session_file_not_found">L\&apos;ultima datoteca da sessiun betg chattada.</string>
+    <string name="last_session_file_not_found">L\'ultima datoteca da sessiun betg chattada.</string>
     <string name="no_session_file_saved">Nagina datoteca da sessiun memorisada en las preferenzas.</string>
     <string name="error_creating_new_session">Errur cun crear ina nova sessiun: %s</string>
     <string name="missing_filename">Num da datoteca manca</string>
@@ -70,10 +70,10 @@
     <string name="stored_pending_viewfinder_resize">Datas da midada da grondezza dal visualisader memorisadas per applicaziun pli tard</string>
     <string name="applied_pending_viewfinder_resize">Datas da midada da grondezza dal visualisader applitgadas da las valurs memorisadas</string>
     <string name="entity_tracker_ready">EntityBarcodeTracker è pront, applitgar las configuraziuns pendents</string>
-    <string name="handle_view_entity_result">Trattar l\&apos;entitad da visualisaziun - Resultat retschavì</string>
-    <string name="entity_tracker_decoder_available">Decodader EntityBarcodeTracker disponibel, dumber d\&apos;entitads: %s</string>
-    <string name="processing_entities">Elavurar %d entitads per la visualisaziun da l\&apos;entitad</string>
-    <string name="rendered_entities">Entitads rendidas en la visualisaziun da l\&apos;entitad</string>
+    <string name="handle_view_entity_result">Trattar l\'entitad da visualisaziun - Resultat retschavì</string>
+    <string name="entity_tracker_decoder_available">Decodader EntityBarcodeTracker disponibel, dumber d\'entitads: %s</string>
+    <string name="processing_entities">Elavurar %d entitads per la visualisaziun da l\'entitad</string>
+    <string name="rendered_entities">Entitads rendidas en la visualisaziun da l\'entitad</string>
     <string name="symbologies">Simbologias</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -132,8 +132,8 @@
     <string name="quantity_hint">1</string>
     <string name="toggle_flashlight">Midar la lumeglia</string>
     <string name="toggle_capture_zone">Midar la zona da captura</string>
-    <string name="edit_item">Elavurar l\&apos;element</string>
-    <string name="delete_item">Stizzar l\&apos;element</string>
+    <string name="edit_item">Elavurar l\'element</string>
+    <string name="delete_item">Stizzar l\'element</string>
     <string name="value_label">Valur: %s</string>
     <string name="symbology_label">Simbologia: %s</string>
     <string name="quantity_label">Quantitad: %d</string>
