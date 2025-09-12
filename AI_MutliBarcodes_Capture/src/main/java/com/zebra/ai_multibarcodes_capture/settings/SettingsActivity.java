@@ -339,7 +339,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadModelInputSize(SharedPreferences sharedPreferences) {
-        String modelInputSize = sharedPreferences.getString("SHARED_PREFERENCES_MODEL_INPUT_SIZE", "MEDIUM");
+        String modelInputSize = sharedPreferences.getString(SHARED_PREFERENCES_MODEL_INPUT_SIZE, SHARED_PREFERENCES_MODEL_INPUT_SIZE_DEFAULT);
         
         // Set the radio button based on saved preference
         if ("SMALL".equals(modelInputSize)) {
@@ -353,7 +353,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadCameraResolution(SharedPreferences sharedPreferences) {
-        String cameraResolution = sharedPreferences.getString("SHARED_PREFERENCES_CAMERA_RESOLUTION", "MP_2");
+        String cameraResolution = sharedPreferences.getString(SHARED_PREFERENCES_CAMERA_RESOLUTION, SHARED_PREFERENCES_CAMERA_RESOLUTION_DEFAULT);
         
         // Set the radio button based on saved preference
         if ("MP_1".equals(cameraResolution)) {
@@ -369,7 +369,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadInferenceType(SharedPreferences sharedPreferences) {
-        String inferenceType = sharedPreferences.getString("SHARED_PREFERENCES_INFERENCE_TYPE", "DSP");
+        String inferenceType = sharedPreferences.getString(SHARED_PREFERENCES_INFERENCE_TYPE, SHARED_PREFERENCES_INFERENCE_TYPE_DEFAULT);
         
         // Set the radio button based on saved preference
         if ("GPU".equals(inferenceType)) {
@@ -574,7 +574,7 @@ public class SettingsActivity extends AppCompatActivity {
             modelInputSize = "LARGE";
         }
         
-        editor.putString("SHARED_PREFERENCES_MODEL_INPUT_SIZE", modelInputSize);
+        editor.putString(SHARED_PREFERENCES_MODEL_INPUT_SIZE, modelInputSize);
     }
 
     private void saveCameraResolution(SharedPreferences.Editor editor) {
@@ -588,7 +588,7 @@ public class SettingsActivity extends AppCompatActivity {
             cameraResolution = "MP_8";
         }
         
-        editor.putString("SHARED_PREFERENCES_CAMERA_RESOLUTION", cameraResolution);
+        editor.putString(SHARED_PREFERENCES_CAMERA_RESOLUTION, cameraResolution);
     }
 
     private void saveInferenceType(SharedPreferences.Editor editor) {
@@ -600,7 +600,7 @@ public class SettingsActivity extends AppCompatActivity {
             inferenceType = "CPU";
         }
         
-        editor.putString("SHARED_PREFERENCES_INFERENCE_TYPE", inferenceType);
+        editor.putString(SHARED_PREFERENCES_INFERENCE_TYPE, inferenceType);
     }
 
     private String getSelectedExtension()

@@ -4,16 +4,19 @@ import android.content.Context;
 import com.zebra.ai_multibarcodes_capture.R;
 
 public enum EModelInputSize {
-    SMALL(R.string.resolution_small, R.string.resolution_small_description),
-    MEDIUM(R.string.resolution_medium, R.string.resolution_medium_description),
-    LARGE(R.string.resolution_large, R.string.resolution_large_description);
+    SMALL(R.string.resolution_small, R.string.resolution_small_description, 640, 640),
+    MEDIUM(R.string.resolution_medium, R.string.resolution_medium_description,1280,1280),
+    LARGE(R.string.resolution_large, R.string.resolution_large_description,1600,1600);
 
     private final int shortDescriptionResId;
     private final int longDescriptionResId;
+    private final int width, height;
 
-    EModelInputSize(int shortDescriptionResId, int longDescriptionResId) {
+    EModelInputSize(int shortDescriptionResId, int longDescriptionResId, int width, int height) {
         this.shortDescriptionResId = shortDescriptionResId;
         this.longDescriptionResId = longDescriptionResId;
+        this.width = width;
+        this.height = height;
     }
 
     public static EModelInputSize fromString(String shortDescription, Context context) {
@@ -39,6 +42,16 @@ public enum EModelInputSize {
             return toString();
         }
         return context.getString(shortDescriptionResId);
+    }
+
+    public int getWidth()
+    {
+        return this.width;
+    }
+
+    public int getHeight()
+    {
+        return height;
     }
 
     public String getDescription(Context context) {

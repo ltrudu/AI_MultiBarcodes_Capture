@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -44,6 +45,7 @@ import com.zebra.ai_multibarcodes_capture.CameraXViewModel;
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.ECameraResolution;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
@@ -143,7 +145,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private EntityViewController entityViewController;
     private EntityViewGraphic entityViewGraphic;
     private boolean isIconStyleEnable = false;
-    private final Size selectedSize = new Size(1920, 1080);
+    private Size selectedSize;
 
     // Store pending viewfinder resize data to apply once analyzer is ready
     private android.graphics.Matrix pendingTransformMatrix = null;
@@ -170,6 +172,12 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         Intent intent = getIntent();
         captureFilePath = intent.getStringExtra(Constants.CAPTURE_FILE_PATH);
+
+        // Initialize selectedSize from shared preferences
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String cameraResolutionString = sharedPreferences.getString(Constants.SHARED_PREFERENCES_CAMERA_RESOLUTION, Constants.SHARED_PREFERENCES_CAMERA_RESOLUTION_DEFAULT);
+        ECameraResolution cameraResolution = ECameraResolution.valueOf(cameraResolutionString);
+        selectedSize = new Size(cameraResolution.getWidth(), cameraResolution.getHeight());
 
         binding = ActivityCameraXlivePreviewBinding.inflate(getLayoutInflater());
         cameraSelector = new CameraSelector.Builder().requireLensFacing(lensFacing).build();
