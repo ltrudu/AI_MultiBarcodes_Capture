@@ -26,6 +26,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AI_MutliBarcodes_Capture"
-include(":AI_MutliBarcodes_Capture")
+rootProject.name = "AI_MultiBarcodes_Capture"
+include(":AI_MultiBarcodes_Capture")
  
