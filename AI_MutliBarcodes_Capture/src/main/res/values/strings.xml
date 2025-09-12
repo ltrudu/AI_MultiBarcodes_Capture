@@ -100,7 +100,7 @@
     <string name="symbologies">Symbologies</string>
     <string name="advanced">Advanced</string>
     <string name="model_input_size">Model Input Size</string>
-    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes-but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
     <string name="camera_resolution_title">Resolution</string>
     <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
     <string name="inference_processor_type_title">Inference (processor) Type</string>

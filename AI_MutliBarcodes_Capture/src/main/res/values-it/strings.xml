@@ -48,7 +48,7 @@
     <string name="error_loading_data">Errore, impossibile caricare i dati nel file: %s</string>
     <string name="file_saved_at">File salvato in: %s</string>
     <string name="error_saving_file">Errore nel salvataggio del file: %s</string>
-    <string name="error_saving_last_selected_file">Errore nel salvataggio dell\&apos;ultimo file selezionato</string>
+    <string name="error_saving_last_selected_file">Errore nel salvataggio dell\'ultimo file selezionato</string>
     <string name="settings_saved_successfully">Impostazioni salvate con successo</string>
     <string name="please_select_file_not_folder">Si prega di selezionare un file, non una cartella.</string>
     <string name="please_select_file">Si prega di selezionare un file.</string>
@@ -60,16 +60,16 @@
     <string name="failed_to_create_file">Impossibile creare il file</string>
     <string name="cannot_delete_parent_folder">Impossibile eliminare la cartella padre.</string>
     <string name="cannot_share_folders">Impossibile condividere le cartelle.</string>
-    <string name="last_session_file_not_found">File dell\&apos;ultima sessione non trovato.</string>
+    <string name="last_session_file_not_found">File dell\'ultima sessione non trovato.</string>
     <string name="no_session_file_saved">Nessun file di sessione salvato nelle preferenze.</string>
     <string name="error_creating_new_session">Errore nella creazione di una nuova sessione: %s</string>
     <string name="missing_filename">Nome file mancante</string>
-    <string name="camera_permission_required">È richiesta l\&apos;autorizzazione della fotocamera per utilizzare questa funzione</string>
+    <string name="camera_permission_required">È richiesta l\'autorizzazione della fotocamera per utilizzare questa funzione</string>
     <string name="entity_tracker_creation_time">Tempo di creazione Entity Tracker BarcodeDecoder() obj =%d milli sec</string>
     <string name="barcode_decoder_disposed">Il decodificatore del codice a barre è stato eliminato</string>
     <string name="orientation_unlocked">Orientamento sbloccato per la modalità %s</string>
     <string name="applied_viewfinder_resize_immediately">Specifiche di ridimensionamento del mirino applicate immediatamente</string>
-    <string name="stored_pending_viewfinder_resize">Dati di ridimensionamento del mirino in sospeso memorizzati per l\&apos;applicazione successiva</string>
+    <string name="stored_pending_viewfinder_resize">Dati di ridimensionamento del mirino in sospeso memorizzati per l\'applicazione successiva</string>
     <string name="applied_pending_viewfinder_resize">Dati di ridimensionamento del mirino in sospeso applicati dai valori memorizzati</string>
     <string name="entity_tracker_ready">EntityBarcodeTracker è pronto, applicando configurazioni in sospeso</string>
     <string name="handle_view_entity_result">Gestisci Entità Vista - Risultato ricevuto</string>
@@ -166,7 +166,7 @@
     <string name="menu_delete">Elimina</string>
     <string name="advanced">Avanzato</string>
     <string name="model_input_size">Dimensione input modello</string>
-    <string name="model_input_size_description">La dimensione di input del modello è la risoluzione alla quale la tua immagine viene ridimensionata prima dell&apos;analisi AI. Dimensioni più piccole sono più veloci e usano meno memoria, mentre dimensioni più grandi possono aiutare a rilevare codici a barre più piccoli o più distanti—ma usano anche più potenza di elaborazione e memoria. Scegli la dimensione di input per bilanciare velocità e precisione per le tue esigenze. Nota: La dimensione di input del modello può essere personalizzata in incrementi di 32 usando l&apos;SDK. Le opzioni sottostanti rappresentano alcune dimensioni generiche.</string>
+    <string name="model_input_size_description">La dimensione di input del modello è la risoluzione alla quale la tua immagine viene ridimensionata prima dell\'analisi AI. Dimensioni più piccole sono più veloci e usano meno memoria, mentre dimensioni più grandi possono aiutare a rilevare codici a barre più piccoli o più distanti—ma usano anche più potenza di elaborazione e memoria. Scegli la dimensione di input per bilanciare velocità e precisione per le tue esigenze. Nota: La dimensione di input del modello può essere personalizzata in incrementi di 32 usando l\'SDK. Le opzioni sottostanti rappresentano alcune dimensioni generiche.</string>
     <string name="camera_resolution_title">Risoluzione</string>
     <string name="camera_resolution_description">La risoluzione della fotocamera è il numero di pixel nella tua foto (es., 1MP = 1280x720). Una risoluzione più alta cattura più dettagli per testo piccolo o distante ma usa più energia e memoria. I benefici sono limitati se la dimensione di input del modello è bassa.</string>
     <string name="inference_processor_type_title">Tipo processore inferenza</string>
@@ -194,5 +194,5 @@
     <string name="inference_type_gpu_description">Per uso prova se DSP non disponibile</string>
     <string name="inference_type_cpu">CPU (Unità Elaborazione Centrale)</string>
     <string name="inference_type_cpu_description">Per uso prova se DSP e GPU non disponibili</string>
-    <string name="managed_configuration_updated">Impostazioni aggiornate dall&apos;amministratore</string>
+    <string name="managed_configuration_updated">Impostazioni aggiornate dall\'amministratore</string>
 </resources>

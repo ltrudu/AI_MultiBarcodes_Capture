@@ -19,7 +19,7 @@
     <string name="addtofile">Дадаць у Файл</string>
     <string name="save">Захаваць</string>
     <string name="update">Абнавіць Файл</string>
-    <string name="merge">Аб\&apos;яднаць Колькасці</string>
+    <string name="merge">Аб\'яднаць Колькасці</string>
     <string name="start_capture">Пачаць Захоп</string>
     <string name="load_last_session">Загрузіць Апошні Сеанс</string>
     <string name="create_new_session">Стварыць Новы Сеанс</string>
@@ -65,7 +65,7 @@
     <string name="error_creating_new_session">Памылка стварэння новага сеансу: %s</string>
     <string name="missing_filename">Адсутнічае імя файла</string>
     <string name="camera_permission_required">Для выкарыстання гэтай функцыі патрэбен дазвол камеры</string>
-    <string name="entity_tracker_creation_time">Час стварэння аб\&apos;екта Entity Tracker BarcodeDecoder() =%d міллі сек</string>
+    <string name="entity_tracker_creation_time">Час стварэння аб\'екта Entity Tracker BarcodeDecoder() =%d міллі сек</string>
     <string name="barcode_decoder_disposed">Дэкодэр штрых-кода ўтылізаваны</string>
     <string name="orientation_unlocked">Арыентацыя разблакавана для рэжыму %s</string>
     <string name="applied_viewfinder_resize_immediately">Спецыфікацыі змены памеру відошукальніка ўжытыя неадкладна</string>
@@ -141,7 +141,7 @@
     <string name="quantity_label">Колькасць: %d</string>
     <string name="date_label">Дата: %s</string>
     <string name="success_granting_permissions">Паспех у Наданні Дазволаў.</string>
-    <string name="session_data_merged">Даныя сеансу аб\&apos;яднаны.</string>
+    <string name="session_data_merged">Даныя сеансу аб\'яднаны.</string>
     <string name="error_reported">Памылка паведамлена: %s</string>
     <string name="error_reading_session_file">Памылка чытання файла сеансу: %s</string>
     <string name="error_reading_csv_session_file">Памылка чытання CSV файла сеансу: %s</string>
