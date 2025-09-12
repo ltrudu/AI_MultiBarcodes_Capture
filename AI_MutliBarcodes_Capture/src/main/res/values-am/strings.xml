@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI ባለብዙ ባርኮድ መያዣ</string>
     <string name="start_capture_button_text">መያዝን ጀምር</string>
     <string name="loading_status">መተግበሪያ እየጫኑ</string>
     <string name="select_session_file">የክፍል ሰሞን ፋይል ይምረጡ ወይም አዲስ ይፍጠሩ።</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">ፈቃዶችን እያገኙ</string>
-
-    <!-- Browser Activity -->
     <string name="select">ምረጥ</string>
     <string name="share">አጋራ</string>
     <string name="refresh">አድስ</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">አዎ</string>
     <string name="no">አይ</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">ወደ ፋይል አክል</string>
     <string name="save">አስቀምጥ</string>
     <string name="update">ፋይል አዘምን</string>
     <string name="merge">ብዛቶችን አዋሃድ</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">መያዝን ጀምር</string>
     <string name="load_last_session">የመጨረሻውን ክፍለ ሰዓት ጫን</string>
     <string name="create_new_session">አዲስ ክፍለ ሰዓት ፍጠር</string>
     <string name="view_session_data">የክፍለ ሰዓት መረጃ ይመልከቱ</string>
     <string name="selected_session">የተመረጠ ክፍለ ሰዓት</string>
     <string name="select_session_to_start">መያዝን ለመጀመር ክፍለ ሰዓት ይምረጡ</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">ማዋቀር</string>
     <string name="prefix">ቅድመ ቃል፦</string>
     <string name="prefix_hint">ቅድመ ቃል_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">የስርዓት ቋንቋ</string>
     <string name="validate">አረጋግጥ</string>
     <string name="cancel">ሰርዝ</string>
-
-    <!-- Camera Activity -->
     <string name="capture">ይውሰዱ</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">የAI Vision SDK ማስጀመሪያ አልተሳካም</string>
     <string name="folder_path_missing">የአቃፊ መንገድ ነገ!</string>
     <string name="folder_path_missing_toast">የአቃፊ መንገድ ነገ !!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">ፋይል ስማይስቀምጥ ስህተት፦ %s</string>
     <string name="error_saving_last_selected_file">የመጨረሻውን የተመረጠ ፋይል ስማይስቀምጥ ስህተት</string>
     <string name="settings_saved_successfully">ቅንብሮች በተሳካ ሁኔታ ተቀምጧል</string>
-
-    <!-- Toast Messages -->
     <string name="please_select_file_not_folder">እባክዎ ፋይል ይምረጡ፣ አቃፊ አይደለም።</string>
     <string name="please_select_file">እባክዎ ፋይል ይምረጡ።</string>
     <string name="cannot_rename_folders_or_parent">አቃፊዎችን ወይም የወላጅ አቃፊን ዳግም መሰየም አይችሉም።</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">ፋይል መፍጠር አልተሳካም</string>
     <string name="cannot_delete_parent_folder">የወላጅ አቃፊን መሰረዝ አይችሉም።</string>
     <string name="cannot_share_folders">አቃፊዎችን ማካፈል አይችሉም।</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">የመጨረሻው ክፍለ ሰዓት ፋይል አልተገኘም።</string>
     <string name="no_session_file_saved">በምርጫዎች ውስጥ ምንም ክፍለ ሰዓት ፋይል አልተቀመጠም።</string>
     <string name="error_creating_new_session">አዲስ ክፍለ ሰዓት መፍጠር ስህተት፦ %s</string>
     <string name="missing_filename">የጎደለ ፋይል ስም</string>
     <string name="camera_permission_required">ይህንን ባህሪ ለመጠቀም የካሜራ ፈቃድ ያስፈልጋል</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj ፈጣሪ ጊዜ =%d ሚሊ ሰከንድ</string>
     <string name="barcode_decoder_disposed">Barcode decoder ወድቋል</string>
     <string name="orientation_unlocked">አቅጣጫ ለ %s ሁኔታ ተከፈተ</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker decoder ተዘጋጅቷል፣ የአካላት ቁጥር፦ %s</string>
     <string name="processing_entities">%d አካላትን ለአካላት እይታ ማቀነባበር</string>
     <string name="rendered_entities">አካላት በአካላት እይታ ላይ ቀርበዋል</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">የባርኮድ ዋጋ</string>
     <string name="symbology">ሲምቦሎጂ</string>
     <string name="unknown">ያልታወቀ</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">የመያዝ ቀን</string>
     <string name="date">ቀን</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">ፍላሽላይት ቀያይር</string>
     <string name="toggle_capture_zone">የመያዣ ዞን ቀያይር</string>
     <string name="edit_item">ንጥል አርትዕ</string>
     <string name="delete_item">ንጥል ሰርዝ</string>
-
-    <!-- Display Labels -->
     <string name="value_label">ዋጋ፦ %s</string>
     <string name="symbology_label">ሲምቦሎጂ፦ %s</string>
     <string name="quantity_label">ብዛት፦ %d</string>
     <string name="date_label">ቀን፦ %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">ፈቃዶችን በመስጠት ውሳኔ።</string>
     <string name="session_data_merged">የክፍለ ሰዓት መረጃ ተዋህዷል።</string>
     <string name="error_reported">ስህተት ተዘግቧል፦ %s</string>
     <string name="error_reading_session_file">የክፍለ ሰዓት ፋይል ስንቅራ ስህተት፦ %s</string>
     <string name="error_reading_csv_session_file">የCSV ክፍለ ሰዓት ፋይል ስንቅራ ስህተት፦ %s</string>
     <string name="error_reading_excel_session_file">የEXCEL ክፍለ ሰዓት ፋይል ስንቅራ ስህተት፦ %s</string>
-
-    <!-- Dialog Messages -->
     <string name="rename">ዳግም ሰይም</string>
     <string name="rename_file">ፋይል ዳግም ሰይም</string>
     <string name="create">ፍጠር</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">አቃፊ ሰርዝ</string>
     <string name="are_you_sure">እርግጠኛ ነዎት?</string>
     <string name="file_exists_already">ፋይሉ አስቀድሞ አለ።</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">ቅንብሮች</string>
     <string name="activity_captured_barcodes">የተያዙ ባርኮዶች</string>
     <string name="activity_session_data">የክፍለ ሰዓት መረጃ</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">ክፍለ ሰዓቶችን አስተዳድር</string>
     <string name="menu_settings">ቅንብሮች</string>
     <string name="menu_new_file">አዲስ ፋይል</string>
     <string name="menu_new_folder">አዲስ አቃፊ</string>
     <string name="menu_rename">ዳግም ሰይም</string>
     <string name="menu_delete">ሰርዝ</string>
-
+    <string name="advanced">Advanced</string>
+    <string name="model_input_size">Model Input Size</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="camera_resolution_title">Resolution</string>
+    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
+    <string name="inference_processor_type_title">Inference (processor) Type</string>
+    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
+    <string name="toggle_file_types">Toggle file types</string>
+    <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="resolution_small">640 x 640 (small)</string>
+    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Balanced speed and accuracy</string>
+    <string name="resolution_large">1600 x 1600 (large)</string>
+    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">General barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
+    <string name="inference_type_dsp_description">Best Choice</string>
+    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
+    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
+    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
+    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
 </resources>

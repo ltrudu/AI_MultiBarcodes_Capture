@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Strepieskode Vang</string>
     <string name="start_capture_button_text">Begin Vang</string>
     <string name="loading_status">Laai Toepassing</string>
-    <string name="select_session_file">Kies \'n sessie lêer of skep \'n nuwe een.</string>
-
-    <!-- Splash Activity -->
+    <string name="select_session_file">Kies \&apos;n sessie lêer of skep \&apos;n nuwe een.</string>
     <string name="retrieving_permissions">Verkry Toestemmings</string>
-
-    <!-- Browser Activity -->
     <string name="select">Kies</string>
     <string name="share">Deel</string>
     <string name="refresh">Verfris</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Voeg by Lêer</string>
     <string name="save">Stoor</string>
     <string name="update">Werk Lêer By</string>
     <string name="merge">Saamvoeg Hoeveelhede</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Begin Vang</string>
     <string name="load_last_session">Laai Laaste Sessie</string>
     <string name="create_new_session">Skep Nuwe Sessie</string>
     <string name="view_session_data">Bekyk Sessie Data</string>
     <string name="selected_session">Gekose Sessie</string>
-    <string name="select_session_to_start">Kies \'n Sessie om Vang te Begin</string>
-
-    <!-- Setup/Settings Activity -->
+    <string name="select_session_to_start">Kies \&apos;n Sessie om Vang te Begin</string>
     <string name="setup">Opstelling</string>
     <string name="prefix">Voorvoegsel:</string>
     <string name="prefix_hint">Voorvoegsel_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">Stelsel Taal</string>
     <string name="validate">Valideer</string>
     <string name="cancel">Kanselleer</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Vang</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK Inisialisering misluk</string>
     <string name="folder_path_missing">Vouer pad ontbreek!</string>
     <string name="folder_path_missing_toast">Vouer pad ontbreek !!!</string>
@@ -63,10 +50,8 @@
     <string name="error_saving_file">Fout met stoor van lêer: %s</string>
     <string name="error_saving_last_selected_file">Fout met stoor van laaste gekose lêer</string>
     <string name="settings_saved_successfully">Instellings suksesvol gestoor</string>
-
-    <!-- Toast Messages -->
-    <string name="please_select_file_not_folder">Kies asseblief \'n lêer, nie \'n vouer nie.</string>
-    <string name="please_select_file">Kies asseblief \'n lêer.</string>
+    <string name="please_select_file_not_folder">Kies asseblief \&apos;n lêer, nie \&apos;n vouer nie.</string>
+    <string name="please_select_file">Kies asseblief \&apos;n lêer.</string>
     <string name="cannot_rename_folders_or_parent">Kan nie vouers of die ouer vouer hernoem nie.</string>
     <string name="file_already_exists">Lêer bestaan reeds.</string>
     <string name="error_renaming_file">Fout met hernoem van lêer</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">Kon nie lêer skep nie</string>
     <string name="cannot_delete_parent_folder">Kan nie die ouer vouer skrap nie.</string>
     <string name="cannot_share_folders">Kan nie vouers deel nie.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Laaste sessie lêer nie gevind nie.</string>
     <string name="no_session_file_saved">Geen sessie lêer gestoor in voorkeure nie.</string>
     <string name="error_creating_new_session">Fout met skep van nuwe sessie: %s</string>
     <string name="missing_filename">Ontbrekende lêernaam</string>
     <string name="camera_permission_required">Kamera toestemming is nodig om hierdie funksie te gebruik</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj skepping tyd =%d milli sek</string>
     <string name="barcode_decoder_disposed">Barcode dekodeerder is verwyder</string>
     <string name="orientation_unlocked">Oriëntasie ontsluit vir %s modus</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekodeerder beskikbaar, entiteite telling: %s</string>
     <string name="processing_entities">Verwerk %d entiteite vir entiteit aansig</string>
     <string name="rendered_entities">Entiteite vertoon op entiteit aansig</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Strepieskode Waarde</string>
     <string name="symbology">Simbologie</string>
     <string name="unknown">ONBEKEND</string>
@@ -155,49 +132,67 @@
     <string name="capture_date">Vang Datum</string>
     <string name="date">Datum</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Skakel flitslig</string>
     <string name="toggle_capture_zone">Skakel vang sone</string>
     <string name="edit_item">Redigeer item</string>
     <string name="delete_item">Skrap item</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Waarde: %s</string>
     <string name="symbology_label">Simbologie: %s</string>
     <string name="quantity_label">Hoeveelheid: %d</string>
     <string name="date_label">Datum: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Sukses met Toeken van Toestemmings.</string>
     <string name="session_data_merged">Sessie data saamgevoeg.</string>
     <string name="error_reported">Fout gerapporteer: %s</string>
     <string name="error_reading_session_file">Fout met lees van sessie lêer: %s</string>
     <string name="error_reading_csv_session_file">Fout met lees van CSV sessie lêer: %s</string>
     <string name="error_reading_excel_session_file">Fout met lees van Excel sessie lêer: %s</string>
-
-    <!-- Dialog Messages -->
     <string name="rename">Hernoem</string>
-    <string name="rename_file">Hernoem \'n lêer</string>
+    <string name="rename_file">Hernoem \&apos;n lêer</string>
     <string name="create">Skep</string>
-    <string name="create_new_folder">Skep \'n nuwe vouer</string>
-    <string name="create_new_file">Skep \'n nuwe lêer</string>
+    <string name="create_new_folder">Skep \&apos;n nuwe vouer</string>
+    <string name="create_new_file">Skep \&apos;n nuwe lêer</string>
     <string name="delete_file">Skrap Lêer</string>
     <string name="delete_folder">Skrap Vouer</string>
     <string name="are_you_sure">Is jy seker?</string>
     <string name="file_exists_already">Die lêer bestaan reeds.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Instellings</string>
     <string name="activity_captured_barcodes">Gevange Strepieskodes</string>
     <string name="activity_session_data">Sessie Data</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Bestuur Sessies</string>
     <string name="menu_settings">Instellings</string>
     <string name="menu_new_file">Nuwe Lêer</string>
     <string name="menu_new_folder">Nuwe Vouer</string>
     <string name="menu_rename">Hernoem</string>
     <string name="menu_delete">Skrap</string>
-
+    <string name="advanced">Gevorderd</string>
+    <string name="model_input_size">Model Invoer Grootte</string>
+    <string name="model_input_size_description">Model invoer grootte is die resolusie waarteen jou beeld verander word voor KI analise. Kleiner groottes is vinniger en gebruik minder geheue, terwyl groter groottes help om kleiner of verder strepieskodes op te spoor—maar gebruik ook meer verwerkingskrag en geheue. Kies die invoer grootte om spoed en akkuraatheid vir jou behoeftes te balanseer. Let wel: Model Invoer Grootte kan aangepas word in stappe van 32 deur die SDK te gebruik. Die opsies hieronder verteenwoordig sommige generiese groottes.</string>
+    <string name="camera_resolution_title">Resolusie</string>
+    <string name="camera_resolution_description">Kamera resolusie is die aantal pixels in jou foto (bv., 1MP = 1280x720). Hoër resolusie vang meer detail vir klein of ver teks, maar gebruik meer krag en geheue. Voordele is beperk as die model invoer grootte laag is.</string>
+    <string name="inference_processor_type_title">Inferensie (verwerker) Tipe</string>
+    <string name="inference_processor_type_description">Hierdie instelling kies watter tjip in jou toestel KI take laat loop, wat spoed en battery lewe beïnvloed. Nie alle toestelle het &apos;n DSP nie.</string>
+    <string name="toggle_symbologies">Skakel simbologieë</string>
+    <string name="toggle_file_types">Skakel lêer tipes</string>
+    <string name="toggle_advanced">Skakel gevorderde instellings</string>
+    <string name="resolution_small">640 x 640 (klein)</string>
+    <string name="resolution_small_description">Vinnigste; beste vir groot of naby strepieskodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Gebalanseerde spoed en akkuraatheid</string>
+    <string name="resolution_large">1600 x 1600 (groot)</string>
+    <string name="resolution_large_description">Stadiger; gebruik vir klein, beskadigde of ver strepieskodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Groot of naby strepieskodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">Algemene strepieskodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Digte, flou, of klein strepieskodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Piepklein, ver, of lae-kontras strepieskodes</string>
+    <string name="inference_type_dsp">DSP (Digitale Sein Verwerker)</string>
+    <string name="inference_type_dsp_description">Beste Keuse</string>
+    <string name="inference_type_gpu">GPU (Grafika Verwerkingseenheid)</string>
+    <string name="inference_type_gpu_description">Vir proef gebruik as DSP nie beskikbaar nie</string>
+    <string name="inference_type_cpu">CPU (Sentrale Verwerkingseenheid)</string>
+    <string name="inference_type_cpu_description">Vir proef gebruik as DSP en GPU nie beskikbaar nie</string>
+    <string name="managed_configuration_updated">Instellings opgedateer deur administrateur</string>
 </resources>

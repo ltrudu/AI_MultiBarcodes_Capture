@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">キャプチャ開始</string>
     <string name="loading_status">アプリケーション読み込み中</string>
     <string name="select_session_file">セッションファイルを選択するか新しいものを作成してください。</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">権限を取得中</string>
-
-    <!-- Browser Activity -->
     <string name="select">選択</string>
     <string name="share">共有</string>
     <string name="refresh">更新</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">ファイルに追加</string>
     <string name="save">保存</string>
     <string name="update">ファイル更新</string>
     <string name="merge">数量をマージ</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">キャプチャ開始</string>
     <string name="load_last_session">最後のセッションを読み込み</string>
     <string name="create_new_session">新しいセッションを作成</string>
     <string name="view_session_data">セッションデータを表示</string>
     <string name="selected_session">選択されたセッション</string>
     <string name="select_session_to_start">キャプチャを開始するセッションを選択してください</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">設定</string>
     <string name="prefix">接頭辞:</string>
     <string name="prefix_hint">接頭辞_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">システム言語</string>
     <string name="validate">検証</string>
     <string name="cancel">キャンセル</string>
-
-    <!-- Camera Activity -->
     <string name="capture">キャプチャ</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK初期化に失敗しました</string>
     <string name="folder_path_missing">フォルダーパスが見つかりません！</string>
     <string name="folder_path_missing_toast">フォルダーパスが見つかりません !!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">ファイル保存エラー: %s</string>
     <string name="error_saving_last_selected_file">最後に選択したファイルの保存エラー</string>
     <string name="settings_saved_successfully">設定が正常に保存されました</string>
-
-    <!-- Toast Messages -->
     <string name="please_select_file_not_folder">フォルダではなくファイルを選択してください。</string>
     <string name="please_select_file">ファイルを選択してください。</string>
     <string name="cannot_rename_folders_or_parent">フォルダまたは親フォルダの名前は変更できません。</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">ファイルの作成に失敗しました</string>
     <string name="cannot_delete_parent_folder">親フォルダを削除できません。</string>
     <string name="cannot_share_folders">フォルダを共有できません。</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">最後のセッションファイルが見つかりません。</string>
     <string name="no_session_file_saved">環境設定にセッションファイルが保存されていません。</string>
     <string name="error_creating_new_session">新しいセッションの作成エラー: %s</string>
     <string name="missing_filename">ファイル名がありません</string>
     <string name="camera_permission_required">この機能を使用するにはカメラの許可が必要です</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj作成時間 =%d ミリ秒</string>
     <string name="barcode_decoder_disposed">バーコードデコーダーが破棄されました</string>
     <string name="orientation_unlocked">%s モードの向きがアンロックされました</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTrackerデコーダーが利用可能、エンティティ数: %s</string>
     <string name="processing_entities">エンティティビュー用に%dエンティティを処理中</string>
     <string name="rendered_entities">エンティティビューでエンティティをレンダリング</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">シンボロジー</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">バーコード値</string>
     <string name="symbology">シンボロジー</string>
     <string name="unknown">UNKNOWN</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">キャプチャ日付</string>
     <string name="date">日付</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">フラッシュライトの切り替え</string>
     <string name="toggle_capture_zone">キャプチャゾーンの切り替え</string>
     <string name="edit_item">アイテムを編集</string>
     <string name="delete_item">アイテムを削除</string>
-
-    <!-- Display Labels -->
     <string name="value_label">値: %s</string>
     <string name="symbology_label">シンボロジー: %s</string>
     <string name="quantity_label">数量: %d</string>
     <string name="date_label">日付: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">権限の付与に成功しました。</string>
     <string name="session_data_merged">セッションデータがマージされました。</string>
     <string name="error_reported">エラーが報告されました: %s</string>
     <string name="error_reading_session_file">セッションファイルの読み取りエラー: %s</string>
     <string name="error_reading_csv_session_file">CSVセッションファイルの読み取りエラー: %s</string>
     <string name="error_reading_excel_session_file">Excelセッションファイルの読み取りエラー: %s</string>
-
-    <!-- Dialog Messages -->
     <string name="rename">名前変更</string>
     <string name="rename_file">ファイル名を変更</string>
     <string name="create">作成</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">フォルダを削除</string>
     <string name="are_you_sure">よろしいですか？</string>
     <string name="file_exists_already">ファイルはすでに存在します。</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">設定</string>
     <string name="activity_captured_barcodes">キャプチャしたバーコード</string>
     <string name="activity_session_data">セッションデータ</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">セッション管理</string>
     <string name="menu_settings">設定</string>
     <string name="menu_new_file">新しいファイル</string>
     <string name="menu_new_folder">新しいフォルダ</string>
     <string name="menu_rename">名前変更</string>
     <string name="menu_delete">削除</string>
-
+    <string name="advanced">Advanced</string>
+    <string name="model_input_size">Model Input Size</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="camera_resolution_title">Resolution</string>
+    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
+    <string name="inference_processor_type_title">Inference (processor) Type</string>
+    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
+    <string name="toggle_file_types">Toggle file types</string>
+    <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="resolution_small">640 x 640 (small)</string>
+    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Balanced speed and accuracy</string>
+    <string name="resolution_large">1600 x 1600 (large)</string>
+    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">General barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
+    <string name="inference_type_dsp_description">Best Choice</string>
+    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
+    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
+    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
+    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
 </resources>

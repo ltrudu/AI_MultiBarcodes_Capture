@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">Inizia Cattura</string>
     <string name="loading_status">Caricamento Applicazione</string>
     <string name="select_session_file">Seleziona un file di sessione o creane uno nuovo.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Recupero Autorizzazioni</string>
-
-    <!-- Browser Activity -->
     <string name="select">Seleziona</string>
     <string name="share">Condividi</string>
     <string name="refresh">Aggiorna</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Sì</string>
     <string name="no">No</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Aggiungi al File</string>
     <string name="save">Salva</string>
     <string name="update">Aggiorna File</string>
     <string name="merge">Unisci Quantità</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Inizia Cattura</string>
     <string name="load_last_session">Carica Ultima Sessione</string>
     <string name="create_new_session">Crea Nuova Sessione</string>
     <string name="view_session_data">Visualizza Dati Sessione</string>
     <string name="selected_session">Sessione Selezionata</string>
     <string name="select_session_to_start">Seleziona una Sessione per Iniziare la Cattura</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Configurazione</string>
     <string name="prefix">Prefisso:</string>
     <string name="prefix_hint">Prefisso_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">Lingua di sistema</string>
     <string name="validate">Convalida</string>
     <string name="cancel">Annulla</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Cattura</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Inizializzazione AI Vision SDK fallita</string>
     <string name="folder_path_missing">Percorso della cartella mancante!</string>
     <string name="folder_path_missing_toast">Percorso della cartella mancante !!!</string>
@@ -61,10 +48,8 @@
     <string name="error_loading_data">Errore, impossibile caricare i dati nel file: %s</string>
     <string name="file_saved_at">File salvato in: %s</string>
     <string name="error_saving_file">Errore nel salvataggio del file: %s</string>
-    <string name="error_saving_last_selected_file">Errore nel salvataggio dell\'ultimo file selezionato</string>
+    <string name="error_saving_last_selected_file">Errore nel salvataggio dell\&apos;ultimo file selezionato</string>
     <string name="settings_saved_successfully">Impostazioni salvate con successo</string>
-
-    <!-- Toast Messages -->
     <string name="please_select_file_not_folder">Si prega di selezionare un file, non una cartella.</string>
     <string name="please_select_file">Si prega di selezionare un file.</string>
     <string name="cannot_rename_folders_or_parent">Impossibile rinominare cartelle o la cartella padre.</string>
@@ -75,28 +60,22 @@
     <string name="failed_to_create_file">Impossibile creare il file</string>
     <string name="cannot_delete_parent_folder">Impossibile eliminare la cartella padre.</string>
     <string name="cannot_share_folders">Impossibile condividere le cartelle.</string>
-
-    <!-- Session Messages -->
-    <string name="last_session_file_not_found">File dell\'ultima sessione non trovato.</string>
+    <string name="last_session_file_not_found">File dell\&apos;ultima sessione non trovato.</string>
     <string name="no_session_file_saved">Nessun file di sessione salvato nelle preferenze.</string>
     <string name="error_creating_new_session">Errore nella creazione di una nuova sessione: %s</string>
     <string name="missing_filename">Nome file mancante</string>
-    <string name="camera_permission_required">È richiesta l\'autorizzazione della fotocamera per utilizzare questa funzione</string>
-
-    <!-- Debug Messages -->
+    <string name="camera_permission_required">È richiesta l\&apos;autorizzazione della fotocamera per utilizzare questa funzione</string>
     <string name="entity_tracker_creation_time">Tempo di creazione Entity Tracker BarcodeDecoder() obj =%d milli sec</string>
     <string name="barcode_decoder_disposed">Il decodificatore del codice a barre è stato eliminato</string>
     <string name="orientation_unlocked">Orientamento sbloccato per la modalità %s</string>
     <string name="applied_viewfinder_resize_immediately">Specifiche di ridimensionamento del mirino applicate immediatamente</string>
-    <string name="stored_pending_viewfinder_resize">Dati di ridimensionamento del mirino in sospeso memorizzati per l\'applicazione successiva</string>
+    <string name="stored_pending_viewfinder_resize">Dati di ridimensionamento del mirino in sospeso memorizzati per l\&apos;applicazione successiva</string>
     <string name="applied_pending_viewfinder_resize">Dati di ridimensionamento del mirino in sospeso applicati dai valori memorizzati</string>
     <string name="entity_tracker_ready">EntityBarcodeTracker è pronto, applicando configurazioni in sospeso</string>
     <string name="handle_view_entity_result">Gestisci Entità Vista - Risultato ricevuto</string>
     <string name="entity_tracker_decoder_available">Decodificatore EntityBarcodeTracker disponibile, numero di entità: %s</string>
     <string name="processing_entities">Elaborazione di %d entità per la vista entità</string>
     <string name="rendered_entities">Entità renderizzate nella vista entità</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Simbologie</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Valore Codice a Barre</string>
     <string name="symbology">Simbologia</string>
     <string name="unknown">UNKNOWN</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">Data di Cattura</string>
     <string name="date">Data</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Attiva/disattiva torcia</string>
     <string name="toggle_capture_zone">Attiva/disattiva zona di cattura</string>
     <string name="edit_item">Modifica elemento</string>
     <string name="delete_item">Elimina elemento</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Valore: %s</string>
     <string name="symbology_label">Simbologia: %s</string>
     <string name="quantity_label">Quantità: %d</string>
     <string name="date_label">Data: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Successo nella concessione delle autorizzazioni.</string>
     <string name="session_data_merged">Dati della sessione uniti.</string>
     <string name="error_reported">Errore segnalato: %s</string>
     <string name="error_reading_session_file">Errore nella lettura del file di sessione: %s</string>
     <string name="error_reading_csv_session_file">Errore nella lettura del file di sessione CSV: %s</string>
     <string name="error_reading_excel_session_file">Errore nella lettura del file di sessione Excel: %s</string>
-
-    <!-- Dialog Messages -->
     <string name="rename">Rinomina</string>
     <string name="rename_file">Rinomina file</string>
     <string name="create">Crea</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">Elimina Cartella</string>
     <string name="are_you_sure">Sei sicuro?</string>
     <string name="file_exists_already">Il file esiste già.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Impostazioni</string>
     <string name="activity_captured_barcodes">Codici a Barre Catturati</string>
     <string name="activity_session_data">Dati Sessione</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Gestisci Sessioni</string>
     <string name="menu_settings">Impostazioni</string>
     <string name="menu_new_file">Nuovo File</string>
     <string name="menu_new_folder">Nuova Cartella</string>
     <string name="menu_rename">Rinomina</string>
     <string name="menu_delete">Elimina</string>
-
+    <string name="advanced">Avanzato</string>
+    <string name="model_input_size">Dimensione input modello</string>
+    <string name="model_input_size_description">La dimensione di input del modello è la risoluzione alla quale la tua immagine viene ridimensionata prima dell&apos;analisi AI. Dimensioni più piccole sono più veloci e usano meno memoria, mentre dimensioni più grandi possono aiutare a rilevare codici a barre più piccoli o più distanti—ma usano anche più potenza di elaborazione e memoria. Scegli la dimensione di input per bilanciare velocità e precisione per le tue esigenze. Nota: La dimensione di input del modello può essere personalizzata in incrementi di 32 usando l&apos;SDK. Le opzioni sottostanti rappresentano alcune dimensioni generiche.</string>
+    <string name="camera_resolution_title">Risoluzione</string>
+    <string name="camera_resolution_description">La risoluzione della fotocamera è il numero di pixel nella tua foto (es., 1MP = 1280x720). Una risoluzione più alta cattura più dettagli per testo piccolo o distante ma usa più energia e memoria. I benefici sono limitati se la dimensione di input del modello è bassa.</string>
+    <string name="inference_processor_type_title">Tipo processore inferenza</string>
+    <string name="inference_processor_type_description">Questa impostazione sceglie quale chip nel tuo dispositivo esegue i compiti AI, influenzando velocità e durata della batteria. Non tutti i dispositivi hanno un DSP.</string>
+    <string name="toggle_symbologies">Commuta simbologie</string>
+    <string name="toggle_file_types">Commuta tipi file</string>
+    <string name="toggle_advanced">Commuta impostazioni avanzate</string>
+    <string name="resolution_small">640 x 640 (piccolo)</string>
+    <string name="resolution_small_description">Più veloce; migliore per codici a barre grandi o vicini</string>
+    <string name="resolution_medium">1280 x 1280 (medio)</string>
+    <string name="resolution_medium_description">Velocità e precisione bilanciate</string>
+    <string name="resolution_large">1600 x 1600 (grande)</string>
+    <string name="resolution_large_description">Più lento; usa per codici a barre piccoli, danneggiati o distanti</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Codici a barre grandi o vicini</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">Codici a barre generali</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Codici a barre densi, deboli o piccoli</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Codici a barre minuscoli, distanti o a basso contrasto</string>
+    <string name="inference_type_dsp">DSP (Processore Segnale Digitale)</string>
+    <string name="inference_type_dsp_description">Migliore Scelta</string>
+    <string name="inference_type_gpu">GPU (Unità Elaborazione Grafica)</string>
+    <string name="inference_type_gpu_description">Per uso prova se DSP non disponibile</string>
+    <string name="inference_type_cpu">CPU (Unità Elaborazione Centrale)</string>
+    <string name="inference_type_cpu_description">Per uso prova se DSP e GPU non disponibili</string>
+    <string name="managed_configuration_updated">Impostazioni aggiornate dall&apos;amministratore</string>
 </resources>

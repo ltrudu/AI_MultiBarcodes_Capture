@@ -15,7 +15,29 @@ The managed configuration is organized into the following sections:
 - **Extension** (`extension`): Default file type for exports (choice: .txt, .csv, .xlsx)
 - **Language** (`language`): Default language for the application interface (dropdown with all supported languages)
 
-### 2. Barcode Symbologies (Nested Bundle)
+### 2. Advanced Settings (Nested Bundle)
+All advanced AI and camera settings are organized in a nested bundle called `advanced`. This provides a clean, organized configuration experience for enterprise administrators:
+
+#### AI Configuration Options:
+- **Model Input Size** (`model_input_size`): AI model input resolution (choice: SMALL, MEDIUM, LARGE)
+  - **SMALL (640x640)**: Fastest processing, best for large or close-up barcodes
+  - **MEDIUM (1280x1280)**: Balanced speed and accuracy for general use
+  - **LARGE (1600x1600)**: Slower processing, optimal for small, damaged, or distant barcodes
+
+#### Camera Configuration:
+- **Camera Resolution** (`camera_resolution`): Camera capture resolution (choice: MP_1, MP_2, MP_4, MP_8)
+  - **1MP (1280x720)**: For large or close-up barcodes
+  - **2MP (1920x1080)**: General barcode scanning
+  - **4MP (2688x1512)**: Dense, faint, or small barcodes  
+  - **8MP (3840x2160)**: Tiny, distant, or low-contrast barcodes
+
+#### Processing Configuration:
+- **Inference Type** (`inference_type`): AI processing unit selection (choice: DSP, GPU, CPU)
+  - **DSP (Digital Signal Processor)**: Best choice for optimal performance and battery life
+  - **GPU (Graphics Processing Unit)**: For trial use if DSP not available
+  - **CPU (Central Processing Unit)**: For trial use if DSP and GPU are not available
+
+### 3. Barcode Symbologies (Nested Bundle)
 All barcode symbologies are organized in a nested bundle called `barcode_symbologies`. This allows administrators to see them as a collapsed group when editing the configuration, improving the management experience.
 
 #### Supported Symbologies:
@@ -46,9 +68,12 @@ All barcode symbologies are organized in a nested bundle called `barcode_symbolo
 
 ### Key Features:
 
-- **Nested Bundle Structure**: All barcode symbologies are grouped in a collapsible bundle for better UX
+- **Nested Bundle Structure**: Advanced settings and barcode symbologies are grouped in collapsible bundles for better UX
+- **Real-time Configuration Updates**: Settings changes automatically restart camera and AI components without full app restart
 - **Automatic Sync**: Configuration changes are immediately applied to SharedPreferences
-- **Logging**: Comprehensive logging for debugging and monitoring
+- **Dynamic Activity Restart**: Advanced settings changes trigger CameraXLivePreviewActivity restart for immediate effect
+- **Performance-Aware Descriptions**: Each setting includes guidance for optimal use cases
+- **Logging**: Comprehensive logging for debugging and monitoring including configuration update notifications
 - **Error Handling**: Robust error handling with fallback to default values
 - **Startup Sync**: Ensures configuration is applied even if the app wasn't running when changes were made
 
@@ -60,10 +85,14 @@ All barcode symbologies are organized in a nested bundle called `barcode_symbolo
 2. **Configure App Restrictions** through your EMM/MDM console:
    - Set the file prefix (e.g., "Company_Scan_")
    - Choose default export format (.txt, .csv, or .xlsx)
-   - Select default application language from the dropdown (supports 67 languages plus system default)
+   - Select default application language from the dropdown (supports 72 languages plus system default)
+   - Expand the "Advanced" section to configure AI and camera settings:
+     - Set optimal model input size based on barcode types and performance requirements
+     - Choose appropriate camera resolution for scanning environment
+     - Select inference processor type based on device capabilities
    - Expand the "Barcode Symbologies" section to configure which barcode types are enabled
 3. **Push Configuration** to devices
-4. **Verify Application**: The app will automatically apply the new settings
+4. **Verify Application**: The app will automatically apply the new settings and show a toast notification
 
 ### Configuration Example:
 
@@ -72,6 +101,11 @@ All barcode symbologies are organized in a nested bundle called `barcode_symbolo
   "prefix": "CompanyScans_",
   "extension": ".xlsx",
   "language": "fr",
+  "advanced": {
+    "model_input_size": "MEDIUM",
+    "camera_resolution": "MP_2",
+    "inference_type": "DSP"
+  },
   "barcode_symbologies": {
     "CODE39": true,
     "CODE128": true,

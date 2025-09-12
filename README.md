@@ -9,19 +9,19 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
-### **Version 1.20**
-**Comprehensive language selection system with 71+ language support**
+### **Version 1.21**
+**Advanced AI Configuration System with Dynamic Settings Management**
 
-Add complete internationalization capabilities with comprehensive language selection and localization:
+Comprehensive AI and camera configuration capabilities with enterprise-grade managed configuration support:
 
-• Language selection dropdown in settings with native language names and Unicode flag emojis (🇫🇷 Français, 🇪🇸 Español, 🇩🇪 Deutsch, etc.)  
-• Support for 71+ languages including System Language option with automatic detection  
-• Validation-based language switching - changes apply only when settings are confirmed, not immediately  
-• Complete string externalization with translations for all supported languages  
-• Persistent language preference storage that survives app restarts and device reboots  
-• Full application restart mechanism ensuring proper locale switching across all activities  
+• **Dynamic AI Configuration**: Advanced settings for AI model input size (640x640 to 1600x1600) with performance optimization guidance  
+• **Camera Resolution Control**: Multiple resolution options (1MP to 8MP) with specific use case recommendations for different barcode types  
+• **Inference Processor Selection**: Choose between DSP (best), GPU, or CPU processing with automatic device capability detection  
+• **Enterprise Managed Configuration**: Full EMM/MDM support with nested advanced settings bundle for centralized deployment  
+• **Real-time Configuration Updates**: Settings changes automatically restart camera and AI components without app restart  
+• **Performance-Aware UI**: Smart descriptions guide users to optimal settings based on their scanning requirements  
 
-The language system provides enterprise-grade internationalization support, allowing users to override system language preferences while maintaining consistent UI theming and providing immediate visual feedback through country flag emojis.
+The advanced configuration system provides granular control over AI performance and camera capabilities, enabling optimal barcode detection for different use cases while supporting enterprise deployment scenarios through comprehensive managed configuration integration.
 
 📋 **[View Complete Changelog](CHANGELOG.md)** for previous versions and detailed release history.
 

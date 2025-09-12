@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Svītrkodi Tveršana</string>
     <string name="start_capture_button_text">Sākt Tveršanu</string>
     <string name="loading_status">Ielādē Lietotni</string>
     <string name="select_session_file">Izvēlieties sesijas failu vai izveidojiet jaunu.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Iegūst Atļaujas</string>
-
-    <!-- Browser Activity -->
     <string name="select">Izvēlēties</string>
     <string name="share">Dalīties</string>
     <string name="refresh">Atsvaidzināt</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Jā</string>
     <string name="no">Nē</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Pievienot Failam</string>
     <string name="save">Saglabāt</string>
     <string name="update">Atjaunināt Failu</string>
     <string name="merge">Apvienot Daudzumus</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Sākt Tveršanu</string>
     <string name="load_last_session">Ielādēt Pēdējo Sesiju</string>
     <string name="create_new_session">Izveidot Jaunu Sesiju</string>
     <string name="view_session_data">Skatīt Sesijas Datus</string>
     <string name="selected_session">Izvēlētā Sesija</string>
     <string name="select_session_to_start">Izvēlieties Sesiju Lai Sāktu Tveršanu</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Iestatīšana</string>
     <string name="prefix">Priedēklis:</string>
     <string name="prefix_hint">Priedēklis_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">Sistēmas Valoda</string>
     <string name="validate">Apstiprināt</string>
     <string name="cancel">Atcelt</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Tvert</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK inicializācija neizdevās</string>
     <string name="folder_path_missing">Mapes ceļš trūkst!</string>
     <string name="folder_path_missing_toast">Mapes ceļš trūkst !!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">Kļūda saglabājot failu: %s</string>
     <string name="error_saving_last_selected_file">Kļūda saglabājot pēdējo izvēlēto failu</string>
     <string name="settings_saved_successfully">Iestatījumi veiksmīgi saglabāti</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Lūdzu izvēlieties failu, nevis mapi.</string>
     <string name="please_select_file">Lūdzu izvēlieties failu.</string>
     <string name="cannot_rename_folders_or_parent">Nevar pārdēvēt mapes vai vecākmapi.</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">Neizdevās izveidot failu</string>
     <string name="cannot_delete_parent_folder">Nevar dzēst vecākmapi.</string>
     <string name="cannot_share_folders">Nevar dalīties ar mapēm.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Pēdējais sesijas fails nav atrasts.</string>
     <string name="no_session_file_saved">Nav sesijas fails saglabāts preferencēs.</string>
     <string name="error_creating_new_session">Kļūda veidojot jaunu sesiju: %s</string>
     <string name="missing_filename">Trūkst faila nosaukums</string>
     <string name="camera_permission_required">Kameras atļauja nepieciešama šīs funkcijas izmantošanai</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() objekta izveides laiks =%d millisekunde</string>
     <string name="barcode_decoder_disposed">Svītrkoda dekoderis ir likvidēts</string>
     <string name="orientation_unlocked">Orientācija atbloķēta %s režīmam</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker dekoderis pieejams, entītiju skaits: %s</string>
     <string name="processing_entities">Apstrādā %d entītijas entītiju skatam</string>
     <string name="rendered_entities">Entītijas attēlotas entītiju skatā</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Svītrkoda Vērtība</string>
     <string name="symbology">Simboloģija</string>
     <string name="unknown">NEZINĀMS</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">Tveršanas Datums</string>
     <string name="date">Datums</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Pārslēgt lukturīti</string>
     <string name="toggle_capture_zone">Pārslēgt tveršanas zonu</string>
     <string name="edit_item">Rediģēt vienumu</string>
     <string name="delete_item">Dzēst vienumu</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Vērtība: %s</string>
     <string name="symbology_label">Simboloģija: %s</string>
     <string name="quantity_label">Daudzums: %d</string>
     <string name="date_label">Datums: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Atļauju Piešķiršana Veiksmīga.</string>
     <string name="session_data_merged">Sesijas dati apvienoti.</string>
     <string name="error_reported">Ziņots par kļūdu: %s</string>
     <string name="error_reading_session_file">Kļūda lasot sesijas failu: %s</string>
     <string name="error_reading_csv_session_file">Kļūda lasot CSV sesijas failu: %s</string>
     <string name="error_reading_excel_session_file">Kļūda lasot Excel sesijas failu: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Pārdēvēt</string>
     <string name="rename_file">Pārdēvēt failu</string>
     <string name="create">Izveidot</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">Dzēst Mapi</string>
     <string name="are_you_sure">Vai esat pārliecināts?</string>
     <string name="file_exists_already">Fails jau eksistē.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Iestatījumi</string>
     <string name="activity_captured_barcodes">Tvērtie Svītrkodi</string>
     <string name="activity_session_data">Sesijas Dati</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Pārvaldīt Sesijas</string>
     <string name="menu_settings">Iestatījumi</string>
     <string name="menu_new_file">Jauns Fails</string>
     <string name="menu_new_folder">Jauna Mape</string>
     <string name="menu_rename">Pārdēvēt</string>
     <string name="menu_delete">Dzēst</string>
-
+    <string name="advanced">Advanced</string>
+    <string name="model_input_size">Model Input Size</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="camera_resolution_title">Resolution</string>
+    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
+    <string name="inference_processor_type_title">Inference (processor) Type</string>
+    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
+    <string name="toggle_file_types">Toggle file types</string>
+    <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="resolution_small">640 x 640 (small)</string>
+    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Balanced speed and accuracy</string>
+    <string name="resolution_large">1600 x 1600 (large)</string>
+    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">General barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
+    <string name="inference_type_dsp_description">Best Choice</string>
+    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
+    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
+    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
+    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
 </resources>
