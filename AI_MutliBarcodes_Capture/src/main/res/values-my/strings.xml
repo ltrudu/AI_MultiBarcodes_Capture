@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI မျိုးစုံ ဘားကုဒ် ဖမ်းယူခြင်း</string>
     <string name="start_capture_button_text">ဖမ်းယူခြင်းစတင်</string>
     <string name="loading_status">အပလီကေးရှင်းလုပ်နေသည်</string>
     <string name="select_session_file">session ဖိုင်တစ်ခုကိုရွေးချယ်ပါ သို့မဟုတ် အသစ်တစ်ခုဖန်တီးပါ။</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">ခွင့်ပြုချက်များရယူနေသည်</string>
-
-    <!-- Browser Activity -->
     <string name="select">ရွေး</string>
     <string name="share">မျှဝေ</string>
     <string name="refresh">အသစ်ပြောင်း</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">ဟုတ်တယ်</string>
     <string name="no">မဟုတ်ဘူး</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">ဖိုင်ထဲသို့ထည့်</string>
     <string name="save">သိမ်း</string>
     <string name="update">ဖိုင်ကိုအပ်ဒိတ်လုပ်</string>
     <string name="merge">အရေအတွက်များကိုပေါင်း</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">ဖမ်းယူခြင်းစတင်</string>
     <string name="load_last_session">နောက်ဆုံး Session ကိုလုပ်</string>
     <string name="create_new_session">Session အသစ်ဖန်တီး</string>
     <string name="view_session_data">Session ဒေတာကြည့်</string>
     <string name="selected_session">ရွေးချယ်ထားသော Session</string>
     <string name="select_session_to_start">ဖမ်းယူခြင်းစတင်ရန် Session တစ်ခုရွေးချယ်ပါ</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">တပ်ဆင်မှု</string>
     <string name="prefix">ရှေ့တွဲ:</string>
     <string name="prefix_hint">ရှေ့တွဲ_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">စနစ်ဘာသာစကား</string>
     <string name="validate">အတည်ပြု</string>
     <string name="cancel">ပယ်ဖျက်</string>
-
-    <!-- Camera Activity -->
     <string name="capture">ဖမ်းယူ</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK စတင်မှု မအောင်မြင်ပါ</string>
     <string name="folder_path_missing">ဖိုလ်ဒါလမ်းကြောင်းမရှိပါ!</string>
     <string name="folder_path_missing_toast">ဖိုလ်ဒါလမ်းကြောင်းမရှိပါ !!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">ဖိုင်သိမ်းရာတွင်အမှား: %s</string>
     <string name="error_saving_last_selected_file">နောက်ဆုံးရွေးချယ်သောဖိုင်သိမ်းရာတွင်အမှား</string>
     <string name="settings_saved_successfully">ဆက်တင်များအောင်မြင်စွာသိမ်းခဲ့သည်</string>
-
-    <!-- Toast Messages -->
     <string name="please_select_file_not_folder">ကျေးဇူးပြု၍ဖိုင်ကိုရွေးပါ၊ ဖိုလ်ဒါမဟုတ်။</string>
     <string name="please_select_file">ကျေးဇူးပြု၍ဖိုင်တစ်ခုရွေးပါ။</string>
     <string name="cannot_rename_folders_or_parent">ဖိုလ်ဒါများ သို့မဟုတ် ပင်မဖိုလ်ဒါကို အမည်မပြောင်းနိုင်ပါ။</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">ဖိုင်မဖန်တီးနိုင်</string>
     <string name="cannot_delete_parent_folder">ပင်မဖိုလ်ဒါကိုမဖျက်နိုင်ပါ။</string>
     <string name="cannot_share_folders">ဖိုလ်ဒါများကိုမမျှဝေနိုင်ပါ။</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">နောက်ဆုံး session ဖိုင်မတွေ့ရှိပါ။</string>
     <string name="no_session_file_saved">ပြန်လည်သတ်မှတ်မှုများထဲတွင် session ဖိုင်မသိမ်းထားပါ။</string>
     <string name="error_creating_new_session">session အသစ်ဖန်တီးရာတွင်အမှား: %s</string>
     <string name="missing_filename">ဖိုင်အမည်ပျောက်</string>
     <string name="camera_permission_required">ဤလုပ်ဆောင်ချက်အတွက် ကင်မရာခွင့်ပြုချက်လိုအပ်သည်</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj ဖန်တီးချိန် =%d မီလီစက္ကန့်</string>
     <string name="barcode_decoder_disposed">Barcode decoder ဖယ်ရှားခဲ့သည်</string>
     <string name="orientation_unlocked">%s မုဒ်အတွက် ဦးတည်ချက်ဖွင့်ထား</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker decoder ရရှိနိုင်၊ entity အရေအတွက်: %s</string>
     <string name="processing_entities">Entity view အတွက် %d entity များကိုလုပ်ဆောင်နေ</string>
     <string name="rendered_entities">Entity များကို entity view တွင်ပြသ</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">ဘားကုဒ်တန်ဖိုး</string>
     <string name="symbology">ရမ္မဏဗေဒ</string>
     <string name="unknown">မသိ</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">ဖမ်းယူသောရက်စွဲ</string>
     <string name="date">ရက်စွဲ</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">မီးတိုင်ကိုပြောင်း</string>
     <string name="toggle_capture_zone">ဖမ်းယူဧရိယာပြောင်း</string>
     <string name="edit_item">ပစ္စည်းတည်းဖြတ်</string>
     <string name="delete_item">ပစ္စည်းဖျက်</string>
-
-    <!-- Display Labels -->
     <string name="value_label">တန်ဖိုး: %s</string>
     <string name="symbology_label">ရမ္မဏဗေဒ: %s</string>
     <string name="quantity_label">အရေအတွက်: %d</string>
     <string name="date_label">ရက်စွဲ: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">ခွင့်ပြုချက်ပေးရာတွင်အောင်မြင်။</string>
     <string name="session_data_merged">Session ဒေတာများပေါင်းစပ်ခဲ့။</string>
     <string name="error_reported">အမှားအစီရင်ခံ: %s</string>
     <string name="error_reading_session_file">Session ဖိုင်ဖတ်ရာတွင်အမှား: %s</string>
     <string name="error_reading_csv_session_file">CSV session ဖိုင်ဖတ်ရာတွင်အမှား: %s</string>
     <string name="error_reading_excel_session_file">Excel session ဖိုင်ဖတ်ရာတွင်အမှား: %s</string>
-
-    <!-- Dialog Messages -->
     <string name="rename">အမည်ပြောင်း</string>
     <string name="rename_file">ဖိုင်အမည်ပြောင်း</string>
     <string name="create">ဖန်တီး</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">ဖိုလ်ဒါဖျက်</string>
     <string name="are_you_sure">သေချာပါသလား?</string>
     <string name="file_exists_already">ဖိုင်ရှိပြီးသား။</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">ဆက်တင်များ</string>
     <string name="activity_captured_barcodes">ဖမ်းယူထားသော ဘားကုဒ်များ</string>
     <string name="activity_session_data">Session ဒေတာ</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Session များစီမံခန့်ခွဲ</string>
     <string name="menu_settings">ဆက်တင်များ</string>
     <string name="menu_new_file">ဖိုင်အသစ်</string>
     <string name="menu_new_folder">ဖိုလ်ဒါအသစ်</string>
     <string name="menu_rename">အမည်ပြောင်း</string>
     <string name="menu_delete">ဖျက်</string>
-
+    <string name="advanced">Advanced</string>
+    <string name="model_input_size">Model Input Size</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="camera_resolution_title">Resolution</string>
+    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
+    <string name="inference_processor_type_title">Inference (processor) Type</string>
+    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
+    <string name="toggle_file_types">Toggle file types</string>
+    <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="resolution_small">640 x 640 (small)</string>
+    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Balanced speed and accuracy</string>
+    <string name="resolution_large">1600 x 1600 (large)</string>
+    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">General barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
+    <string name="inference_type_dsp_description">Best Choice</string>
+    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
+    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
+    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
+    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
 </resources>

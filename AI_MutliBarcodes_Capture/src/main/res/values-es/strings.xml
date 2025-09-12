@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Captura Múltiples Códigos de Barras</string>
     <string name="start_capture_button_text">Iniciar Captura</string>
     <string name="loading_status">Cargando aplicación</string>
     <string name="select_session_file">Selecciona un archivo de sesión o crea uno nuevo.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Recuperando permisos</string>
-
-    <!-- Browser Activity -->
     <string name="select">Seleccionar</string>
     <string name="share">Compartir</string>
     <string name="refresh">Actualizar</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Añadir al archivo</string>
     <string name="save">Guardar</string>
     <string name="update">Actualizar archivo</string>
     <string name="merge">Combinar cantidades</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Iniciar captura</string>
     <string name="load_last_session">Cargar última sesión</string>
     <string name="create_new_session">Crear nueva sesión</string>
     <string name="view_session_data">Ver datos de la sesión</string>
     <string name="selected_session">Sesión seleccionada</string>
     <string name="select_session_to_start">Selecciona una sesión para iniciar la captura</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Configuración</string>
     <string name="prefix">Prefijo:</string>
     <string name="prefix_hint">Prefijo_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">Idioma del sistema</string>
     <string name="validate">Validar</string>
     <string name="cancel">Cancelar</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Captura</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">La inicialización del AI Vision SDK falló</string>
     <string name="folder_path_missing">¡Falta la ruta de la carpeta!</string>
     <string name="folder_path_missing_toast">¡¡¡Falta la ruta de la carpeta!!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">Error al guardar el archivo: %s</string>
     <string name="error_saving_last_selected_file">Error al guardar el último archivo seleccionado</string>
     <string name="settings_saved_successfully">Configuraciones guardadas exitosamente</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Por favor selecciona un archivo, no una carpeta.</string>
     <string name="please_select_file">Por favor selecciona un archivo.</string>
     <string name="cannot_rename_folders_or_parent">No se pueden renombrar carpetas o la carpeta padre.</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">No se pudo crear el archivo</string>
     <string name="cannot_delete_parent_folder">No se puede eliminar la carpeta padre.</string>
     <string name="cannot_share_folders">No se pueden compartir carpetas.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Último archivo de sesión no encontrado.</string>
     <string name="no_session_file_saved">No hay archivo de sesión guardado en las preferencias.</string>
     <string name="error_creating_new_session">Error al crear nueva sesión: %s</string>
     <string name="missing_filename">Falta el nombre del archivo</string>
     <string name="camera_permission_required">Se requiere permiso de cámara para usar esta función</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Tiempo de creación del objeto Entity Tracker BarcodeDecoder() =%d milisegundos</string>
     <string name="barcode_decoder_disposed">El decodificador de códigos de barras ha sido eliminado</string>
     <string name="orientation_unlocked">Orientación desbloqueada para el modo %s</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">Decodificador EntityBarcodeTracker disponible, número de entidades: %s</string>
     <string name="processing_entities">Procesando %d entidades para la vista de entidad</string>
     <string name="rendered_entities">Entidades renderizadas en la vista de entidad</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Simbologías</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Valor del código de barras</string>
     <string name="symbology">Simbología</string>
     <string name="unknown">DESCONOCIDO</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">Fecha de captura</string>
     <string name="date">Fecha</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Alternar linterna</string>
     <string name="toggle_capture_zone">Alternar zona de captura</string>
     <string name="edit_item">Editar elemento</string>
     <string name="delete_item">Eliminar elemento</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Valor: %s</string>
     <string name="symbology_label">Simbología: %s</string>
     <string name="quantity_label">Cantidad: %d</string>
     <string name="date_label">Fecha: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Éxito al otorgar permisos.</string>
     <string name="session_data_merged">Datos de sesión combinados.</string>
     <string name="error_reported">Error reportado: %s</string>
     <string name="error_reading_session_file">Error al leer el archivo de sesión: %s</string>
     <string name="error_reading_csv_session_file">Error al leer el archivo CSV de sesión: %s</string>
     <string name="error_reading_excel_session_file">Error al leer el archivo Excel de sesión: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Renombrar</string>
     <string name="rename_file">Renombrar un archivo</string>
     <string name="create">Crear</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">Eliminar carpeta</string>
     <string name="are_you_sure">¿Estás seguro?</string>
     <string name="file_exists_already">El archivo ya existe.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Configuraciones</string>
     <string name="activity_captured_barcodes">Códigos de barras capturados</string>
     <string name="activity_session_data">Datos de sesión</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Administrar sesiones</string>
     <string name="menu_settings">Configuraciones</string>
     <string name="menu_new_file">Nuevo archivo</string>
     <string name="menu_new_folder">Nueva carpeta</string>
     <string name="menu_rename">Renombrar</string>
     <string name="menu_delete">Eliminar</string>
-
+    <string name="advanced">Avanzado</string>
+    <string name="model_input_size">Tamaño de entrada del modelo</string>
+    <string name="model_input_size_description">El tamaño de entrada del modelo es la resolución a la que se redimensiona tu imagen antes del análisis AI. Los tamaños más pequeños son más rápidos y usan menos memoria, mientras que los tamaños más grandes pueden ayudar a detectar códigos de barras más pequeños o más distantes—pero también usan más potencia de procesamiento y memoria. Elige el tamaño de entrada para equilibrar velocidad y precisión según tus necesidades. Nota: El tamaño de entrada del modelo se puede personalizar en incrementos de 32 usando el SDK. Las opciones a continuación representan algunos tamaños genéricos.</string>
+    <string name="camera_resolution_title">Resolución</string>
+    <string name="camera_resolution_description">La resolución de la cámara es el número de píxeles en tu foto (ej., 1MP = 1280x720). Una resolución más alta captura más detalles para texto pequeño o distante pero usa más energía y memoria. Los beneficios son limitados si el tamaño de entrada del modelo es bajo.</string>
+    <string name="inference_processor_type_title">Tipo de procesador de inferencia</string>
+    <string name="inference_processor_type_description">Esta configuración elige qué chip en tu dispositivo ejecuta tareas AI, afectando velocidad y vida de batería. No todos los dispositivos tienen un DSP.</string>
+    <string name="toggle_symbologies">Alternar simbologías</string>
+    <string name="toggle_file_types">Alternar tipos de archivo</string>
+    <string name="toggle_advanced">Alternar configuraciones avanzadas</string>
+    <string name="resolution_small">640 x 640 (pequeño)</string>
+    <string name="resolution_small_description">Más rápido; mejor para códigos de barras grandes o cercanos</string>
+    <string name="resolution_medium">1280 x 1280 (medio)</string>
+    <string name="resolution_medium_description">Velocidad y precisión equilibradas</string>
+    <string name="resolution_large">1600 x 1600 (grande)</string>
+    <string name="resolution_large_description">Más lento; usar para códigos de barras pequeños, dañados o distantes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Códigos de barras grandes o cercanos</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">Códigos de barras generales</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Códigos de barras densos, débiles o pequeños</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Códigos de barras minúsculos, distantes o de bajo contraste</string>
+    <string name="inference_type_dsp">DSP (Procesador de señal digital)</string>
+    <string name="inference_type_dsp_description">Mejor opción</string>
+    <string name="inference_type_gpu">GPU (Unidad de procesamiento gráfico)</string>
+    <string name="inference_type_gpu_description">Para uso de prueba si DSP no está disponible</string>
+    <string name="inference_type_cpu">CPU (Unidad de procesamiento central)</string>
+    <string name="inference_type_cpu_description">Para uso de prueba si DSP y GPU no están disponibles</string>
+    <string name="managed_configuration_updated">Configuración actualizada por administrador</string>
 </resources>

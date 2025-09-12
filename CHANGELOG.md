@@ -2,6 +2,28 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+## Version 1.21
+**Advanced AI Configuration System with Dynamic Settings Management**
+
+Comprehensive AI and camera configuration capabilities with enterprise-grade managed configuration support:
+
+• **Dynamic AI Configuration**: Advanced settings for AI model input size with three performance-optimized presets (640x640 Small, 1280x1280 Medium, 1600x1600 Large) including speed/accuracy guidance  
+• **Camera Resolution Control**: Four resolution options (1MP, 2MP, 4MP, 8MP) with specific use case recommendations for different barcode types and distances  
+• **Inference Processor Selection**: DSP (Digital Signal Processor), GPU (Graphics Processing Unit), and CPU (Central Processing Unit) options with performance characteristics  
+• **Enterprise Managed Configuration**: Full EMM/MDM support with nested "advanced" settings bundle containing all three new configuration options  
+• **Real-time Configuration Updates**: Settings changes automatically restart CameraXLivePreviewActivity and reload BarcodeTracker configuration without full app restart  
+• **Performance-Aware UI**: Smart descriptions guide users to optimal settings based on scanning requirements (large/close barcodes vs small/distant barcodes)  
+• **Constants-Based Architecture**: All hardcoded settings moved to Constants class with consistent preference key naming patterns  
+• **Automatic Translation System**: Enhanced translation workflow with comprehensive verification and 72 language support including high-quality translations for major languages  
+
+### Technical Enhancements:
+• Removed hardcoded `InferencerOptions.DSP` and `640x640` dimensions from BarcodeTracker  
+• Dynamic shared preferences loading with enum-based configuration (EInferenceType.toInferencerOptions(), EModelInputSize.getWidth/getHeight(), ECameraResolution.getWidth/getHeight())  
+• ManagedConfigurationReceiver enhanced with nested bundle support and activity restart mechanism  
+• Universal translation script with intelligent Android project detection and detailed completion reporting
+
+The advanced configuration system provides granular control over AI performance and camera capabilities, enabling optimal barcode detection for different use cases while supporting enterprise deployment scenarios through comprehensive managed configuration integration.
+
 ## Version 1.20
 **Comprehensive language selection system with 71+ language support**
 

@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Захват Множественных Штрихкодов</string>
     <string name="start_capture_button_text">Начать захват</string>
     <string name="loading_status">Загружается приложение</string>
     <string name="select_session_file">Выберите файл сессии или создайте новый.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Получение разрешений</string>
-
-    <!-- Browser Activity -->
     <string name="select">Выбрать</string>
     <string name="share">Поделиться</string>
     <string name="refresh">Обновить</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Добавить в файл</string>
     <string name="save">Сохранить</string>
     <string name="update">Обновить файл</string>
     <string name="merge">Объединить количества</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Начать захват</string>
     <string name="load_last_session">Загрузить последнюю сессию</string>
     <string name="create_new_session">Создать новую сессию</string>
     <string name="view_session_data">Просмотреть данные сессии</string>
     <string name="selected_session">Выбранная сессия</string>
     <string name="select_session_to_start">Выберите сессию для начала захвата</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Настройка</string>
     <string name="prefix">Префикс:</string>
     <string name="prefix_hint">Префикс_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">Системный язык</string>
     <string name="validate">Проверить</string>
     <string name="cancel">Отменить</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Захват</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Инициализация AI Vision SDK не удалась</string>
     <string name="folder_path_missing">Отсутствует путь к папке!</string>
     <string name="folder_path_missing_toast">Отсутствует путь к папке !!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">Ошибка при сохранении файла: %s</string>
     <string name="error_saving_last_selected_file">Ошибка при сохранении последнего выбранного файла</string>
     <string name="settings_saved_successfully">Настройки успешно сохранены</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Пожалуйста, выберите файл, а не папку.</string>
     <string name="please_select_file">Пожалуйста, выберите файл.</string>
     <string name="cannot_rename_folders_or_parent">Нельзя переименовывать папки или родительскую папку.</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">Не удалось создать файл</string>
     <string name="cannot_delete_parent_folder">Нельзя удалить родительскую папку.</string>
     <string name="cannot_share_folders">Нельзя поделиться папками.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Последний файл сессии не найден.</string>
     <string name="no_session_file_saved">Нет файла сессии, сохраненного в настройках.</string>
     <string name="error_creating_new_session">Ошибка при создании новой сессии: %s</string>
     <string name="missing_filename">Отсутствует имя файла</string>
     <string name="camera_permission_required">Для использования этой функции требуется разрешение камеры</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Время создания объекта Entity Tracker BarcodeDecoder() =%d миллисекунд</string>
     <string name="barcode_decoder_disposed">Декодер штрихкодов удален</string>
     <string name="orientation_unlocked">Ориентация разблокирована для режима %s</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">Декодер EntityBarcodeTracker доступен, количество сущностей: %s</string>
     <string name="processing_entities">Обработка %d сущностей для представления сущности</string>
     <string name="rendered_entities">Сущности отрендерены в представлении сущности</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Символогии</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Значение штрихкода</string>
     <string name="symbology">Симвология</string>
     <string name="unknown">НЕИЗВЕСТНО</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">Дата захвата</string>
     <string name="date">Дата</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Переключить фонарик</string>
     <string name="toggle_capture_zone">Переключить зону захвата</string>
     <string name="edit_item">Редактировать элемент</string>
     <string name="delete_item">Удалить элемент</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Значение: %s</string>
     <string name="symbology_label">Симвология: %s</string>
     <string name="quantity_label">Количество: %d</string>
     <string name="date_label">Дата: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Разрешения успешно предоставлены.</string>
     <string name="session_data_merged">Данные сессии объединены.</string>
     <string name="error_reported">Сообщение об ошибке: %s</string>
     <string name="error_reading_session_file">Ошибка при чтении файла сессии: %s</string>
     <string name="error_reading_csv_session_file">Ошибка при чтении CSV файла сессии: %s</string>
     <string name="error_reading_excel_session_file">Ошибка при чтении Excel файла сессии: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Переименовать</string>
     <string name="rename_file">Переименовать файл</string>
     <string name="create">Создать</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">Удалить папку</string>
     <string name="are_you_sure">Вы уверены?</string>
     <string name="file_exists_already">Файл уже существует.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Настройки</string>
     <string name="activity_captured_barcodes">Захваченные штрихкоды</string>
     <string name="activity_session_data">Данные сессии</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Управление сессиями</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_new_file">Новый файл</string>
     <string name="menu_new_folder">Новая папка</string>
     <string name="menu_rename">Переименовать</string>
     <string name="menu_delete">Удалить</string>
-
+    <string name="advanced">Advanced</string>
+    <string name="model_input_size">Model Input Size</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="camera_resolution_title">Resolution</string>
+    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
+    <string name="inference_processor_type_title">Inference (processor) Type</string>
+    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
+    <string name="toggle_file_types">Toggle file types</string>
+    <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="resolution_small">640 x 640 (small)</string>
+    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Balanced speed and accuracy</string>
+    <string name="resolution_large">1600 x 1600 (large)</string>
+    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">General barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
+    <string name="inference_type_dsp_description">Best Choice</string>
+    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
+    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
+    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
+    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
 </resources>

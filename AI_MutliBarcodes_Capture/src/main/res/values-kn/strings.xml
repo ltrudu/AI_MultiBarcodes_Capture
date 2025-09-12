@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">ಕ್ಯಾಪ್ಚರ್ ಪ್ರಾರಂಭಿಸಿ</string>
     <string name="loading_status">ಅಪ್ಲಿಕೇಶನ್ ಲೋಡ್ ಆಗುತ್ತಿದೆ</string>
     <string name="select_session_file">ಸೆಷನ್ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ಹೊಸದನ್ನು ರಚಿಸಿ.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">ಅನುಮತಿಗಳನ್ನು ಪಡೆಯುತ್ತಿರುವೆ</string>
-
-    <!-- Browser Activity -->
     <string name="select">ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="share">ಹಂಚಿಕೊಳ್ಳಿ</string>
     <string name="refresh">ರಿಫ್ರೆಶ್ ಮಾಡಿ</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">ಹೌದು</string>
     <string name="no">ಇಲ್ಲ</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">ಫೈಲ್‌ಗೆ ಸೇರಿಸಿ</string>
     <string name="save">ಉಳಿಸಿ</string>
     <string name="update">ಫೈಲ್ ನವೀಕರಿಸಿ</string>
     <string name="merge">ಪ್ರಮಾಣಗಳನ್ನು ವಿಲೀನ ಮಾಡಿ</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">ಕ್ಯಾಪ್ಚರ್ ಪ್ರಾರಂಭಿಸಿ</string>
     <string name="load_last_session">ಕೊನೆಯ ಸೆಷನ್ ಲೋಡ್ ಮಾಡಿ</string>
     <string name="create_new_session">ಹೊಸ ಸೆಷನ್ ರಚಿಸಿ</string>
     <string name="view_session_data">ಸೆಷನ್ ಡೇಟಾ ವೀಕ್ಷಿಸಿ</string>
     <string name="selected_session">ಆಯ್ಕೆಮಾಡಿದ ಸೆಷನ್</string>
     <string name="select_session_to_start">ಕ್ಯಾಪ್ಚರ್ ಪ್ರಾರಂಭಿಸಲು ಸೆಷನ್ ಆಯ್ಕೆಮಾಡಿ</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">ಸೆಟಪ್</string>
     <string name="prefix">ಪೂರ್ವಪ್ರತ್ಯಯ:</string>
     <string name="prefix_hint">ಪೂರ್ವಪ್ರತ್ಯಯ_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">ಸಿಸ್ಟಂ ಭಾಷೆ</string>
     <string name="validate">ಮಾನ್ಯಗೊಳಿಸಿ</string>
     <string name="cancel">ರದ್ದುಗೊಳಿಸಿ</string>
-
-    <!-- Camera Activity -->
     <string name="capture">ಕ್ಯಾಪ್ಚರ್</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK ಆರಂಭೀಕರಣ ವಿಫಲವಾಗಿದೆ</string>
     <string name="folder_path_missing">ಫೋಲ್ಡರ್ ಪಥ ಕಾಣೆಯಾಗಿದೆ!</string>
     <string name="folder_path_missing_toast">ಫೋಲ್ಡರ್ ಪಥ ಕಾಣೆಯಾಗಿದೆ !!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">ಫೈಲ್ ಉಳಿಸುವಲ್ಲಿ ದೋಷ: %s</string>
     <string name="error_saving_last_selected_file">ಕೊನೆಯದಾಗಿ ಆಯ್ಕೆಮಾಡಿದ ಫೈಲ್ ಉಳಿಸುವಲ್ಲಿ ದೋಷ</string>
     <string name="settings_saved_successfully">ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲಾಗಿದೆ</string>
-
-    <!-- Toast Messages -->
     <string name="please_select_file_not_folder">ದಯವಿಟ್ಟು ಫೋಲ್ಡರ್ ಅಲ್ಲ, ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ.</string>
     <string name="please_select_file">ದಯವಿಟ್ಟು ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ.</string>
     <string name="cannot_rename_folders_or_parent">ಫೋಲ್ಡರ್‌ಗಳು ಅಥವಾ ಪೋಷಕ ಫೋಲ್ಡರ್‌ನ ಹೆಸರು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">ಫೈಲ್ ರಚಿಸುವಲ್ಲಿ ವಿಫಲವಾಗಿದೆ</string>
     <string name="cannot_delete_parent_folder">ಪೋಷಕ ಫೋಲ್ಡರ್ ಅಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
     <string name="cannot_share_folders">ಫೋಲ್ಡರ್‌ಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">ಕೊನೆಯ ಸೆಷನ್ ಫೈಲ್ ಕಾಣಿಸಲಿಲ್ಲ.</string>
     <string name="no_session_file_saved">ಆದ್ಯತೆಗಳಲ್ಲಿ ಯಾವುದೇ ಸೆಷನ್ ಫೈಲ್ ಉಳಿಸಲಾಗಿಲ್ಲ.</string>
     <string name="error_creating_new_session">ಹೊಸ ಸೆಷನ್ ರಚಿಸುವಲ್ಲಿ ದೋಷ: %s</string>
     <string name="missing_filename">ಫೈಲ್‌ನೇಮ್ ಕಾಣೆಯಾಗಿದೆ</string>
     <string name="camera_permission_required">ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಬಳಸಲು ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅವಶ್ಯಕ</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj ರಚನೆ ಸಮಯ =%d ಮಿಲ್ಲಿ ಸೆಕೆಂಡ್</string>
     <string name="barcode_decoder_disposed">ಬಾರ್‌ಕೋಡ್ ಡಿಕೋಡರ್ ವಿಲೇವಾರಿ ಮಾಡಲಾಗಿದೆ</string>
     <string name="orientation_unlocked">%s ಮೋಡ್‌ಗಾಗಿ ದೃಷ್ಟಿಕೋನ ಅನ್‌ಲಾಕ್ ಮಾಡಲಾಗಿದೆ</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker ಡಿಕೋಡರ್ ಲಭ್ಯವಿದೆ, ಘಟಕಗಳ ಸಂಖ್ಯೆ: %s</string>
     <string name="processing_entities">ಘಟಕ ವೀಕ್ಷಣೆಗಾಗಿ %d ಘಟಕಗಳನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸುತ್ತಿದೆ</string>
     <string name="rendered_entities">ಘಟಕ ವೀಕ್ಷಣೆಯಲ್ಲಿ ಘಟಕಗಳನ್ನು ರೆಂಡರ್ ಮಾಡಲಾಗಿದೆ</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">ಸಿಂಬಾಲಜಿಗಳು</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">ಬಾರ್‌ಕೋಡ್ ಮೌಲ್ಯ</string>
     <string name="symbology">ಸಿಂಬಾಲಜಿ</string>
     <string name="unknown">UNKNOWN</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">ಕ್ಯಾಪ್ಚರ್ ದಿನಾಂಕ</string>
     <string name="date">ದಿನಾಂಕ</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">ಫ್ಲ್ಯಾಷ್‌ಲೈಟ್ ಟಾಗ್ಲ್ ಮಾಡಿ</string>
     <string name="toggle_capture_zone">ಕ್ಯಾಪ್ಚರ್ ಜೋನ್ ಟಾಗ್ಲ್ ಮಾಡಿ</string>
     <string name="edit_item">ಐಟಂ ಸಂಪಾದಿಸಿ</string>
     <string name="delete_item">ಐಟಂ ಅಳಿಸಿ</string>
-
-    <!-- Display Labels -->
     <string name="value_label">ಮೌಲ್ಯ: %s</string>
     <string name="symbology_label">ಸಿಂಬಾಲಜಿ: %s</string>
     <string name="quantity_label">ಪ್ರಮಾಣ: %d</string>
     <string name="date_label">ದಿನಾಂಕ: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">ಅನುಮತಿಗಳನ್ನು ನೀಡುವಲ್ಲಿ ಯಶಸ್ಸು.</string>
     <string name="session_data_merged">ಸೆಷನ್ ಡೇಟಾ ವಿಲೀನಗೊಂಡಿದೆ.</string>
     <string name="error_reported">ದೋಷ ವರದಿಮಾಡಲಾಗಿದೆ: %s</string>
     <string name="error_reading_session_file">ಸೆಷನ್ ಫೈಲ್ ಓದುವಲ್ಲಿ ದೋಷ: %s</string>
     <string name="error_reading_csv_session_file">CSV ಸೆಷನ್ ಫೈಲ್ ಓದುವಲ್ಲಿ ದೋಷ: %s</string>
     <string name="error_reading_excel_session_file">Excel ಸೆಷನ್ ಫೈಲ್ ಓದುವಲ್ಲಿ ದೋಷ: %s</string>
-
-    <!-- Dialog Messages -->
     <string name="rename">ಹೆಸರು ಬದಲಾಯಿಸಿ</string>
     <string name="rename_file">ಫೈಲ್ ಹೆಸರು ಬದಲಾಯಿಸಿ</string>
     <string name="create">ರಚಿಸಿ</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">ಫೋಲ್ಡರ್ ಅಳಿಸಿ</string>
     <string name="are_you_sure">ನೀವು ಖಚಿತವಾಗಿದ್ದೀರಾ?</string>
     <string name="file_exists_already">ಫೈಲ್ ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
     <string name="activity_captured_barcodes">ಕ್ಯಾಪ್ಚರ್ ಮಾಡಿದ ಬಾರ್‌ಕೋಡ್‌ಗಳು</string>
     <string name="activity_session_data">ಸೆಷನ್ ಡೇಟಾ</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">ಸೆಷನ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
     <string name="menu_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
     <string name="menu_new_file">ಹೊಸ ಫೈಲ್</string>
     <string name="menu_new_folder">ಹೊಸ ಫೋಲ್ಡರ್</string>
     <string name="menu_rename">ಹೆಸರು ಬದಲಾಯಿಸಿ</string>
     <string name="menu_delete">ಅಳಿಸಿ</string>
-
+    <string name="advanced">Advanced</string>
+    <string name="model_input_size">Model Input Size</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="camera_resolution_title">Resolution</string>
+    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
+    <string name="inference_processor_type_title">Inference (processor) Type</string>
+    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
+    <string name="toggle_file_types">Toggle file types</string>
+    <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="resolution_small">640 x 640 (small)</string>
+    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Balanced speed and accuracy</string>
+    <string name="resolution_large">1600 x 1600 (large)</string>
+    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">General barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
+    <string name="inference_type_dsp_description">Best Choice</string>
+    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
+    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
+    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
+    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
 </resources>

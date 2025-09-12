@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Çoklu Barkod Yakalama</string>
     <string name="start_capture_button_text">Yakalamayı Başlat</string>
     <string name="loading_status">Uygulama yükleniyor</string>
     <string name="select_session_file">Bir oturum dosyası seçin veya yeni bir tane oluşturun.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">İzinler alınıyor</string>
-
-    <!-- Browser Activity -->
     <string name="select">Seç</string>
     <string name="share">Paylaş</string>
     <string name="refresh">Yenile</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Dosyaya Ekle</string>
     <string name="save">Kaydet</string>
     <string name="update">Dosyayı Güncelle</string>
     <string name="merge">Miktarları Birleştir</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Yakalamayı Başlat</string>
     <string name="load_last_session">Son Oturumu Yükle</string>
     <string name="create_new_session">Yeni Oturum Oluştur</string>
     <string name="view_session_data">Oturum Verilerini Görüntüle</string>
     <string name="selected_session">Seçilen Oturum</string>
     <string name="select_session_to_start">Yakalamayı başlatmak için bir oturum seçin</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Kurulum</string>
     <string name="prefix">Ön ek:</string>
     <string name="prefix_hint">Ön_ek_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">Sistem Dili</string>
     <string name="validate">Doğrula</string>
     <string name="cancel">İptal</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Yakala</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK başlatılamadı</string>
     <string name="folder_path_missing">Klasör yolu eksik!</string>
     <string name="folder_path_missing_toast">Klasör yolu eksik !!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">Dosya kaydetme hatası: %s</string>
     <string name="error_saving_last_selected_file">Son seçilen dosyayı kaydetme hatası</string>
     <string name="settings_saved_successfully">Ayarlar başarıyla kaydedildi</string>
-
-    <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Lütfen bir klasör değil, bir dosya seçin.</string>
     <string name="please_select_file">Lütfen bir dosya seçin.</string>
     <string name="cannot_rename_folders_or_parent">Klasörler veya ana klasör yeniden adlandırılamaz.</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">Dosya oluşturulamadı</string>
     <string name="cannot_delete_parent_folder">Ana klasör silinemez.</string>
     <string name="cannot_share_folders">Klasörler paylaşılamaz.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Son oturum dosyası bulunamadı.</string>
     <string name="no_session_file_saved">Tercihlerde kaydedilmiş oturum dosyası yok.</string>
     <string name="error_creating_new_session">Yeni oturum oluşturma hatası: %s</string>
     <string name="missing_filename">Dosya adı eksik</string>
     <string name="camera_permission_required">Bu özelliği kullanmak için kamera izni gereklidir</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() nesnesi oluşturma süresi =%d milisaniye</string>
     <string name="barcode_decoder_disposed">Barkod çözücü silindi</string>
     <string name="orientation_unlocked">%s modu için yönlendirme kilidi açıldı</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker çözücü mevcut, varlık sayısı: %s</string>
     <string name="processing_entities">Varlık görünümü için %d varlık işleniyor</string>
     <string name="rendered_entities">Varlık görünümünde varlıklar oluşturuldu</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Sembolojiler</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Barkod Değeri</string>
     <string name="symbology">Semboloji</string>
     <string name="unknown">BİLİNMEYEN</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">Yakalama Tarihi</string>
     <string name="date">Tarih</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">El fenerini aç/kapat</string>
     <string name="toggle_capture_zone">Yakalama alanını aç/kapat</string>
     <string name="edit_item">Öğeyi düzenle</string>
     <string name="delete_item">Öğeyi sil</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Değer: %s</string>
     <string name="symbology_label">Semboloji: %s</string>
     <string name="quantity_label">Miktar: %d</string>
     <string name="date_label">Tarih: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">İzinler başarıyla verildi.</string>
     <string name="session_data_merged">Oturum verileri birleştirildi.</string>
     <string name="error_reported">Hata bildirildi: %s</string>
     <string name="error_reading_session_file">Oturum dosyası okuma hatası: %s</string>
     <string name="error_reading_csv_session_file">CSV oturum dosyası okuma hatası: %s</string>
     <string name="error_reading_excel_session_file">Excel oturum dosyası okuma hatası: %s</string>
-
-    <!-- Dialog Messages (French -> English) -->
     <string name="rename">Yeniden Adlandır</string>
     <string name="rename_file">Bir dosyayı yeniden adlandır</string>
     <string name="create">Oluştur</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">Klasörü Sil</string>
     <string name="are_you_sure">Emin misiniz?</string>
     <string name="file_exists_already">Dosya zaten var.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Ayarlar</string>
     <string name="activity_captured_barcodes">Yakalanan Barkodlar</string>
     <string name="activity_session_data">Oturum Verileri</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Oturumları Yönet</string>
     <string name="menu_settings">Ayarlar</string>
     <string name="menu_new_file">Yeni Dosya</string>
     <string name="menu_new_folder">Yeni Klasör</string>
     <string name="menu_rename">Yeniden Adlandır</string>
     <string name="menu_delete">Sil</string>
-
+    <string name="advanced">Advanced</string>
+    <string name="model_input_size">Model Input Size</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="camera_resolution_title">Resolution</string>
+    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
+    <string name="inference_processor_type_title">Inference (processor) Type</string>
+    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
+    <string name="toggle_file_types">Toggle file types</string>
+    <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="resolution_small">640 x 640 (small)</string>
+    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Balanced speed and accuracy</string>
+    <string name="resolution_large">1600 x 1600 (large)</string>
+    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">General barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
+    <string name="inference_type_dsp_description">Best Choice</string>
+    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
+    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
+    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
+    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
 </resources>

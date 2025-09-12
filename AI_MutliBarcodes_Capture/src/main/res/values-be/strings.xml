@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Множны Штрых-код Захоп</string>
     <string name="start_capture_button_text">Пачаць Захоп</string>
     <string name="loading_status">Загрузка Прыкладанне</string>
     <string name="select_session_file">Выберыце файл сеансу ці стварыце новы.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Атрыманне Дазволаў</string>
-
-    <!-- Browser Activity -->
     <string name="select">Выбраць</string>
     <string name="share">Падзяліцца</string>
     <string name="refresh">Абнавіць</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Так</string>
     <string name="no">Не</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Дадаць у Файл</string>
     <string name="save">Захаваць</string>
     <string name="update">Абнавіць Файл</string>
-    <string name="merge">Аб\'яднаць Колькасці</string>
-
-    <!-- Entry Choice Activity -->
+    <string name="merge">Аб\&apos;яднаць Колькасці</string>
     <string name="start_capture">Пачаць Захоп</string>
     <string name="load_last_session">Загрузіць Апошні Сеанс</string>
     <string name="create_new_session">Стварыць Новы Сеанс</string>
     <string name="view_session_data">Паглядзець Даныя Сеансу</string>
     <string name="selected_session">Выбраны Сеанс</string>
     <string name="select_session_to_start">Выберыце Сеанс для Пачатку Захопу</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Наладка</string>
     <string name="prefix">Прэфікс:</string>
     <string name="prefix_hint">Прэфікс_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">Сістэмная мова</string>
     <string name="validate">Праверыць</string>
     <string name="cancel">Скасаваць</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Захапіць</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">Ініцыялізацыя AI Vision SDK не ўдалася</string>
     <string name="folder_path_missing">Шлях да папкі адсутнічае!</string>
     <string name="folder_path_missing_toast">Шлях да папкі адсутнічае !!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">Памылка захавання файла: %s</string>
     <string name="error_saving_last_selected_file">Памылка захавання апошняга выбранага файла</string>
     <string name="settings_saved_successfully">Налады паспяхова захаваны</string>
-
-    <!-- Toast Messages -->
     <string name="please_select_file_not_folder">Калі ласка, выберыце файл, а не папку.</string>
     <string name="please_select_file">Калі ласка, выберыце файл.</string>
     <string name="cannot_rename_folders_or_parent">Нельга пераназваць папкі ці бацькоўскую папку.</string>
@@ -75,16 +60,12 @@
     <string name="failed_to_create_file">Не ўдалося стварыць файл</string>
     <string name="cannot_delete_parent_folder">Нельга выдаліць бацькоўскую папку.</string>
     <string name="cannot_share_folders">Нельга падзяляцца папкамі.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Файл апошняга сеансу не знойдзены.</string>
     <string name="no_session_file_saved">Ніякі файл сеансу не захаваны ў наладах.</string>
     <string name="error_creating_new_session">Памылка стварэння новага сеансу: %s</string>
     <string name="missing_filename">Адсутнічае імя файла</string>
     <string name="camera_permission_required">Для выкарыстання гэтай функцыі патрэбен дазвол камеры</string>
-
-    <!-- Debug Messages -->
-    <string name="entity_tracker_creation_time">Час стварэння аб\'екта Entity Tracker BarcodeDecoder() =%d міллі сек</string>
+    <string name="entity_tracker_creation_time">Час стварэння аб\&apos;екта Entity Tracker BarcodeDecoder() =%d міллі сек</string>
     <string name="barcode_decoder_disposed">Дэкодэр штрых-кода ўтылізаваны</string>
     <string name="orientation_unlocked">Арыентацыя разблакавана для рэжыму %s</string>
     <string name="applied_viewfinder_resize_immediately">Спецыфікацыі змены памеру відошукальніка ўжытыя неадкладна</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">Дэкодэр EntityBarcodeTracker даступны, колькасць сутнасцей: %s</string>
     <string name="processing_entities">Апрацоўка %d сутнасцей для прагляду сутнасці</string>
     <string name="rendered_entities">Сутнасці адлюстраваны на праглядзе сутнасці</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Значэнне Штрых-кода</string>
     <string name="symbology">Сімвалагія</string>
     <string name="unknown">НЕВЯДОМЫ</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">Дата Захопу</string>
     <string name="date">Дата</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Пераключыць фанарык</string>
     <string name="toggle_capture_zone">Пераключыць зону захопу</string>
     <string name="edit_item">Рэдагаваць элемент</string>
     <string name="delete_item">Выдаліць элемент</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Значэнне: %s</string>
     <string name="symbology_label">Сімвалагія: %s</string>
     <string name="quantity_label">Колькасць: %d</string>
     <string name="date_label">Дата: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Паспех у Наданні Дазволаў.</string>
-    <string name="session_data_merged">Даныя сеансу аб\'яднаны.</string>
+    <string name="session_data_merged">Даныя сеансу аб\&apos;яднаны.</string>
     <string name="error_reported">Памылка паведамлена: %s</string>
     <string name="error_reading_session_file">Памылка чытання файла сеансу: %s</string>
     <string name="error_reading_csv_session_file">Памылка чытання CSV файла сеансу: %s</string>
     <string name="error_reading_excel_session_file">Памылка чытання Excel файла сеансу: %s</string>
-
-    <!-- Dialog Messages -->
     <string name="rename">Пераназваць</string>
     <string name="rename_file">Пераназваць файл</string>
     <string name="create">Стварыць</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">Выдаліць Папку</string>
     <string name="are_you_sure">Вы ўпэўненыя?</string>
     <string name="file_exists_already">Файл ужо існуе.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Налады</string>
     <string name="activity_captured_barcodes">Захопленыя Штрых-коды</string>
     <string name="activity_session_data">Даныя Сеансу</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Кіраваць Сеансамі</string>
     <string name="menu_settings">Налады</string>
     <string name="menu_new_file">Новы Файл</string>
     <string name="menu_new_folder">Новая Папка</string>
     <string name="menu_rename">Пераназваць</string>
     <string name="menu_delete">Выдаліць</string>
-
+    <string name="advanced">Advanced</string>
+    <string name="model_input_size">Model Input Size</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="camera_resolution_title">Resolution</string>
+    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
+    <string name="inference_processor_type_title">Inference (processor) Type</string>
+    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
+    <string name="toggle_file_types">Toggle file types</string>
+    <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="resolution_small">640 x 640 (small)</string>
+    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Balanced speed and accuracy</string>
+    <string name="resolution_large">1600 x 1600 (large)</string>
+    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">General barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
+    <string name="inference_type_dsp_description">Best Choice</string>
+    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
+    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
+    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
+    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
 </resources>

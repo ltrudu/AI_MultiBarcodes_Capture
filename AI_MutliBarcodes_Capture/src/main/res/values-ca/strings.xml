@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Codis de Barres Captura</string>
     <string name="start_capture_button_text">Iniciar Captura</string>
     <string name="loading_status">Carregant Aplicació</string>
     <string name="select_session_file">Seleccioneu un fitxer de sessió o creeu-ne un de nou.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Obtenint Permisos</string>
-
-    <!-- Browser Activity -->
     <string name="select">Selecciona</string>
     <string name="share">Comparteix</string>
     <string name="refresh">Actualitza</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Afegir al Fitxer</string>
     <string name="save">Desar</string>
     <string name="update">Actualitzar Fitxer</string>
     <string name="merge">Fusionar Quantitats</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Iniciar Captura</string>
     <string name="load_last_session">Carregar Última Sessió</string>
     <string name="create_new_session">Crear Nova Sessió</string>
     <string name="view_session_data">Veure Dades de Sessió</string>
     <string name="selected_session">Sessió Seleccionada</string>
     <string name="select_session_to_start">Seleccioneu una Sessió per Iniciar la Captura</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Configuració</string>
     <string name="prefix">Prefix:</string>
     <string name="prefix_hint">Prefix_</string>
@@ -46,25 +37,19 @@
     <string name="system_language">Idioma del sistema</string>
     <string name="validate">Validar</string>
     <string name="cancel">Cancel·lar</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Capturar</string>
-
-    <!-- Error Messages -->
-    <string name="ai_vision_sdk_init_failed">Ha fallat la inicialització d\'AI Vision SDK</string>
+    <string name="ai_vision_sdk_init_failed">Ha fallat la inicialització d\&apos;AI Vision SDK</string>
     <string name="folder_path_missing">Falta la ruta de la carpeta!</string>
     <string name="folder_path_missing_toast">Falta la ruta de la carpeta !!!</string>
-    <string name="error_could_not_create_file">Error, no s\'ha pogut crear el fitxer: %s</string>
-    <string name="error_could_not_open_file">Error, no s\'ha pogut obrir el fitxer: %s</string>
+    <string name="error_could_not_create_file">Error, no s\&apos;ha pogut crear el fitxer: %s</string>
+    <string name="error_could_not_open_file">Error, no s\&apos;ha pogut obrir el fitxer: %s</string>
     <string name="error_file_does_not_exist">Error, el fitxer no existeix: %s</string>
     <string name="error_file_is_empty">Error, el fitxer està buit: %s</string>
-    <string name="error_loading_data">Error, no s\'han pogut carregar les dades al fitxer: %s</string>
+    <string name="error_loading_data">Error, no s\&apos;han pogut carregar les dades al fitxer: %s</string>
     <string name="file_saved_at">Fitxer desat a: %s</string>
     <string name="error_saving_file">Error en desar el fitxer: %s</string>
-    <string name="error_saving_last_selected_file">Error en desar l\'últim fitxer seleccionat</string>
+    <string name="error_saving_last_selected_file">Error en desar l\&apos;últim fitxer seleccionat</string>
     <string name="settings_saved_successfully">Configuració desada amb èxit</string>
-
-    <!-- Toast Messages -->
     <string name="please_select_file_not_folder">Si us plau, seleccioneu un fitxer, no una carpeta.</string>
     <string name="please_select_file">Si us plau, seleccioneu un fitxer.</string>
     <string name="cannot_rename_folders_or_parent">No es poden reanomenar carpetes o la carpeta pare.</string>
@@ -75,28 +60,22 @@
     <string name="failed_to_create_file">Ha fallat la creació del fitxer</string>
     <string name="cannot_delete_parent_folder">No es pot eliminar la carpeta pare.</string>
     <string name="cannot_share_folders">No es poden compartir carpetes.</string>
-
-    <!-- Session Messages -->
-    <string name="last_session_file_not_found">No s\'ha trobat el fitxer de l\'última sessió.</string>
+    <string name="last_session_file_not_found">No s\&apos;ha trobat el fitxer de l\&apos;última sessió.</string>
     <string name="no_session_file_saved">No hi ha cap fitxer de sessió desat a les preferències.</string>
     <string name="error_creating_new_session">Error en crear nova sessió: %s</string>
     <string name="missing_filename">Falta el nom del fitxer</string>
     <string name="camera_permission_required">Es requereix permís de càmera per utilitzar aquesta funció</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() temps de creació obj =%d mil·li seg</string>
-    <string name="barcode_decoder_disposed">El descodificador de codis de barres s\'ha eliminat</string>
+    <string name="barcode_decoder_disposed">El descodificador de codis de barres s\&apos;ha eliminat</string>
     <string name="orientation_unlocked">Orientació desbloquejada per al mode %s</string>
     <string name="applied_viewfinder_resize_immediately">Especificacions de canvi de mida del visor aplicades immediatament</string>
     <string name="stored_pending_viewfinder_resize">Dades pendents de canvi de mida del visor emmagatzemades per aplicar més tard</string>
     <string name="applied_pending_viewfinder_resize">Dades pendents de canvi de mida del visor aplicades des dels valors desats</string>
     <string name="entity_tracker_ready">EntityBarcodeTracker està llest, aplicant configuracions pendents</string>
-    <string name="handle_view_entity_result">Manejar Vista d\'Entitat - Resultat rebut</string>
-    <string name="entity_tracker_decoder_available">Descodificador EntityBarcodeTracker disponible, nombre d\'entitats: %s</string>
-    <string name="processing_entities">Processant %d entitats per a la vista d\'entitat</string>
-    <string name="rendered_entities">Entitats renderitzades a la vista d\'entitat</string>
-
-    <!-- Barcode Symbologies -->
+    <string name="handle_view_entity_result">Manejar Vista d\&apos;Entitat - Resultat rebut</string>
+    <string name="entity_tracker_decoder_available">Descodificador EntityBarcodeTracker disponible, nombre d\&apos;entitats: %s</string>
+    <string name="processing_entities">Processant %d entitats per a la vista d\&apos;entitat</string>
+    <string name="rendered_entities">Entitats renderitzades a la vista d\&apos;entitat</string>
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Valor del Codi de Barres</string>
     <string name="symbology">Simbologia</string>
     <string name="unknown">DESCONEGUT</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">Data de Captura</string>
     <string name="date">Data</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Canviar llanterna</string>
     <string name="toggle_capture_zone">Canviar zona de captura</string>
     <string name="edit_item">Editar element</string>
     <string name="delete_item">Eliminar element</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Valor: %s</string>
     <string name="symbology_label">Simbologia: %s</string>
     <string name="quantity_label">Quantitat: %d</string>
     <string name="date_label">Data: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Èxit en Concedir Permisos.</string>
     <string name="session_data_merged">Dades de sessió fusionades.</string>
     <string name="error_reported">Error reportat: %s</string>
     <string name="error_reading_session_file">Error en llegir fitxer de sessió: %s</string>
     <string name="error_reading_csv_session_file">Error en llegir fitxer CSV de sessió: %s</string>
     <string name="error_reading_excel_session_file">Error en llegir fitxer Excel de sessió: %s</string>
-
-    <!-- Dialog Messages -->
     <string name="rename">Reanomenar</string>
     <string name="rename_file">Reanomenar un fitxer</string>
     <string name="create">Crear</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">Eliminar Carpeta</string>
     <string name="are_you_sure">Esteu segur?</string>
     <string name="file_exists_already">El fitxer ja existeix.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Configuració</string>
     <string name="activity_captured_barcodes">Codis de Barres Capturats</string>
     <string name="activity_session_data">Dades de Sessió</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Gestionar Sessions</string>
     <string name="menu_settings">Configuració</string>
     <string name="menu_new_file">Nou Fitxer</string>
     <string name="menu_new_folder">Nova Carpeta</string>
     <string name="menu_rename">Reanomenar</string>
     <string name="menu_delete">Eliminar</string>
-
+    <string name="advanced">Advanced</string>
+    <string name="model_input_size">Model Input Size</string>
+    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
+    <string name="camera_resolution_title">Resolution</string>
+    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
+    <string name="inference_processor_type_title">Inference (processor) Type</string>
+    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
+    <string name="toggle_symbologies">Toggle symbologies</string>
+    <string name="toggle_file_types">Toggle file types</string>
+    <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="resolution_small">640 x 640 (small)</string>
+    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (medium)</string>
+    <string name="resolution_medium_description">Balanced speed and accuracy</string>
+    <string name="resolution_large">1600 x 1600 (large)</string>
+    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">General barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
+    <string name="inference_type_dsp_description">Best Choice</string>
+    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
+    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
+    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
+    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
+    <string name="managed_configuration_updated">Settings updated by administrator</string>
 </resources>

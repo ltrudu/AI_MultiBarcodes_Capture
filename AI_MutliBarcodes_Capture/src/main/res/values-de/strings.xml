@@ -1,13 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Multi Barcode Erfassung</string>
     <string name="start_capture_button_text">Erfassung starten</string>
     <string name="loading_status">Anwendung wird geladen</string>
     <string name="select_session_file">Wählen Sie eine Sitzungsdatei aus oder erstellen Sie eine neue.</string>
-
-    <!-- Splash Activity -->
     <string name="retrieving_permissions">Berechtigungen abrufen</string>
-
-    <!-- Browser Activity -->
     <string name="select">Auswählen</string>
     <string name="share">Teilen</string>
     <string name="refresh">Aktualisieren</string>
@@ -19,22 +16,16 @@
     <string name="file_extension_txt">.txt</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
-
-    <!-- Session Barcodes Strings -->
     <string name="addtofile">Zur Datei hinzufügen</string>
     <string name="save">Speichern</string>
     <string name="update">Datei aktualisieren</string>
     <string name="merge">Mengen zusammenführen</string>
-
-    <!-- Entry Choice Activity -->
     <string name="start_capture">Erfassung starten</string>
     <string name="load_last_session">Letzte Sitzung laden</string>
     <string name="create_new_session">Neue Sitzung erstellen</string>
     <string name="view_session_data">Sitzungsdaten anzeigen</string>
     <string name="selected_session">Ausgewählte Sitzung</string>
     <string name="select_session_to_start">Sitzung auswählen, um Erfassung zu starten</string>
-
-    <!-- Setup/Settings Activity -->
     <string name="setup">Einrichtung</string>
     <string name="prefix">Präfix:</string>
     <string name="prefix_hint">Präfix_</string>
@@ -46,11 +37,7 @@
     <string name="system_language">Systemsprache</string>
     <string name="validate">Validieren</string>
     <string name="cancel">Abbrechen</string>
-
-    <!-- Camera Activity -->
     <string name="capture">Erfassen</string>
-
-    <!-- Error Messages -->
     <string name="ai_vision_sdk_init_failed">AI Vision SDK Initialisierung fehlgeschlagen</string>
     <string name="folder_path_missing">Ordnerpfad fehlt!</string>
     <string name="folder_path_missing_toast">Ordnerpfad fehlt !!!</string>
@@ -63,8 +50,6 @@
     <string name="error_saving_file">Fehler beim Speichern der Datei: %s</string>
     <string name="error_saving_last_selected_file">Fehler beim Speichern der zuletzt ausgewählten Datei</string>
     <string name="settings_saved_successfully">Einstellungen erfolgreich gespeichert</string>
-
-    <!-- Toast Messages -->
     <string name="please_select_file_not_folder">Bitte wählen Sie eine Datei, keinen Ordner.</string>
     <string name="please_select_file">Bitte wählen Sie eine Datei.</string>
     <string name="cannot_rename_folders_or_parent">Ordner oder übergeordneter Ordner können nicht umbenannt werden.</string>
@@ -75,15 +60,11 @@
     <string name="failed_to_create_file">Datei erstellen fehlgeschlagen</string>
     <string name="cannot_delete_parent_folder">Übergeordneter Ordner kann nicht gelöscht werden.</string>
     <string name="cannot_share_folders">Ordner können nicht geteilt werden.</string>
-
-    <!-- Session Messages -->
     <string name="last_session_file_not_found">Letzte Sitzungsdatei nicht gefunden.</string>
     <string name="no_session_file_saved">Keine Sitzungsdatei in Einstellungen gespeichert.</string>
     <string name="error_creating_new_session">Fehler beim Erstellen einer neuen Sitzung: %s</string>
     <string name="missing_filename">Dateiname fehlt</string>
     <string name="camera_permission_required">Kameraberechtigung ist erforderlich, um diese Funktion zu verwenden</string>
-
-    <!-- Debug Messages -->
     <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj Erstellungszeit =%d Milli-Sek</string>
     <string name="barcode_decoder_disposed">Barcode-Decoder wurde entsorgt</string>
     <string name="orientation_unlocked">Orientierung für %s Modus entsperrt</string>
@@ -95,8 +76,6 @@
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker Decoder verfügbar, Anzahl Entitäten: %s</string>
     <string name="processing_entities">Verarbeite %d Entitäten für Entity-Ansicht</string>
     <string name="rendered_entities">Entitäten in Entity-Ansicht gerendert</string>
-
-    <!-- Barcode Symbologies -->
     <string name="symbologies">Symbologies</string>
     <string name="australian_postal">AUSTRALIAN POSTAL</string>
     <string name="aztec">AZTEC</string>
@@ -144,8 +123,6 @@
     <string name="uspostnet">USPOSTNET</string>
     <string name="us4state">US4STATE</string>
     <string name="us4state_fics">US4STATE FICS</string>
-
-    <!-- Barcode Data Editor -->
     <string name="barcode_value">Barcode-Wert</string>
     <string name="symbology">Symbologie</string>
     <string name="unknown">UNBEKANNT</string>
@@ -155,28 +132,20 @@
     <string name="capture_date">Erfassungsdatum</string>
     <string name="date">Datum</string>
     <string name="quantity_hint">1</string>
-
-    <!-- Content Descriptions for Accessibility -->
     <string name="toggle_flashlight">Taschenlampe umschalten</string>
     <string name="toggle_capture_zone">Erfassungsbereich umschalten</string>
     <string name="edit_item">Element bearbeiten</string>
     <string name="delete_item">Element löschen</string>
-
-    <!-- Display Labels -->
     <string name="value_label">Wert: %s</string>
     <string name="symbology_label">Symbologie: %s</string>
     <string name="quantity_label">Menge: %d</string>
     <string name="date_label">Datum: %s</string>
-
-    <!-- Additional Toast Messages -->
     <string name="success_granting_permissions">Erfolg beim Gewähren von Berechtigungen.</string>
     <string name="session_data_merged">Sitzungsdaten zusammengeführt.</string>
     <string name="error_reported">Fehler gemeldet: %s</string>
     <string name="error_reading_session_file">Fehler beim Lesen der Sitzungsdatei: %s</string>
     <string name="error_reading_csv_session_file">Fehler beim Lesen der CSV-Sitzungsdatei: %s</string>
     <string name="error_reading_excel_session_file">Fehler beim Lesen der Excel-Sitzungsdatei: %s</string>
-
-    <!-- Dialog Messages -->
     <string name="rename">Umbenennen</string>
     <string name="rename_file">Datei umbenennen</string>
     <string name="create">Erstellen</string>
@@ -186,18 +155,44 @@
     <string name="delete_folder">Ordner löschen</string>
     <string name="are_you_sure">Sind Sie sicher?</string>
     <string name="file_exists_already">Die Datei existiert bereits.</string>
-
-    <!-- Activity Titles -->
     <string name="activity_settings">Einstellungen</string>
     <string name="activity_captured_barcodes">Erfasste Barcodes</string>
     <string name="activity_session_data">Sitzungsdaten</string>
-
-    <!-- Menu Items -->
     <string name="menu_manage_sessions">Sitzungen verwalten</string>
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_new_file">Neue Datei</string>
     <string name="menu_new_folder">Neuer Ordner</string>
     <string name="menu_rename">Umbenennen</string>
     <string name="menu_delete">Löschen</string>
-
+    <string name="advanced">Erweitert</string>
+    <string name="model_input_size">Modell-Eingabegröße</string>
+    <string name="model_input_size_description">Die Modell-Eingabegröße ist die Auflösung, auf die Ihr Bild vor der KI-Analyse skaliert wird. Kleinere Größen sind schneller und verbrauchen weniger Speicher, während größere Größen helfen können, kleinere oder entferntere Barcodes zu erkennen—verbrauchen aber auch mehr Verarbeitungsleistung und Speicher. Wählen Sie die Eingabegröße, um Geschwindigkeit und Genauigkeit für Ihre Bedürfnisse zu balancieren. Hinweis: Die Modell-Eingabegröße kann in 32er-Schritten mit dem SDK angepasst werden. Die unten stehenden Optionen stellen einige generische Größen dar.</string>
+    <string name="camera_resolution_title">Auflösung</string>
+    <string name="camera_resolution_description">Die Kameraauflösung ist die Anzahl der Pixel in Ihrem Foto (z.B. 1MP = 1280x720). Höhere Auflösung erfasst mehr Details für kleinen oder entfernten Text, verbraucht aber mehr Energie und Speicher. Der Nutzen ist begrenzt, wenn die Modell-Eingabegröße niedrig ist.</string>
+    <string name="inference_processor_type_title">Inferenz-(Prozessor-)Typ</string>
+    <string name="inference_processor_type_description">Diese Einstellung wählt aus, welcher Chip in Ihrem Gerät KI-Aufgaben ausführt und beeinflusst Geschwindigkeit und Akkulaufzeit. Nicht alle Geräte haben einen DSP.</string>
+    <string name="toggle_symbologies">Symbologien umschalten</string>
+    <string name="toggle_file_types">Dateitypen umschalten</string>
+    <string name="toggle_advanced">Erweiterte Einstellungen umschalten</string>
+    <string name="resolution_small">640 x 640 (klein)</string>
+    <string name="resolution_small_description">Am schnellsten; am besten für große oder nahe Barcodes</string>
+    <string name="resolution_medium">1280 x 1280 (mittel)</string>
+    <string name="resolution_medium_description">Ausgewogene Geschwindigkeit und Genauigkeit</string>
+    <string name="resolution_large">1600 x 1600 (groß)</string>
+    <string name="resolution_large_description">Langsamer; verwenden für kleine, beschädigte oder entfernte Barcodes</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">Große oder nahe Barcodes</string>
+    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">Allgemeine Barcodes</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">Dichte, schwache oder kleine Barcodes</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">Winzige, entfernte oder kontrastarme Barcodes</string>
+    <string name="inference_type_dsp">DSP (Digitaler Signalprozessor)</string>
+    <string name="inference_type_dsp_description">Beste Wahl</string>
+    <string name="inference_type_gpu">GPU (Grafikprozessor)</string>
+    <string name="inference_type_gpu_description">Für Testzwecke, wenn DSP nicht verfügbar</string>
+    <string name="inference_type_cpu">CPU (Hauptprozessor)</string>
+    <string name="inference_type_cpu_description">Für Testzwecke, wenn DSP und GPU nicht verfügbar</string>
+    <string name="managed_configuration_updated">Einstellungen vom Administrator aktualisiert</string>
 </resources>
