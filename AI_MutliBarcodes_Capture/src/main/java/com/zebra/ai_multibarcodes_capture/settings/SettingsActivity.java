@@ -17,8 +17,11 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.R;
@@ -48,9 +51,16 @@ public class SettingsActivity extends AppCompatActivity {
 
     private EditText etPrefix;
     private RadioButton rbCSV, rbTXT, rbXSLX;
-    private ImageView ivToggleSymbologies;
-    private ScrollView svSymbologies;
+    private ImageView ivToggleSymbologies, ivToggleFileTypes, ivToggleAdvanced;
+    private LinearLayout llSymbologies, llAdvancedContent;
+    private RadioGroup rgFileTypes, rgModelInputSize, rgCameraResolution, rgInferenceType;
+    private RadioButton rbSmallInputSize, rbMediumInputSize, rbLargeInputSize;
+    private RadioButton rb1MPResolution, rb2MPResolution, rb4MPResolution, rb8MPResolution;
+    private RadioButton rbDSPInference, rbGPUInference, rbCPUInference;
+    private TextView tvSymbologiesBadge;
     private boolean isSymbologiesExpanded = false;
+    private boolean isFileTypesExpanded = false;
+    private boolean isAdvancedExpanded = false;
     private Spinner spinnerLanguage;
     private LanguageAdapter languageAdapter;
     private List<LanguageItem> languageList;
@@ -101,7 +111,25 @@ public class SettingsActivity extends AppCompatActivity {
         rbTXT = findViewById(R.id.rbTxt);
         rbXSLX = findViewById(R.id.rbXSLX);
         ivToggleSymbologies = findViewById(R.id.ivToggleSymbologies);
-        svSymbologies = findViewById(R.id.svSymbologies);
+        ivToggleFileTypes = findViewById(R.id.ivToggleFileTypes);
+        ivToggleAdvanced = findViewById(R.id.ivToggleAdvanced);
+        llSymbologies = findViewById(R.id.llSymbologies);
+        llAdvancedContent = findViewById(R.id.llAdvancedContent);
+        rgFileTypes = findViewById(R.id.rgFileTypes);
+        rgModelInputSize = findViewById(R.id.rgModelInputSize);
+        rgCameraResolution = findViewById(R.id.rgCameraResolution);
+        rgInferenceType = findViewById(R.id.rgInferenceType);
+        rbSmallInputSize = findViewById(R.id.rbSmallInputSize);
+        rbMediumInputSize = findViewById(R.id.rbMediumInputSize);
+        rbLargeInputSize = findViewById(R.id.rbLargeInputSize);
+        rb1MPResolution = findViewById(R.id.rb1MPResolution);
+        rb2MPResolution = findViewById(R.id.rb2MPResolution);
+        rb4MPResolution = findViewById(R.id.rb4MPResolution);
+        rb8MPResolution = findViewById(R.id.rb8MPResolution);
+        rbDSPInference = findViewById(R.id.rbDSPInference);
+        rbGPUInference = findViewById(R.id.rbGPUInference);
+        rbCPUInference = findViewById(R.id.rbCPUInference);
+        tvSymbologiesBadge = findViewById(R.id.tvSymbologiesBadge);
         spinnerLanguage = findViewById(R.id.spinnerLanguage);
         
         // Setup language spinner
@@ -155,18 +183,47 @@ public class SettingsActivity extends AppCompatActivity {
         cbUS4STATE = findViewById(R.id.cbUS4STATE);
         cbUS4STATE_FICS = findViewById(R.id.cbUS4STATE_FICS);
 
-        // Initially hide the ScrollView and set collapsed state
-        svSymbologies.setVisibility(View.GONE);
+        // Initially hide the LinearLayout and set collapsed state
+        llSymbologies.setVisibility(View.GONE);
         isSymbologiesExpanded = false;
         ivToggleSymbologies.setImageResource(R.drawable.ic_expand_less_24);
 
-        // Set up click listener for toggle ImageView
+        // Initially hide the RadioGroup and set collapsed state
+        rgFileTypes.setVisibility(View.GONE);
+        isFileTypesExpanded = false;
+        ivToggleFileTypes.setImageResource(R.drawable.ic_expand_less_24);
+
+        // Initially hide the Advanced content and set collapsed state
+        llAdvancedContent.setVisibility(View.GONE);
+        isAdvancedExpanded = false;
+        ivToggleAdvanced.setImageResource(R.drawable.ic_expand_less_24);
+
+        // Set up click listener for symbologies toggle
         ivToggleSymbologies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toggleSymbologies();
             }
         });
+
+        // Set up click listener for file types toggle
+        ivToggleFileTypes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleFileTypes();
+            }
+        });
+
+        // Set up click listener for advanced toggle
+        ivToggleAdvanced.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleAdvanced();
+            }
+        });
+
+        // Setup symbology checkboxes change listeners
+        setupSymbologyListeners();
 
         findViewById(R.id.btCancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,6 +248,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         loadPreferences();
+        updateSymbologiesBadge();
         super.onResume();
         
         // Register the BroadcastReceiver to listen for managed configuration changes
@@ -223,6 +281,9 @@ public class SettingsActivity extends AppCompatActivity {
         String extension = sharedPreferences.getString(SHARED_PREFERENCES_EXTENSION, FILE_DEFAULT_EXTENSION);
 
         loadBarcodesSymbologies(sharedPreferences);
+        loadModelInputSize(sharedPreferences);
+        loadCameraResolution(sharedPreferences);
+        loadInferenceType(sharedPreferences);
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
@@ -277,6 +338,50 @@ public class SettingsActivity extends AppCompatActivity {
         cbUS4STATE_FICS.setChecked(sharedPreferences.getBoolean(SHARED_PREFERENCES_US4STATE_FICS, SHARED_PREFERENCES_US4STATE_FICS_DEFAULT));
     }
 
+    private void loadModelInputSize(SharedPreferences sharedPreferences) {
+        String modelInputSize = sharedPreferences.getString("SHARED_PREFERENCES_MODEL_INPUT_SIZE", "MEDIUM");
+        
+        // Set the radio button based on saved preference
+        if ("SMALL".equals(modelInputSize)) {
+            rbSmallInputSize.setChecked(true);
+        } else if ("LARGE".equals(modelInputSize)) {
+            rbLargeInputSize.setChecked(true);
+        } else {
+            // Default to MEDIUM
+            rbMediumInputSize.setChecked(true);
+        }
+    }
+
+    private void loadCameraResolution(SharedPreferences sharedPreferences) {
+        String cameraResolution = sharedPreferences.getString("SHARED_PREFERENCES_CAMERA_RESOLUTION", "MP_2");
+        
+        // Set the radio button based on saved preference
+        if ("MP_1".equals(cameraResolution)) {
+            rb1MPResolution.setChecked(true);
+        } else if ("MP_4".equals(cameraResolution)) {
+            rb4MPResolution.setChecked(true);
+        } else if ("MP_8".equals(cameraResolution)) {
+            rb8MPResolution.setChecked(true);
+        } else {
+            // Default to MP_2 (2MP)
+            rb2MPResolution.setChecked(true);
+        }
+    }
+
+    private void loadInferenceType(SharedPreferences sharedPreferences) {
+        String inferenceType = sharedPreferences.getString("SHARED_PREFERENCES_INFERENCE_TYPE", "DSP");
+        
+        // Set the radio button based on saved preference
+        if ("GPU".equals(inferenceType)) {
+            rbGPUInference.setChecked(true);
+        } else if ("CPU".equals(inferenceType)) {
+            rbCPUInference.setChecked(true);
+        } else {
+            // Default to DSP (Best Choice)
+            rbDSPInference.setChecked(true);
+        }
+    }
+
     private void savePreferences()
     {
         // Get the SharedPreferences object
@@ -292,6 +397,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         saveBarcodeSymbologies(editor);
+        saveModelInputSize(editor);
+        saveCameraResolution(editor);
+        saveInferenceType(editor);
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
@@ -457,6 +565,44 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putBoolean(SHARED_PREFERENCES_US4STATE_FICS, cbUS4STATE_FICS.isChecked());
     }
 
+    private void saveModelInputSize(SharedPreferences.Editor editor) {
+        String modelInputSize = "MEDIUM"; // Default
+        
+        if (rbSmallInputSize.isChecked()) {
+            modelInputSize = "SMALL";
+        } else if (rbLargeInputSize.isChecked()) {
+            modelInputSize = "LARGE";
+        }
+        
+        editor.putString("SHARED_PREFERENCES_MODEL_INPUT_SIZE", modelInputSize);
+    }
+
+    private void saveCameraResolution(SharedPreferences.Editor editor) {
+        String cameraResolution = "MP_2"; // Default
+        
+        if (rb1MPResolution.isChecked()) {
+            cameraResolution = "MP_1";
+        } else if (rb4MPResolution.isChecked()) {
+            cameraResolution = "MP_4";
+        } else if (rb8MPResolution.isChecked()) {
+            cameraResolution = "MP_8";
+        }
+        
+        editor.putString("SHARED_PREFERENCES_CAMERA_RESOLUTION", cameraResolution);
+    }
+
+    private void saveInferenceType(SharedPreferences.Editor editor) {
+        String inferenceType = "DSP"; // Default
+        
+        if (rbGPUInference.isChecked()) {
+            inferenceType = "GPU";
+        } else if (rbCPUInference.isChecked()) {
+            inferenceType = "CPU";
+        }
+        
+        editor.putString("SHARED_PREFERENCES_INFERENCE_TYPE", inferenceType);
+    }
+
     private String getSelectedExtension()
     {
         if(rbCSV.isChecked())
@@ -488,15 +634,149 @@ public class SettingsActivity extends AppCompatActivity {
 
         }
     }
+    private void setupSymbologyListeners() {
+        CompoundButton.OnCheckedChangeListener badgeUpdateListener = new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateSymbologiesBadge();
+            }
+        };
+
+        // Set listeners for all symbology checkboxes
+        cbAUSTRALIAN_POSTAL.setOnCheckedChangeListener(badgeUpdateListener);
+        cbAZTEC.setOnCheckedChangeListener(badgeUpdateListener);
+        cbCANADIAN_POSTAL.setOnCheckedChangeListener(badgeUpdateListener);
+        cbCHINESE_2OF5.setOnCheckedChangeListener(badgeUpdateListener);
+        cbCODABAR.setOnCheckedChangeListener(badgeUpdateListener);
+        cbCODE11.setOnCheckedChangeListener(badgeUpdateListener);
+        cbCODE39.setOnCheckedChangeListener(badgeUpdateListener);
+        cbCODE93.setOnCheckedChangeListener(badgeUpdateListener);
+        cbCODE128.setOnCheckedChangeListener(badgeUpdateListener);
+        cbCOMPOSITE_AB.setOnCheckedChangeListener(badgeUpdateListener);
+        cbCOMPOSITE_C.setOnCheckedChangeListener(badgeUpdateListener);
+        cbD2OF5.setOnCheckedChangeListener(badgeUpdateListener);
+        cbDATAMATRIX.setOnCheckedChangeListener(badgeUpdateListener);
+        cbDOTCODE.setOnCheckedChangeListener(badgeUpdateListener);
+        cbDUTCH_POSTAL.setOnCheckedChangeListener(badgeUpdateListener);
+        cbEAN_8.setOnCheckedChangeListener(badgeUpdateListener);
+        cbEAN_13.setOnCheckedChangeListener(badgeUpdateListener);
+        cbFINNISH_POSTAL_4S.setOnCheckedChangeListener(badgeUpdateListener);
+        cbGRID_MATRIX.setOnCheckedChangeListener(badgeUpdateListener);
+        cbGS1_DATABAR.setOnCheckedChangeListener(badgeUpdateListener);
+        cbGS1_DATABAR_EXPANDED.setOnCheckedChangeListener(badgeUpdateListener);
+        cbGS1_DATABAR_LIM.setOnCheckedChangeListener(badgeUpdateListener);
+        cbGS1_DATAMATRIX.setOnCheckedChangeListener(badgeUpdateListener);
+        cbGS1_QRCODE.setOnCheckedChangeListener(badgeUpdateListener);
+        cbHANXIN.setOnCheckedChangeListener(badgeUpdateListener);
+        cbI2OF5.setOnCheckedChangeListener(badgeUpdateListener);
+        cbJAPANESE_POSTAL.setOnCheckedChangeListener(badgeUpdateListener);
+        cbKOREAN_3OF5.setOnCheckedChangeListener(badgeUpdateListener);
+        cbMAILMARK.setOnCheckedChangeListener(badgeUpdateListener);
+        cbMATRIX_2OF5.setOnCheckedChangeListener(badgeUpdateListener);
+        cbMAXICODE.setOnCheckedChangeListener(badgeUpdateListener);
+        cbMICROPDF.setOnCheckedChangeListener(badgeUpdateListener);
+        cbMICROQR.setOnCheckedChangeListener(badgeUpdateListener);
+        cbMSI.setOnCheckedChangeListener(badgeUpdateListener);
+        cbPDF417.setOnCheckedChangeListener(badgeUpdateListener);
+        cbQRCODE.setOnCheckedChangeListener(badgeUpdateListener);
+        cbTLC39.setOnCheckedChangeListener(badgeUpdateListener);
+        cbTRIOPTIC39.setOnCheckedChangeListener(badgeUpdateListener);
+        cbUK_POSTAL.setOnCheckedChangeListener(badgeUpdateListener);
+        cbUPC_A.setOnCheckedChangeListener(badgeUpdateListener);
+        cbUPC_E.setOnCheckedChangeListener(badgeUpdateListener);
+        cbUPCE1.setOnCheckedChangeListener(badgeUpdateListener);
+        cbUSPLANET.setOnCheckedChangeListener(badgeUpdateListener);
+        cbUSPOSTNET.setOnCheckedChangeListener(badgeUpdateListener);
+        cbUS4STATE.setOnCheckedChangeListener(badgeUpdateListener);
+        cbUS4STATE_FICS.setOnCheckedChangeListener(badgeUpdateListener);
+    }
+
+    private void updateSymbologiesBadge() {
+        int count = 0;
+        
+        if (cbAUSTRALIAN_POSTAL.isChecked()) count++;
+        if (cbAZTEC.isChecked()) count++;
+        if (cbCANADIAN_POSTAL.isChecked()) count++;
+        if (cbCHINESE_2OF5.isChecked()) count++;
+        if (cbCODABAR.isChecked()) count++;
+        if (cbCODE11.isChecked()) count++;
+        if (cbCODE39.isChecked()) count++;
+        if (cbCODE93.isChecked()) count++;
+        if (cbCODE128.isChecked()) count++;
+        if (cbCOMPOSITE_AB.isChecked()) count++;
+        if (cbCOMPOSITE_C.isChecked()) count++;
+        if (cbD2OF5.isChecked()) count++;
+        if (cbDATAMATRIX.isChecked()) count++;
+        if (cbDOTCODE.isChecked()) count++;
+        if (cbDUTCH_POSTAL.isChecked()) count++;
+        if (cbEAN_8.isChecked()) count++;
+        if (cbEAN_13.isChecked()) count++;
+        if (cbFINNISH_POSTAL_4S.isChecked()) count++;
+        if (cbGRID_MATRIX.isChecked()) count++;
+        if (cbGS1_DATABAR.isChecked()) count++;
+        if (cbGS1_DATABAR_EXPANDED.isChecked()) count++;
+        if (cbGS1_DATABAR_LIM.isChecked()) count++;
+        if (cbGS1_DATAMATRIX.isChecked()) count++;
+        if (cbGS1_QRCODE.isChecked()) count++;
+        if (cbHANXIN.isChecked()) count++;
+        if (cbI2OF5.isChecked()) count++;
+        if (cbJAPANESE_POSTAL.isChecked()) count++;
+        if (cbKOREAN_3OF5.isChecked()) count++;
+        if (cbMAILMARK.isChecked()) count++;
+        if (cbMATRIX_2OF5.isChecked()) count++;
+        if (cbMAXICODE.isChecked()) count++;
+        if (cbMICROPDF.isChecked()) count++;
+        if (cbMICROQR.isChecked()) count++;
+        if (cbMSI.isChecked()) count++;
+        if (cbPDF417.isChecked()) count++;
+        if (cbQRCODE.isChecked()) count++;
+        if (cbTLC39.isChecked()) count++;
+        if (cbTRIOPTIC39.isChecked()) count++;
+        if (cbUK_POSTAL.isChecked()) count++;
+        if (cbUPC_A.isChecked()) count++;
+        if (cbUPC_E.isChecked()) count++;
+        if (cbUPCE1.isChecked()) count++;
+        if (cbUSPLANET.isChecked()) count++;
+        if (cbUSPOSTNET.isChecked()) count++;
+        if (cbUS4STATE.isChecked()) count++;
+        if (cbUS4STATE_FICS.isChecked()) count++;
+        
+        tvSymbologiesBadge.setText(String.valueOf(count));
+    }
+
     private void toggleSymbologies() {
         isSymbologiesExpanded = !isSymbologiesExpanded;
         
         if (isSymbologiesExpanded) {
-            svSymbologies.setVisibility(View.VISIBLE);
+            llSymbologies.setVisibility(View.VISIBLE);
             ivToggleSymbologies.setImageResource(R.drawable.ic_expand_more_24);
         } else {
-            svSymbologies.setVisibility(View.GONE);
+            llSymbologies.setVisibility(View.GONE);
             ivToggleSymbologies.setImageResource(R.drawable.ic_expand_less_24);
+        }
+    }
+
+    private void toggleFileTypes() {
+        isFileTypesExpanded = !isFileTypesExpanded;
+        
+        if (isFileTypesExpanded) {
+            rgFileTypes.setVisibility(View.VISIBLE);
+            ivToggleFileTypes.setImageResource(R.drawable.ic_expand_more_24);
+        } else {
+            rgFileTypes.setVisibility(View.GONE);
+            ivToggleFileTypes.setImageResource(R.drawable.ic_expand_less_24);
+        }
+    }
+
+    private void toggleAdvanced() {
+        isAdvancedExpanded = !isAdvancedExpanded;
+        
+        if (isAdvancedExpanded) {
+            llAdvancedContent.setVisibility(View.VISIBLE);
+            ivToggleAdvanced.setImageResource(R.drawable.ic_expand_more_24);
+        } else {
+            llAdvancedContent.setVisibility(View.GONE);
+            ivToggleAdvanced.setImageResource(R.drawable.ic_expand_less_24);
         }
     }
 

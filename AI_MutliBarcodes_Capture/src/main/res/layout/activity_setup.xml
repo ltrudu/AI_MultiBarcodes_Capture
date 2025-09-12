@@ -20,100 +20,45 @@
         app:title="@string/activity_settings"
         app:titleTextColor="@color/white" />
 
-    <LinearLayout
-        android:id="@+id/llPrefix"
+    <ScrollView
+        android:id="@+id/svMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_below="@+id/toolbar"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
+        android:layout_above="@+id/llSettingsActions"
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:text="@string/prefix" />
-
-        <EditText
-            android:id="@+id/etPrefix"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/prefix_hint" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llFiletypes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/llPrefix"
-        android:layout_marginBottom="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView4"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/zebra"
-            android:backgroundTint="@color/zebra"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="@string/file_type"
-            android:textColor="@color/white" />
-
-        <RadioGroup
-            android:id="@+id/rbFileType"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RadioButton
-                android:id="@+id/rbTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/zebra"
-                android:buttonTint="@color/zebra"
-                android:checked="true"
-                android:text="@string/text_file" />
-
-            <RadioButton
-                android:id="@+id/rbCSV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
-                android:backgroundTint="@color/zebra"
-                android:text="@string/csv_file"
-                android:visibility="visible" />
-
-            <RadioButton
-                android:id="@+id/rbXSLX"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
-                android:backgroundTint="@color/zebra"
-                android:text="@string/excel_file"
-                android:visibility="visible" />
-        </RadioGroup>
-
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/llLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/llFiletypes"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvLanguageTitle"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/zebra"
-            android:backgroundTint="@color/zebra"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="@string/language"
-            android:textColor="@color/white" />
+            android:backgroundTint="@color/zebra">
+
+            <TextView
+                android:id="@+id/tvLanguageTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/language"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Spinner
             android:id="@+id/spinnerLanguage"
@@ -129,34 +74,154 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llPrefix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/zebra">
+
+            <TextView
+                android:id="@+id/tvPrefixTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prefix"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/etPrefix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/prefix_hint"
+            android:minHeight="48dp"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llFileTypesTitle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/zebra"
+        android:background="@color/zebra"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/file_type"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivToggleFileTypes"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivToggleFileTypes"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_expand_less_24"
+            android:contentDescription="@string/toggle_file_types"
+            android:padding="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            app:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RadioGroup
+        android:id="@+id/rgFileTypes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/rbTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/zebra"
+            android:buttonTint="@color/zebra"
+            android:checked="true"
+            android:text="@string/text_file" />
+
+        <RadioButton
+            android:id="@+id/rbCSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/zebra"
+            android:backgroundTint="@color/zebra"
+            android:text="@string/csv_file"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/rbXSLX"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/zebra"
+            android:backgroundTint="@color/zebra"
+            android:text="@string/excel_file"
+            android:visibility="visible" />
+    </RadioGroup>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llSymbologyTitle"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:backgroundTint="@color/zebra"
         android:background="@color/zebra"
-        android:layout_below="@id/llLanguage"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
             android:text="@string/symbologies"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvSymbologiesBadge"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4" />
+        <TextView
+            android:id="@+id/tvSymbologiesBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/badge_background"
+            android:minWidth="24dp"
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="4dp"
+            android:text="0"
+            android:textColor="@color/zebra"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/ivToggleSymbologies"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
             android:id="@+id/ivToggleSymbologies"
@@ -166,25 +231,18 @@
             android:contentDescription="@string/toggle_symbologies"
             android:padding="12dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2" />
-    </LinearLayout>
-
-    <ScrollView
-        android:id="@+id/svSymbologies"
-        android:layout_below="@id/llSymbologyTitle"
-        android:layout_above="@id/llSettingsActions"
+    <LinearLayout
+        android:id="@+id/llSymbologies"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
 
             <CheckBox
                 android:id="@+id/cbAUSTRALIAN_POSTAL"
@@ -507,6 +565,353 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/zebra"
                 android:text="@string/us4state_fics" />
+
+        </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llAdvancedTitle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/zebra"
+        android:background="@color/zebra"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvAdvancedTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/advanced"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivToggleAdvanced"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_expand_more_24"
+            android:contentDescription="@string/toggle_advanced"
+            android:padding="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            app:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/llAdvancedContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@android:color/darker_gray"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvModelInputSizeTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/model_input_size"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/model_input_size_description"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp" />
+
+                <RadioGroup
+                    android:id="@+id/rgModelInputSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/rbSmallInputSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/resolution_small"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/resolution_small_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rbMediumInputSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/resolution_medium"
+                        android:checked="true"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/resolution_medium_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rbLargeInputSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/resolution_large"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/resolution_large_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@android:color/darker_gray"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvCameraResolutionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/camera_resolution_title"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/camera_resolution_description"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp" />
+
+                <RadioGroup
+                    android:id="@+id/rgCameraResolution"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/rb1MPResolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/camera_resolution_1mp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/camera_resolution_1mp_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rb2MPResolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/camera_resolution_2mp"
+                        android:checked="true"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/camera_resolution_2mp_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rb4MPResolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/camera_resolution_4mp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/camera_resolution_4mp_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rb8MPResolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/camera_resolution_8mp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/camera_resolution_8mp_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@android:color/darker_gray"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvInferenceTypeTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inference_processor_type_title"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inference_processor_type_description"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp" />
+
+                <RadioGroup
+                    android:id="@+id/rgInferenceType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/rbDSPInference"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/inference_type_dsp"
+                        android:checked="true"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inference_type_dsp_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rbGPUInference"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/inference_type_gpu"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inference_type_gpu_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rbCPUInference"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/zebra"
+                        android:text="@string/inference_type_cpu"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inference_type_cpu_description"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginStart="32dp" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -1,0 +1,59 @@
+package com.zebra.ai_multibarcodes_capture.helpers;
+
+import android.content.Context;
+import com.zebra.ai_multibarcodes_capture.R;
+
+public enum ECameraResolution {
+    MP_1(R.string.camera_resolution_1mp, R.string.camera_resolution_1mp_description),
+    MP_2(R.string.camera_resolution_2mp, R.string.camera_resolution_2mp_description),
+    MP_4(R.string.camera_resolution_4mp, R.string.camera_resolution_4mp_description),
+    MP_8(R.string.camera_resolution_8mp, R.string.camera_resolution_8mp_description);
+
+    private final int shortDescriptionResId;
+    private final int longDescriptionResId;
+
+    ECameraResolution(int shortDescriptionResId, int longDescriptionResId) {
+        this.shortDescriptionResId = shortDescriptionResId;
+        this.longDescriptionResId = longDescriptionResId;
+    }
+
+    public static ECameraResolution fromString(String shortDescription, Context context) {
+        if (shortDescription == null || context == null) {
+            return null;
+        }
+
+        for (ECameraResolution resolution : ECameraResolution.values()) {
+            if (shortDescription.equals(context.getString(resolution.shortDescriptionResId))) {
+                return resolution;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return name().toLowerCase();
+    }
+
+    public String toString(Context context) {
+        if (context == null) {
+            return toString();
+        }
+        return context.getString(shortDescriptionResId);
+    }
+
+    public String getDescription(Context context) {
+        if (context == null) {
+            return "";
+        }
+        return context.getString(longDescriptionResId);
+    }
+
+    public int getShortDescriptionResId() {
+        return shortDescriptionResId;
+    }
+
+    public int getLongDescriptionResId() {
+        return longDescriptionResId;
+    }
+}
