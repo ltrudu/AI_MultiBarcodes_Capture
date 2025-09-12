@@ -36,7 +36,7 @@
 
     <!-- Setup/Settings Activity -->
     <string name="setup">Configuration</string>
-    <string name="prefix">Préfixe :</string>
+    <string name="prefix">Préfixe</string>
     <string name="prefix_hint">Préfixe_</string>
     <string name="file_type">Type de fichier</string>
     <string name="text_file">Fichier texte</string>

@@ -140,7 +140,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private BarcodeTracker barcodeTracker;
     private EntityBarcodeTracker entityBarcodeTracker;
     private String selectedModel = ENTITY_ANALYZER;
-    private static final String STATE_SELECTED_MODEL = "selected_model";
     private EntityViewController entityViewController;
     private EntityViewGraphic entityViewGraphic;
     private boolean isIconStyleEnable = false;
