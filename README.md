@@ -9,19 +9,20 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
-### **Version 1.21**
-**Advanced AI Configuration System with Dynamic Settings Management**
+### **Version 1.22**
+**Enhanced Session Management with Advanced Folder Operations**
 
-Comprehensive AI and camera configuration capabilities with enterprise-grade managed configuration support:
+Comprehensive session file management with intelligent UI and folder operations:
 
-• **Dynamic AI Configuration**: Advanced settings for AI model input size (640x640 to 1600x1600) with performance optimization guidance  
-• **Camera Resolution Control**: Multiple resolution options (1MP to 8MP) with specific use case recommendations for different barcode types  
-• **Inference Processor Selection**: Choose between DSP (best), GPU, or CPU processing with automatic device capability detection  
-• **Enterprise Managed Configuration**: Full EMM/MDM support with nested advanced settings bundle for centralized deployment  
-• **Real-time Configuration Updates**: Settings changes automatically restart camera and AI components without app restart  
-• **Performance-Aware UI**: Smart descriptions guide users to optimal settings based on their scanning requirements  
+• **Folder Long Press Selection**: Select folders using long press gesture (500ms) with haptic feedback for rename and delete operations  
+• **Context-Sensitive UI**: Smart button and menu visibility based on selection state - Select/Share buttons only appear for files  
+• **Dynamic Menu System**: Rename and Delete menu options automatically hide when nothing is selected  
+• **Enhanced File Operations**: Separate handling for file and folder operations with appropriate UI messaging  
+• **Intelligent Touch Handling**: Long press cancellation on finger movement prevents accidental folder selection  
+• **Complete Internationalization**: All folder operation features fully translated across 72 supported languages  
+• **Improved User Experience**: Unified file/folder management with consistent visual feedback and error messaging  
 
-The advanced configuration system provides granular control over AI performance and camera capabilities, enabling optimal barcode detection for different use cases while supporting enterprise deployment scenarios through comprehensive managed configuration integration.
+The enhanced session management system provides intuitive folder operations while maintaining smart UI behavior that adapts to user selection context, ensuring optimal usability for both file and folder management tasks.
 
 📋 **[View Complete Changelog](CHANGELOG.md)** for previous versions and detailed release history.
 

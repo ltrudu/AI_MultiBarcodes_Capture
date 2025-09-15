@@ -2,6 +2,29 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+## Version 1.22
+**Enhanced Session Management with Advanced Folder Operations**
+
+Comprehensive session file management with intelligent UI and folder operations:
+
+• **Folder Long Press Selection**: Implemented long press gesture detection (500ms timeout) to select folders for rename and delete operations with haptic feedback  
+• **Context-Sensitive UI Controls**: Smart button visibility system where Select/Share buttons only appear when files are selected (hidden for folders since they cannot be shared or exported)  
+• **Dynamic Menu System**: Rename and Delete menu options automatically show/hide based on selection state - only visible when a file or folder is selected  
+• **Enhanced File Operations**: Separated file and folder handling with dedicated methods (renameFile/renameFolder, deleteSelectedFileOrFolder) and appropriate user messaging  
+• **Intelligent Touch Handling**: Long press cancellation when finger moves >20px prevents accidental folder selection, proper gesture cleanup on ACTION_UP/ACTION_CANCEL  
+• **Complete Internationalization**: Added 4 new strings (please_select_file_or_folder, cannot_rename_parent_folder, error_renaming_folder, rename_folder) translated across all 72 supported languages  
+• **Improved User Experience**: Unified file/folder management interface with consistent visual selection feedback and context-aware error messaging  
+
+### Technical Enhancements:
+• Enhanced FileAdapter with OnSelectionChangeListener interface for real-time UI updates  
+• Added long press detection using Handler with configurable timeout and movement cancellation  
+• Implemented selection state callbacks to automatically update button and menu visibility  
+• Modified visual selection logic to support both files and folders (excluding parent directory)  
+• Fixed translation automation script double-escaping issues causing build failures  
+• Maintained 100% translation coverage (197 strings × 72 languages = 14,184 translations)  
+
+The enhanced session management system provides intuitive folder operations while maintaining smart UI behavior that adapts to user selection context, ensuring optimal usability for both file and folder management tasks.
+
 ## Version 1.21
 **Advanced AI Configuration System with Dynamic Settings Management**
 
