@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Villa við vistun síðustu valinnar skráar</string>
     <string name="settings_saved_successfully">Stillingar vistaðar með góðum árangri</string>
     <string name="please_select_file_not_folder">Vinsamlegast veldu skrá, ekki möppu.</string>
-    <string name="please_select_file">Vinsamlegast veldu skrá.</string>
-    <string name="cannot_rename_folders_or_parent">Get ekki endurnefnt möppur eða yfirmöppu.</string>
+    <string name="please_select_file_or_folder">Vinsamlegast veldu skrá.</string>
+    <string name="cannot_rename_parent_folder">Get ekki endurnefnt möppur eða yfirmöppu.</string>
     <string name="file_already_exists">Skrá er þegar til.</string>
     <string name="error_renaming_file">Villa við endurnefningu skráar</string>
     <string name="folder_already_exists">Mappa er þegar til.</string>

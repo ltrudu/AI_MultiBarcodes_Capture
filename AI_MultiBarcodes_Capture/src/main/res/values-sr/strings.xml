@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Грешка при чувању последње изабране датотеке</string>
     <string name="settings_saved_successfully">Подешавања су успешно сачувана</string>
     <string name="please_select_file_not_folder">Молимо изаберите датотеку, не фолдер.</string>
-    <string name="please_select_file">Молимо изаберите датотеку.</string>
-    <string name="cannot_rename_folders_or_parent">Није могуће преименовати фолдере или родитељски фолдер.</string>
+    <string name="please_select_file_or_folder">Молимо изаберите датотеку.</string>
+    <string name="cannot_rename_parent_folder">Није могуће преименовати фолдере или родитељски фолдер.</string>
     <string name="file_already_exists">Датотека већ постоји.</string>
     <string name="error_renaming_file">Грешка при преименовању датотеке</string>
     <string name="folder_already_exists">Фолдер већ постоји.</string>

@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Viga viimati valitud faili salvestamisel</string>
     <string name="settings_saved_successfully">Seaded edukalt salvestatud</string>
     <string name="please_select_file_not_folder">Palun valige fail, mitte kaust.</string>
-    <string name="please_select_file">Palun valige fail.</string>
-    <string name="cannot_rename_folders_or_parent">Ei saa ümber nimetada kaustu või vanemkaustas.</string>
+    <string name="please_select_file_or_folder">Palun valige fail.</string>
+    <string name="cannot_rename_parent_folder">Ei saa ümber nimetada kaustu või vanemkaustas.</string>
     <string name="file_already_exists">Fail on juba olemas.</string>
     <string name="error_renaming_file">Viga faili ümbernimetamisel</string>
     <string name="folder_already_exists">Kaust on juba olemas.</string>

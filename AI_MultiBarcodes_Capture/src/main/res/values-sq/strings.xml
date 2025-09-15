@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Gabim gjatë ruajtjes së skedarit të fundit të zgjedhur</string>
     <string name="settings_saved_successfully">Cilësimet u ruajtën me sukses</string>
     <string name="please_select_file_not_folder">Ju lutemi zgjidhni një skedar, jo një dosje.</string>
-    <string name="please_select_file">Ju lutemi zgjidhni një skedar.</string>
-    <string name="cannot_rename_folders_or_parent">Nuk mund të riemërohen dosjet ose dosja prind.</string>
+    <string name="please_select_file_or_folder">Ju lutemi zgjidhni një skedar.</string>
+    <string name="cannot_rename_parent_folder">Nuk mund të riemërohen dosjet ose dosja prind.</string>
     <string name="file_already_exists">Skedari ekziston tashmë.</string>
     <string name="error_renaming_file">Gabim gjatë riemërimit të skedarit</string>
     <string name="folder_already_exists">Dosja ekziston tashmë.</string>

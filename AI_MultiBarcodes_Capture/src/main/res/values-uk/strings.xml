@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Помилка при збереженні останнього вибраного файлу</string>
     <string name="settings_saved_successfully">Налаштування успішно збережено</string>
     <string name="please_select_file_not_folder">Будь ласка, виберіть файл, а не папку.</string>
-    <string name="please_select_file">Будь ласка, виберіть файл.</string>
-    <string name="cannot_rename_folders_or_parent">Неможливо перейменувати папки або батьківську папку.</string>
+    <string name="please_select_file_or_folder">Будь ласка, виберіть файл.</string>
+    <string name="cannot_rename_parent_folder">Неможливо перейменувати папки або батьківську папку.</string>
     <string name="file_already_exists">Файл уже існує.</string>
     <string name="error_renaming_file">Помилка при перейменуванні файлу</string>
     <string name="folder_already_exists">Папка уже існує.</string>

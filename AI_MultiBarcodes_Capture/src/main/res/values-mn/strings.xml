@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Сүүлд сонгогдсон файлыг хадгалахад алдаа гарлаа</string>
     <string name="settings_saved_successfully">Тохиргоо амжилттай хадгалагдлаа</string>
     <string name="please_select_file_not_folder">Фолдер биш файл сонгоно уу.</string>
-    <string name="please_select_file">Файл сонгоно уу.</string>
-    <string name="cannot_rename_folders_or_parent">Фолдер эсвэл эцэг фолдерын нэр өөрчлөх боломжгүй.</string>
+    <string name="please_select_file_or_folder">Файл сонгоно уу.</string>
+    <string name="cannot_rename_parent_folder">Фолдер эсвэл эцэг фолдерын нэр өөрчлөх боломжгүй.</string>
     <string name="file_already_exists">Файл аль хэдийн байна.</string>
     <string name="error_renaming_file">Файлын нэр өөрчлөхөд алдаа гарлаа</string>
     <string name="folder_already_exists">Фолдер аль хэдийн байна.</string>

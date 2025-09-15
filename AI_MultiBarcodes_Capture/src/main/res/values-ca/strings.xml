@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Error en desar l\'últim fitxer seleccionat</string>
     <string name="settings_saved_successfully">Configuració desada amb èxit</string>
     <string name="please_select_file_not_folder">Si us plau, seleccioneu un fitxer, no una carpeta.</string>
-    <string name="please_select_file">Si us plau, seleccioneu un fitxer.</string>
-    <string name="cannot_rename_folders_or_parent">No es poden reanomenar carpetes o la carpeta pare.</string>
+    <string name="please_select_file_or_folder">Si us plau, seleccioneu un fitxer.</string>
+    <string name="cannot_rename_parent_folder">No es poden reanomenar carpetes o la carpeta pare.</string>
     <string name="file_already_exists">El fitxer ja existeix.</string>
     <string name="error_renaming_file">Error en reanomenar el fitxer</string>
     <string name="folder_already_exists">La carpeta ja existeix.</string>

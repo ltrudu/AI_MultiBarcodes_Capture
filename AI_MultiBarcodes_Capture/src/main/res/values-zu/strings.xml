@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Iphutha ekugcineni ifayela lokugcina elikhethiwe</string>
     <string name="settings_saved_successfully">Izilungiselelo zigcinwe ngempumelelo</string>
     <string name="please_select_file_not_folder">Sicela ukhethe ifayela, hhayi ifolda.</string>
-    <string name="please_select_file">Sicela ukhethe ifayela.</string>
-    <string name="cannot_rename_folders_or_parent">Ayikwazi ukushintsha amagama amafolda noma ifolda yomzali.</string>
+    <string name="please_select_file_or_folder">Sicela ukhethe ifayela.</string>
+    <string name="cannot_rename_parent_folder">Ayikwazi ukushintsha amagama amafolda noma ifolda yomzali.</string>
     <string name="file_already_exists">Ifayela sele likhona.</string>
     <string name="error_renaming_file">Iphutha ekushintheni igama lefayela</string>
     <string name="folder_already_exists">Ifolda sele ikhona.</string>

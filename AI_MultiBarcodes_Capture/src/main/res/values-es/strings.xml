@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Error al guardar el último archivo seleccionado</string>
     <string name="settings_saved_successfully">Configuraciones guardadas exitosamente</string>
     <string name="please_select_file_not_folder">Por favor selecciona un archivo, no una carpeta.</string>
-    <string name="please_select_file">Por favor selecciona un archivo.</string>
-    <string name="cannot_rename_folders_or_parent">No se pueden renombrar carpetas o la carpeta padre.</string>
+    <string name="please_select_file_or_folder">Por favor selecciona un archivo.</string>
+    <string name="cannot_rename_parent_folder">No se pueden renombrar carpetas o la carpeta padre.</string>
     <string name="file_already_exists">El archivo ya existe.</string>
     <string name="error_renaming_file">Error al renombrar el archivo</string>
     <string name="folder_already_exists">La carpeta ya existe.</string>

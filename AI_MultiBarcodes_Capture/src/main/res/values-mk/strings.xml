@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Грешка при зачувување на последната избрана датотека</string>
     <string name="settings_saved_successfully">Подесувањата се успешно зачувани</string>
     <string name="please_select_file_not_folder">Ве молиме изберете датотека, не папка.</string>
-    <string name="please_select_file">Ве молиме изберете датотека.</string>
-    <string name="cannot_rename_folders_or_parent">Не можат да се преименуваат папки или родителска папка.</string>
+    <string name="please_select_file_or_folder">Ве молиме изберете датотека.</string>
+    <string name="cannot_rename_parent_folder">Не можат да се преименуваат папки или родителска папка.</string>
     <string name="file_already_exists">Датотеката веќе постои.</string>
     <string name="error_renaming_file">Грешка при преименување на датотеката</string>
     <string name="folder_already_exists">Папката веќе постои.</string>

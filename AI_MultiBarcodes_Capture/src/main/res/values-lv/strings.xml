@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Kļūda saglabājot pēdējo izvēlēto failu</string>
     <string name="settings_saved_successfully">Iestatījumi veiksmīgi saglabāti</string>
     <string name="please_select_file_not_folder">Lūdzu izvēlieties failu, nevis mapi.</string>
-    <string name="please_select_file">Lūdzu izvēlieties failu.</string>
-    <string name="cannot_rename_folders_or_parent">Nevar pārdēvēt mapes vai vecākmapi.</string>
+    <string name="please_select_file_or_folder">Lūdzu izvēlieties failu.</string>
+    <string name="cannot_rename_parent_folder">Nevar pārdēvēt mapes vai vecākmapi.</string>
     <string name="file_already_exists">Fails jau eksistē.</string>
     <string name="error_renaming_file">Kļūda pārdēvējot failu</string>
     <string name="folder_already_exists">Mape jau eksistē.</string>

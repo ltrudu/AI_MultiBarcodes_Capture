@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Errur cun memorisar l\'ultima datoteca tschernida</string>
     <string name="settings_saved_successfully">Configuraziuns memorisadas cun success</string>
     <string name="please_select_file_not_folder">Per plaschair tscherner ina datoteca, betg in dossier.</string>
-    <string name="please_select_file">Per plaschair tscherner ina datoteca.</string>
-    <string name="cannot_rename_folders_or_parent">Impussibel da renumnar dossiers u il dossier da basa.</string>
+    <string name="please_select_file_or_folder">Per plaschair tscherner ina datoteca.</string>
+    <string name="cannot_rename_parent_folder">Impussibel da renumnar dossiers u il dossier da basa.</string>
     <string name="file_already_exists">La datoteca exista gia.</string>
     <string name="error_renaming_file">Errur cun renumnar la datoteca</string>
     <string name="folder_already_exists">Il dossier exista gia.</string>

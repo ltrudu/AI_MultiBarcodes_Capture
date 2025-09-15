@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">آخری منتخب کردہ فائل محفوظ کرنے میں خرابی</string>
     <string name="settings_saved_successfully">سیٹنگز کامیابی سے محفوظ ہوئیں</string>
     <string name="please_select_file_not_folder">براہ کرم فولڈر نہیں بلکہ فائل منتخب کریں۔</string>
-    <string name="please_select_file">براہ کرم فائل منتخب کریں۔</string>
-    <string name="cannot_rename_folders_or_parent">فولڈر یا پیرنٹ فولڈر کا نام تبدیل نہیں کر سکتے۔</string>
+    <string name="please_select_file_or_folder">براہ کرم فائل منتخب کریں۔</string>
+    <string name="cannot_rename_parent_folder">فولڈر یا پیرنٹ فولڈر کا نام تبدیل نہیں کر سکتے۔</string>
     <string name="file_already_exists">فائل پہلے سے موجود ہے۔</string>
     <string name="error_renaming_file">فائل کا نام تبدیل کرنے میں خرابی</string>
     <string name="folder_already_exists">فولڈر پہلے سے موجود ہے۔</string>

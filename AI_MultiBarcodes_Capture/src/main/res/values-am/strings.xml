@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">የመጨረሻውን የተመረጠ ፋይል ስማይስቀምጥ ስህተት</string>
     <string name="settings_saved_successfully">ቅንብሮች በተሳካ ሁኔታ ተቀምጧል</string>
     <string name="please_select_file_not_folder">እባክዎ ፋይል ይምረጡ፣ አቃፊ አይደለም።</string>
-    <string name="please_select_file">እባክዎ ፋይል ይምረጡ።</string>
-    <string name="cannot_rename_folders_or_parent">አቃፊዎችን ወይም የወላጅ አቃፊን ዳግም መሰየም አይችሉም።</string>
+    <string name="please_select_file_or_folder">እባክዎ ፋይል ይምረጡ።</string>
+    <string name="cannot_rename_parent_folder">አቃፊዎችን ወይም የወላጅ አቃፊን ዳግም መሰየም አይችሉም።</string>
     <string name="file_already_exists">ፋይል አስቀድሞ አለ።</string>
     <string name="error_renaming_file">ፋይል ዳግም ስመሰየም ስህተት</string>
     <string name="folder_already_exists">አቃፊ አስቀድሞ አለ।</string>

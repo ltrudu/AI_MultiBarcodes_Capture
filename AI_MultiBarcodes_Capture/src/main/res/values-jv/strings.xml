@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Salah nyimpen berkas pungkasan sing dipilih</string>
     <string name="settings_saved_successfully">Pangaturan kasil disimpen</string>
     <string name="please_select_file_not_folder">Mangga pilih berkas, dudu folder.</string>
-    <string name="please_select_file">Mangga pilih berkas.</string>
-    <string name="cannot_rename_folders_or_parent">Ora bisa ngganti jeneng folder utawa folder induk.</string>
+    <string name="please_select_file_or_folder">Mangga pilih berkas.</string>
+    <string name="cannot_rename_parent_folder">Ora bisa ngganti jeneng folder utawa folder induk.</string>
     <string name="file_already_exists">Berkas wis ana.</string>
     <string name="error_renaming_file">Salah ngganti jeneng berkas</string>
     <string name="folder_already_exists">Folder wis ana.</string>

@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Napaka pri shranjevanju zadnje izbrane datoteke</string>
     <string name="settings_saved_successfully">Nastavitve uspešno shranjene</string>
     <string name="please_select_file_not_folder">Prosim, izberite datoteko, ne mape.</string>
-    <string name="please_select_file">Prosim, izberite datoteko.</string>
-    <string name="cannot_rename_folders_or_parent">Ni mogoče preimenovati map ali nadrejene mape.</string>
+    <string name="please_select_file_or_folder">Prosim, izberite datoteko.</string>
+    <string name="cannot_rename_parent_folder">Ni mogoče preimenovati map ali nadrejene mape.</string>
     <string name="file_already_exists">Datoteka že obstaja.</string>
     <string name="error_renaming_file">Napaka pri preimenovanju datoteke</string>
     <string name="folder_already_exists">Mapa že obstaja.</string>

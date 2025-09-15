@@ -66,10 +66,11 @@
 
     <!-- French Toast Messages (translated to English) -->
     <string name="please_select_file_not_folder">Please select a file, not a folder.</string>
-    <string name="please_select_file">Please select a file.</string>
-    <string name="cannot_rename_folders_or_parent">Cannot rename folders or the parent folder.</string>
+    <string name="please_select_file_or_folder">Please select a file or folder.</string>
+    <string name="cannot_rename_parent_folder">Cannot rename the parent folder.</string>
     <string name="file_already_exists">File already exists.</string>
     <string name="error_renaming_file">Error renaming file</string>
+    <string name="error_renaming_folder">Error renaming folder</string>
     <string name="folder_already_exists">Folder already exists.</string>
     <string name="failed_to_create_folder">Failed to create folder: %s</string>
     <string name="failed_to_create_file">Failed to create file</string>
@@ -215,6 +216,7 @@
     <!-- Dialog Messages (French -> English) -->
     <string name="rename">Rename</string>
     <string name="rename_file">Rename a file</string>
+    <string name="rename_folder">Rename a folder</string>
     <string name="create">Create</string>
     <string name="create_new_folder">Create a new folder</string>
     <string name="create_new_file">Create a new file</string>

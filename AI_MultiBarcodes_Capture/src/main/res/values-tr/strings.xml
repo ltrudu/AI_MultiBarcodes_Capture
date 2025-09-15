@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Son seçilen dosyayı kaydetme hatası</string>
     <string name="settings_saved_successfully">Ayarlar başarıyla kaydedildi</string>
     <string name="please_select_file_not_folder">Lütfen bir klasör değil, bir dosya seçin.</string>
-    <string name="please_select_file">Lütfen bir dosya seçin.</string>
-    <string name="cannot_rename_folders_or_parent">Klasörler veya ana klasör yeniden adlandırılamaz.</string>
+    <string name="please_select_file_or_folder">Lütfen bir dosya seçin.</string>
+    <string name="cannot_rename_parent_folder">Klasörler veya ana klasör yeniden adlandırılamaz.</string>
     <string name="file_already_exists">Dosya zaten var.</string>
     <string name="error_renaming_file">Dosya yeniden adlandırma hatası</string>
     <string name="folder_already_exists">Klasör zaten var.</string>

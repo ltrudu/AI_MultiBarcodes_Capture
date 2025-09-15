@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Chyba pri ukladaní posledného vybraného súboru</string>
     <string name="settings_saved_successfully">Nastavenia úspešne uložené</string>
     <string name="please_select_file_not_folder">Prosím, vyberte súbor, nie priečinok.</string>
-    <string name="please_select_file">Prosím, vyberte súbor.</string>
-    <string name="cannot_rename_folders_or_parent">Nemožno premenovať priečinky alebo nadradený priečinok.</string>
+    <string name="please_select_file_or_folder">Prosím, vyberte súbor.</string>
+    <string name="cannot_rename_parent_folder">Nemožno premenovať priečinky alebo nadradený priečinok.</string>
     <string name="file_already_exists">Súbor už existuje.</string>
     <string name="error_renaming_file">Chyba pri premenovávaní súboru</string>
     <string name="folder_already_exists">Priečinok už existuje.</string>

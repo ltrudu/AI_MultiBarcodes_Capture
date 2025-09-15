@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Fout met stoor van laaste gekose lêer</string>
     <string name="settings_saved_successfully">Instellings suksesvol gestoor</string>
     <string name="please_select_file_not_folder">Kies asseblief \'n lêer, nie \'n vouer nie.</string>
-    <string name="please_select_file">Kies asseblief \'n lêer.</string>
-    <string name="cannot_rename_folders_or_parent">Kan nie vouers of die ouer vouer hernoem nie.</string>
+    <string name="please_select_file_or_folder">Kies asseblief \'n lêer.</string>
+    <string name="cannot_rename_parent_folder">Kan nie vouers of die ouer vouer hernoem nie.</string>
     <string name="file_already_exists">Lêer bestaan reeds.</string>
     <string name="error_renaming_file">Fout met hernoem van lêer</string>
     <string name="folder_already_exists">Vouer bestaan reeds.</string>

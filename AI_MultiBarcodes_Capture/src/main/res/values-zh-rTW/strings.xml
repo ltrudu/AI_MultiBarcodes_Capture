@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">儲存最後選擇的檔案時發生錯誤</string>
     <string name="settings_saved_successfully">設定儲存成功</string>
     <string name="please_select_file_not_folder">請選擇檔案，而不是資料夾。</string>
-    <string name="please_select_file">請選擇一個檔案。</string>
-    <string name="cannot_rename_folders_or_parent">無法重新命名資料夾或上層資料夾。</string>
+    <string name="please_select_file_or_folder">請選擇一個檔案。</string>
+    <string name="cannot_rename_parent_folder">無法重新命名資料夾或上層資料夾。</string>
     <string name="file_already_exists">檔案已存在。</string>
     <string name="error_renaming_file">重新命名檔案時發生錯誤</string>
     <string name="folder_already_exists">資料夾已存在。</string>

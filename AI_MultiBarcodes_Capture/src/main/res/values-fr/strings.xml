@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Erreur lors de l\'enregistrement du dernier fichier sélectionné</string>
     <string name="settings_saved_successfully">Paramètres enregistrés avec succès</string>
     <string name="please_select_file_not_folder">Veuillez sélectionner un fichier, pas un dossier.</string>
-    <string name="please_select_file">Veuillez sélectionner un fichier.</string>
-    <string name="cannot_rename_folders_or_parent">Impossible de renommer les dossiers ou le dossier parent.</string>
+    <string name="please_select_file_or_folder">Veuillez sélectionner un fichier.</string>
+    <string name="cannot_rename_parent_folder">Impossible de renommer les dossiers ou le dossier parent.</string>
     <string name="file_already_exists">Le fichier existe déjà.</string>
     <string name="error_renaming_file">Erreur lors du renommage du fichier</string>
     <string name="folder_already_exists">Le dossier existe déjà.</string>

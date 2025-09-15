@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">마지막 선택 파일 저장 오류</string>
     <string name="settings_saved_successfully">설정이 성공적으로 저장되었습니다</string>
     <string name="please_select_file_not_folder">폴더가 아닌 파일을 선택해 주세요.</string>
-    <string name="please_select_file">파일을 선택해 주세요.</string>
-    <string name="cannot_rename_folders_or_parent">폴더나 상위 폴더의 이름을 바꿀 수 없습니다.</string>
+    <string name="please_select_file_or_folder">파일을 선택해 주세요.</string>
+    <string name="cannot_rename_parent_folder">폴더나 상위 폴더의 이름을 바꿀 수 없습니다.</string>
     <string name="file_already_exists">파일이 이미 존재합니다.</string>
     <string name="error_renaming_file">파일 이름 바꾸기 오류</string>
     <string name="folder_already_exists">폴더가 이미 존재합니다.</string>

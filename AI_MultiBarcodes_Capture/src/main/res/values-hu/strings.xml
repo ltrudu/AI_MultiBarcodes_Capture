@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Hiba az utoljára kiválasztott fájl mentésekor</string>
     <string name="settings_saved_successfully">Beállítások sikeresen mentve</string>
     <string name="please_select_file_not_folder">Kérjük válasszon fájlt, ne mappát.</string>
-    <string name="please_select_file">Kérjük válasszon fájlt.</string>
-    <string name="cannot_rename_folders_or_parent">Nem lehet átnevezni a mappákat vagy a szülő mappát.</string>
+    <string name="please_select_file_or_folder">Kérjük válasszon fájlt.</string>
+    <string name="cannot_rename_parent_folder">Nem lehet átnevezni a mappákat vagy a szülő mappát.</string>
     <string name="file_already_exists">A fájl már létezik.</string>
     <string name="error_renaming_file">Hiba a fájl átnevezésekor</string>
     <string name="folder_already_exists">A mappa már létezik.</string>

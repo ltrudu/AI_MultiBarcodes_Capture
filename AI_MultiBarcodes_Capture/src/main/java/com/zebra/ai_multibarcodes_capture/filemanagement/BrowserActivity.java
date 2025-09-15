@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -101,6 +100,11 @@ public class BrowserActivity extends AppCompatActivity {
                 MenuInflater inflater = popup.getMenuInflater();
                 inflater.inflate(R.menu.browser_menu, popup.getMenu());
                 
+                // Show/hide menu items based on selection state
+                boolean hasSelection = fileAdapter != null && fileAdapter.getSelectedPosition() != -1;
+                popup.getMenu().findItem(R.id.action_rename).setVisible(hasSelection);
+                popup.getMenu().findItem(R.id.action_delete).setVisible(hasSelection);
+                
                 // Force PopupMenu to show icons
                 try {
                     java.lang.reflect.Field mFieldPopup = popup.getClass().getDeclaredField("mPopup");
@@ -125,12 +129,12 @@ public class BrowserActivity extends AppCompatActivity {
                         }
                         else if(id == R.id.action_delete)
                         {
-                            deleteSelectedFiles();
+                            deleteSelectedFileOrFolder();
                             return true;
                         }
                         else if(id == R.id.action_rename)
                         {
-                            renameSelectedFile();
+                            renameSelectedFileOrFolder();
                             return true;
                         }
                         return false;
@@ -200,8 +204,8 @@ public class BrowserActivity extends AppCompatActivity {
             }
         });
 
-        btnSelectOneFile.setVisibility(View.VISIBLE);
-        btnShare.setVisibility(View.VISIBLE);
+        // Initially hide buttons until a file is selected
+        updateButtonVisibility(false);
     }
 
     @Override
@@ -252,7 +256,7 @@ public class BrowserActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, getString(R.string.please_select_file), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_select_file_or_folder), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -308,6 +312,13 @@ public class BrowserActivity extends AppCompatActivity {
                         navigateToFolder(folder);
                     }
                 });
+                // Set up the selection change listener for button visibility
+                fileAdapter.setOnSelectionChangeListener(new FileAdapter.OnSelectionChangeListener() {
+                    @Override
+                    public void onSelectionChanged(boolean hasFileSelected) {
+                        updateButtonVisibility(hasFileSelected);
+                    }
+                });
                 listView.setAdapter(fileAdapter);
             }
             // Clear selection when file list changes
@@ -326,62 +337,122 @@ public class BrowserActivity extends AppCompatActivity {
         }
     }
 
-    private void renameSelectedFile()
+    private void renameSelectedFileOrFolder()
     {
         if(fileAdapter != null && fileAdapter.getSelectedPosition() != -1) {
             final File fileName = fileAdapter.getSelectedFile();
-            if (fileName == null || fileName.getName().equals("..") || fileName.isDirectory()) {
-                Toast.makeText(this, getString(R.string.cannot_rename_folders_or_parent), Toast.LENGTH_LONG).show();
+            if (fileName == null || fileName.getName().equals("..")) {
+                Toast.makeText(this, getString(R.string.cannot_rename_parent_folder), Toast.LENGTH_LONG).show();
                 return;
             }
-            final int fileNamePosition = fileAdapter.getSelectedPosition();
-            ((TextView)findViewById(R.id.txtTitle)).setText(getString(R.string.rename));
-            ((TextView)findViewById(R.id.txtMessage)).setText(getString(R.string.rename_file));
-            ((EditText)findViewById(R.id.etData)).setText(FileUtil.getFileNameWithoutExtension(fileName));
-            ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.VISIBLE);
-            ((TextView)findViewById(R.id.txtDataLabelRight)).setText(fileExtension);
-            btPopupYes.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String newFileName = ((EditText) findViewById(R.id.etData)).getText().toString();
-                    if (newFileName.isEmpty() == false) {
-                        File newFile = new File(currentFolder, newFileName + fileExtension);
-                        if(newFile.exists())
-                        {
-                            Toast.makeText(BrowserActivity.this, getString(R.string.file_already_exists), Toast.LENGTH_LONG).show();
-                            viewOverlay.setVisibility(View.GONE);
-                            clPopup.setVisibility(View.GONE);
-                            return;
-                        }
-                        try {
-                                filesList.remove(fileNamePosition);
-                                fileName.renameTo(newFile);
-                                filesList.add(newFile);
-                                fileAdapter.notifyDataSetChanged();
-                                viewOverlay.setVisibility(View.GONE);
-                                clPopup.setVisibility(View.GONE);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Toast.makeText(BrowserActivity.this, getString(R.string.error_renaming_file), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            });
-            btPopupNo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    viewOverlay.setVisibility(View.GONE);
-                    clPopup.setVisibility(View.GONE);
-                }
-            });
-
-            viewOverlay.setVisibility(View.VISIBLE);
-            clPopup.setVisibility(View.VISIBLE);
+            if(fileName.isFile())
+            {
+                renameFile(fileName);
+            }
+            else
+            {
+                renameFolder(fileName);
+            }
         }
         else
         {
-            Toast.makeText(this, getString(R.string.please_select_file), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_select_file_or_folder), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void renameFile(File fileName) {
+        final int fileNamePosition = fileAdapter.getSelectedPosition();
+        ((TextView)findViewById(R.id.txtTitle)).setText(getString(R.string.rename));
+        ((TextView)findViewById(R.id.txtMessage)).setText(getString(R.string.rename_file));
+        ((EditText)findViewById(R.id.etData)).setText(FileUtil.getFileNameWithoutExtension(fileName));
+        ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.VISIBLE);
+        ((TextView)findViewById(R.id.txtDataLabelRight)).setText(fileExtension);
+        btPopupYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newFileName = ((EditText) findViewById(R.id.etData)).getText().toString();
+                if (newFileName.isEmpty() == false) {
+                    File newFile = new File(currentFolder, newFileName + fileExtension);
+                    if(newFile.exists())
+                    {
+                        Toast.makeText(BrowserActivity.this, getString(R.string.file_already_exists), Toast.LENGTH_LONG).show();
+                        viewOverlay.setVisibility(View.GONE);
+                        clPopup.setVisibility(View.GONE);
+                        fileAdapter.clearSelection();
+                        return;
+                    }
+                    try {
+                            filesList.remove(fileNamePosition);
+                            fileName.renameTo(newFile);
+                            filesList.add(newFile);
+                            fileAdapter.notifyDataSetChanged();
+                            viewOverlay.setVisibility(View.GONE);
+                            clPopup.setVisibility(View.GONE);
+                            fileAdapter.clearSelection();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(BrowserActivity.this, getString(R.string.error_renaming_file), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        btPopupNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewOverlay.setVisibility(View.GONE);
+                clPopup.setVisibility(View.GONE);
+            }
+        });
+
+        viewOverlay.setVisibility(View.VISIBLE);
+        clPopup.setVisibility(View.VISIBLE);
+    }
+
+   private void renameFolder(File folderName) {
+        final int fileNamePosition = fileAdapter.getSelectedPosition();
+        ((TextView)findViewById(R.id.txtTitle)).setText(getString(R.string.rename));
+        ((TextView)findViewById(R.id.txtMessage)).setText(getString(R.string.rename_folder));
+        ((EditText)findViewById(R.id.etData)).setText(folderName.getName());
+        ((TextView)findViewById(R.id.txtDataLabelRight)).setVisibility(View.GONE);
+        btPopupYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newFolderName = ((EditText) findViewById(R.id.etData)).getText().toString();
+                if (newFolderName.isEmpty() == false) {
+                    File newFile = new File(currentFolder, newFolderName);
+                    if(newFile.exists())
+                    {
+                        Toast.makeText(BrowserActivity.this, getString(R.string.folder_already_exists), Toast.LENGTH_LONG).show();
+                        viewOverlay.setVisibility(View.GONE);
+                        clPopup.setVisibility(View.GONE);
+                        fileAdapter.clearSelection();
+                        return;
+                    }
+                    try {
+                            filesList.remove(fileNamePosition);
+                            folderName.renameTo(newFile);
+                            filesList.add(newFile);
+                            fileAdapter.notifyDataSetChanged();
+                            viewOverlay.setVisibility(View.GONE);
+                            clPopup.setVisibility(View.GONE);
+                            fileAdapter.clearSelection();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(BrowserActivity.this, getString(R.string.error_renaming_file), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        btPopupNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewOverlay.setVisibility(View.GONE);
+                clPopup.setVisibility(View.GONE);
+            }
+        });
+
+        viewOverlay.setVisibility(View.VISIBLE);
+        clPopup.setVisibility(View.VISIBLE);
     }
 
     private void createNewFolder()
@@ -484,7 +555,7 @@ public class BrowserActivity extends AppCompatActivity {
         clPopup.setVisibility(View.VISIBLE);
     }
 
-    private void deleteSelectedFiles() {
+    private void deleteSelectedFileOrFolder() {
         if(fileAdapter != null && fileAdapter.getSelectedPosition() != -1) {
             File selectedFile = fileAdapter.getSelectedFile();
             if (selectedFile != null) {
@@ -499,7 +570,7 @@ public class BrowserActivity extends AppCompatActivity {
                 }
             }
         } else {
-            Toast.makeText(this, getString(R.string.please_select_file), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_select_file_or_folder), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -557,6 +628,7 @@ public class BrowserActivity extends AppCompatActivity {
                 }
                 viewOverlay.setVisibility(View.GONE);
                 clPopup.setVisibility(View.GONE);
+                fileAdapter.clearSelection();
             }
         });
         btPopupNo.setOnClickListener(new View.OnClickListener() {
@@ -568,6 +640,7 @@ public class BrowserActivity extends AppCompatActivity {
                 }
                 viewOverlay.setVisibility(View.GONE);
                 clPopup.setVisibility(View.GONE);
+                fileAdapter.clearSelection();
             }
         });
 
@@ -619,8 +692,14 @@ public class BrowserActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, getString(R.string.please_select_file), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_select_file_or_folder), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void updateButtonVisibility(boolean hasFileSelected) {
+        int visibility = hasFileSelected ? View.VISIBLE : View.GONE;
+        btnSelectOneFile.setVisibility(visibility);
+        btnShare.setVisibility(visibility);
     }
 
     @Override

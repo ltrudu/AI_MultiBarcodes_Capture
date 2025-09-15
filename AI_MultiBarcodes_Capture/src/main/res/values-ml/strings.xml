@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">അവസാനം തിരഞ്ഞെടുത്ത ഫയൽ സംരക്ഷിക്കുന്നതിൽ പിശക്</string>
     <string name="settings_saved_successfully">ക്രമീകരണങ്ങൾ വിജയകരമായി സംരക്ഷിച്ചു</string>
     <string name="please_select_file_not_folder">ദയവായി ഫോൾഡറല്ല, ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
-    <string name="please_select_file">ദയവായി ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
-    <string name="cannot_rename_folders_or_parent">ഫോൾഡറുകളെയോ മാതൃഫോൾഡറിനെയോ പുനർനാമകരണം ചെയ്യാൻ കഴിയില്ല.</string>
+    <string name="please_select_file_or_folder">ദയവായി ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
+    <string name="cannot_rename_parent_folder">ഫോൾഡറുകളെയോ മാതൃഫോൾഡറിനെയോ പുനർനാമകരണം ചെയ്യാൻ കഴിയില്ല.</string>
     <string name="file_already_exists">ഫയൽ ഇതിനകം നിലവിലുണ്ട്.</string>
     <string name="error_renaming_file">ഫയൽ പുനർനാമകരണം ചെയ്യുന്നതിൽ പിശക്</string>
     <string name="folder_already_exists">ഫോൾഡർ ഇതിനകം നിലവിലുണ്ട്.</string>

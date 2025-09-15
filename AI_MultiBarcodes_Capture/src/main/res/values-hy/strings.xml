@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Վերջին ընտրված ֆայլի պահպանման սխալ</string>
     <string name="settings_saved_successfully">Կարգավորումները հաջողությամբ պահվեցին</string>
     <string name="please_select_file_not_folder">Խնդրում ենք ընտրել ֆայլ, ոչ թե պանակ:</string>
-    <string name="please_select_file">Խնդրում ենք ընտրել ֆայլ:</string>
-    <string name="cannot_rename_folders_or_parent">Չեք կարող վերանվանել պանակները կամ ծնող պանակը:</string>
+    <string name="please_select_file_or_folder">Խնդրում ենք ընտրել ֆայլ:</string>
+    <string name="cannot_rename_parent_folder">Չեք կարող վերանվանել պանակները կամ ծնող պանակը:</string>
     <string name="file_already_exists">Ֆայլը արդեն գոյություն ունի:</string>
     <string name="error_renaming_file">Ֆայլի վերանվանման սխալ</string>
     <string name="folder_already_exists">Պանակը արդեն գոյություն ունի:</string>

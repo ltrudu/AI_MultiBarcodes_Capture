@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Fel vid sparande av senast valda fil</string>
     <string name="settings_saved_successfully">Inställningar sparade framgångsrikt</string>
     <string name="please_select_file_not_folder">Vänligen välj en fil, inte en mapp.</string>
-    <string name="please_select_file">Vänligen välj en fil.</string>
-    <string name="cannot_rename_folders_or_parent">Kan inte byta namn på mappar eller föräldramapp.</string>
+    <string name="please_select_file_or_folder">Vänligen välj en fil.</string>
+    <string name="cannot_rename_parent_folder">Kan inte byta namn på mappar eller föräldramapp.</string>
     <string name="file_already_exists">Filen existerar redan.</string>
     <string name="error_renaming_file">Fel vid namnbyte av fil</string>
     <string name="folder_already_exists">Mappen existerar redan.</string>

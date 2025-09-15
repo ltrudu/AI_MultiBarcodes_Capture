@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">កំហុសក្នុងការរក្សាទុកឯកសារដែលបានជ្រើសរើសចុងក្រោយ</string>
     <string name="settings_saved_successfully">ការកំណត់បានរក្សាទុកដោយជោគជ័យ</string>
     <string name="please_select_file_not_folder">សូមជ្រើសរើសឯកសារ មិនមែនថតទេ។</string>
-    <string name="please_select_file">សូមជ្រើសរើសឯកសារ។</string>
-    <string name="cannot_rename_folders_or_parent">មិនអាចប្តូរឈ្មោះថត ឬថតមេ។</string>
+    <string name="please_select_file_or_folder">សូមជ្រើសរើសឯកសារ។</string>
+    <string name="cannot_rename_parent_folder">មិនអាចប្តូរឈ្មោះថត ឬថតមេ។</string>
     <string name="file_already_exists">ឯកសារមានរួចហើយ។</string>
     <string name="error_renaming_file">កំហុសក្នុងការប្តូរឈ្មោះឯកសារ</string>
     <string name="folder_already_exists">ថតមានរួចហើយ។</string>

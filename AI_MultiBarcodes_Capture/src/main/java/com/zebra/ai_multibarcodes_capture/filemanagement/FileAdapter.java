@@ -1,5 +1,7 @@
 package com.zebra.ai_multibarcodes_capture.filemanagement;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 public class FileAdapter extends ArrayAdapter<File> {
 
     private static final int SWIPE_DISTANCE_X = -250;
+    private static final long LONG_PRESS_TIMEOUT = 500; // milliseconds
 
     public interface OnFileDeleteListener {
         void onFileDelete(File file, int position);
@@ -26,11 +29,16 @@ public class FileAdapter extends ArrayAdapter<File> {
     public interface OnFolderClickListener {
         void onFolderClick(File folder);
     }
+    
+    public interface OnSelectionChangeListener {
+        void onSelectionChanged(boolean hasFileSelected);
+    }
 
     private Context mContext;
     private ArrayList<File> fileList;
     private OnFileDeleteListener deleteListener;
     private OnFolderClickListener folderClickListener;
+    private OnSelectionChangeListener selectionChangeListener;
     private ListView parentListView;
     private int selectedPosition = -1;
 
@@ -52,6 +60,10 @@ public class FileAdapter extends ArrayAdapter<File> {
         this.folderClickListener = listener;
     }
     
+    public void setOnSelectionChangeListener(OnSelectionChangeListener listener) {
+        this.selectionChangeListener = listener;
+    }
+    
     public void resetSwipeState() {
         // Find all visible views and reset their swipe state
         if (parentListView != null) {
@@ -71,6 +83,13 @@ public class FileAdapter extends ArrayAdapter<File> {
     public void setSelectedPosition(int position) {
         selectedPosition = position;
         notifyDataSetChanged();
+        
+        // Notify listener about selection change
+        if (selectionChangeListener != null) {
+            File selectedFile = getSelectedFile();
+            boolean hasFileSelected = selectedFile != null && selectedFile.isFile();
+            selectionChangeListener.onSelectionChanged(hasFileSelected);
+        }
     }
     
     public int getSelectedPosition() {
@@ -87,6 +106,11 @@ public class FileAdapter extends ArrayAdapter<File> {
     public void clearSelection() {
         selectedPosition = -1;
         notifyDataSetChanged();
+        
+        // Notify listener about selection change
+        if (selectionChangeListener != null) {
+            selectionChangeListener.onSelectionChanged(false);
+        }
     }
 
     @Override
@@ -117,8 +141,8 @@ public class FileAdapter extends ArrayAdapter<File> {
         }
         holder.textView.setText(displayName);
 
-        // Set selection state (but never for parent directory or folders)
-        boolean shouldBeSelected = position == selectedPosition && !file.getName().equals("..") && file.isFile();
+        // Set selection state (but never for parent directory)
+        boolean shouldBeSelected = position == selectedPosition && !file.getName().equals("..");
         holder.foregroundContainer.setSelected(shouldBeSelected);
         
         // Force parent directory to never show any selection state
@@ -195,6 +219,9 @@ public class FileAdapter extends ArrayAdapter<File> {
             private boolean touchHandled = false;
             private MotionEvent downEvent = null;
             private boolean gestureDetectorUsed = false;
+            private Handler longPressHandler = new Handler(Looper.getMainLooper());
+            private Runnable longPressRunnable = null;
+            private boolean longPressTriggered = false;
             
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -209,6 +236,33 @@ public class FileAdapter extends ArrayAdapter<File> {
                         isSwipeActive = false;
                         touchHandled = false;
                         gestureDetectorUsed = false;
+                        longPressTriggered = false;
+                        
+                        // Cancel any existing long press
+                        if (longPressRunnable != null) {
+                            longPressHandler.removeCallbacks(longPressRunnable);
+                        }
+                        
+                        // Start long press timer for folders (but not parent directory)
+                        if (file.isDirectory() && !file.getName().equals("..")) {
+                            longPressRunnable = new Runnable() {
+                                @Override
+                                public void run() {
+                                    LogUtils.d("FileAdapter", "Long press detected for folder: " + file.getName());
+                                    longPressTriggered = true;
+                                    // Select the folder on long press
+                                    if (selectedPosition == position) {
+                                        clearSelection();
+                                    } else {
+                                        setSelectedPosition(position);
+                                    }
+                                    // Provide haptic feedback
+                                    holder.foregroundContainer.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
+                                }
+                            };
+                            longPressHandler.postDelayed(longPressRunnable, LONG_PRESS_TIMEOUT);
+                        }
+                        
                         // Store the down event for potential gesture detection later
                         downEvent = MotionEvent.obtain(event);
                         LogUtils.d("FileAdapter", "ACTION_DOWN returning false for " + file.getName());
@@ -225,6 +279,13 @@ public class FileAdapter extends ArrayAdapter<File> {
                         float moveX = event.getX() - initialX;
                         float moveY = event.getY() - initialY;
                         LogUtils.d("FileAdapter", "ACTION_MOVE delta: (" + moveX + ", " + moveY + ") for " + file.getName());
+                        
+                        // Cancel long press if user moves finger significantly
+                        if (longPressRunnable != null && (Math.abs(moveX) > 20 || Math.abs(moveY) > 20)) {
+                            LogUtils.d("FileAdapter", "Canceling long press due to movement for " + file.getName());
+                            longPressHandler.removeCallbacks(longPressRunnable);
+                            longPressRunnable = null;
+                        }
                         
                         // Only intercept if this is clearly a horizontal left swipe
                         // Need significant horizontal movement with minimal vertical movement
@@ -268,6 +329,12 @@ public class FileAdapter extends ArrayAdapter<File> {
                         
                     case MotionEvent.ACTION_UP:
                         LogUtils.d("FileAdapter", "ACTION_UP for " + file.getName());
+                        // Cancel any pending long press
+                        if (longPressRunnable != null) {
+                            longPressHandler.removeCallbacks(longPressRunnable);
+                            longPressRunnable = null;
+                        }
+                        
                         // Clean up stored event
                         if (downEvent != null) {
                             downEvent.recycle();
@@ -277,6 +344,12 @@ public class FileAdapter extends ArrayAdapter<File> {
                         if (isSwipeActive || touchHandled) {
                             LogUtils.d("FileAdapter", "ACTION_UP swipe was active, returning true for " + file.getName());
                             // We handled this as a swipe
+                            return true;
+                        }
+                        
+                        // If long press was triggered, don't handle as tap
+                        if (longPressTriggered) {
+                            LogUtils.d("FileAdapter", "ACTION_UP long press was triggered, returning true for " + file.getName());
                             return true;
                         }
                         
@@ -335,6 +408,12 @@ public class FileAdapter extends ArrayAdapter<File> {
                         return false;
                         
                     case MotionEvent.ACTION_CANCEL:
+                        // Cancel any pending long press
+                        if (longPressRunnable != null) {
+                            longPressHandler.removeCallbacks(longPressRunnable);
+                            longPressRunnable = null;
+                        }
+                        
                         if (holder.foregroundContainer.getTranslationX() != 0) {
                             holder.foregroundContainer.animate()
                                 .translationX(0)

@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Klaida saugant paskutinį pasirinktą failą</string>
     <string name="settings_saved_successfully">Nustatymai sėkmingai išsaugoti</string>
     <string name="please_select_file_not_folder">Prašome pasirinkti failą, ne aplanką.</string>
-    <string name="please_select_file">Prašome pasirinkti failą.</string>
-    <string name="cannot_rename_folders_or_parent">Negalima pervadinti aplankų ar tėvinio aplanko.</string>
+    <string name="please_select_file_or_folder">Prašome pasirinkti failą.</string>
+    <string name="cannot_rename_parent_folder">Negalima pervadinti aplankų ar tėvinio aplanko.</string>
     <string name="file_already_exists">Failas jau egzistuoja.</string>
     <string name="error_renaming_file">Klaida pervadinant failą</string>
     <string name="folder_already_exists">Aplankas jau egzistuoja.</string>
