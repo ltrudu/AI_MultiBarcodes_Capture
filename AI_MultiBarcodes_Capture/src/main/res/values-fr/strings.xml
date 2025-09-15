@@ -195,4 +195,6 @@
     <string name="inference_type_cpu">CPU (Unité de traitement centrale)</string>
     <string name="inference_type_cpu_description">Pour usage d\'essai si DSP et GPU non disponibles</string>
     <string name="managed_configuration_updated">Paramètres mis à jour par l\'administrateur</string>
+    <string name="error_renaming_folder">Error renaming folder</string>
+    <string name="rename_folder">Rename a folder</string>
 </resources>

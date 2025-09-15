@@ -195,4 +195,6 @@
     <string name="inference_type_cpu">CPU (Sentrale Verwerkingseenheid)</string>
     <string name="inference_type_cpu_description">Vir proef gebruik as DSP en GPU nie beskikbaar nie</string>
     <string name="managed_configuration_updated">Instellings opgedateer deur administrateur</string>
+    <string name="error_renaming_folder">Error renaming folder</string>
+    <string name="rename_folder">Rename a folder</string>
 </resources>
