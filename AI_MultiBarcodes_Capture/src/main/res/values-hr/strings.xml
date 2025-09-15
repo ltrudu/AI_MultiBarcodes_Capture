@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Greška pri spremanju zadnje odabrane datoteke</string>
     <string name="settings_saved_successfully">Postavke uspješno spremljene</string>
     <string name="please_select_file_not_folder">Molimo odaberite datoteku, ne mapu.</string>
-    <string name="please_select_file">Molimo odaberite datoteku.</string>
-    <string name="cannot_rename_folders_or_parent">Ne možete preimenovati mape ili roditelje mapu.</string>
+    <string name="please_select_file_or_folder">Molimo odaberite datoteku.</string>
+    <string name="cannot_rename_parent_folder">Ne možete preimenovati mape ili roditelje mapu.</string>
     <string name="file_already_exists">Datoteka već postoji.</string>
     <string name="error_renaming_file">Greška pri preimenovanju datoteke</string>
     <string name="folder_already_exists">Mapa već postoji.</string>

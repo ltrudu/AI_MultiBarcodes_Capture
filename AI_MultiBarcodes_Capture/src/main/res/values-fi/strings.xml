@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Virhe viimeksi valitun tiedoston tallennuksessa</string>
     <string name="settings_saved_successfully">Asetukset tallennettu onnistuneesti</string>
     <string name="please_select_file_not_folder">Valitse tiedosto, ei kansiota.</string>
-    <string name="please_select_file">Valitse tiedosto.</string>
-    <string name="cannot_rename_folders_or_parent">Kansioita tai yläkansiota ei voi nimetä uudelleen.</string>
+    <string name="please_select_file_or_folder">Valitse tiedosto.</string>
+    <string name="cannot_rename_parent_folder">Kansioita tai yläkansiota ei voi nimetä uudelleen.</string>
     <string name="file_already_exists">Tiedosto on jo olemassa.</string>
     <string name="error_renaming_file">Virhe tiedoston uudelleennimeämisessä</string>
     <string name="folder_already_exists">Kansio on jo olemassa.</string>

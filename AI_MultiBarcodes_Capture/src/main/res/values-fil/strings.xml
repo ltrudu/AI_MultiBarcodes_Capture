@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Error sa pag-save ng huling napilin na file</string>
     <string name="settings_saved_successfully">Matagumpay na na-save ang mga setting</string>
     <string name="please_select_file_not_folder">Pumili ng file, hindi folder.</string>
-    <string name="please_select_file">Pumili ng file.</string>
-    <string name="cannot_rename_folders_or_parent">Hindi maaaring palitan ang pangalan ng mga folder o parent folder.</string>
+    <string name="please_select_file_or_folder">Pumili ng file.</string>
+    <string name="cannot_rename_parent_folder">Hindi maaaring palitan ang pangalan ng mga folder o parent folder.</string>
     <string name="file_already_exists">Umiiral na ang file.</string>
     <string name="error_renaming_file">Error sa pagpapalit ng pangalan ng file</string>
     <string name="folder_already_exists">Umiiral na ang folder.</string>

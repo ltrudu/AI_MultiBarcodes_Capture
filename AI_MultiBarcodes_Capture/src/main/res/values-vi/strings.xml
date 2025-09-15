@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Lỗi khi lưu tệp được chọn cuối cùng</string>
     <string name="settings_saved_successfully">Cài đặt đã được lưu thành công</string>
     <string name="please_select_file_not_folder">Vui lòng chọn một tệp, không phải thư mục.</string>
-    <string name="please_select_file">Vui lòng chọn một tệp.</string>
-    <string name="cannot_rename_folders_or_parent">Không thể đổi tên thư mục hoặc thư mục gốc.</string>
+    <string name="please_select_file_or_folder">Vui lòng chọn một tệp.</string>
+    <string name="cannot_rename_parent_folder">Không thể đổi tên thư mục hoặc thư mục gốc.</string>
     <string name="file_already_exists">Tệp đã tồn tại.</string>
     <string name="error_renaming_file">Lỗi khi đổi tên tệp</string>
     <string name="folder_already_exists">Thư mục đã tồn tại.</string>

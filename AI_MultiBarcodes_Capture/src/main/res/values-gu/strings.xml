@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">છેલ્લી પસંદ કરેલ ફાઇલ સેવ કરવામાં એરર</string>
     <string name="settings_saved_successfully">સેટિંગ્સ સફળતાપૂર્વક સેવ થઈ</string>
     <string name="please_select_file_not_folder">કૃપા કરીને ફાઇલ પસંદ કરો, ફોલ્ડર નહીં.</string>
-    <string name="please_select_file">કૃપા કરીને ફાઇલ પસંદ કરો.</string>
-    <string name="cannot_rename_folders_or_parent">ફોલ્ડર્સ અથવા પેરેન્ટ ફોલ્ડરનું નામ બદલી શકાતું નથી.</string>
+    <string name="please_select_file_or_folder">કૃપા કરીને ફાઇલ પસંદ કરો.</string>
+    <string name="cannot_rename_parent_folder">ફોલ્ડર્સ અથવા પેરેન્ટ ફોલ્ડરનું નામ બદલી શકાતું નથી.</string>
     <string name="file_already_exists">ફાઇલ પહેલેથી અસ્તિત્વમાં છે.</string>
     <string name="error_renaming_file">ફાઇલનું નામ બદલવામાં એરર</string>
     <string name="folder_already_exists">ફોલ્ડર પહેલેથી અસ્તિત્વમાં છે.</string>

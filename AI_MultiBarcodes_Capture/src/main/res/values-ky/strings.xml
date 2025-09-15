@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Акырында тандалган файлды сактоо катасы</string>
     <string name="settings_saved_successfully">Тууралоолор ийгиликтүү сакталды</string>
     <string name="please_select_file_not_folder">Сураныч, папка эмес, файлды тандаңыз.</string>
-    <string name="please_select_file">Сураныч, файлды тандаңыз.</string>
-    <string name="cannot_rename_folders_or_parent">Папкаларды же ата-эне папкасын кайра ат берүү мүмкүн эмес.</string>
+    <string name="please_select_file_or_folder">Сураныч, файлды тандаңыз.</string>
+    <string name="cannot_rename_parent_folder">Папкаларды же ата-эне папкасын кайра ат берүү мүмкүн эмес.</string>
     <string name="file_already_exists">Файл мурдатан эле бар.</string>
     <string name="error_renaming_file">Файлды кайра ат берүү катасы</string>
     <string name="folder_already_exists">Папка мурдатан эле бар.</string>

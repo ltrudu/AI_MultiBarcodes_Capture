@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">နောက်ဆုံးရွေးချယ်သောဖိုင်သိမ်းရာတွင်အမှား</string>
     <string name="settings_saved_successfully">ဆက်တင်များအောင်မြင်စွာသိမ်းခဲ့သည်</string>
     <string name="please_select_file_not_folder">ကျေးဇူးပြု၍ဖိုင်ကိုရွေးပါ၊ ဖိုလ်ဒါမဟုတ်။</string>
-    <string name="please_select_file">ကျေးဇူးပြု၍ဖိုင်တစ်ခုရွေးပါ။</string>
-    <string name="cannot_rename_folders_or_parent">ဖိုလ်ဒါများ သို့မဟုတ် ပင်မဖိုလ်ဒါကို အမည်မပြောင်းနိုင်ပါ။</string>
+    <string name="please_select_file_or_folder">ကျေးဇူးပြု၍ဖိုင်တစ်ခုရွေးပါ။</string>
+    <string name="cannot_rename_parent_folder">ဖိုလ်ဒါများ သို့မဟုတ် ပင်မဖိုလ်ဒါကို အမည်မပြောင်းနိုင်ပါ။</string>
     <string name="file_already_exists">ဖိုင်ရှိပြီးသား။</string>
     <string name="error_renaming_file">ဖိုင်အမည်ပြောင်းရာတွင်အမှား</string>
     <string name="folder_already_exists">ဖိုလ်ဒါရှိပြီးသား။</string>

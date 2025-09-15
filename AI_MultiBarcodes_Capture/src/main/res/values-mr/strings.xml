@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">शेवटची निवडलेली फाइल जतन करताना त्रुटी</string>
     <string name="settings_saved_successfully">सेटिंग्ज यशस्वीरित्या जतन केल्या</string>
     <string name="please_select_file_not_folder">कृपया फोल्डर नव्हे तर फाइल निवडा.</string>
-    <string name="please_select_file">कृपया फाइल निवडा.</string>
-    <string name="cannot_rename_folders_or_parent">फोल्डर्स किंवा पॅरेंट फोल्डरचे नाव बदलू शकत नाही.</string>
+    <string name="please_select_file_or_folder">कृपया फाइल निवडा.</string>
+    <string name="cannot_rename_parent_folder">फोल्डर्स किंवा पॅरेंट फोल्डरचे नाव बदलू शकत नाही.</string>
     <string name="file_already_exists">फाइल आधीपासूनच अस्तित्वात आहे.</string>
     <string name="error_renaming_file">फाइलचे नाव बदलताना त्रुटी</string>
     <string name="folder_already_exists">फोल्डर आधीपासूनच अस्तित्वात आहे.</string>

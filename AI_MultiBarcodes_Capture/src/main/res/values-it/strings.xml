@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Errore nel salvataggio dell\'ultimo file selezionato</string>
     <string name="settings_saved_successfully">Impostazioni salvate con successo</string>
     <string name="please_select_file_not_folder">Si prega di selezionare un file, non una cartella.</string>
-    <string name="please_select_file">Si prega di selezionare un file.</string>
-    <string name="cannot_rename_folders_or_parent">Impossibile rinominare cartelle o la cartella padre.</string>
+    <string name="please_select_file_or_folder">Si prega di selezionare un file.</string>
+    <string name="cannot_rename_parent_folder">Impossibile rinominare cartelle o la cartella padre.</string>
     <string name="file_already_exists">Il file esiste già.</string>
     <string name="error_renaming_file">Errore nella rinomina del file</string>
     <string name="folder_already_exists">La cartella esiste già.</string>

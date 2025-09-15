@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">अन्तिम चयनित फाइल सुरक्षित गर्न त्रुटि</string>
     <string name="settings_saved_successfully">सेटिङहरू सफलतापूर्वक सुरक्षित गरिएको</string>
     <string name="please_select_file_not_folder">कृपया फोल्डर नभएर फाइल छान्नुहोस्।</string>
-    <string name="please_select_file">कृपया फाइल छान्नुहोस्।</string>
-    <string name="cannot_rename_folders_or_parent">फोल्डरहरू वा अभिभावक फोल्डर पुन: नामाकरण गर्न सकिँदैन।</string>
+    <string name="please_select_file_or_folder">कृपया फाइल छान्नुहोस्।</string>
+    <string name="cannot_rename_parent_folder">फोल्डरहरू वा अभिभावक फोल्डर पुन: नामाकरण गर्न सकिँदैन।</string>
     <string name="file_already_exists">फाइल पहिले नै अवस्थित छ।</string>
     <string name="error_renaming_file">फाइल पुन: नामकरण गर्न त्रुटि</string>
     <string name="folder_already_exists">फोल्डर पहिले नै अवस्थित छ।</string>

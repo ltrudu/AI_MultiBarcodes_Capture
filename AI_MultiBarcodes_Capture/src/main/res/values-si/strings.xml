@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">අවසන් තෝරාගත් ගොනුව සුරැකීමේ දෝෂය</string>
     <string name="settings_saved_successfully">සැකසුම් සාර්ථකව සුරකින ලදී</string>
     <string name="please_select_file_not_folder">කරුණාකර ෆෝල්ඩරයක් නොවන ගොනුවක් තෝරන්න.</string>
-    <string name="please_select_file">කරුණාකර ගොනුවක් තෝරන්න.</string>
-    <string name="cannot_rename_folders_or_parent">ෆෝල්ඩර හෝ මව් ෆෝල්ඩරයේ නම වෙනස් කළ නොහැක.</string>
+    <string name="please_select_file_or_folder">කරුණාකර ගොනුවක් තෝරන්න.</string>
+    <string name="cannot_rename_parent_folder">ෆෝල්ඩර හෝ මව් ෆෝල්ඩරයේ නම වෙනස් කළ නොහැක.</string>
     <string name="file_already_exists">ගොනුව දැනටමත් ඇත.</string>
     <string name="error_renaming_file">ගොනුව නම් කිරීමේ දෝෂය</string>
     <string name="folder_already_exists">ෆෝල්ඩරය දැනටමත් ඇත.</string>

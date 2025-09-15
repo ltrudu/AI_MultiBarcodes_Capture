@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Fehler beim Speichern der zuletzt ausgewählten Datei</string>
     <string name="settings_saved_successfully">Einstellungen erfolgreich gespeichert</string>
     <string name="please_select_file_not_folder">Bitte wählen Sie eine Datei, keinen Ordner.</string>
-    <string name="please_select_file">Bitte wählen Sie eine Datei.</string>
-    <string name="cannot_rename_folders_or_parent">Ordner oder übergeordneter Ordner können nicht umbenannt werden.</string>
+    <string name="please_select_file_or_folder">Bitte wählen Sie eine Datei.</string>
+    <string name="cannot_rename_parent_folder">Ordner oder übergeordneter Ordner können nicht umbenannt werden.</string>
     <string name="file_already_exists">Datei existiert bereits.</string>
     <string name="error_renaming_file">Fehler beim Umbenennen der Datei</string>
     <string name="folder_already_exists">Ordner existiert bereits.</string>

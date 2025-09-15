@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Erro gardando o último ficheiro seleccionado</string>
     <string name="settings_saved_successfully">Configuración gardada correctamente</string>
     <string name="please_select_file_not_folder">Por favor, selecciona un ficheiro, non un cartafol.</string>
-    <string name="please_select_file">Por favor, selecciona un ficheiro.</string>
-    <string name="cannot_rename_folders_or_parent">Non se poden renomear cartafoles ou o cartafol pai.</string>
+    <string name="please_select_file_or_folder">Por favor, selecciona un ficheiro.</string>
+    <string name="cannot_rename_parent_folder">Non se poden renomear cartafoles ou o cartafol pai.</string>
     <string name="file_already_exists">O ficheiro xa existe.</string>
     <string name="error_renaming_file">Erro renomeando ficheiro</string>
     <string name="folder_already_exists">O cartafol xa existe.</string>

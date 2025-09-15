@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Błąd zapisywania ostatnio wybranego pliku</string>
     <string name="settings_saved_successfully">Ustawienia zostały pomyślnie zapisane</string>
     <string name="please_select_file_not_folder">Proszę wybierz plik, nie folder.</string>
-    <string name="please_select_file">Proszę wybierz plik.</string>
-    <string name="cannot_rename_folders_or_parent">Nie można zmienić nazwy folderów lub folderu nadrzędnego.</string>
+    <string name="please_select_file_or_folder">Proszę wybierz plik.</string>
+    <string name="cannot_rename_parent_folder">Nie można zmienić nazwy folderów lub folderu nadrzędnego.</string>
     <string name="file_already_exists">Plik już istnieje.</string>
     <string name="error_renaming_file">Błąd zmiany nazwy pliku</string>
     <string name="folder_already_exists">Folder już istnieje.</string>

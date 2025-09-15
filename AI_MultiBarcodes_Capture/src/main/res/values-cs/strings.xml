@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Chyba při ukládání posledního vybraného souboru</string>
     <string name="settings_saved_successfully">Nastavení úspěšně uloženo</string>
     <string name="please_select_file_not_folder">Prosím vyberte soubor, ne složku.</string>
-    <string name="please_select_file">Prosím vyberte soubor.</string>
-    <string name="cannot_rename_folders_or_parent">Nelze přejmenovat složky nebo nadřazenou složku.</string>
+    <string name="please_select_file_or_folder">Prosím vyberte soubor.</string>
+    <string name="cannot_rename_parent_folder">Nelze přejmenovat složky nebo nadřazenou složku.</string>
     <string name="file_already_exists">Soubor již existuje.</string>
     <string name="error_renaming_file">Chyba při přejmenování souboru</string>
     <string name="folder_already_exists">Složka již existuje.</string>

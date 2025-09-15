@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Feil ved lagring av sist valgte fil</string>
     <string name="settings_saved_successfully">Innstillinger lagret med suksess</string>
     <string name="please_select_file_not_folder">Vennligst velg en fil, ikke en mappe.</string>
-    <string name="please_select_file">Vennligst velg en fil.</string>
-    <string name="cannot_rename_folders_or_parent">Kan ikke gi nytt navn til mapper eller overordnet mappe.</string>
+    <string name="please_select_file_or_folder">Vennligst velg en fil.</string>
+    <string name="cannot_rename_parent_folder">Kan ikke gi nytt navn til mapper eller overordnet mappe.</string>
     <string name="file_already_exists">Filen finnes allerede.</string>
     <string name="error_renaming_file">Feil ved omnavning av fil</string>
     <string name="folder_already_exists">Mappen finnes allerede.</string>

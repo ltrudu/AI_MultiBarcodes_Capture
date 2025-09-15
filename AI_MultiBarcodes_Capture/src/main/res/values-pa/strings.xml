@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">ਅੰਤਿਮ ਚੁਣੀ ਗਈ ਫਾਈਲ ਸੇਵ ਕਰਨ ਵਿੱਚ ਗਲਤੀ</string>
     <string name="settings_saved_successfully">ਸੈਟਿੰਗਜ਼ ਸਫਲਤਾਪੂਰਵਕ ਸੇਵ ਹੋਈਆਂ</string>
     <string name="please_select_file_not_folder">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਫਾਈਲ ਚੁਣੋ, ਫੋਲਡਰ ਨਹੀਂ।</string>
-    <string name="please_select_file">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਫਾਈਲ ਚੁਣੋ।</string>
-    <string name="cannot_rename_folders_or_parent">ਫੋਲਡਰਾਂ ਜਾਂ ਪੇਰੇਂਟ ਫੋਲਡਰ ਦਾ ਨਾਮ ਨਹੀਂ ਬਦਲ ਸਕਦੇ।</string>
+    <string name="please_select_file_or_folder">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਫਾਈਲ ਚੁਣੋ।</string>
+    <string name="cannot_rename_parent_folder">ਫੋਲਡਰਾਂ ਜਾਂ ਪੇਰੇਂਟ ਫੋਲਡਰ ਦਾ ਨਾਮ ਨਹੀਂ ਬਦਲ ਸਕਦੇ।</string>
     <string name="file_already_exists">ਫਾਈਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
     <string name="error_renaming_file">ਫਾਈਲ ਦਾ ਨਾਮ ਬਦਲਣ ਵਿੱਚ ਗਲਤੀ</string>
     <string name="folder_already_exists">ਫੋਲਡਰ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>

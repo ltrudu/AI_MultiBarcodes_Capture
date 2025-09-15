@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Fout bij opslaan laatst geselecteerde bestand</string>
     <string name="settings_saved_successfully">Instellingen succesvol opgeslagen</string>
     <string name="please_select_file_not_folder">Selecteer een bestand, geen map.</string>
-    <string name="please_select_file">Selecteer een bestand.</string>
-    <string name="cannot_rename_folders_or_parent">Kan mappen of bovenliggende map niet hernoemen.</string>
+    <string name="please_select_file_or_folder">Selecteer een bestand.</string>
+    <string name="cannot_rename_parent_folder">Kan mappen of bovenliggende map niet hernoemen.</string>
     <string name="file_already_exists">Bestand bestaat al.</string>
     <string name="error_renaming_file">Fout bij hernoemen bestand</string>
     <string name="folder_already_exists">Map bestaat al.</string>

@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Error servanda ultima lima electa</string>
     <string name="settings_saved_successfully">Configurationes feliciter servatae</string>
     <string name="please_select_file_not_folder">Quaeso elige limam, non fasciculum.</string>
-    <string name="please_select_file">Quaeso elige limam.</string>
-    <string name="cannot_rename_folders_or_parent">Fasciculi vel fasciculus parens nominari iterum non potest.</string>
+    <string name="please_select_file_or_folder">Quaeso elige limam.</string>
+    <string name="cannot_rename_parent_folder">Fasciculi vel fasciculus parens nominari iterum non potest.</string>
     <string name="file_already_exists">Lima iam exstat.</string>
     <string name="error_renaming_file">Error lima nominanda iterum</string>
     <string name="folder_already_exists">Fasciculus iam exstat.</string>

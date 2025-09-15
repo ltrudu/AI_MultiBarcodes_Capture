@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Eroare la salvarea ultimului fișier selectat</string>
     <string name="settings_saved_successfully">Setările au fost salvate cu succes</string>
     <string name="please_select_file_not_folder">Vă rugăm să selectați un fișier, nu un dosar.</string>
-    <string name="please_select_file">Vă rugăm să selectați un fișier.</string>
-    <string name="cannot_rename_folders_or_parent">Nu se pot redenumi dosarele sau dosarul părinte.</string>
+    <string name="please_select_file_or_folder">Vă rugăm să selectați un fișier.</string>
+    <string name="cannot_rename_parent_folder">Nu se pot redenumi dosarele sau dosarul părinte.</string>
     <string name="file_already_exists">Fișierul există deja.</string>
     <string name="error_renaming_file">Eroare la redenumirea fișierului</string>
     <string name="folder_already_exists">Dosarul există deja.</string>

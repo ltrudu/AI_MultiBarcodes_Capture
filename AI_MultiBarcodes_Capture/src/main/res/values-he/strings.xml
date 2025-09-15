@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">שגיאה בשמירת הקובץ האחרון שנבחר</string>
     <string name="settings_saved_successfully">הגדרות נשמרו בהצלחה</string>
     <string name="please_select_file_not_folder">אנא בחר קובץ, לא תיקייה.</string>
-    <string name="please_select_file">אנא בחר קובץ.</string>
-    <string name="cannot_rename_folders_or_parent">לא ניתן לשנות שם של תיקיות או תיקיית האב.</string>
+    <string name="please_select_file_or_folder">אנא בחר קובץ.</string>
+    <string name="cannot_rename_parent_folder">לא ניתן לשנות שם של תיקיות או תיקיית האב.</string>
     <string name="file_already_exists">הקובץ כבר קיים.</string>
     <string name="error_renaming_file">שגיאה בשינוי שם קובץ</string>
     <string name="folder_already_exists">התיקייה כבר קיימת.</string>

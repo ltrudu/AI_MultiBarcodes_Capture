@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">خطأ في حفظ آخر ملف محدد</string>
     <string name="settings_saved_successfully">تم حفظ الإعدادات بنجاح</string>
     <string name="please_select_file_not_folder">يرجى تحديد ملف وليس مجلد.</string>
-    <string name="please_select_file">يرجى تحديد ملف.</string>
-    <string name="cannot_rename_folders_or_parent">لا يمكن إعادة تسمية المجلدات أو المجلد الأساسي.</string>
+    <string name="please_select_file_or_folder">يرجى تحديد ملف.</string>
+    <string name="cannot_rename_parent_folder">لا يمكن إعادة تسمية المجلدات أو المجلد الأساسي.</string>
     <string name="file_already_exists">الملف موجود بالفعل.</string>
     <string name="error_renaming_file">خطأ في إعادة تسمية الملف</string>
     <string name="folder_already_exists">المجلد موجود بالفعل.</string>

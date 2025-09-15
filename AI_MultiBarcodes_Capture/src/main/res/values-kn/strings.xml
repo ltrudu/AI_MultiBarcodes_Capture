@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">ಕೊನೆಯದಾಗಿ ಆಯ್ಕೆಮಾಡಿದ ಫೈಲ್ ಉಳಿಸುವಲ್ಲಿ ದೋಷ</string>
     <string name="settings_saved_successfully">ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲಾಗಿದೆ</string>
     <string name="please_select_file_not_folder">ದಯವಿಟ್ಟು ಫೋಲ್ಡರ್ ಅಲ್ಲ, ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ.</string>
-    <string name="please_select_file">ದಯವಿಟ್ಟು ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ.</string>
-    <string name="cannot_rename_folders_or_parent">ಫೋಲ್ಡರ್‌ಗಳು ಅಥವಾ ಪೋಷಕ ಫೋಲ್ಡರ್‌ನ ಹೆಸರು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
+    <string name="please_select_file_or_folder">ದಯವಿಟ್ಟು ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ.</string>
+    <string name="cannot_rename_parent_folder">ಫೋಲ್ಡರ್‌ಗಳು ಅಥವಾ ಪೋಷಕ ಫೋಲ್ಡರ್‌ನ ಹೆಸರು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
     <string name="file_already_exists">ಫೈಲ್ ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ.</string>
     <string name="error_renaming_file">ಫೈಲ್ ಹೆಸರು ಬದಲಾಯಿಸುವಲ್ಲಿ ದೋಷ</string>
     <string name="folder_already_exists">ಫೋಲ್ಡರ್ ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ.</string>

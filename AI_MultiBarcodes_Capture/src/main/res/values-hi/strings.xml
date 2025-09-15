@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">अंतिम चुनी गई फ़ाइल सहेजने में त्रुटि</string>
     <string name="settings_saved_successfully">सेटिंग्स सफलतापूर्वक सहेजी गईं</string>
     <string name="please_select_file_not_folder">कृपया फ़ाइल चुनें, फ़ोल्डर नहीं।</string>
-    <string name="please_select_file">कृपया फ़ाइल चुनें।</string>
-    <string name="cannot_rename_folders_or_parent">फ़ोल्डरों या पेरेंट फ़ोल्डर का नाम बदला नहीं जा सकता।</string>
+    <string name="please_select_file_or_folder">कृपया फ़ाइल चुनें।</string>
+    <string name="cannot_rename_parent_folder">फ़ोल्डरों या पेरेंट फ़ोल्डर का नाम बदला नहीं जा सकता।</string>
     <string name="file_already_exists">फ़ाइल पहले से मौजूद है।</string>
     <string name="error_renaming_file">फ़ाइल का नाम बदलने में त्रुटि</string>
     <string name="folder_already_exists">फ़ोल्डर पहले से मौजूद है।</string>

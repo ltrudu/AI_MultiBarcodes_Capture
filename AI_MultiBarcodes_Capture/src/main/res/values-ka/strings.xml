@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">შეცდომა ბოლოს არჩეული ფაილის შენახვისას</string>
     <string name="settings_saved_successfully">პარამეტრები წარმატებით შენახულია</string>
     <string name="please_select_file_not_folder">გთხოვთ, აირჩიეთ ფაილი, არა საქაღალდე.</string>
-    <string name="please_select_file">გთხოვთ, აირჩიეთ ფაილი.</string>
-    <string name="cannot_rename_folders_or_parent">საქაღალდეების ან მშობლის საქაღალდის სახელის შეცვლა შეუძლებელია.</string>
+    <string name="please_select_file_or_folder">გთხოვთ, აირჩიეთ ფაილი.</string>
+    <string name="cannot_rename_parent_folder">საქაღალდეების ან მშობლის საქაღალდის სახელის შეცვლა შეუძლებელია.</string>
     <string name="file_already_exists">ფაილი უკვე არსებობს.</string>
     <string name="error_renaming_file">შეცდომა ფაილის სახელის შეცვლისას</string>
     <string name="folder_already_exists">საქაღალდე უკვე არსებობს.</string>

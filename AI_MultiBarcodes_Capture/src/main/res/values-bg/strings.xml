@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Грешка при запазване на последния избран файл</string>
     <string name="settings_saved_successfully">Настройките са запазени успешно</string>
     <string name="please_select_file_not_folder">Моля, изберете файл, не папка.</string>
-    <string name="please_select_file">Моля, изберете файл.</string>
-    <string name="cannot_rename_folders_or_parent">Не може да преименувате папки или родителската папка.</string>
+    <string name="please_select_file_or_folder">Моля, изберете файл.</string>
+    <string name="cannot_rename_parent_folder">Не може да преименувате папки или родителската папка.</string>
     <string name="file_already_exists">Файлът вече съществува.</string>
     <string name="error_renaming_file">Грешка при преименуване на файл</string>
     <string name="folder_already_exists">Папката вече съществува.</string>

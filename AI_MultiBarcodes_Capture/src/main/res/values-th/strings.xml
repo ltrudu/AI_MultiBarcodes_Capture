@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">ข้อผิดพลาดในการบันทึกไฟล์ที่เลือกล่าสุด</string>
     <string name="settings_saved_successfully">การตั้งค่าบันทึกเรียบร้อยแล้ว</string>
     <string name="please_select_file_not_folder">กรุณาเลือกไฟล์ ไม่ใช่โฟลเดอร์</string>
-    <string name="please_select_file">กรุณาเลือกไฟล์</string>
-    <string name="cannot_rename_folders_or_parent">ไม่สามารถเปลี่ยนชื่อโฟลเดอร์หรือโฟลเดอร์หลัก</string>
+    <string name="please_select_file_or_folder">กรุณาเลือกไฟล์</string>
+    <string name="cannot_rename_parent_folder">ไม่สามารถเปลี่ยนชื่อโฟลเดอร์หรือโฟลเดอร์หลัก</string>
     <string name="file_already_exists">ไฟล์มีอยู่แล้ว</string>
     <string name="error_renaming_file">ข้อผิดพลาดในการเปลี่ยนชื่อไฟล์</string>
     <string name="folder_already_exists">โฟลเดอร์มีอยู่แล้ว</string>

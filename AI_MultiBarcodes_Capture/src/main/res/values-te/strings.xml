@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">చివరిగా ఎంచుకున్న ఫైల్ సేవ్ చేయడంలో లోపం</string>
     <string name="settings_saved_successfully">సెట్టింగులు విజయవంతంగా సేవ్ చేయబడ్డాయి</string>
     <string name="please_select_file_not_folder">దయచేసి ఫోల్డర్‌ని కాకుండా ఫైల్‌ను ఎంచుకోండి.</string>
-    <string name="please_select_file">దయచేసి ఫైల్‌ను ఎంచుకోండి.</string>
-    <string name="cannot_rename_folders_or_parent">ఫోల్డర్లు లేదా పేరెంట్ ఫోల్డర్ పేరు మార్చలేము.</string>
+    <string name="please_select_file_or_folder">దయచేసి ఫైల్‌ను ఎంచుకోండి.</string>
+    <string name="cannot_rename_parent_folder">ఫోల్డర్లు లేదా పేరెంట్ ఫోల్డర్ పేరు మార్చలేము.</string>
     <string name="file_already_exists">ఫైల్ ఇప్పటికే ఉంది.</string>
     <string name="error_renaming_file">ఫైల్ పేరు మార్చడంలో లోపం</string>
     <string name="folder_already_exists">ఫోల్డర్ ఇప్పటికే ఉంది.</string>

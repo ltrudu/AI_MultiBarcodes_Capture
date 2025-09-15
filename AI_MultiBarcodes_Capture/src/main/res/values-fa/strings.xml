@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">خطا در ذخیره آخرین فایل انتخاب‌شده</string>
     <string name="settings_saved_successfully">تنظیمات با موفقیت ذخیره شد</string>
     <string name="please_select_file_not_folder">لطفاً فایل انتخاب کنید، نه پوشه.</string>
-    <string name="please_select_file">لطفاً فایل انتخاب کنید.</string>
-    <string name="cannot_rename_folders_or_parent">نمی‌توان پوشه‌ها یا پوشه والد را تغییر نام داد.</string>
+    <string name="please_select_file_or_folder">لطفاً فایل انتخاب کنید.</string>
+    <string name="cannot_rename_parent_folder">نمی‌توان پوشه‌ها یا پوشه والد را تغییر نام داد.</string>
     <string name="file_already_exists">فایل از قبل وجود دارد.</string>
     <string name="error_renaming_file">خطا در تغییر نام فایل</string>
     <string name="folder_already_exists">پوشه از قبل وجود دارد.</string>

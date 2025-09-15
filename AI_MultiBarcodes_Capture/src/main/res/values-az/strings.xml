@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Son seçilmiş faylı saxlama xətası</string>
     <string name="settings_saved_successfully">Ayarlar uğurla saxlanıldı</string>
     <string name="please_select_file_not_folder">Xahiş edirik fayl seçin, qovluq deyil.</string>
-    <string name="please_select_file">Xahiş edirik fayl seçin.</string>
-    <string name="cannot_rename_folders_or_parent">Qovluqları və ya ana qovluğu yenidən adlandıra bilməzsiniz.</string>
+    <string name="please_select_file_or_folder">Xahiş edirik fayl seçin.</string>
+    <string name="cannot_rename_parent_folder">Qovluqları və ya ana qovluğu yenidən adlandıra bilməzsiniz.</string>
     <string name="file_already_exists">Fayl artıq mövcuddur.</string>
     <string name="error_renaming_file">Faylı yenidən adlandırma xətası</string>
     <string name="folder_already_exists">Qovluq artıq mövcuddur.</string>

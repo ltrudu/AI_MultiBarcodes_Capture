@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Fejl ved gemning af sidst valgte fil</string>
     <string name="settings_saved_successfully">Indstillinger gemt med succes</string>
     <string name="please_select_file_not_folder">Vælg venligst en fil, ikke en mappe.</string>
-    <string name="please_select_file">Vælg venligst en fil.</string>
-    <string name="cannot_rename_folders_or_parent">Kan ikke omdøbe mapper eller forældremappe.</string>
+    <string name="please_select_file_or_folder">Vælg venligst en fil.</string>
+    <string name="cannot_rename_parent_folder">Kan ikke omdøbe mapper eller forældremappe.</string>
     <string name="file_already_exists">Fil eksisterer allerede.</string>
     <string name="error_renaming_file">Fejl ved omdøbning af fil</string>
     <string name="folder_already_exists">Mappe eksisterer allerede.</string>

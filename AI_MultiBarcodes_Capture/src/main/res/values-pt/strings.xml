@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Erro ao guardar o último ficheiro selecionado</string>
     <string name="settings_saved_successfully">Definições guardadas com sucesso</string>
     <string name="please_select_file_not_folder">Por favor, selecione um ficheiro, não uma pasta.</string>
-    <string name="please_select_file">Por favor, selecione um ficheiro.</string>
-    <string name="cannot_rename_folders_or_parent">Não é possível renomear pastas ou a pasta principal.</string>
+    <string name="please_select_file_or_folder">Por favor, selecione um ficheiro.</string>
+    <string name="cannot_rename_parent_folder">Não é possível renomear pastas ou a pasta principal.</string>
     <string name="file_already_exists">O ficheiro já existe.</string>
     <string name="error_renaming_file">Erro ao renomear o ficheiro</string>
     <string name="folder_already_exists">A pasta já existe.</string>

@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">கடைசியாகத் தேர்ந்தெடுக்கப்பட்ட கோப்பைச் சேமிக்கும்போது பிழை</string>
     <string name="settings_saved_successfully">அமைப்புகள் வெற்றிகரமாக சேமிக்கப்பட்டன</string>
     <string name="please_select_file_not_folder">தயவுசெய்து கோப்புறையைத் தேர்ந்தெடுக்காமல் கோப்பைத் தேர்ந்தெடுக்கவும்.</string>
-    <string name="please_select_file">தயவுசெய்து ஒரு கோப்பைத் தேர்ந்தெடுக்கவும்.</string>
-    <string name="cannot_rename_folders_or_parent">கோப்புறைகள் அல்லது பெற்றோர் கோப்புறைகளின் பெயரை மாற்ற முடியாது.</string>
+    <string name="please_select_file_or_folder">தயவுசெய்து ஒரு கோப்பைத் தேர்ந்தெடுக்கவும்.</string>
+    <string name="cannot_rename_parent_folder">கோப்புறைகள் அல்லது பெற்றோர் கோப்புறைகளின் பெயரை மாற்ற முடியாது.</string>
     <string name="file_already_exists">கோப்பு ஏற்கனவே உள்ளது.</string>
     <string name="error_renaming_file">கோப்பின் பெயரை மாற்றும்போது பிழை</string>
     <string name="folder_already_exists">கோப்புறை ஏற்கனவே உள்ளது.</string>

@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">শেষ নির্বাচিত ফাইল সেভ করতে ত্রুটি</string>
     <string name="settings_saved_successfully">সেটিংস সফলভাবে সেভ হয়েছে</string>
     <string name="please_select_file_not_folder">দয়া করে একটি ফাইল নির্বাচন করুন, ফোল্ডার নয়।</string>
-    <string name="please_select_file">দয়া করে একটি ফাইল নির্বাচন করুন।</string>
-    <string name="cannot_rename_folders_or_parent">ফোল্ডার বা প্যারেন্ট ফোল্ডারের নাম পরিবর্তন করা যায় না।</string>
+    <string name="please_select_file_or_folder">দয়া করে একটি ফাইল নির্বাচন করুন।</string>
+    <string name="cannot_rename_parent_folder">ফোল্ডার বা প্যারেন্ট ফোল্ডারের নাম পরিবর্তন করা যায় না।</string>
     <string name="file_already_exists">ফাইল ইতিমধ্যে বিদ্যমান।</string>
     <string name="error_renaming_file">ফাইলের নাম পরিবর্তন করতে ত্রুটি</string>
     <string name="folder_already_exists">ফোল্ডার ইতিমধ্যে বিদ্যমান।</string>

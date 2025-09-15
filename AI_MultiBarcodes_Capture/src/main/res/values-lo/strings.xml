@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">ຂໍ້ຜິດພາດໃນການບັນທຶກໄຟລ໌ທີ່ເລືອກສຸດທ້າຍ</string>
     <string name="settings_saved_successfully">ບັນທຶກການຕິດຕັ້ງສໍາເລັດແລ້ວ</string>
     <string name="please_select_file_not_folder">ກະລຸນາເລືອກໄຟລ໌, ບໍ່ແມ່ນໂຟລເດີ.</string>
-    <string name="please_select_file">ກະລຸນາເລືອກໄຟລ໌.</string>
-    <string name="cannot_rename_folders_or_parent">ບໍ່ສາມາດປ່ຽນຊື່ໂຟລເດີ ຫຼື ໂຟລເດີຫຼັກ.</string>
+    <string name="please_select_file_or_folder">ກະລຸນາເລືອກໄຟລ໌.</string>
+    <string name="cannot_rename_parent_folder">ບໍ່ສາມາດປ່ຽນຊື່ໂຟລເດີ ຫຼື ໂຟລເດີຫຼັກ.</string>
     <string name="file_already_exists">ໄຟລ໌ມີຢູ່ແລ້ວ.</string>
     <string name="error_renaming_file">ຂໍ້ຜິດພາດໃນການປ່ຽນຊື່ໄຟລ໌</string>
     <string name="folder_already_exists">ໂຟລເດີມີຢູ່ແລ້ວ.</string>

@@ -51,8 +51,8 @@
     <string name="error_saving_last_selected_file">Σφάλμα αποθήκευσης του τελευταίου επιλεγμένου αρχείου</string>
     <string name="settings_saved_successfully">Οι ρυθμίσεις αποθηκεύτηκαν με επιτυχία</string>
     <string name="please_select_file_not_folder">Παρακαλώ επιλέξτε αρχείο, όχι φάκελο.</string>
-    <string name="please_select_file">Παρακαλώ επιλέξτε αρχείο.</string>
-    <string name="cannot_rename_folders_or_parent">Δεν είναι δυνατή η μετονομασία φακέλων ή του γονικού φακέλου.</string>
+    <string name="please_select_file_or_folder">Παρακαλώ επιλέξτε αρχείο.</string>
+    <string name="cannot_rename_parent_folder">Δεν είναι δυνατή η μετονομασία φακέλων ή του γονικού φακέλου.</string>
     <string name="file_already_exists">Το αρχείο υπάρχει ήδη.</string>
     <string name="error_renaming_file">Σφάλμα μετονομασίας αρχείου</string>
     <string name="folder_already_exists">Ο φάκελος υπάρχει ήδη.</string>

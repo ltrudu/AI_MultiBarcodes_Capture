@@ -49,8 +49,8 @@
     <string name="error_saving_last_selected_file">Kosa wakati wa kuhifadhi faili iliyochaguliwa mwisho</string>
     <string name="settings_saved_successfully">Mipangilio imehifadhiwa kwa mafanikio</string>
     <string name="please_select_file_not_folder">Tafadhali chagua faili, si folda.</string>
-    <string name="please_select_file">Tafadhali chagua faili.</string>
-    <string name="cannot_rename_folders_or_parent">Haiwezi kubadilisha majina ya mafolda au folda ya mzazi.</string>
+    <string name="please_select_file_or_folder">Tafadhali chagua faili.</string>
+    <string name="cannot_rename_parent_folder">Haiwezi kubadilisha majina ya mafolda au folda ya mzazi.</string>
     <string name="file_already_exists">Faili tayari ipo.</string>
     <string name="error_renaming_file">Kosa wakati wa kubadilisha jina la faili</string>
     <string name="folder_already_exists">Folda tayari ipo.</string>
