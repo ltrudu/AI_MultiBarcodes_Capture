@@ -14,11 +14,25 @@ RUN apt-get update && apt-get install -y \
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
+# Enable Apache modules
+RUN a2enmod rewrite headers expires ssl
 
 # Copy custom Apache configuration
 COPY apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY apache/ssl-default.conf /etc/apache2/sites-available/ssl-default.conf
+
+# Generate SSL certificates inside container
+RUN mkdir -p /etc/ssl/certs /etc/ssl/private && \
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/ssl/private/wms.key \
+    -out /etc/ssl/certs/wms.crt \
+    -subj "/C=US/ST=State/L=City/O=WMS/CN=wms.local" \
+    -addext "subjectAltName=DNS:localhost,DNS:wms.local,IP:127.0.0.1,IP:192.168.1.188" && \
+    chmod 600 /etc/ssl/private/wms.key && \
+    chmod 644 /etc/ssl/certs/wms.crt
+
+# Enable SSL site
+RUN a2ensite ssl-default
 
 # Set working directory
 WORKDIR /var/www/html

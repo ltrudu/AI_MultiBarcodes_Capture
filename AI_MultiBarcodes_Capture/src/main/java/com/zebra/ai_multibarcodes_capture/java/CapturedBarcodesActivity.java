@@ -50,6 +50,13 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.security.cert.X509Certificate;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -601,36 +608,54 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     }
 
     private void uploadData() {
+        android.util.Log.d("CapturedBarcodes", "uploadData() called");
+        android.util.Log.d("CapturedBarcodes", "isHttpsPostMode: " + isHttpsPostMode);
+        android.util.Log.d("CapturedBarcodes", "endpointUri: " + endpointUri);
+
         if (!isHttpsPostMode || endpointUri == null || endpointUri.isEmpty()) {
+            android.util.Log.w("CapturedBarcodes", "Upload aborted - invalid mode or endpoint");
             return;
         }
 
         SessionData newBarcodes = sessionDataFromDisplayList(displayList);
+        android.util.Log.d("CapturedBarcodes", "SessionData created with " +
+            (newBarcodes.barcodeValuesMap != null ? newBarcodes.barcodeValuesMap.size() : 0) + " barcodes");
 
         // Show progress indication
         uploadButton.setEnabled(false);
         uploadButton.setText(getString(R.string.uploading));
+        android.util.Log.d("CapturedBarcodes", "UI updated to show uploading state");
 
         // Perform upload in background thread
         executorService.execute(() -> {
             try {
+                android.util.Log.d("CapturedBarcodes", "Starting background upload task");
+
                 // Convert SessionData to JSON
+                android.util.Log.d("CapturedBarcodes", "Converting SessionData to JSON");
                 String jsonData = convertSessionDataToJson(newBarcodes);
+                android.util.Log.d("CapturedBarcodes", "JSON conversion successful, length: " + jsonData.length());
+                android.util.Log.v("CapturedBarcodes", "JSON data: " + jsonData);
 
                 // Perform HTTP POST request
+                android.util.Log.d("CapturedBarcodes", "Starting HTTP POST to: " + endpointUri);
                 boolean success = performHttpPost(endpointUri, jsonData);
+                android.util.Log.d("CapturedBarcodes", "HTTP POST completed, success: " + success);
 
                 // Update UI on main thread
                 runOnUiThread(() -> {
+                    android.util.Log.d("CapturedBarcodes", "Updating UI on main thread");
                     uploadButton.setEnabled(true);
                     uploadButton.setText(getString(R.string.upload));
 
                     if (success) {
+                        android.util.Log.i("CapturedBarcodes", "Upload successful, showing success toast");
                         android.widget.Toast.makeText(this,
                             getString(R.string.upload_successful),
                             android.widget.Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
+                        android.util.Log.w("CapturedBarcodes", "Upload failed, showing failure toast");
                         android.widget.Toast.makeText(this,
                             getString(R.string.upload_failed),
                             android.widget.Toast.LENGTH_LONG).show();
@@ -638,7 +663,9 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
                 });
 
             } catch (Exception e) {
+                android.util.Log.e("CapturedBarcodes", "Exception during upload", e);
                 runOnUiThread(() -> {
+                    android.util.Log.d("CapturedBarcodes", "Updating UI after exception");
                     uploadButton.setEnabled(true);
                     uploadButton.setText(getString(R.string.upload));
                     android.widget.Toast.makeText(this,
@@ -650,15 +677,22 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     }
 
     private String convertSessionDataToJson(SessionData sessionData) {
+        android.util.Log.d("CapturedBarcodes", "convertSessionDataToJson() called");
         JsonArray barcodesArray = new JsonArray();
         DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
 
         if (sessionData.barcodeValuesMap != null) {
+            android.util.Log.d("CapturedBarcodes", "Processing " + sessionData.barcodeValuesMap.size() + " barcodes");
+            int processedCount = 0;
+
             for (Map.Entry<Integer, String> entry : sessionData.barcodeValuesMap.entrySet()) {
                 Integer barcodeId = entry.getKey();
                 String value = entry.getValue();
 
+                android.util.Log.v("CapturedBarcodes", "Processing barcode ID: " + barcodeId + ", value: " + value);
+
                 if (value == null || value.isEmpty()) {
+                    android.util.Log.d("CapturedBarcodes", "Skipping empty barcode with ID: " + barcodeId);
                     continue;
                 }
 
@@ -669,75 +703,211 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
                 int symbology = sessionData.barcodeSymbologyMap.getOrDefault(barcodeId,
                     EBarcodesSymbologies.UNKNOWN.getIntValue());
                 barcodeObject.addProperty("symbology", symbology);
+                android.util.Log.v("CapturedBarcodes", "Symbology for " + barcodeId + ": " + symbology);
 
                 // Get quantity
                 int quantity = sessionData.barcodeQuantityMap.getOrDefault(barcodeId, 1);
                 barcodeObject.addProperty("quantity", quantity);
+                android.util.Log.v("CapturedBarcodes", "Quantity for " + barcodeId + ": " + quantity);
 
                 // Get timestamp
                 Date timestamp = sessionData.barcodeDateMap.getOrDefault(barcodeId, new Date());
-                barcodeObject.addProperty("timestamp", iso8601Format.format(timestamp));
+                String formattedTimestamp = iso8601Format.format(timestamp);
+                barcodeObject.addProperty("timestamp", formattedTimestamp);
+                android.util.Log.v("CapturedBarcodes", "Timestamp for " + barcodeId + ": " + formattedTimestamp);
 
                 barcodesArray.add(barcodeObject);
+                processedCount++;
             }
+
+            android.util.Log.d("CapturedBarcodes", "Successfully processed " + processedCount + " barcodes for JSON");
+        } else {
+            android.util.Log.w("CapturedBarcodes", "barcodeValuesMap is null");
         }
 
         JsonObject rootObject = new JsonObject();
         rootObject.add("barcodes", barcodesArray);
-        rootObject.addProperty("session_timestamp", iso8601Format.format(new Date()));
+        String sessionTimestamp = iso8601Format.format(new Date());
+        rootObject.addProperty("session_timestamp", sessionTimestamp);
+        android.util.Log.d("CapturedBarcodes", "Session timestamp: " + sessionTimestamp);
+
+        // Add device hostname information
+        String deviceHostname = getDeviceHostname();
+        rootObject.addProperty("device_info", deviceHostname);
+        android.util.Log.d("CapturedBarcodes", "Device hostname: " + deviceHostname);
 
         Gson gson = new Gson();
-        return gson.toJson(rootObject);
+        String jsonResult = gson.toJson(rootObject);
+        android.util.Log.d("CapturedBarcodes", "JSON conversion completed successfully");
+        return jsonResult;
+    }
+
+    private String getDeviceHostname() {
+        try {
+            // Get device model and Android version info
+            String deviceModel = Build.MODEL != null ? Build.MODEL : "Unknown";
+            String manufacturer = Build.MANUFACTURER != null ? Build.MANUFACTURER : "Unknown";
+            String androidVersion = Build.VERSION.RELEASE != null ? Build.VERSION.RELEASE : "Unknown";
+
+            // Create a descriptive hostname with device info
+            String hostname = manufacturer + "_" + deviceModel + "_Android" + androidVersion;
+
+            // Clean up hostname (remove spaces, special chars)
+            hostname = hostname.replaceAll("[^a-zA-Z0-9_-]", "_");
+
+            android.util.Log.d("CapturedBarcodes", "Generated device hostname: " + hostname);
+            return hostname;
+
+        } catch (Exception e) {
+            android.util.Log.e("CapturedBarcodes", "Error getting device hostname", e);
+            return "Unknown_Device";
+        }
     }
 
     private boolean performHttpPost(String endpointUrl, String jsonData) throws IOException {
+        android.util.Log.d("CapturedBarcodes", "performHttpPost() called");
+        android.util.Log.d("CapturedBarcodes", "Endpoint URL: " + endpointUrl);
+        android.util.Log.d("CapturedBarcodes", "JSON data length: " + jsonData.length() + " bytes");
+
         URL url = new URL(endpointUrl);
+        android.util.Log.d("CapturedBarcodes", "URL created successfully");
+
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        android.util.Log.d("CapturedBarcodes", "HTTP connection opened");
 
         try {
+            // Configure HTTPS connection if needed
+            if (connection instanceof HttpsURLConnection) {
+                android.util.Log.d("CapturedBarcodes", "Detected HTTPS connection, configuring SSL");
+                configureSslForHttps((HttpsURLConnection) connection);
+                android.util.Log.d("CapturedBarcodes", "SSL configuration completed");
+            } else {
+                android.util.Log.d("CapturedBarcodes", "Using HTTP connection (no SSL needed)");
+            }
+
             // Set request method and headers
+            android.util.Log.d("CapturedBarcodes", "Setting request method and headers");
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
             connection.setRequestProperty("Accept", "application/json");
             connection.setDoOutput(true);
             connection.setConnectTimeout(10000); // 10 seconds
             connection.setReadTimeout(15000); // 15 seconds
+            android.util.Log.d("CapturedBarcodes", "Headers set: POST, JSON content-type, timeouts configured");
 
             // Add authentication if configured
+            android.util.Log.d("CapturedBarcodes", "Adding authentication headers if configured");
             addAuthenticationHeaders(connection);
 
             // Send JSON data
+            android.util.Log.d("CapturedBarcodes", "Sending JSON data to server");
             try (OutputStream os = connection.getOutputStream()) {
                 byte[] input = jsonData.getBytes(StandardCharsets.UTF_8);
+                android.util.Log.d("CapturedBarcodes", "Writing " + input.length + " bytes to output stream");
                 os.write(input, 0, input.length);
+                os.flush();
+                android.util.Log.d("CapturedBarcodes", "JSON data sent successfully");
             }
 
             // Check response code
+            android.util.Log.d("CapturedBarcodes", "Getting response code from server");
             int responseCode = connection.getResponseCode();
-            return responseCode >= 200 && responseCode < 300; // Success range
+            android.util.Log.d("CapturedBarcodes", "Server response code: " + responseCode);
 
+            String responseMessage = connection.getResponseMessage();
+            android.util.Log.d("CapturedBarcodes", "Server response message: " + responseMessage);
+
+            // Log response headers
+            for (Map.Entry<String, java.util.List<String>> header : connection.getHeaderFields().entrySet()) {
+                android.util.Log.v("CapturedBarcodes", "Response header: " + header.getKey() + " = " + header.getValue());
+            }
+
+            boolean success = responseCode >= 200 && responseCode < 300;
+            android.util.Log.d("CapturedBarcodes", "Request success: " + success + " (code in 200-299 range)");
+
+            return success;
+
+        } catch (IOException e) {
+            android.util.Log.e("CapturedBarcodes", "IOException during HTTP request", e);
+            throw e;
         } finally {
+            android.util.Log.d("CapturedBarcodes", "Disconnecting HTTP connection");
             connection.disconnect();
         }
     }
 
+    private void configureSslForHttps(HttpsURLConnection httpsConnection) {
+        android.util.Log.d("CapturedBarcodes", "configureSslForHttps() called");
+        try {
+            // Create a trust manager that accepts all certificates (for self-signed certificates)
+            android.util.Log.d("CapturedBarcodes", "Creating trust-all SSL context for self-signed certificates");
+            TrustManager[] trustAllCerts = new TrustManager[]{
+                new X509TrustManager() {
+                    public X509Certificate[] getAcceptedIssuers() {
+                        return new X509Certificate[0];
+                    }
+
+                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                        // Trust all client certificates
+                    }
+
+                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                        // Trust all server certificates (including self-signed)
+                    }
+                }
+            };
+
+            // Install the all-trusting trust manager
+            android.util.Log.d("CapturedBarcodes", "Installing SSL context and hostname verifier");
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            httpsConnection.setSSLSocketFactory(sslContext.getSocketFactory());
+
+            // Create a hostname verifier that accepts all hostnames
+            HostnameVerifier allHostsValid = new HostnameVerifier() {
+                public boolean verify(String hostname, SSLSession session) {
+                    return true; // Accept all hostnames
+                }
+            };
+            httpsConnection.setHostnameVerifier(allHostsValid);
+            android.util.Log.d("CapturedBarcodes", "SSL configuration completed successfully");
+
+        } catch (Exception e) {
+            // Log the error but continue with default SSL configuration
+            android.util.Log.e("CapturedBarcodes", "Failed to configure SSL for self-signed certificates", e);
+        }
+    }
+
     private void addAuthenticationHeaders(HttpURLConnection connection) {
+        android.util.Log.d("CapturedBarcodes", "addAuthenticationHeaders() called");
+
         // Get authentication settings from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         boolean authEnabled = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_HTTPS_AUTHENTICATION, false);
+        android.util.Log.d("CapturedBarcodes", "Authentication enabled: " + authEnabled);
 
         if (authEnabled) {
+            android.util.Log.d("CapturedBarcodes", "Loading credentials from keystore");
             KeystoreHelper keystoreHelper = new KeystoreHelper(this);
             String username = keystoreHelper.getUsername();
             String password = keystoreHelper.getPassword();
 
+            android.util.Log.d("CapturedBarcodes", "Username loaded: " + (username.isEmpty() ? "empty" : "present"));
+            android.util.Log.d("CapturedBarcodes", "Password loaded: " + (password.isEmpty() ? "empty" : "present"));
+
             if (!username.isEmpty() && !password.isEmpty()) {
+                android.util.Log.d("CapturedBarcodes", "Adding Basic Authentication header");
                 // Use Basic Authentication
                 String credentials = username + ":" + password;
                 String basicAuth = "Basic " + Base64.getEncoder().encodeToString(
                     credentials.getBytes(StandardCharsets.UTF_8));
                 connection.setRequestProperty("Authorization", basicAuth);
+                android.util.Log.d("CapturedBarcodes", "Authorization header added successfully");
+            } else {
+                android.util.Log.w("CapturedBarcodes", "Authentication enabled but credentials are missing");
             }
+        } else {
+            android.util.Log.d("CapturedBarcodes", "Authentication disabled, no headers added");
         }
     }
 

@@ -304,7 +304,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:hint="@string/https_endpoint_hint"
-                android:inputType="textUri"
+                android:inputType="text"
                 android:minHeight="48dp"
                 android:padding="12dp" />
 

@@ -607,89 +607,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setupHttpsEndpointValidation() {
-        etHttpsEndpoint.addTextChangedListener(new TextWatcher() {
-            private boolean isUpdating = false;
-            private final String HTTPS_PREFIX = "https://";
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Not needed
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Not needed
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (isUpdating) return;
-
-                String text = s.toString();
-
-                // If text is empty, set it to https://
-                if (text.isEmpty()) {
-                    isUpdating = true;
-                    s.clear();
-                    s.append(HTTPS_PREFIX);
-                    etHttpsEndpoint.setSelection(HTTPS_PREFIX.length());
-                    isUpdating = false;
-                    return;
-                }
-
-                // If text doesn't start with https://, fix it
-                if (!text.startsWith(HTTPS_PREFIX)) {
-                    isUpdating = true;
-
-                    // Check if it starts with http:// and replace it
-                    if (text.startsWith("http://")) {
-                        s.replace(0, 7, HTTPS_PREFIX);
-                    }
-                    // Check if it starts with other common prefixes and replace them
-                    else if (text.startsWith("ftp://") || text.startsWith("ftps://")) {
-                        s.replace(0, text.indexOf("://") + 3, HTTPS_PREFIX);
-                    }
-                    // If it doesn't start with any protocol, prepend https://
-                    else {
-                        s.insert(0, HTTPS_PREFIX);
-                    }
-
-                    etHttpsEndpoint.setSelection(s.length());
-                    isUpdating = false;
-                }
-
-                // Prevent user from deleting the https:// prefix
-                if (text.length() < HTTPS_PREFIX.length() || !text.substring(0, HTTPS_PREFIX.length()).equals(HTTPS_PREFIX)) {
-                    isUpdating = true;
-                    s.clear();
-                    s.append(HTTPS_PREFIX);
-                    etHttpsEndpoint.setSelection(HTTPS_PREFIX.length());
-                    isUpdating = false;
-                }
-            }
-        });
-
-        // Set initial value if empty
-        if (etHttpsEndpoint.getText().toString().isEmpty()) {
-            etHttpsEndpoint.setText("https://");
-        }
-
-        // Set focus listener to position cursor after https:// prefix
-        etHttpsEndpoint.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    String text = etHttpsEndpoint.getText().toString();
-                    if (text.equals("https://")) {
-                        // Position cursor at the end of the prefix
-                        etHttpsEndpoint.setSelection(text.length());
-                    } else if (text.startsWith("https://") && etHttpsEndpoint.getSelectionStart() < 8) {
-                        // If cursor is before the prefix, move it after
-                        etHttpsEndpoint.setSelection(Math.max(8, etHttpsEndpoint.getText().length()));
-                    }
-                }
-            }
-        });
+        // No automatic prefix enforcement - allow both HTTP and HTTPS
     }
 
     private void updateSectionVisibility(int selectedPosition) {
@@ -840,16 +758,7 @@ public class SettingsActivity extends AppCompatActivity {
         String endpoint = sharedPreferences.getString(SHARED_PREFERENCES_HTTPS_ENDPOINT, SHARED_PREFERENCES_HTTPS_ENDPOINT_DEFAULT);
         boolean authentication = sharedPreferences.getBoolean(SHARED_PREFERENCES_HTTPS_AUTHENTICATION, SHARED_PREFERENCES_HTTPS_AUTHENTICATION_DEFAULT);
 
-        // Ensure endpoint starts with https:// when loading
-        if (!endpoint.isEmpty() && !endpoint.startsWith("https://")) {
-            if (endpoint.startsWith("http://")) {
-                endpoint = endpoint.replace("http://", "https://");
-            } else {
-                endpoint = "https://" + endpoint;
-            }
-        } else if (endpoint.isEmpty()) {
-            endpoint = "https://";
-        }
+        // Load endpoint as-is, supporting both HTTP and HTTPS
 
         etHttpsEndpoint.setText(endpoint);
         cbAuthentication.setChecked(authentication);

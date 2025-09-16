@@ -24,6 +24,10 @@ class WMSApp {
             this.refresh();
         });
 
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            this.resetAllData();
+        });
+
         // Back button
         const backButton = document.getElementById('btn-back');
         if (backButton) {
@@ -33,9 +37,11 @@ class WMSApp {
         }
     }
 
-    async loadSessions() {
+    async loadSessions(silent = false) {
         try {
-            this.showLoading('Loading capture sessions...');
+            if (!silent) {
+                this.showLoading('Loading capture sessions...');
+            }
 
             const response = await fetch(`${this.apiBaseUrl}/barcodes.php`);
             if (!response.ok) {
@@ -53,7 +59,9 @@ class WMSApp {
             }
         } catch (error) {
             console.error('Error loading sessions:', error);
-            this.showError('Failed to load capture sessions: ' + error.message);
+            if (!silent) {
+                this.showError('Failed to load capture sessions: ' + error.message);
+            }
         }
     }
 
@@ -109,6 +117,53 @@ class WMSApp {
         } catch (error) {
             console.error('Error updating barcode status:', error);
             this.showError('Failed to update barcode status: ' + error.message);
+        }
+    }
+
+    async resetAllData() {
+        // Show confirmation dialog
+        if (!confirm('⚠️ WARNING: This will permanently delete ALL barcode capture sessions and data.\n\nThis action cannot be undone. Are you sure you want to continue?')) {
+            return;
+        }
+
+        // Double confirmation for safety
+        if (!confirm('🔴 FINAL CONFIRMATION: This will delete ALL data permanently.\n\nClick OK to proceed with complete data reset.')) {
+            return;
+        }
+
+        try {
+            this.showLoading('Resetting all data...');
+
+            const response = await fetch(`${this.apiBaseUrl}/barcodes.php?reset=all`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                // Show success message and reload
+                this.showSuccess('All data has been reset successfully!');
+
+                // Clear local data
+                this.sessions = [];
+                this.currentSession = null;
+
+                // Reload the sessions view
+                setTimeout(() => {
+                    this.loadSessions();
+                }, 2000);
+            } else {
+                throw new Error(data.error || 'Failed to reset data');
+            }
+        } catch (error) {
+            console.error('Error resetting data:', error);
+            this.showError('Failed to reset data: ' + error.message);
         }
     }
 
@@ -375,12 +430,19 @@ class WMSApp {
     }
 
     startAutoRefresh() {
-        // Auto-refresh every 30 seconds
-        setInterval(() => {
-            if (this.currentView === 'sessions') {
-                this.loadSessions();
+        // Auto-refresh every second for real-time updates
+        this.refreshInterval = setInterval(() => {
+            try {
+                if (this.currentView === 'sessions') {
+                    this.loadSessions(true); // Silent refresh to avoid flickering
+                } else if (this.currentView === 'session-details' && this.currentSession) {
+                    this.loadSessionDetails(this.currentSession.session.id);
+                }
+            } catch (error) {
+                console.warn('Auto-refresh error:', error);
+                // Continue refreshing despite errors
             }
-        }, 30000);
+        }, 1000);
     }
 
     showLoading(message = 'Loading...') {
@@ -400,6 +462,17 @@ class WMSApp {
                 <strong>Error:</strong> ${message}
                 <br><br>
                 <button class="btn" onclick="app.refresh()">Try Again</button>
+            </div>
+        `;
+    }
+
+    showSuccess(message) {
+        const container = document.getElementById('main-content');
+        container.innerHTML = `
+            <div class="success">
+                <strong>✅ Success:</strong> ${message}
+                <br><br>
+                <button class="btn" onclick="app.loadSessions()">Continue</button>
             </div>
         `;
     }
