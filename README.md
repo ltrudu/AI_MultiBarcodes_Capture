@@ -17,19 +17,30 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 Revolutionary enterprise-grade web management system with complete Docker deployment and real-time barcode data synchronization:
 
 • **Complete Web Management System (WMS)**: Full-featured web interface for real-time barcode session monitoring and management
+
 • **HTTP(s) Post Integration**: Dual-mode operation - Android app can now upload data directly to web backend via HTTP/HTTPS endpoints
+
 • **Real-Time Data Synchronization**: Live dashboard with 1-second refresh intervals showing barcode captures as they happen
+
 • **Docker Infrastructure**: Complete containerized deployment with Apache, MySQL, and phpMyAdmin services
+
 • **Enterprise REST API**: Comprehensive API backend with session management, barcode processing, and data export capabilities
+
 • **Device Hostname Tracking**: Automatic device identification with unique hostname generation for multi-device environments
+
 • **Comprehensive Documentation**: 15+ detailed wiki guides covering setup, deployment, Docker configuration, and API integration
+
 • **Production-Ready Architecture**: SSL support, database optimization, security configuration, and scalability features
 
 **Key Technical Features:**
 • **Dual Processing Modes**: File-based (offline) and HTTP(s) Post (real-time) with seamless mode switching
+
 • **Network Security Configuration**: Automatic cleartext HTTP support for development environments
+
 • **Symbology Mapping System**: Accurate barcode type identification and display in web interface
+
 • **Complete Database Schema**: Optimized MySQL database with sessions, barcodes, and symbology management
+
 • **Multi-Format Export**: Web-based export to Excel, CSV, and text formats with batch operations
 
 The enterprise web management system transforms the standalone Android app into a complete enterprise solution with real-time monitoring, centralized data management, and comprehensive deployment documentation for production environments.
@@ -40,11 +51,17 @@ The enterprise web management system transforms the standalone Android app into 
 Comprehensive session file management with intelligent UI and folder operations:
 
 • **Folder Long Press Selection**: Select folders using long press gesture (500ms) with haptic feedback for rename and delete operations
+
 • **Context-Sensitive UI**: Smart button and menu visibility based on selection state - Select/Share buttons only appear for files
+
 • **Dynamic Menu System**: Rename and Delete menu options automatically hide when nothing is selected
+
 • **Enhanced File Operations**: Separate handling for file and folder operations with appropriate UI messaging
+
 • **Intelligent Touch Handling**: Long press cancellation on finger movement prevents accidental folder selection
+
 • **Complete Internationalization**: All folder operation features fully translated across 72 supported languages
+
 • **Improved User Experience**: Unified file/folder management with consistent visual feedback and error messaging
 
 The enhanced session management system provides intuitive folder operations while maintaining smart UI behavior that adapts to user selection context, ensuring optimal usability for both file and folder management tasks.
