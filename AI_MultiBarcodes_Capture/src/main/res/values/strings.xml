@@ -6,6 +6,11 @@
     <string name="https_post_mode_active">HTTPS Post mode: Ready to capture without session files.</string>
     <string name="no_endpoint_configured">No HTTPS endpoint configured. Please check settings.</string>
     <string name="endpoint">Endpoint</string>
+    <string name="upload">Upload</string>
+    <string name="uploading">Uploading...</string>
+    <string name="upload_successful">Upload successful</string>
+    <string name="upload_failed">Upload failed</string>
+    <string name="upload_error">Upload error</string>
 
     <!-- Splash Activity -->
     <string name="retrieving_permissions">Retrieving Permissions</string>

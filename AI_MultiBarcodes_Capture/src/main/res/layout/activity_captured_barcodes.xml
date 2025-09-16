@@ -66,6 +66,23 @@
             android:gravity="center"
             app:cornerRadius="0dp"
             app:layout_constraintStart_toEndOf="@+id/closeButton"
+            app:layout_constraintEnd_toStartOf="@+id/uploadData"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Button
+            android:id="@+id/uploadData"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2.5dp"
+            android:layout_marginEnd="2.5dp"
+            android:backgroundTint="@color/zebra"
+            android:text="@string/upload"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:visibility="gone"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toEndOf="@+id/mergeData"
             app:layout_constraintEnd_toStartOf="@+id/saveData"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -81,7 +98,7 @@
             android:textSize="12sp"
             android:gravity="center"
             app:cornerRadius="0dp"
-            app:layout_constraintStart_toEndOf="@+id/mergeData"
+            app:layout_constraintStart_toEndOf="@+id/uploadData"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />

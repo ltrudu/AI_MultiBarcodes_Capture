@@ -54,6 +54,7 @@ import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFER
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_PROCESSING_MODE;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_PROCESSING_MODE_DEFAULT;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_HTTPS_ENDPOINT;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.ENDPOINT_URI;
 
 /**
  * The EntryChoiceActivity class is an Android activity that serves as an entry point for selecting
@@ -203,7 +204,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
         setCardEnabled(binding.cardStartCaptureHttps, true);
         binding.cardStartCaptureHttps.setOnClickListener(v -> {
             Intent mainIntent = new Intent(this, CameraXLivePreviewActivity.class);
-            mainIntent.putExtra(Constants.CAPTURE_FILE_PATH, sessionFilePathString);
+            mainIntent.putExtra(ENDPOINT_URI, httpsEndpoint);
             resultCapture.launch(mainIntent);
         });
 

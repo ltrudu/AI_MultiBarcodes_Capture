@@ -24,6 +24,7 @@ public class Constants {
     public static final String FILEBROWSER_RESULT_FILEPATH = "RESULT_FILEPATH";
 
     public static final String CAPTURE_FILE_PATH = "CAPTURE_FILE_PATH";
+    public static final String ENDPOINT_URI = "ENDPOINT_URI";
 
     public static final String SHARED_PREFERENCES_LAST_SESSION_FILE = "lastsessionfile";
     public static final String SHARED_PREFERENCES_PREFIX = "prefix";

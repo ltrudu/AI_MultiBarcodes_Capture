@@ -159,6 +159,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     List<? extends Entity> entitiesHolder;
 
     private String captureFilePath;
+    private String endpointUri;
+    private boolean isHttpsPostMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +178,13 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         Intent intent = getIntent();
         captureFilePath = intent.getStringExtra(Constants.CAPTURE_FILE_PATH);
+        endpointUri = intent.getStringExtra(Constants.ENDPOINT_URI);
+
+        // Determine the mode based on which extra is provided
+        isHttpsPostMode = (endpointUri != null && !endpointUri.isEmpty());
+
+        LogUtils.d(TAG, "Camera mode: " + (isHttpsPostMode ? "HTTPS Post" : "File") +
+                   ", FilePath: " + captureFilePath + ", Endpoint: " + endpointUri);
 
         // Initialize selectedSize from shared preferences
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
@@ -913,7 +922,11 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 bundle.putParcelableArrayList("barcodeDataList", barcodeDataList);
 
                 Intent intent = new Intent(this, CapturedBarcodesActivity.class);
-                intent.putExtra(Constants.CAPTURE_FILE_PATH, captureFilePath);
+                if (isHttpsPostMode) {
+                    intent.putExtra(Constants.ENDPOINT_URI, endpointUri);
+                } else {
+                    intent.putExtra(Constants.CAPTURE_FILE_PATH, captureFilePath);
+                }
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
