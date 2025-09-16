@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode WMS - Zebra Technologies</title>
+    <link rel="stylesheet" href="css/wms-style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>
+            <span>📦</span>
+            Barcode Warehouse Management System
+        </h1>
+        <div class="subtitle">Zebra Technologies - AI MultiBarcode Capture Interface</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <button id="btn-sessions" class="nav-button active">
+            📋 Capture Sessions
+        </button>
+        <button id="btn-refresh" class="nav-button">
+            🔄 Refresh
+        </button>
+        <div style="margin-left: auto; color: #6c757d; font-size: 0.9rem;">
+            <span id="last-updated">Last updated: Never</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div id="main-content">
+            <!-- Content will be dynamically loaded here -->
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Initializing WMS...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: #6c757d; font-size: 0.9rem;">
+        <p>
+            Barcode WMS &copy; 2024 - Powered by Zebra AI Vision SDK<br>
+            <small>Connected to Android AI MultiBarcode Capture Application</small>
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/wms-app.js"></script>
+
+    <script>
+        // Update last updated timestamp
+        function updateLastUpdated() {
+            const element = document.getElementById('last-updated');
+            if (element) {
+                element.textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+            }
+        }
+
+        // Update timestamp when app loads or refreshes
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLastUpdated();
+
+            // Update timestamp every minute
+            setInterval(updateLastUpdated, 60000);
+        });
+
+        // Update timestamp when API calls complete
+        const originalFetch = window.fetch;
+        window.fetch = function(...args) {
+            return originalFetch.apply(this, args).then(response => {
+                if (response.ok) {
+                    updateLastUpdated();
+                }
+                return response;
+            });
+        };
+    </script>
+</body>
+</html>
