@@ -46,6 +46,13 @@ class BarcodeAPI {
                         $this->updateBarcodeStatus($_GET['barcode_id']);
                     }
                     break;
+                case 'DELETE':
+                    if (isset($_GET['reset']) && $_GET['reset'] === 'all') {
+                        $this->resetAllData();
+                    } else {
+                        $this->sendError('Invalid DELETE request', 400);
+                    }
+                    break;
                 default:
                     $this->sendError('Method not allowed', 405);
                     break;
@@ -67,7 +74,7 @@ class BarcodeAPI {
 
         try {
             // Create capture session
-            $session_timestamp = $input['session_timestamp'] ?? date('Y-m-d H:i:s');
+            $session_timestamp = $this->convertTimestamp($input['session_timestamp'] ?? null);
             $device_info = $input['device_info'] ?? 'Unknown Device';
             $total_barcodes = count($input['barcodes']);
 
@@ -94,14 +101,17 @@ class BarcodeAPI {
                     continue;
                 }
 
-                $symbology_name = $this->getSymbologyName($barcode['symbology'] ?? 0);
+                $symbology = $barcode['symbology'] ?? 0;
+                $symbology_name = $this->getSymbologyName($symbology);
+                $quantity = $barcode['quantity'] ?? 1;
+                $barcode_timestamp = $this->convertTimestamp($barcode['timestamp'] ?? null);
 
                 $barcode_stmt->bindParam(':session_id', $session_id);
                 $barcode_stmt->bindParam(':value', $barcode['value']);
-                $barcode_stmt->bindParam(':symbology', $barcode['symbology'] ?? 0);
+                $barcode_stmt->bindParam(':symbology', $symbology);
                 $barcode_stmt->bindParam(':symbology_name', $symbology_name);
-                $barcode_stmt->bindParam(':quantity', $barcode['quantity'] ?? 1);
-                $barcode_stmt->bindParam(':timestamp', $barcode['timestamp'] ?? $session_timestamp);
+                $barcode_stmt->bindParam(':quantity', $quantity);
+                $barcode_stmt->bindParam(':timestamp', $barcode_timestamp);
                 $barcode_stmt->execute();
             }
 
@@ -211,6 +221,60 @@ class BarcodeAPI {
             return $result ? $result['name'] : 'UNKNOWN';
         } catch (Exception $e) {
             return 'UNKNOWN';
+        }
+    }
+
+    private function resetAllData() {
+        try {
+            // Delete all barcodes first (due to foreign key constraint)
+            $delete_barcodes = $this->connection->prepare("DELETE FROM barcodes");
+            $delete_barcodes->execute();
+            $deleted_barcodes_count = $delete_barcodes->rowCount();
+
+            // Delete all capture sessions
+            $delete_sessions = $this->connection->prepare("DELETE FROM capture_sessions");
+            $delete_sessions->execute();
+            $deleted_sessions_count = $delete_sessions->rowCount();
+
+            // Reset auto increment counters (DDL statements auto-commit)
+            $this->connection->exec("ALTER TABLE barcodes AUTO_INCREMENT = 1");
+            $this->connection->exec("ALTER TABLE capture_sessions AUTO_INCREMENT = 1");
+
+            $this->sendResponse([
+                'success' => true,
+                'message' => 'All barcode data has been reset successfully',
+                'deleted_sessions' => $deleted_sessions_count,
+                'deleted_barcodes' => $deleted_barcodes_count
+            ]);
+
+        } catch (Exception $e) {
+            $this->sendError('Failed to reset data: ' . $e->getMessage(), 500);
+        }
+    }
+
+    private function convertTimestamp($timestamp) {
+        if (!$timestamp) {
+            return date('Y-m-d H:i:s');
+        }
+
+        try {
+            // Handle ISO 8601 format from Android (2025-09-16T19:01:54.978Z)
+            if (strpos($timestamp, 'T') !== false) {
+                $datetime = new DateTime($timestamp);
+                return $datetime->format('Y-m-d H:i:s');
+            }
+
+            // If already in MySQL format, return as-is
+            if (preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $timestamp)) {
+                return $timestamp;
+            }
+
+            // Try to parse other formats
+            $datetime = new DateTime($timestamp);
+            return $datetime->format('Y-m-d H:i:s');
+        } catch (Exception $e) {
+            // If conversion fails, return current timestamp
+            return date('Y-m-d H:i:s');
         }
     }
 

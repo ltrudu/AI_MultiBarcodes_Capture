@@ -81,6 +81,15 @@ body {
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
 }
 
+.nav-button.reset-button {
+    background: var(--danger-red);
+    margin-left: 1rem;
+}
+
+.nav-button.reset-button:hover {
+    background: #c82333;
+}
+
 /* Main Content */
 .container {
     max-width: 1200px;
@@ -308,6 +317,16 @@ body {
     padding: 1rem;
     border-radius: 4px;
     margin-bottom: 1rem;
+}
+
+.success {
+    background: rgba(40, 167, 69, 0.1);
+    border: 1px solid var(--success-green);
+    color: var(--success-green);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 /* Responsive design */
