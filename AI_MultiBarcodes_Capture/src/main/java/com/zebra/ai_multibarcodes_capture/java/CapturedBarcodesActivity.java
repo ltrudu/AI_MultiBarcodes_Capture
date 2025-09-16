@@ -2,6 +2,7 @@ package com.zebra.ai_multibarcodes_capture.java;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,18 +37,30 @@ import com.zebra.ai_multibarcodes_capture.dataeditor.BarcodeDataEditorActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.SessionsFilesHelpers;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
+import com.zebra.ai_multibarcodes_capture.helpers.KeystoreHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CapturedBarcodesActivity extends AppCompatActivity {
 
@@ -83,17 +96,23 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     private Button closeButton;
     private Button saveButton;
     private Button mergeButton;
+    private Button uploadButton;
 
     private SessionData sessionData;
 
     private String captureFilePath;
+    private String endpointUri;
+    private boolean isHttpsPostMode = false;
 
     SessionData SessionData;
 
     private Boolean hasDataBeenMerged = false;
-    
+
     // ActivityResultLauncher for BarcodeDataEditorActivity
     private ActivityResultLauncher<Intent> barcodeEditorLauncher;
+
+    // ExecutorService for background HTTP requests
+    private ExecutorService executorService;
 
     private static final int TRANSLATION_X = -360; // Updated for two icons (60dp each)
 
@@ -115,6 +134,13 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         closeButton = findViewById(R.id.closeButton);
         saveButton = findViewById(R.id.saveData);
         mergeButton = findViewById(R.id.mergeData);
+        uploadButton = findViewById(R.id.uploadData);
+
+        // Set up Upload button click listener
+        uploadButton.setOnClickListener(v -> uploadData());
+
+        // Initialize ExecutorService
+        executorService = Executors.newSingleThreadExecutor();
 
         // Initialize ActivityResultLauncher for BarcodeDataEditorActivity
         barcodeEditorLauncher = registerForActivityResult(
@@ -149,19 +175,45 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         captureFilePath = intent.getStringExtra(Constants.CAPTURE_FILE_PATH);
+        endpointUri = intent.getStringExtra(Constants.ENDPOINT_URI);
 
-        File captureFile = new File(captureFilePath);
-        if(captureFile.length() > 0)
-        {
-            SessionData = SessionsFilesHelpers.loadData(this, captureFilePath);
-            if(SessionData.barcodeValuesMap != null && SessionData.barcodeValuesMap.size() > 0)
+        // Determine the mode based on which extra is provided
+        isHttpsPostMode = (endpointUri != null && !endpointUri.isEmpty());
+
+        // Only load existing session data if we're in file mode and have a valid file
+        if (!isHttpsPostMode && captureFilePath != null) {
+            File captureFile = new File(captureFilePath);
+            if(captureFile.exists() && captureFile.length() > 0)
             {
-                mergeButton.setVisibility(View.VISIBLE);
+                SessionData = SessionsFilesHelpers.loadData(this, captureFilePath);
+                if(SessionData.barcodeValuesMap != null && SessionData.barcodeValuesMap.size() > 0)
+                {
+                    mergeButton.setVisibility(View.VISIBLE);
+                }
+            }
+            else
+            {
+                mergeButton.setVisibility(View.GONE);
             }
         }
         else
         {
+            // HTTPS Post mode - no merge functionality needed
             mergeButton.setVisibility(View.GONE);
+        }
+
+        // Update button visibility and text based on processing mode
+        if (isHttpsPostMode) {
+            // HTTPS Post mode: Show Upload button, hide Close and Save buttons
+            uploadButton.setVisibility(View.VISIBLE);
+            closeButton.setVisibility(View.GONE);
+            saveButton.setVisibility(View.GONE);
+        } else {
+            // File mode: Hide Upload button, show normal Save button, keep Close button hidden
+            uploadButton.setVisibility(View.GONE);
+            closeButton.setVisibility(View.GONE);
+            saveButton.setVisibility(View.VISIBLE);
+            saveButton.setText(getString(R.string.addtofile));
         }
 
         // Initialize the list we'll use to display barcodes
@@ -513,11 +565,23 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         hasDataBeenMerged = true;
         mergeButton.setVisibility(View.GONE);
 
-        saveButton.setText(R.string.update);
+        // Only update button text in File mode
+        if (!isHttpsPostMode) {
+            saveButton.setText(R.string.update);
+        }
     }
 
     private void saveData()
     {
+        if (isHttpsPostMode) {
+            // In HTTPS Post mode, we don't save to file, just finish the activity
+            // TODO: Here you could implement the HTTP POST functionality
+            // For now, we simply close the activity since data is already captured
+            finish();
+            return;
+        }
+
+        // File mode: save to session file
         SessionData newBarcodes = sessionDataFromDisplayList(displayList);
         if(hasDataBeenMerged)
         {
@@ -533,6 +597,147 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         else
         {
             // Do nothing as the user was informed with a toast of the problem.
+        }
+    }
+
+    private void uploadData() {
+        if (!isHttpsPostMode || endpointUri == null || endpointUri.isEmpty()) {
+            return;
+        }
+
+        SessionData newBarcodes = sessionDataFromDisplayList(displayList);
+
+        // Show progress indication
+        uploadButton.setEnabled(false);
+        uploadButton.setText(getString(R.string.uploading));
+
+        // Perform upload in background thread
+        executorService.execute(() -> {
+            try {
+                // Convert SessionData to JSON
+                String jsonData = convertSessionDataToJson(newBarcodes);
+
+                // Perform HTTP POST request
+                boolean success = performHttpPost(endpointUri, jsonData);
+
+                // Update UI on main thread
+                runOnUiThread(() -> {
+                    uploadButton.setEnabled(true);
+                    uploadButton.setText(getString(R.string.upload));
+
+                    if (success) {
+                        android.widget.Toast.makeText(this,
+                            getString(R.string.upload_successful),
+                            android.widget.Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        android.widget.Toast.makeText(this,
+                            getString(R.string.upload_failed),
+                            android.widget.Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            } catch (Exception e) {
+                runOnUiThread(() -> {
+                    uploadButton.setEnabled(true);
+                    uploadButton.setText(getString(R.string.upload));
+                    android.widget.Toast.makeText(this,
+                        getString(R.string.upload_error) + ": " + e.getMessage(),
+                        android.widget.Toast.LENGTH_LONG).show();
+                });
+            }
+        });
+    }
+
+    private String convertSessionDataToJson(SessionData sessionData) {
+        JsonArray barcodesArray = new JsonArray();
+        DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+
+        if (sessionData.barcodeValuesMap != null) {
+            for (Map.Entry<Integer, String> entry : sessionData.barcodeValuesMap.entrySet()) {
+                Integer barcodeId = entry.getKey();
+                String value = entry.getValue();
+
+                if (value == null || value.isEmpty()) {
+                    continue;
+                }
+
+                JsonObject barcodeObject = new JsonObject();
+                barcodeObject.addProperty("value", value);
+
+                // Get symbology
+                int symbology = sessionData.barcodeSymbologyMap.getOrDefault(barcodeId,
+                    EBarcodesSymbologies.UNKNOWN.getIntValue());
+                barcodeObject.addProperty("symbology", symbology);
+
+                // Get quantity
+                int quantity = sessionData.barcodeQuantityMap.getOrDefault(barcodeId, 1);
+                barcodeObject.addProperty("quantity", quantity);
+
+                // Get timestamp
+                Date timestamp = sessionData.barcodeDateMap.getOrDefault(barcodeId, new Date());
+                barcodeObject.addProperty("timestamp", iso8601Format.format(timestamp));
+
+                barcodesArray.add(barcodeObject);
+            }
+        }
+
+        JsonObject rootObject = new JsonObject();
+        rootObject.add("barcodes", barcodesArray);
+        rootObject.addProperty("session_timestamp", iso8601Format.format(new Date()));
+
+        Gson gson = new Gson();
+        return gson.toJson(rootObject);
+    }
+
+    private boolean performHttpPost(String endpointUrl, String jsonData) throws IOException {
+        URL url = new URL(endpointUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        try {
+            // Set request method and headers
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+            connection.setConnectTimeout(10000); // 10 seconds
+            connection.setReadTimeout(15000); // 15 seconds
+
+            // Add authentication if configured
+            addAuthenticationHeaders(connection);
+
+            // Send JSON data
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonData.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+
+            // Check response code
+            int responseCode = connection.getResponseCode();
+            return responseCode >= 200 && responseCode < 300; // Success range
+
+        } finally {
+            connection.disconnect();
+        }
+    }
+
+    private void addAuthenticationHeaders(HttpURLConnection connection) {
+        // Get authentication settings from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        boolean authEnabled = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_HTTPS_AUTHENTICATION, false);
+
+        if (authEnabled) {
+            KeystoreHelper keystoreHelper = new KeystoreHelper(this);
+            String username = keystoreHelper.getUsername();
+            String password = keystoreHelper.getPassword();
+
+            if (!username.isEmpty() && !password.isEmpty()) {
+                // Use Basic Authentication
+                String credentials = username + ":" + password;
+                String basicAuth = "Basic " + Base64.getEncoder().encodeToString(
+                    credentials.getBytes(StandardCharsets.UTF_8));
+                connection.setRequestProperty("Authorization", basicAuth);
+            }
         }
     }
 
@@ -607,6 +812,14 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             View decorView = window.getDecorView();
             // Remove SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR to use light (white) icons
             decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
         }
     }
 
