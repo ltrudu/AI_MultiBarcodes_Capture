@@ -3,6 +3,9 @@
     <string name="start_capture_button_text">Start Capture</string>
     <string name="loading_status">Loading Application</string>
     <string name="select_session_file">Select a session file or create a new one.</string>
+    <string name="https_post_mode_active">HTTPS Post mode: Ready to capture without session files.</string>
+    <string name="no_endpoint_configured">No HTTPS endpoint configured. Please check settings.</string>
+    <string name="endpoint">Endpoint</string>
 
     <!-- Splash Activity -->
     <string name="retrieving_permissions">Retrieving Permissions</string>
@@ -446,6 +449,25 @@
         <item>GPU</item>
         <item>CPU</item>
     </string-array>
+
+    <!-- Data Processing Settings -->
+    <string name="data_processing">Data Processing</string>
+    <string name="processing_mode">Processing Mode</string>
+    <string name="processing_mode_file">📁 File</string>
+    <string name="processing_mode_https_post">🌐 HTTPS Post</string>
+
+    <!-- File Processing Settings -->
+    <string name="file_processing">File Processing</string>
+
+    <!-- HTTPS Post Settings -->
+    <string name="https_post">HTTPS Post</string>
+    <string name="https_endpoint">HTTPS Endpoint</string>
+    <string name="https_endpoint_hint">https://example.com/api/data</string>
+    <string name="authentication">Authentication</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="username_hint">Enter username</string>
+    <string name="password_hint">Enter password</string>
 
     <!-- Managed Configuration Messages -->
     <string name="managed_configuration_updated">Settings updated by administrator</string>

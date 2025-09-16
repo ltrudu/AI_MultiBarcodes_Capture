@@ -211,4 +211,15 @@ public class Constants {
     public static final String SHARED_PREFERENCES_INFERENCE_TYPE = "SHARED_PREFERENCES_INFERENCE_TYPE";
     public static final String SHARED_PREFERENCES_INFERENCE_TYPE_DEFAULT = "DSP";
 
+    // Processing Mode preferences
+    public static final String SHARED_PREFERENCES_PROCESSING_MODE = "SHARED_PREFERENCES_PROCESSING_MODE";
+    public static final String SHARED_PREFERENCES_PROCESSING_MODE_DEFAULT = "file";
+
+    // HTTPS Post preferences
+    public static final String SHARED_PREFERENCES_HTTPS_ENDPOINT = "SHARED_PREFERENCES_HTTPS_ENDPOINT";
+    public static final String SHARED_PREFERENCES_HTTPS_ENDPOINT_DEFAULT = "";
+    public static final String SHARED_PREFERENCES_HTTPS_AUTHENTICATION = "SHARED_PREFERENCES_HTTPS_AUTHENTICATION";
+    public static final boolean SHARED_PREFERENCES_HTTPS_AUTHENTICATION_DEFAULT = false;
+    // Note: Username and password are stored securely in Android Keystore via KeystoreHelper
+
 }

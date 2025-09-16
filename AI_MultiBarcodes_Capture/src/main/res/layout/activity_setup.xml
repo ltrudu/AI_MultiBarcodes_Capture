@@ -74,7 +74,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llPrefix"
+        android:id="@+id/llDataProcessing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -83,104 +83,291 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/zebra">
+            android:background="@color/zebra"
+            android:backgroundTint="@color/zebra">
 
             <TextView
-                android:id="@+id/tvPrefixTitle"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvDataProcessingTitle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/prefix"
+                android:gravity="center"
+                android:text="@string/data_processing"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/etPrefix"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/processing_mode"
+            android:textStyle="bold"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+
+        <Spinner
+            android:id="@+id/spinnerProcessingMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:hint="@string/prefix_hint"
+            android:background="@drawable/spinner_background"
             android:minHeight="48dp"
-            android:padding="12dp" />
+            android:popupBackground="@color/white" />
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/llFileTypesTitle"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:backgroundTint="@color/zebra"
-        android:background="@color/zebra"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/file_type"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ivToggleFileTypes"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <ImageView
-            android:id="@+id/ivToggleFileTypes"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_expand_less_24"
-            android:contentDescription="@string/toggle_file_types"
-            android:padding="12dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            app:tint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <RadioGroup
-        android:id="@+id/rgFileTypes"
+    <LinearLayout
+        android:id="@+id/llFileProcessing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/llFileProcessingTitle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:backgroundTint="@color/zebra"
+            android:background="@color/zebra">
+
+            <TextView
+                android:id="@+id/tvFileProcessingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/file_processing"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivToggleFileTypes"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivToggleFileTypes"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_expand_less_24"
+                android:contentDescription="@string/toggle_file_types"
+                android:padding="12dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                app:tint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/llFileProcessingContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prefix"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/etPrefix"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/prefix_hint"
+                android:minHeight="48dp"
+                android:padding="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/file_type"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <RadioGroup
+                android:id="@+id/rgFileTypes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/rbTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/zebra"
+                    android:buttonTint="@color/zebra"
+                    android:checked="true"
+                    android:text="@string/text_file" />
+
+                <RadioButton
+                    android:id="@+id/rbCSV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/zebra"
+                    android:backgroundTint="@color/zebra"
+                    android:text="@string/csv_file"
+                    android:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/rbXSLX"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/zebra"
+                    android:backgroundTint="@color/zebra"
+                    android:text="@string/excel_file"
+                    android:visibility="visible" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llHttpsPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
         android:visibility="gone">
 
-        <RadioButton
-            android:id="@+id/rbTxt"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/llHttpsPostTitle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/zebra"
+            android:backgroundTint="@color/zebra">
+
+            <TextView
+                android:id="@+id/tvHttpsPostTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/https_post"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivToggleHttpsPost"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivToggleHttpsPost"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_expand_less_24"
+                android:contentDescription="@string/toggle_file_types"
+                android:padding="12dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                app:tint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/llHttpsPostContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/zebra"
-            android:buttonTint="@color/zebra"
-            android:checked="true"
-            android:text="@string/text_file" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <RadioButton
-            android:id="@+id/rbCSV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/zebra"
-            android:backgroundTint="@color/zebra"
-            android:text="@string/csv_file"
-            android:visibility="visible" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/https_endpoint"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
 
-        <RadioButton
-            android:id="@+id/rbXSLX"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/zebra"
-            android:backgroundTint="@color/zebra"
-            android:text="@string/excel_file"
-            android:visibility="visible" />
-    </RadioGroup>
+            <EditText
+                android:id="@+id/etHttpsEndpoint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/https_endpoint_hint"
+                android:inputType="textUri"
+                android:minHeight="48dp"
+                android:padding="12dp" />
 
+            <CheckBox
+                android:id="@+id/cbAuthentication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/authentication"
+                android:textStyle="bold"
+                android:buttonTint="@color/zebra" />
+
+            <LinearLayout
+                android:id="@+id/llAuthenticationGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/username"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp" />
+
+                <EditText
+                    android:id="@+id/etUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:hint="@string/username_hint"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:padding="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/password"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:padding="12dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llSymbologyTitle"
