@@ -1,6 +1,6 @@
 # AI MultiBarcode Capture Application
 
-[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.22-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.2-blue)](https://developer.zebra.com/)
+[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.23-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.2-blue)](https://developer.zebra.com/)
 
 A comprehensive Android enterprise application demonstrating Zebra AI Vision SDK capabilities for simultaneous multi-barcode detection, tracking, and session-based data management with enterprise deployment features.
 
@@ -11,18 +11,41 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
+### **Version 1.23** 🚀
+**Enterprise Web Management System with Real-Time Data Synchronization**
+
+Revolutionary enterprise-grade web management system with complete Docker deployment and real-time barcode data synchronization:
+
+• **Complete Web Management System (WMS)**: Full-featured web interface for real-time barcode session monitoring and management
+• **HTTP(s) Post Integration**: Dual-mode operation - Android app can now upload data directly to web backend via HTTP/HTTPS endpoints
+• **Real-Time Data Synchronization**: Live dashboard with 1-second refresh intervals showing barcode captures as they happen
+• **Docker Infrastructure**: Complete containerized deployment with Apache, MySQL, and phpMyAdmin services
+• **Enterprise REST API**: Comprehensive API backend with session management, barcode processing, and data export capabilities
+• **Device Hostname Tracking**: Automatic device identification with unique hostname generation for multi-device environments
+• **Comprehensive Documentation**: 15+ detailed wiki guides covering setup, deployment, Docker configuration, and API integration
+• **Production-Ready Architecture**: SSL support, database optimization, security configuration, and scalability features
+
+**Key Technical Features:**
+• **Dual Processing Modes**: File-based (offline) and HTTP(s) Post (real-time) with seamless mode switching
+• **Network Security Configuration**: Automatic cleartext HTTP support for development environments
+• **Symbology Mapping System**: Accurate barcode type identification and display in web interface
+• **Complete Database Schema**: Optimized MySQL database with sessions, barcodes, and symbology management
+• **Multi-Format Export**: Web-based export to Excel, CSV, and text formats with batch operations
+
+The enterprise web management system transforms the standalone Android app into a complete enterprise solution with real-time monitoring, centralized data management, and comprehensive deployment documentation for production environments.
+
 ### **Version 1.22**
 **Enhanced Session Management with Advanced Folder Operations**
 
 Comprehensive session file management with intelligent UI and folder operations:
 
-• **Folder Long Press Selection**: Select folders using long press gesture (500ms) with haptic feedback for rename and delete operations  
-• **Context-Sensitive UI**: Smart button and menu visibility based on selection state - Select/Share buttons only appear for files  
-• **Dynamic Menu System**: Rename and Delete menu options automatically hide when nothing is selected  
-• **Enhanced File Operations**: Separate handling for file and folder operations with appropriate UI messaging  
-• **Intelligent Touch Handling**: Long press cancellation on finger movement prevents accidental folder selection  
-• **Complete Internationalization**: All folder operation features fully translated across 72 supported languages  
-• **Improved User Experience**: Unified file/folder management with consistent visual feedback and error messaging  
+• **Folder Long Press Selection**: Select folders using long press gesture (500ms) with haptic feedback for rename and delete operations
+• **Context-Sensitive UI**: Smart button and menu visibility based on selection state - Select/Share buttons only appear for files
+• **Dynamic Menu System**: Rename and Delete menu options automatically hide when nothing is selected
+• **Enhanced File Operations**: Separate handling for file and folder operations with appropriate UI messaging
+• **Intelligent Touch Handling**: Long press cancellation on finger movement prevents accidental folder selection
+• **Complete Internationalization**: All folder operation features fully translated across 72 supported languages
+• **Improved User Experience**: Unified file/folder management with consistent visual feedback and error messaging
 
 The enhanced session management system provides intuitive folder operations while maintaining smart UI behavior that adapts to user selection context, ensuring optimal usability for both file and folder management tasks.
 
@@ -54,6 +77,11 @@ The enhanced session management system provides intuitive folder operations whil
 - **Data Validation**: Form validation and error handling
 
 ### **🏢 Enterprise Features**
+- **Complete Web Management System**: Real-time web interface for centralized barcode session monitoring and management
+- **Docker Infrastructure**: Production-ready containerized deployment with Apache, MySQL, and phpMyAdmin
+- **Enterprise REST API**: Comprehensive backend with session management, device tracking, and data export
+- **Real-Time Data Synchronization**: Live dashboard updates with 1-second refresh intervals
+- **Multi-Device Support**: Device hostname tracking and identification for enterprise environments
 - **Managed Configuration Support**: Full EMM/MDM integration for enterprise deployment
 - **Real-time Policy Updates**: Configuration changes applied without app restart
 - **Nested Configuration Structure**: Organized settings with collapsible barcode symbology groups
@@ -139,7 +167,7 @@ The enhanced session management system provides intuitive folder operations whil
 
 ## 🔍 Usage Examples
 
-### **Basic Barcode Scanning**
+### **Basic Barcode Scanning (File Mode)**
 1. Launch app and grant camera permissions
 2. Create new session or load existing one
 3. Point camera at barcodes for automatic detection
@@ -150,6 +178,14 @@ The enhanced session management system provides intuitive folder operations whil
 8. Use the merge button to merge quantities if there were previously scanned data in the session
 9. Export to desired format (TXT/CSV/XLSX)
 
+### **Enterprise Web Management (HTTP Mode)**
+1. Configure Docker environment and start web services
+2. Set Android app to HTTP(s) Post mode with endpoint URL
+3. Scan barcodes and upload sessions to web management system
+4. Monitor real-time scanning activity via web dashboard
+5. Manage sessions, view device information, and export data
+6. Track multiple devices simultaneously with hostname identification
+
 ### **Enterprise Deployment**
 1. Configure barcode symbologies via EMM console
 2. Deploy app with managed configuration
@@ -159,10 +195,13 @@ The enhanced session management system provides intuitive folder operations whil
 
 ## 🔗 Additional Resources
 
-**Zebra AI Vision SDK Documentation:**  
+**📚 Complete Documentation Wiki:**
+[Comprehensive Setup and Deployment Guides](wiki/README.md) - 15+ detailed guides covering everything from quick start to enterprise deployment
+
+**Zebra AI Vision SDK Documentation:**
 https://techdocs.zebra.com/ai-datacapture/latest/about/
 
-**More Android AI Samples:**  
+**More Android AI Samples:**
 https://github.com/ZebraDevs/AISuite_Android_Samples
 
 ## 📞 Support
