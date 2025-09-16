@@ -1,0 +1,57 @@
+# Standalone WMS Docker Image with embedded database
+FROM php:8.2-apache
+
+# Install system dependencies and MySQL
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    mariadb-server \
+    mariadb-client \
+    supervisor \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# Enable Apache modules
+RUN a2enmod rewrite headers
+
+# Copy Apache configuration
+COPY apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Copy application source
+COPY src/ /var/www/html/
+
+# Copy database initialization
+COPY database/init.sql /docker-entrypoint-initdb.d/
+
+# Create supervisor configuration
+RUN mkdir -p /var/log/supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Set up MySQL
+RUN mkdir -p /var/run/mysqld && \
+    chown mysql:mysql /var/run/mysqld
+
+# Initialize MySQL database
+RUN service mysql start && \
+    mysql -e "CREATE DATABASE IF NOT EXISTS barcode_wms;" && \
+    mysql -e "CREATE USER 'wms_user'@'localhost' IDENTIFIED BY 'wms_password';" && \
+    mysql -e "GRANT ALL PRIVILEGES ON barcode_wms.* TO 'wms_user'@'localhost';" && \
+    mysql -e "FLUSH PRIVILEGES;" && \
+    mysql barcode_wms < /docker-entrypoint-initdb.d/init.sql
+
+# Set proper permissions
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
+
+# Expose port
+EXPOSE 80
+
+# Start both MySQL and Apache using supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
