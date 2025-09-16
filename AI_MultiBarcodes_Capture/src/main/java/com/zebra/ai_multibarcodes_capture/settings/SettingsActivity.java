@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -20,6 +21,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.text.TextWatcher;
+import android.text.Editable;
+import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +31,8 @@ import android.widget.Toast;
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.adapters.LanguageAdapter;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
+import com.zebra.ai_multibarcodes_capture.helpers.EProcessingMode;
+import com.zebra.ai_multibarcodes_capture.helpers.KeystoreHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
@@ -49,10 +55,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "SettingsActivity";
 
-    private EditText etPrefix;
+    private EditText etPrefix, etHttpsEndpoint, etUsername, etPassword;
     private RadioButton rbCSV, rbTXT, rbXSLX;
-    private ImageView ivToggleSymbologies, ivToggleFileTypes, ivToggleAdvanced;
-    private LinearLayout llSymbologies, llAdvancedContent;
+    private CheckBox cbAuthentication;
+    private ImageView ivToggleSymbologies, ivToggleFileTypes, ivToggleAdvanced, ivToggleHttpsPost;
+    private LinearLayout llSymbologies, llAdvancedContent, llFileProcessingContent, llHttpsPost, llAuthenticationGroup, llFileProcessing, llHttpsPostContent;
     private RadioGroup rgFileTypes, rgModelInputSize, rgCameraResolution, rgInferenceType;
     private RadioButton rbSmallInputSize, rbMediumInputSize, rbLargeInputSize;
     private RadioButton rb1MPResolution, rb2MPResolution, rb4MPResolution, rb8MPResolution;
@@ -61,10 +68,13 @@ public class SettingsActivity extends AppCompatActivity {
     private boolean isSymbologiesExpanded = false;
     private boolean isFileTypesExpanded = false;
     private boolean isAdvancedExpanded = false;
-    private Spinner spinnerLanguage;
+    private boolean isHttpsPostExpanded = false;
+    private Spinner spinnerLanguage, spinnerProcessingMode;
     private LanguageAdapter languageAdapter;
     private List<LanguageItem> languageList;
     private String pendingLanguageCode = null; // Track pending language changes
+    private KeystoreHelper keystoreHelper;
+    private String originalDummyPassword = null; // Track original dummy password to detect changes
     private CheckBox cbAUSTRALIAN_POSTAL, cbAZTEC, cbCANADIAN_POSTAL, cbCHINESE_2OF5, cbCODABAR;
     private CheckBox cbCODE11, cbCODE39, cbCODE93, cbCODE128, cbCOMPOSITE_AB, cbCOMPOSITE_C;
     private CheckBox cbD2OF5, cbDATAMATRIX, cbDOTCODE, cbDUTCH_POSTAL, cbEAN_8, cbEAN_13;
@@ -101,20 +111,33 @@ public class SettingsActivity extends AppCompatActivity {
         
         // Configure system bars
         configureSystemBars();
-        
+
         // Setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Initialize KeystoreHelper
+        keystoreHelper = new KeystoreHelper(this);
         
         etPrefix = findViewById(R.id.etPrefix);
+        etHttpsEndpoint = findViewById(R.id.etHttpsEndpoint);
+        etUsername = findViewById(R.id.etUsername);
+        etPassword = findViewById(R.id.etPassword);
+        cbAuthentication = findViewById(R.id.cbAuthentication);
         rbCSV = findViewById(R.id.rbCSV);
         rbTXT = findViewById(R.id.rbTxt);
         rbXSLX = findViewById(R.id.rbXSLX);
         ivToggleSymbologies = findViewById(R.id.ivToggleSymbologies);
         ivToggleFileTypes = findViewById(R.id.ivToggleFileTypes);
         ivToggleAdvanced = findViewById(R.id.ivToggleAdvanced);
+        ivToggleHttpsPost = findViewById(R.id.ivToggleHttpsPost);
         llSymbologies = findViewById(R.id.llSymbologies);
         llAdvancedContent = findViewById(R.id.llAdvancedContent);
+        llFileProcessingContent = findViewById(R.id.llFileProcessingContent);
+        llFileProcessing = findViewById(R.id.llFileProcessing);
+        llHttpsPost = findViewById(R.id.llHttpsPost);
+        llHttpsPostContent = findViewById(R.id.llHttpsPostContent);
+        llAuthenticationGroup = findViewById(R.id.llAuthenticationGroup);
         rgFileTypes = findViewById(R.id.rgFileTypes);
         rgModelInputSize = findViewById(R.id.rgModelInputSize);
         rgCameraResolution = findViewById(R.id.rgCameraResolution);
@@ -131,9 +154,16 @@ public class SettingsActivity extends AppCompatActivity {
         rbCPUInference = findViewById(R.id.rbCPUInference);
         tvSymbologiesBadge = findViewById(R.id.tvSymbologiesBadge);
         spinnerLanguage = findViewById(R.id.spinnerLanguage);
-        
+        spinnerProcessingMode = findViewById(R.id.spinnerProcessingMode);
+
         // Setup language spinner
         setupLanguageSpinner();
+
+        // Setup processing mode spinner
+        setupProcessingModeSpinner();
+
+        // Setup HTTPS endpoint validation
+        setupHttpsEndpointValidation();
         
         // Initialize all barcode symbology checkboxes
         cbAUSTRALIAN_POSTAL = findViewById(R.id.cbAUSTRALIAN_POSTAL);
@@ -188,8 +218,8 @@ public class SettingsActivity extends AppCompatActivity {
         isSymbologiesExpanded = false;
         ivToggleSymbologies.setImageResource(R.drawable.ic_expand_less_24);
 
-        // Initially hide the RadioGroup and set collapsed state
-        rgFileTypes.setVisibility(View.GONE);
+        // Initially hide the File Processing content and set collapsed state
+        llFileProcessingContent.setVisibility(View.GONE);
         isFileTypesExpanded = false;
         ivToggleFileTypes.setImageResource(R.drawable.ic_expand_less_24);
 
@@ -197,6 +227,11 @@ public class SettingsActivity extends AppCompatActivity {
         llAdvancedContent.setVisibility(View.GONE);
         isAdvancedExpanded = false;
         ivToggleAdvanced.setImageResource(R.drawable.ic_expand_less_24);
+
+        // Initially hide the HTTPS Post content and set collapsed state
+        llHttpsPostContent.setVisibility(View.GONE);
+        isHttpsPostExpanded = false;
+        ivToggleHttpsPost.setImageResource(R.drawable.ic_expand_less_24);
 
         // Set up click listener for symbologies toggle
         ivToggleSymbologies.setOnClickListener(new View.OnClickListener() {
@@ -219,6 +254,36 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 toggleAdvanced();
+            }
+        });
+
+        // Set up click listener for HTTPS Post toggle
+        ivToggleHttpsPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleHttpsPost();
+            }
+        });
+
+        // Set up authentication checkbox listener
+        cbAuthentication.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    llAuthenticationGroup.setVisibility(View.VISIBLE);
+                } else {
+                    llAuthenticationGroup.setVisibility(View.GONE);
+                    // Clear credentials when authentication is disabled for security
+                    etUsername.setText("");
+                    etPassword.setText("");
+                    originalDummyPassword = "";
+                    try {
+                        keystoreHelper.clearAllCredentials();
+                        LogUtils.d(TAG, "Cleared credentials when authentication disabled");
+                    } catch (Exception e) {
+                        LogUtils.e(TAG, "Error clearing credentials: " + e.getMessage());
+                    }
+                }
             }
         });
 
@@ -284,6 +349,8 @@ public class SettingsActivity extends AppCompatActivity {
         loadModelInputSize(sharedPreferences);
         loadCameraResolution(sharedPreferences);
         loadInferenceType(sharedPreferences);
+        loadProcessingMode(sharedPreferences);
+        loadHttpsPostSettings(sharedPreferences);
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
@@ -382,6 +449,19 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    private void loadProcessingMode(SharedPreferences sharedPreferences) {
+        String processingModeKey = sharedPreferences.getString(SHARED_PREFERENCES_PROCESSING_MODE, SHARED_PREFERENCES_PROCESSING_MODE_DEFAULT);
+        EProcessingMode processingMode = EProcessingMode.fromKey(processingModeKey);
+
+        // Set the spinner selection based on the loaded processing mode
+        for (int i = 0; i < EProcessingMode.values().length; i++) {
+            if (EProcessingMode.values()[i] == processingMode) {
+                spinnerProcessingMode.setSelection(i);
+                break;
+            }
+        }
+    }
+
     private void savePreferences()
     {
         // Get the SharedPreferences object
@@ -400,6 +480,8 @@ public class SettingsActivity extends AppCompatActivity {
         saveModelInputSize(editor);
         saveCameraResolution(editor);
         saveInferenceType(editor);
+        saveProcessingMode(editor);
+        saveHttpsPostSettings(editor);
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
@@ -482,7 +564,150 @@ public class SettingsActivity extends AppCompatActivity {
         // Reset any pending changes since we're reflecting managed configuration
         pendingLanguageCode = null;
     }
-    
+
+    private void setupProcessingModeSpinner() {
+        // Create array of processing mode display names
+        String[] processingModeDisplayNames = new String[EProcessingMode.values().length];
+        for (int i = 0; i < EProcessingMode.values().length; i++) {
+            processingModeDisplayNames[i] = EProcessingMode.values()[i].getDisplayName(this);
+        }
+
+        // Create adapter and set to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, processingModeDisplayNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProcessingMode.setAdapter(adapter);
+
+        // Set current selection based on saved preferences
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String currentProcessingMode = sharedPreferences.getString(SHARED_PREFERENCES_PROCESSING_MODE, SHARED_PREFERENCES_PROCESSING_MODE_DEFAULT);
+
+        EProcessingMode currentMode = EProcessingMode.fromKey(currentProcessingMode);
+        for (int i = 0; i < EProcessingMode.values().length; i++) {
+            if (EProcessingMode.values()[i] == currentMode) {
+                spinnerProcessingMode.setSelection(i);
+                break;
+            }
+        }
+
+        // Set up selection listener for dynamic visibility
+        spinnerProcessingMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateSectionVisibility(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+
+        // Update initial visibility
+        updateSectionVisibility(spinnerProcessingMode.getSelectedItemPosition());
+    }
+
+    private void setupHttpsEndpointValidation() {
+        etHttpsEndpoint.addTextChangedListener(new TextWatcher() {
+            private boolean isUpdating = false;
+            private final String HTTPS_PREFIX = "https://";
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Not needed
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Not needed
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (isUpdating) return;
+
+                String text = s.toString();
+
+                // If text is empty, set it to https://
+                if (text.isEmpty()) {
+                    isUpdating = true;
+                    s.clear();
+                    s.append(HTTPS_PREFIX);
+                    etHttpsEndpoint.setSelection(HTTPS_PREFIX.length());
+                    isUpdating = false;
+                    return;
+                }
+
+                // If text doesn't start with https://, fix it
+                if (!text.startsWith(HTTPS_PREFIX)) {
+                    isUpdating = true;
+
+                    // Check if it starts with http:// and replace it
+                    if (text.startsWith("http://")) {
+                        s.replace(0, 7, HTTPS_PREFIX);
+                    }
+                    // Check if it starts with other common prefixes and replace them
+                    else if (text.startsWith("ftp://") || text.startsWith("ftps://")) {
+                        s.replace(0, text.indexOf("://") + 3, HTTPS_PREFIX);
+                    }
+                    // If it doesn't start with any protocol, prepend https://
+                    else {
+                        s.insert(0, HTTPS_PREFIX);
+                    }
+
+                    etHttpsEndpoint.setSelection(s.length());
+                    isUpdating = false;
+                }
+
+                // Prevent user from deleting the https:// prefix
+                if (text.length() < HTTPS_PREFIX.length() || !text.substring(0, HTTPS_PREFIX.length()).equals(HTTPS_PREFIX)) {
+                    isUpdating = true;
+                    s.clear();
+                    s.append(HTTPS_PREFIX);
+                    etHttpsEndpoint.setSelection(HTTPS_PREFIX.length());
+                    isUpdating = false;
+                }
+            }
+        });
+
+        // Set initial value if empty
+        if (etHttpsEndpoint.getText().toString().isEmpty()) {
+            etHttpsEndpoint.setText("https://");
+        }
+
+        // Set focus listener to position cursor after https:// prefix
+        etHttpsEndpoint.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    String text = etHttpsEndpoint.getText().toString();
+                    if (text.equals("https://")) {
+                        // Position cursor at the end of the prefix
+                        etHttpsEndpoint.setSelection(text.length());
+                    } else if (text.startsWith("https://") && etHttpsEndpoint.getSelectionStart() < 8) {
+                        // If cursor is before the prefix, move it after
+                        etHttpsEndpoint.setSelection(Math.max(8, etHttpsEndpoint.getText().length()));
+                    }
+                }
+            }
+        });
+    }
+
+    private void updateSectionVisibility(int selectedPosition) {
+        if (selectedPosition >= 0 && selectedPosition < EProcessingMode.values().length) {
+            EProcessingMode selectedMode = EProcessingMode.values()[selectedPosition];
+
+            if (selectedMode == EProcessingMode.FILE) {
+                // Show File Processing, hide HTTPS Post
+                llFileProcessing.setVisibility(View.VISIBLE);
+                llHttpsPost.setVisibility(View.GONE);
+            } else if (selectedMode == EProcessingMode.HTTPSPOST) {
+                // Show HTTPS Post, hide File Processing
+                llFileProcessing.setVisibility(View.GONE);
+                llHttpsPost.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
     private void applyLocaleChange(String languageCode) {
         LogUtils.d(TAG, "Applying locale change to: " + languageCode);
         
@@ -601,6 +826,102 @@ public class SettingsActivity extends AppCompatActivity {
         }
         
         editor.putString(SHARED_PREFERENCES_INFERENCE_TYPE, inferenceType);
+    }
+
+    private void saveProcessingMode(SharedPreferences.Editor editor) {
+        int selectedPosition = spinnerProcessingMode.getSelectedItemPosition();
+        if (selectedPosition >= 0 && selectedPosition < EProcessingMode.values().length) {
+            EProcessingMode selectedMode = EProcessingMode.values()[selectedPosition];
+            editor.putString(SHARED_PREFERENCES_PROCESSING_MODE, selectedMode.toString());
+        }
+    }
+
+    private void loadHttpsPostSettings(SharedPreferences sharedPreferences) {
+        String endpoint = sharedPreferences.getString(SHARED_PREFERENCES_HTTPS_ENDPOINT, SHARED_PREFERENCES_HTTPS_ENDPOINT_DEFAULT);
+        boolean authentication = sharedPreferences.getBoolean(SHARED_PREFERENCES_HTTPS_AUTHENTICATION, SHARED_PREFERENCES_HTTPS_AUTHENTICATION_DEFAULT);
+
+        // Ensure endpoint starts with https:// when loading
+        if (!endpoint.isEmpty() && !endpoint.startsWith("https://")) {
+            if (endpoint.startsWith("http://")) {
+                endpoint = endpoint.replace("http://", "https://");
+            } else {
+                endpoint = "https://" + endpoint;
+            }
+        } else if (endpoint.isEmpty()) {
+            endpoint = "https://";
+        }
+
+        etHttpsEndpoint.setText(endpoint);
+        cbAuthentication.setChecked(authentication);
+
+        // Load username from secure keystore and show dummy password
+        try {
+            String username = keystoreHelper.getUsername();
+            etUsername.setText(username);
+
+            // Show dummy characters matching the stored password length for security
+            int passwordLength = keystoreHelper.getPasswordLength();
+            if (passwordLength > 0) {
+                // Create dummy password with bullet characters (•)
+                StringBuilder dummyPassword = new StringBuilder();
+                for (int i = 0; i < passwordLength; i++) {
+                    dummyPassword.append("•");
+                }
+                originalDummyPassword = dummyPassword.toString();
+                etPassword.setText(originalDummyPassword);
+                LogUtils.d(TAG, "Loaded username and displayed dummy password with length: " + passwordLength);
+            } else {
+                originalDummyPassword = "";
+                etPassword.setText("");
+                LogUtils.d(TAG, "No stored password found");
+            }
+        } catch (Exception e) {
+            LogUtils.e(TAG, "Error loading credentials from keystore: " + e.getMessage());
+            etUsername.setText("");
+            etPassword.setText("");
+            originalDummyPassword = "";
+        }
+
+        // Set initial visibility of authentication group
+        if (authentication) {
+            llAuthenticationGroup.setVisibility(View.VISIBLE);
+        } else {
+            llAuthenticationGroup.setVisibility(View.GONE);
+        }
+    }
+
+    private void saveHttpsPostSettings(SharedPreferences.Editor editor) {
+        String endpoint = etHttpsEndpoint.getText().toString();
+        boolean authentication = cbAuthentication.isChecked();
+        String username = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
+
+        editor.putString(SHARED_PREFERENCES_HTTPS_ENDPOINT, endpoint);
+        editor.putBoolean(SHARED_PREFERENCES_HTTPS_AUTHENTICATION, authentication);
+
+        // Save username and password securely in keystore
+        try {
+            boolean usernameStored = keystoreHelper.storeUsername(username);
+            boolean passwordStored = true;
+
+            // Only save password if it has been modified by the user (not the dummy password)
+            if (!password.equals(originalDummyPassword)) {
+                passwordStored = keystoreHelper.storePassword(password);
+                LogUtils.d(TAG, "Password was modified, storing new password");
+            } else {
+                LogUtils.d(TAG, "Password unchanged (dummy), keeping existing stored password");
+            }
+
+            if (usernameStored && passwordStored) {
+                LogUtils.d(TAG, "Successfully stored credentials in keystore");
+            } else {
+                LogUtils.w(TAG, "Warning: Some credentials may not have been stored properly");
+            }
+        } catch (Exception e) {
+            LogUtils.e(TAG, "Error storing credentials in keystore: " + e.getMessage());
+            // Show user-friendly error message
+            Toast.makeText(this, "Warning: Could not securely store credentials", Toast.LENGTH_LONG).show();
+        }
     }
 
     private String getSelectedExtension()
@@ -758,25 +1079,37 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void toggleFileTypes() {
         isFileTypesExpanded = !isFileTypesExpanded;
-        
+
         if (isFileTypesExpanded) {
-            rgFileTypes.setVisibility(View.VISIBLE);
+            llFileProcessingContent.setVisibility(View.VISIBLE);
             ivToggleFileTypes.setImageResource(R.drawable.ic_expand_more_24);
         } else {
-            rgFileTypes.setVisibility(View.GONE);
+            llFileProcessingContent.setVisibility(View.GONE);
             ivToggleFileTypes.setImageResource(R.drawable.ic_expand_less_24);
         }
     }
 
     private void toggleAdvanced() {
         isAdvancedExpanded = !isAdvancedExpanded;
-        
+
         if (isAdvancedExpanded) {
             llAdvancedContent.setVisibility(View.VISIBLE);
             ivToggleAdvanced.setImageResource(R.drawable.ic_expand_more_24);
         } else {
             llAdvancedContent.setVisibility(View.GONE);
             ivToggleAdvanced.setImageResource(R.drawable.ic_expand_less_24);
+        }
+    }
+
+    private void toggleHttpsPost() {
+        isHttpsPostExpanded = !isHttpsPostExpanded;
+
+        if (isHttpsPostExpanded) {
+            llHttpsPostContent.setVisibility(View.VISIBLE);
+            ivToggleHttpsPost.setImageResource(R.drawable.ic_expand_more_24);
+        } else {
+            llHttpsPostContent.setVisibility(View.GONE);
+            ivToggleHttpsPost.setImageResource(R.drawable.ic_expand_less_24);
         }
     }
 

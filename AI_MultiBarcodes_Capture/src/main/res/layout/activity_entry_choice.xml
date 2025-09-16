@@ -22,13 +22,14 @@
         app:titleTextColor="@color/white"
         android:backgroundTint="@color/zebra"/>
 
-    <!-- Modern Grid Layout for Action Cards -->
+    <!-- File Mode Grid Layout for Action Cards -->
     <LinearLayout
-        android:id="@+id/gridContainer"
+        android:id="@+id/gridContainerFile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/tbEntry"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
 
             <!-- Start Capture Card -->
             <LinearLayout
-                android:id="@+id/cardStartCapture"
+                android:id="@+id/cardStartCaptureFile"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -198,6 +199,57 @@
                     android:gravity="center"/>
 
             </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- HTTPS Post Mode Single Card Layout -->
+    <LinearLayout
+        android:id="@+id/gridContainerHttps"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tbEntry"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textView3">
+
+        <!-- Single Start Capture Card for HTTPS Post -->
+        <LinearLayout
+            android:id="@+id/cardStartCaptureHttps"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp"
+            android:background="@drawable/modern_card_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:enabled="true">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_start_capture"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_capture"
+                android:textColor="@color/zebra"
+                android:textStyle="bold"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="14sp"
+                android:autoSizeStepGranularity="1sp"
+                android:maxLines="2"
+                android:textAlignment="center"
+                android:gravity="center"/>
 
         </LinearLayout>
 

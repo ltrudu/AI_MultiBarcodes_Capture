@@ -35,6 +35,7 @@ import com.zebra.ai_multibarcodes_capture.filemanagement.BrowserActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 import com.zebra.ai_multibarcodes_capture.filemanagement.FileUtil;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.EProcessingMode;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
@@ -50,6 +51,9 @@ import static com.zebra.ai_multibarcodes_capture.helpers.Constants.FILE_DEFAULT_
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.FILE_DEFAULT_PREFIX;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_EXTENSION;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_PREFIX;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_PROCESSING_MODE;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_PROCESSING_MODE_DEFAULT;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_HTTPS_ENDPOINT;
 
 /**
  * The EntryChoiceActivity class is an Android activity that serves as an entry point for selecting
@@ -93,6 +97,8 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
     String filePrefix = FILE_DEFAULT_PREFIX;
     EExportMode eExportMode = EExportMode.TEXT;
+    EProcessingMode eProcessingMode = EProcessingMode.FILE;
+    String httpsEndpoint = "";
 
     // BroadcastReceiver to listen for managed configuration reload requests
     private BroadcastReceiver reloadPreferencesReceiver = new BroadcastReceiver() {
@@ -104,7 +110,8 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         loadPreferences();
-                        Toast.makeText(EntryChoiceActivity.this, 
+                        updateCards();
+                        Toast.makeText(EntryChoiceActivity.this,
                             getString(R.string.managed_configuration_updated), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -129,6 +136,9 @@ public class EntryChoiceActivity extends AppCompatActivity {
         // load preferences
         loadPreferences();
 
+        // Update cards based on processing mode
+        updateCards();
+
         setSupportActionBar(binding.tbEntry);
         binding.tbEntry.setNavigationIcon(R.drawable.ic_menu_white);
         binding.tbEntry.setNavigationOnClickListener(new View.OnClickListener() {
@@ -137,6 +147,12 @@ public class EntryChoiceActivity extends AppCompatActivity {
                  PopupMenu popup = new PopupMenu(EntryChoiceActivity.this, view);
                  MenuInflater inflater = popup.getMenuInflater();
                  inflater.inflate(R.menu.entry_menu, popup.getMenu());
+
+                 // Hide manage sessions menu item if in HTTPS Post mode
+                 MenuItem manageSessionsItem = popup.getMenu().findItem(R.id.action_manage_sessions);
+                 if (manageSessionsItem != null) {
+                     manageSessionsItem.setVisible(eProcessingMode == EProcessingMode.FILE);
+                 }
                  
                  // Force PopupMenu to show icons
                  try {
@@ -177,8 +193,15 @@ public class EntryChoiceActivity extends AppCompatActivity {
                     updateCards();
         });
 
-        setCardEnabled(binding.cardStartCapture, false);
-        binding.cardStartCapture.setOnClickListener(v -> {
+        setCardEnabled(binding.cardStartCaptureFile, false);
+        binding.cardStartCaptureFile.setOnClickListener(v -> {
+            Intent mainIntent = new Intent(this, CameraXLivePreviewActivity.class);
+            mainIntent.putExtra(Constants.CAPTURE_FILE_PATH, sessionFilePathString);
+            resultCapture.launch(mainIntent);
+        });
+
+        setCardEnabled(binding.cardStartCaptureHttps, true);
+        binding.cardStartCaptureHttps.setOnClickListener(v -> {
             Intent mainIntent = new Intent(this, CameraXLivePreviewActivity.class);
             mainIntent.putExtra(Constants.CAPTURE_FILE_PATH, sessionFilePathString);
             resultCapture.launch(mainIntent);
@@ -228,17 +251,23 @@ public class EntryChoiceActivity extends AppCompatActivity {
         binding.cardCreateNewSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File todayFolder = FileUtil.getTodayFolder(true);
-                try {
-                    sessionFilePathString = FileUtil.createNewFileAndReturnFullPath(todayFolder, filePrefix, eExportMode);
-                    if(sessionFilePathString != null)
-                    {
+                if (eProcessingMode == EProcessingMode.FILE) {
+                    // File mode: Create actual session file
+                    File todayFolder = FileUtil.getTodayFolder(true);
+                    try {
+                        sessionFilePathString = FileUtil.createNewFileAndReturnFullPath(todayFolder, filePrefix, eExportMode);
+                        if(sessionFilePathString != null)
+                        {
+                            updateCards();
+                            PreferencesHelper.saveLastSessionFile(EntryChoiceActivity.this, sessionFilePathString);
+                        }
+                    } catch (IOException e) {
+                        Toast.makeText(EntryChoiceActivity.this, getString(R.string.error_creating_new_session, e.getMessage()), Toast.LENGTH_LONG).show();
                         updateCards();
-                        PreferencesHelper.saveLastSessionFile(EntryChoiceActivity.this, sessionFilePathString);
-
                     }
-                } catch (IOException e) {
-                    Toast.makeText(EntryChoiceActivity.this, getString(R.string.error_creating_new_session, e.getMessage()), Toast.LENGTH_LONG).show();
+                } else {
+                    // HTTPS Post mode: No file needed, just enable capture
+                    sessionFilePathString = null;
                     updateCards();
                 }
             }
@@ -248,12 +277,12 @@ public class EntryChoiceActivity extends AppCompatActivity {
                 result ->{
                     if(result.getResultCode() == RESULT_OK) {
                         loadPreferences();
-                        if (sessionFilePathString != null && sessionFilePathString.isEmpty() == false) {
-                            updateCards();
+                        updateCards();
+                        if (eProcessingMode == EProcessingMode.FILE && sessionFilePathString != null && sessionFilePathString.isEmpty() == false) {
                             String sessionExtension = FileUtil.getFileExtension(new File(sessionFilePathString));
                             EExportMode sessionMode = EExportMode.fromExtension(sessionExtension);
                             if (sessionMode.equals(eExportMode) == false) {
-                                setCardEnabled(binding.cardStartCapture, false);
+                                setCardEnabled(binding.cardStartCaptureFile, false);
                                 setCardEnabled(binding.cardViewSessionData, false);
                                 binding.txtSession.setText(R.string.select_session_file);
                             }
@@ -295,27 +324,48 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
     private void updateCards()
     {
-        setCardEnabled(binding.cardCreateNewSession, true);
-        setCardEnabled(binding.cardLoadLastSession, true);
-        if(sessionFilePathString == null || sessionFilePathString.isEmpty())
-        {
-            setCardEnabled(binding.cardViewSessionData, false);
-            setCardEnabled(binding.cardStartCapture, false);
-            binding.txtSession.setText(R.string.select_session_file);
-            return;
-        }
-        File sessionFile = new File(sessionFilePathString);
-        if(sessionFile.exists()) {
-            binding.txtSession.setText(sessionFilePathString);
-            setCardEnabled(binding.cardStartCapture, true);
-            setCardEnabled(binding.cardViewSessionData, sessionFile.length() > 0);
-        }
-        else {
-            binding.txtSession.setText(R.string.select_session_file);
-            setCardEnabled(binding.cardStartCapture, false);
-            setCardEnabled(binding.cardViewSessionData, false);
-        }
+        if (eProcessingMode == EProcessingMode.FILE) {
+            // File mode: Show file container, hide HTTPS container
+            binding.gridContainerFile.setVisibility(View.VISIBLE);
+            binding.gridContainerHttps.setVisibility(View.GONE);
 
+            // Restore header text for file mode
+            binding.textView3.setText(R.string.selected_session);
+
+            setCardEnabled(binding.cardCreateNewSession, true);
+            setCardEnabled(binding.cardLoadLastSession, true);
+
+            if(sessionFilePathString == null || sessionFilePathString.isEmpty())
+            {
+                setCardEnabled(binding.cardViewSessionData, false);
+                setCardEnabled(binding.cardStartCaptureFile, false);
+                binding.txtSession.setText(R.string.select_session_file);
+                return;
+            }
+            File sessionFile = new File(sessionFilePathString);
+            if(sessionFile.exists()) {
+                binding.txtSession.setText(sessionFilePathString);
+                setCardEnabled(binding.cardStartCaptureFile, true);
+                setCardEnabled(binding.cardViewSessionData, sessionFile.length() > 0);
+            }
+            else {
+                binding.txtSession.setText(R.string.select_session_file);
+                setCardEnabled(binding.cardStartCaptureFile, false);
+                setCardEnabled(binding.cardViewSessionData, false);
+            }
+        } else {
+            // HTTPS Post mode: Show HTTPS container, hide file container
+            binding.gridContainerFile.setVisibility(View.GONE);
+            binding.gridContainerHttps.setVisibility(View.VISIBLE);
+
+            // Update header text and session text to show endpoint
+            binding.textView3.setText(R.string.endpoint);
+            if (httpsEndpoint != null && !httpsEndpoint.isEmpty()) {
+                binding.txtSession.setText(httpsEndpoint);
+            } else {
+                binding.txtSession.setText(R.string.no_endpoint_configured);
+            }
+        }
     }
 
     @Override
@@ -358,10 +408,17 @@ public class EntryChoiceActivity extends AppCompatActivity {
         // Get the SharedPreferences object
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
-        // Retrieve the stored integer value, with a default value of 0 if not found
+        // Retrieve the stored values
         filePrefix = sharedPreferences.getString(SHARED_PREFERENCES_PREFIX, FILE_DEFAULT_PREFIX);
         String extension = sharedPreferences.getString(SHARED_PREFERENCES_EXTENSION, FILE_DEFAULT_EXTENSION);
         eExportMode = EExportMode.fromExtension(extension);
+
+        // Load processing mode
+        String processingModeString = sharedPreferences.getString(SHARED_PREFERENCES_PROCESSING_MODE, SHARED_PREFERENCES_PROCESSING_MODE_DEFAULT);
+        eProcessingMode = EProcessingMode.fromKey(processingModeString);
+
+        // Load HTTPS endpoint
+        httpsEndpoint = sharedPreferences.getString(SHARED_PREFERENCES_HTTPS_ENDPOINT, "");
     }
 
     /**
@@ -444,6 +501,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
         cardView.setFocusable(enabled);
         cardView.setAlpha(enabled ? 1.0f : 0.5f);
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
