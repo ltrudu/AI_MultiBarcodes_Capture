@@ -1127,7 +1127,18 @@ public class SettingsActivity extends AppCompatActivity {
                     public void scannedData(String source, String data, String symbology) {
                         if(symbology.equalsIgnoreCase("QRCODE"))
                         {
-                            
+                            if(data != null && data.startsWith("AIMultiBarcodeEndpoint:"))
+                            {
+                                String endpoint = data.substring("AIMultiBarcodeEndpoint:".length());
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        etHttpsEndpoint.setText(endpoint);
+                                        Toast.makeText(SettingsActivity.this,
+                                            getString(R.string.endpoint_updated_from_qr), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
                     }
                 });

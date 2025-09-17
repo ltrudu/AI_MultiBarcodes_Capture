@@ -8,6 +8,11 @@ The AI MultiBarcode Capture app provides dual-mode operation:
 - **File-based Mode**: Stores barcode data locally for offline operation
 - **HTTP(s) Post Mode**: Real-time data transmission to web management system
 
+### 🚀 Quick Configuration Features
+- **📱 QR Code Endpoint Setup**: Automatically configure HTTP endpoint by scanning a QR code from your WMS
+- **⚙️ Manual Configuration**: Traditional manual endpoint and authentication setup
+- **🔧 Advanced Settings**: Camera resolution, processing modes, and barcode symbologies
+
 ## ⚙️ Settings Configuration
 
 ### Access Settings
@@ -60,6 +65,48 @@ HTTP(s) Endpoint: https://barcode-api.company.com/api/barcodes.php
 Authentication: Enabled (if configured on server)
 SSL Certificate Validation: Enabled
 ```
+
+### QR Code Endpoint Configuration
+
+The Android app supports automatic endpoint configuration via QR code scanning, providing a convenient way to connect the mobile app to your WMS (Web Management System).
+
+#### How to Use QR Code Configuration
+
+**Step 1: Generate QR Code from WMS**
+1. Open your WMS web interface in a browser
+2. Navigate to the **Endpoint** or **Configuration** section
+3. Click on the **QR Code** button or icon
+4. The system will display a QR code containing the endpoint URL
+
+**Step 2: Scan QR Code with Android App**
+1. Launch the AI MultiBarcode Capture app on your Android device
+2. Tap the **Settings** (gear) icon to open app settings
+3. Use the Zebra Imager to scan the QR Code
+4. A toast message will confirm: "Endpoint updated from QR code"
+5. The **HTTP(s) Endpoint** field will be automatically populated
+
+#### QR Code Format
+The QR code must contain data in the following format:
+```
+AIMultiBarcodeEndpoint:http://192.168.1.100:3500/api/barcodes.php
+```
+or
+```
+AIMultiBarcodeEndpoint:https://barcode-api.company.com/api/barcodes.php
+```
+
+#### Benefits of QR Code Configuration
+- **Zero-typing**: Eliminates manual URL entry errors
+- **Quick Setup**: Instant connection to WMS
+- **Accuracy**: Prevents typos in complex URLs
+- **User-friendly**: No technical knowledge required
+- **Scalable**: Easy deployment across multiple devices
+
+#### Security Considerations
+- QR codes should only be displayed on trusted networks
+- Consider using HTTPS endpoints for production environments
+- Validate the endpoint URL before saving settings
+- Monitor for unauthorized QR code scanning attempts
 
 ### Network Discovery Methods
 
@@ -230,6 +277,40 @@ docker-compose ps
 - Clear cache and data
 - Reduce session size
 - Enable automatic upload to reduce local storage
+
+### QR Code Configuration Issues
+
+#### QR Code Not Scanning
+**Symptoms:**
+- App doesn't respond to QR code
+- No toast message appears
+- Endpoint field remains unchanged
+
+**Solutions:**
+1. **Check QR Code Format**: Ensure the QR code contains data starting with `AIMultiBarcodeEndpoint:`
+2. **Improve Lighting**: Ensure adequate lighting when scanning
+3. **Camera Focus**: Allow camera to focus properly on the QR code
+4. **Distance**: Hold device at appropriate distance (6-12 inches)
+5. **Screen Brightness**: Increase WMS display brightness if scanning from screen
+
+#### Incorrect Endpoint Populated
+**Possible Causes:**
+- QR code contains wrong URL
+- WMS generating incorrect endpoint
+- Network configuration changed
+
+**Solutions:**
+1. Verify the WMS endpoint configuration
+2. Regenerate QR code from WMS
+3. Manually verify endpoint URL
+4. Test endpoint connectivity with curl/browser
+
+#### QR Code Security Concerns
+**Best Practices:**
+- Only scan QR codes from trusted sources
+- Verify the populated endpoint before saving
+- Use HTTPS endpoints in production
+- Monitor endpoint access logs for unauthorized attempts
 
 ### Network Configuration Issues
 

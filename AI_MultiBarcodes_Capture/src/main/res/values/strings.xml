@@ -477,4 +477,7 @@
     <!-- Managed Configuration Messages -->
     <string name="managed_configuration_updated">Settings updated by administrator</string>
 
+    <!-- QR Code Endpoint Messages -->
+    <string name="endpoint_updated_from_qr">Endpoint updated from QR code</string>
+
 </resources>
