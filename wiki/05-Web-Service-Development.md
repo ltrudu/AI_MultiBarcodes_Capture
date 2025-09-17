@@ -16,7 +16,7 @@ When configured in **HTTP(s) Post** mode, the Android app sends barcode session 
 ### Request Details
 - **Method**: POST
 - **Content-Type**: application/json
-- **Endpoint**: Your configured URL (e.g., `http://your-server:8080/api/barcodes.php`)
+- **Endpoint**: Your configured URL (e.g., `http://your-server:3500/api/barcodes.php`)
 
 ### Data Format
 The Android app sends JSON data in this format:
@@ -232,7 +232,7 @@ try {
 
 ### 1. Test with curl
 ```bash
-curl -X POST http://localhost:8080/api/barcodes.php \
+curl -X POST http://localhost:3500/api/barcodes.php \
   -H "Content-Type: application/json" \
   -d '{
     "session_start": "2024-03-15T14:30:22.123Z",

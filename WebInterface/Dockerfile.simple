@@ -1,0 +1,37 @@
+# Simple Docker Image for AI MultiBarcode Capture Testing
+# Just Apache + PHP first, then we'll add MySQL later
+
+FROM ubuntu:22.04
+
+# Prevent interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install basic packages first
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    php8.1 \
+    php8.1-mysql \
+    libapache2-mod-php8.1 \
+    php8.1-curl \
+    php8.1-cli \
+    php8.1-mbstring \
+    php8.1-xml \
+    php8.1-zip \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable Apache modules
+RUN a2enmod rewrite headers php8.1
+
+# Copy application source code
+COPY src/ /var/www/html/
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Apache in foreground
+CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]

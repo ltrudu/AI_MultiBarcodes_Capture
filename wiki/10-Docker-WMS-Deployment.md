@@ -29,32 +29,37 @@ cd AI_MultiBarcode_Capture/WebInterface
 
 ### Step 2: Start the WMS
 ```bash
-docker-compose up -d
+# Windows
+start-services.bat
+
+# Linux/macOS
+./start-services.sh
 ```
 
-This single command starts all required services:
-- **Web Interface** (Port 8080) - Main WMS dashboard
-- **MySQL Database** (Port 3306) - Data storage
-- **phpMyAdmin** (Port 8081) - Database administration
+This builds and starts the unified multibarcode-webinterface container containing:
+- **Apache + PHP Web Server** - Serves the main dashboard and API
+- **MySQL Database** - Internal database for session storage
+- **phpMyAdmin** - Database administration (optional)
+
+All services run in a single, unified Docker container for simplicity and security.
 
 ### Step 3: Verify Deployment
 ```bash
-# Check all containers are running
-docker-compose ps
+# Check the unified container is running
+docker ps
 
 # Expected output:
-# NAME                          IMAGE               STATUS
-# webinterface-web-1           webinterface-web    Up
-# webinterface-db-1            mysql:8.0          Up
-# webinterface-phpmyadmin-1    phpmyadmin:latest  Up
+# CONTAINER ID   IMAGE                        STATUS
+# abc123def456   multibarcode-webinterface    Up
 ```
 
 ### Step 4: Access the WMS
 Open your web browser and navigate to:
-- **Main WMS Dashboard**: http://localhost:8080
-- **Database Admin**: http://localhost:8081
+- **Main WMS Dashboard**: http://localhost:3500
 
 You should see the WMS interface with an empty session list (until Android devices start uploading data).
+
+*Note: phpMyAdmin is available at /phpmyadmin if enabled in .env file (EXPOSE_PHPMYADMIN=true).*
 
 ## 📱 Configure Android Devices
 
@@ -79,9 +84,9 @@ ifconfig
 3. Select **Processing Mode** → **HTTP(s) Post**
 4. Enter **HTTP(s) Endpoint**:
    ```
-   http://YOUR_COMPUTER_IP:8080/api/barcodes.php
+   http://YOUR_COMPUTER_IP:3500/api/barcodes.php
    ```
-   Example: `http://192.168.1.100:8080/api/barcodes.php`
+   Example: `http://192.168.1.100:3500/api/barcodes.php`
 5. Ensure **Authentication** is disabled
 6. Tap **Save**
 
@@ -117,34 +122,35 @@ ifconfig
 
 ### Starting and Stopping
 ```bash
-# Start the WMS
-docker-compose up -d
+# Start the WMS (builds and starts unified container)
+./start-services.sh    # Linux/macOS
+start-services.bat     # Windows
 
 # Stop the WMS
 docker-compose down
 
 # Restart the WMS
-docker-compose restart
+docker-compose down && ./start-services.sh
 
 # View logs
-docker-compose logs -f
+docker logs multibarcode-webinterface
 ```
 
 ### Data Management
 ```bash
-# View database logs
-docker-compose logs db
-
 # Access database directly
-docker exec -it webinterface-db-1 mysql -u root -p
+docker exec -it multibarcode-webinterface mysql -u root -p
 
 # Backup data (optional)
-docker exec webinterface-db-1 mysqldump -u root -p barcode_capture > backup.sql
+docker exec multibarcode-webinterface mysqldump -u root -p barcode_wms > backup.sql
+
+# Access phpMyAdmin (if enabled)
+# Navigate to http://localhost:3500/phpmyadmin
 ```
 
 ### Clearing All Data
 To reset the system and clear all sessions:
-1. Open the WMS dashboard: http://localhost:8080
+1. Open the WMS dashboard: http://localhost:3500
 2. Click the **"Reset All Data"** button
 3. Confirm the reset operation
 4. All sessions and barcodes will be deleted
@@ -160,11 +166,11 @@ For scanning with multiple Android devices:
 ### Firewall Configuration
 If devices cannot connect:
 ```bash
-# Windows - Allow port 8080
-netsh advfirewall firewall add rule name="Docker WMS" dir=in action=allow protocol=TCP localport=8080
+# Windows - Allow port 3500
+netsh advfirewall firewall add rule name="Docker WMS" dir=in action=allow protocol=TCP localport=3500
 
-# Linux - Allow port 8080
-sudo ufw allow 8080
+# Linux - Allow port 3500
+sudo ufw allow 3500
 ```
 
 ## 🔍 Troubleshooting
@@ -186,7 +192,7 @@ docker-compose ps
 # Verify IP address is correct and reachable
 
 # Test endpoint from browser
-curl http://YOUR_IP:8080/api/barcodes.php
+curl http://YOUR_IP:3500/api/barcodes.php
 ```
 
 #### Android app shows "Upload Failed"
@@ -204,22 +210,22 @@ docker-compose logs web
 ping YOUR_COMPUTER_IP
 
 # Test port accessibility
-telnet YOUR_COMPUTER_IP 8080
+telnet YOUR_COMPUTER_IP 3500
 ```
 
 #### WMS not accessible from browser
 **Possible Causes:**
 - Docker containers not running
-- Port 8080 already in use
+- Port 3500 already in use
 - Firewall blocking access
 
 **Solutions:**
 ```bash
-# Check what's using port 8080
-netstat -tulpn | grep :8080
+# Check what's using port 3500
+netstat -tulpn | grep :3500
 
 # Stop conflicting services
-sudo kill -9 $(lsof -t -i:8080)
+sudo kill -9 $(lsof -t -i:3500)
 
 # Restart Docker services
 docker-compose down && docker-compose up -d

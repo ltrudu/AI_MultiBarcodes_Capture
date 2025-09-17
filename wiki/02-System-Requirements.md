@@ -39,7 +39,7 @@ This document outlines the hardware and software requirements for deploying the 
 ### Docker Requirements
 - **Docker Engine**: 24.0+ (latest stable recommended)
 - **Docker Compose**: v2.0+ (v2.20+ recommended)
-- **Available Ports**: 8080 (Web), 3306 (MySQL), 8081 (phpMyAdmin)
+- **Available Ports**: 3500 (Web), 3502 (MySQL), 3501 (phpMyAdmin)
 
 ### Container Resource Allocation
 ```yaml
@@ -66,7 +66,7 @@ services:
 
 ### Connectivity
 - **Local Network**: All devices must be on the same network segment or have routing configured
-- **Firewall**: Ports 8080, 3306, 8081 must be accessible
+- **Firewall**: Port 3500 must be accessible (3501 and 3502 if optional services are enabled)
 - **Bandwidth**: Minimum 1Mbps per active scanning device
 - **Latency**: <100ms between Android devices and server for optimal performance
 
@@ -76,7 +76,7 @@ services:
 ```
 Android Device: 192.168.1.100
 Docker Host:    192.168.1.101
-Endpoint:       http://192.168.1.101:8080/api/barcodes.php
+Endpoint:       http://192.168.1.101:3500/api/barcodes.php
 ```
 
 #### Production Setup with Load Balancer
@@ -167,7 +167,7 @@ services:
 ### Infrastructure Checklist
 - [ ] Docker environment installed and tested
 - [ ] Network connectivity between all components verified
-- [ ] Required ports (8080, 3306, 8081) available
+- [ ] Required ports (3500 for WMS, optionally 3501/3502 if services are enabled) available
 - [ ] Sufficient disk space allocated (minimum 10GB)
 - [ ] Backup strategy planned for production data
 
