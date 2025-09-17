@@ -75,9 +75,9 @@ The enhanced session management system provides intuitive folder operations whil
 | Guide | Description |
 |-------|-------------|
 | **[15-Minute Quick Start](wiki/01-Quick-Start-Guide.md)** | Get the system running in 15 minutes |
-| **[Docker Setup](wiki/04-Docker-Setup-Guide.md)** | Complete containerized deployment |
+| **[Installation Guide](wiki/03-Installation-Guide.md)** | Complete system installation |
 | **[Android App Configuration](wiki/07-Android-App-Configuration.md)** | Configure the mobile barcode scanner |
-| **[API Documentation](wiki/11-API-Documentation.md)** | Complete REST API reference |
+| **[Docker WMS Setup](wiki/10-Docker-WMS-Deployment.md)** | Deploy and use the web management system |
 | **[📚 All Documentation](wiki/README.md)** | Complete documentation index |
 
 ## 🚀 Key Features
