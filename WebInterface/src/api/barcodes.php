@@ -194,8 +194,11 @@ class BarcodeAPI {
                 WHERE id = :barcode_id
             ");
 
-            $stmt->bindParam(':processed', $input['processed'] ?? false, PDO::PARAM_BOOL);
-            $stmt->bindParam(':notes', $input['notes'] ?? '');
+            $processed = $input['processed'] ?? false;
+            $notes = $input['notes'] ?? '';
+
+            $stmt->bindParam(':processed', $processed, PDO::PARAM_BOOL);
+            $stmt->bindParam(':notes', $notes);
             $stmt->bindParam(':barcode_id', $barcode_id);
             $stmt->execute();
 
