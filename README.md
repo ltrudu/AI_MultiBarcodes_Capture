@@ -37,8 +37,6 @@ Revolutionary **QR Code endpoint configuration** capabilities with major Docker 
 
 • **Container Architecture**: Multi-service container with supervisord management and persistent data storage
 
-• **Enterprise Ready**: Enhanced device tracking, session management, and data export capabilities
-
 • **Security & Validation**: Input validation, endpoint verification, and secure configuration handling
 
 **Enterprise Benefits:**
