@@ -1,6 +1,6 @@
 # AI MultiBarcode Capture Application
 
-[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.23-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.2-blue)](https://developer.zebra.com/)
+[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.24-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.2-blue)](https://developer.zebra.com/)
 
 A comprehensive Android enterprise application demonstrating Zebra AI Vision SDK capabilities for simultaneous multi-barcode detection, tracking, and session-based data management with enterprise deployment features.
 
@@ -13,60 +13,44 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
-### **Version 1.23** 🚀
-**Enterprise Web Management System with Real-Time Data Synchronization**
+### **Version 1.24** 🚀
+**Enterprise QR Code Configuration & Enhanced Docker Deployment**
 
-Revolutionary enterprise-grade web management system with complete Docker deployment and real-time barcode data synchronization:
+Revolutionary **QR Code endpoint configuration** capabilities with major Docker infrastructure improvements:
 
-• **Complete Web Management System (WMS)**: Full-featured web interface for real-time barcode session monitoring and management
+• **📱 QR Code Endpoint Configuration**: Automatically configure HTTP endpoints by scanning QR codes from the Web Management System - eliminates manual URL entry and deployment complexity
 
-• **HTTP(s) Post Integration**: Dual-mode operation - Android app can now upload data directly to web backend via HTTP/HTTPS endpoints
+• **Zero-Typing Setup**: WMS generates QR codes for instant mobile configuration with Zebra Imager integration
 
-• **Real-Time Data Synchronization**: Live dashboard with 1-second refresh intervals showing barcode captures as they happen
+• **🐳 Unified Docker Container**: Single container deployment containing Apache+PHP web server, MySQL database, and phpMyAdmin in one unified container
 
-• **Docker Infrastructure**: Complete containerized deployment with Apache, MySQL, and phpMyAdmin services
+• **Simplified Deployment**: Enhanced deployment scripts for Windows (`start-services.bat`) and Linux/macOS (`start-services.sh`) with automated container management
 
-• **Enterprise REST API**: Comprehensive API backend with session management, barcode processing, and data export capabilities
+• **🌐 Enhanced WMS Interface**: Built-in QR code generator, improved responsive design, and better real-time session monitoring
 
-• **Device Hostname Tracking**: Automatic device identification with unique hostname generation for multi-device environments
-
-• **Comprehensive Documentation**: 15+ detailed wiki guides covering setup, deployment, Docker configuration, and API integration
-
-• **Production-Ready Architecture**: SSL support, database optimization, security configuration, and scalability features
+• **📖 Comprehensive Documentation**: Complete QR code configuration guide with troubleshooting, security guidelines, and deployment procedures
 
 **Key Technical Features:**
-• **Dual Processing Modes**: File-based (offline) and HTTP(s) Post (real-time) with seamless mode switching
+• **Automatic Endpoint Detection**: Android app processes QR codes with `AIMultiBarcodeEndpoint:` prefix for instant configuration
 
-• **Network Security Configuration**: Automatic cleartext HTTP support for development environments
+• **DataWedge Integration**: Built-in QR code scanning via DataWedge profile in settings with toast confirmation
 
-• **Symbology Mapping System**: Accurate barcode type identification and display in web interface
+• **Container Architecture**: Multi-service container with supervisord management and persistent data storage
 
-• **Complete Database Schema**: Optimized MySQL database with sessions, barcodes, and symbology management
+• **Enterprise Ready**: Enhanced device tracking, session management, and data export capabilities
 
-• **Multi-Format Export**: Web-based export to Excel, CSV, and text formats with batch operations
+• **Security & Validation**: Input validation, endpoint verification, and secure configuration handling
 
-The enterprise web management system transforms the standalone Android app into a complete enterprise solution with real-time monitoring, centralized data management, and comprehensive deployment documentation for production environments.
+**Enterprise Benefits:**
+• **Simplified IT Deployment**: Zero configuration errors with QR code scanning
 
-### **Version 1.22**
-**Enhanced Session Management with Advanced Folder Operations**
+• **Rapid Device Setup**: Multiple devices configured in seconds
 
-Comprehensive session file management with intelligent UI and folder operations:
+• **Scalable Infrastructure**: Single container management reduces operational overhead
 
-• **Folder Long Press Selection**: Select folders using long press gesture (500ms) with haptic feedback for rename and delete operations
+• **Enhanced Monitoring**: Better visibility into device connections and configurations
 
-• **Context-Sensitive UI**: Smart button and menu visibility based on selection state - Select/Share buttons only appear for files
-
-• **Dynamic Menu System**: Rename and Delete menu options automatically hide when nothing is selected
-
-• **Enhanced File Operations**: Separate handling for file and folder operations with appropriate UI messaging
-
-• **Intelligent Touch Handling**: Long press cancellation on finger movement prevents accidental folder selection
-
-• **Complete Internationalization**: All folder operation features fully translated across 72 supported languages
-
-• **Improved User Experience**: Unified file/folder management with consistent visual feedback and error messaging
-
-The enhanced session management system provides intuitive folder operations while maintaining smart UI behavior that adapts to user selection context, ensuring optimal usability for both file and folder management tasks.
+The QR Code configuration system transforms enterprise deployment from complex manual setup to simple one-scan configuration, while the unified Docker container architecture simplifies deployment and maintenance for IT teams.
 
 📋 **[View Complete Changelog](CHANGELOG.md)** for previous versions and detailed release history.
 
