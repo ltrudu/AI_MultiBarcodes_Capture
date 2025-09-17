@@ -6,52 +6,52 @@ import androidx.annotation.NonNull;
 
 public enum  EBarcodesSymbologies {
     UNKNOWN("UNKNOWN", -1, false, "LABEL-TYPE-UNKNOWN"),
-    AUSTRALIAN_POSTAL("AUSTRALIAN POSTAL", 26, false, "LABEL-TYPE-AUSPOSTAL"),
+    EAN_8("EAN 8", 0, true, "LABEL-TYPE-EAN8"),
+    EAN_13("EAN 13", 1, true, "LABEL-TYPE-EAN13"),
+    UPC_A("UPC A", 2, true, "LABEL-TYPE-UPCA"),
+    UPC_E("UPC E", 3, true, "LABEL-TYPE-UPCE"),
     AZTEC("AZTEC", 4, true, "LABEL-TYPE-AZTEC"),
-    CANADIAN_POSTAL("CANADIAN POSTAL", 27, false, "LABEL-TYPE-CANPOSTAL"),
-    CHINESE_2OF5("CHINESE 2OF5", 28, false, "LABEL-TYPE-CHINESE2OF5"),
-    CODABAR("CODABAR", 1, true, "LABEL-TYPE-CODABAR"),
-    CODE11("CODE11", 2, false, "LABEL-TYPE-CODE11"),
-    CODE39("CODE39", 3, true, "LABEL-TYPE-CODE39"),
-    CODE93("CODE93", 5, false, "LABEL-TYPE-CODE93"),
+    CODABAR("CODABAR", 5, true, "LABEL-TYPE-CODABAR"),
     CODE128("CODE128", 6, true, "LABEL-TYPE-CODE128"),
-    COMPOSITE_AB("COMPOSITE AB", 7, false, "LABEL-TYPE-COMPOSITEAB"),
-    COMPOSITE_C("COMPOSITE C", 8, false, "LABEL-TYPE-COMPOSITEC"),
-    D2OF5("D2OF5", 9, false, "LABEL-TYPE-D2OF5"),
+    CODE39("CODE39", 7, true, "LABEL-TYPE-CODE39"),
+    I2OF5("I2OF5", 8, false, "LABEL-TYPE-I2OF5"),
+    GS1_DATABAR("GS1 DATABAR", 9, true, "LABEL-TYPE-GS1DATABAR"),
     DATAMATRIX("DATAMATRIX", 10, true, "LABEL-TYPE-DATAMATRIX"),
-    DOTCODE("DOTCODE", 11, false, "LABEL-TYPE-DOTCODE"),
-    DUTCH_POSTAL("DUTCH POSTAL", 29, false, "LABEL-TYPE-DUTCHPOSTAL"),
-    EAN_8("EAN 8", 12, true, "LABEL-TYPE-EAN8"),
-    EAN_13("EAN 13", 13, true, "LABEL-TYPE-EAN13"),
-    FINNISH_POSTAL_4S("FINNISH POSTAL 4S", 30, false, "LABEL-TYPE-FINNISHPOSTAL4S"),
-    GRID_MATRIX("GRID MATRIX", 14, false, "LABEL-TYPE-GRIDMATRIX"),
-    GS1_DATABAR("GS1 DATABAR", 15, true, "LABEL-TYPE-GS1DATABAR"),
-    GS1_DATABAR_EXPANDED("GS1 DATABAR EXPANDED", 16, true, "LABEL-TYPE-GS1DATABAREXPANDED"),
-    GS1_DATABAR_LIM("GS1 DATABAR LIM", 17, false, "LABEL-TYPE-GS1DATABARLIM"),
+    GS1_DATABAR_EXPANDED("GS1 DATABAR EXPANDED", 11, true, "LABEL-TYPE-GS1DATABAREXPANDED"),
+    MAILMARK("MAILMARK", 12, true, "LABEL-TYPE-MAILMARK"),
+    MAXICODE("MAXICODE", 13, true, "LABEL-TYPE-MAXICODE"),
+    PDF417("PDF417", 14, true, "LABEL-TYPE-PDF417"),
+    QRCODE("QRCODE", 15, true, "LABEL-TYPE-QRCODE"),
+    DOTCODE("DOTCODE", 16, false, "LABEL-TYPE-DOTCODE"),
+    GRID_MATRIX("GRID MATRIX", 17, false, "LABEL-TYPE-GRIDMATRIX"),
     GS1_DATAMATRIX("GS1 DATAMATRIX", 18, false, "LABEL-TYPE-GS1DATAMATRIX"),
     GS1_QRCODE("GS1 QRCODE", 19, false, "LABEL-TYPE-GS1QRCODE"),
-    HANXIN("HANXIN", 20, false, "LABEL-TYPE-HANXIN"),
-    I2OF5("I2OF5", 21, false, "LABEL-TYPE-I2OF5"),
-    JAPANESE_POSTAL("JAPANESE POSTAL", 31, false, "LABEL-TYPE-JAPANESEPOSTAL"),
-    KOREAN_3OF5("KOREAN 3OF5", 32, false, "LABEL-TYPE-KOREAN3OF5"),
-    MAILMARK("MAILMARK", 33, true, "LABEL-TYPE-MAILMARK"),
-    MATRIX_2OF5("MATRIX 2OF5", 34, false, "LABEL-TYPE-MATRIX2OF5"),
-    MAXICODE("MAXICODE", 22, true, "LABEL-TYPE-MAXICODE"),
-    MICROPDF("MICROPDF", 23, false, "LABEL-TYPE-MICROPDF"),
-    MICROQR("MICROQR", 24, false, "LABEL-TYPE-MICROQR"),
-    MSI("MSI", 25, false, "LABEL-TYPE-MSI"),
-    PDF417("PDF417", 35, true, "LABEL-TYPE-PDF417"),
-    QRCODE("QRCODE", 36, true, "LABEL-TYPE-QRCODE"),
-    TLC39("TLC39", 37, false, "LABEL-TYPE-TLC39"),
-    TRIOPTIC39("TRIOPTIC39", 38, false, "LABEL-TYPE-TRIOPTIC39"),
-    UK_POSTAL("UK POSTAL", 39, false, "LABEL-TYPE-UKPOSTAL"),
-    UPC_A("UPC A", 40, true, "LABEL-TYPE-UPCA"),
-    UPC_E("UPC E", 41, true, "LABEL-TYPE-UPCE"),
-    UPCE1("UPCE1", 42, false, "LABEL-TYPE-UPCE1"),
-    USPLANET("USPLANET", 43, false, "LABEL-TYPE-USPLANET"),
-    USPOSTNET("USPOSTNET", 44, false, "LABEL-TYPE-USPOSTNET"),
-    US4STATE("US4STATE", 45, false, "LABEL-TYPE-US4STATE"),
-    US4STATE_FICS("US4STATE FICS", 46, false, "LABEL-TYPE-US4STATEFICS");
+    MICROQR("MICROQR", 20, false, "LABEL-TYPE-MICROQR"),
+    MICROPDF("MICROPDF", 21, false, "LABEL-TYPE-MICROPDF"),
+    USPOSTNET("USPOSTNET", 22, false, "LABEL-TYPE-USPOSTNET"),
+    USPLANET("USPLANET", 23, false, "LABEL-TYPE-USPLANET"),
+    UK_POSTAL("UK POSTAL", 24, false, "LABEL-TYPE-UKPOSTAL"),
+    JAPANESE_POSTAL("JAPANESE POSTAL", 25, false, "LABEL-TYPE-JAPANESEPOSTAL"),
+    AUSTRALIAN_POSTAL("AUSTRALIAN POSTAL", 26, false, "LABEL-TYPE-AUSPOSTAL"),
+    CANADIAN_POSTAL("CANADIAN POSTAL", 27, false, "LABEL-TYPE-CANPOSTAL"),
+    DUTCH_POSTAL("DUTCH POSTAL", 28, false, "LABEL-TYPE-DUTCHPOSTAL"),
+    US4STATE("US4STATE", 29, false, "LABEL-TYPE-US4STATE"),
+    US4STATE_FICS("US4STATE FICS", 30, false, "LABEL-TYPE-US4STATEFICS"),
+    MSI("MSI", 31, false, "LABEL-TYPE-MSI"),
+    CODE93("CODE93", 32, false, "LABEL-TYPE-CODE93"),
+    TRIOPTIC39("TRIOPTIC39", 33, false, "LABEL-TYPE-TRIOPTIC39"),
+    D2OF5("D2OF5", 34, false, "LABEL-TYPE-D2OF5"),
+    CHINESE_2OF5("CHINESE 2OF5", 35, false, "LABEL-TYPE-CHINESE2OF5"),
+    KOREAN_3OF5("KOREAN 3OF5", 36, false, "LABEL-TYPE-KOREAN3OF5"),
+    CODE11("CODE11", 37, false, "LABEL-TYPE-CODE11"),
+    TLC39("TLC39", 38, false, "LABEL-TYPE-TLC39"),
+    HANXIN("HANXIN", 39, false, "LABEL-TYPE-HANXIN"),
+    MATRIX_2OF5("MATRIX 2OF5", 40, false, "LABEL-TYPE-MATRIX2OF5"),
+    UPCE1("UPCE1", 41, false, "LABEL-TYPE-UPCE1"),
+    GS1_DATABAR_LIM("GS1 DATABAR LIM", 42, false, "LABEL-TYPE-GS1DATABARLIM"),
+    FINNISH_POSTAL_4S("FINNISH POSTAL 4S", 43, false, "LABEL-TYPE-FINNISHPOSTAL4S"),
+    COMPOSITE_AB("COMPOSITE AB", 44, false, "LABEL-TYPE-COMPOSITEAB"),
+    COMPOSITE_C("COMPOSITE C", 45, false, "LABEL-TYPE-COMPOSITEC");
 
     private String name = "";
     private int value = -1;
@@ -197,98 +197,98 @@ public enum  EBarcodesSymbologies {
     {
         switch(value)
         {
+            case 0:
+                return EBarcodesSymbologies.EAN_8;
             case 1:
-                return EBarcodesSymbologies.CODABAR;
+                return EBarcodesSymbologies.EAN_13;
             case 2:
-                return EBarcodesSymbologies.CODE11;
+                return EBarcodesSymbologies.UPC_A;
             case 3:
-                return EBarcodesSymbologies.CODE39;
+                return EBarcodesSymbologies.UPC_E;
             case 4:
                 return EBarcodesSymbologies.AZTEC;
             case 5:
-                return EBarcodesSymbologies.CODE93;
+                return EBarcodesSymbologies.CODABAR;
             case 6:
                 return EBarcodesSymbologies.CODE128;
             case 7:
-                return EBarcodesSymbologies.COMPOSITE_AB;
+                return EBarcodesSymbologies.CODE39;
             case 8:
-                return EBarcodesSymbologies.COMPOSITE_C;
+                return EBarcodesSymbologies.I2OF5;
             case 9:
-                return EBarcodesSymbologies.D2OF5;
+                return EBarcodesSymbologies.GS1_DATABAR;
             case 10:
                 return EBarcodesSymbologies.DATAMATRIX;
             case 11:
-                return EBarcodesSymbologies.DOTCODE;
-            case 12:
-                return EBarcodesSymbologies.EAN_8;
-            case 13:
-                return EBarcodesSymbologies.EAN_13;
-            case 14:
-                return EBarcodesSymbologies.GRID_MATRIX;
-            case 15:
-                return EBarcodesSymbologies.GS1_DATABAR;
-            case 16:
                 return EBarcodesSymbologies.GS1_DATABAR_EXPANDED;
+            case 12:
+                return EBarcodesSymbologies.MAILMARK;
+            case 13:
+                return EBarcodesSymbologies.MAXICODE;
+            case 14:
+                return EBarcodesSymbologies.PDF417;
+            case 15:
+                return EBarcodesSymbologies.QRCODE;
+            case 16:
+                return EBarcodesSymbologies.DOTCODE;
             case 17:
-                return EBarcodesSymbologies.GS1_DATABAR_LIM;
+                return EBarcodesSymbologies.GRID_MATRIX;
             case 18:
                 return EBarcodesSymbologies.GS1_DATAMATRIX;
             case 19:
                 return EBarcodesSymbologies.GS1_QRCODE;
             case 20:
-                return EBarcodesSymbologies.HANXIN;
-            case 21:
-                return EBarcodesSymbologies.I2OF5;
-            case 22:
-                return EBarcodesSymbologies.MAXICODE;
-            case 23:
-                return EBarcodesSymbologies.MICROPDF;
-            case 24:
                 return EBarcodesSymbologies.MICROQR;
+            case 21:
+                return EBarcodesSymbologies.MICROPDF;
+            case 22:
+                return EBarcodesSymbologies.USPOSTNET;
+            case 23:
+                return EBarcodesSymbologies.USPLANET;
+            case 24:
+                return EBarcodesSymbologies.UK_POSTAL;
             case 25:
-                return EBarcodesSymbologies.MSI;
+                return EBarcodesSymbologies.JAPANESE_POSTAL;
             case 26:
                 return EBarcodesSymbologies.AUSTRALIAN_POSTAL;
             case 27:
                 return EBarcodesSymbologies.CANADIAN_POSTAL;
             case 28:
-                return EBarcodesSymbologies.CHINESE_2OF5;
-            case 29:
                 return EBarcodesSymbologies.DUTCH_POSTAL;
-            case 30:
-                return EBarcodesSymbologies.FINNISH_POSTAL_4S;
-            case 31:
-                return EBarcodesSymbologies.JAPANESE_POSTAL;
-            case 32:
-                return EBarcodesSymbologies.KOREAN_3OF5;
-            case 33:
-                return EBarcodesSymbologies.MAILMARK;
-            case 34:
-                return EBarcodesSymbologies.MATRIX_2OF5;
-            case 35:
-                return EBarcodesSymbologies.PDF417;
-            case 36:
-                return EBarcodesSymbologies.QRCODE;
-            case 37:
-                return EBarcodesSymbologies.TLC39;
-            case 38:
-                return EBarcodesSymbologies.TRIOPTIC39;
-            case 39:
-                return EBarcodesSymbologies.UK_POSTAL;
-            case 40:
-                return EBarcodesSymbologies.UPC_A;
-            case 41:
-                return EBarcodesSymbologies.UPC_E;
-            case 42:
-                return EBarcodesSymbologies.UPCE1;
-            case 43:
-                return EBarcodesSymbologies.USPLANET;
-            case 44:
-                return EBarcodesSymbologies.USPOSTNET;
-            case 45:
+            case 29:
                 return EBarcodesSymbologies.US4STATE;
-            case 46:
+            case 30:
                 return EBarcodesSymbologies.US4STATE_FICS;
+            case 31:
+                return EBarcodesSymbologies.MSI;
+            case 32:
+                return EBarcodesSymbologies.CODE93;
+            case 33:
+                return EBarcodesSymbologies.TRIOPTIC39;
+            case 34:
+                return EBarcodesSymbologies.D2OF5;
+            case 35:
+                return EBarcodesSymbologies.CHINESE_2OF5;
+            case 36:
+                return EBarcodesSymbologies.KOREAN_3OF5;
+            case 37:
+                return EBarcodesSymbologies.CODE11;
+            case 38:
+                return EBarcodesSymbologies.TLC39;
+            case 39:
+                return EBarcodesSymbologies.HANXIN;
+            case 40:
+                return EBarcodesSymbologies.MATRIX_2OF5;
+            case 41:
+                return EBarcodesSymbologies.UPCE1;
+            case 42:
+                return EBarcodesSymbologies.GS1_DATABAR_LIM;
+            case 43:
+                return EBarcodesSymbologies.FINNISH_POSTAL_4S;
+            case 44:
+                return EBarcodesSymbologies.COMPOSITE_AB;
+            case 45:
+                return EBarcodesSymbologies.COMPOSITE_C;
             default:
                 return EBarcodesSymbologies.UNKNOWN;
         }

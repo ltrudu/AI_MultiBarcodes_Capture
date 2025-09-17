@@ -216,15 +216,59 @@ class BarcodeAPI {
     }
 
     private function getSymbologyName($symbology_id) {
-        try {
-            $stmt = $this->connection->prepare("SELECT name FROM symbology_types WHERE id = :id");
-            $stmt->bindParam(':id', $symbology_id);
-            $stmt->execute();
-            $result = $stmt->fetch();
-            return $result ? $result['name'] : 'UNKNOWN';
-        } catch (Exception $e) {
-            return 'UNKNOWN';
-        }
+        // Map integer values to human-readable names from EBarcodesSymbologies enum
+        // Based on Zebra AI DataCapture documentation: https://techdocs.zebra.com/ai-datacapture/latest/barcodedecoder/#barcodesymbologies
+        $symbology_map = array(
+            -1 => 'UNKNOWN',
+            0 => 'EAN 8',
+            1 => 'EAN 13',
+            2 => 'UPC A',
+            3 => 'UPC E',
+            4 => 'AZTEC',
+            5 => 'CODABAR',
+            6 => 'CODE128',
+            7 => 'CODE39',
+            8 => 'I2OF5',
+            9 => 'GS1 DATABAR',
+            10 => 'DATAMATRIX',
+            11 => 'GS1 DATABAR EXPANDED',
+            12 => 'MAILMARK',
+            13 => 'MAXICODE',
+            14 => 'PDF417',
+            15 => 'QRCODE',
+            16 => 'DOTCODE',
+            17 => 'GRID MATRIX',
+            18 => 'GS1 DATAMATRIX',
+            19 => 'GS1 QRCODE',
+            20 => 'MICROQR',
+            21 => 'MICROPDF',
+            22 => 'USPOSTNET',
+            23 => 'USPLANET',
+            24 => 'UK POSTAL',
+            25 => 'JAPANESE POSTAL',
+            26 => 'AUSTRALIAN POSTAL',
+            27 => 'CANADIAN POSTAL',
+            28 => 'DUTCH POSTAL',
+            29 => 'US4STATE',
+            30 => 'US4STATE FICS',
+            31 => 'MSI',
+            32 => 'CODE93',
+            33 => 'TRIOPTIC39',
+            34 => 'D2OF5',
+            35 => 'CHINESE 2OF5',
+            36 => 'KOREAN 3OF5',
+            37 => 'CODE11',
+            38 => 'TLC39',
+            39 => 'HANXIN',
+            40 => 'MATRIX 2OF5',
+            41 => 'UPCE1',
+            42 => 'GS1 DATABAR LIM',
+            43 => 'FINNISH POSTAL 4S',
+            44 => 'COMPOSITE AB',
+            45 => 'COMPOSITE C'
+        );
+
+        return isset($symbology_map[$symbology_id]) ? $symbology_map[$symbology_id] : 'UNKNOWN';
     }
 
     private function resetAllData() {
