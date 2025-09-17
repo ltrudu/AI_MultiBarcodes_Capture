@@ -53,9 +53,9 @@ docker-compose up -d
 ```
 
 This command starts:
-- **Apache Web Server** (Port 8080)
-- **MySQL Database** (Port 3306)
-- **phpMyAdmin** (Port 8081)
+- **Apache Web Server** (Port 3500)
+- **MySQL Database** (Port 3502 - Internal only)
+- **phpMyAdmin** (Port 3501 - Optional)
 
 ### 2.3 Verify Services Are Running
 ```bash
@@ -72,8 +72,8 @@ webinterface-phpmyadmin-1 phpmyadmin:latest Up
 
 ### 2.4 Test Web Interface
 Open your browser and navigate to:
-- **Main WMS Interface**: http://localhost:8080
-- **Database Admin**: http://localhost:8081
+- **Main WMS Interface**: http://localhost:3500
+- **Database Admin**: http://localhost:3501
 
 You should see the Zebra-branded WMS interface with an empty session list.
 
@@ -126,9 +126,9 @@ ifconfig
 3. Select **Processing Mode** → **HTTP(s) Post**
 4. Enter **HTTP(s) Endpoint**:
    ```
-   http://YOUR_COMPUTER_IP:8080/api/barcodes.php
+   http://YOUR_COMPUTER_IP:3500/api/barcodes.php
    ```
-   Example: `http://192.168.1.100:8080/api/barcodes.php`
+   Example: `http://192.168.1.100:3500/api/barcodes.php`
 5. Ensure **Authentication** is disabled (unchecked)
 6. Tap **Save**
 
@@ -146,7 +146,7 @@ ifconfig
 3. Wait for "Upload Successful" message
 
 ### 5.3 Verify in Web Interface
-1. Open your browser to: http://localhost:8080
+1. Open your browser to: http://localhost:3500
 2. You should see your captured session appear within 1 second
 3. Click on the session to view detailed barcode data
 4. Verify device hostname appears in the Device column
@@ -188,12 +188,12 @@ You've successfully set up the system if you can:
 
 **❌ Android app shows "Upload Failed"**
 - Verify IP address is correct and reachable
-- Ensure port 8080 is accessible from the device
+- Ensure port 3500 is accessible from the device
 - Check Docker logs: `docker-compose logs web`
 
 **❌ Can't connect to database**
 - Restart Docker services: `docker-compose down && docker-compose up -d`
-- Check if port 3306 is already in use
+- Check if port 3502 is already in use (if MySQL is exposed)
 - Verify MySQL container is healthy: `docker-compose logs db`
 
 **❌ Android app won't build**

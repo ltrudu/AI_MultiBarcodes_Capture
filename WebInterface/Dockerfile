@@ -1,50 +1,81 @@
-FROM php:8.2-apache
+# Unified Docker Image for AI MultiBarcode Capture
+# Contains Apache+PHP, MySQL, and phpMyAdmin in a single container
 
-# Install system dependencies
+FROM ubuntu:22.04
+
+# Prevent interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install all required packages
 RUN apt-get update && apt-get install -y \
-    git \
+    apache2 \
+    php8.1 \
+    php8.1-mysql \
+    libapache2-mod-php8.1 \
+    php8.1-curl \
+    php8.1-cli \
+    php8.1-mbstring \
+    php8.1-xml \
+    php8.1-zip \
+    mysql-server \
+    mysql-client \
+    wget \
     curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
+    supervisor \
+    nano \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+# Install phpMyAdmin
+RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.tar.gz \
+    && tar xzf phpMyAdmin-5.2.1-all-languages.tar.gz \
+    && mv phpMyAdmin-5.2.1-all-languages /var/www/html/phpmyadmin \
+    && rm phpMyAdmin-5.2.1-all-languages.tar.gz
 
-# Enable Apache modules
-RUN a2enmod rewrite headers expires ssl
-
-# Copy custom Apache configuration
+# Configure Apache
+RUN a2enmod rewrite headers expires env
 COPY apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY apache/ssl-default.conf /etc/apache2/sites-available/ssl-default.conf
 
-# Generate SSL certificates inside container
-RUN mkdir -p /etc/ssl/certs /etc/ssl/private && \
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-    -keyout /etc/ssl/private/wms.key \
-    -out /etc/ssl/certs/wms.crt \
-    -subj "/C=US/ST=State/L=City/O=WMS/CN=wms.local" \
-    -addext "subjectAltName=DNS:localhost,DNS:wms.local,IP:127.0.0.1,IP:192.168.1.188" && \
-    chmod 600 /etc/ssl/private/wms.key && \
-    chmod 644 /etc/ssl/certs/wms.crt
+# Configure phpMyAdmin
+COPY phpmyadmin/config.inc.php /var/www/html/phpmyadmin/config.inc.php
 
-# Enable SSL site
-RUN a2ensite ssl-default
+# Configure MySQL
+COPY mysql/my.cnf /etc/mysql/conf.d/custom.cnf
 
-# Set working directory
-WORKDIR /var/www/html
-
-# Copy application source
+# Copy application source code
 COPY src/ /var/www/html/
 
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html \
+# Copy database initialization script
+COPY database/init.sql /tmp/init.sql
+
+# Create necessary directories first
+RUN mkdir -p /scripts
+
+# Copy startup script and fix line endings
+COPY startup.sh /startup.sh
+RUN sed -i 's/\r$//' /startup.sh && chmod +x /startup.sh
+
+# Create necessary directories and set permissions
+RUN mkdir -p /var/run/mysqld \
+    && mkdir -p /var/log/supervisor \
+    && mkdir -p /var/log/mysql \
+    && mkdir -p /var/log/apache2 \
+    && mkdir -p /scripts \
+    && chown mysql:mysql /var/run/mysqld \
+    && chown mysql:mysql /var/lib/mysql \
+    && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Expose port 80
-EXPOSE 80
+# Initialize MySQL data directory (if not already done)
+RUN service mysql start && sleep 5 && service mysql stop || true
 
-CMD ["apache2-foreground"]
+# Environment variables with defaults
+ENV MYSQL_ROOT_PASSWORD=
+ENV MYSQL_DATABASE=barcode_wms
+ENV MYSQL_USER=wms_user
+ENV MYSQL_PASSWORD=wms_password
+
+# Expose ports (will be dynamic based on WEB_PORT)
+EXPOSE 3500
+
+# Start the services
+CMD ["/startup.sh"]

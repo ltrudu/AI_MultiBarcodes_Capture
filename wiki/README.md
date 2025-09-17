@@ -11,6 +11,7 @@ This wiki provides comprehensive documentation for the AI MultiBarcode Capture s
 
 ### 🏗️ Development & Setup
 - **[Web Service Development](05-Web-Service-Development.md)** - Building custom web services for device posts
+- **[API Documentation](06-API-Documentation.md)** - Complete REST API reference and integration guide
 
 ### 📱 Android Application
 - **[Android App Configuration](07-Android-App-Configuration.md)** - Configuring the barcode scanning app
@@ -29,17 +30,20 @@ The AI MultiBarcode Capture system is a complete enterprise-grade solution for b
 
 ### Core Components
 1. **Android Barcode Scanner App** - Multi-barcode detection using Zebra AI Vision SDK
-2. **Web Management System (WMS)** - Real-time monitoring and data management
-3. **REST API Backend** - Handles data processing and storage
-4. **Docker Infrastructure** - Containerized deployment for scalability
+2. **Unified Docker Container** - Complete web management system in a single container
+3. **Web Management System (WMS)** - Real-time monitoring and data management (Port 3500)
+4. **REST API Backend** - Handles data processing and storage
+5. **Integrated Database** - MySQL database with optional phpMyAdmin access
 
 ### Key Features
 - ✅ **Multi-barcode simultaneous scanning** using AI vision technology
 - ✅ **Real-time data synchronization** between devices and web interface
+- ✅ **Unified Docker deployment** - Single container with all services (Port 3500)
 - ✅ **Flexible deployment options** (HTTP/HTTPS, file-based, or hybrid)
-- ✅ **Enterprise-ready architecture** with Docker containerization
+- ✅ **Enterprise-ready architecture** with simplified container management
 - ✅ **Comprehensive device management** with hostname tracking
 - ✅ **Live monitoring dashboard** with 1-second refresh rates
+- ✅ **Integrated database administration** with optional phpMyAdmin
 - ✅ **Complete audit trails** with session management
 
 ## 🚀 Quick Demo Setup

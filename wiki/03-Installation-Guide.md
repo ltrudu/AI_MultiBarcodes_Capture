@@ -17,7 +17,7 @@ docker --version
 docker-compose --version
 
 # Check available ports (should return nothing)
-netstat -an | grep :8080
+netstat -an | grep :3500
 ```
 
 ## 🚀 Quick Installation
@@ -28,35 +28,41 @@ git clone https://github.com/your-repo/AI_MultiBarcode_Capture.git
 cd AI_MultiBarcode_Capture
 ```
 
-### Step 2: Start Docker Web Management System
+### Step 2: Start Unified Container
 ```bash
 cd WebInterface
-docker-compose up -d
+
+# Windows
+start-services.bat
+
+# Linux/macOS
+./start-services.sh
 ```
 
-This starts all required services:
-- **Web Interface** (Port 8080) - Main dashboard
-- **MySQL Database** (Port 3306) - Data storage
-- **phpMyAdmin** (Port 8081) - Database admin
+This builds and starts the unified multibarcode-webinterface container containing:
+- **Apache + PHP Web Server** - Serves the main dashboard and API
+- **MySQL Database** - Internal database for session storage
+- **phpMyAdmin** - Database administration (optional)
+
+All services run in a single, unified Docker container for simplicity.
 
 ### Step 3: Verify Installation
 ```bash
-# Check all containers are running
-docker-compose ps
+# Check the unified container is running
+docker ps
 
 # Expected output:
-# NAME                          IMAGE               STATUS
-# webinterface-web-1           webinterface-web    Up
-# webinterface-db-1            mysql:8.0          Up
-# webinterface-phpmyadmin-1    phpmyadmin:latest  Up
+# CONTAINER ID   IMAGE                        STATUS
+# abc123def456   multibarcode-webinterface    Up
 ```
 
 ### Step 4: Test Web Interface
 Open your browser and navigate to:
-- **Main Dashboard**: http://localhost:8080
-- **Database Admin**: http://localhost:8081
+- **Main Dashboard**: http://localhost:3500
 
 You should see the WMS interface with an empty session list.
+
+*Note: phpMyAdmin is available at /phpmyadmin if enabled in .env file (EXPOSE_PHPMYADMIN=true).*
 
 ### Step 5: Build Android App
 ```bash
@@ -82,7 +88,7 @@ adb install AI_MultiBarcodes_Capture/build/outputs/apk/debug/AI_MultiBarcodes_Ca
 
 2. Open the **AI MultiBarcode Capture** app on your device
 3. Tap **Settings** → **Processing Mode** → **HTTP(s) Post**
-4. Enter endpoint: `http://YOUR_IP:8080/api/barcodes.php`
+4. Enter endpoint: `http://YOUR_IP:3500/api/barcodes.php`
 5. Ensure **Authentication** is disabled
 6. Tap **Save**
 
@@ -90,25 +96,26 @@ adb install AI_MultiBarcodes_Capture/build/outputs/apk/debug/AI_MultiBarcodes_Ca
 
 1. **Scan Barcodes**: Use the Android app to scan some barcodes
 2. **Upload Session**: Tap the upload button in the app
-3. **Check WMS**: Open http://localhost:8080 in your browser
+3. **Check WMS**: Open http://localhost:3500 in your browser
 4. **Verify Data**: You should see your session appear within 1 second
 
 ## 🔧 Basic Management
 
 ### Start/Stop the System
 ```bash
-# Start all services
-docker-compose up -d
+# Start the unified container
+./start-services.sh    # Linux/macOS
+start-services.bat     # Windows
 
-# Stop all services
+# Stop the container
 docker-compose down
 
 # View logs
-docker-compose logs -f
+docker logs multibarcode-webinterface
 ```
 
 ### Clear All Data
-1. Open http://localhost:8080
+1. Open http://localhost:3500
 2. Click **"Reset All Data"** button
 3. Confirm to clear all sessions
 
@@ -123,11 +130,11 @@ docker-compose logs -f
 
 **Android app shows "Upload Failed":**
 - Verify IP address is correct and reachable
-- Check firewall isn't blocking port 8080
-- Test endpoint: `curl http://YOUR_IP:8080/api/barcodes.php`
+- Check firewall isn't blocking port 3500
+- Test endpoint: `curl http://YOUR_IP:3500/api/barcodes.php`
 
 **Can't access web interface:**
-- Check if port 8080 is already in use: `netstat -tulpn | grep :8080`
+- Check if port 3500 is already in use: `netstat -tulpn | grep :3500`
 - Restart Docker services: `docker-compose restart`
 
 ## 🎯 Next Steps

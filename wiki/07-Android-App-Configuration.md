@@ -50,7 +50,7 @@ Settings → Processing Mode → HTTP(s) Post
 
 #### Development Environment
 ```
-HTTP(s) Endpoint: http://192.168.1.100:8080/api/barcodes.php
+HTTP(s) Endpoint: http://192.168.1.100:3500/api/barcodes.php
 Authentication: Disabled
 ```
 
@@ -84,13 +84,13 @@ ifconfig
 docker network inspect webinterface_default
 
 # Use gateway IP as endpoint
-http://172.18.0.1:8080/api/barcodes.php
+http://172.18.0.1:3500/api/barcodes.php
 ```
 
 #### Method 3: Android Emulator
 For Android emulator development:
 ```
-HTTP(s) Endpoint: http://10.0.2.2:8080/api/barcodes.php
+HTTP(s) Endpoint: http://10.0.2.2:3500/api/barcodes.php
 ```
 Note: `10.0.2.2` is the special IP that Android emulator uses to access the host machine.
 
@@ -184,7 +184,7 @@ Example: Session_20240315_143022.txt
 **Solutions:**
 ```bash
 # Test endpoint accessibility
-curl -I http://192.168.1.100:8080/api/barcodes.php
+curl -I http://192.168.1.100:3500/api/barcodes.php
 
 # Check network from device
 ping 192.168.1.100
@@ -236,7 +236,7 @@ docker-compose ps
 #### Cannot Connect to Server
 **Checklist:**
 - [ ] Server is running and accessible
-- [ ] Port 8080 is open and not blocked by firewall
+- [ ] Port 3500 is open and not blocked by firewall
 - [ ] Device is on the same network as server
 - [ ] Endpoint URL is correctly formatted
 - [ ] DNS resolution is working (if using domain names)

@@ -430,14 +430,13 @@ class WMSApp {
     }
 
     startAutoRefresh() {
-        // Auto-refresh every second for real-time updates
+        // Auto-refresh every second for real-time updates - only on main sessions page
         this.refreshInterval = setInterval(() => {
             try {
                 if (this.currentView === 'sessions') {
                     this.loadSessions(true); // Silent refresh to avoid flickering
-                } else if (this.currentView === 'session-details' && this.currentSession) {
-                    this.loadSessionDetails(this.currentSession.session.id);
                 }
+                // Note: No auto-refresh for session details to avoid disrupting user interaction
             } catch (error) {
                 console.warn('Auto-refresh error:', error);
                 // Continue refreshing despite errors
