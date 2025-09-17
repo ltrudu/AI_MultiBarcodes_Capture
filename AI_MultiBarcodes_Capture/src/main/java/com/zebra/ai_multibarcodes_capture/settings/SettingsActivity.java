@@ -37,6 +37,16 @@ import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 import com.zebra.ai_multibarcodes_capture.models.LanguageItem;
+import com.zebra.datawedgeprofileenums.INT_E_DELIVERY;
+import com.zebra.datawedgeprofileenums.MB_E_CONFIG_MODE;
+import com.zebra.datawedgeprofileenums.SC_E_SCANNER_IDENTIFIER;
+import com.zebra.datawedgeprofileintents.DWProfileBaseSettings;
+import com.zebra.datawedgeprofileintents.DWProfileCommandBase;
+import com.zebra.datawedgeprofileintents.DWProfileSetConfigSettings;
+import com.zebra.datawedgeprofileintents.DWScanReceiver;
+import com.zebra.datawedgeprofileintents.DWScannerPluginDisable;
+import com.zebra.datawedgeprofileintents.DWScannerPluginEnable;
+import com.zebra.datawedgeprofileintentshelpers.CreateProfileHelper;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +56,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
@@ -84,6 +95,9 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox cbMICROPDF, cbMICROQR, cbMSI, cbPDF417, cbQRCODE, cbTLC39, cbTRIOPTIC39;
     private CheckBox cbUK_POSTAL, cbUPC_A, cbUPC_E, cbUPCE1, cbUSPLANET, cbUSPOSTNET;
     private CheckBox cbUS4STATE, cbUS4STATE_FICS;
+
+    private DWScanReceiver mScanReceiver;
+
 
     // BroadcastReceiver to listen for managed configuration reload requests
     private BroadcastReceiver reloadPreferencesReceiver = new BroadcastReceiver() {
@@ -308,6 +322,12 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Create Datawedge profile
+        createDataWedgeProfile();
+
+        // Initialize receiver
+        initializeScanReceiver();
     }
 
     @Override
@@ -320,6 +340,10 @@ public class SettingsActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES);
         registerReceiver(reloadPreferencesReceiver, filter, RECEIVER_NOT_EXPORTED);
         LogUtils.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
+
+        enableDataWedgePlugin();
+        mScanReceiver.startReceive();
+
     }
 
     @Override
@@ -334,6 +358,8 @@ public class SettingsActivity extends AppCompatActivity {
             // Receiver was not registered, ignore
             LogUtils.d(TAG, "BroadcastReceiver was not registered, ignoring unregister attempt");
         }
+        mScanReceiver.stopReceive();
+        disableDatawedgePlugin();
     }
 
     private void loadPreferences()
@@ -1047,5 +1073,102 @@ public class SettingsActivity extends AppCompatActivity {
             // Remove SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR to use light (white) icons
             decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
+    }
+
+    private void createDataWedgeProfile()
+    {
+        DWProfileSetConfigSettings settings = new DWProfileSetConfigSettings()
+        {{
+            mProfileName = SettingsActivity.this.getPackageName();
+            mTimeOutMS = 5000;
+            MainBundle.APP_LIST = new HashMap<>();
+            MainBundle.APP_LIST.put(SettingsActivity.this.getPackageName(), null);
+            MainBundle.CONFIG_MODE = MB_E_CONFIG_MODE.CREATE_IF_NOT_EXIST;
+            IntentPlugin.intent_action = SettingsActivity.this.getPackageName() + ".RECVR";
+            IntentPlugin.intent_category = "android.intent.category.DEFAULT";;
+            IntentPlugin.intent_output_enabled = true;
+            IntentPlugin.intent_delivery = INT_E_DELIVERY.BROADCAST;
+            KeystrokePlugin.keystroke_output_enabled = false;
+            ScannerPlugin.scanner_selection_by_identifier = SC_E_SCANNER_IDENTIFIER.AUTO;
+            ScannerPlugin.scanner_input_enabled = true;
+            ScannerPlugin.Decoders.decoder_qrcode = true;
+            ScannerPlugin.Decoders.decoder_ean8 = false;
+            ScannerPlugin.Decoders.decoder_ean13 = false;
+            ScannerPlugin.Decoders.decoder_aztec = false;
+            ScannerPlugin.Decoders.decoder_micropdf = false;
+        }};
+
+        CreateProfileHelper.createProfile(SettingsActivity.this, settings, new CreateProfileHelper.CreateProfileHelperCallback() {
+            @Override
+            public void onSuccess(String profileName) {
+
+            }
+
+            @Override
+            public void onError(String profileName, String error, String errorMessage) {
+
+            }
+
+            @Override
+            public void ondebugMessage(String profileName, String message) {
+            }
+        });
+
+    }
+
+    private void initializeScanReceiver()
+    {
+        mScanReceiver = new DWScanReceiver(this,
+                SettingsActivity.this.getPackageName() + ".RECVR",
+                "android.intent.category.DEFAULT",
+                false,
+                new DWScanReceiver.onScannedData() {
+                    @Override
+                    public void scannedData(String source, String data, String symbology) {
+                        if(symbology.equalsIgnoreCase("QRCODE"))
+                        {
+                            
+                        }
+                    }
+                });
+    }
+
+    private void enableDataWedgePlugin()
+    {
+        DWScannerPluginEnable dwpluginenable = new DWScannerPluginEnable(this);
+        DWProfileBaseSettings settings = new DWProfileBaseSettings()
+        {{
+            mProfileName = SettingsActivity.this.getPackageName();
+        }};
+
+        dwpluginenable.execute(settings, new DWProfileCommandBase.onProfileCommandResult() {
+            @Override
+            public void result(String profileName, String action, String command, String result, String resultInfo, String commandidentifier) {
+            }
+
+            @Override
+            public void timeout(String profileName) {
+
+            }
+        });
+    }
+
+    private void disableDatawedgePlugin()
+    {
+        DWScannerPluginDisable dwplugindisable = new DWScannerPluginDisable(this);
+        DWProfileBaseSettings settings = new DWProfileBaseSettings()
+        {{
+            mProfileName = SettingsActivity.this.getPackageName();
+        }};
+
+        dwplugindisable.execute(settings, new DWProfileCommandBase.onProfileCommandResult() {
+            @Override
+            public void result(String profileName, String action, String command, String result, String resultInfo, String commandidentifier) {
+            }
+            @Override
+            public void timeout(String profileName) {
+
+            }
+        });
     }
 }
