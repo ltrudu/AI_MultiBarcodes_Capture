@@ -28,6 +28,10 @@ class WMSApp {
             this.resetAllData();
         });
 
+        document.getElementById('btn-endpoint').addEventListener('click', () => {
+            this.showEndpointModal();
+        });
+
         // Back button
         const backButton = document.getElementById('btn-back');
         if (backButton) {
@@ -480,6 +484,204 @@ class WMSApp {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+    }
+
+    async showEndpointModal() {
+        const modal = document.getElementById('endpoint-modal');
+
+        // Get current port
+        const currentPort = window.location.port || '3500';
+
+        // Show modal first with loading state
+        modal.classList.remove('hide');
+        modal.classList.add('show');
+
+        // Set loading state
+        document.getElementById('local-endpoint').value = 'Loading server information...';
+        document.getElementById('internet-endpoint').value = 'Loading server information...';
+
+        try {
+            // Get server IP addresses from server-side endpoint
+            const response = await fetch(`${this.apiBaseUrl}/server-info.php`);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const serverInfo = await response.json();
+
+            if (serverInfo.success) {
+                // Use server's actual IP addresses
+                const localEndpoint = `http://${serverInfo.local_ip}:${currentPort}/api/barcodes.php`;
+                const internetEndpoint = `http://${serverInfo.external_ip}:${currentPort}/api/barcodes.php`;
+
+                document.getElementById('local-endpoint').value = localEndpoint;
+                document.getElementById('internet-endpoint').value = internetEndpoint;
+            } else {
+                throw new Error(serverInfo.error || 'Failed to get server information');
+            }
+
+        } catch (error) {
+            console.error('Error getting server IP addresses:', error);
+            // Fallback to hostname if server endpoint fails
+            const fallbackHost = window.location.hostname;
+            document.getElementById('local-endpoint').value = `http://${fallbackHost}:${currentPort}/api/barcodes.php`;
+            document.getElementById('internet-endpoint').value = `http://YOUR-PUBLIC-IP:${currentPort}/api/barcodes.php (Error: ${error.message})`;
+        }
+
+        // Add click outside to close
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                this.closeEndpointModal();
+            }
+        });
+
+        // Add escape key to close
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                this.closeEndpointModal();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+    }
+
+    closeEndpointModal() {
+        const modal = document.getElementById('endpoint-modal');
+        modal.classList.remove('show');
+        modal.classList.add('hide');
+    }
+
+    async copyToClipboard(inputId) {
+        const input = document.getElementById(inputId);
+        const text = input.value;
+
+        try {
+            await navigator.clipboard.writeText(text);
+
+            // Visual feedback
+            const button = input.nextElementSibling;
+            const originalText = button.textContent;
+            button.textContent = '✅ Copied!';
+            button.style.background = '#28a745';
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 2000);
+
+        } catch (err) {
+            // Fallback for older browsers
+            input.select();
+            input.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+
+            // Visual feedback
+            const button = input.nextElementSibling;
+            const originalText = button.textContent;
+            button.textContent = '✅ Copied!';
+            button.style.background = '#28a745';
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 2000);
+        }
+    }
+
+    showQRCode(inputId) {
+        const input = document.getElementById(inputId);
+        const url = input.value;
+
+        if (!url || url === 'Loading...' || url === 'Loading server information...') {
+            alert('Please wait for the endpoint to be loaded first.');
+            return;
+        }
+
+        // Show QR modal
+        const qrModal = document.getElementById('qr-modal');
+        qrModal.classList.remove('hide');
+        qrModal.classList.add('show');
+
+        // Update URL text (display the original URL for user reference)
+        document.getElementById('qr-url-text').textContent = url;
+
+        // Generate QR code with AIMultiBarcodeEndpoint prefix
+        const qrCodeData = `AIMultiBarcodeEndpoint:${url}`;
+        this.generateQRCode(qrCodeData);
+
+        // Add event listeners for closing
+        qrModal.addEventListener('click', (e) => {
+            if (e.target === qrModal) {
+                this.closeQRModal();
+            }
+        });
+
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                this.closeQRModal();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+    }
+
+    generateQRCode(text) {
+        const qrCodeDisplay = document.getElementById('qr-code-display');
+        qrCodeDisplay.innerHTML = ''; // Clear previous QR code
+
+        try {
+            // Create QR code using qrcode-generator library
+            const qr = qrcode(0, 'M'); // Type 0 (auto), Error correction level M
+            qr.addData(text);
+            qr.make();
+
+            // Create canvas element
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // QR code settings
+            const modules = qr.getModuleCount();
+            const cellSize = 8; // Size of each QR code cell
+            const margin = 4; // Margin around QR code
+
+            canvas.width = canvas.height = (modules * cellSize) + (margin * 2 * cellSize);
+
+            // Fill background
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw QR code
+            ctx.fillStyle = '#000000';
+            for (let row = 0; row < modules; row++) {
+                for (let col = 0; col < modules; col++) {
+                    if (qr.isDark(row, col)) {
+                        ctx.fillRect(
+                            (col * cellSize) + (margin * cellSize),
+                            (row * cellSize) + (margin * cellSize),
+                            cellSize,
+                            cellSize
+                        );
+                    }
+                }
+            }
+
+            qrCodeDisplay.appendChild(canvas);
+
+        } catch (error) {
+            console.error('Error generating QR code:', error);
+            qrCodeDisplay.innerHTML = '<p style="color: red;">Error generating QR code</p>';
+        }
+    }
+
+    closeQRModal() {
+        const qrModal = document.getElementById('qr-modal');
+        qrModal.classList.remove('show');
+        qrModal.classList.add('hide');
+
+        // Clear QR code display
+        document.getElementById('qr-code-display').innerHTML = '';
+        document.getElementById('qr-url-text').textContent = '';
     }
 }
 

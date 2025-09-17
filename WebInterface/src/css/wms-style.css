@@ -90,6 +90,14 @@ body {
     background: #c82333;
 }
 
+.nav-button.endpoint-button {
+    background: var(--success-green);
+}
+
+.nav-button.endpoint-button:hover {
+    background: #218838;
+}
+
 /* Main Content */
 .container {
     max-width: 1200px;
@@ -375,5 +383,279 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    z-index: 9999 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: visible !important;
+}
+
+.modal.show {
+    display: flex !important;
+}
+
+.modal.hide {
+    display: none !important;
+}
+
+.modal-content {
+    background: white !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    max-width: 600px !important;
+    width: 90% !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    animation: modalSlideIn 0.3s ease-out !important;
+    position: relative !important;
+    z-index: 10000 !important;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-header {
+    background: var(--zebra-gray);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--zebra-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    color: var(--zebra-dark-blue);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-light);
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text-dark);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.endpoint-section {
+    margin-bottom: 2rem;
+}
+
+.endpoint-section h3 {
+    color: var(--zebra-dark-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.endpoint-box {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.endpoint-box input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid var(--zebra-border);
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    background: var(--zebra-gray);
+    color: var(--text-dark);
+}
+
+.endpoint-box input:focus {
+    outline: none;
+    border-color: var(--zebra-blue);
+}
+
+.copy-btn {
+    background: var(--zebra-blue);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.copy-btn:hover {
+    background: var(--zebra-dark-blue);
+}
+
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+.qr-btn {
+    background: var(--zebra-blue);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.qr-btn:hover {
+    background: var(--zebra-dark-blue);
+}
+
+.qr-btn:active {
+    transform: scale(0.95);
+}
+
+.endpoint-section small {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+.endpoint-help {
+    background: rgba(0, 102, 204, 0.05);
+    border: 1px solid rgba(0, 102, 204, 0.2);
+    border-radius: 6px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+.endpoint-help h4 {
+    color: var(--zebra-dark-blue);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.endpoint-help ol {
+    margin-left: 1.5rem;
+    color: var(--text-dark);
+}
+
+.endpoint-help li {
+    margin-bottom: 0.5rem;
+}
+
+/* QR Code Modal Styles */
+.qr-modal-content {
+    max-width: 500px !important;
+}
+
+.qr-modal-body {
+    text-align: center;
+}
+
+.qr-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+#qr-code-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#qr-code-display canvas {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.qr-info {
+    text-align: left;
+}
+
+.qr-url {
+    background: var(--zebra-gray);
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--zebra-border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    word-break: break-all;
+}
+
+.qr-instructions {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+
+    .modal-header {
+        padding: 1rem;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .endpoint-box {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .copy-btn, .qr-btn {
+        width: 100%;
+    }
+
+    .qr-container {
+        padding: 1rem;
+        min-height: 150px;
     }
 }

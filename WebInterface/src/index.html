@@ -28,6 +28,9 @@
         <button id="btn-reset" class="nav-button reset-button">
             🗑️ Reset All Data
         </button>
+        <button id="btn-endpoint" class="nav-button endpoint-button">
+            🔗 Endpoint
+        </button>
         <div style="margin-left: auto; color: #6c757d; font-size: 0.9rem;">
             <span id="last-updated">Last updated: Never</span>
         </div>
@@ -44,6 +47,69 @@
         </div>
     </div>
 
+    <!-- Endpoint Modal -->
+    <div id="endpoint-modal" class="modal hide">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔗 API Endpoint Configuration</h2>
+                <button class="modal-close" onclick="app.closeEndpointModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Use these endpoints to configure your Android AI MultiBarcode Capture application:</p>
+
+                <div class="endpoint-section">
+                    <h3>🏠 Local Network Endpoint</h3>
+                    <div class="endpoint-box">
+                        <input type="text" id="local-endpoint" readonly>
+                        <button onclick="app.copyToClipboard('local-endpoint')" class="copy-btn">📋 Copy</button>
+                        <button onclick="app.showQRCode('local-endpoint')" class="qr-btn">📱 QR Code</button>
+                    </div>
+                    <small>Use this endpoint when both the Android device and this server are on the same local network.</small>
+                </div>
+
+                <div class="endpoint-section">
+                    <h3>🌐 Internet Endpoint</h3>
+                    <div class="endpoint-box">
+                        <input type="text" id="internet-endpoint" readonly>
+                        <button onclick="app.copyToClipboard('internet-endpoint')" class="copy-btn">📋 Copy</button>
+                        <button onclick="app.showQRCode('internet-endpoint')" class="qr-btn">📱 QR Code</button>
+                    </div>
+                    <small>Use this endpoint when accessing the server from the internet (requires port forwarding or public hosting).</small>
+                </div>
+
+                <div class="endpoint-help">
+                    <h4>📱 Android App Configuration:</h4>
+                    <ol>
+                        <li>Open the AI MultiBarcode Capture app</li>
+                        <li>Go to Settings → Server Configuration</li>
+                        <li>Paste one of the endpoints above</li>
+                        <li>Test the connection and save</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qr-modal" class="modal hide">
+        <div class="modal-content qr-modal-content">
+            <div class="modal-header">
+                <h2>📱 QR Code - Endpoint URL</h2>
+                <button class="modal-close" onclick="app.closeQRModal()">&times;</button>
+            </div>
+            <div class="modal-body qr-modal-body">
+                <div class="qr-container">
+                    <div id="qr-code-display"></div>
+                </div>
+                <div class="qr-info">
+                    <p><strong>Endpoint URL:</strong></p>
+                    <div class="qr-url" id="qr-url-text"></div>
+                    <p class="qr-instructions">Scan this QR code with your Android AI MultiBarcode Capture app to automatically configure the endpoint.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer style="text-align: center; padding: 2rem; color: #6c757d; font-size: 0.9rem;">
         <p>
@@ -52,8 +118,11 @@
         </p>
     </footer>
 
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
     <!-- JavaScript -->
-    <script src="js/wms-app.js"></script>
+    <script src="js/wms-app.js?v=20250917131000"></script>
 
     <script>
         // Update last updated timestamp

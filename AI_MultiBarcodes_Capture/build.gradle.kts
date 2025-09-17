@@ -68,6 +68,9 @@ dependencies {
     // Dependency for CriticalPermissionHelper
     implementation(libs.criticalpermissionhelper)
 
+    // Dependency to use internal scanner for endpoint configuration
+    implementation(libs.datawedgeintentwrapper)
+
     // For Excel Export
     implementation(libs.poi)
     implementation(libs.poiooxml)
