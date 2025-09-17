@@ -22,23 +22,17 @@ This document outlines the hardware and software requirements for deploying the 
 
 ### Supported Devices
 - **Zebra Devices** (Recommended):
-  - TC21/TC26 series
-  - TC52/TC57 series
-  - MC33 series
-  - ET40/ET45 series
-  - L10 Rugged Tablet series
-
-- **Generic Android Devices**:
-  - Any Android device with camera and network connectivity
-  - Performance may vary based on camera quality and processing power
+  - TC53/58 with AI support
+  - Any new Zebra device that supports AI
 
 ### Android Specifications
-- **Android Version**: 11+ (API level 30+)
+- **Android Version**: 14+ (API level 34+)
 - **Camera**: Rear camera with autofocus capability
 - **RAM**: 3GB minimum, 6GB+ recommended for smooth operation
 - **Storage**: 500MB free space for app installation
 - **Network**: WiFi or cellular data connectivity
 - **Permissions**: Camera, Storage, Internet access
+- **Hardware** : AI DSP processing unit
 
 ## 🐳 Docker Environment
 
@@ -112,7 +106,6 @@ Backend Servers: 10.0.1.0/24 network
 ### Barcode Processing Performance
 - **Detection Speed**: 30-60 FPS on modern devices
 - **Processing Latency**: <100ms per barcode
-- **Multi-barcode Capacity**: Up to 10 simultaneous barcodes per frame
 - **Upload Speed**: Typical 1-5 seconds for 100 barcode session
 
 ### Database Performance
