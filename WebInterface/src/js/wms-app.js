@@ -5,6 +5,8 @@ class WMSApp {
         this.currentView = 'sessions';
         this.sessions = [];
         this.currentSession = null;
+        this.lastUpdateTime = null;
+        this.existingSessionIds = new Set();
         this.init();
     }
 
@@ -55,9 +57,16 @@ class WMSApp {
             const data = await response.json();
 
             if (data.success) {
-                this.sessions = data.sessions;
-                this.renderSessions();
+                if (silent && this.sessions.length > 0) {
+                    // Dynamic update mode - only add new sessions and update changed ones
+                    this.dynamicUpdateSessions(data.sessions);
+                } else {
+                    // Full refresh mode - initial load or forced refresh
+                    this.sessions = data.sessions;
+                    this.renderSessions();
+                }
                 this.updateStats();
+                this.lastUpdateTime = new Date();
             } else {
                 throw new Error(data.error || 'Failed to load sessions');
             }
@@ -67,6 +76,133 @@ class WMSApp {
                 this.showError('Failed to load capture sessions: ' + error.message);
             }
         }
+    }
+
+    dynamicUpdateSessions(newSessions) {
+        const existingSessionMap = new Map();
+        this.sessions.forEach(session => {
+            existingSessionMap.set(session.id, session);
+        });
+
+        const newSessionsToAdd = [];
+        const sessionsToUpdate = [];
+
+        newSessions.forEach(newSession => {
+            const existingSession = existingSessionMap.get(newSession.id);
+
+            if (!existingSession) {
+                // This is a new session
+                newSessionsToAdd.push(newSession);
+                this.sessions.unshift(newSession); // Add to beginning of array
+            } else {
+                // Check if session data has changed
+                if (this.hasSessionChanged(existingSession, newSession)) {
+                    sessionsToUpdate.push({
+                        old: existingSession,
+                        new: newSession
+                    });
+                    // Update the session in our array
+                    const index = this.sessions.findIndex(s => s.id === newSession.id);
+                    if (index !== -1) {
+                        this.sessions[index] = newSession;
+                    }
+                }
+            }
+        });
+
+        // Apply dynamic updates to the DOM
+        if (newSessionsToAdd.length > 0) {
+            this.addNewSessionsToDOM(newSessionsToAdd);
+        }
+
+        if (sessionsToUpdate.length > 0) {
+            this.updateExistingSessionsInDOM(sessionsToUpdate);
+        }
+    }
+
+    hasSessionChanged(oldSession, newSession) {
+        // Check if key properties have changed
+        return oldSession.total_barcodes !== newSession.total_barcodes ||
+               oldSession.processed_count !== newSession.processed_count ||
+               oldSession.pending_count !== newSession.pending_count ||
+               oldSession.last_scan !== newSession.last_scan;
+    }
+
+    addNewSessionsToDOM(newSessions) {
+        const tableBody = document.querySelector('.table tbody');
+        if (!tableBody) return;
+
+        newSessions.forEach(session => {
+            const sessionRow = this.createSessionRow(session);
+
+            // Add new session animation class
+            sessionRow.classList.add('new-session');
+
+            // Insert at the beginning (most recent first)
+            tableBody.insertBefore(sessionRow, tableBody.firstChild);
+
+            // Add a subtle highlight effect after the slide-in animation
+            setTimeout(() => {
+                sessionRow.style.backgroundColor = '#e3f2fd';
+                setTimeout(() => {
+                    sessionRow.style.backgroundColor = '';
+                    sessionRow.style.transition = 'background-color 1s ease-in-out';
+                    // Remove the animation class after effects are complete
+                    sessionRow.classList.remove('new-session');
+                }, 2000);
+            }, 500);
+        });
+    }
+
+    updateExistingSessionsInDOM(sessionsToUpdate) {
+        sessionsToUpdate.forEach(({ old: oldSession, new: newSession }) => {
+            const existingRow = document.querySelector(`tr[data-session-id="${newSession.id}"]`);
+            if (existingRow) {
+                // Add update animation class
+                existingRow.classList.add('updated-session');
+
+                // Update the row content
+                const newRow = this.createSessionRow(newSession);
+                existingRow.innerHTML = newRow.innerHTML;
+
+                // Ensure the data-session-id is preserved
+                existingRow.setAttribute('data-session-id', newSession.id);
+
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    existingRow.classList.remove('updated-session');
+                }, 1000);
+            }
+        });
+    }
+
+    createSessionRow(session) {
+        const sessionTime = new Date(session.session_timestamp).toLocaleString();
+        const duration = this.calculateSessionDuration(session.first_scan, session.last_scan);
+        const processedPercent = session.total_barcodes > 0
+            ? Math.round((session.processed_count / session.total_barcodes) * 100)
+            : 0;
+
+        const row = document.createElement('tr');
+        row.className = 'session-row';
+        row.setAttribute('data-session-id', session.id);
+        row.onclick = () => this.showSessionDetails(session.id);
+
+        row.innerHTML = `
+            <td>${sessionTime}</td>
+            <td>${session.device_info || 'Unknown Device'}</td>
+            <td>${session.total_barcodes}</td>
+            <td>${session.unique_symbologies}</td>
+            <td>${session.processed_count}/${session.total_barcodes}</td>
+            <td>
+                <span class="status ${processedPercent === 100 ? 'processed' : 'pending'}">
+                    ${processedPercent}% Complete
+                </span>
+            </td>
+            <td>${duration}</td>
+        `;
+
+        return row;
     }
 
     async loadSessionDetails(sessionId) {
@@ -233,7 +369,7 @@ class WMSApp {
                     : 0;
 
                 html += `
-                    <tr onclick="app.showSessionDetails(${session.id})" class="session-row">
+                    <tr onclick="app.showSessionDetails(${session.id})" class="session-row" data-session-id="${session.id}">
                         <td>${sessionTime}</td>
                         <td>${session.device_info || 'Unknown Device'}</td>
                         <td>${session.total_barcodes}</td>
