@@ -15,6 +15,9 @@
             Barcode Warehouse Management System
         </h1>
         <div class="subtitle">Zebra Technologies - AI MultiBarcode Capture Interface</div>
+        <button id="btn-settings" class="settings-button" title="Settings">
+            ⚙️
+        </button>
     </header>
 
     <!-- Navigation -->
@@ -24,12 +27,6 @@
         </button>
         <button id="btn-refresh" class="nav-button">
             🔄 Refresh
-        </button>
-        <button id="btn-reset" class="nav-button reset-button">
-            🗑️ Reset All Data
-        </button>
-        <button id="btn-endpoint" class="nav-button endpoint-button">
-            🔗 Endpoint
         </button>
         <div style="margin-left: auto; color: #6c757d; font-size: 0.9rem;">
             <span id="last-updated">Last updated: Never</span>
@@ -105,6 +102,40 @@
                     <p><strong>Endpoint URL:</strong></p>
                     <div class="qr-url" id="qr-url-text"></div>
                     <p class="qr-instructions">Scan this QR code with your Android AI MultiBarcode Capture app to automatically configure the endpoint.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hide">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close" onclick="app.closeSettingsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Configuration Section -->
+                <div class="settings-section">
+                    <h3 class="section-title">⚙️ Configuration</h3>
+                    <div class="section-content">
+                        <p class="section-description">Configure endpoint settings and connection parameters</p>
+                        <button id="settings-btn-endpoint" class="btn btn-primary">
+                            🔗 Endpoint Configuration
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Danger Zone Section -->
+                <div class="settings-section danger-section">
+                    <h3 class="section-title">⚠️ Danger Zone</h3>
+                    <div class="section-content">
+                        <p class="section-description">Irreversible actions that will permanently delete data</p>
+                        <button id="settings-btn-reset" class="btn btn-danger">
+                            🗑️ Erase All Data
+                        </button>
+                        <small class="danger-warning">⚠️ This action cannot be undone</small>
+                    </div>
                 </div>
             </div>
         </div>

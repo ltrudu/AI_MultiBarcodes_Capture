@@ -32,7 +32,12 @@ class BarcodeAPI {
         try {
             switch ($method) {
                 case 'POST':
-                    $this->receiveBarcodeCaptureSession();
+                    $input = json_decode(file_get_contents('php://input'), true);
+                    if (isset($input['action']) && $input['action'] === 'bulk_merge') {
+                        $this->bulkMergeSessions();
+                    } else {
+                        $this->receiveBarcodeCaptureSession();
+                    }
                     break;
                 case 'GET':
                     if (isset($_GET['session_id'])) {
@@ -42,7 +47,10 @@ class BarcodeAPI {
                     }
                     break;
                 case 'PUT':
-                    if (isset($_GET['barcode_id'])) {
+                    $input = json_decode(file_get_contents('php://input'), true);
+                    if (isset($input['action']) && $input['action'] === 'update_barcode') {
+                        $this->updateBarcodeData();
+                    } else if (isset($_GET['barcode_id'])) {
                         $this->updateBarcodeStatus($_GET['barcode_id']);
                     }
                     break;
@@ -50,7 +58,12 @@ class BarcodeAPI {
                     if (isset($_GET['reset']) && $_GET['reset'] === 'all') {
                         $this->resetAllData();
                     } else {
-                        $this->sendError('Invalid DELETE request', 400);
+                        $input = json_decode(file_get_contents('php://input'), true);
+                        if (isset($input['action']) && $input['action'] === 'bulk_delete') {
+                            $this->bulkDeleteSessions();
+                        } else {
+                            $this->sendError('Invalid DELETE request', 400);
+                        }
                     }
                     break;
                 default:
@@ -76,15 +89,17 @@ class BarcodeAPI {
             // Create capture session
             $session_timestamp = $this->convertTimestamp($input['session_timestamp'] ?? null);
             $device_info = $input['device_info'] ?? 'Unknown Device';
+            $device_ip = $input['device_ip'] ?? '0.0.0.0';
             $total_barcodes = count($input['barcodes']);
 
             $stmt = $this->connection->prepare("
-                INSERT INTO capture_sessions (session_timestamp, device_info, total_barcodes)
-                VALUES (:session_timestamp, :device_info, :total_barcodes)
+                INSERT INTO capture_sessions (session_timestamp, device_info, device_ip, total_barcodes)
+                VALUES (:session_timestamp, :device_info, :device_ip, :total_barcodes)
             ");
 
             $stmt->bindParam(':session_timestamp', $session_timestamp);
             $stmt->bindParam(':device_info', $device_info);
+            $stmt->bindParam(':device_ip', $device_ip);
             $stmt->bindParam(':total_barcodes', $total_barcodes);
             $stmt->execute();
 
@@ -102,7 +117,11 @@ class BarcodeAPI {
                 }
 
                 $symbology = $barcode['symbology'] ?? 0;
-                $symbology_name = $this->getSymbologyName($symbology);
+                // Get symbology name from database - ONLY source of truth
+                $symbology_stmt = $this->connection->prepare("SELECT name FROM symbologies WHERE id = ?");
+                $symbology_stmt->execute([$symbology]);
+                $symbology_result = $symbology_stmt->fetch(PDO::FETCH_ASSOC);
+                $symbology_name = $symbology_result ? $symbology_result['name'] : 'UNKNOWN';
                 $quantity = $barcode['quantity'] ?? 1;
                 $barcode_timestamp = $this->convertTimestamp($barcode['timestamp'] ?? null);
 
@@ -215,61 +234,77 @@ class BarcodeAPI {
         }
     }
 
-    private function getSymbologyName($symbology_id) {
-        // Map integer values to human-readable names from EBarcodesSymbologies enum
-        // Based on Zebra AI DataCapture documentation: https://techdocs.zebra.com/ai-datacapture/latest/barcodedecoder/#barcodesymbologies
-        $symbology_map = array(
-            -1 => 'UNKNOWN',
-            0 => 'EAN 8',
-            1 => 'EAN 13',
-            2 => 'UPC A',
-            3 => 'UPC E',
-            4 => 'AZTEC',
-            5 => 'CODABAR',
-            6 => 'CODE128',
-            7 => 'CODE39',
-            8 => 'I2OF5',
-            9 => 'GS1 DATABAR',
-            10 => 'DATAMATRIX',
-            11 => 'GS1 DATABAR EXPANDED',
-            12 => 'MAILMARK',
-            13 => 'MAXICODE',
-            14 => 'PDF417',
-            15 => 'QRCODE',
-            16 => 'DOTCODE',
-            17 => 'GRID MATRIX',
-            18 => 'GS1 DATAMATRIX',
-            19 => 'GS1 QRCODE',
-            20 => 'MICROQR',
-            21 => 'MICROPDF',
-            22 => 'USPOSTNET',
-            23 => 'USPLANET',
-            24 => 'UK POSTAL',
-            25 => 'JAPANESE POSTAL',
-            26 => 'AUSTRALIAN POSTAL',
-            27 => 'CANADIAN POSTAL',
-            28 => 'DUTCH POSTAL',
-            29 => 'US4STATE',
-            30 => 'US4STATE FICS',
-            31 => 'MSI',
-            32 => 'CODE93',
-            33 => 'TRIOPTIC39',
-            34 => 'D2OF5',
-            35 => 'CHINESE 2OF5',
-            36 => 'KOREAN 3OF5',
-            37 => 'CODE11',
-            38 => 'TLC39',
-            39 => 'HANXIN',
-            40 => 'MATRIX 2OF5',
-            41 => 'UPCE1',
-            42 => 'GS1 DATABAR LIM',
-            43 => 'FINNISH POSTAL 4S',
-            44 => 'COMPOSITE AB',
-            45 => 'COMPOSITE C'
-        );
+    private function updateBarcodeData() {
+        $input = json_decode(file_get_contents('php://input'), true);
 
-        return isset($symbology_map[$symbology_id]) ? $symbology_map[$symbology_id] : 'UNKNOWN';
+        try {
+            $barcode_id = $input['barcode_id'] ?? null;
+            $value = $input['value'] ?? null;
+            $symbology = $input['symbology'] ?? null;
+            $quantity = $input['quantity'] ?? null;
+
+            // Validate required fields
+            if (!$barcode_id || !$value || $symbology === null || !$quantity) {
+                $this->sendError('Missing required fields: barcode_id, value, symbology, quantity', 400);
+                return;
+            }
+
+            // Validate symbology value
+            // Validate symbology exists in database
+            $check_stmt = $this->connection->prepare("SELECT COUNT(*) FROM symbologies WHERE id = ?");
+            $check_stmt->execute([$symbology]);
+            if ($check_stmt->fetchColumn() == 0) {
+                $this->sendError('Invalid symbology value: ' . $symbology, 400);
+                return;
+            }
+
+            // Validate quantity
+            if ($quantity < 1) {
+                $this->sendError('Quantity must be at least 1', 400);
+                return;
+            }
+
+            // Get the symbology name
+            // Get symbology name from database - ONLY source of truth
+            $symbology_stmt = $this->connection->prepare("SELECT name FROM symbologies WHERE id = ?");
+            $symbology_stmt->execute([$symbology]);
+            $symbology_result = $symbology_stmt->fetch(PDO::FETCH_ASSOC);
+            $symbology_name = $symbology_result ? $symbology_result['name'] : 'UNKNOWN';
+
+            // Update the barcode
+            $stmt = $this->connection->prepare("
+                UPDATE barcodes
+                SET value = :value, symbology = :symbology, symbology_name = :symbology_name,
+                    quantity = :quantity, updated_at = CURRENT_TIMESTAMP
+                WHERE id = :barcode_id
+            ");
+
+            $stmt->bindParam(':value', $value);
+            $stmt->bindParam(':symbology', $symbology, PDO::PARAM_INT);
+            $stmt->bindParam(':symbology_name', $symbology_name);
+            $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+            $stmt->bindParam(':barcode_id', $barcode_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $this->sendResponse([
+                    'success' => true,
+                    'message' => 'Barcode updated successfully',
+                    'updated_fields' => [
+                        'value' => $value,
+                        'symbology' => $symbology,
+                        'symbology_name' => $symbology_name,
+                        'quantity' => $quantity
+                    ]
+                ]);
+            } else {
+                $this->sendError('Barcode not found or no changes made', 404);
+            }
+        } catch (Exception $e) {
+            $this->sendError('Failed to update barcode: ' . $e->getMessage(), 500);
+        }
     }
+
 
     private function resetAllData() {
         try {
@@ -338,6 +373,155 @@ class BarcodeAPI {
             'error' => $message
         ], JSON_PRETTY_PRINT);
         exit();
+    }
+
+    private function bulkDeleteSessions() {
+        $input = json_decode(file_get_contents('php://input'), true);
+
+        if (!$input || !isset($input['session_ids']) || !is_array($input['session_ids'])) {
+            $this->sendError('Invalid request data or missing session_ids array', 400);
+            return;
+        }
+
+        $session_ids = $input['session_ids'];
+
+        if (count($session_ids) === 0) {
+            $this->sendError('No session IDs provided', 400);
+            return;
+        }
+
+        $this->connection->beginTransaction();
+
+        try {
+            // Create placeholders for prepared statement
+            $placeholders = str_repeat('?,', count($session_ids) - 1) . '?';
+
+            // Delete barcodes first (due to foreign key constraint)
+            $delete_barcodes_stmt = $this->connection->prepare("
+                DELETE FROM barcodes WHERE session_id IN ($placeholders)
+            ");
+            $delete_barcodes_stmt->execute($session_ids);
+            $deleted_barcodes_count = $delete_barcodes_stmt->rowCount();
+
+            // Delete sessions
+            $delete_sessions_stmt = $this->connection->prepare("
+                DELETE FROM capture_sessions WHERE id IN ($placeholders)
+            ");
+            $delete_sessions_stmt->execute($session_ids);
+            $deleted_sessions_count = $delete_sessions_stmt->rowCount();
+
+            $this->connection->commit();
+
+            $this->sendResponse([
+                'success' => true,
+                'message' => "Successfully deleted $deleted_sessions_count session(s) and $deleted_barcodes_count barcode(s)",
+                'deleted_sessions' => $deleted_sessions_count,
+                'deleted_barcodes' => $deleted_barcodes_count
+            ]);
+
+        } catch (Exception $e) {
+            $this->connection->rollBack();
+            $this->sendError('Failed to delete sessions: ' . $e->getMessage(), 500);
+        }
+    }
+
+    private function bulkMergeSessions() {
+        $input = json_decode(file_get_contents('php://input'), true);
+
+        if (!$input || !isset($input['session_ids']) || !is_array($input['session_ids'])) {
+            $this->sendError('Invalid request data or missing session_ids array', 400);
+            return;
+        }
+
+        $session_ids = $input['session_ids'];
+
+        if (count($session_ids) < 2) {
+            $this->sendError('At least 2 sessions are required for merging', 400);
+            return;
+        }
+
+        $this->connection->beginTransaction();
+
+        try {
+            // Get all barcodes from selected sessions
+            $placeholders = str_repeat('?,', count($session_ids) - 1) . '?';
+            $get_barcodes_stmt = $this->connection->prepare("
+                SELECT b.value, b.symbology, s.name as symbology_name, SUM(b.quantity) as total_quantity
+                FROM barcodes b
+                LEFT JOIN symbologies s ON b.symbology = s.id
+                WHERE b.session_id IN ($placeholders)
+                GROUP BY b.value, b.symbology, s.name
+                ORDER BY b.value
+            ");
+            $get_barcodes_stmt->execute($session_ids);
+            $consolidated_barcodes = $get_barcodes_stmt->fetchAll();
+
+            if (count($consolidated_barcodes) === 0) {
+                $this->connection->rollBack();
+                $this->sendError('No barcodes found in selected sessions', 400);
+                return;
+            }
+
+            // Create new merged session
+            $current_time = date('Y-m-d H:i:s');
+            $device_info = 'Merged by user';
+            $device_ip = $_SERVER['REMOTE_ADDR'] ?? ($_SERVER['HTTP_X_FORWARDED_FOR'] ?? ($_SERVER['HTTP_CLIENT_IP'] ?? '0.0.0.0'));
+            $total_barcodes = count($consolidated_barcodes);
+
+            $create_session_stmt = $this->connection->prepare("
+                INSERT INTO capture_sessions (session_timestamp, device_info, device_ip, total_barcodes)
+                VALUES (:session_timestamp, :device_info, :device_ip, :total_barcodes)
+            ");
+            $create_session_stmt->bindParam(':session_timestamp', $current_time);
+            $create_session_stmt->bindParam(':device_info', $device_info);
+            $create_session_stmt->bindParam(':device_ip', $device_ip);
+            $create_session_stmt->bindParam(':total_barcodes', $total_barcodes);
+            $create_session_stmt->execute();
+
+            $new_session_id = $this->connection->lastInsertId();
+
+            // Insert consolidated barcodes into new session
+            $insert_barcode_stmt = $this->connection->prepare("
+                INSERT INTO barcodes (session_id, value, symbology, symbology_name, quantity, timestamp)
+                VALUES (:session_id, :value, :symbology, :symbology_name, :quantity, :timestamp)
+            ");
+
+            foreach ($consolidated_barcodes as $barcode) {
+                $insert_barcode_stmt->bindParam(':session_id', $new_session_id);
+                $insert_barcode_stmt->bindParam(':value', $barcode['value']);
+                $insert_barcode_stmt->bindParam(':symbology', $barcode['symbology']);
+                $insert_barcode_stmt->bindParam(':symbology_name', $barcode['symbology_name']);
+                $insert_barcode_stmt->bindParam(':quantity', $barcode['total_quantity']);
+                $insert_barcode_stmt->bindParam(':timestamp', $current_time);
+                $insert_barcode_stmt->execute();
+            }
+
+            // Delete original sessions and their barcodes
+            $delete_barcodes_stmt = $this->connection->prepare("
+                DELETE FROM barcodes WHERE session_id IN ($placeholders)
+            ");
+            $delete_barcodes_stmt->execute($session_ids);
+
+            $delete_sessions_stmt = $this->connection->prepare("
+                DELETE FROM capture_sessions WHERE id IN ($placeholders)
+            ");
+            $delete_sessions_stmt->execute($session_ids);
+
+            $this->connection->commit();
+
+            $this->sendResponse([
+                'success' => true,
+                'message' => "Successfully merged " . count($session_ids) . " sessions into new session",
+                'new_session_id' => $new_session_id,
+                'merged_sessions_count' => count($session_ids),
+                'total_barcodes' => $total_barcodes,
+                'consolidated_barcodes' => count($consolidated_barcodes)
+            ]);
+
+        } catch (Exception $e) {
+            $this->connection->rollBack();
+            $this->sendError('Failed to merge sessions: ' . $e->getMessage(), 500);
+        }
     }
 }
 
