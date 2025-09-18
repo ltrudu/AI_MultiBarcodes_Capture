@@ -68,6 +68,13 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Collections;
+import android.net.wifi.WifiManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 
 public class CapturedBarcodesActivity extends AppCompatActivity {
 
@@ -736,6 +743,11 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         rootObject.addProperty("device_info", deviceHostname);
         android.util.Log.d("CapturedBarcodes", "Device hostname: " + deviceHostname);
 
+        // Add device IP address
+        String deviceIP = getDeviceIPAddress();
+        rootObject.addProperty("device_ip", deviceIP);
+        android.util.Log.d("CapturedBarcodes", "Device IP address: " + deviceIP);
+
         Gson gson = new Gson();
         String jsonResult = gson.toJson(rootObject);
         android.util.Log.d("CapturedBarcodes", "JSON conversion completed successfully");
@@ -761,6 +773,48 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         } catch (Exception e) {
             android.util.Log.e("CapturedBarcodes", "Error getting device hostname", e);
             return "Unknown_Device";
+        }
+    }
+
+    private String getDeviceIPAddress() {
+        try {
+            android.util.Log.d("CapturedBarcodes", "Getting device IP address");
+
+            // First try to get WiFi IP address
+            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            if (wifiManager != null && wifiManager.isWifiEnabled()) {
+                int ipAddress = wifiManager.getConnectionInfo().getIpAddress();
+                if (ipAddress != 0) {
+                    String wifiIP = String.format(Locale.US, "%d.%d.%d.%d",
+                            (ipAddress & 0xff),
+                            (ipAddress >> 8 & 0xff),
+                            (ipAddress >> 16 & 0xff),
+                            (ipAddress >> 24 & 0xff));
+                    android.util.Log.d("CapturedBarcodes", "WiFi IP address: " + wifiIP);
+                    return wifiIP;
+                }
+            }
+
+            // If WiFi not available, try to get IP from network interfaces
+            for (NetworkInterface networkInterface : Collections.list(NetworkInterface.getNetworkInterfaces())) {
+                for (InetAddress inetAddress : Collections.list(networkInterface.getInetAddresses())) {
+                    if (!inetAddress.isLoopbackAddress() && !inetAddress.isLinkLocalAddress()) {
+                        String hostAddress = inetAddress.getHostAddress();
+                        // Check if it's IPv4
+                        if (hostAddress != null && hostAddress.indexOf(':') < 0) {
+                            android.util.Log.d("CapturedBarcodes", "Network interface IP address: " + hostAddress);
+                            return hostAddress;
+                        }
+                    }
+                }
+            }
+
+            android.util.Log.w("CapturedBarcodes", "No valid IP address found");
+            return "0.0.0.0";
+
+        } catch (Exception e) {
+            android.util.Log.e("CapturedBarcodes", "Error getting device IP address", e);
+            return "0.0.0.0";
         }
     }
 

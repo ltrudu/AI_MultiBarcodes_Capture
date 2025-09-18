@@ -7,6 +7,7 @@ class WMSApp {
         this.currentSession = null;
         this.lastUpdateTime = null;
         this.existingSessionIds = new Set();
+        this.selectedSessions = new Set();
         this.init();
     }
 
@@ -26,13 +27,23 @@ class WMSApp {
             this.refresh();
         });
 
-        document.getElementById('btn-reset').addEventListener('click', () => {
+        // Settings button
+        document.getElementById('btn-settings').addEventListener('click', () => {
+            this.showSettingsModal();
+        });
+
+        // Settings modal buttons
+        document.getElementById('settings-btn-endpoint').addEventListener('click', () => {
+            this.closeSettingsModal();
+            this.showEndpointModal();
+        });
+
+        document.getElementById('settings-btn-reset').addEventListener('click', () => {
+            this.closeSettingsModal();
             this.resetAllData();
         });
 
-        document.getElementById('btn-endpoint').addEventListener('click', () => {
-            this.showEndpointModal();
-        });
+        // Note: Event listeners are now attached in attachSessionEventListeners() method
 
         // Back button
         const backButton = document.getElementById('btn-back');
@@ -186,20 +197,25 @@ class WMSApp {
         const row = document.createElement('tr');
         row.className = 'session-row';
         row.setAttribute('data-session-id', session.id);
-        row.onclick = () => this.showSessionDetails(session.id);
+
+        const isSelected = this.selectedSessions.has(session.id.toString());
 
         row.innerHTML = `
-            <td>${sessionTime}</td>
-            <td>${session.device_info || 'Unknown Device'}</td>
-            <td>${session.total_barcodes}</td>
-            <td>${session.unique_symbologies}</td>
-            <td>${session.processed_count}/${session.total_barcodes}</td>
-            <td>
+            <td class="checkbox-cell" onclick="event.stopPropagation();">
+                <input type="checkbox" class="session-checkbox" value="${session.id}" ${isSelected ? 'checked' : ''}>
+            </td>
+            <td onclick="app.showSessionDetails(${session.id})">${sessionTime}</td>
+            <td onclick="app.showSessionDetails(${session.id})">${session.device_info || 'Unknown Device'}</td>
+            <td onclick="app.showSessionDetails(${session.id})">${session.device_ip || 'N/A'}</td>
+            <td onclick="app.showSessionDetails(${session.id})">${session.total_barcodes}</td>
+            <td onclick="app.showSessionDetails(${session.id})">${session.unique_symbologies}</td>
+            <td onclick="app.showSessionDetails(${session.id})">${session.processed_count}/${session.total_barcodes}</td>
+            <td onclick="app.showSessionDetails(${session.id})">
                 <span class="status ${processedPercent === 100 ? 'processed' : 'pending'}">
                     ${processedPercent}% Complete
                 </span>
             </td>
-            <td>${duration}</td>
+            <td onclick="app.showSessionDetails(${session.id})">${duration}</td>
         `;
 
         return row;
@@ -345,12 +361,25 @@ class WMSApp {
             `;
         } else {
             html += `
+                <div class="selection-actions" id="selection-actions" style="display: none; margin-bottom: 1rem;">
+                    <button id="bulk-delete-btn" class="btn btn-danger">
+                        🗑️ Delete Selected
+                    </button>
+                    <button id="bulk-merge-btn" class="btn btn-primary">
+                        🔗 Merge Selected
+                    </button>
+                    <span id="selection-count" class="selection-info">0 sessions selected</span>
+                </div>
                 <div class="table-container">
                     <table class="table">
                         <thead>
                             <tr>
+                                <th class="checkbox-header">
+                                    <input type="checkbox" id="select-all-sessions" title="Select/Unselect All">
+                                </th>
                                 <th>Session Time</th>
                                 <th>Device</th>
+                                <th>Device IP</th>
                                 <th>Total Barcodes</th>
                                 <th>Unique Types</th>
                                 <th>Processed</th>
@@ -368,19 +397,24 @@ class WMSApp {
                     ? Math.round((session.processed_count / session.total_barcodes) * 100)
                     : 0;
 
+                const isSelected = this.selectedSessions.has(session.id.toString());
                 html += `
-                    <tr onclick="app.showSessionDetails(${session.id})" class="session-row" data-session-id="${session.id}">
-                        <td>${sessionTime}</td>
-                        <td>${session.device_info || 'Unknown Device'}</td>
-                        <td>${session.total_barcodes}</td>
-                        <td>${session.unique_symbologies}</td>
-                        <td>${session.processed_count}/${session.total_barcodes}</td>
-                        <td>
+                    <tr class="session-row" data-session-id="${session.id}">
+                        <td class="checkbox-cell" onclick="event.stopPropagation();">
+                            <input type="checkbox" class="session-checkbox" value="${session.id}" ${isSelected ? 'checked' : ''}>
+                        </td>
+                        <td onclick="app.showSessionDetails(${session.id})">${sessionTime}</td>
+                        <td onclick="app.showSessionDetails(${session.id})">${session.device_info || 'Unknown Device'}</td>
+                        <td onclick="app.showSessionDetails(${session.id})">${session.device_ip || 'N/A'}</td>
+                        <td onclick="app.showSessionDetails(${session.id})">${session.total_barcodes}</td>
+                        <td onclick="app.showSessionDetails(${session.id})">${session.unique_symbologies}</td>
+                        <td onclick="app.showSessionDetails(${session.id})">${session.processed_count}/${session.total_barcodes}</td>
+                        <td onclick="app.showSessionDetails(${session.id})">
                             <span class="status ${processedPercent === 100 ? 'processed' : 'pending'}">
                                 ${processedPercent}% Complete
                             </span>
                         </td>
-                        <td>${duration}</td>
+                        <td onclick="app.showSessionDetails(${session.id})">${duration}</td>
                     </tr>
                 `;
             });
@@ -399,6 +433,13 @@ class WMSApp {
 
         container.innerHTML = html;
         this.currentView = 'sessions';
+
+        // Clear any previous selections when rendering sessions
+        this.selectedSessions.clear();
+        this.updateSelectionUI();
+
+        // Re-attach event listeners after DOM update
+        this.attachSessionEventListeners();
     }
 
     renderSessionDetails() {
@@ -437,6 +478,7 @@ class WMSApp {
 
                     <div style="margin-bottom: 2rem;">
                         <strong>Device:</strong> ${session.device_info || 'Unknown Device'}<br>
+                        <strong>Device IP:</strong> ${session.device_ip || 'N/A'}<br>
                         <strong>Session ID:</strong> ${session.id}<br>
                         <strong>First Scan:</strong> ${session.first_scan ? new Date(session.first_scan).toLocaleString() : 'N/A'}<br>
                         <strong>Last Scan:</strong> ${session.last_scan ? new Date(session.last_scan).toLocaleString() : 'N/A'}
@@ -489,6 +531,10 @@ class WMSApp {
                                     onclick="app.toggleBarcodeStatus(${barcode.id}, ${!barcode.processed})">
                                 ${barcode.processed ? 'Mark as Pending' : 'Mark as Processed'}
                             </button>
+                            <button class="btn btn-primary" style="margin-left: 0.5rem;"
+                                    onclick="app.editBarcode(${barcode.id})">
+                                ✏️ Edit
+                            </button>
                             ${barcode.notes ? `<div style="margin-top: 0.5rem; font-style: italic;">Notes: ${this.escapeHtml(barcode.notes)}</div>` : ''}
                         </div>
                     </div>
@@ -497,6 +543,91 @@ class WMSApp {
         }
 
         html += `
+                </div>
+            </div>
+
+            <!-- Edit Barcode Modal -->
+            <div id="edit-barcode-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="icon">✏️</i> Edit Barcode</h3>
+                        <button class="modal-close" onclick="app.closeEditBarcodeModal()" aria-label="Close">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="modal-status" style="display: none;"></div>
+                        <form id="edit-barcode-form">
+                            <div class="form-group">
+                                <label for="edit-barcode-value">Barcode Value</label>
+                                <input type="text" id="edit-barcode-value" class="form-control" required placeholder="Enter barcode value">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-barcode-symbology">Symbology</label>
+                                <select id="edit-barcode-symbology" class="form-control" required>
+                                    <option value="-1">UNKNOWN</option>
+                                    <option value="0">EAN 8</option>
+                                    <option value="1">EAN 13</option>
+                                    <option value="2">UPC A</option>
+                                    <option value="3">UPC E</option>
+                                    <option value="4">AZTEC</option>
+                                    <option value="5">CODABAR</option>
+                                    <option value="6">CODE128</option>
+                                    <option value="7">CODE39</option>
+                                    <option value="8">I2OF5</option>
+                                    <option value="9">GS1 DATABAR</option>
+                                    <option value="10">DATAMATRIX</option>
+                                    <option value="11">GS1 DATABAR EXPANDED</option>
+                                    <option value="12">MAILMARK</option>
+                                    <option value="13">MAXICODE</option>
+                                    <option value="14">PDF417</option>
+                                    <option value="15">QRCODE</option>
+                                    <option value="16">DOTCODE</option>
+                                    <option value="17">GRID MATRIX</option>
+                                    <option value="18">GS1 DATAMATRIX</option>
+                                    <option value="19">GS1 QRCODE</option>
+                                    <option value="20">MICROQR</option>
+                                    <option value="21">MICROPDF</option>
+                                    <option value="22">USPOSTNET</option>
+                                    <option value="23">USPLANET</option>
+                                    <option value="24">UK POSTAL</option>
+                                    <option value="25">JAPANESE POSTAL</option>
+                                    <option value="26">AUSTRALIAN POSTAL</option>
+                                    <option value="27">CANADIAN POSTAL</option>
+                                    <option value="28">DUTCH POSTAL</option>
+                                    <option value="29">US4STATE</option>
+                                    <option value="30">US4STATE FICS</option>
+                                    <option value="31">MSI</option>
+                                    <option value="32">CODE93</option>
+                                    <option value="33">TRIOPTIC39</option>
+                                    <option value="34">D2OF5</option>
+                                    <option value="35">CHINESE 2OF5</option>
+                                    <option value="36">KOREAN 3OF5</option>
+                                    <option value="37">CODE11</option>
+                                    <option value="38">TLC39</option>
+                                    <option value="39">HANXIN</option>
+                                    <option value="40">MATRIX 2OF5</option>
+                                    <option value="41">UPCE1</option>
+                                    <option value="42">GS1 DATABAR LIM</option>
+                                    <option value="43">FINNISH POSTAL 4S</option>
+                                    <option value="44">COMPOSITE AB</option>
+                                    <option value="45">COMPOSITE C</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-barcode-quantity">Quantity</label>
+                                <input type="number" id="edit-barcode-quantity" class="form-control" min="1" value="1" required placeholder="Enter quantity">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="app.closeEditBarcodeModal()">
+                            <i class="icon">✕</i> Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="app.updateBarcode()">
+                            <i class="icon">💾</i> Update Barcode
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
@@ -818,6 +949,482 @@ class WMSApp {
         // Clear QR code display
         document.getElementById('qr-code-display').innerHTML = '';
         document.getElementById('qr-url-text').textContent = '';
+    }
+
+    showSettingsModal() {
+        const modal = document.getElementById('settings-modal');
+        modal.classList.remove('hide');
+        modal.classList.add('show');
+
+        // Add click outside to close
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                this.closeSettingsModal();
+            }
+        });
+
+        // Add escape key to close
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                this.closeSettingsModal();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+    }
+
+    closeSettingsModal() {
+        const modal = document.getElementById('settings-modal');
+        modal.classList.remove('show');
+        modal.classList.add('hide');
+    }
+
+    toggleSelectAll() {
+        const selectAllCheckbox = document.getElementById('select-all-sessions');
+        const sessionCheckboxes = document.querySelectorAll('.session-checkbox');
+
+        if (selectAllCheckbox.checked) {
+            // Select all
+            this.selectedSessions.clear();
+            sessionCheckboxes.forEach(checkbox => {
+                checkbox.checked = true;
+                this.selectedSessions.add(checkbox.value);
+                checkbox.closest('tr').classList.add('selected');
+            });
+        } else {
+            // Unselect all
+            this.selectedSessions.clear();
+            sessionCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.closest('tr').classList.remove('selected');
+            });
+        }
+
+        this.updateSelectionUI();
+    }
+
+    toggleSessionSelection(sessionId) {
+        console.log('toggleSessionSelection called with:', sessionId);
+        const sessionIdStr = sessionId.toString();
+        const checkbox = document.querySelector(`.session-checkbox[value="${sessionId}"]`);
+
+        if (!checkbox) {
+            console.error('Checkbox not found for session:', sessionId);
+            return;
+        }
+
+        const row = checkbox.closest('tr');
+
+        if (checkbox.checked) {
+            this.selectedSessions.add(sessionIdStr);
+            row.classList.add('selected');
+            console.log('Added session to selection:', sessionIdStr);
+        } else {
+            this.selectedSessions.delete(sessionIdStr);
+            row.classList.remove('selected');
+            console.log('Removed session from selection:', sessionIdStr);
+        }
+
+        console.log('Selected sessions:', Array.from(this.selectedSessions));
+        this.updateSelectionUI();
+    }
+
+    updateSelectionUI() {
+        const selectedCount = this.selectedSessions.size;
+        const totalSessions = this.sessions.length;
+        const selectAllCheckbox = document.getElementById('select-all-sessions');
+        const selectionActions = document.getElementById('selection-actions');
+        const selectionCount = document.getElementById('selection-count');
+        const deleteButton = document.getElementById('bulk-delete-btn');
+        const mergeButton = document.getElementById('bulk-merge-btn');
+
+        console.log('🔍 updateSelectionUI called:', {
+            selectedCount,
+            totalSessions,
+            selectedSessions: Array.from(this.selectedSessions),
+            selectionActions: !!selectionActions,
+            selectionCount: !!selectionCount,
+            deleteButton: !!deleteButton,
+            mergeButton: !!mergeButton
+        });
+
+        // Update select all checkbox state
+        if (selectAllCheckbox) {
+            if (selectedCount === 0) {
+                selectAllCheckbox.checked = false;
+                selectAllCheckbox.indeterminate = false;
+            } else if (selectedCount === totalSessions) {
+                selectAllCheckbox.checked = true;
+                selectAllCheckbox.indeterminate = false;
+            } else {
+                selectAllCheckbox.checked = false;
+                selectAllCheckbox.indeterminate = true;
+            }
+        }
+
+        // Show/hide selection actions and buttons based on selection count
+        if (selectionActions) {
+            console.log('🎯 Selection actions element found');
+            if (selectedCount > 0) {
+                console.log('📋 Showing selection actions for', selectedCount, 'selected sessions');
+                selectionActions.style.display = 'block';
+                if (selectionCount) {
+                    selectionCount.textContent = `${selectedCount} session${selectedCount !== 1 ? 's' : ''} selected`;
+                }
+
+                // Show delete button when at least 1 session is selected
+                if (deleteButton) {
+                    const shouldShowDelete = selectedCount >= 1;
+                    console.log('🗑️ Delete button decision:', {
+                        selectedCount,
+                        shouldShowDelete,
+                        currentDisplay: deleteButton.style.display
+                    });
+                    deleteButton.style.display = shouldShowDelete ? 'inline-flex' : 'none';
+                    console.log('🗑️ Delete button display set to:', deleteButton.style.display);
+                } else {
+                    console.log('❌ Delete button not found in DOM');
+                }
+
+                // Show merge button only when at least 2 sessions are selected
+                if (mergeButton) {
+                    const shouldShowMerge = selectedCount >= 2;
+                    console.log('🔗 Merge button decision:', {
+                        selectedCount,
+                        shouldShowMerge,
+                        currentDisplay: mergeButton.style.display
+                    });
+                    mergeButton.style.display = shouldShowMerge ? 'inline-flex' : 'none';
+                    console.log('🔗 Merge button display set to:', mergeButton.style.display);
+                } else {
+                    console.log('❌ Merge button not found in DOM');
+                }
+            } else {
+                console.log('📋 Hiding selection actions (no sessions selected)');
+                selectionActions.style.display = 'none';
+            }
+        } else {
+            console.log('❌ Selection actions element not found in DOM');
+        }
+    }
+
+    attachSessionEventListeners() {
+        console.log('=== attachSessionEventListeners called ===');
+
+        // Use event delegation instead of individual listeners to avoid accumulation issues
+        // Remove any existing delegated listener first
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+            // Create a new event handler function and store it as a property
+            this.sessionCheckboxHandler = (e) => {
+                if (e.target.classList.contains('session-checkbox')) {
+                    console.log('🔥 Session checkbox clicked via delegation!', {
+                        value: e.target.value,
+                        checked: e.target.checked,
+                        sessionId: e.target.value
+                    });
+                    this.toggleSessionSelection(e.target.value);
+                }
+            };
+
+            // Remove existing delegated listener if it exists
+            if (this.previousCheckboxHandler) {
+                mainContent.removeEventListener('change', this.previousCheckboxHandler);
+                console.log('🧹 Removed previous delegated listener');
+            }
+
+            // Add new delegated listener
+            mainContent.addEventListener('change', this.sessionCheckboxHandler);
+            this.previousCheckboxHandler = this.sessionCheckboxHandler;
+            console.log('✅ Added delegated event listener to main-content');
+        }
+
+        // Attach event listeners to select all checkbox (direct listener since it's always present)
+        const selectAllCheckbox = document.getElementById('select-all-sessions');
+        if (selectAllCheckbox) {
+            // Remove existing listener first
+            if (this.selectAllHandler) {
+                selectAllCheckbox.removeEventListener('change', this.selectAllHandler);
+            }
+
+            this.selectAllHandler = () => {
+                console.log('Select all checkbox clicked');
+                this.toggleSelectAll();
+            };
+
+            selectAllCheckbox.addEventListener('change', this.selectAllHandler);
+            console.log('✅ Select all checkbox listener attached');
+        } else {
+            console.log('❌ Select all checkbox not found');
+        }
+
+        // Log how many checkboxes are currently in the DOM
+        const sessionCheckboxes = document.querySelectorAll('.session-checkbox');
+        console.log(`Found ${sessionCheckboxes.length} session checkboxes for event delegation`);
+
+        // Attach event listeners to bulk action buttons
+        const deleteButton = document.getElementById('bulk-delete-btn');
+        const mergeButton = document.getElementById('bulk-merge-btn');
+
+        if (deleteButton) {
+            deleteButton.addEventListener('click', () => {
+                console.log('Delete button clicked');
+                this.bulkDeleteSessions();
+            });
+        }
+
+        if (mergeButton) {
+            mergeButton.addEventListener('click', () => {
+                console.log('Merge button clicked');
+                this.bulkMergeSessions();
+            });
+        }
+
+        console.log('Event listeners attached:', {
+            selectAll: !!selectAllCheckbox,
+            sessionCheckboxes: sessionCheckboxes.length,
+            deleteButton: !!deleteButton,
+            mergeButton: !!mergeButton
+        });
+        console.log('=== attachSessionEventListeners completed ===');
+    }
+
+    async bulkDeleteSessions() {
+        const selectedCount = this.selectedSessions.size;
+        if (selectedCount === 0) return;
+
+        // Show confirmation dialog
+        const confirmMessage = `⚠️ WARNING: You are about to delete ${selectedCount} session${selectedCount !== 1 ? 's' : ''} and all their barcode data.\n\nThis action cannot be undone. Are you sure you want to continue?`;
+
+        if (!confirm(confirmMessage)) {
+            return;
+        }
+
+        try {
+            this.showLoading(`Deleting ${selectedCount} session${selectedCount !== 1 ? 's' : ''}...`);
+
+            const sessionIds = Array.from(this.selectedSessions);
+            const response = await fetch(`${this.apiBaseUrl}/barcodes.php`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'bulk_delete',
+                    session_ids: sessionIds
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                this.showSuccess(`Successfully deleted ${selectedCount} session${selectedCount !== 1 ? 's' : ''}!`);
+
+                // Clear selection and reload
+                this.selectedSessions.clear();
+                setTimeout(() => {
+                    this.loadSessions();
+                }, 2000);
+            } else {
+                throw new Error(data.error || 'Failed to delete sessions');
+            }
+        } catch (error) {
+            console.error('Error deleting sessions:', error);
+            this.showError('Failed to delete sessions: ' + error.message);
+        }
+    }
+
+    async bulkMergeSessions() {
+        const selectedCount = this.selectedSessions.size;
+        if (selectedCount < 2) {
+            alert('At least 2 sessions must be selected to merge. Please select more sessions.');
+            return;
+        }
+
+        // Show confirmation dialog
+        const confirmMessage = `🔗 You are about to merge ${selectedCount} sessions into a single new session.\n\nIdentical barcodes will be consolidated with combined quantities.\nDevice name will be set to "Merged by user" and timestamps updated to current time.\n\nContinue with merge?`;
+
+        if (!confirm(confirmMessage)) {
+            return;
+        }
+
+        try {
+            this.showLoading(`Merging ${selectedCount} sessions...`);
+
+            const sessionIds = Array.from(this.selectedSessions);
+            const response = await fetch(`${this.apiBaseUrl}/barcodes.php`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'bulk_merge',
+                    session_ids: sessionIds
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                this.showSuccess(`Successfully merged ${selectedCount} sessions into session #${data.new_session_id}!`);
+
+                // Clear selection and reload
+                this.selectedSessions.clear();
+                setTimeout(() => {
+                    this.loadSessions();
+                }, 2000);
+            } else {
+                throw new Error(data.error || 'Failed to merge sessions');
+            }
+        } catch (error) {
+            console.error('Error merging sessions:', error);
+            this.showError('Failed to merge sessions: ' + error.message);
+        }
+    }
+
+    // Barcode Edit Functionality
+    editBarcode(barcodeId) {
+        console.log('Edit barcode requested for ID:', barcodeId);
+
+        // Find the barcode in current session data
+        const barcode = this.currentSession.barcodes.find(b => b.id === barcodeId);
+        if (!barcode) {
+            this.showError('Barcode not found');
+            return;
+        }
+
+        // Store the barcode being edited
+        this.editingBarcode = barcode;
+
+        // Populate the modal with current values
+        document.getElementById('edit-barcode-value').value = barcode.value;
+        document.getElementById('edit-barcode-symbology').value = barcode.symbology;
+        document.getElementById('edit-barcode-quantity').value = barcode.quantity;
+
+        // Show the modal with proper centering
+        const modal = document.getElementById('edit-barcode-modal');
+        modal.style.display = 'flex';
+
+        // Add click outside to close functionality
+        modal.onclick = (e) => {
+            if (e.target === modal) {
+                this.closeEditBarcodeModal();
+            }
+        };
+
+        console.log('Edit modal opened for barcode:', {
+            id: barcode.id,
+            value: barcode.value,
+            symbology: barcode.symbology,
+            quantity: barcode.quantity
+        });
+    }
+
+    closeEditBarcodeModal() {
+        const modal = document.getElementById('edit-barcode-modal');
+        modal.style.display = 'none';
+        this.editingBarcode = null;
+        console.log('Edit modal closed');
+    }
+
+    showModalLoading(message) {
+        const statusDiv = document.getElementById('modal-status');
+        if (statusDiv) {
+            statusDiv.innerHTML = `<div class="modal-loading"><span class="spinner"></span> ${message}</div>`;
+            statusDiv.style.display = 'block';
+        }
+    }
+
+    showModalSuccess(message) {
+        const statusDiv = document.getElementById('modal-status');
+        if (statusDiv) {
+            statusDiv.innerHTML = `<div class="modal-success">✅ ${message}</div>`;
+            statusDiv.style.display = 'block';
+        }
+    }
+
+    showModalError(message) {
+        const statusDiv = document.getElementById('modal-status');
+        if (statusDiv) {
+            statusDiv.innerHTML = `<div class="modal-error">❌ ${message}</div>`;
+            statusDiv.style.display = 'block';
+        }
+    }
+
+    async updateBarcode() {
+        if (!this.editingBarcode) {
+            this.showModalError('No barcode selected for editing');
+            return;
+        }
+
+        // Get form values
+        const newValue = document.getElementById('edit-barcode-value').value.trim();
+        const newSymbology = parseInt(document.getElementById('edit-barcode-symbology').value);
+        const newQuantity = parseInt(document.getElementById('edit-barcode-quantity').value);
+
+        // Validate input
+        if (!newValue) {
+            this.showModalError('Barcode value cannot be empty');
+            return;
+        }
+
+        if (newQuantity < 1) {
+            this.showModalError('Quantity must be at least 1');
+            return;
+        }
+
+        try {
+            console.log('Updating barcode:', {
+                id: this.editingBarcode.id,
+                oldValue: this.editingBarcode.value,
+                newValue: newValue,
+                oldSymbology: this.editingBarcode.symbology,
+                newSymbology: newSymbology,
+                oldQuantity: this.editingBarcode.quantity,
+                newQuantity: newQuantity
+            });
+
+            this.showModalLoading('Updating barcode...');
+
+            const response = await fetch(`${this.apiBaseUrl}/barcodes.php`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'update_barcode',
+                    barcode_id: this.editingBarcode.id,
+                    value: newValue,
+                    symbology: newSymbology,
+                    quantity: newQuantity
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                this.showModalSuccess('Barcode updated successfully!');
+                setTimeout(() => {
+                    this.closeEditBarcodeModal();
+                    // Reload session details to reflect changes
+                    this.loadSessionDetails(this.currentSession.session.id);
+                }, 1500);
+            } else {
+                throw new Error(data.error || 'Failed to update barcode');
+            }
+        } catch (error) {
+            console.error('Error updating barcode:', error);
+            this.showModalError('Failed to update barcode: ' + error.message);
+        }
     }
 }
 
