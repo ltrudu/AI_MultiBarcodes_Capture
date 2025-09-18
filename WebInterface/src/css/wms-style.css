@@ -20,6 +20,54 @@
     box-sizing: border-box;
 }
 
+/* Dynamic Update Animations */
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes highlightNew {
+    0% {
+        background-color: #e3f2fd;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+@keyframes highlightUpdate {
+    0% {
+        background-color: #fff3cd;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.session-row {
+    transition: all 0.3s ease-in-out;
+}
+
+.session-row.new-session {
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+.session-row.updated-session {
+    animation: highlightUpdate 1s ease-out;
+}
+
+.session-row:hover {
+    background-color: #f8f9fa;
+    transform: translateX(2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--zebra-gray);
