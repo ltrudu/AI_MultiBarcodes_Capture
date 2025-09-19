@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcode WMS - Zebra Technologies</title>
+    <title id="page-title">Barcode WMS - Zebra Technologies</title>
     <link rel="stylesheet" href="css/wms-style.css">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
 </head>
@@ -12,9 +12,9 @@
     <header class="header">
         <h1>
             <span>📦</span>
-            Barcode Warehouse Management System
+            <span id="header-title">Barcode Warehouse Management System</span>
         </h1>
-        <div class="subtitle">Zebra Technologies - AI MultiBarcode Capture Interface</div>
+        <div class="subtitle" id="header-subtitle">Zebra Technologies - AI MultiBarcode Capture Interface</div>
         <button id="btn-settings" class="settings-button" title="Settings">
             ⚙️
         </button>
@@ -23,10 +23,10 @@
     <!-- Navigation -->
     <nav class="nav">
         <button id="btn-sessions" class="nav-button active">
-            📋 Capture Sessions
+            📋 <span id="nav-capture-sessions">Capture Sessions</span>
         </button>
         <button id="btn-refresh" class="nav-button">
-            🔄 Refresh
+            🔄 <span id="nav-refresh">Refresh</span>
         </button>
         <div style="margin-left: auto; color: #6c757d; font-size: 0.9rem;">
             <span id="last-updated">Last updated: Never</span>
@@ -39,7 +39,7 @@
             <!-- Content will be dynamically loaded here -->
             <div class="loading">
                 <div class="spinner"></div>
-                <p>Initializing WMS...</p>
+                <p id="initializing-text">Initializing WMS...</p>
             </div>
         </div>
     </div>
@@ -48,39 +48,39 @@
     <div id="endpoint-modal" class="modal hide">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>🔗 API Endpoint Configuration</h2>
+                <h2 id="endpoint-modal-title">🔗 API Endpoint Configuration</h2>
                 <button class="modal-close" onclick="app.closeEndpointModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <p>Use these endpoints to configure your Android AI MultiBarcode Capture application:</p>
+                <p id="endpoint-instruction">Use these endpoints to configure your Android AI MultiBarcode Capture application:</p>
 
                 <div class="endpoint-section">
-                    <h3>🏠 Local Network Endpoint</h3>
+                    <h3 id="local-endpoint-title">🏠 Local Network Endpoint</h3>
                     <div class="endpoint-box">
                         <input type="text" id="local-endpoint" readonly>
-                        <button onclick="app.copyToClipboard('local-endpoint')" class="copy-btn">📋 Copy</button>
-                        <button onclick="app.showQRCode('local-endpoint')" class="qr-btn">📱 QR Code</button>
+                        <button onclick="app.copyToClipboard('local-endpoint')" class="copy-btn">📋 <span id="copy-btn-text">Copy</span></button>
+                        <button onclick="app.showQRCode('local-endpoint')" class="qr-btn">📱 <span id="qr-btn-text">QR Code</span></button>
                     </div>
-                    <small>Use this endpoint when both the Android device and this server are on the same local network.</small>
+                    <small id="local-endpoint-desc">Use this endpoint when both the Android device and this server are on the same local network.</small>
                 </div>
 
                 <div class="endpoint-section">
-                    <h3>🌐 Internet Endpoint</h3>
+                    <h3 id="internet-endpoint-title">🌐 Internet Endpoint</h3>
                     <div class="endpoint-box">
                         <input type="text" id="internet-endpoint" readonly>
-                        <button onclick="app.copyToClipboard('internet-endpoint')" class="copy-btn">📋 Copy</button>
-                        <button onclick="app.showQRCode('internet-endpoint')" class="qr-btn">📱 QR Code</button>
+                        <button onclick="app.copyToClipboard('internet-endpoint')" class="copy-btn">📋 <span id="copy-btn-text-2">Copy</span></button>
+                        <button onclick="app.showQRCode('internet-endpoint')" class="qr-btn">📱 <span id="qr-btn-text-2">QR Code</span></button>
                     </div>
-                    <small>Use this endpoint when accessing the server from the internet (requires port forwarding or public hosting).</small>
+                    <small id="internet-endpoint-desc">Use this endpoint when accessing the server from the internet (requires port forwarding or public hosting).</small>
                 </div>
 
                 <div class="endpoint-help">
-                    <h4>📱 Android App Configuration:</h4>
+                    <h4 id="android-config-title">📱 Android App Configuration:</h4>
                     <ol>
-                        <li>Open the AI MultiBarcode Capture app</li>
-                        <li>Go to Settings → Server Configuration</li>
-                        <li>Paste one of the endpoints above</li>
-                        <li>Test the connection and save</li>
+                        <li id="config-step-1">Open the AI MultiBarcode Capture app</li>
+                        <li id="config-step-2">Go to Settings → Server Configuration</li>
+                        <li id="config-step-3">Paste one of the endpoints above</li>
+                        <li id="config-step-4">Test the connection and save</li>
                     </ol>
                 </div>
             </div>
@@ -91,7 +91,7 @@
     <div id="qr-modal" class="modal hide">
         <div class="modal-content qr-modal-content">
             <div class="modal-header">
-                <h2>📱 QR Code - Endpoint URL</h2>
+                <h2 id="qr-modal-title">📱 QR Code - Endpoint URL</h2>
                 <button class="modal-close" onclick="app.closeQRModal()">&times;</button>
             </div>
             <div class="modal-body qr-modal-body">
@@ -99,9 +99,9 @@
                     <div id="qr-code-display"></div>
                 </div>
                 <div class="qr-info">
-                    <p><strong>Endpoint URL:</strong></p>
+                    <p><strong id="endpoint-url-label">Endpoint URL:</strong></p>
                     <div class="qr-url" id="qr-url-text"></div>
-                    <p class="qr-instructions">Scan this QR code with your Android AI MultiBarcode Capture app to automatically configure the endpoint.</p>
+                    <p class="qr-instructions" id="qr-scan-instructions">Scan this QR code with your Android AI MultiBarcode Capture app to automatically configure the endpoint.</p>
                 </div>
             </div>
         </div>
@@ -111,7 +111,7 @@
     <div id="settings-modal" class="modal hide">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Settings</h2>
+                <h2 id="settings-modal-title">Settings</h2>
                 <button class="modal-close" onclick="app.closeSettingsModal()">&times;</button>
             </div>
             <div class="modal-body">
@@ -119,10 +119,20 @@
                 <div class="settings-section">
                     <h3 class="section-title">⚙️ Configuration</h3>
                     <div class="section-content">
-                        <p class="section-description">Configure endpoint settings and connection parameters</p>
-                        <button id="settings-btn-endpoint" class="btn btn-primary">
-                            🔗 Endpoint Configuration
-                        </button>
+                        <div class="config-item">
+                            <label for="language-select" class="config-label">🌐 Language</label>
+                            <select id="language-select" class="config-select">
+                                <option value="system" id="system-language-option">System Language</option>
+                            </select>
+                            <p class="config-description" id="language-description">Select the interface language</p>
+                        </div>
+
+                        <div class="config-item">
+                            <p class="section-description">Configure endpoint settings and connection parameters</p>
+                            <button id="settings-btn-endpoint" class="btn btn-primary">
+                                🔗 Endpoint Configuration
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -144,8 +154,8 @@
     <!-- Footer -->
     <footer style="text-align: center; padding: 2rem; color: #6c757d; font-size: 0.9rem;">
         <p>
-            Barcode WMS &copy; 2024 - Powered by Zebra AI Vision SDK<br>
-            <small>Connected to Android AI MultiBarcode Capture Application</small>
+            <span id="footer-copyright">Barcode WMS &copy; 2024 - Powered by Zebra AI Vision SDK</span><br>
+            <small id="footer-connection">Connected to Android AI MultiBarcode Capture Application</small>
         </p>
     </footer>
 
@@ -153,7 +163,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 
     <!-- JavaScript -->
-    <script src="js/wms-app.js?v=20250917131000"></script>
+    <script src="js/wms-app.js?v=20250918170000"></script>
 
     <script>
         // Update last updated timestamp

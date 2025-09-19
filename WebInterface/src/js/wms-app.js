@@ -8,11 +8,17 @@ class WMSApp {
         this.lastUpdateTime = null;
         this.existingSessionIds = new Set();
         this.selectedSessions = new Set();
+        this.currentLanguage = 'en';
+        this.translations = {};
+        this.availableLanguages = {}; // Will be populated dynamically
         this.init();
     }
 
-    init() {
+    async init() {
+        await this.discoverAvailableLanguages();
+        await this.initializeLanguage();
         this.setupEventListeners();
+        this.setupLanguageDropdown();
         this.loadSessions();
         this.startAutoRefresh();
     }
@@ -43,6 +49,11 @@ class WMSApp {
             this.resetAllData();
         });
 
+        // Language selection
+        document.getElementById('language-select').addEventListener('change', async (e) => {
+            await this.changeLanguage(e.target.value);
+        });
+
         // Note: Event listeners are now attached in attachSessionEventListeners() method
 
         // Back button
@@ -57,7 +68,7 @@ class WMSApp {
     async loadSessions(silent = false) {
         try {
             if (!silent) {
-                this.showLoading('Loading capture sessions...');
+                this.showLoading(this.t('loading_sessions', 'Loading capture sessions...'));
             }
 
             const response = await fetch(`${this.apiBaseUrl}/barcodes.php`);
@@ -79,12 +90,12 @@ class WMSApp {
                 this.updateStats();
                 this.lastUpdateTime = new Date();
             } else {
-                throw new Error(data.error || 'Failed to load sessions');
+                throw new Error(data.error || this.t('failed_to_load_sessions', 'Failed to load sessions'));
             }
         } catch (error) {
             console.error('Error loading sessions:', error);
             if (!silent) {
-                this.showError('Failed to load capture sessions: ' + error.message);
+                this.showError(this.t('failed_to_load_sessions', 'Failed to load capture sessions') + ': ' + error.message);
             }
         }
     }
@@ -205,14 +216,14 @@ class WMSApp {
                 <input type="checkbox" class="session-checkbox" value="${session.id}" ${isSelected ? 'checked' : ''}>
             </td>
             <td onclick="app.showSessionDetails(${session.id})">${sessionTime}</td>
-            <td onclick="app.showSessionDetails(${session.id})">${session.device_info || 'Unknown Device'}</td>
-            <td onclick="app.showSessionDetails(${session.id})">${session.device_ip || 'N/A'}</td>
+            <td onclick="app.showSessionDetails(${session.id})">${session.device_info || this.t('unknown_device', 'Unknown Device')}</td>
+            <td onclick="app.showSessionDetails(${session.id})">${session.device_ip || this.t('not_available', 'N/A')}</td>
             <td onclick="app.showSessionDetails(${session.id})">${session.total_barcodes}</td>
             <td onclick="app.showSessionDetails(${session.id})">${session.unique_symbologies}</td>
             <td onclick="app.showSessionDetails(${session.id})">${session.processed_count}/${session.total_barcodes}</td>
             <td onclick="app.showSessionDetails(${session.id})">
                 <span class="status ${processedPercent === 100 ? 'processed' : 'pending'}">
-                    ${processedPercent}% Complete
+                    ${processedPercent}% ${this.t('complete', 'Complete')}
                 </span>
             </td>
             <td onclick="app.showSessionDetails(${session.id})">${duration}</td>
@@ -223,7 +234,7 @@ class WMSApp {
 
     async loadSessionDetails(sessionId) {
         try {
-            this.showLoading('Loading session details...');
+            this.showLoading(this.t('loading_session_details', 'Loading session details...'));
 
             const response = await fetch(`${this.apiBaseUrl}/barcodes.php?session_id=${sessionId}`);
             if (!response.ok) {
@@ -236,11 +247,11 @@ class WMSApp {
                 this.currentSession = data;
                 this.renderSessionDetails();
             } else {
-                throw new Error(data.error || 'Failed to load session details');
+                throw new Error(data.error || this.t('failed_to_load_session_details', 'Failed to load session details'));
             }
         } catch (error) {
             console.error('Error loading session details:', error);
-            this.showError('Failed to load session details: ' + error.message);
+            this.showError(this.t('failed_to_load_session_details', 'Failed to load session details') + ': ' + error.message);
         }
     }
 
@@ -268,27 +279,27 @@ class WMSApp {
                     await this.loadSessionDetails(this.currentSession.session.id);
                 }
             } else {
-                throw new Error(data.error || 'Failed to update barcode status');
+                throw new Error(data.error || this.t('failed_to_update_barcode_status', 'Failed to update barcode status'));
             }
         } catch (error) {
             console.error('Error updating barcode status:', error);
-            this.showError('Failed to update barcode status: ' + error.message);
+            this.showError(this.t('failed_to_update_barcode_status', 'Failed to update barcode status') + ': ' + error.message);
         }
     }
 
     async resetAllData() {
         // Show confirmation dialog
-        if (!confirm('⚠️ WARNING: This will permanently delete ALL barcode capture sessions and data.\n\nThis action cannot be undone. Are you sure you want to continue?')) {
+        if (!confirm(this.t('reset_all_warning', '⚠️ WARNING: This will permanently delete ALL barcode capture sessions and data.\n\nThis action cannot be undone. Are you sure you want to continue?'))) {
             return;
         }
 
         // Double confirmation for safety
-        if (!confirm('🔴 FINAL CONFIRMATION: This will delete ALL data permanently.\n\nClick OK to proceed with complete data reset.')) {
+        if (!confirm(this.t('reset_final_confirmation', '🔴 FINAL CONFIRMATION: This will delete ALL data permanently.\n\nClick OK to proceed with complete data reset.'))) {
             return;
         }
 
         try {
-            this.showLoading('Resetting all data...');
+            this.showLoading(this.t('resetting_data', 'Resetting all data...'));
 
             const response = await fetch(`${this.apiBaseUrl}/barcodes.php?reset=all`, {
                 method: 'DELETE',
@@ -315,11 +326,11 @@ class WMSApp {
                     this.loadSessions();
                 }, 2000);
             } else {
-                throw new Error(data.error || 'Failed to reset data');
+                throw new Error(data.error || this.t('failed_to_reset_data', 'Failed to reset data'));
             }
         } catch (error) {
             console.error('Error resetting data:', error);
-            this.showError('Failed to reset data: ' + error.message);
+            this.showError(this.t('failed_to_reset_data', 'Failed to reset data') + ': ' + error.message);
         }
     }
 
@@ -330,25 +341,25 @@ class WMSApp {
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-value" id="total-sessions">0</div>
-                    <div class="stat-label">Total Sessions</div>
+                    <div class="stat-label">${this.t('total_sessions', 'Total Sessions')}</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="total-barcodes">0</div>
-                    <div class="stat-label">Total Barcodes</div>
+                    <div class="stat-label">${this.t('total_barcodes', 'Total Barcodes')}</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="processed-barcodes">0</div>
-                    <div class="stat-label">Processed</div>
+                    <div class="stat-label">${this.t('processed', 'Processed')}</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="pending-barcodes">0</div>
-                    <div class="stat-label">Pending</div>
+                    <div class="stat-label">${this.t('pending', 'Pending')}</div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Recent Capture Sessions</h2>
+                    <h2>${this.t('recent_capture_sessions', 'Recent Capture Sessions')}</h2>
                 </div>
                 <div class="card-body">
         `;
@@ -356,19 +367,19 @@ class WMSApp {
         if (this.sessions.length === 0) {
             html += `
                 <div class="text-center" style="padding: 2rem; color: #6c757d;">
-                    <p>No capture sessions found. Sessions will appear here when your Android app uploads barcode data.</p>
+                    <p>${this.t('no_sessions_message', 'No capture sessions found. Sessions will appear here when your Android app uploads barcode data.')}</p>
                 </div>
             `;
         } else {
             html += `
                 <div class="selection-actions" id="selection-actions" style="display: none; margin-bottom: 1rem;">
                     <button id="bulk-delete-btn" class="btn btn-danger">
-                        🗑️ Delete Selected
+                        🗑️ ${this.t('delete_selected', 'Delete Selected')}
                     </button>
                     <button id="bulk-merge-btn" class="btn btn-primary">
-                        🔗 Merge Selected
+                        🔗 ${this.t('merge_sessions', 'Merge Selected')}
                     </button>
-                    <span id="selection-count" class="selection-info">0 sessions selected</span>
+                    <span id="selection-count" class="selection-info">0 ${this.t('sessions_selected', 'sessions selected')}</span>
                 </div>
                 <div class="table-container">
                     <table class="table">
@@ -377,14 +388,14 @@ class WMSApp {
                                 <th class="checkbox-header">
                                     <input type="checkbox" id="select-all-sessions" title="Select/Unselect All">
                                 </th>
-                                <th>Session Time</th>
-                                <th>Device</th>
-                                <th>Device IP</th>
-                                <th>Total Barcodes</th>
-                                <th>Unique Types</th>
-                                <th>Processed</th>
-                                <th>Status</th>
-                                <th>Duration</th>
+                                <th>${this.t('session_timestamp', 'Session Time')}</th>
+                                <th>${this.t('device', 'Device')}</th>
+                                <th>${this.t('device_ip', 'Device IP')}</th>
+                                <th>${this.t('total_barcodes', 'Total Barcodes')}</th>
+                                <th>${this.t('symbology', 'Unique Types')}</th>
+                                <th>${this.t('processed', 'Processed')}</th>
+                                <th>${this.t('status', 'Status')}</th>
+                                <th>${this.t('duration', 'Duration')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -404,14 +415,14 @@ class WMSApp {
                             <input type="checkbox" class="session-checkbox" value="${session.id}" ${isSelected ? 'checked' : ''}>
                         </td>
                         <td onclick="app.showSessionDetails(${session.id})">${sessionTime}</td>
-                        <td onclick="app.showSessionDetails(${session.id})">${session.device_info || 'Unknown Device'}</td>
-                        <td onclick="app.showSessionDetails(${session.id})">${session.device_ip || 'N/A'}</td>
+                        <td onclick="app.showSessionDetails(${session.id})">${session.device_info || this.t('unknown_device', 'Unknown Device')}</td>
+                        <td onclick="app.showSessionDetails(${session.id})">${session.device_ip || this.t('not_available', 'N/A')}</td>
                         <td onclick="app.showSessionDetails(${session.id})">${session.total_barcodes}</td>
                         <td onclick="app.showSessionDetails(${session.id})">${session.unique_symbologies}</td>
                         <td onclick="app.showSessionDetails(${session.id})">${session.processed_count}/${session.total_barcodes}</td>
                         <td onclick="app.showSessionDetails(${session.id})">
                             <span class="status ${processedPercent === 100 ? 'processed' : 'pending'}">
-                                ${processedPercent}% Complete
+                                ${processedPercent}% ${this.t('complete', 'Complete')}
                             </span>
                         </td>
                         <td onclick="app.showSessionDetails(${session.id})">${duration}</td>
@@ -453,42 +464,42 @@ class WMSApp {
         let html = `
             <div class="card">
                 <div class="card-header">
-                    <h2>Session Details - ${sessionTime}</h2>
-                    <button id="btn-back" class="btn btn-secondary" style="float: right;">← Back to Sessions</button>
+                    <h2>${this.t('session_details_title', 'Session Details')} - ${sessionTime}</h2>
+                    <button id="btn-back" class="btn btn-secondary" style="float: right;">← ${this.t('back_to_sessions', 'Back to Sessions')}</button>
                 </div>
                 <div class="card-body">
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-value">${session.total_barcodes}</div>
-                            <div class="stat-label">Total Barcodes</div>
+                            <div class="stat-label">${this.t('total_barcodes', 'Total Barcodes')}</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-value">${session.unique_symbologies}</div>
-                            <div class="stat-label">Unique Types</div>
+                            <div class="stat-label">${this.t('symbology', 'Unique Types')}</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-value">${session.processed_count}</div>
-                            <div class="stat-label">Processed</div>
+                            <div class="stat-label">${this.t('processed', 'Processed')}</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-value">${duration}</div>
-                            <div class="stat-label">Duration</div>
+                            <div class="stat-label">${this.t('duration', 'Duration')}</div>
                         </div>
                     </div>
 
                     <div style="margin-bottom: 2rem;">
-                        <strong>Device:</strong> ${session.device_info || 'Unknown Device'}<br>
-                        <strong>Device IP:</strong> ${session.device_ip || 'N/A'}<br>
-                        <strong>Session ID:</strong> ${session.id}<br>
-                        <strong>First Scan:</strong> ${session.first_scan ? new Date(session.first_scan).toLocaleString() : 'N/A'}<br>
-                        <strong>Last Scan:</strong> ${session.last_scan ? new Date(session.last_scan).toLocaleString() : 'N/A'}
+                        <strong>${this.t('device', 'Device')}:</strong> ${session.device_info || this.t('unknown_device', 'Unknown Device')}<br>
+                        <strong>${this.t('device_ip', 'Device IP')}:</strong> ${session.device_ip || this.t('not_available', 'N/A')}<br>
+                        <strong>${this.t('session_id', 'Session ID')}:</strong> ${session.id}<br>
+                        <strong>${this.t('first_scan', 'First Scan')}:</strong> ${session.first_scan ? new Date(session.first_scan).toLocaleString() : this.t('not_available', 'N/A')}<br>
+                        <strong>${this.t('last_scan', 'Last Scan')}:</strong> ${session.last_scan ? new Date(session.last_scan).toLocaleString() : this.t('not_available', 'N/A')}
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Captured Barcodes (${barcodes.length})</h2>
+                    <h2>${this.t('captured_barcodes', 'Captured Barcodes')} (${barcodes.length})</h2>
                 </div>
                 <div class="card-body">
         `;
@@ -508,34 +519,34 @@ class WMSApp {
                         <div class="barcode-value">${this.escapeHtml(barcode.value)}</div>
                         <div class="barcode-meta">
                             <div class="meta-item">
-                                <span class="meta-label">Symbology</span>
+                                <span class="meta-label">${this.t('symbology', 'Symbology')}</span>
                                 <span>${barcode.symbology_name} (${barcode.symbology})</span>
                             </div>
                             <div class="meta-item">
-                                <span class="meta-label">Quantity</span>
+                                <span class="meta-label">${this.t('quantity', 'Quantity')}</span>
                                 <span>${barcode.quantity}</span>
                             </div>
                             <div class="meta-item">
-                                <span class="meta-label">Scan Time</span>
+                                <span class="meta-label">${this.t('scan_time', 'Scan Time')}</span>
                                 <span>${scanTime}</span>
                             </div>
                             <div class="meta-item">
-                                <span class="meta-label">Status</span>
+                                <span class="meta-label">${this.t('status', 'Status')}</span>
                                 <span class="status ${barcode.processed ? 'processed' : 'pending'}">
-                                    ${barcode.processed ? 'Processed' : 'Pending'}
+                                    ${barcode.processed ? this.t('processed', 'Processed') : this.t('pending', 'Pending')}
                                 </span>
                             </div>
                         </div>
                         <div style="margin-top: 1rem;">
                             <button class="btn ${barcode.processed ? 'btn-secondary' : 'btn-success'}"
                                     onclick="app.toggleBarcodeStatus(${barcode.id}, ${!barcode.processed})">
-                                ${barcode.processed ? 'Mark as Pending' : 'Mark as Processed'}
+                                ${barcode.processed ? this.t('mark_as_pending', 'Mark as Pending') : this.t('mark_as_processed', 'Mark as Processed')}
                             </button>
                             <button class="btn btn-primary" style="margin-left: 0.5rem;"
                                     onclick="app.editBarcode(${barcode.id})">
-                                ✏️ Edit
+                                ✏️ ${this.t('edit', 'Edit')}
                             </button>
-                            ${barcode.notes ? `<div style="margin-top: 0.5rem; font-style: italic;">Notes: ${this.escapeHtml(barcode.notes)}</div>` : ''}
+                            ${barcode.notes ? `<div style="margin-top: 0.5rem; font-style: italic;">${this.t('notes', 'Notes')}: ${this.escapeHtml(barcode.notes)}</div>` : ''}
                         </div>
                     </div>
                 `;
@@ -550,8 +561,8 @@ class WMSApp {
             <div id="edit-barcode-modal" class="modal" style="display: none;">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3><i class="icon">✏️</i> Edit Barcode</h3>
-                        <button class="modal-close" onclick="app.closeEditBarcodeModal()" aria-label="Close">
+                        <h3><i class="icon">✏️</i> ${this.t('edit_barcode', 'Edit Barcode')}</h3>
+                        <button class="modal-close" onclick="app.closeEditBarcodeModal()" aria-label="${this.t('close', 'Close')}">
                             <span>&times;</span>
                         </button>
                     </div>
@@ -559,11 +570,11 @@ class WMSApp {
                         <div id="modal-status" style="display: none;"></div>
                         <form id="edit-barcode-form">
                             <div class="form-group">
-                                <label for="edit-barcode-value">Barcode Value</label>
-                                <input type="text" id="edit-barcode-value" class="form-control" required placeholder="Enter barcode value">
+                                <label for="edit-barcode-value">${this.t('value', 'Barcode Value')}</label>
+                                <input type="text" id="edit-barcode-value" class="form-control" required placeholder="${this.t('value', 'Enter barcode value')}">
                             </div>
                             <div class="form-group">
-                                <label for="edit-barcode-symbology">Symbology</label>
+                                <label for="edit-barcode-symbology">${this.t('symbology', 'Symbology')}</label>
                                 <select id="edit-barcode-symbology" class="form-control" required>
                                     <option value="-1">UNKNOWN</option>
                                     <option value="0">EAN 8</option>
@@ -615,17 +626,17 @@ class WMSApp {
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="edit-barcode-quantity">Quantity</label>
-                                <input type="number" id="edit-barcode-quantity" class="form-control" min="1" value="1" required placeholder="Enter quantity">
+                                <label for="edit-barcode-quantity">${this.t('quantity', 'Quantity')}</label>
+                                <input type="number" id="edit-barcode-quantity" class="form-control" min="1" value="1" required placeholder="${this.t('quantity', 'Enter quantity')}">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" onclick="app.closeEditBarcodeModal()">
-                            <i class="icon">✕</i> Cancel
+                            <i class="icon">✕</i> ${this.t('cancel', 'Cancel')}
                         </button>
                         <button type="button" class="btn btn-primary" onclick="app.updateBarcode()">
-                            <i class="icon">💾</i> Update Barcode
+                            <i class="icon">💾</i> ${this.t('save', 'Update Barcode')}
                         </button>
                     </div>
                 </div>
@@ -663,7 +674,7 @@ class WMSApp {
     }
 
     calculateSessionDuration(firstScan, lastScan) {
-        if (!firstScan || !lastScan) return 'N/A';
+        if (!firstScan || !lastScan) return this.t('not_available', 'N/A');
 
         const start = new Date(firstScan);
         const end = new Date(lastScan);
@@ -672,11 +683,11 @@ class WMSApp {
         if (diffMs < 60000) { // Less than 1 minute
             return `${Math.round(diffMs / 1000)}s`;
         } else if (diffMs < 3600000) { // Less than 1 hour
-            return `${Math.round(diffMs / 60000)}m`;
+            return `${Math.round(diffMs / 60000)}${this.t('minutes', 'm')}`;
         } else {
             const hours = Math.floor(diffMs / 3600000);
             const minutes = Math.round((diffMs % 3600000) / 60000);
-            return `${hours}h ${minutes}m`;
+            return `${hours}${this.t('hours', 'h')} ${minutes}${this.t('minutes', 'm')}`;
         }
     }
 
@@ -764,8 +775,8 @@ class WMSApp {
         modal.classList.add('show');
 
         // Set loading state
-        document.getElementById('local-endpoint').value = 'Loading server information...';
-        document.getElementById('internet-endpoint').value = 'Loading server information...';
+        document.getElementById('local-endpoint').value = this.t('loading_server_info', 'Loading server information...');
+        document.getElementById('internet-endpoint').value = this.t('loading_server_info', 'Loading server information...');
 
         try {
             // Get server IP addresses from server-side endpoint
@@ -785,7 +796,7 @@ class WMSApp {
                 document.getElementById('local-endpoint').value = localEndpoint;
                 document.getElementById('internet-endpoint').value = internetEndpoint;
             } else {
-                throw new Error(serverInfo.error || 'Failed to get server information');
+                throw new Error(serverInfo.error || this.t('failed_to_get_server_info', 'Failed to get server information'));
             }
 
         } catch (error) {
@@ -860,8 +871,8 @@ class WMSApp {
         const input = document.getElementById(inputId);
         const url = input.value;
 
-        if (!url || url === 'Loading...' || url === 'Loading server information...') {
-            alert('Please wait for the endpoint to be loaded first.');
+        if (!url || url === this.t('loading', 'Loading...') || url === this.t('loading_server_info', 'Loading server information...')) {
+            alert(this.t('wait_endpoint_load', 'Please wait for the endpoint to be loaded first.'));
             return;
         }
 
@@ -1069,7 +1080,9 @@ class WMSApp {
                 console.log('📋 Showing selection actions for', selectedCount, 'selected sessions');
                 selectionActions.style.display = 'block';
                 if (selectionCount) {
-                    selectionCount.textContent = `${selectedCount} session${selectedCount !== 1 ? 's' : ''} selected`;
+                    const key = selectedCount === 1 ? 'session_selected' : 'sessions_selected';
+                    const fallback = selectedCount === 1 ? 'session selected' : 'sessions selected';
+                    selectionCount.textContent = `${selectedCount} ${this.t(key, fallback)}`;
                 }
 
                 // Show delete button when at least 1 session is selected
@@ -1194,14 +1207,17 @@ class WMSApp {
         if (selectedCount === 0) return;
 
         // Show confirmation dialog
-        const confirmMessage = `⚠️ WARNING: You are about to delete ${selectedCount} session${selectedCount !== 1 ? 's' : ''} and all their barcode data.\n\nThis action cannot be undone. Are you sure you want to continue?`;
+        const plural = selectedCount !== 1 ? 's' : '';
+        const confirmMessage = this.t('delete_sessions_warning', '⚠️ WARNING: You are about to delete {count} session{plural} and all their barcode data.\n\nThis action cannot be undone. Are you sure you want to continue?')
+            .replace('{count}', selectedCount)
+            .replace('{plural}', plural);
 
         if (!confirm(confirmMessage)) {
             return;
         }
 
         try {
-            this.showLoading(`Deleting ${selectedCount} session${selectedCount !== 1 ? 's' : ''}...`);
+            this.showLoading(this.t('deleting_sessions', 'Deleting sessions...'));
 
             const sessionIds = Array.from(this.selectedSessions);
             const response = await fetch(`${this.apiBaseUrl}/barcodes.php`, {
@@ -1229,30 +1245,31 @@ class WMSApp {
                     this.loadSessions();
                 }, 2000);
             } else {
-                throw new Error(data.error || 'Failed to delete sessions');
+                throw new Error(data.error || this.t('failed_to_delete_sessions', 'Failed to delete sessions'));
             }
         } catch (error) {
             console.error('Error deleting sessions:', error);
-            this.showError('Failed to delete sessions: ' + error.message);
+            this.showError(this.t('failed_to_delete_sessions', 'Failed to delete sessions') + ': ' + error.message);
         }
     }
 
     async bulkMergeSessions() {
         const selectedCount = this.selectedSessions.size;
         if (selectedCount < 2) {
-            alert('At least 2 sessions must be selected to merge. Please select more sessions.');
+            alert(this.t('merge_sessions_min_error', 'At least 2 sessions must be selected to merge. Please select more sessions.'));
             return;
         }
 
         // Show confirmation dialog
-        const confirmMessage = `🔗 You are about to merge ${selectedCount} sessions into a single new session.\n\nIdentical barcodes will be consolidated with combined quantities.\nDevice name will be set to "Merged by user" and timestamps updated to current time.\n\nContinue with merge?`;
+        const confirmMessage = this.t('merge_sessions_confirmation', '🔗 You are about to merge {count} sessions into a single new session.\n\nIdentical barcodes will be consolidated with combined quantities.\nDevice name will be set to "Merged by user" and timestamps updated to current time.\n\nContinue with merge?')
+            .replace('{count}', selectedCount);
 
         if (!confirm(confirmMessage)) {
             return;
         }
 
         try {
-            this.showLoading(`Merging ${selectedCount} sessions...`);
+            this.showLoading(this.t('merging_sessions', 'Merging sessions...'));
 
             const sessionIds = Array.from(this.selectedSessions);
             const response = await fetch(`${this.apiBaseUrl}/barcodes.php`, {
@@ -1280,11 +1297,11 @@ class WMSApp {
                     this.loadSessions();
                 }, 2000);
             } else {
-                throw new Error(data.error || 'Failed to merge sessions');
+                throw new Error(data.error || this.t('failed_to_merge_sessions', 'Failed to merge sessions'));
             }
         } catch (error) {
             console.error('Error merging sessions:', error);
-            this.showError('Failed to merge sessions: ' + error.message);
+            this.showError(this.t('failed_to_merge_sessions', 'Failed to merge sessions') + ': ' + error.message);
         }
     }
 
@@ -1295,7 +1312,7 @@ class WMSApp {
         // Find the barcode in current session data
         const barcode = this.currentSession.barcodes.find(b => b.id === barcodeId);
         if (!barcode) {
-            this.showError('Barcode not found');
+            this.showError(this.t('barcode_not_found', 'Barcode not found'));
             return;
         }
 
@@ -1359,7 +1376,7 @@ class WMSApp {
 
     async updateBarcode() {
         if (!this.editingBarcode) {
-            this.showModalError('No barcode selected for editing');
+            this.showModalError(this.t('no_barcode_selected', 'No barcode selected for editing'));
             return;
         }
 
@@ -1370,12 +1387,12 @@ class WMSApp {
 
         // Validate input
         if (!newValue) {
-            this.showModalError('Barcode value cannot be empty');
+            this.showModalError(this.t('barcode_value_empty', 'Barcode value cannot be empty'));
             return;
         }
 
         if (newQuantity < 1) {
-            this.showModalError('Quantity must be at least 1');
+            this.showModalError(this.t('quantity_min_error', 'Quantity must be at least 1'));
             return;
         }
 
@@ -1390,7 +1407,7 @@ class WMSApp {
                 newQuantity: newQuantity
             });
 
-            this.showModalLoading('Updating barcode...');
+            this.showModalLoading(this.t('updating_barcode', 'Updating barcode...'));
 
             const response = await fetch(`${this.apiBaseUrl}/barcodes.php`, {
                 method: 'PUT',
@@ -1419,11 +1436,347 @@ class WMSApp {
                     this.loadSessionDetails(this.currentSession.session.id);
                 }, 1500);
             } else {
-                throw new Error(data.error || 'Failed to update barcode');
+                throw new Error(data.error || this.t('failed_to_update_barcode', 'Failed to update barcode'));
             }
         } catch (error) {
             console.error('Error updating barcode:', error);
-            this.showModalError('Failed to update barcode: ' + error.message);
+            this.showModalError(this.t('failed_to_update_barcode', 'Failed to update barcode') + ': ' + error.message);
+        }
+    }
+
+    // Language Support Methods
+    async discoverAvailableLanguages() {
+        try {
+            // Scan for available translation files
+            const languageMap = this.getLanguageDisplayNames();
+            const discoveredLanguages = { 'en': 'English' }; // Always include English
+
+            // Test each possible language file
+            const testPromises = Object.keys(languageMap).map(async (langCode) => {
+                if (langCode === 'en') return; // Skip English, already included
+
+                try {
+                    // Try to fetch the language file
+                    const response = await fetch(`src/lang/${langCode}.json`);
+                    if (response.ok) {
+                        discoveredLanguages[langCode] = languageMap[langCode];
+                    }
+                } catch (error) {
+                    // File doesn't exist, skip
+                }
+            });
+
+            await Promise.all(testPromises);
+
+            this.availableLanguages = discoveredLanguages;
+            console.log(`Discovered ${Object.keys(discoveredLanguages).length} available languages:`, Object.keys(discoveredLanguages).sort());
+
+        } catch (error) {
+            console.error('Error discovering languages:', error);
+            // Fallback to minimal set
+            this.availableLanguages = { 'en': 'English' };
+        }
+    }
+
+    getLanguageDisplayNames() {
+        // Complete mapping of language codes to display names
+        return {
+            'af': 'Afrikaans',
+            'am': 'አማርኛ (Amharic)',
+            'ar': 'العربية (Arabic)',
+            'as': 'অসমীয়া (Assamese)',
+            'az': 'Azərbaycan (Azerbaijani)',
+            'be': 'Беларуская (Belarusian)',
+            'bg': 'Български (Bulgarian)',
+            'bn': 'বাংলা (Bengali)',
+            'br': 'Brezhoneg (Breton)',
+            'bs': 'Bosanski (Bosnian)',
+            'ca': 'Català (Catalan)',
+            'cs': 'Čeština (Czech)',
+            'cy': 'Cymraeg (Welsh)',
+            'da': 'Dansk (Danish)',
+            'de': 'Deutsch (German)',
+            'el': 'Ελληνικά (Greek)',
+            'en': 'English',
+            'es': 'Español (Spanish)',
+            'et': 'Eesti (Estonian)',
+            'eu': 'Euskera (Basque)',
+            'fa': 'فارسی (Persian)',
+            'fi': 'Suomi (Finnish)',
+            'fr': 'Français (French)',
+            'ga': 'Gaeilge (Irish)',
+            'gl': 'Galego (Galician)',
+            'gu': 'ગુજરાતી (Gujarati)',
+            'he': 'עברית (Hebrew)',
+            'hi': 'हिन्दी (Hindi)',
+            'hr': 'Hrvatski (Croatian)',
+            'hu': 'Magyar (Hungarian)',
+            'id': 'Bahasa Indonesia (Indonesian)',
+            'is': 'Íslenska (Icelandic)',
+            'it': 'Italiano (Italian)',
+            'ja': '日本語 (Japanese)',
+            'ka': 'ქართული (Georgian)',
+            'kk': 'Қазақша (Kazakh)',
+            'km': 'ខ្មែរ (Khmer)',
+            'kn': 'ಕನ್ನಡ (Kannada)',
+            'ko': '한국어 (Korean)',
+            'ky': 'Кыргызча (Kyrgyz)',
+            'lb': 'Lëtzebuergesch (Luxembourgish)',
+            'lo': 'ລາວ (Lao)',
+            'lt': 'Lietuvių (Lithuanian)',
+            'lv': 'Latviešu (Latvian)',
+            'mk': 'Македонски (Macedonian)',
+            'ml': 'മലയാളം (Malayalam)',
+            'mr': 'मराठी (Marathi)',
+            'ms': 'Bahasa Melayu (Malay)',
+            'mt': 'Malti (Maltese)',
+            'my': 'မြန်မာ (Myanmar)',
+            'ne': 'नेपाली (Nepali)',
+            'nl': 'Nederlands (Dutch)',
+            'no': 'Norsk (Norwegian)',
+            'or': 'ଓଡ଼ିଆ (Odia)',
+            'pa': 'ਪੰਜਾਬੀ (Punjabi)',
+            'pl': 'Polski (Polish)',
+            'pt': 'Português (Portuguese)',
+            'rm': 'Rumantsch (Romansh)',
+            'ro': 'Română (Romanian)',
+            'ru': 'Русский (Russian)',
+            'si': 'සිංහල (Sinhala)',
+            'sk': 'Slovenčina (Slovak)',
+            'sl': 'Slovenščina (Slovenian)',
+            'sq': 'Shqip (Albanian)',
+            'sr': 'Српски (Serbian)',
+            'sv': 'Svenska (Swedish)',
+            'sw': 'Kiswahili (Swahili)',
+            'ta': 'தமிழ் (Tamil)',
+            'te': 'తెలుగు (Telugu)',
+            'th': 'ไทย (Thai)',
+            'tl': 'Filipino',
+            'tr': 'Türkçe (Turkish)',
+            'uk': 'Українська (Ukrainian)',
+            'ur': 'اردو (Urdu)',
+            'uz': 'O\'zbek (Uzbek)',
+            'vi': 'Tiếng Việt (Vietnamese)',
+            'zh': '中文 (简体) (Chinese Simplified)',
+            'zu': 'IsiZulu (Zulu)'
+        };
+    }
+
+    async initializeLanguage() {
+        // Get saved language preference
+        const savedLanguage = this.getLanguagePreference();
+
+        if (savedLanguage === 'system' || !savedLanguage) {
+            // Use system language
+            this.currentLanguage = this.detectSystemLanguage();
+        } else {
+            this.currentLanguage = savedLanguage;
+        }
+
+        // Load translations for current language
+        await this.loadTranslations(this.currentLanguage);
+    }
+
+    detectSystemLanguage() {
+        // Get browser language
+        const browserLang = navigator.language || navigator.userLanguage || 'en';
+        const langCode = browserLang.split('-')[0];
+
+        // Check if we have translations for this language
+        if (this.availableLanguages[langCode]) {
+            return langCode;
+        }
+
+        // Check for special cases like zh-TW
+        if (browserLang === 'zh-TW' && this.availableLanguages['zh-rTW']) {
+            return 'zh-rTW';
+        }
+
+        // Default to English
+        return 'en';
+    }
+
+    setupLanguageDropdown() {
+        const select = document.getElementById('language-select');
+
+        if (!select) {
+            return;
+        }
+
+        // Clear existing options except "System Language"
+        while (select.children.length > 1) {
+            select.removeChild(select.lastChild);
+        }
+
+        // Add language options sorted alphabetically by native name
+        const sortedLanguages = Object.entries(this.availableLanguages)
+            .sort((a, b) => a[1].localeCompare(b[1]));
+
+        sortedLanguages.forEach(([code, nativeName]) => {
+            const option = document.createElement('option');
+            option.value = code;
+            option.textContent = nativeName;
+            select.appendChild(option);
+        });
+
+        // Set current selection
+        const savedLanguage = this.getLanguagePreference();
+        select.value = savedLanguage || 'system';
+    }
+
+    async changeLanguage(languageCode) {
+        if (languageCode === 'system') {
+            this.currentLanguage = this.detectSystemLanguage();
+            this.saveLanguagePreference('system');
+        } else {
+            this.currentLanguage = languageCode;
+            this.saveLanguagePreference(languageCode);
+        }
+
+        // Load new translations
+        await this.loadTranslations(this.currentLanguage);
+
+        // Update the interface
+        this.updateInterface();
+    }
+
+    async loadTranslations(languageCode) {
+        try {
+            // Default to English if language code is 'en' or if file doesn't exist
+            if (languageCode === 'en') {
+                this.translations = {};
+                return;
+            }
+
+            // Try multiple possible paths
+            const possiblePaths = [
+                `src/lang/${languageCode}.json`,
+                `/src/lang/${languageCode}.json`,
+                `./src/lang/${languageCode}.json`,
+                `lang/${languageCode}.json`,
+                `/lang/${languageCode}.json`
+            ];
+
+            for (const translationUrl of possiblePaths) {
+                try {
+                    const response = await fetch(translationUrl);
+
+                    if (response.ok) {
+                        this.translations = await response.json();
+                        return;
+                    }
+                } catch (pathError) {
+                    // Try next path
+                    continue;
+                }
+            }
+
+            // Fallback to English if all paths fail
+            this.translations = {};
+
+        } catch (error) {
+            console.warn(`Error loading translations for ${languageCode}:`, error);
+            this.translations = {};
+        }
+    }
+
+    t(key, defaultText) {
+        // Translation function
+        return this.translations[key] || defaultText || key;
+    }
+
+    updateInterface() {
+
+        // Update all translatable elements
+        const elementsToTranslate = {
+            // Page elements
+            '#page-title': this.t('page_title', 'Barcode WMS - Zebra Technologies'),
+            '#header-title': this.t('header_title', 'Barcode Warehouse Management System'),
+            '#header-subtitle': this.t('header_subtitle', 'Zebra Technologies - AI MultiBarcode Capture Interface'),
+
+            // Navigation
+            '#nav-capture-sessions': this.t('nav_capture_sessions', 'Capture Sessions'),
+            '#nav-refresh': this.t('refresh', 'Refresh'),
+            '#initializing-text': this.t('initializing_wms', 'Initializing WMS...'),
+
+            // Endpoint Modal
+            '#endpoint-modal-title': '🔗 ' + this.t('api_endpoint_configuration', 'API Endpoint Configuration'),
+            '#endpoint-instruction': this.t('use_endpoints_instruction', 'Use these endpoints to configure your Android AI MultiBarcode Capture application:'),
+            '#local-endpoint-title': '🏠 ' + this.t('local_network_endpoint', 'Local Network Endpoint'),
+            '#internet-endpoint-title': '🌐 ' + this.t('internet_endpoint', 'Internet Endpoint'),
+            '#copy-btn-text': this.t('copy', 'Copy'),
+            '#qr-btn-text': this.t('qr_code', 'QR Code'),
+            '#copy-btn-text-2': this.t('copy', 'Copy'),
+            '#qr-btn-text-2': this.t('qr_code', 'QR Code'),
+            '#local-endpoint-desc': this.t('local_endpoint_description', 'Use this endpoint when both the Android device and this server are on the same local network.'),
+            '#internet-endpoint-desc': this.t('internet_endpoint_description', 'Use this endpoint when accessing the server from the internet (requires port forwarding or public hosting).'),
+            '#android-config-title': '📱 ' + this.t('android_app_configuration', 'Android App Configuration:'),
+            '#config-step-1': this.t('config_step_1', 'Open the AI MultiBarcode Capture app'),
+            '#config-step-2': this.t('config_step_2', 'Go to Settings → Server Configuration'),
+            '#config-step-3': this.t('config_step_3', 'Paste one of the endpoints above'),
+            '#config-step-4': this.t('config_step_4', 'Test the connection and save'),
+
+            // QR Modal
+            '#qr-modal-title': '📱 ' + this.t('qr_code_endpoint_url', 'QR Code - Endpoint URL'),
+            '#endpoint-url-label': this.t('endpoint_url_label', 'Endpoint URL:'),
+            '#qr-scan-instructions': this.t('qr_scan_instructions', 'Scan this QR code with your Android AI MultiBarcode Capture app to automatically configure the endpoint.'),
+
+            // Settings modal
+            '#settings-modal-title': this.t('settings', 'Settings'),
+            '.section-title:first-of-type': '⚙️ ' + this.t('configuration', 'Configuration'),
+            '.config-label[for="language-select"]': '🌐 ' + this.t('language', 'Language'),
+            '#language-description': this.t('select_interface_language', 'Select the interface language'),
+            '.config-item .section-description': this.t('endpoint_settings_description', 'Configure endpoint settings and connection parameters'),
+            '#settings-btn-endpoint': '🔗 ' + this.t('endpoint_configuration', 'Endpoint Configuration'),
+            '.danger-section .section-title': '⚠️ ' + this.t('danger_zone', 'Danger Zone'),
+            '.danger-section .section-description': this.t('danger_zone_description', 'Irreversible actions that will permanently delete data'),
+            '#settings-btn-reset': '🗑️ ' + this.t('erase_all_data', 'Erase All Data'),
+            '.danger-warning': '⚠️ ' + this.t('action_cannot_be_undone', 'This action cannot be undone'),
+
+            // Footer
+            '#footer-copyright': this.t('footer_copyright', 'Barcode WMS © 2024 - Powered by Zebra AI Vision SDK'),
+            '#footer-connection': this.t('footer_connection', 'Connected to Android AI MultiBarcode Capture Application'),
+
+            // Other common elements
+            '.loading p': this.t('loading', 'Loading...'),
+        };
+
+        Object.entries(elementsToTranslate).forEach(([selector, text]) => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.textContent = text;
+            }
+        });
+
+        // Update "System Language" option text
+        const systemOption = document.querySelector('#language-select option[value="system"]');
+        if (systemOption) {
+            systemOption.textContent = this.t('system_language', 'System Language');
+        }
+
+        // Re-render current view to apply translations
+        if (this.currentView === 'sessions') {
+            this.renderSessions();
+        } else if (this.currentSession) {
+            this.renderSessionDetails(this.currentSession);
+        }
+    }
+
+    // Language preference storage using W3C guidelines (localStorage)
+    getLanguagePreference() {
+        try {
+            return localStorage.getItem('wms_language_preference');
+        } catch (error) {
+            console.warn('Unable to access localStorage for language preference:', error);
+            return null;
+        }
+    }
+
+    saveLanguagePreference(languageCode) {
+        try {
+            localStorage.setItem('wms_language_preference', languageCode);
+        } catch (error) {
+            console.warn('Unable to save language preference to localStorage:', error);
         }
     }
 }
