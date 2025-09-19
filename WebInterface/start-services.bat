@@ -42,12 +42,15 @@ if errorlevel 1 (
     exit /b 1
 )
 
-REM Clean up existing containers and images
-echo Cleaning up existing containers and images...
+REM Clean up existing containers and images (project-specific only)
+echo Cleaning up existing project containers and images...
 docker stop multibarcode-webinterface >nul 2>&1
 docker rm multibarcode-webinterface >nul 2>&1
 docker volume rm multibarcode_mysql_data >nul 2>&1
-docker rmi -f multibarcode-webinterface:latest >nul 2>&1
+
+REM Safely remove only unused multibarcode-webinterface images (without force flag)
+docker rmi multibarcode-webinterface:latest >nul 2>&1
+REM If image is in use, it will be safely skipped without -f flag
 
 echo [OK] Cleanup completed
 

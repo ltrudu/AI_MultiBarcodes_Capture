@@ -70,15 +70,16 @@ if [ ! -f "Dockerfile" ] || [ ! -f "start-services.sh" ]; then
     exit 1
 fi
 
-# Remove tagged multibarcode-webinterface images (exact name match only)
-docker rmi -f multibarcode-webinterface:latest 2>/dev/null || true
-docker rmi -f multibarcode-webinterface 2>/dev/null || true
+# Safely remove tagged multibarcode-webinterface images (without force flag)
+# Images in use will be safely skipped without -f flag
+docker rmi multibarcode-webinterface:latest 2>/dev/null || true
+docker rmi multibarcode-webinterface 2>/dev/null || true
 
-# Remove only images with EXACTLY "multibarcode-webinterface" repository name
+# Remove only unused images with EXACTLY "multibarcode-webinterface" repository name
 MULTIBARCODE_IMAGES=$(docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" | awk '$1 == "multibarcode-webinterface" {print $3}')
 if [ ! -z "$MULTIBARCODE_IMAGES" ]; then
-    echo "  🗑️ Removing specific multibarcode-webinterface images..."
-    echo "$MULTIBARCODE_IMAGES" | xargs -r docker rmi -f 2>/dev/null || true
+    echo "  🗑️ Safely removing unused multibarcode-webinterface images..."
+    echo "$MULTIBARCODE_IMAGES" | xargs -r docker rmi 2>/dev/null || true
 fi
 
 # Skip dangling image cleanup entirely - too risky to affect other projects
