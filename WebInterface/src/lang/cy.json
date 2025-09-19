@@ -118,5 +118,18 @@
   "enter_barcode_value": "Rhowch werth cod bar",
   "enter_quantity": "Rhowch faint",
   "update_barcode": "Diweddaru cod bar",
-  "merge_selected": "Uno a ddewiswyd"
+  "merge_selected": "Uno a ddewiswyd",
+  "choose_export_format": "Dewiswch y fformat allforio ar gyfer y sesiynau a ddewiswyd:",
+  "txt_file_title": "Ffeil testun (.txt)",
+  "txt_file_desc": "Fformat Testun Syml gyda Gwybodaeth Sylfaenol",
+  "csv_file_title": "Ffeil csv (.csv)",
+  "csv_file_desc": "Gwerthoedd wedi'u gwahanu gan goma ar gyfer cymwysiadau taenlen",
+  "excel_file_title": "Ffeil Excel (.xlsx)",
+  "excel_file_desc": "Fformat Microsoft Excel gyda Fformatio Uwch",
+  "export_will_include": "Bydd allforio yn cynnwys:",
+  "export_session_info": "Gwybodaeth Sesiwn (Dyfais, Timestamps, ac ati)",
+  "export_barcode_info": "Pob cod bar â gwerthoedd, symbolegau a meintiau",
+  "export_status_info": "Statws prosesu a nodiadau",
+  "no_sessions_selected": "Dim sesiynau wedi'u dewis i'w hallforio",
+  "export_failed": "Methiant Allforio"
 }

@@ -118,5 +118,18 @@
   "enter_barcode_value": "Geben Sie den Barcode -Wert ein",
   "enter_quantity": "Menge eingeben",
   "update_barcode": "Barcode aktualisieren",
-  "merge_selected": "Ausgewählt"
+  "merge_selected": "Ausgewählt",
+  "choose_export_format": "Wählen Sie das Exportformat für die ausgewählten Sitzungen:",
+  "txt_file_title": "Textdatei (.txt)",
+  "txt_file_desc": "Einfaches Textformat mit grundlegenden Informationen",
+  "csv_file_title": "CSV -Datei (.csv)",
+  "csv_file_desc": "Komma-getrennte Werte für Tabellenkalkulationsanwendungen",
+  "excel_file_title": "Excel -Datei (.xlsx)",
+  "excel_file_desc": "Microsoft Excel -Format mit erweiterter Formatierung",
+  "export_will_include": "Der Export beinhaltet:",
+  "export_session_info": "Sitzungsinformationen (Gerät, Zeitstempel usw.)",
+  "export_barcode_info": "Alle Barcodes mit Werten, Symbologien und Mengen",
+  "export_status_info": "Verarbeitungsstatus und Notizen",
+  "no_sessions_selected": "Keine für den Export ausgewählten Sitzungen",
+  "export_failed": "Export fehlgeschlagen"
 }

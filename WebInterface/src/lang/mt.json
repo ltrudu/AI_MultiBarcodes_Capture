@@ -114,5 +114,18 @@
   "enter_barcode_value": "Daħħal il-valur tal-barcode",
   "enter_quantity": "Daħħal il-kwantità",
   "update_barcode": "Aġġorna l-Barcode",
-  "merge_selected": "Jingħaqdu magħżula"
+  "merge_selected": "Jingħaqdu magħżula",
+  "choose_export_format": "Agħżel il-format tal-esportazzjoni għas-sessjonijiet magħżula:",
+  "txt_file_title": "Fajl tat-test (.txt)",
+  "txt_file_desc": "Format ta 'test sempliċi b'informazzjoni bażika",
+  "csv_file_title": "Fajl CSV (.CSV)",
+  "csv_file_desc": "Valuri separati mill-virgola għal applikazzjonijiet ta 'spreadsheet",
+  "excel_file_title": "Fajl Excel (.xlsx)",
+  "excel_file_desc": "Format ta 'Microsoft Excel b'Formattjar Avvanzat",
+  "export_will_include": "L-esportazzjoni se tinkludi:",
+  "export_session_info": "Informazzjoni dwar is-sessjoni (apparat, timestamps, eċċ.)",
+  "export_barcode_info": "Il-kodiċi tal-bar kollha b'valuri, simboloġiji, u kwantitajiet",
+  "export_status_info": "L-istatus tal-ipproċessar u n-noti",
+  "no_sessions_selected": "L-ebda sessjonijiet magħżula għall-esportazzjoni",
+  "export_failed": "L-esportazzjoni falliet"
 }

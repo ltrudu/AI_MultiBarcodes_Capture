@@ -115,5 +115,18 @@
   "enter_barcode_value": "Skriv inn strekkodeverdi",
   "enter_quantity": "Skriv inn mengde",
   "update_barcode": "Oppdater strekkode",
-  "merge_selected": "Slå sammen valgt"
+  "merge_selected": "Slå sammen valgt",
+  "choose_export_format": "Velg eksportformat for de valgte øktene:",
+  "txt_file_title": "Tekstfil (.txt)",
+  "txt_file_desc": "Enkelt tekstformat med grunnleggende informasjon",
+  "csv_file_title": "CSV -fil (.csv)",
+  "csv_file_desc": "Komma-separerte verdier for regnearkapplikasjoner",
+  "excel_file_title": "Excel -fil (.xlsx)",
+  "excel_file_desc": "Microsoft Excel -format med avansert formatering",
+  "export_will_include": "Eksporten vil omfatte:",
+  "export_session_info": "Øktinformasjon (enhet, tidsstempler osv.)",
+  "export_barcode_info": "Alle strekkoder med verdier, symbologier og mengder",
+  "export_status_info": "Behandlingsstatus og notater",
+  "no_sessions_selected": "Ingen økter valgt for eksport",
+  "export_failed": "Eksporten mislyktes"
 }

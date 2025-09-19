@@ -117,5 +117,18 @@
   "enter_barcode_value": "Штрих-коддун наркы",
   "enter_quantity": "Саны киргизиңиз",
   "update_barcode": "Barcode жаңыртуу",
-  "merge_selected": "Тандалган биригүү"
+  "merge_selected": "Тандалган биригүү",
+  "choose_export_format": "Тандалган сессиялар үчүн экспорттук форматты тандаңыз:",
+  "txt_file_title": "Текст файлы (.txt)",
+  "txt_file_desc": "Негизги маалымат менен жөнөкөй текст форматы",
+  "csv_file_title": "CSV файлы (.CSV)",
+  "csv_file_desc": "Жадыбал тиркемелер үчүн үтүр менен бөлүнгөн маанилер",
+  "excel_file_title": "Excel файлы (.Xlsx)",
+  "excel_file_desc": "Microsoft Excel форматын өркүндөтүлгөн форматтоо менен",
+  "export_will_include": "Экспорт төмөнкүлөрдү камтыйт:",
+  "export_session_info": "Сеанс жөнүндө маалымат (шайман, убакыттар ж.б.)",
+  "export_barcode_info": "Бардык шарлар Баалуулуктар, символологиялары жана саны бар",
+  "export_status_info": "Статусун иштеп чыгуу жана эскертүүлөр",
+  "no_sessions_selected": "Экспорттоо үчүн тандалган сессиялар",
+  "export_failed": "Экспорт ийгиликсиз"
 }

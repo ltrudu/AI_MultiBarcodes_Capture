@@ -120,5 +120,18 @@
   "enter_barcode_value": "Enter barcode value",
   "enter_quantity": "Enter quantity",
   "update_barcode": "Update Barcode",
-  "merge_selected": "Merge Selected"
+  "merge_selected": "Merge Selected",
+  "choose_export_format": "Choose the export format for the selected sessions:",
+  "txt_file_title": "Text File (.txt)",
+  "txt_file_desc": "Simple text format with basic information",
+  "csv_file_title": "CSV File (.csv)",
+  "csv_file_desc": "Comma-separated values for spreadsheet applications",
+  "excel_file_title": "Excel File (.xlsx)",
+  "excel_file_desc": "Microsoft Excel format with advanced formatting",
+  "export_will_include": "Export will include:",
+  "export_session_info": "Session information (device, timestamps, etc.)",
+  "export_barcode_info": "All barcodes with values, symbologies, and quantities",
+  "export_status_info": "Processing status and notes",
+  "no_sessions_selected": "No sessions selected for export",
+  "export_failed": "Export failed"
 }

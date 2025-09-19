@@ -118,5 +118,18 @@
   "enter_barcode_value": "შეიყვანეთ შტრიხკოდების მნიშვნელობა",
   "enter_quantity": "შეიყვანეთ რაოდენობა",
   "update_barcode": "განაახლეთ შტრიხკოდი",
-  "merge_selected": "შერჩეული შერჩევა"
+  "merge_selected": "შერჩეული შერჩევა",
+  "choose_export_format": "შეარჩიეთ ექსპორტის ფორმატი შერჩეული სესიებისთვის:",
+  "txt_file_title": "ტექსტური ფაილი (.txt)",
+  "txt_file_desc": "მარტივი ტექსტის ფორმატი ძირითადი ინფორმაციით",
+  "csv_file_title": "CSV ფაილი (.CSV)",
+  "csv_file_desc": "მძიმით განცალკევებული მნიშვნელობები ცხრილების პროგრამებისთვის",
+  "excel_file_title": "Excel ფაილი (.xlsx)",
+  "excel_file_desc": "Microsoft Excel ფორმატი მოწინავე ფორმატით",
+  "export_will_include": "ექსპორტი მოიცავს:",
+  "export_session_info": "სესიის ინფორმაცია (მოწყობილობა, ვადების და ა.შ.)",
+  "export_barcode_info": "ყველა შტრიხკოდი მნიშვნელობებით, სიმბოლოთი და რაოდენობით",
+  "export_status_info": "დამუშავების სტატუსი და შენიშვნები",
+  "no_sessions_selected": "ექსპორტისთვის არჩეული სესიები",
+  "export_failed": "ექსპორტი ვერ მოხერხდა"
 }

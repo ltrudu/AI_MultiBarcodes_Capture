@@ -11,8 +11,27 @@ export MYSQL_DATABASE=${MYSQL_DATABASE:-barcode_wms}
 export MYSQL_USER=${MYSQL_USER:-wms_user}
 export MYSQL_PASSWORD=${MYSQL_PASSWORD:-wms_password}
 
+# Try to detect host IP if not provided
+if [ -z "$HOST_IP" ]; then
+    # Method 1: Try to get host IP from Docker gateway
+    HOST_IP=$(ip route | grep default | awk '{print $3}' 2>/dev/null | head -1)
+
+    # Method 2: Try to get from hostname resolution
+    if [ -z "$HOST_IP" ] || [[ "$HOST_IP" =~ ^172\.(1[6-9]|2[0-9]|3[0-1])\. ]]; then
+        HOST_IP=$(hostname -I 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i ~ /^192\.168\./) print $i}' | head -1)
+    fi
+
+    # Method 3: Fallback to any non-Docker private IP
+    if [ -z "$HOST_IP" ] || [[ "$HOST_IP" =~ ^172\.(1[6-9]|2[0-9]|3[0-1])\. ]]; then
+        HOST_IP=$(hostname -I 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i ~ /^(192\.168\.|10\.)/ && $i !~ /^172\.(1[6-9]|2[0-9]|3[0-1])\./) print $i}' | head -1)
+    fi
+fi
+
+export HOST_IP
+
 echo "Web Port: $WEB_PORT"
 echo "Database: $MYSQL_DATABASE"
+echo "Host IP: $HOST_IP"
 
 # Configure Apache port
 echo "Listen $WEB_PORT" > /etc/apache2/ports.conf

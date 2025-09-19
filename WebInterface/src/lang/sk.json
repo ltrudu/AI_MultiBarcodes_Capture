@@ -116,5 +116,18 @@
   "enter_barcode_value": "Zadajte hodnotu čiarového kódu",
   "enter_quantity": "Zadajte množstvo",
   "update_barcode": "Aktualizácia čiarového kódu",
-  "merge_selected": "Zlúčiť"
+  "merge_selected": "Zlúčiť",
+  "choose_export_format": "Vyberte vývozný formát pre vybrané relácie:",
+  "txt_file_title": "Textový súbor (.txt)",
+  "txt_file_desc": "Jednoduchý formát textu so základnými informáciami",
+  "csv_file_title": "Súbor CSV (.csv)",
+  "csv_file_desc": "Hodnoty oddelené čiarkami pre tabuľkové aplikácie",
+  "excel_file_title": "Excel súbor (.xlsx)",
+  "excel_file_desc": "Formát Microsoft Excel s pokročilým formátovaním",
+  "export_will_include": "Export bude obsahovať:",
+  "export_session_info": "Informácie o relácii (zariadenie, časové pečiatky atď.)",
+  "export_barcode_info": "Všetky čiarové kódy s hodnotami, symbolmi a množstvami",
+  "export_status_info": "Stav spracovania a poznámky",
+  "no_sessions_selected": "Žiadne relácie vybrané na vývoz",
+  "export_failed": "Vývoz zlyhal"
 }

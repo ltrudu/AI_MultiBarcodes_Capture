@@ -117,5 +117,19 @@
   "enter_barcode_value": "ໃສ່ຄຸນຄ່າລະຄອນໄວ້",
   "enter_quantity": "ໃສ່ປະລິມານ",
   "update_barcode": "ປັບປຸງລະຫັດບາໂຄດ",
-  "merge_selected": "ລວມຕົວເລືອກ"
+  "merge_selected": "ລວມຕົວເລືອກ",
+  "endpoint_url_label": "urlint url:",
+  "choose_export_format": "ເລືອກຮູບແບບການສົ່ງອອກສໍາລັບພາກຮຽນທີ່ເລືອກ:",
+  "txt_file_title": "ແຟ້ມຂໍ້ຄວາມ (.txt)",
+  "txt_file_desc": "ຮູບແບບຕົວຫນັງສືງ່າຍໆທີ່ມີຂໍ້ມູນພື້ນຖານ",
+  "csv_file_title": "ເອກະສານ CSV (.CSV)",
+  "csv_file_desc": "ຄຸນຄ່າທີ່ແຍກອອກຈາກຄໍາແນະນໍາສໍາລັບໂປແກຼມ Spreadsheet",
+  "excel_file_title": "ເອກະສານ Excel (.xlsx)",
+  "excel_file_desc": "ຮູບແບບຂອງ Microsoft Excel ທີ່ມີຮູບແບບຂັ້ນສູງ",
+  "export_will_include": "ການສົ່ງອອກຈະປະກອບມີ:",
+  "export_session_info": "ຂໍ້ມູນຂ່າວສານ Session (ອຸປະກອນ, ເວລາ, ແລະອື່ນໆ)",
+  "export_barcode_info": "ລະຫັດທັງຫມົດທີ່ມີຄຸນຄ່າ, symbologies, ແລະປະລິມານ",
+  "export_status_info": "ສະຖານະພາບການປຸງແຕ່ງແລະບັນທຶກ",
+  "no_sessions_selected": "ບໍ່ມີກອງປະຊຸມທີ່ຖືກຄັດເລືອກເພື່ອສົ່ງອອກ",
+  "export_failed": "ການສົ່ງອອກລົ້ມເຫລວ"
 }

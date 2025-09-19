@@ -17,6 +17,10 @@ RUN apt-get update && apt-get install -y \
     php8.1-mbstring \
     php8.1-xml \
     php8.1-zip \
+    php8.1-gd \
+    php8.1-intl \
+    unzip \
+    git \
     mysql-server \
     mysql-client \
     wget \
@@ -24,6 +28,9 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     nano \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Composer for PHP dependency management
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install phpMyAdmin
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.tar.gz \
@@ -43,6 +50,10 @@ COPY mysql/my.cnf /etc/mysql/conf.d/custom.cnf
 
 # Copy application source code
 COPY src/ /var/www/html/
+
+# Copy composer.json and install dependencies
+COPY composer.json /var/www/html/composer.json
+RUN cd /var/www/html && composer install --no-dev --optimize-autoloader --no-interaction || echo "No composer dependencies to install"
 
 # Copy database initialization script
 COPY database/init.sql /tmp/init.sql

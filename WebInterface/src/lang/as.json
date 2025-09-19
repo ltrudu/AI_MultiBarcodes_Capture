@@ -116,5 +116,18 @@
   "enter_barcode_value": "বাৰক'ড মূল্য দিয়ক",
   "enter_quantity": "পৰিমাণ দিয়ক",
   "update_barcode": "আপডেট কৰক বাৰক'ড",
-  "merge_selected": "নিৰ্বাচিত নিৰ্বাচিত"
+  "merge_selected": "নিৰ্বাচিত নিৰ্বাচিত",
+  "choose_export_format": "নিৰ্বাচিত অধিবেশনসমূহৰ বাবে ৰপ্তানি বিন্যাস বাছক:",
+  "txt_file_title": "লিখনী ফাইল (.txt)",
+  "txt_file_desc": "মৌলিক তথ্যৰ সৈতে সৰল পাঠ্য বিন্যাস",
+  "csv_file_title": "CSV ফাইল (.CSV)",
+  "csv_file_desc": "স্প্ৰেডশ্বীট প্ৰয়োগৰ বাবে কমা-বিভাজিত মান",
+  "excel_file_title": "এক্সেল ফাইল (.xlsx)",
+  "excel_file_desc": "উন্নত ফৰ্মেটিংৰ সৈতে মাইক্ৰ'ছফ্ট এক্সেল ফৰ্মেট",
+  "export_will_include": "ৰপ্তানিৰ ভিতৰত থাকিব:",
+  "export_session_info": "অধিবেশনৰ তথ্য (ডিভাইচ, টাইমষ্টেম্প আদি)",
+  "export_barcode_info": "সকলো বাৰক'ড মান, চিম্বল'জি, আৰু পৰিমাণৰ সৈতে",
+  "export_status_info": "প্ৰচেছিং অৱস্থা আৰু টোকা",
+  "no_sessions_selected": "ৰপ্তানিৰ বাবে নিৰ্বাচিত কোনো অধিবেশন",
+  "export_failed": "ৰপ্তানি ব্যৰ্থ"
 }

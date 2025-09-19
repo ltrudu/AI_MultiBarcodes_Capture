@@ -117,5 +117,18 @@
   "enter_barcode_value": "Barkod değerini girin",
   "enter_quantity": "Miktarı girin",
   "update_barcode": "Barkod güncelleme",
-  "merge_selected": "Birleştirme seçildi"
+  "merge_selected": "Birleştirme seçildi",
+  "choose_export_format": "Seçilen oturumlar için dışa aktarma biçimini seçin:",
+  "txt_file_title": "Metin Dosyası (.txt)",
+  "txt_file_desc": "Temel bilgilerle basit metin biçimi",
+  "csv_file_title": "CSV dosyası (.csv)",
+  "csv_file_desc": "E-tablo Uygulamaları için Virgül Ayrılmış Değerler",
+  "excel_file_title": "Excel dosyası (.xlsx)",
+  "excel_file_desc": "Gelişmiş Biçimlendirme ile Microsoft Excel Biçimi",
+  "export_will_include": "Dışa aktarma şunları içerecektir:",
+  "export_session_info": "Oturum Bilgileri (Cihaz, Zaman damgası, vb.)",
+  "export_barcode_info": "Değerler, Symbologies ve Miktarlı Tüm Barkodlar",
+  "export_status_info": "İşleme Durumu ve Notlar",
+  "no_sessions_selected": "Dışa aktarma için Seçilmedi",
+  "export_failed": "İhracat başarısız oldu"
 }

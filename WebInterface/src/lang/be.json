@@ -120,5 +120,18 @@
   "enter_barcode_value": "Увядзіце значэнне штрых -кода",
   "enter_quantity": "Увядзіце колькасць",
   "update_barcode": "Абнавіць штрых -код",
-  "merge_selected": "Зліццё абрана"
+  "merge_selected": "Зліццё абрана",
+  "choose_export_format": "Выберыце фармат экспарту для выбраных сесій:",
+  "txt_file_title": "Тэкставы файл (.txt)",
+  "txt_file_desc": "Просты тэкставы фармат з асноўнай інфармацыяй",
+  "csv_file_title": "Файл CSV (.CSV)",
+  "csv_file_desc": "Значэнні, падзеленыя коскамі для прыкладанняў электроннай табліцы",
+  "excel_file_title": "Файл excel (.xlsx)",
+  "excel_file_desc": "Фармат Microsoft Excel з пашыраным фарматаваннем",
+  "export_will_include": "Экспарт будзе ўключаць:",
+  "export_session_info": "Інфармацыя пра сеанс (прылада, часовыя пазнакі і г.д.)",
+  "export_barcode_info": "Усе штрых -коды са значэннямі, сімвалападобнай і колькасцю",
+  "export_status_info": "Статус апрацоўкі і нататкі",
+  "no_sessions_selected": "Няма сесій, выбраных для экспарту",
+  "export_failed": "Экспарт не атрымаўся"
 }

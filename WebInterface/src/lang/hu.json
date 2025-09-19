@@ -114,5 +114,18 @@
   "enter_barcode_value": "Írja be a vonalkód értéket",
   "enter_quantity": "Írja be a mennyiséget",
   "update_barcode": "A vonalkód frissítése",
-  "merge_selected": "A kiválasztott egyesítés"
+  "merge_selected": "A kiválasztott egyesítés",
+  "choose_export_format": "Válassza ki a kiválasztott munkamenetek exportformátumát:",
+  "txt_file_title": "Szövegfájl (.txt)",
+  "txt_file_desc": "Egyszerű szöveges formátum alapvető információkkal",
+  "csv_file_title": "CSV fájl (.CSV)",
+  "csv_file_desc": "Vesszővel elválasztott értékek a táblázatkezelésekhez",
+  "excel_file_title": "Excel fájl (.xlsx)",
+  "excel_file_desc": "Microsoft Excel formátum Advanced Formatting",
+  "export_will_include": "Az export magában foglalja:",
+  "export_session_info": "Munkamenet -információk (eszköz, időbélyegek stb.)",
+  "export_barcode_info": "Minden vonalkód értékekkel, szimbológiákkal és mennyiségekkel",
+  "export_status_info": "Feldolgozási állapot és megjegyzések",
+  "no_sessions_selected": "Az exporthoz nem választott munkamenetek",
+  "export_failed": "Az export sikertelen"
 }

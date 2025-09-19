@@ -119,5 +119,18 @@
   "enter_barcode_value": "הזן ערך ברקוד",
   "enter_quantity": "הזן כמות",
   "update_barcode": "עדכן ברקוד",
-  "merge_selected": "להתמזג נבחר"
+  "merge_selected": "להתמזג נבחר",
+  "choose_export_format": "בחר בפורמט הייצוא עבור המפגשים שנבחרו:",
+  "txt_file_title": "קובץ טקסט (.txt)",
+  "txt_file_desc": "פורמט טקסט פשוט עם מידע בסיסי",
+  "csv_file_title": "קובץ CSV (.CSV)",
+  "csv_file_desc": "ערכים מופרדים בפסיקים ליישומי גיליון אלקטרוני",
+  "excel_file_title": "קובץ Excel (.xlsx)",
+  "excel_file_desc": "פורמט Excel של Microsoft עם עיצוב מתקדם",
+  "export_will_include": "הייצוא יכלול:",
+  "export_session_info": "מידע על הפעלה (מכשיר, חותמות זמן וכו ')",
+  "export_barcode_info": "כל הברקודים עם ערכים, סימבולוגיות וכמויות",
+  "export_status_info": "סטטוס עיבוד והערות",
+  "no_sessions_selected": "אין מפגשים שנבחרו לייצוא",
+  "export_failed": "הייצוא נכשל"
 }

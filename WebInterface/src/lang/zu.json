@@ -118,5 +118,18 @@
   "enter_barcode_value": "Faka inani lebhakhodi",
   "enter_quantity": "Faka ubuningi",
   "update_barcode": "Vuselela ibhakhodi",
-  "merge_selected": "Hlanganisa kukhethiwe"
+  "merge_selected": "Hlanganisa kukhethiwe",
+  "choose_export_format": "Khetha ifomethi yokuthekelisa ngezikhathi ezikhethiwe:",
+  "txt_file_title": "Ifayela lombhalo (.txt)",
+  "txt_file_desc": "Ifomethi yombhalo elula ngolwazi oluyisisekelo",
+  "csv_file_title": "Ifayela le-CSV (.CSV)",
+  "csv_file_desc": "Amanani we-Comma-ahlukaniswe ngezicelo zeSpreadsheet",
+  "excel_file_title": "Ifayela le-Excel (.xlsx)",
+  "excel_file_desc": "Ifomethi ye-Microsoft Excel ngokufomatha okuthuthukile",
+  "export_will_include": "Ukuthumela ngaphandle kuzofaka:",
+  "export_session_info": "Imininingwane Yeseshini (idivaysi, ama-TIMESTamp, njll.)",
+  "export_barcode_info": "Wonke amabhakhodi anamagugu, ama-symbolies, kanye namanani",
+  "export_status_info": "Ukucubungula isimo namanothi",
+  "no_sessions_selected": "Azikho izikhathi ezikhethwe ukuthekelisa",
+  "export_failed": "Ukuthekelisa kwehlulekile"
 }

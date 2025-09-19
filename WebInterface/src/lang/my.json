@@ -113,5 +113,18 @@
   "enter_barcode_value": "ဘားကုဒ်တန်ဖိုးကိုရိုက်ထည့်ပါ",
   "enter_quantity": "အရေအတွက်ရိုက်ထည့်ပါ",
   "update_barcode": "Update BADCODE",
-  "merge_selected": "ရွေးချယ်ထားသည့်ပေါင်းစည်း"
+  "merge_selected": "ရွေးချယ်ထားသည့်ပေါင်းစည်း",
+  "choose_export_format": "ရွေးချယ်ထားသောအစည်းအဝေးများအတွက်ပို့ကုန်ပုံစံကိုရွေးချယ်ပါ။",
+  "txt_file_title": "စာသားဖိုင် (.txt)",
+  "txt_file_desc": "အခြေခံသတင်းအချက်အလက်နှင့်အတူရိုးရှင်းသောစာသားပုံစံ",
+  "csv_file_title": "CSV ဖိုင် (.csv)",
+  "csv_file_desc": "စာရင်းဇယားအက်ပလီကေးရှင်းများအတွက်ကော်မာခွဲဝေတန်ဖိုးများ",
+  "excel_file_title": "Excel ဖိုင် (.xlsx)",
+  "excel_file_desc": "Advanced Formatting နှင့်အတူ Microsoft Excel Format",
+  "export_will_include": "ပို့ကုန်တွင် -",
+  "export_session_info": "Session Information (စက်, timestamps စသည်)",
+  "export_barcode_info": "စံနှုန်းများ, သင်္ကေတများနှင့်ပမာဏနှင့်အတူဘားကုဒ်များအားလုံး",
+  "export_status_info": "အပြောင်းအလဲနဲ့ status ကိုနှင့်မှတ်စုများ",
+  "no_sessions_selected": "ပို့ကုန်အတွက်မရွေးချယ်ပါ",
+  "export_failed": "ပို့ကုန်ပျက်ကွက်"
 }

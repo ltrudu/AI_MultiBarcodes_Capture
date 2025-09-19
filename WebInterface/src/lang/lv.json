@@ -117,5 +117,18 @@
   "enter_barcode_value": "Ievadiet svītrkoda vērtību",
   "enter_quantity": "Ievadiet daudzumu",
   "update_barcode": "Atjauniniet svītrkodu",
-  "merge_selected": "Apvienot izvēlēto"
+  "merge_selected": "Apvienot izvēlēto",
+  "choose_export_format": "Izvēlētās sesijās izvēlieties eksporta formātu:",
+  "txt_file_title": "Teksta fails (.txt)",
+  "txt_file_desc": "Vienkāršs teksta formāts ar pamatinformāciju",
+  "csv_file_title": "CSV fails (.csv)",
+  "csv_file_desc": "Komatu atdalītas izklājlapu lietojumprogrammu vērtības",
+  "excel_file_title": "Excel fails (.xlsx)",
+  "excel_file_desc": "Microsoft Excel formāts ar uzlabotu formatējumu",
+  "export_will_include": "Eksportā būs:",
+  "export_session_info": "Informācija par sesiju (ierīce, laika zīmogi utt.)",
+  "export_barcode_info": "Visas svītrkodi ar vērtībām, simboloģijām un daudzumiem",
+  "export_status_info": "Apstrādes statuss un piezīmes",
+  "no_sessions_selected": "Eksportam nav izvēlētas sesijas",
+  "export_failed": "Eksports neizdevās"
 }

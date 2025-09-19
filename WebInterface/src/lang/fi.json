@@ -117,5 +117,18 @@
   "enter_barcode_value": "Kirjoita viivakoodiarvo",
   "enter_quantity": "Syötä määrä",
   "update_barcode": "Päivitä viivakoodi",
-  "merge_selected": "Yhdistä valittu"
+  "merge_selected": "Yhdistä valittu",
+  "choose_export_format": "Valitse valittujen istuntojen vientimuoto:",
+  "txt_file_title": "Tekstitiedosto (.txt)",
+  "txt_file_desc": "Yksinkertainen tekstimuoto perustiedot",
+  "csv_file_title": "CSV -tiedosto (.csv)",
+  "csv_file_desc": "Laskentataulukon sovellusten pilkuilla erotetut arvot",
+  "excel_file_title": "Excel -tiedosto (.xlsx)",
+  "excel_file_desc": "Microsoft Excel -muoto edistyneellä muotoilulla",
+  "export_will_include": "Vienti sisältää:",
+  "export_session_info": "Istuntotiedot (laite, aikaleimat jne.)",
+  "export_barcode_info": "Kaikki viivakoodit, joissa on arvot, symbologiat ja määrät",
+  "export_status_info": "Käsittelytila ​​ja huomautukset",
+  "no_sessions_selected": "Ei vientiä varten valittuja istuntoja",
+  "export_failed": "Vienti epäonnistui"
 }

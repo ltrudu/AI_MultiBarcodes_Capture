@@ -107,6 +107,31 @@ fi
 
 echo "✅ Docker image built successfully"
 
+# Detect host IP address for proper Android connectivity
+echo "🔍 Detecting host IP address..."
+HOST_IP=""
+
+# Method 1: Try to get 192.168.x.x IP address (most common for home/office networks)
+HOST_IP=$(hostname -I 2>/dev/null | tr ' ' '\n' | grep '^192\.168\.' | head -1)
+
+# Method 2: Fallback to any private IP that's not Docker
+if [ -z "$HOST_IP" ]; then
+    HOST_IP=$(hostname -I 2>/dev/null | tr ' ' '\n' | grep -E '^(10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)'| grep -v '^172\.(1[7-9]|2[0-9]|3[0-1])\.' | head -1)
+fi
+
+# Method 3: Use ip route to get source IP for external connectivity
+if [ -z "$HOST_IP" ]; then
+    HOST_IP=$(ip route get 8.8.8.8 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i=="src") print $(i+1)}' | head -1)
+fi
+
+# Method 4: Fallback to localhost
+if [ -z "$HOST_IP" ]; then
+    echo "⚠️  Warning: Could not detect host IP automatically, using localhost"
+    HOST_IP="127.0.0.1"
+else
+    echo "✅ Detected host IP: $HOST_IP"
+fi
+
 # Start the unified container using docker run for better Docker Desktop display
 echo "🚀 Starting unified container..."
 docker run -d \
@@ -121,6 +146,7 @@ docker run -d \
     -e DB_USER=${DB_USER:-wms_user} \
     -e DB_PASS=${DB_PASS:-wms_password} \
     -e WEB_PORT=$WEB_PORT \
+    -e HOST_IP=$HOST_IP \
     -e EXPOSE_PHPMYADMIN=${EXPOSE_PHPMYADMIN:-false} \
     -e EXPOSE_MYSQL=${EXPOSE_MYSQL:-false} \
     -v multibarcode_mysql_data:/var/lib/mysql \

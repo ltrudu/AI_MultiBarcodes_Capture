@@ -117,5 +117,18 @@
   "enter_barcode_value": "Sartu barra-kodearen balioa",
   "enter_quantity": "Sartu kantitatea",
   "update_barcode": "Eguneratu barra kodea",
-  "merge_selected": "Batu hautatua"
+  "merge_selected": "Batu hautatua",
+  "choose_export_format": "Aukeratu esportazio formatua hautatutako saioetarako:",
+  "txt_file_title": "Testu fitxategia (.txt)",
+  "txt_file_desc": "Testu formatu sinplea oinarrizko informazioarekin",
+  "csv_file_title": "CSV fitxategia (.csv)",
+  "csv_file_desc": "Kalkulu-orrien aplikazioetarako bereizitako balioak",
+  "excel_file_title": "Excel fitxategia (.xlsx)",
+  "excel_file_desc": "Microsoft Excel formatua formateatu aurreratuarekin",
+  "export_will_include": "Esportazioak honako hauek izango ditu:",
+  "export_session_info": "Saioko informazioa (gailua, denbora-markak, etab.)",
+  "export_barcode_info": "Balio, sinbolologiak eta kantitateak dituzten kode guztiak",
+  "export_status_info": "Tratamendu egoera eta oharrak",
+  "no_sessions_selected": "Ez da saiorik esportatzeko",
+  "export_failed": "Esportazioak huts egin du"
 }

@@ -119,5 +119,18 @@
   "enter_barcode_value": "مقدار بارکد را وارد کنید",
   "enter_quantity": "مقدار را وارد کنید",
   "update_barcode": "بارکد به روزرسانی",
-  "merge_selected": "ادغام انتخاب شده"
+  "merge_selected": "ادغام انتخاب شده",
+  "choose_export_format": "قالب صادرات را برای جلسات انتخاب شده انتخاب کنید:",
+  "txt_file_title": "پرونده متنی (.txt)",
+  "txt_file_desc": "قالب متن ساده با اطلاعات اساسی",
+  "csv_file_title": "پرونده CSV (.csv)",
+  "csv_file_desc": "مقادیر جدا شده کاما برای برنامه های صفحه گسترده",
+  "excel_file_title": "پرونده اکسل (.xlsx)",
+  "excel_file_desc": "قالب Microsoft Excel با قالب بندی پیشرفته",
+  "export_will_include": "صادرات شامل:",
+  "export_session_info": "اطلاعات جلسه (دستگاه ، جدول زمانی و غیره)",
+  "export_barcode_info": "تمام بارکدها با مقادیر ، نمادها و مقادیر",
+  "export_status_info": "وضعیت پردازش و یادداشت ها",
+  "no_sessions_selected": "هیچ جلسه ای برای صادرات انتخاب نشده است",
+  "export_failed": "صادرات شکست خورد"
 }

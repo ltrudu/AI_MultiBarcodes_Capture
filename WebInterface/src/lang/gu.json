@@ -120,5 +120,18 @@
   "enter_barcode_value": "બારકોડ મૂલ્ય દાખલ કરો",
   "enter_quantity": "જથ્થો દાખલ કરો",
   "update_barcode": "અપડેટ બારકોડ",
-  "merge_selected": "પસંદ કરેલ"
+  "merge_selected": "પસંદ કરેલ",
+  "choose_export_format": "પસંદ કરેલા સત્રો માટે નિકાસ ફોર્મેટ પસંદ કરો:",
+  "txt_file_title": "ટેક્સ્ટ ફાઇલ (.txt)",
+  "txt_file_desc": "મૂળભૂત માહિતી સાથે સરળ ટેક્સ્ટ ફોર્મેટ",
+  "csv_file_title": "સીએસવી ફાઇલ (.csv)",
+  "csv_file_desc": "સ્પ્રેડશીટ એપ્લિકેશન માટે અલ્પવિરામથી વિભાજિત મૂલ્યો",
+  "excel_file_title": "એક્સેલ ફાઇલ (.xlsx)",
+  "excel_file_desc": "એડવાન્સ ફોર્મેટિંગ સાથે માઇક્રોસ .ફ્ટ એક્સેલ ફોર્મેટ",
+  "export_will_include": "નિકાસમાં શામેલ હશે:",
+  "export_session_info": "સત્ર માહિતી (ઉપકરણ, ટાઇમસ્ટેમ્પ્સ, વગેરે)",
+  "export_barcode_info": "મૂલ્યો, પ્રતીકો અને માત્રાવાળા બધા બારકોડ્સ",
+  "export_status_info": "પ્રક્રિયા સ્થિતિ અને નોંધો",
+  "no_sessions_selected": "નિકાસ માટે કોઈ સત્રો પસંદ થયેલ નથી",
+  "export_failed": "નિકાસ નિષ્ફળ"
 }

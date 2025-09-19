@@ -120,5 +120,18 @@
   "enter_barcode_value": "Штрих-код мәнін енгізіңіз",
   "enter_quantity": "Саны енгізіңіз",
   "update_barcode": "Штрих-кодты жаңарту",
-  "merge_selected": "Біріктіру таңдалған"
+  "merge_selected": "Біріктіру таңдалған",
+  "choose_export_format": "Таңдалған сеанстар үшін экспорттау форматын таңдаңыз:",
+  "txt_file_title": "Мәтіндік файл (.txt)",
+  "txt_file_desc": "Негізгі ақпарат бар қарапайым мәтін пішімі",
+  "csv_file_title": "CSV файлы (.csv)",
+  "csv_file_desc": "Электрондық кесте қосымшалары үшін үтірмен бөлінген мәндер",
+  "excel_file_title": "Excel файлы (.xlsx)",
+  "excel_file_desc": "Microsoft Excel пішімі Кеңейтілген форматтаумен",
+  "export_will_include": "Экспортқа мыналар кіреді:",
+  "export_session_info": "Сеанс туралы ақпарат (құрылғы, уақыт белгілері және т.б.)",
+  "export_barcode_info": "Барлық штрих-кодтары, шамалары, шамалары және мөлшері",
+  "export_status_info": "Күй және ескертпелер",
+  "no_sessions_selected": "Экспорттауға арналған сессиялар жоқ",
+  "export_failed": "Экспорт сәтсіз аяқталды"
 }

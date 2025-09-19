@@ -118,5 +118,18 @@
   "enter_barcode_value": "بارکوڈ ویلیو درج کریں",
   "enter_quantity": "مقدار درج کریں",
   "update_barcode": "بار کوڈ کو اپ ڈیٹ کریں",
-  "merge_selected": "ضم شدہ ضم"
+  "merge_selected": "ضم شدہ ضم",
+  "choose_export_format": "منتخب کردہ سیشنوں کے لئے برآمدی شکل کا انتخاب کریں:",
+  "txt_file_title": "ٹیکسٹ فائل (.txt)",
+  "txt_file_desc": "بنیادی معلومات کے ساتھ آسان ٹیکسٹ فارمیٹ",
+  "csv_file_title": "CSV فائل (.CSV)",
+  "csv_file_desc": "اسپریڈشیٹ ایپلی کیشنز کے لئے کوما سے الگ الگ اقدار",
+  "excel_file_title": "ایکسل فائل (.xlsx)",
+  "excel_file_desc": "اعلی درجے کی فارمیٹنگ کے ساتھ مائیکروسافٹ ایکسل فارمیٹ",
+  "export_will_include": "برآمد میں شامل ہوں گے:",
+  "export_session_info": "سیشن کی معلومات (ڈیوائس ، ٹائم اسٹیمپس ، وغیرہ)",
+  "export_barcode_info": "اقدار ، علامتوں اور مقدار کے ساتھ تمام بارکوڈ",
+  "export_status_info": "پروسیسنگ کی حیثیت اور نوٹ",
+  "no_sessions_selected": "برآمد کے لئے کوئی سیشن منتخب نہیں ہوا",
+  "export_failed": "برآمد میں ناکام رہا"
 }
