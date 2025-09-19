@@ -274,9 +274,12 @@ class WMSApp {
 
             const data = await response.json();
             if (data.success) {
-                // Reload current session details to reflect changes
+                // Update UI dynamically without page reload
+                this.updateBarcodeUIStatus(barcodeId, processed, notes);
+
+                // Update session statistics
                 if (this.currentSession) {
-                    await this.loadSessionDetails(this.currentSession.session.id);
+                    this.updateSessionStatistics(processed);
                 }
             } else {
                 throw new Error(data.error || this.t('failed_to_update_barcode_status', 'Failed to update barcode status'));
@@ -284,6 +287,76 @@ class WMSApp {
         } catch (error) {
             console.error('Error updating barcode status:', error);
             this.showError(this.t('failed_to_update_barcode_status', 'Failed to update barcode status') + ': ' + error.message);
+        }
+    }
+
+    updateBarcodeUIStatus(barcodeId, processed, notes = '') {
+        // Find the barcode card in the DOM
+        const barcodeCard = document.querySelector(`[data-barcode-id="${barcodeId}"]`);
+        if (!barcodeCard) return;
+
+        // Update the status span
+        const statusSpan = barcodeCard.querySelector('.status');
+        if (statusSpan) {
+            statusSpan.className = `status ${processed ? 'processed' : 'pending'}`;
+            statusSpan.textContent = processed ? this.t('processed', 'Processed') : this.t('pending', 'Pending');
+        }
+
+        // Update the button
+        const button = barcodeCard.querySelector('button[onclick*="toggleBarcodeStatus"]');
+        if (button) {
+            button.className = `btn ${processed ? 'btn-secondary' : 'btn-success'}`;
+            button.textContent = processed ? this.t('mark_as_pending', 'Mark as Pending') : this.t('mark_as_processed', 'Mark as Processed');
+            button.setAttribute('onclick', `app.toggleBarcodeStatus(${barcodeId}, ${!processed})`);
+        }
+
+        // Update notes if provided
+        if (notes) {
+            let notesDiv = barcodeCard.querySelector('.barcode-notes');
+            if (notesDiv) {
+                notesDiv.innerHTML = `${this.t('notes', 'Notes')}: ${this.escapeHtml(notes)}`;
+            } else {
+                // Add notes div if it doesn't exist
+                const buttonContainer = button ? button.parentElement : barcodeCard;
+                notesDiv = document.createElement('div');
+                notesDiv.className = 'barcode-notes';
+                notesDiv.style.marginTop = '0.5rem';
+                notesDiv.style.fontStyle = 'italic';
+                notesDiv.innerHTML = `${this.t('notes', 'Notes')}: ${this.escapeHtml(notes)}`;
+                buttonContainer.appendChild(notesDiv);
+            }
+        }
+
+        // Update the barcode data in current session
+        if (this.currentSession && this.currentSession.barcodes) {
+            const barcode = this.currentSession.barcodes.find(b => b.id == barcodeId);
+            if (barcode) {
+                barcode.processed = processed;
+                if (notes) barcode.notes = notes;
+            }
+        }
+    }
+
+    updateSessionStatistics(processed) {
+        if (!this.currentSession || !this.currentSession.session) return;
+
+        // Update processed count in session data
+        if (processed) {
+            this.currentSession.session.processed_count = Math.min(
+                this.currentSession.session.processed_count + 1,
+                this.currentSession.session.total_barcodes
+            );
+        } else {
+            this.currentSession.session.processed_count = Math.max(
+                this.currentSession.session.processed_count - 1,
+                0
+            );
+        }
+
+        // Update the processed count display in session header stats
+        const processedStatCard = document.querySelector('#session-details .stat-card:nth-child(2) .stat-value');
+        if (processedStatCard) {
+            processedStatCard.textContent = this.currentSession.session.processed_count;
         }
     }
 
@@ -515,7 +588,7 @@ class WMSApp {
                 const scanTime = new Date(barcode.timestamp).toLocaleString();
 
                 html += `
-                    <div class="barcode-item">
+                    <div class="barcode-item" data-barcode-id="${barcode.id}">
                         <div class="barcode-value">${this.escapeHtml(barcode.value)}</div>
                         <div class="barcode-meta">
                             <div class="meta-item">
@@ -546,7 +619,7 @@ class WMSApp {
                                     onclick="app.editBarcode(${barcode.id})">
                                 ✏️ ${this.t('edit', 'Edit')}
                             </button>
-                            ${barcode.notes ? `<div style="margin-top: 0.5rem; font-style: italic;">${this.t('notes', 'Notes')}: ${this.escapeHtml(barcode.notes)}</div>` : ''}
+                            ${barcode.notes ? `<div class="barcode-notes" style="margin-top: 0.5rem; font-style: italic;">${this.t('notes', 'Notes')}: ${this.escapeHtml(barcode.notes)}</div>` : ''}
                         </div>
                     </div>
                 `;
