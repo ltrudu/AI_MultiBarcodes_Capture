@@ -2,6 +2,11 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+## Version 1.26
+**📋 Enhanced Enterprise Managed Configuration**
+
+Complete managed configuration synchronization with comprehensive HTTP/HTTPS endpoint management for enterprise deployment.
+
 ## Version 1.25
 **📊 Enterprise Export System & Enhanced Web Management**
 
