@@ -120,5 +120,18 @@
   "enter_barcode_value": "أدخل قيمة الباركود",
   "enter_quantity": "أدخل الكمية",
   "update_barcode": "تحديث الباركود",
-  "merge_selected": "دمج مختارة"
+  "merge_selected": "دمج مختارة",
+  "choose_export_format": "اختر تنسيق التصدير للجلسات المحددة:",
+  "txt_file_title": "ملف نصي (.txt)",
+  "txt_file_desc": "تنسيق نص بسيط مع المعلومات الأساسية",
+  "csv_file_title": "ملف CSV (.csv)",
+  "csv_file_desc": "قيم فاصلة مفصولة لتطبيقات جدول البيانات",
+  "excel_file_title": "ملف Excel (.xlsx)",
+  "excel_file_desc": "تنسيق Microsoft Excel مع تنسيق متقدم",
+  "export_will_include": "سيشمل التصدير:",
+  "export_session_info": "معلومات الجلسة (الجهاز ، الطابع الزمني ، إلخ)",
+  "export_barcode_info": "جميع الباركود مع القيم ، والتكنولوجيا ، والكميات",
+  "export_status_info": "معالجة حالة وملاحظات",
+  "no_sessions_selected": "لم يتم تحديد جلسات للتصدير",
+  "export_failed": "فشل التصدير"
 }

@@ -917,45 +917,55 @@ body {
 
 /* Bulk Action Buttons */
 #bulk-delete-btn {
-    background: var(--danger-red);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease, opacity 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
+    background: var(--danger-red) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease, opacity 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    font-size: 0.9rem !important;
+    height: auto !important;
+    min-height: 44px !important;
+    box-sizing: border-box !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
 }
 
 #bulk-delete-btn:hover {
-    background: #c82333;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+    background: #c82333 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
 }
 
 #bulk-merge-btn {
-    background: var(--zebra-blue);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease, opacity 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
+    background: var(--zebra-blue) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease, opacity 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    font-size: 0.9rem !important;
+    height: auto !important;
+    min-height: 44px !important;
+    box-sizing: border-box !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
 }
 
 #bulk-merge-btn:hover {
-    background: var(--zebra-dark-blue);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+    background: var(--zebra-dark-blue) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3) !important;
 }
 
 /* Button states for conditional display */
@@ -1258,6 +1268,134 @@ body {
     font-size: 0.9rem;
 }
 
+/* Export Modal Styles */
+.export-options {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.export-option {
+    background: white !important;
+    border: 2px solid var(--zebra-border) !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    min-height: 80px !important;
+    width: 100% !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    text-decoration: none !important;
+}
+
+.export-option:hover {
+    border-color: var(--zebra-blue);
+    background: rgba(0, 102, 204, 0.02);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+}
+
+.export-option:active {
+    transform: translateY(0);
+}
+
+.export-icon {
+    font-size: 2rem !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0, 102, 204, 0.1) !important;
+    border-radius: 8px !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.export-details {
+    flex: 1 !important;
+    display: block !important;
+}
+
+.export-details h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--zebra-dark-blue);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.export-details p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.export-info {
+    background: rgba(0, 102, 204, 0.05);
+    border: 1px solid rgba(0, 102, 204, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.export-info strong {
+    color: var(--zebra-dark-blue);
+    font-weight: 600;
+}
+
+.export-info ul {
+    margin: 0.5rem 0 0 1.5rem;
+    color: var(--text-dark);
+}
+
+.export-info li {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+/* Export Button Styles */
+#bulk-export-btn {
+    background: var(--success-green) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease, opacity 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    font-size: 0.9rem !important;
+    height: auto !important;
+    min-height: 44px !important;
+    box-sizing: border-box !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+}
+
+#bulk-export-btn:hover {
+    background: #218838 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+}
+
+/* Export modal specific adjustments */
+#export-modal .modal-content {
+    max-width: 600px;
+}
+
 /* Responsive Modal */
 @media (max-width: 768px) {
     .modal-content {
@@ -1284,5 +1422,27 @@ body {
 
     .modal-footer .btn {
         width: 100%;
+    }
+
+    /* Export modal responsive adjustments */
+    .export-option {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+    }
+
+    .export-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .export-details {
+        margin-top: 0.5rem;
+    }
+
+    #bulk-export-btn {
+        width: 100%;
+        justify-content: center;
     }
 }

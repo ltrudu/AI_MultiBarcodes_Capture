@@ -118,5 +118,18 @@
   "enter_barcode_value": "Iontráil luach barrachód",
   "enter_quantity": "Cuir isteach cainníocht",
   "update_barcode": "Barrachód a nuashonrú",
-  "merge_selected": "Cumasc roghnaithe"
+  "merge_selected": "Cumasc roghnaithe",
+  "choose_export_format": "Roghnaigh an fhormáid onnmhairithe do na seisiúin roghnaithe:",
+  "txt_file_title": "Comhad téacs (.txt)",
+  "txt_file_desc": "Formáid téacs simplí le faisnéis bhunúsach",
+  "csv_file_title": "Comhad CSV (.csv)",
+  "csv_file_desc": "Luachanna scartha le haghaidh feidhmchlár scarbhileoige",
+  "excel_file_title": "Comhad Excel (.xlsx)",
+  "excel_file_desc": "Formáid Microsoft Excel le formáidiú ardleibhéil",
+  "export_will_include": "Áireoidh an t -onnmhairiú:",
+  "export_session_info": "Faisnéis seisiúin (gléas, stampaí ama, etc.)",
+  "export_barcode_info": "Gach barrachóid le luachanna, symbologies, agus cainníochtaí",
+  "export_status_info": "Stádas próiseála agus nótaí",
+  "no_sessions_selected": "Níor roghnaíodh aon seisiúin le haghaidh onnmhairithe",
+  "export_failed": "Theip ar onnmhairiú"
 }

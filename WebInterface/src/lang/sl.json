@@ -116,5 +116,18 @@
   "enter_barcode_value": "Vnesite vrednost črtne kode",
   "enter_quantity": "Vnesite količino",
   "update_barcode": "Posodobitev črtne kode",
-  "merge_selected": "Združitev izbrana"
+  "merge_selected": "Združitev izbrana",
+  "choose_export_format": "Izberite obliko izvoza za izbrane seje:",
+  "txt_file_title": "Besedilna datoteka (.txt)",
+  "txt_file_desc": "Preprosta oblika besedila z osnovnimi informacijami",
+  "csv_file_title": "CSV datoteka (.csv)",
+  "csv_file_desc": "Vrednosti, ločene z vejico za aplikacije preglednice",
+  "excel_file_title": "Excel datoteka (.xlsx)",
+  "excel_file_desc": "Microsoft Excel Format z naprednim oblikovanjem",
+  "export_will_include": "Izvoz bo vključeval:",
+  "export_session_info": "Podatki o seji (naprava, časovni žigi itd.)",
+  "export_barcode_info": "Vse črtne kode z vrednostmi, simbologiji in količinami",
+  "export_status_info": "Obdelava in opombe",
+  "no_sessions_selected": "Za izvoz ni izbranih sej",
+  "export_failed": "Izvoz ni uspel"
 }

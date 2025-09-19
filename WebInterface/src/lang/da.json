@@ -111,5 +111,18 @@
   "enter_barcode_value": "Indtast stregkodeværdi",
   "enter_quantity": "Indtast mængde",
   "update_barcode": "Opdater stregkode",
-  "merge_selected": "Merge valgt"
+  "merge_selected": "Merge valgt",
+  "choose_export_format": "Vælg eksportformatet til de valgte sessioner:",
+  "txt_file_title": "Tekstfil (.txt)",
+  "txt_file_desc": "Enkelt tekstformat med grundlæggende information",
+  "csv_file_title": "CSV -fil (.csv)",
+  "csv_file_desc": "Kommasparerede værdier for regnearksapplikationer",
+  "excel_file_title": "Excel -fil (.xlsx)",
+  "excel_file_desc": "Microsoft Excel -format med avanceret formatering",
+  "export_will_include": "Eksporten vil omfatte:",
+  "export_session_info": "Sessionoplysninger (enhed, tidsstempler osv.)",
+  "export_barcode_info": "Alle stregkoder med værdier, symbologier og mængder",
+  "export_status_info": "Behandlingsstatus og noter",
+  "no_sessions_selected": "Ingen sessioner valgt til eksport",
+  "export_failed": "Eksport mislykkedes"
 }

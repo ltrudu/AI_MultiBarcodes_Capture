@@ -16,72 +16,94 @@ function getServerIPs() {
     // Get local network IP addresses
     $localIPs = array();
 
-    // Method 0: Check if HOST_IP is provided via environment variable
+    // Helper function to check if IP is a Docker container IP
+    function isDockerContainerIP($ip) {
+        return preg_match('/^172\.(1[6-9]|2[0-9]|3[0-1])\./', $ip) ||
+               preg_match('/^10\./', $ip);
+    }
+
+    // Helper function to check if IP is valid local network IP
+    function isValidLocalIP($ip) {
+        return filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) &&
+               !preg_match('/^127\./', $ip) &&
+               !preg_match('/^169\.254\./', $ip) &&
+               !isDockerContainerIP($ip);
+    }
+
+    // Method 0: Check if HOST_IP is provided via environment variable (highest priority)
     $hostIP = getenv('HOST_IP');
     if ($hostIP && filter_var($hostIP, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
         $localIPs[] = $hostIP;
     }
 
-    // Method 1: Use hostname -I command (Linux/Unix)
-    $output = shell_exec('hostname -I 2>/dev/null');
-    if ($output) {
-        $addresses = explode(' ', trim($output));
-        foreach ($addresses as $ip) {
-            if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
-                $localIPs[] = $ip;
-            }
-        }
-    }
-
-    // Method 2: Use ifconfig command
-    if (empty($localIPs)) {
-        $output = shell_exec('ifconfig 2>/dev/null | grep -oP "inet \K(\d+\.\d+\.\d+\.\d+)" | grep -v 127.0.0.1');
-        if ($output) {
-            $addresses = explode("\n", trim($output));
-            foreach ($addresses as $ip) {
-                if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) && !preg_match('/^127\./', $ip) && !preg_match('/^169\.254\./', $ip)) {
-                    $localIPs[] = $ip;
-                }
-            }
-        }
-    }
-
-    // Method 3: Use ip command (modern Linux) - get host IP via route
-    if (empty($localIPs)) {
-        $output = shell_exec("ip route get 8.8.8.8 2>/dev/null | awk '{for(i=1;i<=NF;i++) if(\$i==\"src\") print \$(i+1)}'");
-        if ($output) {
-            $ip = trim($output);
-            if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-                $localIPs[] = $ip;
-            }
-        }
-    }
-
-    // Method 3.5: Get host IP from Docker gateway
+    // Method 1: Try to get the host IP from Docker gateway route
     if (empty($localIPs)) {
         $output = shell_exec("ip route | grep default | awk '{print \$3}' 2>/dev/null");
         if ($output) {
             $gateway = trim($output);
             if (filter_var($gateway, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-                // Try to resolve the local network from the gateway
-                $networkBase = implode('.', array_slice(explode('.', $gateway), 0, 3));
-                for ($i = 1; $i <= 254; $i++) {
-                    $testIP = $networkBase . '.' . $i;
-                    if ($testIP !== $gateway) {
-                        // Check if this IP responds (simplified check)
-                        $localIPs[] = $gateway; // Use gateway as fallback
-                        break;
+                // The gateway IP is typically the host IP in Docker
+                if (preg_match('/^192\.168\./', $gateway) || preg_match('/^10\./', $gateway)) {
+                    $localIPs[] = $gateway;
+                }
+            }
+        }
+    }
+
+    // Method 2: Use hostname -I command but filter out Docker IPs
+    if (empty($localIPs)) {
+        $output = shell_exec('hostname -I 2>/dev/null');
+        if ($output) {
+            $addresses = explode(' ', trim($output));
+            foreach ($addresses as $ip) {
+                $ip = trim($ip);
+                if (isValidLocalIP($ip)) {
+                    // Prioritize 192.168.x.x addresses (typical home/office networks)
+                    if (preg_match('/^192\.168\./', $ip)) {
+                        array_unshift($localIPs, $ip);
+                    } else {
+                        $localIPs[] = $ip;
                     }
                 }
             }
         }
     }
 
-    // Method 4: Fallback - get server's hostname and resolve it
+    // Method 3: Use ifconfig command but filter out Docker IPs
+    if (empty($localIPs)) {
+        $output = shell_exec('ifconfig 2>/dev/null | grep -oP "inet \K(\d+\.\d+\.\d+\.\d+)" | grep -v 127.0.0.1');
+        if ($output) {
+            $addresses = explode("\n", trim($output));
+            foreach ($addresses as $ip) {
+                $ip = trim($ip);
+                if (isValidLocalIP($ip)) {
+                    // Prioritize 192.168.x.x addresses
+                    if (preg_match('/^192\.168\./', $ip)) {
+                        array_unshift($localIPs, $ip);
+                    } else {
+                        $localIPs[] = $ip;
+                    }
+                }
+            }
+        }
+    }
+
+    // Method 4: Use ip command to get source IP for external route (filtered)
+    if (empty($localIPs)) {
+        $output = shell_exec("ip route get 8.8.8.8 2>/dev/null | awk '{for(i=1;i<=NF;i++) if(\$i==\"src\") print \$(i+1)}'");
+        if ($output) {
+            $ip = trim($output);
+            if (isValidLocalIP($ip)) {
+                $localIPs[] = $ip;
+            }
+        }
+    }
+
+    // Method 5: Fallback - get server's hostname and resolve it
     if (empty($localIPs)) {
         $hostname = gethostname();
         $ip = gethostbyname($hostname);
-        if ($ip !== $hostname && filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+        if ($ip !== $hostname && isValidLocalIP($ip)) {
             $localIPs[] = $ip;
         }
     }

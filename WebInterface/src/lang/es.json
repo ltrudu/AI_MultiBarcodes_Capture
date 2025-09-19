@@ -119,5 +119,18 @@
   "enter_barcode_value": "Ingrese el valor del código de barras",
   "enter_quantity": "Ingrese la cantidad",
   "update_barcode": "Actualizar código de barras",
-  "merge_selected": "Fusionar seleccionado"
+  "merge_selected": "Fusionar seleccionado",
+  "choose_export_format": "Elija el formato de exportación para las sesiones seleccionadas:",
+  "txt_file_title": "Archivo de texto (.txt)",
+  "txt_file_desc": "Formato de texto simple con información básica",
+  "csv_file_title": "Archivo csv (.csv)",
+  "csv_file_desc": "Valores separados por comas para aplicaciones de hoja de cálculo",
+  "excel_file_title": "Archivo de Excel (.xlsx)",
+  "excel_file_desc": "Formato de Microsoft Excel con formato avanzado",
+  "export_will_include": "La exportación incluirá:",
+  "export_session_info": "Información de sesión (dispositivo, marcas de tiempo, etc.)",
+  "export_barcode_info": "Todos los códigos de barras con valores, simbologías y cantidades",
+  "export_status_info": "Estado y notas de procesamiento",
+  "no_sessions_selected": "No hay sesiones seleccionadas para la exportación",
+  "export_failed": "Exportación fallida"
 }

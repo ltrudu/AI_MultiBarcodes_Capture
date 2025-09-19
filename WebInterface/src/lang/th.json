@@ -119,5 +119,18 @@
   "enter_barcode_value": "ป้อนค่าบาร์โค้ด",
   "enter_quantity": "ป้อนปริมาณ",
   "update_barcode": "อัปเดตบาร์โค้ด",
-  "merge_selected": "เลือกผสาน"
+  "merge_selected": "เลือกผสาน",
+  "choose_export_format": "เลือกรูปแบบการส่งออกสำหรับเซสชันที่เลือก:",
+  "txt_file_title": "ไฟล์ข้อความ (.txt)",
+  "txt_file_desc": "รูปแบบข้อความง่าย ๆ พร้อมข้อมูลพื้นฐาน",
+  "csv_file_title": "ไฟล์ CSV (.CSV)",
+  "csv_file_desc": "ค่าที่คั่นด้วยเครื่องหมายจุลภาคสำหรับแอปพลิเคชันสเปรดชีต",
+  "excel_file_title": "ไฟล์ excel (.xlsx)",
+  "excel_file_desc": "รูปแบบ Microsoft Excel พร้อมการจัดรูปแบบขั้นสูง",
+  "export_will_include": "การส่งออกจะรวมถึง:",
+  "export_session_info": "ข้อมูลเซสชัน (อุปกรณ์การประทับเวลา ฯลฯ )",
+  "export_barcode_info": "บาร์โค้ดทั้งหมดที่มีค่าสัญลักษณ์และปริมาณ",
+  "export_status_info": "สถานะการประมวลผลและบันทึกย่อ",
+  "no_sessions_selected": "ไม่เลือกเซสชันสำหรับการส่งออก",
+  "export_failed": "การส่งออกล้มเหลว"
 }

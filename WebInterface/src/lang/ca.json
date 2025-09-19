@@ -114,5 +114,18 @@
   "enter_barcode_value": "Introduïu el valor del codi de barres",
   "enter_quantity": "Introduïu la quantitat",
   "update_barcode": "Actualitzar el codi de barres",
-  "merge_selected": "Missar seleccionat"
+  "merge_selected": "Missar seleccionat",
+  "choose_export_format": "Trieu el format d'exportació per a les sessions seleccionades:",
+  "txt_file_title": "Fitxer de text (.txt)",
+  "txt_file_desc": "Format de text senzill amb informació bàsica",
+  "csv_file_title": "Fitxer CSV (.CSV)",
+  "csv_file_desc": "Valors separats per comes per a aplicacions de full de càlcul",
+  "excel_file_title": "Fitxer excel (.xlsx)",
+  "excel_file_desc": "Format Microsoft Excel amb format avançat",
+  "export_will_include": "L’exportació inclourà:",
+  "export_session_info": "Informació sobre la sessió (dispositiu, marca de temps, etc.)",
+  "export_barcode_info": "Tots els codis de barres amb valors, simbologies i quantitats",
+  "export_status_info": "Estat de processament i notes",
+  "no_sessions_selected": "No hi ha sessions seleccionades per a l'exportació",
+  "export_failed": "Ha fallat l'exportació"
 }

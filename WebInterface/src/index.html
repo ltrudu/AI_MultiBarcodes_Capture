@@ -151,6 +151,54 @@
         </div>
     </div>
 
+    <!-- Export Modal -->
+    <div id="export-modal" class="modal hide">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="export-modal-title">📊 <span id="export-data-title">Export Data</span></h2>
+                <button class="modal-close" onclick="app.closeExportModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="export-description"></p>
+
+                <div class="export-options">
+                    <div class="export-option" onclick="app.exportData('txt')">
+                        <div class="export-icon">📄</div>
+                        <div class="export-details">
+                            <h3 id="txt-file-title"></h3>
+                            <p id="txt-file-desc"></p>
+                        </div>
+                    </div>
+
+                    <div class="export-option" onclick="app.exportData('csv')">
+                        <div class="export-icon">📊</div>
+                        <div class="export-details">
+                            <h3 id="csv-file-title"></h3>
+                            <p id="csv-file-desc"></p>
+                        </div>
+                    </div>
+
+                    <div class="export-option" onclick="app.exportData('excel')">
+                        <div class="export-icon">📈</div>
+                        <div class="export-details">
+                            <h3 id="excel-file-title"></h3>
+                            <p id="excel-file-desc"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="export-info">
+                    <p><strong id="export-will-include"></strong></p>
+                    <ul>
+                        <li id="export-session-info"></li>
+                        <li id="export-barcode-info"></li>
+                        <li id="export-status-info"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer style="text-align: center; padding: 2rem; color: #6c757d; font-size: 0.9rem;">
         <p>

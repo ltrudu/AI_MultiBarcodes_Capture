@@ -446,6 +446,9 @@ class WMSApp {
         } else {
             html += `
                 <div class="selection-actions" id="selection-actions" style="display: none; margin-bottom: 1rem;">
+                    <button id="bulk-export-btn" class="btn btn-success">
+                        📊 ${this.t('export', 'Export')}
+                    </button>
                     <button id="bulk-delete-btn" class="btn btn-danger">
                         🗑️ ${this.t('delete_selected', 'Delete Selected')}
                     </button>
@@ -1063,6 +1066,125 @@ class WMSApp {
         modal.classList.add('hide');
     }
 
+    showExportModal() {
+        const modal = document.getElementById('export-modal');
+
+        // Update translations
+        const elements = {
+            'export-data-title': this.t('export_data', 'Export Data'),
+            'export-description': this.t('choose_export_format', 'Choose the export format for the selected sessions:'),
+            'txt-file-title': this.t('txt_file_title', 'Text File (.txt)'),
+            'txt-file-desc': this.t('txt_file_desc', 'Simple text format with basic information'),
+            'csv-file-title': this.t('csv_file_title', 'CSV File (.csv)'),
+            'csv-file-desc': this.t('csv_file_desc', 'Comma-separated values for spreadsheet applications'),
+            'excel-file-title': this.t('excel_file_title', 'Excel File (.xlsx)'),
+            'excel-file-desc': this.t('excel_file_desc', 'Microsoft Excel format with advanced formatting'),
+            'export-will-include': this.t('export_will_include', 'Export will include:'),
+            'export-session-info': this.t('export_session_info', 'Session information (device, timestamps, etc.)'),
+            'export-barcode-info': this.t('export_barcode_info', 'All barcodes with values, symbologies, and quantities'),
+            'export-status-info': this.t('export_status_info', 'Processing status and notes')
+        };
+
+        Object.entries(elements).forEach(([id, text]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = text;
+            }
+        });
+
+        modal.classList.remove('hide');
+        modal.classList.add('show');
+
+        // Add click outside to close
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                this.closeExportModal();
+            }
+        });
+
+        // Add escape key to close
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                this.closeExportModal();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+    }
+
+    closeExportModal() {
+        const modal = document.getElementById('export-modal');
+        modal.classList.remove('show');
+        modal.classList.add('hide');
+    }
+
+    async exportData(format) {
+        if (this.selectedSessions.size === 0) {
+            alert(this.t('no_sessions_selected', 'No sessions selected for export'));
+            return;
+        }
+
+        try {
+            this.closeExportModal();
+
+            // Create the request body with selected session IDs
+            const requestBody = {
+                session_ids: Array.from(this.selectedSessions),
+                format: format
+            };
+
+            console.log('Exporting sessions:', requestBody);
+
+            const response = await fetch(`${this.apiBaseUrl}/export.php`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Export failed: ${response.status} ${response.statusText}`);
+            }
+
+            // Check if this is an error response (JSON) or actual export (file)
+            const contentType = response.headers.get('Content-Type');
+            if (contentType && contentType.includes('application/json')) {
+                // This is an error response
+                const errorData = await response.json();
+                console.error('Export Error Response:', errorData);
+                throw new Error(errorData.error || 'Export failed');
+            }
+
+            // Original file download logic for actual export
+            const contentDisposition = response.headers.get('Content-Disposition');
+            let filename = `barcode_export.${format}`;
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename="?([^"]+)"?/);
+                if (filenameMatch) {
+                    filename = filenameMatch[1];
+                }
+            }
+
+            // Create blob and download
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+            console.log(`Export completed: ${filename}`);
+
+        } catch (error) {
+            console.error('Export failed:', error);
+            alert(this.t('export_failed', 'Export failed') + ': ' + error.message);
+        }
+    }
+
     toggleSelectAll() {
         const selectAllCheckbox = document.getElementById('select-all-sessions');
         const sessionCheckboxes = document.querySelectorAll('.session-checkbox');
@@ -1251,6 +1373,7 @@ class WMSApp {
         // Attach event listeners to bulk action buttons
         const deleteButton = document.getElementById('bulk-delete-btn');
         const mergeButton = document.getElementById('bulk-merge-btn');
+        const exportButton = document.getElementById('bulk-export-btn');
 
         if (deleteButton) {
             deleteButton.addEventListener('click', () => {
@@ -1266,11 +1389,19 @@ class WMSApp {
             });
         }
 
+        if (exportButton) {
+            exportButton.addEventListener('click', () => {
+                console.log('Export button clicked');
+                this.showExportModal();
+            });
+        }
+
         console.log('Event listeners attached:', {
             selectAll: !!selectAllCheckbox,
             sessionCheckboxes: sessionCheckboxes.length,
             deleteButton: !!deleteButton,
-            mergeButton: !!mergeButton
+            mergeButton: !!mergeButton,
+            exportButton: !!exportButton
         });
         console.log('=== attachSessionEventListeners completed ===');
     }

@@ -114,5 +114,19 @@
   "enter_quantity": "Sláðu inn magn",
   "update_barcode": "Uppfærðu strikamerki",
   "merge_selected": "Sameina valið",
-  "header_subtitle": "Zebra Technologies - AI Multibarcode Capture viðmót"
+  "header_subtitle": "Zebra Technologies - AI Multibarcode Capture viðmót",
+  "app_title": "AI Multibarcode handtaka",
+  "choose_export_format": "Veldu útflutningssnið fyrir valin fundir:",
+  "txt_file_title": "Textaskrá (.txt)",
+  "txt_file_desc": "Einfalt textasnið með grunnupplýsingum",
+  "csv_file_title": "CSV skrá (.csv)",
+  "csv_file_desc": "Kommu-aðgreind gildi fyrir töflureiknarforrit",
+  "excel_file_title": "Excel skrá (.xlsx)",
+  "excel_file_desc": "Microsoft Excel snið með háþróaðri sniði",
+  "export_will_include": "Útflutningur mun innihalda:",
+  "export_session_info": "Upplýsingar um lotu (tæki, tímastimplar osfrv.)",
+  "export_barcode_info": "Allir strikamerki með gildi, samhjálp og magn",
+  "export_status_info": "Vinnslustaða og athugasemdir",
+  "no_sessions_selected": "Engar lotur valdar til útflutnings",
+  "export_failed": "Útflutningur mistókst"
 }

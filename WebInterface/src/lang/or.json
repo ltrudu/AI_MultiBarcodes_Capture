@@ -120,5 +120,18 @@
   "enter_barcode_value": "ବାରକୋଡ୍ ମୂଲ୍ୟ ପ୍ରବେଶ କରନ୍ତୁ |",
   "enter_quantity": "ପରିମାଣ ପ୍ରବେଶ କରନ୍ତୁ |",
   "update_barcode": "ବାରକୋଡ୍ ଅପଡେଟ୍ କରନ୍ତୁ |",
-  "merge_selected": "ମନୋନୀତ ହୋଇଛି"
+  "merge_selected": "ମନୋନୀତ ହୋଇଛି",
+  "choose_export_format": "ମନୋନୀତ ଅଧିବେଶନଗୁଡ଼ିକ ପାଇଁ ରପ୍ତାନି ଫର୍ମାଟ୍ ବାଛନ୍ତୁ:",
+  "txt_file_title": "ପାଠ୍ୟ ଫାଇଲ (.txt)",
+  "txt_file_desc": "ମ basic ଳିକ ସୂଚନା ସହିତ ସରଳ ପାଠ୍ୟ ଫର୍ମାଟ୍ |",
+  "csv_file_title": "CSV ଫାଇଲ୍ (.CSV)",
+  "csv_file_desc": "ସ୍ପ୍ରେଡସିଟ୍ ପ୍ରୟୋଗଗୁଡ଼ିକ ପାଇଁ କମା ଦ୍ୱାରା ପୃଥକ ମୂଲ୍ୟ |",
+  "excel_file_title": "Excel ଫାଇଲ୍ (.xlsx)",
+  "excel_file_desc": "ଉନ୍ନତ ଫର୍ମାଟିଂ ସହିତ ମାଇକ୍ରୋସଫ୍ଟ ଏକ୍ସେଲ୍ ଫର୍ମାଟ୍ |",
+  "export_will_include": "ରପ୍ତାନି ନିଶ୍ଚିତ କରିବ:",
+  "export_session_info": "ଅଧିବେଶନ ସୂଚନା (ଉପକରଣ, ଟାଇମଷ୍ଟ୍ୟାମ୍ପ, ଇତ୍ୟାଦି)",
+  "export_barcode_info": "ମୂଲ୍ୟ, ପ୍ରତୀକ ଏବଂ ପରିମାଣ ସହିତ ସମସ୍ତ ବାରକୋଡ୍ |",
+  "export_status_info": "ପ୍ରକ୍ରିୟାକରଣ ସ୍ଥିତି ଏବଂ ନୋଟ୍ |",
+  "no_sessions_selected": "ରପ୍ତାନି ପାଇଁ କ spar ଣସି ଅଧିବେଶନ ଚୟନ କରାଯାଇ ନାହିଁ |",
+  "export_failed": "ରପ୍ତାନି ବିଫଳ ହେଲା |"
 }

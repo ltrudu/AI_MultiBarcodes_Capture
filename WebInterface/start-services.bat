@@ -66,6 +66,33 @@ if errorlevel 1 (
 
 echo [OK] Docker image built successfully
 
+REM Get host IP address for proper Android connectivity
+echo Detecting host IP address...
+for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "192.168"') do (
+    set HOST_IP_RAW=%%a
+    goto :found_ip
+)
+:found_ip
+REM Remove leading spaces
+for /f "tokens=*" %%a in ("%HOST_IP_RAW%") do set HOST_IP=%%a
+
+if "%HOST_IP%"=="" (
+    REM Fallback: try to get any private IP
+    for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "10\."') do (
+        set HOST_IP_RAW=%%a
+        goto :found_fallback_ip
+    )
+    :found_fallback_ip
+    for /f "tokens=*" %%a in ("%HOST_IP_RAW%") do set HOST_IP=%%a
+)
+
+if "%HOST_IP%"=="" (
+    echo [WARNING] Could not detect host IP automatically, using localhost
+    set HOST_IP=127.0.0.1
+) else (
+    echo [OK] Detected host IP: %HOST_IP%
+)
+
 REM Start the container
 echo Starting container...
 docker run -d ^
@@ -80,6 +107,7 @@ docker run -d ^
     -e DB_USER=%DB_USER% ^
     -e DB_PASS=%DB_PASS% ^
     -e WEB_PORT=%WEB_PORT% ^
+    -e HOST_IP=%HOST_IP% ^
     -e EXPOSE_PHPMYADMIN=%EXPOSE_PHPMYADMIN% ^
     -e EXPOSE_MYSQL=%EXPOSE_MYSQL% ^
     -v multibarcode_mysql_data:/var/lib/mysql ^

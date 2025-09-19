@@ -114,5 +114,18 @@
   "enter_barcode_value": "Masukkan nilai barcode",
   "enter_quantity": "Masukkan kuantiti",
   "update_barcode": "Kemas kini Barcode",
-  "merge_selected": "Gabungan dipilih"
+  "merge_selected": "Gabungan dipilih",
+  "choose_export_format": "Pilih format eksport untuk sesi yang dipilih:",
+  "txt_file_title": "Fail teks (.txt)",
+  "txt_file_desc": "Format teks mudah dengan maklumat asas",
+  "csv_file_title": "Fail CSV (.csv)",
+  "csv_file_desc": "Nilai yang dipisahkan koma untuk aplikasi spreadsheet",
+  "excel_file_title": "Fail Excel (.xlsx)",
+  "excel_file_desc": "Format Microsoft Excel dengan Format Lanjutan",
+  "export_will_include": "Eksport akan termasuk:",
+  "export_session_info": "Maklumat Sesi (Peranti, Timestamps, dan lain -lain)",
+  "export_barcode_info": "Semua barcode dengan nilai, simbologi, dan kuantiti",
+  "export_status_info": "Status Pemprosesan dan Nota",
+  "no_sessions_selected": "Tiada sesi yang dipilih untuk Eksport",
+  "export_failed": "Eksport gagal"
 }

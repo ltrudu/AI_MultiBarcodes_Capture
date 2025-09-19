@@ -118,5 +118,18 @@
   "enter_barcode_value": "Įveskite brūkšninio kodo vertę",
   "enter_quantity": "Įveskite kiekį",
   "update_barcode": "Atnaujinkite brūkšninį kodą",
-  "merge_selected": "Sujungtas pasirinktas"
+  "merge_selected": "Sujungtas pasirinktas",
+  "choose_export_format": "Pasirinkite pasirinktų sesijų eksporto formatą:",
+  "txt_file_title": "Teksto failas (.txt)",
+  "txt_file_desc": "Paprastas teksto formatas su pagrindine informacija",
+  "csv_file_title": "CSV failas (.csv)",
+  "csv_file_desc": "Kabalas atskirtos skaičiuoklės programų vertės",
+  "excel_file_title": "„Excel“ failas (.xlsx)",
+  "excel_file_desc": "„Microsoft Excel“ formatas su išplėstiniu formatavimu",
+  "export_will_include": "Eksportas apims:",
+  "export_session_info": "Sesijos informacija (įrenginys, laiko žymos ir kt.)",
+  "export_barcode_info": "Visi brūkšniniai kodai su reikšmėmis, simbologijomis ir kiekiais",
+  "export_status_info": "Apdorojimo būsena ir pastabos",
+  "no_sessions_selected": "Eksportuoti nėra pasirinktų sesijų",
+  "export_failed": "Eksportas nepavyko"
 }

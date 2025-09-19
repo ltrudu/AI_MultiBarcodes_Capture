@@ -117,5 +117,18 @@
   "enter_barcode_value": "Introduceți valoarea codului de bare",
   "enter_quantity": "Introduceți cantitatea",
   "update_barcode": "Actualizați codul de bare",
-  "merge_selected": "Îmbinați selectat"
+  "merge_selected": "Îmbinați selectat",
+  "choose_export_format": "Alegeți formatul de export pentru sesiunile selectate:",
+  "txt_file_title": "Fișier text (.txt)",
+  "txt_file_desc": "Format de text simplu cu informații de bază",
+  "csv_file_title": "Fișier csv (.csv)",
+  "csv_file_desc": "Valori separate de virgulă pentru aplicații de foi de calcul",
+  "excel_file_title": "File Excel (.xlsx)",
+  "excel_file_desc": "Format Microsoft Excel cu formatare avansată",
+  "export_will_include": "Export va include:",
+  "export_session_info": "Informații despre sesiune (dispozitiv, timestamps etc.)",
+  "export_barcode_info": "Toate codurile de bare cu valori, simboluri și cantități",
+  "export_status_info": "Stare de procesare și note",
+  "no_sessions_selected": "Nu există sesiuni selectate pentru export",
+  "export_failed": "Exportul a eșuat"
 }

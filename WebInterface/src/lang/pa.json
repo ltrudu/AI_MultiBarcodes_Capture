@@ -119,5 +119,19 @@
   "enter_barcode_value": "ਬਾਰਕੋਡ ਦਾ ਮੁੱਲ ਦਰਜ ਕਰੋ",
   "enter_quantity": "ਮਾਤਰਾ ਦਾਖਲ ਕਰੋ",
   "update_barcode": "ਬਾਰਕੋਡ ਅਪਡੇਟ ਕਰੋ",
-  "merge_selected": "ਮਰਜ ਚੁਣਿਆ ਗਿਆ"
+  "merge_selected": "ਮਰਜ ਚੁਣਿਆ ਗਿਆ",
+  "hours": "ਐਚ",
+  "choose_export_format": "ਚੁਣੇ ਗਏ ਸੈਸ਼ਨਾਂ ਲਈ ਨਿਰਯਾਤ ਦਾ ਫਾਰਮੈਟ ਚੁਣੋ:",
+  "txt_file_title": "ਟੈਕਸਟ ਫਾਈਲ (.txt)",
+  "txt_file_desc": "ਮੁੱ basic ਲੀ ਜਾਣਕਾਰੀ ਵਾਲਾ ਸਧਾਰਣ ਟੈਕਸਟ ਫਾਰਮੈਟ",
+  "csv_file_title": "CSV ਫਾਈਲ (. Csv)",
+  "csv_file_desc": "ਸਪ੍ਰੈਡਸ਼ੀਟ ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ ਕਾਮੇ ਨਾਲ ਵੱਖ ਮੁੱਲ",
+  "excel_file_title": "ਐਕਸਲ ਫਾਈਲ (.xLSx)",
+  "excel_file_desc": "ਮਾਈਕਰੋਸੌਫਟ ਐਕਸਲ ਫਾਰਮੈਟ ਐਡਵਾਂਸਡ ਫਾਰਮੈਟਿੰਗ ਦੇ ਨਾਲ",
+  "export_will_include": "ਨਿਰਯਾਤ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਗੇ:",
+  "export_session_info": "ਸੈਸ਼ਨ ਜਾਣਕਾਰੀ (ਡਿਵਾਈਸ, ਟਾਈਮਸਟੈਂਪਸ, ਆਦਿ)",
+  "export_barcode_info": "ਸਾਰੇ ਬਰਕੋਡ ਵੈਲਯੂਜ, ਪ੍ਰਤੀਕ ਅਤੇ ਮਾਤਰਾਵਾਂ ਦੇ ਨਾਲ",
+  "export_status_info": "ਪ੍ਰੋਸੈਸਿੰਗ ਸਥਿਤੀ ਅਤੇ ਨੋਟ",
+  "no_sessions_selected": "ਨਿਰਯਾਤ ਲਈ ਕੋਈ ਸੈਸ਼ਨ ਚੁਣੇ ਗਏ",
+  "export_failed": "ਨਿਰਯਾਤ ਫੇਲ੍ਹ ਹੋਇਆ"
 }

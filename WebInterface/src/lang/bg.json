@@ -117,5 +117,18 @@
   "enter_barcode_value": "Въведете стойност на баркод",
   "enter_quantity": "Въведете количество",
   "update_barcode": "Актуализиране на баркод",
-  "merge_selected": "Сливане избрана"
+  "merge_selected": "Сливане избрана",
+  "choose_export_format": "Изберете формата на експортиране за избраните сесии:",
+  "txt_file_title": "Текстов файл (.txt)",
+  "txt_file_desc": "Прост текстов формат с основна информация",
+  "csv_file_title": "CSV файл (.csv)",
+  "csv_file_desc": "Стойности, разделени за запетая за приложения за електронни таблици",
+  "excel_file_title": "Excel файл (.xlsx)",
+  "excel_file_desc": "Формат на Microsoft Excel с разширено форматиране",
+  "export_will_include": "Експортирането ще включва:",
+  "export_session_info": "Информация за сесията (устройство, времеви марки и др.)",
+  "export_barcode_info": "Всички баркодове със стойности, символогии и количества",
+  "export_status_info": "Състояние и бележки за обработка",
+  "no_sessions_selected": "Няма сесии, избрани за износ",
+  "export_failed": "Експортирането се провали"
 }

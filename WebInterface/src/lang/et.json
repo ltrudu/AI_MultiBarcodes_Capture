@@ -116,5 +116,18 @@
   "enter_barcode_value": "Sisestage vöötkoodi väärtus",
   "enter_quantity": "Sisestage kogus",
   "update_barcode": "Värskendage vöötkoodi",
-  "merge_selected": "Ühendatud valitud"
+  "merge_selected": "Ühendatud valitud",
+  "choose_export_format": "Valige valitud seansside ekspordi vorming:",
+  "txt_file_title": "Tekstifail (.txt)",
+  "txt_file_desc": "Lihtne tekstivorming koos põhiteabega",
+  "csv_file_title": "CSV -fail (.csv)",
+  "csv_file_desc": "Komadega eraldatud väärtused arvutustabelirakenduste jaoks",
+  "excel_file_title": "Exceli fail (.xlsx)",
+  "excel_file_desc": "Microsoft Exceli vorming koos täpsema vormindamisega",
+  "export_will_include": "Eksport hõlmab:",
+  "export_session_info": "Seansi teave (seade, ajatemplid jne)",
+  "export_barcode_info": "Kõik väärtuste, sümboloogiate ja kogustega vöötkoodid",
+  "export_status_info": "Töötlemise olek ja märkused",
+  "no_sessions_selected": "Ekspordi jaoks pole valitud seansse",
+  "export_failed": "Eksport ebaõnnestus"
 }

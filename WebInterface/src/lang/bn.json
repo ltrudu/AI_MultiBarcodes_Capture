@@ -120,5 +120,18 @@
   "enter_barcode_value": "বারকোড মান লিখুন",
   "enter_quantity": "পরিমাণ প্রবেশ করান",
   "update_barcode": "বারকোড আপডেট করুন",
-  "merge_selected": "মার্জ নির্বাচিত"
+  "merge_selected": "মার্জ নির্বাচিত",
+  "choose_export_format": "নির্বাচিত সেশনের জন্য রফতানি ফর্ম্যাটটি চয়ন করুন:",
+  "txt_file_title": "পাঠ্য ফাইল (.txt)",
+  "txt_file_desc": "বেসিক তথ্য সহ সাধারণ পাঠ্য বিন্যাস",
+  "csv_file_title": "সিএসভি ফাইল (.csv)",
+  "csv_file_desc": "স্প্রেডশিট অ্যাপ্লিকেশনগুলির জন্য কমা-বিচ্ছিন্ন মান",
+  "excel_file_title": "এক্সেল ফাইল (.xlsx)",
+  "excel_file_desc": "উন্নত ফর্ম্যাট সহ মাইক্রোসফ্ট এক্সেল ফর্ম্যাট",
+  "export_will_include": "রফতানির অন্তর্ভুক্ত হবে:",
+  "export_session_info": "সেশন তথ্য (ডিভাইস, টাইমস্ট্যাম্পস ইত্যাদি)",
+  "export_barcode_info": "মান, প্রতীক এবং পরিমাণ সহ সমস্ত বারকোড",
+  "export_status_info": "প্রক্রিয়াজাতকরণ স্থিতি এবং নোট",
+  "no_sessions_selected": "রফতানির জন্য কোনও সেশন নির্বাচিত নয়",
+  "export_failed": "রফতানি ব্যর্থ হয়েছে"
 }

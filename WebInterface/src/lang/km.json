@@ -118,5 +118,18 @@
   "enter_barcode_value": "បញ្ចូលតម្លៃលេខកូដ",
   "enter_quantity": "បញ្ចូលបរិមាណ",
   "update_barcode": "ការធ្វើបច្ចុប្បន្នភាពបាកូដ",
-  "merge_selected": "បញ្ចូលគ្នាដែលបានជ្រើសរើស"
+  "merge_selected": "បញ្ចូលគ្នាដែលបានជ្រើសរើស",
+  "choose_export_format": "ជ្រើសរើសទ្រង់ទ្រាយនាំចេញសម្រាប់សម័យដែលបានជ្រើសរើស:",
+  "txt_file_title": "ឯកសារអត្ថបទ (.txt)",
+  "txt_file_desc": "ទ្រង់ទ្រាយអត្ថបទសាមញ្ញជាមួយនឹងព័ត៌មានមូលដ្ឋាន",
+  "csv_file_title": "ឯកសារស៊ីអេសអេស (.csv)",
+  "csv_file_desc": "តម្លៃដែលបំបែកដោយក្បៀសសម្រាប់កម្មវិធីសៀវភៅបញ្ជី",
+  "excel_file_title": "ឯកសារ Excel (.xlsx)",
+  "excel_file_desc": "ទ្រង់ទ្រាយ Microsoft Excel ជាមួយនឹងការធ្វើទ្រង់ទ្រាយកម្រិតខ្ពស់",
+  "export_will_include": "ការនាំចេញនឹងរួមមាន:",
+  "export_session_info": "ព័ត៌មានសម័យ (ឧបករណ៍ត្រាពេលវេលាគឺជាដើម)",
+  "export_barcode_info": "BARCODE ទាំងអស់ដែលមានតម្លៃមានតំលៃមន្រ្តីនិងបរិមាណ",
+  "export_status_info": "ស្ថានភាពដំណើរការនិងកំណត់ចំណាំ",
+  "no_sessions_selected": "គ្មានវគ្គដែលបានជ្រើសរើសសម្រាប់នាំចេញទេ",
+  "export_failed": "ការនាំចេញបានបរាជ័យ"
 }

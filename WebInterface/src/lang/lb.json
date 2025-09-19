@@ -111,5 +111,18 @@
   "barcode_value_label": "Barcode Wäert",
   "enter_barcode_value": "Gitt Barcode Wäert",
   "enter_quantity": "Gitt Quantitéit un",
-  "merge_selected": "Fusionéiert ausgewielt"
+  "merge_selected": "Fusionéiert ausgewielt",
+  "choose_export_format": "Wielt den Exportformat fir déi gewielten Sessiounen:",
+  "txt_file_title": "Text Datei (.txt)",
+  "txt_file_desc": "Einfach Textformat mat Basisinformatioun",
+  "csv_file_title": "CSV Datei (.CSV)",
+  "csv_file_desc": "Komma-getrennt Wäerter fir Spreadsheet Uwendungen",
+  "excel_file_title": "Excel Datei (.xlsx)",
+  "excel_file_desc": "Microsoft Excel Format mat fortgeschratt Formatéierung",
+  "export_will_include": "Export enthält:",
+  "export_session_info": "Sessiounsinformatioun (Apparat, Zäitstamps, asw.)",
+  "export_barcode_info": "All Barcoden mat Wäerter, Silmologies, an Quantitéiten",
+  "export_status_info": "Veraarbechtung Status an Notizen",
+  "no_sessions_selected": "Keng Sessiounen ausgewielt fir Export",
+  "export_failed": "Export gescheitert"
 }

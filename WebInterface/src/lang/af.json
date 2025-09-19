@@ -115,5 +115,18 @@
   "enter_barcode_value": "Voer Barcode -waarde in",
   "enter_quantity": "Voer die hoeveelheid in",
   "update_barcode": "Update strepieskode",
-  "merge_selected": "Samestelling gekies"
+  "merge_selected": "Samestelling gekies",
+  "choose_export_format": "Kies die uitvoerformaat vir die geselekteerde sessies:",
+  "txt_file_title": "Tekslêer (.txt)",
+  "txt_file_desc": "Eenvoudige teksformaat met basiese inligting",
+  "csv_file_title": "CSV -lêer (.csv)",
+  "csv_file_desc": "Komma-geskeide waardes vir sigbladtoepassings",
+  "excel_file_title": "Excel -lêer (.xlsx)",
+  "excel_file_desc": "Microsoft Excel -formaat met gevorderde formatering",
+  "export_will_include": "Uitvoer sal die volgende insluit:",
+  "export_session_info": "Sessie -inligting (toestel, tydstempels, ens.)",
+  "export_barcode_info": "Alle strepieskodes met waardes, simbologieë en hoeveelhede",
+  "export_status_info": "Verwerkingstatus en aantekeninge",
+  "no_sessions_selected": "Geen sessies gekies vir uitvoer",
+  "export_failed": "Uitvoer het misluk"
 }

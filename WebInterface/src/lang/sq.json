@@ -119,5 +119,18 @@
   "enter_barcode_value": "Vendosni vlerën e barkodit",
   "enter_quantity": "Vendosni sasinë",
   "update_barcode": "Përditësoni barkodin",
-  "merge_selected": "Bashkoj i zgjedhur"
+  "merge_selected": "Bashkoj i zgjedhur",
+  "choose_export_format": "Zgjidhni formatin e eksportit për seancat e zgjedhura:",
+  "txt_file_title": "Skedar teksti (.txt)",
+  "txt_file_desc": "Formati i thjeshtë i tekstit me informacione themelore",
+  "csv_file_title": "Skedari CSV (.csv)",
+  "csv_file_desc": "Vlerat e ndara me presje për aplikimet e spreadsheet",
+  "excel_file_title": "Skedar excel (.xlsx)",
+  "excel_file_desc": "Formati i Microsoft Excel me formatim të përparuar",
+  "export_will_include": "Eksporti do të përfshijë:",
+  "export_session_info": "Informacioni i seancës (Pajisja, Timestamps, etj.)",
+  "export_barcode_info": "Të gjitha barkodet me vlera, simbolologji dhe sasi",
+  "export_status_info": "Statusi dhe shënimet e përpunimit",
+  "no_sessions_selected": "Asnjë seancë e zgjedhur për eksport",
+  "export_failed": "Eksporti dështoi"
 }

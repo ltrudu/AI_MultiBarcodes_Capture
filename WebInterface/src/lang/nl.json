@@ -114,5 +114,18 @@
   "barcode_value_label": "Barcodewaarde",
   "enter_barcode_value": "Voer barcodewaarde in",
   "enter_quantity": "Voer de hoeveelheid in",
-  "merge_selected": "Samenvoegen geselecteerd"
+  "merge_selected": "Samenvoegen geselecteerd",
+  "choose_export_format": "Kies het exportformaat voor de geselecteerde sessies:",
+  "txt_file_title": "Tekstbestand (.txt)",
+  "txt_file_desc": "Eenvoudig tekstformaat met basisinformatie",
+  "csv_file_title": "CSV -bestand (.csv)",
+  "csv_file_desc": "Door komma gescheiden waarden voor spreadsheettoepassingen",
+  "excel_file_title": "Excel -bestand (.xlsx)",
+  "excel_file_desc": "Microsoft Excel -indeling met geavanceerde opmaak",
+  "export_will_include": "Export zal zijn:",
+  "export_session_info": "Sessie -informatie (apparaat, tijdstempels, enz.)",
+  "export_barcode_info": "Alle barcodes met waarden, symbologieën en hoeveelheden",
+  "export_status_info": "Verwerkingsstatus en opmerkingen",
+  "no_sessions_selected": "Geen sessies geselecteerd voor export",
+  "export_failed": "Exporteren mislukt"
 }

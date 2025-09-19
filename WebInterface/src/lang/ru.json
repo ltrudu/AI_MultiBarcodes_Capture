@@ -120,5 +120,18 @@
   "enter_barcode_value": "Введите значение штрих -кода",
   "enter_quantity": "Введите количество",
   "update_barcode": "Обновить штрих -код",
-  "merge_selected": "Слияние выбрано"
+  "merge_selected": "Слияние выбрано",
+  "choose_export_format": "Выберите формат экспорта для выбранных сеансов:",
+  "txt_file_title": "Текстовый файл (.txt)",
+  "txt_file_desc": "Простой текстовый формат с основной информацией",
+  "csv_file_title": "CSV -файл (.csv)",
+  "csv_file_desc": "Запятые значения для приложений для электронных таблиц",
+  "excel_file_title": "File Excel (.xlsx)",
+  "excel_file_desc": "Microsoft Excel Format с расширенным форматированием",
+  "export_will_include": "Экспорт будет включать в себя:",
+  "export_session_info": "Информация о сеансе (устройство, временные метки и т. Д.)",
+  "export_barcode_info": "Все штрих -коды со значениями, символиками и количествами",
+  "export_status_info": "Статус обработки и примечания",
+  "no_sessions_selected": "Сессии не выбраны для экспорта",
+  "export_failed": "Экспорт не удался"
 }

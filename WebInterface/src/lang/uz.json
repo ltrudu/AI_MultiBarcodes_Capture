@@ -120,5 +120,18 @@
   "enter_barcode_value": "Shtrix kodini kiriting",
   "enter_quantity": "Miqdorni kiriting",
   "update_barcode": "Shtrix-kodni yangilash",
-  "merge_selected": "Birlashtirish tanlangan"
+  "merge_selected": "Birlashtirish tanlangan",
+  "choose_export_format": "Tanlangan sessiyalar uchun eksport formatini tanlang:",
+  "txt_file_title": "Matn fayli (.Txt)",
+  "txt_file_desc": "Asosiy ma'lumotlarga ega oddiy matn formati",
+  "csv_file_title": "CSV fayli (.CSV)",
+  "csv_file_desc": "Elektron jadvalga murojaat qilish uchun vergul bilan ajratilgan qiymatlar",
+  "excel_file_title": "Excel fayli (.xlsx)",
+  "excel_file_desc": "Microsoft Excel formatida rivojlangan formatlash",
+  "export_will_include": "Eksport quyidagilarni o'z ichiga oladi:",
+  "export_session_info": "Sessiya haqida ma'lumot (qurilma, vaqt belgilari va boshqalar)",
+  "export_barcode_info": "Barcha shtrixlar, simbologiyalar va miqdorlar",
+  "export_status_info": "Holat va eslatmalar",
+  "no_sessions_selected": "Eksport uchun biron bir mashg'ulotlar tanlanmagan",
+  "export_failed": "Eksport muvaffaqiyatsiz tugadi"
 }

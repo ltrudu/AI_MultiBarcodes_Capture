@@ -106,5 +106,15 @@
   "enter_barcode_value": "Ipasok ang halaga ng barcode",
   "enter_quantity": "Ipasok ang Dami",
   "update_barcode": "I -update ang Barcode",
-  "merge_selected": "Pagsamahin ang napili"
+  "merge_selected": "Pagsamahin ang napili",
+  "choose_export_format": "Piliin ang format ng pag -export para sa mga napiling sesyon:",
+  "txt_file_desc": "Simpleng format ng teksto na may pangunahing impormasyon",
+  "csv_file_desc": "Ang mga hiwalay na halaga ng comma para sa mga application ng spreadsheet",
+  "excel_file_desc": "Ang format ng Microsoft Excel na may advanced na pag -format",
+  "export_will_include": "Ang pag -export ay isasama:",
+  "export_session_info": "Impormasyon sa Session (aparato, timestamp, atbp.)",
+  "export_barcode_info": "Lahat ng mga barcode na may mga halaga, mga simbolo, at dami",
+  "export_status_info": "Katayuan ng Pagproseso at Mga Tala",
+  "no_sessions_selected": "Walang mga sesyon na napili para sa pag -export",
+  "export_failed": "Nabigo ang pag -export"
 }

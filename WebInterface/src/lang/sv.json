@@ -113,5 +113,18 @@
   "enter_barcode_value": "Ange streckkodsvärde",
   "enter_quantity": "Ange kvantitet",
   "update_barcode": "Uppdatera streckkod",
-  "merge_selected": "Slå samman vald"
+  "merge_selected": "Slå samman vald",
+  "choose_export_format": "Välj exportformat för de valda sessionerna:",
+  "txt_file_title": "Textfil (.txt)",
+  "txt_file_desc": "Enkelt textformat med grundläggande information",
+  "csv_file_title": "CSV -fil (.csv)",
+  "csv_file_desc": "Komma-separerade värden för kalkylbladsapplikationer",
+  "excel_file_title": "Excel -fil (.xlsx)",
+  "excel_file_desc": "Microsoft Excel -format med avancerad formatering",
+  "export_will_include": "Export kommer att inkludera:",
+  "export_session_info": "Sessioninformation (enhet, tidsstämplar, etc.)",
+  "export_barcode_info": "Alla streckkoder med värden, symbologier och mängder",
+  "export_status_info": "Bearbetningsstatus och anteckningar",
+  "no_sessions_selected": "Inga sessioner valda för export",
+  "export_failed": "Export misslyckades"
 }

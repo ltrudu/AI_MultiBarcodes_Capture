@@ -118,5 +118,18 @@
   "enter_barcode_value": "输入条形码值",
   "enter_quantity": "输入数量",
   "update_barcode": "更新条形码",
-  "merge_selected": "选择合并"
+  "merge_selected": "选择合并",
+  "choose_export_format": "选择选定会话的导出格式：",
+  "txt_file_title": "文本文件（.txt）",
+  "txt_file_desc": "简单的文本格式，带有基本信息",
+  "csv_file_title": "CSV文件（.CSV）",
+  "csv_file_desc": "电子表格应用程序的逗号分隔值",
+  "excel_file_title": "excel文件（.xlsx）",
+  "excel_file_desc": "Microsoft Excel格式，具有高级格式",
+  "export_will_include": "导出将包括：",
+  "export_session_info": "会话信息（设备，时间戳等）",
+  "export_barcode_info": "所有带值，符号和数量的条形码",
+  "export_status_info": "处理状态和注释",
+  "no_sessions_selected": "没有选择导出的会议",
+  "export_failed": "导出失败"
 }

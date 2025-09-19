@@ -117,5 +117,18 @@
   "enter_barcode_value": "Ingiza thamani ya barcode",
   "enter_quantity": "Ingiza wingi",
   "update_barcode": "Sasisha barcode",
-  "merge_selected": "Unganisha kuchaguliwa"
+  "merge_selected": "Unganisha kuchaguliwa",
+  "choose_export_format": "Chagua muundo wa usafirishaji kwa vikao vilivyochaguliwa:",
+  "txt_file_title": "Faili ya maandishi (.txt)",
+  "txt_file_desc": "Fomati rahisi ya maandishi na habari ya msingi",
+  "csv_file_title": "Faili ya CSV (.csv)",
+  "csv_file_desc": "Thamani zilizotengwa kwa Comma kwa matumizi ya lahajedwali",
+  "excel_file_title": "Faili ya Excel (.xlsx)",
+  "excel_file_desc": "Fomati ya Microsoft Excel na muundo wa hali ya juu",
+  "export_will_include": "Uuzaji nje utajumuisha:",
+  "export_session_info": "Habari ya Kikao (Kifaa, Timestamps, nk)",
+  "export_barcode_info": "Barcode zote zilizo na maadili, alama, na idadi",
+  "export_status_info": "Hali ya usindikaji na Vidokezo",
+  "no_sessions_selected": "Hakuna vikao vilivyochaguliwa kwa usafirishaji",
+  "export_failed": "Uuzaji nje umeshindwa"
 }

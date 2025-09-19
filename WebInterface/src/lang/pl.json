@@ -117,5 +117,18 @@
   "enter_barcode_value": "Wprowadź wartość kodu kreskowego",
   "enter_quantity": "Wprowadź ilość",
   "update_barcode": "Aktualizacja kodu kreskowego",
-  "merge_selected": "Scal wybrane"
+  "merge_selected": "Scal wybrane",
+  "choose_export_format": "Wybierz format eksportu dla wybranych sesji:",
+  "txt_file_title": "Plik tekstowy (.txt)",
+  "txt_file_desc": "Prosty format tekstu z podstawowymi informacjami",
+  "csv_file_title": "Plik CSV (.csv)",
+  "csv_file_desc": "Wartości rozdzielone przecinkami dla aplikacji arkusza kalkulacyjnego",
+  "excel_file_title": "Plik excel (.xlsx)",
+  "excel_file_desc": "Format Microsoft Excel z zaawansowanym formatowaniem",
+  "export_will_include": "Eksport obejmie:",
+  "export_session_info": "Informacje o sesji (urządzenie, znacznik czasu itp.)",
+  "export_barcode_info": "Wszystkie kody kreskowe z wartościami, symbolami i ilościami",
+  "export_status_info": "Status przetwarzania i uwagi",
+  "no_sessions_selected": "Brak sesji do eksportu",
+  "export_failed": "Eksport nie powiódł się"
 }

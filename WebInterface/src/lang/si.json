@@ -119,5 +119,18 @@
   "enter_barcode_value": "තීරු කේත අගය ඇතුළත් කරන්න",
   "enter_quantity": "ප්රමාණය ඇතුළත් කරන්න",
   "update_barcode": "තීරු කේතය යාවත්කාලීන කරන්න",
-  "merge_selected": "ඒකාබද්ධ කිරීම"
+  "merge_selected": "ඒකාබද්ධ කිරීම",
+  "choose_export_format": "තෝරාගත් සැසි සඳහා අපනයන ආකෘතිය තෝරන්න:",
+  "txt_file_title": "පෙළ ගොනුව (.txt)",
+  "txt_file_desc": "මූලික තොරතුරු සහිත සරල පෙළ ආකෘතිය",
+  "csv_file_title": "CSV ගොනුව (.CSV)",
+  "csv_file_desc": "පැතුරුම්පත් යෙදුම් සඳහා කොමාව-වෙන් කළ අගයන්",
+  "excel_file_title": "එක්සෙල් ගොනුව (.XLSX)",
+  "excel_file_desc": "උසස් හැඩතල ගැන්වීම සමඟ මයික්රොසොෆ්ට් එක්සෙල් ආකෘතිය",
+  "export_will_include": "අපනයනය ඇතුළත් වන්නේ:",
+  "export_session_info": "සැසි තොරතුරු (උපාංගය, කාලීන, ආදිය)",
+  "export_barcode_info": "සාරධර්ම, සංකේතාශ්ර සහ ප්රමාණයන් සහිත සියලුම තීරු කේත",
+  "export_status_info": "සැකසුම් තත්ත්වය සහ සටහන්",
+  "no_sessions_selected": "අපනයනය සඳහා සැසි කිසිවක් තෝරාගෙන නොමැත",
+  "export_failed": "අපනයනය අසාර්ථක විය"
 }

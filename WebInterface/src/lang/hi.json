@@ -120,5 +120,18 @@
   "enter_barcode_value": "बारकोड मान दर्ज करें",
   "enter_quantity": "मात्रा दर्ज करें",
   "update_barcode": "अद्यतन बारकोड",
-  "merge_selected": "मर्ज चयनित"
+  "merge_selected": "मर्ज चयनित",
+  "choose_export_format": "चयनित सत्रों के लिए निर्यात प्रारूप चुनें:",
+  "txt_file_title": "पाठ फ़ाइल (.txt)",
+  "txt_file_desc": "बुनियादी जानकारी के साथ सरल पाठ प्रारूप",
+  "csv_file_title": "CSV फ़ाइल (.CSV)",
+  "csv_file_desc": "स्प्रेडशीट अनुप्रयोगों के लिए अल्पविराम-अलग मान",
+  "excel_file_title": "Excel फ़ाइल (.xlsx)",
+  "excel_file_desc": "उन्नत स्वरूपण के साथ Microsoft Excel प्रारूप",
+  "export_will_include": "निर्यात में शामिल होंगे:",
+  "export_session_info": "सत्र जानकारी (डिवाइस, टाइमस्टैम्प्स, आदि)",
+  "export_barcode_info": "मूल्यों, सहजीवन, और मात्रा के साथ सभी बारकोड",
+  "export_status_info": "प्रसंस्करण की स्थिति और नोट्स",
+  "no_sessions_selected": "निर्यात के लिए चयनित कोई सत्र नहीं",
+  "export_failed": "निर्यात विफल हो गया"
 }

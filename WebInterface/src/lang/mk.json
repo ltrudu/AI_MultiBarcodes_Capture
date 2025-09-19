@@ -119,5 +119,18 @@
   "enter_barcode_value": "Внесете вредност на баркодот",
   "enter_quantity": "Внесете количина",
   "update_barcode": "Ажурирајте го баркодот",
-  "merge_selected": "Спој се избрани"
+  "merge_selected": "Спој се избрани",
+  "choose_export_format": "Изберете го формат за извоз за избраните сесии:",
+  "txt_file_title": "Текстуална датотека (.txt)",
+  "txt_file_desc": "Едноставен формат на текст со основни информации",
+  "csv_file_title": "CSV -датотека (.csv)",
+  "csv_file_desc": "Вредности одделени со запирка за апликации за табеларни пресметки",
+  "excel_file_title": "Excel -датотека (.xlsx)",
+  "excel_file_desc": "Формат на Microsoft Excel со напредно форматирање",
+  "export_will_include": "Извозот ќе вклучува:",
+  "export_session_info": "Информации за сесијата (уред, временски ознаки, итн.)",
+  "export_barcode_info": "Сите бар -кодови со вредности, симбологии и количини",
+  "export_status_info": "Статус на обработка и белешки",
+  "no_sessions_selected": "Нема избрани сесии за извоз",
+  "export_failed": "Извозот не успеа"
 }

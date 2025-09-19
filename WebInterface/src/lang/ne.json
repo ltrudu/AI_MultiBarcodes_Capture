@@ -119,5 +119,18 @@
   "enter_barcode_value": "बारकोड मान प्रविष्ट गर्नुहोस्",
   "enter_quantity": "मात्रा प्रविष्ट गर्नुहोस्",
   "update_barcode": "बारककोड अपडेट गर्नुहोस्",
-  "merge_selected": "चयनित चयनित"
+  "merge_selected": "चयनित चयनित",
+  "choose_export_format": "चयनित सत्रहरूको लागि निर्यात ढाँचा छनौट गर्नुहोस्:",
+  "txt_file_title": "पाठ फाईल (.Txt)",
+  "txt_file_desc": "आधारभूत जानकारीको साथ साधारण पाठ ढाँचा",
+  "csv_file_title": "CSV फाईल (.CSV)",
+  "csv_file_desc": "स्प्रेडशिट अनुप्रयोगहरूको लागि अल्पविराम-विभाजित मानहरू",
+  "excel_file_title": "एक्सेल फाइल (.Xlstlsx)",
+  "excel_file_desc": "Microsoft एक्सेल एक्सेल ढाँचा ढाँचा ढाँचा",
+  "export_will_include": "निर्यात समावेश छ:",
+  "export_session_info": "सत्र जानकारी (उपकरण, टाइमस्टम्प, आदि)",
+  "export_barcode_info": "मानहरू, चित्रण, नक्कली, र मात्राका साथ सबै बारकोडहरू",
+  "export_status_info": "प्रशोधन स्थिति र नोटहरू",
+  "no_sessions_selected": "निर्यातको लागि कुनै सत्रहरू चयन गरिएको छैन",
+  "export_failed": "निर्यात असफल भयो"
 }

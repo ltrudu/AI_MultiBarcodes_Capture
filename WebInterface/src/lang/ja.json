@@ -120,5 +120,18 @@
   "enter_barcode_value": "バーコード値を入力します",
   "enter_quantity": "数量を入力します",
   "update_barcode": "バーコードを更新します",
-  "merge_selected": "選択したマージ"
+  "merge_selected": "選択したマージ",
+  "choose_export_format": "選択したセッションのエクスポート形式を選択します。",
+  "txt_file_title": "テキストファイル（.txt）",
+  "txt_file_desc": "基本情報を含むシンプルなテキスト形式",
+  "csv_file_title": "CSVファイル（.csv）",
+  "csv_file_desc": "スプレッドシートアプリケーションのコンマ分離値",
+  "excel_file_title": "Excelファイル（.xlsx）",
+  "excel_file_desc": "高度なフォーマットを備えたMicrosoft Excelフォーマット",
+  "export_will_include": "エクスポートには以下が含まれます：",
+  "export_session_info": "セッション情報（デバイス、タイムスタンプなど）",
+  "export_barcode_info": "すべてのバーコードは、値、共同体、および量を備えています",
+  "export_status_info": "ステータスとメモの処理",
+  "no_sessions_selected": "輸出用に選択されたセッションはありません",
+  "export_failed": "エクスポートは失敗しました"
 }

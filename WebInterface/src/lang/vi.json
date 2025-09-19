@@ -116,5 +116,18 @@
   "enter_barcode_value": "Nhập giá trị mã vạch",
   "enter_quantity": "Nhập số lượng",
   "update_barcode": "Cập nhật mã vạch",
-  "merge_selected": "Hợp nhất được chọn"
+  "merge_selected": "Hợp nhất được chọn",
+  "choose_export_format": "Chọn định dạng xuất cho các phiên đã chọn:",
+  "txt_file_title": "Tệp văn bản (.txt)",
+  "txt_file_desc": "Định dạng văn bản đơn giản với thông tin cơ bản",
+  "csv_file_title": "Tệp CSV (.csv)",
+  "csv_file_desc": "Các giá trị được phân tách bằng dấu phẩy cho các ứng dụng bảng tính",
+  "excel_file_title": "Tệp Excel (.xlsx)",
+  "excel_file_desc": "Định dạng Microsoft Excel với định dạng nâng cao",
+  "export_will_include": "Xuất khẩu sẽ bao gồm:",
+  "export_session_info": "Thông tin phiên (Thiết bị, dấu thời gian, v.v.)",
+  "export_barcode_info": "Tất cả các mã vạch với các giá trị, ký hiệu và số lượng",
+  "export_status_info": "Trạng thái xử lý và ghi chú",
+  "no_sessions_selected": "Không có phiên được chọn để xuất",
+  "export_failed": "Xuất khẩu không thành công"
 }

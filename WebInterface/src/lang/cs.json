@@ -116,5 +116,18 @@
   "enter_barcode_value": "Zadejte hodnotu čárového kódu",
   "enter_quantity": "Zadejte množství",
   "update_barcode": "Aktualizujte čárový kód",
-  "merge_selected": "Sloučit vybrané"
+  "merge_selected": "Sloučit vybrané",
+  "choose_export_format": "Vyberte formát exportu pro vybraná relace:",
+  "txt_file_title": "Textový soubor (.txt)",
+  "txt_file_desc": "Jednoduchý textový formát se základními informacemi",
+  "csv_file_title": "Soubor CSV (.CSV)",
+  "csv_file_desc": "Hodnoty oddělené čárkami pro aplikace tabulky",
+  "excel_file_title": "Soubor Excel (.xlsx)",
+  "excel_file_desc": "Formát Microsoft Excel s pokročilým formátováním",
+  "export_will_include": "Export bude zahrnovat:",
+  "export_session_info": "Informace o relaci (zařízení, časová razítka atd.)",
+  "export_barcode_info": "Všechny čárové kódy s hodnotami, symbologiemi a množstvími",
+  "export_status_info": "Stav a poznámky zpracování",
+  "no_sessions_selected": "Pro vývoz",
+  "export_failed": "Export selhal"
 }

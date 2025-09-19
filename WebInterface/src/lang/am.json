@@ -120,5 +120,18 @@
   "enter_barcode_value": "የአርኮድ እሴት ያስገቡ",
   "enter_quantity": "ብዛትን ያስገቡ",
   "update_barcode": "አሞሌ አሞሌ",
-  "merge_selected": "ተመርጠዋል"
+  "merge_selected": "ተመርጠዋል",
+  "choose_export_format": "ለተመረጡ ክፍለ ጊዜዎች ወደ ውጭ የመላክ ቅፅ ይምረጡ:",
+  "txt_file_title": "የጽሑፍ ፋይል (.txt (.txt)",
+  "txt_file_desc": "ከመሰረታዊ መረጃ ጋር ቀላል የጽሑፍ ቅርጸት",
+  "csv_file_title": "CSV ፋይል (.csv)",
+  "csv_file_desc": "ለተሰላዘዘ መተግበሪያዎች ኮማ-የተለያየ እሴቶች",
+  "excel_file_title": "የ Excel ፋይል (.xlsx)",
+  "excel_file_desc": "ከ Microsoft ቅርጸት ጋር የማይክሮሶፍት Excel ቅርጸት",
+  "export_will_include": "ወደ ውጭ መላክ የሚከተሉትን ያካትታል:",
+  "export_session_info": "ክፍለ ጊዜ መረጃ (መሣሪያ, የጊዜ መንጋዎች, ወዘተ.)",
+  "export_barcode_info": "ሁሉም የእሴቶች, በምልክት እና መጠኖች ያላቸው ሁሉም ባርኮድ",
+  "export_status_info": "ሁኔታን እና ማስታወሻዎችን በማስኬድ",
+  "no_sessions_selected": "ወደ ውጭ ለመላክ ምንም ክፍለ ጊዜዎች የሉም",
+  "export_failed": "ወደ ውጭ መላክ አልተሳካም"
 }

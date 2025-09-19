@@ -115,5 +115,18 @@
   "enter_barcode_value": "Unesite vrijednost barkoda",
   "enter_quantity": "Unesite količinu",
   "update_barcode": "Ažuriranje barkoda",
-  "merge_selected": "MERGE odabrano"
+  "merge_selected": "MERGE odabrano",
+  "choose_export_format": "Odaberite format izvoza za odabrane sesije:",
+  "txt_file_title": "Tekst datoteka (.txt)",
+  "txt_file_desc": "Jednostavan tekstni format s osnovnim informacijama",
+  "csv_file_title": "CSV datoteka (.csv)",
+  "csv_file_desc": "Vrijednosti odvojene zarezima za aplikacije za proračunske tablice",
+  "excel_file_title": "Excel datoteka (.xlsx)",
+  "excel_file_desc": "Microsoft Excel format s naprednim oblikovanjem",
+  "export_will_include": "Izvoz će uključivati:",
+  "export_session_info": "Informacije o sesiji (uređaj, vremenske oznake itd.)",
+  "export_barcode_info": "Svi barkodovi s vrijednostima, simbologijama i količinama",
+  "export_status_info": "Status obrade i bilješke",
+  "no_sessions_selected": "Nema sesija odabranih za izvoz",
+  "export_failed": "Izvoz nije uspio"
 }
