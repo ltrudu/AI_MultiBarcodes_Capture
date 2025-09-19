@@ -14,9 +14,25 @@ The managed configuration is organized into the following sections:
 - **Prefix** (`prefix`): Default prefix for exported files (string)
 - **Extension** (`extension`): Default file type for exports (choice: .txt, .csv, .xlsx)
 - **Language** (`language`): Default language for the application interface (dropdown with all supported languages)
+- **Processing Mode** (`processing_mode`): Select data processing mode (choice: file, https_post)
+  - **File Mode**: Save barcode data to local files for manual export
+  - **HTTP/HTTPS Post Mode**: Upload barcode data directly to web management system
 
-### 2. Advanced Settings (Nested Bundle)
-All advanced AI and camera settings are organized in a nested bundle called `advanced`. This provides a clean, organized configuration experience for enterprise administrators:
+### 2. HTTP/HTTPS Configuration (Nested Bundle)
+All HTTP/HTTPS endpoint and authentication settings are organized in a nested bundle called `https_configuration`. This provides secure centralized configuration for enterprise web management system integration:
+
+#### Network Configuration:
+- **HTTP/HTTPS Endpoint** (`https_endpoint`): Server endpoint URL for uploading barcode data (string)
+  - **Example**: `http://192.168.1.100:3500/api/barcodes.php` (for local web management system)
+  - **Example**: `https://yourcompany.com/barcode/api/upload` (for cloud deployment)
+
+#### Authentication Configuration:
+- **Enable Authentication** (`authentication_enabled`): Enable HTTP authentication for the endpoint (boolean)
+- **Username** (`username`): Username for HTTP authentication (string, only used if authentication is enabled)
+- **Password** (`password`): Password for HTTP authentication (string, only used if authentication is enabled)
+
+### 3. Advanced Settings (Nested Bundle)
+All advanced AI and camera settings are organized in a nested bundle called `advanced_settings`. This provides a clean, organized configuration experience for enterprise administrators:
 
 #### AI Configuration Options:
 - **Model Input Size** (`model_input_size`): AI model input resolution (choice: SMALL, MEDIUM, LARGE)
@@ -37,7 +53,7 @@ All advanced AI and camera settings are organized in a nested bundle called `adv
   - **GPU (Graphics Processing Unit)**: For trial use if DSP not available
   - **CPU (Central Processing Unit)**: For trial use if DSP and GPU are not available
 
-### 3. Barcode Symbologies (Nested Bundle)
+### 4. Barcode Symbologies (Nested Bundle)
 All barcode symbologies are organized in a nested bundle called `barcode_symbologies`. This allows administrators to see them as a collapsed group when editing the configuration, improving the management experience.
 
 #### Supported Symbologies:
@@ -86,7 +102,11 @@ All barcode symbologies are organized in a nested bundle called `barcode_symbolo
    - Set the file prefix (e.g., "Company_Scan_")
    - Choose default export format (.txt, .csv, or .xlsx)
    - Select default application language from the dropdown (supports 72 languages plus system default)
-   - Expand the "Advanced" section to configure AI and camera settings:
+   - Select processing mode (File-based or HTTP/HTTPS Post mode)
+   - Expand the "HTTP/HTTPS Configuration" section to configure web management system endpoint:
+     - Set HTTP/HTTPS endpoint URL for real-time data upload
+     - Configure authentication settings if required by your web server
+   - Expand the "Advanced Settings" section to configure AI and camera settings:
      - Set optimal model input size based on barcode types and performance requirements
      - Choose appropriate camera resolution for scanning environment
      - Select inference processor type based on device capabilities
@@ -101,7 +121,14 @@ All barcode symbologies are organized in a nested bundle called `barcode_symbolo
   "prefix": "CompanyScans_",
   "extension": ".xlsx",
   "language": "fr",
-  "advanced": {
+  "processing_mode": "https_post",
+  "https_configuration": {
+    "https_endpoint": "http://192.168.1.100:3500/api/barcodes.php",
+    "authentication_enabled": true,
+    "username": "admin",
+    "password": "secure_password"
+  },
+  "advanced_settings": {
     "model_input_size": "MEDIUM",
     "camera_resolution": "MP_2",
     "inference_type": "DSP"
