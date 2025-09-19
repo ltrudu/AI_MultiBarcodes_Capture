@@ -37,6 +37,9 @@ The AI MultiBarcode Capture system is a complete enterprise-grade solution for b
 
 ### Key Features
 - ✅ **Multi-barcode simultaneous scanning** using AI vision technology
+- ✅ **Advanced Multilingual Support** - Enterprise-grade translation system supporting 76+ Android languages
+- ✅ **Ultra-Fast Translation Pipeline** - Speed-optimized engine with 10-20x performance improvements
+- ✅ **Dynamic Language Discovery** - Automatic detection and management of translation files
 - ✅ **Real-time data synchronization** between devices and web interface
 - ✅ **Unified Docker deployment** - Single container with all services (Port 3500)
 - ✅ **Flexible deployment options** (HTTP/HTTPS, file-based, or hybrid)
