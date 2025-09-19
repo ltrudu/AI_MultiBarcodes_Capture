@@ -1,6 +1,6 @@
 # AI MultiBarcode Capture Application
 
-[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.24-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.2-blue)](https://developer.zebra.com/)
+[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.25-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.2-blue)](https://developer.zebra.com/)
 
 [![Apache](https://img.shields.io/badge/Apache-2.4-red)](https://httpd.apache.org/) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
@@ -15,50 +15,50 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
-### **Version 1.24** 🚀
-**Enterprise QR Code Configuration & Advanced Translation System**
+### **Version 1.25** 🚀
+**Enterprise Export System & Enhanced Web Management**
 
-Revolutionary **QR Code endpoint configuration** and **enterprise-grade multilingual support** with major infrastructure improvements:
+Major **data export capabilities** and **advanced web interface enhancements** with significant infrastructure improvements:
 
-• **📱 QR Code Endpoint Configuration**: Automatically configure HTTP endpoints by scanning QR codes from the Web Management System - eliminates manual URL entry and deployment complexity
+• **📊 Complete Export System**: Full data export functionality supporting TXT, CSV, and native XLSX formats - replicating Android app export capabilities in the web interface
 
-• **🌐 Ultra-Fast Translation System**: Speed-optimized translation engine supporting 76+ Android languages with 10-20x performance improvements
+• **📈 Real XLSX Generation**: Native Excel file creation using custom SimpleXLSXWriter library with proper OpenXML format - no more CSV-to-Excel conversion
 
-• **🚀 AI-Powered Translation Automation**: Automated translation pipeline with Google Translate API integration, batch processing, and parallel execution
+• **🎯 Enhanced User Experience**: Improved barcode processing workflow with visual feedback and optimized interaction design
 
-• **Zero-Typing Setup**: WMS generates QR codes for instant mobile configuration with Zebra Imager integration
+• **🌐 Advanced Translation Updates**: Updated translation files across 76+ languages with new export-related terminology and UI improvements
 
-• **🐳 Unified Docker Container**: Single container deployment containing Apache+PHP web server, MySQL database, and phpMyAdmin in one unified container
+• **🔧 Smart IP Resolution**: Automatic host IP detection for Docker containers, eliminating manual IP configuration for Android connectivity
 
-• **Simplified Deployment**: Enhanced deployment scripts for Windows (`start-services.bat`) and Linux/macOS (`start-services.sh`) with automated container management
+• **🛡️ Simplified Security**: Global cleartext HTTP traffic permission for development environments, removing IP-specific network restrictions
 
-• **🌐 Enhanced WMS Interface**: Built-in QR code generator, dynamic language detection, improved responsive design, and better real-time session monitoring
+• **⚡ Performance Optimizations**: Enhanced startup scripts with automatic IP detection and improved container lifecycle management
 
-• **📖 Comprehensive Documentation**: Complete QR code configuration guide with troubleshooting, security guidelines, and deployment procedures
+• **🐳 Docker Infrastructure**: Enhanced container management with automatic host IP detection and improved service reliability
 
 **Key Technical Features:**
-• **Automatic Endpoint Detection**: Android app processes QR codes with `AIMultiBarcodeEndpoint:` prefix for instant configuration
+• **Multi-Format Export API**: RESTful API supporting TXT, CSV, and XLSX exports with session-based data filtering
 
-• **Speed-Optimized Translation Engine**: 10-20x faster translation with parallel processing, batch translation, and optimized retry mechanisms
+• **Native XLSX Writer**: Custom lightweight XLSX generation without external dependencies using PHP ZipArchive
 
-• **Dynamic Language Discovery**: Automatic detection of available translation files with real-time dropdown population
+• **Intelligent IP Detection**: Multi-method host IP detection prioritizing 192.168.x.x networks with Docker container filtering
 
-• **DataWedge Integration**: Built-in QR code scanning via DataWedge profile in settings with toast confirmation
+• **Enhanced UX Workflows**: Improved barcode marking system with better visual feedback and user interaction patterns
 
-• **Container Architecture**: Multi-service container with supervisord management and persistent data storage
+• **Cross-Browser Compatibility**: Consistent UI rendering across Chrome, Edge, and other browsers with enhanced CSS styling
 
-• **Security & Validation**: Input validation, endpoint verification, and secure configuration handling
+• **Automated Network Configuration**: Smart network security configuration removing manual IP management complexity
 
 **Enterprise Benefits:**
-• **Simplified IT Deployment**: Zero configuration errors with QR code scanning
+• **Seamless Data Export**: Web-based export system matches Android app functionality for unified data management
 
-• **Rapid Device Setup**: Multiple devices configured in seconds
+• **Simplified Network Setup**: Automatic IP resolution eliminates network configuration complexity
 
-• **Scalable Infrastructure**: Single container management reduces operational overhead
+• **Enhanced Productivity**: Improved user workflows reduce time-to-action for barcode processing operations
 
-• **Enhanced Monitoring**: Better visibility into device connections and configurations
+• **Better Integration**: Unified export system enables seamless data flow between mobile and web platforms
 
-The QR Code configuration system transforms enterprise deployment from complex manual setup to simple one-scan configuration, while the unified Docker container architecture simplifies deployment and maintenance for IT teams.
+This release significantly enhances enterprise data management capabilities while simplifying deployment and network configuration for IT teams.
 
 📋 **[View Complete Changelog](CHANGELOG.md)** for previous versions and detailed release history.
 
