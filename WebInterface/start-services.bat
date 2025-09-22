@@ -93,6 +93,8 @@ if "%HOST_IP%"=="" (
     echo [OK] Detected host IP: %HOST_IP%
 )
 
+echo [INFO] IP addresses will be detected automatically by the website
+
 REM Start the container
 echo Starting container...
 docker run -d ^

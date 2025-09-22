@@ -13,6 +13,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 function getServerIPs() {
     $ips = array();
 
+    // Check if IP configuration file exists first (highest priority)
+    $configFile = __DIR__ . '/../../config/ip-config.json';
+    if (file_exists($configFile)) {
+        $configData = json_decode(file_get_contents($configFile), true);
+        if ($configData) {
+            // Use config file values if they exist and are valid
+            $localIP = isset($configData['local_ip']) && filter_var($configData['local_ip'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)
+                ? $configData['local_ip'] : null;
+            $externalIP = isset($configData['external_ip']) && filter_var($configData['external_ip'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)
+                ? $configData['external_ip'] : null;
+
+            if ($localIP && $externalIP) {
+                // Both IPs are valid in config, use them
+                return array('local' => $localIP, 'external' => $externalIP);
+            } else if ($localIP) {
+                // Only local IP is valid in config, detect external dynamically
+                return array('local' => $localIP, 'external' => getExternalIP());
+            }
+        }
+    }
+
+    // Fallback to dynamic detection if config file doesn't exist or has invalid data
+    return detectIPs();
+}
+
+function detectIPs() {
+    $ips = array();
+
     // Get local network IP addresses
     $localIPs = array();
 
@@ -30,7 +58,7 @@ function getServerIPs() {
                !isDockerContainerIP($ip);
     }
 
-    // Method 0: Check if HOST_IP is provided via environment variable (highest priority)
+    // Method 0: Check if HOST_IP is provided via environment variable (lower priority than config file)
     $hostIP = getenv('HOST_IP');
     if ($hostIP && filter_var($hostIP, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
         $localIPs[] = $hostIP;
