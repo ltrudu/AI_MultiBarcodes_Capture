@@ -20,6 +20,7 @@ This wiki provides comprehensive documentation for the AI MultiBarcode Capture s
 
 ### 🌐 Web Management System (WMS)
 - **[Docker WMS Deployment](10-Docker-WMS-Deployment.md)** - Complete guide to deploy and use the web management system with Docker
+- **[Managing IP Changes](11-Managing-IP-Changes.md)** - Update endpoint configuration when connecting to new networks
 
 ### 🔧 Advanced Configuration
 - **[Troubleshooting Guide](15-Troubleshooting-Guide.md)** - Common issues and solutions

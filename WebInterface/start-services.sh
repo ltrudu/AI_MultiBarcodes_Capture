@@ -132,6 +132,8 @@ else
     echo "✅ Detected host IP: $HOST_IP"
 fi
 
+echo "📡 IP addresses will be detected automatically by the website"
+
 # Start the unified container using docker run for better Docker Desktop display
 echo "🚀 Starting unified container..."
 docker run -d \
