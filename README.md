@@ -15,6 +15,19 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
+### **Server Update** 🔄
+**Network IP Update Scripts**
+
+Added automatic IP update scripts to handle network changes when connecting to new WiFi networks or different locations.
+
+• **New Scripts**: `update-network-ip.bat` (Windows) and `update-network-ip.sh` (Linux/macOS) automatically detect and update IP configuration
+
+• **Antivirus-Safe**: Scripts use only standard system commands to avoid security software conflicts
+
+• **Data Preservation**: Docker container restart maintains all session and barcode data
+
+• **Updated Documentation**: Added "[Managing IP Changes](wiki/11-Managing-IP-Changes.md)" guide to the wiki
+
 ### **Version 1.26** 🚀
 **Enhanced Enterprise Managed Configuration**
 
