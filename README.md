@@ -28,6 +28,19 @@ Added automatic IP update scripts to handle network changes when connecting to n
 
 • **Updated Documentation**: Added "[Managing IP Changes](wiki/11-Managing-IP-Changes.md)" guide to the wiki
 
+**🔄 WebServer Update Scripts:**
+• **Live Updates**: `update-webserver.bat` (Windows) and `update-webserver.sh` (Linux/macOS) update website files without rebuilding containers
+
+• **Smart Container Management**: Automatically handles container status checking, starting stopped containers when needed
+
+• **Complete File Sync**: Updates all website files, API endpoints, configurations, and language translations in running containers
+
+• **Zero Data Loss**: Updates preserve all database data and user sessions while applying latest code changes
+
+• **Development Workflow**: Streamlined git-to-deployment process for efficient development and maintenance
+
+• **Comprehensive Guide**: Complete documentation available in "[Updating the Server](wiki/12-Updating-Server.md)" wiki page
+
 ### **Version 1.26** 🚀
 **Enhanced Enterprise Managed Configuration**
 
