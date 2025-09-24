@@ -32,7 +32,6 @@ import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.adapters.LanguageAdapter;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 import com.zebra.ai_multibarcodes_capture.helpers.EProcessingMode;
-import com.zebra.ai_multibarcodes_capture.helpers.KeystoreHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
@@ -66,11 +65,10 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "SettingsActivity";
 
-    private EditText etPrefix, etHttpsEndpoint, etUsername, etPassword;
+    private EditText etPrefix, etHttpsEndpoint;
     private RadioButton rbCSV, rbTXT, rbXSLX;
-    private CheckBox cbAuthentication;
     private ImageView ivToggleSymbologies, ivToggleFileTypes, ivToggleAdvanced, ivToggleHttpsPost;
-    private LinearLayout llSymbologies, llAdvancedContent, llFileProcessingContent, llHttpsPost, llAuthenticationGroup, llFileProcessing, llHttpsPostContent;
+    private LinearLayout llSymbologies, llAdvancedContent, llFileProcessingContent, llHttpsPost, llFileProcessing, llHttpsPostContent;
     private RadioGroup rgFileTypes, rgModelInputSize, rgCameraResolution, rgInferenceType;
     private RadioButton rbSmallInputSize, rbMediumInputSize, rbLargeInputSize;
     private RadioButton rb1MPResolution, rb2MPResolution, rb4MPResolution, rb8MPResolution;
@@ -84,8 +82,6 @@ public class SettingsActivity extends AppCompatActivity {
     private LanguageAdapter languageAdapter;
     private List<LanguageItem> languageList;
     private String pendingLanguageCode = null; // Track pending language changes
-    private KeystoreHelper keystoreHelper;
-    private String originalDummyPassword = null; // Track original dummy password to detect changes
     private CheckBox cbAUSTRALIAN_POSTAL, cbAZTEC, cbCANADIAN_POSTAL, cbCHINESE_2OF5, cbCODABAR;
     private CheckBox cbCODE11, cbCODE39, cbCODE93, cbCODE128, cbCOMPOSITE_AB, cbCOMPOSITE_C;
     private CheckBox cbD2OF5, cbDATAMATRIX, cbDOTCODE, cbDUTCH_POSTAL, cbEAN_8, cbEAN_13;
@@ -130,14 +126,8 @@ public class SettingsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Initialize KeystoreHelper
-        keystoreHelper = new KeystoreHelper(this);
-        
         etPrefix = findViewById(R.id.etPrefix);
         etHttpsEndpoint = findViewById(R.id.etHttpsEndpoint);
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        cbAuthentication = findViewById(R.id.cbAuthentication);
         rbCSV = findViewById(R.id.rbCSV);
         rbTXT = findViewById(R.id.rbTxt);
         rbXSLX = findViewById(R.id.rbXSLX);
@@ -151,7 +141,6 @@ public class SettingsActivity extends AppCompatActivity {
         llFileProcessing = findViewById(R.id.llFileProcessing);
         llHttpsPost = findViewById(R.id.llHttpsPost);
         llHttpsPostContent = findViewById(R.id.llHttpsPostContent);
-        llAuthenticationGroup = findViewById(R.id.llAuthenticationGroup);
         rgFileTypes = findViewById(R.id.rgFileTypes);
         rgModelInputSize = findViewById(R.id.rgModelInputSize);
         rgCameraResolution = findViewById(R.id.rgCameraResolution);
@@ -279,27 +268,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        // Set up authentication checkbox listener
-        cbAuthentication.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    llAuthenticationGroup.setVisibility(View.VISIBLE);
-                } else {
-                    llAuthenticationGroup.setVisibility(View.GONE);
-                    // Clear credentials when authentication is disabled for security
-                    etUsername.setText("");
-                    etPassword.setText("");
-                    originalDummyPassword = "";
-                    try {
-                        keystoreHelper.clearAllCredentials();
-                        LogUtils.d(TAG, "Cleared credentials when authentication disabled");
-                    } catch (Exception e) {
-                        LogUtils.e(TAG, "Error clearing credentials: " + e.getMessage());
-                    }
-                }
-            }
-        });
 
         // Setup symbology checkboxes change listeners
         setupSymbologyListeners();
@@ -782,81 +750,14 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void loadHttpsPostSettings(SharedPreferences sharedPreferences) {
         String endpoint = sharedPreferences.getString(SHARED_PREFERENCES_HTTPS_ENDPOINT, SHARED_PREFERENCES_HTTPS_ENDPOINT_DEFAULT);
-        boolean authentication = sharedPreferences.getBoolean(SHARED_PREFERENCES_HTTPS_AUTHENTICATION, SHARED_PREFERENCES_HTTPS_AUTHENTICATION_DEFAULT);
 
         // Load endpoint as-is, supporting both HTTP and HTTPS
-
         etHttpsEndpoint.setText(endpoint);
-        cbAuthentication.setChecked(authentication);
-
-        // Load username from secure keystore and show dummy password
-        try {
-            String username = keystoreHelper.getUsername();
-            etUsername.setText(username);
-
-            // Show dummy characters matching the stored password length for security
-            int passwordLength = keystoreHelper.getPasswordLength();
-            if (passwordLength > 0) {
-                // Create dummy password with bullet characters (•)
-                StringBuilder dummyPassword = new StringBuilder();
-                for (int i = 0; i < passwordLength; i++) {
-                    dummyPassword.append("•");
-                }
-                originalDummyPassword = dummyPassword.toString();
-                etPassword.setText(originalDummyPassword);
-                LogUtils.d(TAG, "Loaded username and displayed dummy password with length: " + passwordLength);
-            } else {
-                originalDummyPassword = "";
-                etPassword.setText("");
-                LogUtils.d(TAG, "No stored password found");
-            }
-        } catch (Exception e) {
-            LogUtils.e(TAG, "Error loading credentials from keystore: " + e.getMessage());
-            etUsername.setText("");
-            etPassword.setText("");
-            originalDummyPassword = "";
-        }
-
-        // Set initial visibility of authentication group
-        if (authentication) {
-            llAuthenticationGroup.setVisibility(View.VISIBLE);
-        } else {
-            llAuthenticationGroup.setVisibility(View.GONE);
-        }
     }
 
     private void saveHttpsPostSettings(SharedPreferences.Editor editor) {
         String endpoint = etHttpsEndpoint.getText().toString();
-        boolean authentication = cbAuthentication.isChecked();
-        String username = etUsername.getText().toString();
-        String password = etPassword.getText().toString();
-
         editor.putString(SHARED_PREFERENCES_HTTPS_ENDPOINT, endpoint);
-        editor.putBoolean(SHARED_PREFERENCES_HTTPS_AUTHENTICATION, authentication);
-
-        // Save username and password securely in keystore
-        try {
-            boolean usernameStored = keystoreHelper.storeUsername(username);
-            boolean passwordStored = true;
-
-            // Only save password if it has been modified by the user (not the dummy password)
-            if (!password.equals(originalDummyPassword)) {
-                passwordStored = keystoreHelper.storePassword(password);
-                LogUtils.d(TAG, "Password was modified, storing new password");
-            } else {
-                LogUtils.d(TAG, "Password unchanged (dummy), keeping existing stored password");
-            }
-
-            if (usernameStored && passwordStored) {
-                LogUtils.d(TAG, "Successfully stored credentials in keystore");
-            } else {
-                LogUtils.w(TAG, "Warning: Some credentials may not have been stored properly");
-            }
-        } catch (Exception e) {
-            LogUtils.e(TAG, "Error storing credentials in keystore: " + e.getMessage());
-            // Show user-friendly error message
-            Toast.makeText(this, "Warning: Could not securely store credentials", Toast.LENGTH_LONG).show();
-        }
     }
 
     private String getSelectedExtension()

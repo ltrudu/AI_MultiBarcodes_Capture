@@ -219,8 +219,5 @@ public class Constants {
     // HTTPS Post preferences
     public static final String SHARED_PREFERENCES_HTTPS_ENDPOINT = "SHARED_PREFERENCES_HTTPS_ENDPOINT";
     public static final String SHARED_PREFERENCES_HTTPS_ENDPOINT_DEFAULT = "";
-    public static final String SHARED_PREFERENCES_HTTPS_AUTHENTICATION = "SHARED_PREFERENCES_HTTPS_AUTHENTICATION";
-    public static final boolean SHARED_PREFERENCES_HTTPS_AUTHENTICATION_DEFAULT = false;
-    // Note: Username and password are stored securely in Android Keystore via KeystoreHelper
 
 }

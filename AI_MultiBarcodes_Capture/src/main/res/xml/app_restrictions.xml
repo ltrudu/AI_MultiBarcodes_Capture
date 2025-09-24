@@ -43,7 +43,7 @@
     <restriction
         android:key="https_configuration"
         android:title="HTTP/HTTPS Configuration"
-        description="Configure HTTP/HTTPS endpoint and authentication settings"
+        description="Configure HTTP/HTTPS endpoint settings"
         android:restrictionType="bundle">
 
         <!-- HTTPS Endpoint Configuration -->
@@ -54,29 +54,6 @@
             android:restrictionType="string"
             android:defaultValue="" />
 
-        <!-- Authentication Configuration -->
-        <restriction
-            android:key="authentication_enabled"
-            android:title="Enable Authentication"
-            description="Enable HTTP authentication for the endpoint"
-            android:restrictionType="bool"
-            android:defaultValue="false" />
-
-        <!-- Username Configuration -->
-        <restriction
-            android:key="username"
-            android:title="Username"
-            description="Username for HTTP authentication (only used if authentication is enabled)"
-            android:restrictionType="string"
-            android:defaultValue="" />
-
-        <!-- Password Configuration -->
-        <restriction
-            android:key="password"
-            android:title="Password"
-            description="Password for HTTP authentication (only used if authentication is enabled)"
-            android:restrictionType="string"
-            android:defaultValue="" />
 
     </restriction>
 

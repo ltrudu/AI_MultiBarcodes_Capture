@@ -2,6 +2,63 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+## Version 1.27
+**🔓 Simplified Android Authentication**
+
+Streamlined Android application HTTP post configuration by removing authentication complexity for improved demonstration and development experience.
+
+### Major Changes:
+• **Authentication Removal**: Completely removed authentication checkbox, username, and password fields from Android app HTTP post settings
+• **Simplified Configuration**: Android app now requires only endpoint URL configuration for HTTP/HTTPS communication
+• **UI Cleanup**: Removed authentication-related UI components from settings layout (activity_setup.xml)
+• **Code Simplification**: Eliminated KeystoreHelper dependencies and authentication logic throughout the application
+
+This release focuses on simplifying the user experience for demonstration and development scenarios while preserving all essential application functionality.
+
+### **Server Update** 🔄
+**Network IP Update Scripts**
+
+Added automatic IP update scripts to handle network changes when connecting to new WiFi networks or different locations.
+
+• **New Scripts**: `update-network-ip.bat` (Windows) and `update-network-ip.sh` (Linux/macOS) automatically detect and update IP configuration
+
+• **Antivirus-Safe**: Scripts use only standard system commands to avoid security software conflicts
+
+• **Data Preservation**: Docker container restart maintains all session and barcode data
+
+• **Updated Documentation**: Added "[Managing IP Changes](wiki/11-Managing-IP-Changes.md)" guide to the wiki
+
+**WebServer Update Scripts:**
+• **Live Updates**: `update-webserver.bat` (Windows) and `update-webserver.sh` (Linux/macOS) update website files without rebuilding containers
+
+• **Smart Container Management**: Automatically handles container status checking, starting stopped containers when needed
+
+• **Complete File Sync**: Updates all website files, API endpoints, configurations, and language translations in running containers
+
+• **Zero Data Loss**: Updates preserve all database data and user sessions while applying latest code changes
+
+• **Development Workflow**: Streamlined git-to-deployment process for efficient development and maintenance
+
+• **Comprehensive Guide**: Complete documentation available in "[Updating the Server](wiki/12-Updating-Server.md)" wiki page
+
+**HTTPS Certificate Management & Download Features:**
+• **🔐 Automatic SSL Certificate Generation**: Self-signed CA and server certificates automatically generated with `create-certificates.bat` and `create-certificates.sh` scripts
+
+• **📥 Web-Based Certificate Downloads**: Download CA certificates directly from the web interface settings for easy Windows and Android installation
+
+• **🌐 Secure HTTPS Support**: Full HTTPS implementation with Apache SSL on port 3543, providing encrypted communication for enterprise environments
+
+• **📱 Android System Certificate Support**: Generated Android system certificates (`.pem` format) for device-wide SSL trust without app-embedded certificates
+
+• **🪟 Windows Certificate Integration**: Windows-compatible CA certificates for browser trust and enterprise certificate management
+
+• **📖 Interactive Installation Guide**: Built-in modal popup with step-by-step certificate installation instructions for Windows and Android platforms
+
+• **🔄 Certificate Deployment Pipeline**: Automated certificate copying to web-accessible directories during container startup and updates
+
+• **🛡️ Enterprise Security**: Complete PKI infrastructure with certificate chain validation for secure enterprise communications
+
+
 ## Version 1.26
 **📋 Enhanced Enterprise Managed Configuration**
 

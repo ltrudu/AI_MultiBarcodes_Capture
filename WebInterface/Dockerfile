@@ -39,8 +39,10 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-lang
     && rm phpMyAdmin-5.2.1-all-languages.tar.gz
 
 # Configure Apache
-RUN a2enmod rewrite headers expires env
+RUN a2enmod rewrite headers expires env ssl
 COPY apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY apache/ssl-default.conf /etc/apache2/sites-available/ssl-default.conf
+RUN a2ensite ssl-default
 
 # Configure phpMyAdmin
 COPY phpmyadmin/config.inc.php /var/www/html/phpmyadmin/config.inc.php
@@ -86,7 +88,7 @@ ENV MYSQL_USER=wms_user
 ENV MYSQL_PASSWORD=wms_password
 
 # Expose ports (will be dynamic based on WEB_PORT)
-EXPOSE 3500
+EXPOSE 3500 3543
 
 # Start the services
 CMD ["/startup.sh"]

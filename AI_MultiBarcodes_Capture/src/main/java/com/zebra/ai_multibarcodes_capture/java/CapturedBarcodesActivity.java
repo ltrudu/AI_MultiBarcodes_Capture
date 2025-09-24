@@ -37,7 +37,6 @@ import com.zebra.ai_multibarcodes_capture.dataeditor.BarcodeDataEditorActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.SessionsFilesHelpers;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
-import com.zebra.ai_multibarcodes_capture.helpers.KeystoreHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
 import com.google.gson.Gson;
@@ -60,7 +59,6 @@ import javax.net.ssl.X509TrustManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -849,9 +847,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             connection.setReadTimeout(15000); // 15 seconds
             android.util.Log.d("CapturedBarcodes", "Headers set: POST, JSON content-type, timeouts configured");
 
-            // Add authentication if configured
-            android.util.Log.d("CapturedBarcodes", "Adding authentication headers if configured");
-            addAuthenticationHeaders(connection);
+            // Direct HTTP request - no authentication headers needed
 
             // Send JSON data
             android.util.Log.d("CapturedBarcodes", "Sending JSON data to server");
@@ -932,38 +928,6 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         }
     }
 
-    private void addAuthenticationHeaders(HttpURLConnection connection) {
-        android.util.Log.d("CapturedBarcodes", "addAuthenticationHeaders() called");
-
-        // Get authentication settings from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        boolean authEnabled = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_HTTPS_AUTHENTICATION, false);
-        android.util.Log.d("CapturedBarcodes", "Authentication enabled: " + authEnabled);
-
-        if (authEnabled) {
-            android.util.Log.d("CapturedBarcodes", "Loading credentials from keystore");
-            KeystoreHelper keystoreHelper = new KeystoreHelper(this);
-            String username = keystoreHelper.getUsername();
-            String password = keystoreHelper.getPassword();
-
-            android.util.Log.d("CapturedBarcodes", "Username loaded: " + (username.isEmpty() ? "empty" : "present"));
-            android.util.Log.d("CapturedBarcodes", "Password loaded: " + (password.isEmpty() ? "empty" : "present"));
-
-            if (!username.isEmpty() && !password.isEmpty()) {
-                android.util.Log.d("CapturedBarcodes", "Adding Basic Authentication header");
-                // Use Basic Authentication
-                String credentials = username + ":" + password;
-                String basicAuth = "Basic " + Base64.getEncoder().encodeToString(
-                    credentials.getBytes(StandardCharsets.UTF_8));
-                connection.setRequestProperty("Authorization", basicAuth);
-                android.util.Log.d("CapturedBarcodes", "Authorization header added successfully");
-            } else {
-                android.util.Log.w("CapturedBarcodes", "Authentication enabled but credentials are missing");
-            }
-        } else {
-            android.util.Log.d("CapturedBarcodes", "Authentication disabled, no headers added");
-        }
-    }
 
     private static class ViewHolder {
         View foregroundContainer;

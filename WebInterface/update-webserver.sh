@@ -42,11 +42,28 @@ docker cp src/api multibarcode-webinterface:/var/www/html/
 echo "⚙️  [STEP 3] Copying configuration files..."
 docker cp src/config multibarcode-webinterface:/var/www/html/
 
-echo "🔒 [STEP 4] Setting proper permissions..."
+echo "🔐 [STEP 4] Updating SSL certificates..."
+if [ -d "ssl" ]; then
+    echo "ℹ️  SSL certificates found, updating container..."
+    docker cp ssl/. multibarcode-webinterface:/etc/ssl/certs/
+    docker cp ssl/. multibarcode-webinterface:/etc/ssl/private/
+
+    echo "ℹ️  Copying CA certificates to web directory..."
+    mkdir -p "src/certificates"
+    cp "ssl/wms_ca.crt" "src/certificates/"
+    cp "ssl/android_ca_system.pem" "src/certificates/"
+    docker cp src/certificates multibarcode-webinterface:/var/www/html/
+    echo "✅ SSL certificates updated"
+else
+    echo "⚠️  Warning: SSL directory not found, skipping SSL certificate update"
+    echo "ℹ️  Run ./create-certificates.sh to generate SSL certificates"
+fi
+
+echo "🔒 [STEP 5] Setting proper permissions..."
 docker exec multibarcode-webinterface bash -c "chown -R www-data:www-data /var/www/html"
 docker exec multibarcode-webinterface bash -c "chmod -R 755 /var/www/html"
 
-echo "🔄 [STEP 5] Reloading Apache configuration..."
+echo "🔄 [STEP 6] Reloading Apache configuration..."
 if docker exec multibarcode-webinterface bash -c "service apache2 reload"; then
     echo ""
     echo "🎉 ==============================================="
@@ -54,7 +71,9 @@ if docker exec multibarcode-webinterface bash -c "service apache2 reload"; then
     echo "🎉 ==============================================="
     echo ""
     echo "📝 The website has been updated with the latest files."
-    echo "🌐 You can access it at: http://localhost:3500"
+    echo "🌐 You can access it at:"
+    echo "   - HTTP: http://localhost:3500"
+    echo "   - HTTPS: https://localhost:3543"
     echo ""
 else
     echo "❌ Error: Failed to reload Apache configuration"
