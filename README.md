@@ -15,6 +15,20 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
+### **Version 1.27** 🚀
+**Simplified Android Authentication**
+
+Streamlined the Android application HTTP post configuration by removing authentication complexity for improved demo experience.
+
+• **🔓 Authentication Removal**: Removed authentication checkbox, username, and password fields from Android app HTTP post settings
+
+• **📱 Simplified Configuration**: Android app now requires only endpoint URL configuration for HTTP/HTTPS communication
+
+• **🌐 Direct Communication**: HTTP/HTTPS requests now connect directly to web server without authentication headers
+
+
+This release focuses on ease of use for demonstration and development scenarios while maintaining all core barcode scanning and data export functionality.
+
 ### **Server Update** 🔄
 **Network IP Update Scripts**
 
@@ -28,7 +42,7 @@ Added automatic IP update scripts to handle network changes when connecting to n
 
 • **Updated Documentation**: Added "[Managing IP Changes](wiki/11-Managing-IP-Changes.md)" guide to the wiki
 
-**🔄 WebServer Update Scripts:**
+**WebServer Update Scripts:**
 • **Live Updates**: `update-webserver.bat` (Windows) and `update-webserver.sh` (Linux/macOS) update website files without rebuilding containers
 
 • **Smart Container Management**: Automatically handles container status checking, starting stopped containers when needed
@@ -41,57 +55,25 @@ Added automatic IP update scripts to handle network changes when connecting to n
 
 • **Comprehensive Guide**: Complete documentation available in "[Updating the Server](wiki/12-Updating-Server.md)" wiki page
 
-### **Version 1.26** 🚀
-**Enhanced Enterprise Managed Configuration**
+**HTTPS Certificate Management & Download Features:**
+• **🔐 Automatic SSL Certificate Generation**: Self-signed CA and server certificates automatically generated with `create-certificates.bat` and `create-certificates.sh` scripts
 
-Complete **managed configuration synchronization** with comprehensive **HTTP/HTTPS endpoint management** for enterprise deployment.
+• **📥 Web-Based Certificate Downloads**: Download CA certificates directly from the web interface settings for easy Windows and Android installation
 
-### **Version 1.25** 🚀
-**Enterprise Export System & Enhanced Web Management**
+• **🌐 Secure HTTPS Support**: Full HTTPS implementation with Apache SSL on port 3543, providing encrypted communication for enterprise environments
 
-Major **data export capabilities** and **advanced web interface enhancements** with significant infrastructure improvements:
+• **📱 Android System Certificate Support**: Generated Android system certificates (`.pem` format) for device-wide SSL trust without app-embedded certificates
 
-• **📊 Complete Export System**: Full data export functionality supporting TXT, CSV, and native XLSX formats - replicating Android app export capabilities in the web interface
+• **🪟 Windows Certificate Integration**: Windows-compatible CA certificates for browser trust and enterprise certificate management
 
-• **📈 Real XLSX Generation**: Native Excel file creation using custom SimpleXLSXWriter library with proper OpenXML format - no more CSV-to-Excel conversion
+• **📖 Interactive Installation Guide**: Built-in modal popup with step-by-step certificate installation instructions for Windows and Android platforms
 
-• **🎯 Enhanced User Experience**: Improved barcode processing workflow with visual feedback and optimized interaction design
+• **🔄 Certificate Deployment Pipeline**: Automated certificate copying to web-accessible directories during container startup and updates
 
-• **🌐 Advanced Translation Updates**: Updated translation files across 76+ languages with new export-related terminology and UI improvements
+• **🛡️ Enterprise Security**: Complete PKI infrastructure with certificate chain validation for secure enterprise communications
 
-• **🔧 Smart IP Resolution**: Automatic host IP detection for Docker containers, eliminating manual IP configuration for Android connectivity
 
-• **🛡️ Simplified Security**: Global cleartext HTTP traffic permission for development environments, removing IP-specific network restrictions
-
-• **⚡ Performance Optimizations**: Enhanced startup scripts with automatic IP detection and improved container lifecycle management
-
-• **🐳 Docker Infrastructure**: Enhanced container management with automatic host IP detection and improved service reliability
-
-**Key Technical Features:**
-• **Multi-Format Export API**: RESTful API supporting TXT, CSV, and XLSX exports with session-based data filtering
-
-• **Native XLSX Writer**: Custom lightweight XLSX generation without external dependencies using PHP ZipArchive
-
-• **Intelligent IP Detection**: Multi-method host IP detection prioritizing 192.168.x.x networks with Docker container filtering
-
-• **Enhanced UX Workflows**: Improved barcode marking system with better visual feedback and user interaction patterns
-
-• **Cross-Browser Compatibility**: Consistent UI rendering across Chrome, Edge, and other browsers with enhanced CSS styling
-
-• **Automated Network Configuration**: Smart network security configuration removing manual IP management complexity
-
-**Enterprise Benefits:**
-• **Seamless Data Export**: Web-based export system matches Android app functionality for unified data management
-
-• **Simplified Network Setup**: Automatic IP resolution eliminates network configuration complexity
-
-• **Enhanced Productivity**: Improved user workflows reduce time-to-action for barcode processing operations
-
-• **Better Integration**: Unified export system enables seamless data flow between mobile and web platforms
-
-This release significantly enhances enterprise data management capabilities while simplifying deployment and network configuration for IT teams.
-
-📋 **[View Complete Changelog](CHANGELOG.md)** for previous versions and detailed release history.
+## 📋 [View Complete Changelog](CHANGELOG.md) for previous versions and detailed release history.
 
 ## 📖 Quick Start Links
 

@@ -27,6 +27,67 @@ echo "- phpMyAdmin Access: $([ "$EXPOSE_PHPMYADMIN" = "true" ] && echo "Enabled 
 echo "- MySQL Direct Access: $([ "$EXPOSE_MYSQL" = "true" ] && echo "Internal only" || echo "Internal only")"
 echo ""
 
+# Check for SSL certificates and generate if needed
+echo "🔒 Checking SSL certificates..."
+if [ ! -d "ssl" ]; then
+    echo "📁 SSL directory does not exist, creating..."
+    mkdir -p ssl
+fi
+
+MISSING_CERTS=false
+[ ! -f "ssl/wms_ca.crt" ] && MISSING_CERTS=true
+[ ! -f "ssl/wms.crt" ] && MISSING_CERTS=true
+[ ! -f "ssl/wms.key" ] && MISSING_CERTS=true
+[ ! -f "ssl/android_ca_system.pem" ] && MISSING_CERTS=true
+
+if [ "$MISSING_CERTS" = "true" ]; then
+    echo "🔑 SSL certificates missing, generating certificates..."
+    ./create-certificates.sh
+    if [ $? -ne 0 ]; then
+        echo "❌ Error: Failed to generate SSL certificates"
+        echo "   Please check the certificate generation script and try again"
+        exit 1
+    fi
+    echo "✅ SSL certificates generated successfully"
+else
+    echo "✅ SSL certificates found"
+fi
+
+# Copy CA certificates to web directory for download
+echo "📁 Copying CA certificates to web directory..."
+mkdir -p "src/certificates"
+cp "ssl/wms_ca.crt" "src/certificates/" 2>/dev/null || true
+cp "ssl/android_ca_system.pem" "src/certificates/" 2>/dev/null || true
+echo "✅ CA certificates copied to web directory"
+
+# Verify all required certificates exist
+CERT_ERROR=false
+if [ ! -f "ssl/wms_ca.crt" ]; then
+    echo "❌ Error: Missing CA certificate: ssl/wms_ca.crt"
+    CERT_ERROR=true
+fi
+if [ ! -f "ssl/wms.crt" ]; then
+    echo "❌ Error: Missing server certificate: ssl/wms.crt"
+    CERT_ERROR=true
+fi
+if [ ! -f "ssl/wms.key" ]; then
+    echo "❌ Error: Missing server private key: ssl/wms.key"
+    CERT_ERROR=true
+fi
+if [ ! -f "ssl/android_ca_system.pem" ]; then
+    echo "❌ Error: Missing Android system certificate: ssl/android_ca_system.pem"
+    CERT_ERROR=true
+fi
+
+if [ "$CERT_ERROR" = "true" ]; then
+    echo "❌ Error: Certificate validation failed - required certificates are missing"
+    echo "   Please run ./create-certificates.sh manually to generate certificates"
+    exit 1
+fi
+
+echo "✅ All required SSL certificates are present"
+echo ""
+
 # Check if Docker is running
 if ! docker info > /dev/null 2>&1; then
     echo "❌ Error: Docker is not running or not accessible"
@@ -134,11 +195,12 @@ fi
 
 echo "📡 IP addresses will be detected automatically by the website"
 
-# Start the unified container using docker run for better Docker Desktop display
-echo "🚀 Starting unified container..."
+# Start the unified container with SSL certificates
+echo "🚀 Starting unified container with SSL certificates..."
 docker run -d \
     --name multibarcode-webinterface \
     -p $WEB_PORT:$WEB_PORT \
+    -p 3543:3543 \
     -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root_password} \
     -e MYSQL_DATABASE=${DB_NAME:-barcode_wms} \
     -e MYSQL_USER=${DB_USER:-wms_user} \
@@ -152,6 +214,8 @@ docker run -d \
     -e EXPOSE_PHPMYADMIN=${EXPOSE_PHPMYADMIN:-false} \
     -e EXPOSE_MYSQL=${EXPOSE_MYSQL:-false} \
     -v multibarcode_mysql_data:/var/lib/mysql \
+    -v "$(pwd)/ssl":/etc/ssl/certs \
+    -v "$(pwd)/ssl":/etc/ssl/private \
     --restart unless-stopped \
     --health-cmd "curl -f http://localhost:$WEB_PORT/ || exit 1" \
     --health-interval 30s \
@@ -196,6 +260,7 @@ echo "🎉 AI MultiBarcode Capture is now running!"
 echo ""
 echo "📍 Access Points:"
 echo "- 🌐 Web Management System: http://localhost:$WEB_PORT"
+echo "- 🔒 Secure Web Management: https://localhost:3543/"
 
 if [ "$EXPOSE_PHPMYADMIN" = "true" ]; then
     echo "- 📊 phpMyAdmin: http://localhost:$WEB_PORT/phpmyadmin"
@@ -209,7 +274,13 @@ echo "- Remove container: docker rm multibarcode-webinterface"
 echo "- Restart container: docker restart multibarcode-webinterface"
 echo ""
 echo "📱 Android App Configuration:"
-echo "- Endpoint URL: http://YOUR_IP:$WEB_PORT/api/barcodes.php"
-echo "- Example: http://192.168.1.100:$WEB_PORT/api/barcodes.php"
+echo "- HTTP Endpoint: http://YOUR_IP:$WEB_PORT/api/barcodes.php"
+echo "- HTTPS Endpoint: https://YOUR_IP:3543/api/barcodes.php"
+echo "- Example HTTP: http://192.168.1.100:$WEB_PORT/api/barcodes.php"
+echo "- Example HTTPS: https://192.168.1.100:3543/api/barcodes.php"
 echo ""
-echo "🎯 Everything is ready! You can now start scanning with your Android app."
+echo "🔐 SSL Certificate Installation:"
+echo "- For Android: Install ssl/android_ca_system.pem as system certificate"
+echo "- For browsers: Import ssl/wms_ca.crt to trusted root certificates"
+echo ""
+echo "🎯 Everything is ready! You can now start scanning with your Android app using HTTP or HTTPS."

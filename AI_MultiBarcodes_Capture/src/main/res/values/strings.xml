@@ -468,11 +468,6 @@
     <string name="https_post">HTTP(s) Post</string>
     <string name="https_endpoint">HTTP(s) Endpoint</string>
     <string name="https_endpoint_hint">https://example.com/api/data or http://192.168.1.100/api/data</string>
-    <string name="authentication">Authentication</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="username_hint">Enter username</string>
-    <string name="password_hint">Enter password</string>
 
     <!-- Managed Configuration Messages -->
     <string name="managed_configuration_updated">Settings updated by administrator</string>

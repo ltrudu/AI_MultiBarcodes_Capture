@@ -19,17 +19,12 @@ The managed configuration is organized into the following sections:
   - **HTTP/HTTPS Post Mode**: Upload barcode data directly to web management system
 
 ### 2. HTTP/HTTPS Configuration (Nested Bundle)
-All HTTP/HTTPS endpoint and authentication settings are organized in a nested bundle called `https_configuration`. This provides secure centralized configuration for enterprise web management system integration:
+HTTP/HTTPS endpoint settings are organized in a nested bundle called `https_configuration`. This provides centralized configuration for enterprise web management system integration:
 
 #### Network Configuration:
 - **HTTP/HTTPS Endpoint** (`https_endpoint`): Server endpoint URL for uploading barcode data (string)
   - **Example**: `http://192.168.1.100:3500/api/barcodes.php` (for local web management system)
   - **Example**: `https://yourcompany.com/barcode/api/upload` (for cloud deployment)
-
-#### Authentication Configuration:
-- **Enable Authentication** (`authentication_enabled`): Enable HTTP authentication for the endpoint (boolean)
-- **Username** (`username`): Username for HTTP authentication (string, only used if authentication is enabled)
-- **Password** (`password`): Password for HTTP authentication (string, only used if authentication is enabled)
 
 ### 3. Advanced Settings (Nested Bundle)
 All advanced AI and camera settings are organized in a nested bundle called `advanced_settings`. This provides a clean, organized configuration experience for enterprise administrators:
@@ -105,7 +100,6 @@ All barcode symbologies are organized in a nested bundle called `barcode_symbolo
    - Select processing mode (File-based or HTTP/HTTPS Post mode)
    - Expand the "HTTP/HTTPS Configuration" section to configure web management system endpoint:
      - Set HTTP/HTTPS endpoint URL for real-time data upload
-     - Configure authentication settings if required by your web server
    - Expand the "Advanced Settings" section to configure AI and camera settings:
      - Set optimal model input size based on barcode types and performance requirements
      - Choose appropriate camera resolution for scanning environment
@@ -123,10 +117,7 @@ All barcode symbologies are organized in a nested bundle called `barcode_symbolo
   "language": "fr",
   "processing_mode": "https_post",
   "https_configuration": {
-    "https_endpoint": "http://192.168.1.100:3500/api/barcodes.php",
-    "authentication_enabled": true,
-    "username": "admin",
-    "password": "secure_password"
+    "https_endpoint": "http://192.168.1.100:3500/api/barcodes.php"
   },
   "advanced_settings": {
     "model_input_size": "MEDIUM",

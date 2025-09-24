@@ -136,6 +136,38 @@
                     </div>
                 </div>
 
+                <!-- SSL Certificates Section -->
+                <div class="settings-section">
+                    <h3 class="section-title">🔐 SSL Certificates</h3>
+                    <div class="section-content">
+                        <p class="section-description">Download certificate files for secure HTTPS connections</p>
+
+                        <div class="config-item">
+                            <h4 class="cert-title">🪟 Windows Certificate (wms_ca.crt)</h4>
+                            <p class="cert-description">Install this certificate in Windows "Trusted Root Certification Authorities" to eliminate browser security warnings.</p>
+                            <button id="download-windows-cert" class="btn btn-secondary">
+                                📥 Download Windows Certificate
+                            </button>
+                        </div>
+
+                        <div class="config-item">
+                            <h4 class="cert-title">📱 Android Certificate (android_ca_system.pem)</h4>
+                            <p class="cert-description">Install this certificate in Android system certificates for secure app connections.</p>
+                            <button id="download-android-cert" class="btn btn-secondary">
+                                📥 Download Android Certificate
+                            </button>
+                        </div>
+
+                        <div class="config-item">
+                            <h4 class="cert-title">📄 Installation Instructions</h4>
+                            <p class="cert-description">Step-by-step guides for installing certificates on different platforms.</p>
+                            <button id="show-cert-instructions" class="btn btn-info">
+                                📖 View Installation Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Danger Zone Section -->
                 <div class="settings-section danger-section">
                     <h3 class="section-title">⚠️ Danger Zone</h3>
@@ -194,6 +226,72 @@
                         <li id="export-barcode-info"></li>
                         <li id="export-status-info"></li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Instructions Modal -->
+    <div id="cert-instructions-modal" class="modal hide">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="cert-instructions-modal-title">🔐 Certificate Installation Instructions</h2>
+                <button class="modal-close" onclick="app.closeCertificateInstructionsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cert-instructions-content">
+                    <!-- Windows Instructions -->
+                    <div class="cert-section">
+                        <h3 class="cert-section-title">🪟 Windows Installation</h3>
+                        <ol class="cert-instructions-list">
+                            <li>Download the <strong>Windows Certificate (wms_ca.crt)</strong> from the SSL Certificates section above</li>
+                            <li>Right-click the downloaded file and select <strong>"Install Certificate..."</strong></li>
+                            <li>Choose <strong>"Local Machine"</strong> (requires admin) or <strong>"Current User"</strong></li>
+                            <li>Select <strong>"Place all certificates in the following store"</strong></li>
+                            <li>Click <strong>"Browse..."</strong> and select <strong>"Trusted Root Certification Authorities"</strong></li>
+                            <li>Complete the wizard and confirm the security warning</li>
+                            <li>Access <code>https://localhost:3543</code> - no more security warnings!</li>
+                        </ol>
+                    </div>
+
+                    <!-- Android Instructions -->
+                    <div class="cert-section">
+                        <h3 class="cert-section-title">📱 Android Installation</h3>
+                        <ol class="cert-instructions-list">
+                            <li>Download the <strong>Android Certificate (android_ca_system.pem)</strong></li>
+                            <li>Transfer the file to your Android device (via USB, email, or cloud storage)</li>
+                            <li>Go to <strong>Settings → Security → Encryption & credentials → Install from storage</strong></li>
+                            <li>Select the transferred certificate file</li>
+                            <li>Choose <strong>"CA certificate"</strong> when prompted</li>
+                            <li>Provide a name (e.g., "WMS CA") and confirm installation</li>
+                        </ol>
+                    </div>
+
+                    <!-- Verification -->
+                    <div class="cert-section">
+                        <h3 class="cert-section-title">🔍 Verification</h3>
+                        <ul class="cert-instructions-list">
+                            <li><strong>Windows:</strong> Open <code>certmgr.msc</code>, check "Trusted Root Certification Authorities"</li>
+                            <li><strong>Android:</strong> Settings → Security → Trusted credentials → User tab</li>
+                            <li><strong>Browser:</strong> Visit <code>https://localhost:3543</code> for secure connection</li>
+                        </ul>
+                    </div>
+
+                    <!-- Important Note -->
+                    <div class="cert-section cert-warning">
+                        <h3 class="cert-section-title">⚠️ Important</h3>
+                        <p>Only install these certificates on devices you control. These are self-signed certificates for your local network.</p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="cert-actions">
+                        <button onclick="app.downloadCertificate('wms_ca.crt', 'wms-ca-certificate.crt')" class="btn btn-primary">
+                            📥 Download Windows Certificate
+                        </button>
+                        <button onclick="app.downloadCertificate('android_ca_system.pem', 'android-ca-certificate.pem')" class="btn btn-primary">
+                            📥 Download Android Certificate
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -44,6 +44,19 @@ class WMSApp {
             this.showEndpointModal();
         });
 
+        // Certificate download buttons
+        document.getElementById('download-windows-cert').addEventListener('click', () => {
+            this.downloadCertificate('wms_ca.crt', 'wms-ca-certificate.crt');
+        });
+
+        document.getElementById('download-android-cert').addEventListener('click', () => {
+            this.downloadCertificate('android_ca_system.pem', 'android-ca-certificate.pem');
+        });
+
+        document.getElementById('show-cert-instructions').addEventListener('click', () => {
+            this.showCertificateInstructions();
+        });
+
         document.getElementById('settings-btn-reset').addEventListener('click', () => {
             this.closeSettingsModal();
             this.resetAllData();
@@ -843,8 +856,11 @@ class WMSApp {
     async showEndpointModal() {
         const modal = document.getElementById('endpoint-modal');
 
-        // Get current port
-        const currentPort = window.location.port || '3500';
+        // Detect current protocol and determine appropriate port
+        const isHttps = window.location.protocol === 'https:';
+        const currentPort = window.location.port || (isHttps ? '3543' : '3500');
+        const protocol = isHttps ? 'https' : 'http';
+        const apiPort = isHttps ? '3543' : '3500';
 
         // Show modal first with loading state
         modal.classList.remove('hide');
@@ -865,9 +881,9 @@ class WMSApp {
             const serverInfo = await response.json();
 
             if (serverInfo.success) {
-                // Use server's actual IP addresses
-                const localEndpoint = `http://${serverInfo.local_ip}:${currentPort}/api/barcodes.php`;
-                const internetEndpoint = `http://${serverInfo.external_ip}:${currentPort}/api/barcodes.php`;
+                // Use server's actual IP addresses with protocol-aware endpoints
+                const localEndpoint = `${protocol}://${serverInfo.local_ip}:${apiPort}/api/barcodes.php`;
+                const internetEndpoint = `${protocol}://${serverInfo.external_ip}:${apiPort}/api/barcodes.php`;
 
                 document.getElementById('local-endpoint').value = localEndpoint;
                 document.getElementById('internet-endpoint').value = internetEndpoint;
@@ -877,10 +893,10 @@ class WMSApp {
 
         } catch (error) {
             console.error('Error getting server IP addresses:', error);
-            // Fallback to hostname if server endpoint fails
+            // Fallback to hostname if server endpoint fails with protocol-aware URLs
             const fallbackHost = window.location.hostname;
-            document.getElementById('local-endpoint').value = `http://${fallbackHost}:${currentPort}/api/barcodes.php`;
-            document.getElementById('internet-endpoint').value = `http://YOUR-PUBLIC-IP:${currentPort}/api/barcodes.php (Error: ${error.message})`;
+            document.getElementById('local-endpoint').value = `${protocol}://${fallbackHost}:${apiPort}/api/barcodes.php`;
+            document.getElementById('internet-endpoint').value = `${protocol}://YOUR-PUBLIC-IP:${apiPort}/api/barcodes.php (Error: ${error.message})`;
         }
 
         // Add click outside to close
@@ -1062,6 +1078,63 @@ class WMSApp {
 
     closeSettingsModal() {
         const modal = document.getElementById('settings-modal');
+        modal.classList.remove('show');
+        modal.classList.add('hide');
+    }
+
+    async downloadCertificate(filename, downloadName) {
+        try {
+            const response = await fetch(`certificates/${filename}`);
+            if (!response.ok) {
+                throw new Error(`Certificate not found: ${filename}`);
+            }
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = downloadName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+            this.showNotification(this.t('certificate_downloaded', 'Certificate downloaded successfully'), 'success');
+        } catch (error) {
+            console.error('Error downloading certificate:', error);
+            this.showNotification(this.t('certificate_download_error', 'Error downloading certificate. Please ensure certificates are generated.'), 'error');
+        }
+    }
+
+    showCertificateInstructions() {
+        this.closeSettingsModal();
+        this.showCertificateInstructionsModal();
+    }
+
+    showCertificateInstructionsModal() {
+        const modal = document.getElementById('cert-instructions-modal');
+        modal.classList.remove('hide');
+        modal.classList.add('show');
+
+        // Add click outside to close
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                this.closeCertificateInstructionsModal();
+            }
+        });
+
+        // Add escape key handler
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                this.closeCertificateInstructionsModal();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+    }
+
+    closeCertificateInstructionsModal() {
+        const modal = document.getElementById('cert-instructions-modal');
         modal.classList.remove('show');
         modal.classList.add('hide');
     }

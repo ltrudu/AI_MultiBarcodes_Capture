@@ -33,6 +33,69 @@ if "%EXPOSE_PHPMYADMIN%"=="true" (
 echo - MySQL Direct Access: Internal only
 echo.
 
+REM Check for SSL certificates and generate if needed
+echo Checking SSL certificates...
+if not exist "ssl" (
+    echo [INFO] SSL directory does not exist, creating...
+    mkdir ssl
+)
+
+set MISSING_CERTS=false
+if not exist "ssl\wms_ca.crt" set MISSING_CERTS=true
+if not exist "ssl\wms.crt" set MISSING_CERTS=true
+if not exist "ssl\wms.key" set MISSING_CERTS=true
+if not exist "ssl\android_ca_system.pem" set MISSING_CERTS=true
+
+if "%MISSING_CERTS%"=="true" (
+    echo [INFO] SSL certificates missing, generating certificates...
+    call create-certificates.bat
+    if errorlevel 1 (
+        echo [ERROR] Failed to generate SSL certificates
+        echo Please check the certificate generation script and try again
+        pause
+        exit /b 1
+    )
+    echo [OK] SSL certificates generated successfully
+) else (
+    echo [OK] SSL certificates found
+)
+
+REM Copy CA certificates to web directory for download
+echo [INFO] Copying CA certificates to web directory...
+if not exist "src\certificates" mkdir "src\certificates"
+copy "ssl\wms_ca.crt" "src\certificates\" >nul 2>&1
+copy "ssl\android_ca_system.pem" "src\certificates\" >nul 2>&1
+echo [OK] CA certificates copied to web directory
+
+REM Verify all required certificates exist
+set CERT_ERROR=false
+if not exist "ssl\wms_ca.crt" (
+    echo [ERROR] Missing CA certificate: ssl\wms_ca.crt
+    set CERT_ERROR=true
+)
+if not exist "ssl\wms.crt" (
+    echo [ERROR] Missing server certificate: ssl\wms.crt
+    set CERT_ERROR=true
+)
+if not exist "ssl\wms.key" (
+    echo [ERROR] Missing server private key: ssl\wms.key
+    set CERT_ERROR=true
+)
+if not exist "ssl\android_ca_system.pem" (
+    echo [ERROR] Missing Android system certificate: ssl\android_ca_system.pem
+    set CERT_ERROR=true
+)
+
+if "%CERT_ERROR%"=="true" (
+    echo [ERROR] Certificate validation failed - required certificates are missing
+    echo Please run create-certificates.bat manually to generate certificates
+    pause
+    exit /b 1
+)
+
+echo [OK] All required SSL certificates are present
+echo.
+
 REM Check if Docker is running
 docker info >nul 2>&1
 if errorlevel 1 (
@@ -96,10 +159,11 @@ if "%HOST_IP%"=="" (
 echo [INFO] IP addresses will be detected automatically by the website
 
 REM Start the container
-echo Starting container...
+echo Starting container with SSL certificates...
 docker run -d ^
     --name multibarcode-webinterface ^
     -p %WEB_PORT%:%WEB_PORT% ^
+    -p 3543:3543 ^
     -e MYSQL_ROOT_PASSWORD=%MYSQL_ROOT_PASSWORD% ^
     -e MYSQL_DATABASE=%DB_NAME% ^
     -e MYSQL_USER=%DB_USER% ^
@@ -113,6 +177,8 @@ docker run -d ^
     -e EXPOSE_PHPMYADMIN=%EXPOSE_PHPMYADMIN% ^
     -e EXPOSE_MYSQL=%EXPOSE_MYSQL% ^
     -v multibarcode_mysql_data:/var/lib/mysql ^
+    -v "%CD%\ssl":/etc/ssl/certs ^
+    -v "%CD%\ssl":/etc/ssl/private ^
     --restart unless-stopped ^
     multibarcode-webinterface:latest
 
@@ -146,6 +212,7 @@ echo AI MultiBarcode Capture is now running!
 echo.
 echo Access Points:
 echo - Web Management System: http://localhost:%WEB_PORT%
+echo - Secure Web Management: https://localhost:3543/
 echo.
 echo Management Commands:
 echo - View logs: docker logs multibarcode-webinterface
@@ -153,8 +220,14 @@ echo - Stop container: docker stop multibarcode-webinterface
 echo - Remove container: docker rm multibarcode-webinterface
 echo.
 echo Android App Configuration:
-echo - Endpoint URL: http://YOUR_IP:%WEB_PORT%/api/barcodes.php
-echo - Example: http://192.168.1.100:%WEB_PORT%/api/barcodes.php
+echo - HTTP Endpoint: http://YOUR_IP:%WEB_PORT%/api/barcodes.php
+echo - HTTPS Endpoint: https://YOUR_IP:3543/api/barcodes.php
+echo - Example HTTP: http://192.168.1.100:%WEB_PORT%/api/barcodes.php
+echo - Example HTTPS: https://192.168.1.100:3543/api/barcodes.php
+echo.
+echo SSL Certificate Installation:
+echo - For Android: Install ssl\android_ca_system.pem as system certificate
+echo - For browsers: Import ssl\wms_ca.crt to trusted root certificates
 echo.
 pause
 exit /b 0
