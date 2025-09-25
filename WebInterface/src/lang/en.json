@@ -99,7 +99,7 @@
   "config_step_3": "Paste one of the endpoints above",
   "config_step_4": "Test the connection and save",
   "endpoint_url_label": "Endpoint URL:",
-  "qr_scan_instructions": "Scan this QR code with your Android AI MultiBarcode Capture app to automatically configure the endpoint.",
+  "qr_scan_instructions": "Scan this QR code from your Android AI MultiBarcode Capture app Settings page to automatically configure the endpoint.",
   "footer_copyright": "Barcode WMS © 2024 - Powered by Zebra AI Vision SDK",
   "footer_connection": "Connected to Android AI MultiBarcode Capture Application",
   "failed_to_load_sessions": "Failed to load sessions",
