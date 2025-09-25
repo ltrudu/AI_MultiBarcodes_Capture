@@ -308,6 +308,20 @@
                 android:minHeight="48dp"
                 android:padding="12dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/badge_background"
+                android:padding="12dp"
+                android:text="Quick Setup: Open WMS website at http://[WMS_IP]:3500 or https://[WMS_IP]:3543 → Click gear icon (top right) → Endpoint Configuration → QR Code button → Scan QR code to auto-fill endpoint"
+                android:textColor="@color/zebra"
+                android:textSize="12sp"
+                android:focusable="false"
+                android:clickable="false" />
+
 
         </LinearLayout>
 

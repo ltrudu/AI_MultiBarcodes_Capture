@@ -1996,7 +1996,7 @@ class WMSApp {
             // QR Modal
             '#qr-modal-title': '📱 ' + this.t('qr_code_endpoint_url', 'QR Code - Endpoint URL'),
             '#endpoint-url-label': this.t('endpoint_url_label', 'Endpoint URL:'),
-            '#qr-scan-instructions': this.t('qr_scan_instructions', 'Scan this QR code with your Android AI MultiBarcode Capture app to automatically configure the endpoint.'),
+            '#qr-scan-instructions': this.t('qr_scan_instructions', 'Scan this QR code from your Android AI MultiBarcode Capture app Settings page to automatically configure the endpoint.'),
 
             // Settings modal
             '#settings-modal-title': this.t('settings', 'Settings'),
