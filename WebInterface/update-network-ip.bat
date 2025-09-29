@@ -35,7 +35,27 @@ REM Restart container with new HOST_IP environment variable
 docker stop multibarcode-webinterface
 docker rm multibarcode-webinterface
 
-docker run -d --name multibarcode-webinterface -p 3500:3500 -e MYSQL_ROOT_PASSWORD=root_password -e MYSQL_DATABASE=barcode_wms -e MYSQL_USER=wms_user -e MYSQL_PASSWORD=wms_password -e DB_HOST=127.0.0.1 -e DB_NAME=barcode_wms -e DB_USER=wms_user -e DB_PASS=wms_password -e WEB_PORT=3500 -e HOST_IP=%LOCAL_IP% -e EXPOSE_PHPMYADMIN=false -e EXPOSE_MYSQL=false -v multibarcode_mysql_data:/var/lib/mysql --restart unless-stopped multibarcode-webinterface:latest
+docker run -d ^
+    --name multibarcode-webinterface ^
+    -p 3500:3500 ^
+    -p 3543:3543 ^
+    -e MYSQL_ROOT_PASSWORD=root_password ^
+    -e MYSQL_DATABASE=barcode_wms ^
+    -e MYSQL_USER=wms_user ^
+    -e MYSQL_PASSWORD=wms_password ^
+    -e DB_HOST=127.0.0.1 ^
+    -e DB_NAME=barcode_wms ^
+    -e DB_USER=wms_user ^
+    -e DB_PASS=wms_password ^
+    -e WEB_PORT=3500 ^
+    -e HOST_IP=%LOCAL_IP% ^
+    -e EXPOSE_PHPMYADMIN=false ^
+    -e EXPOSE_MYSQL=false ^
+    -v multibarcode_mysql_data:/var/lib/mysql ^
+    -v "%~dp0ssl":/etc/ssl/certs ^
+    -v "%~dp0ssl":/etc/ssl/private ^
+    --restart unless-stopped ^
+    multibarcode-webinterface:latest
 
 echo Network IP updated to: %LOCAL_IP%
 echo Container restarted successfully.
