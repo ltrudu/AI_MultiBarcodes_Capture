@@ -2,6 +2,12 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+#### 📚 **Wiki Updates:**
+
+• **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of 300+ regex patterns covering web URLs, device identifiers, government IDs, license plates, postal codes, phone numbers, and industry standards
+
+• **🔐 [Understanding Certificates for Beginners](wiki/17-Understanding-Certificates-For-Beginners.md)**: Complete beginner's guide explaining certificate creation, platform-specific requirements, and how to create self-signed certificates that Windows and Android recognize as legitimate Certificate Authority certificates
+
 ## Version 1.29 - 🔍 **Advanced Barcode Filtering System**
 
 **Enhanced barcode processing capabilities with intelligent pattern-based filtering for precision data capture.**

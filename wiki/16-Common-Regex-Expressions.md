@@ -2,6 +2,83 @@
 
 This comprehensive guide provides robust regular expressions for filtering barcodes based on common data patterns. These expressions are optimized to minimize false positives and false negatives.
 
+## 🔧 How to Combine Multiple Patterns
+
+### Understanding Pattern Combination
+
+When you need to match **multiple formats** with a single regex pattern, you can combine them using the **OR operator** (`|`). This allows you to create one pattern that matches any of several different formats.
+
+### Basic Syntax
+
+**Format**: `^(pattern1|pattern2|pattern3)$`
+
+**Explanation**:
+- `^` - Start of string
+- `(` - Begin group
+- `pattern1|pattern2|pattern3` - Match pattern1 OR pattern2 OR pattern3
+- `)` - End group
+- `$` - End of string
+
+### Practical Example: Web Protocols
+
+Let's combine HTTP, HTTPS, and FTP patterns from this document:
+
+#### Individual Patterns:
+- **HTTP**: `^http://[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*(\:[0-9]{1,5})?(\/[^\s]*)?$`
+- **HTTPS**: `^https://[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*(\:[0-9]{1,5})?(\/[^\s]*)?$`
+- **FTP**: `^ftp://[a-zA-Z0-9.-]+(\:[0-9]{1,5})?(/[^\s]*)?$`
+
+#### Combined Pattern:
+```regex
+^(http://[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*(\:[0-9]{1,5})?(\/[^\s]*)?|https://[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*(\:[0-9]{1,5})?(\/[^\s]*)?|ftp://[a-zA-Z0-9.-]+(\:[0-9]{1,5})?(/[^\s]*)?)$
+```
+
+#### Simplified Alternative:
+For web protocols, you can use this more efficient pattern:
+```regex
+^(https?|ftp)://[a-zA-Z0-9.-]+(\:[0-9]{1,5})?(/[^\s]*)?$
+```
+
+**Explanation**:
+- `https?` - Matches "http" or "https" (the `?` makes the 's' optional)
+- `|ftp` - OR matches "ftp"
+
+### More Examples
+
+#### Phone Numbers (International + Local):
+```regex
+^(\+33[67][0-9]{8}|0[67][0-9]{8})$
+```
+**Matches**: `+33650203370` OR `0650203370`
+
+#### Product Codes (Multiple Formats):
+```regex
+^([0-9]{12}|[0-9]{13}|[0-9]{8})$
+```
+**Matches**: UPC-A (12 digits) OR EAN-13 (13 digits) OR EAN-8 (8 digits)
+
+#### Email + Phone:
+```regex
+^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|\+?[0-9\s\-\(\)\.]{10,15})$
+```
+**Matches**: Email addresses OR phone numbers
+
+### Quick Tips
+
+1. **Keep it Simple**: Start with 2-3 patterns, then expand as needed
+2. **Test Your Patterns**: Use online regex testers before implementing
+3. **Order Matters**: Put more specific patterns before general ones
+4. **Use Parentheses**: Always wrap your OR groups in parentheses
+5. **Common Prefixes**: Look for shared parts to simplify (like `https?` for HTTP/HTTPS)
+
+### Pattern Testing
+
+**Test your combined patterns with these examples**:
+- ✅ `http://example.com` - Should match
+- ✅ `https://secure.example.com:443/path` - Should match
+- ✅ `ftp://files.example.com/download` - Should match
+- ❌ `invalid://bad.url` - Should NOT match
+
 ## 📋 Table of Contents
 
 ### 🌐 [Digital & Web Identifiers](#-digital--web-identifiers)
