@@ -114,15 +114,24 @@ This release transforms the application into a precision tool for selective barc
 
 <img width="216" height="432" alt="Entry Choice Screen" src="https://github.com/user-attachments/assets/c531d739-63c0-4e59-b8c8-7fc3b3899122" />
 <img width="216" height="432" alt="Entry Choice Screen Menu" src="https://github.com/user-attachments/assets/1d02443f-b6c3-4dfe-8097-65951b6bf51f" />
-<img width="216" height="432" alt="Camera Preview with Detection" src="https://github.com/user-attachments/assets/bfa7b4dc-6595-4991-8ea5-494ce4a88aa7" />
+<img width="216" height="432" alt="Camera Preview with Detection" src="https://github.com/user-attachments/assets/2314b57b-f47a-4add-9d24-2da1c2488bee" />
 <img width="216" height="432" alt="Captured Barcodes View" src="https://github.com/user-attachments/assets/1602cd78-0f2f-4344-9f36-364268a3b0df" />
 <img width="216" height="432" alt="Session Management Folders" src="https://github.com/user-attachments/assets/69b7ec1a-f087-48e1-809e-55a9ab34ef47" />
 <img width="216" height="432" alt="Session Management File With Selection" src="https://github.com/user-attachments/assets/eeafe15b-3762-458c-bdb8-ecdf9dcaa7f5" />
 <img width="216" height="432" alt="Session Management Menu" src="https://github.com/user-attachments/assets/5f70cade-5a57-44b9-a7e9-60c06f742e7a" />
-<img width="216" height="432" alt="Settings Configuration" src="https://github.com/user-attachments/assets/83f092b9-41be-4346-a29b-a3931aa70707" />
+<img width="216" height="432" alt="Settings Configuration" src="https://github.com/user-attachments/assets/52fd72f1-6213-44de-9c87-d65254301d2c" />
+<img width="216" height="432" alt="Settings File Processing" src="https://github.com/user-attachments/assets/75682a75-b4b1-4f4b-965c-b77ab6c074d7" />
+<img width="216" height="432" alt="Settings HTTP(s) Post" src="https://github.com/user-attachments/assets/c4d0aff3-e5db-4649-9f5f-86e2b9ff7fc7" />
+<img width="216" height="432" alt="Settings Filter HTTPS URL With Regular Expression" src="https://github.com/user-attachments/assets/30f809d7-25b6-4a0e-ac63-1c200618ac35" />
 <img width="216" height="432" alt="Session Data Editor" src="https://github.com/user-attachments/assets/c4e2279f-fb38-4211-974a-1f821e2e6307" />
 <img width="216" height="432" alt="Session Data Editor Row Swipe Left" src="https://github.com/user-attachments/assets/ac8e3dfa-e95f-4fd7-af73-ef4767eeb0d1" />
 <img width="216" height="432" alt="Barcode Quantity Editor" src="https://github.com/user-attachments/assets/030c9577-0a36-47f7-840b-685d1bf0301f" />
+<img width="308" height="235" alt="Barcode WMS WebServer" src="https://github.com/user-attachments/assets/753d4e9d-31f0-46fc-8f03-58a37e260796" />
+<img width="270" height="283" alt="Barcode WMS WebServer Settings" src="https://github.com/user-attachments/assets/95e1360a-7171-42c1-9cc6-69cde79f2714" />
+<img width="271" height="283" alt="Barcode WMS WebServer Settings Certificates" src="https://github.com/user-attachments/assets/51849efb-e487-4178-b141-0714962164c6" />
+<img width="271" height="282" alt="Barcode WMS WebServer Settings Endpoints" src="https://github.com/user-attachments/assets/dadd22ea-e9af-4ef3-80a0-d5b92ddf7575" />
+<img width="227" height="284" alt="Barcode WMS WebServer Settings Endpoint QRCode" src="https://github.com/user-attachments/assets/75e997a9-e5c7-49a5-a106-02c9f2151d92" />
+
 
 ## 🏗️ Architecture
 
