@@ -27,13 +27,6 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 • **Comprehensive Pattern Examples**: Built-in documentation with common regex patterns for various use cases
 
 #### ⚙️ **Advanced Filtering Capabilities:**
-• **Numeric-Only Filtering**: Capture only numerical barcodes (UPC, EAN codes)
-
-• **URL Pattern Matching**: Filter for HTTPS URLs in QR codes
-
-• **Product Code Formats**: Match specific alphanumeric patterns for inventory systems
-
-• **Serial Number Validation**: Filter for standardized serial number formats
 
 • **Custom Pattern Support**: Create complex regex patterns for specialized applications
 
