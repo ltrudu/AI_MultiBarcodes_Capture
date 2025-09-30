@@ -220,4 +220,11 @@ public class Constants {
     public static final String SHARED_PREFERENCES_HTTPS_ENDPOINT = "SHARED_PREFERENCES_HTTPS_ENDPOINT";
     public static final String SHARED_PREFERENCES_HTTPS_ENDPOINT_DEFAULT = "";
 
+    // Filtering preferences
+    public static final String SHARED_PREFERENCES_FILTERING_ENABLED = "SHARED_PREFERENCES_FILTERING_ENABLED";
+    public static final boolean SHARED_PREFERENCES_FILTERING_ENABLED_DEFAULT = false;
+
+    public static final String SHARED_PREFERENCES_FILTERING_REGEX = "SHARED_PREFERENCES_FILTERING_REGEX";
+    public static final String SHARED_PREFERENCES_FILTERING_REGEX_DEFAULT = "";
+
 }

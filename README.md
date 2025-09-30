@@ -1,6 +1,6 @@
 # AI MultiBarcode Capture Application
 
-[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.26-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.2-blue)](https://developer.zebra.com/)
+[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.29-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.2-blue)](https://developer.zebra.com/)
 
 [![Apache](https://img.shields.io/badge/Apache-2.4-red)](https://httpd.apache.org/) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
@@ -15,63 +15,30 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
-### **Version 1.27** 🚀
-**Simplified Android Authentication**
+### Version 1.29 - 🔍 **Advanced Barcode Filtering System**
 
-Streamlined the Android application HTTP post configuration by removing authentication complexity for improved demo experience.
+**Enhanced barcode processing capabilities with intelligent pattern-based filtering for precision data capture.**
 
-• **🔓 Authentication Removal**: Removed authentication checkbox, username, and password fields from Android app HTTP post settings
+#### 🆕 **New Features:**
+• **Regular Expression Filtering**: Powerful pattern-based barcode filtering system that captures only barcodes matching specific criteria
+• **Real-time Pattern Matching**: Filtering applied during live scanning for immediate results
+• **Comprehensive Pattern Examples**: Built-in documentation with common regex patterns for various use cases
 
-• **📱 Simplified Configuration**: Android app now requires only endpoint URL configuration for HTTP/HTTPS communication
+#### ⚙️ **Advanced Filtering Capabilities:**
+• **Numeric-Only Filtering**: Capture only numerical barcodes (UPC, EAN codes)
+• **URL Pattern Matching**: Filter for HTTPS URLs in QR codes
+• **Product Code Formats**: Match specific alphanumeric patterns for inventory systems
+• **Serial Number Validation**: Filter for standardized serial number formats
+• **Custom Pattern Support**: Create complex regex patterns for specialized applications
+• **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of regex patterns for web URLs, device identifiers, government IDs, product codes, and industry standards
 
-• **🌐 Direct Communication**: HTTP/HTTPS requests now connect directly to web server without authentication headers
+#### 🛠 **Enterprise Management:**
+• **Managed Configuration Support**: Full enterprise MDM/EMM integration for remote filtering configuration
+• **Comprehensive Documentation**: Updated configuration guides with filtering setup instructions
+• **Error Handling**: Robust pattern validation with fallback behavior for invalid expressions
+• **Performance Optimized**: Efficient regex processing without impacting scan performance
 
-
-This release focuses on ease of use for demonstration and development scenarios while maintaining all core barcode scanning and data export functionality.
-
-### **Server Update** 🔄
-**Network IP Update Scripts**
-
-Added automatic IP update scripts to handle network changes when connecting to new WiFi networks or different locations.
-
-• **New Scripts**: `update-network-ip.bat` (Windows) and `update-network-ip.sh` (Linux/macOS) automatically detect and update IP configuration
-
-• **Antivirus-Safe**: Scripts use only standard system commands to avoid security software conflicts
-
-• **Data Preservation**: Docker container restart maintains all session and barcode data
-
-• **Updated Documentation**: Added "[Managing IP Changes](wiki/11-Managing-IP-Changes.md)" guide to the wiki
-
-**WebServer Update Scripts:**
-• **Live Updates**: `update-webserver.bat` (Windows) and `update-webserver.sh` (Linux/macOS) update website files without rebuilding containers
-
-• **Smart Container Management**: Automatically handles container status checking, starting stopped containers when needed
-
-• **Complete File Sync**: Updates all website files, API endpoints, configurations, and language translations in running containers
-
-• **Zero Data Loss**: Updates preserve all database data and user sessions while applying latest code changes
-
-• **Development Workflow**: Streamlined git-to-deployment process for efficient development and maintenance
-
-• **Comprehensive Guide**: Complete documentation available in "[Updating the Server](wiki/12-Updating-Server.md)" wiki page
-
-**HTTPS Certificate Management & Download Features:**
-• **🔐 Automatic SSL Certificate Generation**: Self-signed CA and server certificates automatically generated with `create-certificates.bat` and `create-certificates.sh` scripts
-
-• **📥 Web-Based Certificate Downloads**: Download CA certificates directly from the web interface settings for easy Windows and Android installation
-
-• **🌐 Secure HTTPS Support**: Full HTTPS implementation with Apache SSL on port 3543, providing encrypted communication for enterprise environments
-
-• **📱 Android System Certificate Support**: Generated Android system certificates (`.pem` format) for device-wide SSL trust without app-embedded certificates
-
-• **🪟 Windows Certificate Integration**: Windows-compatible CA certificates for browser trust and enterprise certificate management
-
-• **📖 Interactive Installation Guide**: Built-in modal popup with step-by-step certificate installation instructions for Windows and Android platforms
-
-• **🔄 Certificate Deployment Pipeline**: Automated certificate copying to web-accessible directories during container startup and updates
-
-• **🛡️ Enterprise Security**: Complete PKI infrastructure with certificate chain validation for secure enterprise communications
-
+This release transforms the application into a precision tool for selective barcode capture, perfect for quality control, inventory management, and specialized data collection workflows.
 
 ## 📋 [View Complete Changelog](CHANGELOG.md) for previous versions and detailed release history.
 

@@ -17,6 +17,7 @@ This wiki provides comprehensive documentation for the AI MultiBarcode Capture s
 - **[Android App Configuration](07-Android-App-Configuration.md)** - Configuring the barcode scanning app
 - **[Build & Deployment](08-Android-Build-Deployment.md)** - Building and deploying the Android app
 - **[HTTP(s) Integration](09-HTTP-Integration.md)** - Setting up HTTP/HTTPS communication
+- **[Common Regex Expressions](16-Common-Regex-Expressions.md)** - Comprehensive collection of regular expressions for barcode filtering
 
 ### 🌐 Web Management System (WMS)
 - **[Docker WMS Deployment](10-Docker-WMS-Deployment.md)** - Complete guide to deploy and use the web management system with Docker

@@ -88,11 +88,36 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
                 }
             }
 
+            // Update processing mode if provided
+            if (restrictions.containsKey("processing_mode")) {
+                String processingMode = restrictions.getString("processing_mode");
+                if (processingMode != null && !processingMode.trim().isEmpty()) {
+                    editor.putString(Constants.SHARED_PREFERENCES_PROCESSING_MODE, processingMode);
+                    LogUtils.d(TAG, "Updated processing_mode: " + processingMode);
+                }
+            }
+
+            // Update HTTPS configuration from nested bundle
+            if (restrictions.containsKey("https_configuration")) {
+                Bundle httpsConfig = restrictions.getBundle("https_configuration");
+                if (httpsConfig != null) {
+                    updateHttpsConfiguration(editor, httpsConfig);
+                }
+            }
+
             // Update advanced settings from nested bundle
             if (restrictions.containsKey("advanced_settings")) {
                 Bundle advancedSettings = restrictions.getBundle("advanced_settings");
                 if (advancedSettings != null) {
                     updateAdvancedSettings(editor, advancedSettings);
+                }
+            }
+
+            // Update filtering settings from nested bundle
+            if (restrictions.containsKey("filtering_settings")) {
+                Bundle filteringSettings = restrictions.getBundle("filtering_settings");
+                if (filteringSettings != null) {
+                    updateFilteringSettings(editor, filteringSettings);
                 }
             }
 
@@ -234,16 +259,43 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
     }
 
     /**
+     * Updates HTTPS configuration preferences from the nested bundle
+     * @param editor SharedPreferences editor
+     * @param httpsConfig Bundle containing HTTPS configuration settings
+     */
+    private void updateHttpsConfiguration(SharedPreferences.Editor editor, Bundle httpsConfig) {
+        LogUtils.d(TAG, "Updating HTTPS configuration from managed configuration");
+
+        // Update HTTPS endpoint
+        updateStringSetting(editor, httpsConfig, "https_endpoint", Constants.SHARED_PREFERENCES_HTTPS_ENDPOINT);
+    }
+
+    /**
+     * Updates filtering settings preferences from the nested bundle
+     * @param editor SharedPreferences editor
+     * @param filteringSettings Bundle containing filtering settings
+     */
+    private void updateFilteringSettings(SharedPreferences.Editor editor, Bundle filteringSettings) {
+        LogUtils.d(TAG, "Updating filtering settings from managed configuration");
+
+        // Update filtering enabled setting
+        updateBooleanSetting(editor, filteringSettings, "filtering_enabled", Constants.SHARED_PREFERENCES_FILTERING_ENABLED);
+
+        // Update filtering regex
+        updateStringSetting(editor, filteringSettings, "filtering_regex", Constants.SHARED_PREFERENCES_FILTERING_REGEX);
+    }
+
+    /**
      * Public method to manually apply managed configuration
      * This can be called during app startup to ensure current restrictions are applied
      * @param context Application context
      */
     public static void applyManagedConfiguration(Context context) {
         LogUtils.d(TAG, "Manually applying managed configuration");
-        
-        RestrictionsManager restrictionsManager = 
+
+        RestrictionsManager restrictionsManager =
             (RestrictionsManager) context.getSystemService(Context.RESTRICTIONS_SERVICE);
-        
+
         if (restrictionsManager != null) {
             Bundle restrictions = restrictionsManager.getApplicationRestrictions();
             if (restrictions != null && !restrictions.isEmpty()) {

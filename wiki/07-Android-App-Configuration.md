@@ -34,10 +34,23 @@ Settings → Processing Mode → File-based Processing
 - Remote locations with intermittent connectivity
 
 **Configuration:**
-- No additional setup required
+- **Prefix**: Configure the filename prefix for exported files (default: "MySession_")
+- **File Type**: Choose export format from available options:
+  - **Text File (.txt)**: Plain text format for simple data export
+  - **CSV File (.csv)**: Comma-separated values for spreadsheet compatibility
+  - **Excel File (.xlsx)**: Microsoft Excel format for advanced data analysis
 - Data stored in device internal storage
 - Export functionality available via "Browser" button
 - Files can be transferred manually via USB or shared wirelessly
+
+**File Naming Convention:**
+```
+Format: [Prefix]_YYYYMMDD_HHMMSS.[extension]
+Examples:
+- MySession_20240315_143022.txt
+- Inventory_20240315_143022.csv
+- Warehouse_20240315_143022.xlsx
+```
 
 #### HTTP(s) Post Processing
 ```
@@ -46,7 +59,6 @@ Settings → Processing Mode → HTTP(s) Post
 
 **Required Configuration:**
 - **HTTP(s) Endpoint**: Complete URL to your web service
-- **Authentication**: Enable/disable based on server requirements
 - **Network Security**: Configure SSL/TLS settings
 
 ## 🌐 Network Configuration
@@ -62,7 +74,6 @@ Authentication: Disabled
 #### Production Environment
 ```
 HTTP(s) Endpoint: https://barcode-api.company.com/api/barcodes.php
-Authentication: Enabled (if configured on server)
 SSL Certificate Validation: Enabled
 ```
 
@@ -73,8 +84,9 @@ The Android app supports automatic endpoint configuration via QR code scanning, 
 #### How to Use QR Code Configuration
 
 **Step 1: Generate QR Code from WMS**
-1. Open your WMS web interface in a browser
-2. Navigate to the **Endpoint** or **Configuration** section
+1. Open the WMS simulator web interface in a browser
+2. Open the Settings (gear icon on the top right of the screen)
+2. Navigate to the **Endpoint Configuration**
 3. Click on the **QR Code** button or icon
 4. The system will display a QR code containing the endpoint URL
 
@@ -149,12 +161,12 @@ For development environments using HTTP (not HTTPS), the app includes network se
 ```xml
 <!-- Automatically configured in network_security_config.xml -->
 <network-security-config>
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="false">localhost</domain>
-        <domain includeSubdomains="false">127.0.0.1</domain>
-        <domain includeSubdomains="false">192.168.1.188</domain>
-        <domain includeSubdomains="false">10.0.2.2</domain>
-    </domain-config>
+    <!-- Allow cleartext traffic globally for development/testing -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </base-config>
 </network-security-config>
 ```
 
@@ -165,15 +177,251 @@ For production deployments:
 - Configure proper domain names
 - Test SSL connectivity before deployment
 
+## 🔍 Regular Expression Filtering
+
+The AI MultiBarcode Capture app includes a powerful filtering feature that allows you to capture only barcodes that match specific patterns using regular expressions. This feature helps focus on relevant data and eliminates unwanted barcode captures.
+
+### How It Works
+
+When **Regular Expression Filtering** is enabled, the application will:
+- Scan and detect all barcodes as usual
+- Apply the regex pattern to each barcode's data
+- **Only capture barcodes that match the pattern**
+- Ignore barcodes that don't match the filter
+
+### Configuration Steps
+
+1. **Access Settings**
+   ```
+   Settings → Filtering → Enable Filtering (checkbox)
+   ```
+
+2. **Enable Filtering**
+   - Check the "Enable Filtering" checkbox
+   - This activates the filtering system
+
+3. **Set Regular Expression Pattern**
+   - Enter your regex pattern in the "Regular Expression" text field
+   - The text field is only enabled when filtering is activated
+
+### Common Regular Expression Examples
+
+**📚 [Complete Regex Pattern Collection](16-Common-Regex-Expressions.md)** - Comprehensive guide with hundreds of regex patterns for web URLs, device identifiers, government IDs, product codes, and industry standards.
+
+#### Numeric Barcodes Only
+```regex
+^[0-9]+$
+```
+**Use Case**: Only capture barcodes containing numbers (UPC, EAN, etc.)
+
+#### Product Codes with Specific Format
+```regex
+^PRD[0-9]{6}$
+```
+**Use Case**: Capture product codes starting with "PRD" followed by 6 digits
+
+#### URL/Web Addresses
+```regex
+^https://[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/.*)?$
+```
+**Use Case**: Only capture HTTPS URLs from QR codes
+
+#### Serial Numbers
+```regex
+^SN[A-Z0-9]{8}$
+```
+**Use Case**: Capture serial numbers starting with "SN" followed by 8 alphanumeric characters
+
+#### Batch/Lot Numbers
+```regex
+^LOT[0-9]{4}-[0-9]{2}$
+```
+**Use Case**: Capture lot numbers in format "LOT1234-56"
+
+#### Alphanumeric Codes
+```regex
+^[A-Z]{2}[0-9]{4}[A-Z]{2}$
+```
+**Use Case**: Capture codes like "AB1234CD"
+
+### Configuration Notes
+
+- **Case Sensitivity**: Regular expressions are case-sensitive by default
+- **Error Handling**: Invalid regex patterns are logged but won't crash the app
+- **Performance**: Complex regex patterns may slightly impact scanning speed
+- **Fallback Behavior**: If regex is invalid, all barcodes are allowed through
+- **Real-time Filtering**: Filtering is applied during live scanning
+
+### Best Practices
+
+1. **Test Patterns**: Verify your regex with sample data before deployment
+2. **Keep It Simple**: Use the simplest pattern that meets your needs
+3. **Document Patterns**: Record the purpose of complex regex patterns
+4. **Performance Considerations**: Avoid overly complex patterns for high-volume scanning
+5. **Backup Strategy**: Always have a way to disable filtering if needed
+
+### Troubleshooting
+
+#### Pattern Not Working
+- Verify regex syntax using online regex testers
+- Check for special characters that need escaping
+- Ensure pattern matches the exact barcode format
+
+#### Performance Issues
+- Simplify complex regex patterns
+- Consider using character classes instead of long alternations
+- Test with actual scanning volume
+
+#### No Barcodes Captured
+- Check if filtering is enabled when not intended
+- Verify pattern matches expected barcode format
+- Temporarily disable filtering to test barcode detection
+
+## 📊 Symbologies Configuration
+
+The AI MultiBarcode Capture app supports a comprehensive range of barcode symbologies that can be individually enabled or disabled based on your specific requirements. The application supports **46 different barcode symbologies** organized into several categories.
+
+### Symbology Categories
+
+#### EAN/UPC Codes (Consumer Products)
+These are commonly used for retail and consumer products.
+
+#### 2D Matrix Codes (High Density)
+Two-dimensional codes that can store large amounts of data in a compact space.
+
+#### Linear 1D Codes (Traditional Barcodes)
+Traditional single-dimension barcodes commonly used in various industries.
+
+#### Postal Codes (Mail Services)
+Specialized codes used by postal services worldwide.
+
+#### GS1 Standards (Supply Chain)
+Industry-standard codes for global supply chain management.
+
+#### Other Specialized Codes
+Additional symbologies for specific industry applications.
+
+### Complete Symbology Reference
+
+| Symbology | Default Setting | Category |
+|-----------|----------------|----------|
+| EAN 8 | ✅ Enabled | EAN/UPC |
+| EAN 13 | ✅ Enabled | EAN/UPC |
+| UPC A | ✅ Enabled | EAN/UPC |
+| UPC E | ✅ Enabled | EAN/UPC |
+| AZTEC | ✅ Enabled | 2D Matrix |
+| CODABAR | ✅ Enabled | Linear 1D |
+| CODE128 | ✅ Enabled | Linear 1D |
+| CODE39 | ✅ Enabled | Linear 1D |
+| I2OF5 | ❌ Disabled | Linear 1D |
+| GS1 DATABAR | ✅ Enabled | GS1 Standards |
+| DATAMATRIX | ✅ Enabled | 2D Matrix |
+| GS1 DATABAR EXPANDED | ✅ Enabled | GS1 Standards |
+| MAILMARK | ✅ Enabled | Postal |
+| MAXICODE | ✅ Enabled | 2D Matrix |
+| PDF417 | ✅ Enabled | 2D Matrix |
+| QRCODE | ✅ Enabled | 2D Matrix |
+| DOTCODE | ❌ Disabled | 2D Matrix |
+| GRID MATRIX | ❌ Disabled | 2D Matrix |
+| GS1 DATAMATRIX | ❌ Disabled | GS1 Standards |
+| GS1 QRCODE | ❌ Disabled | GS1 Standards |
+| MICROQR | ❌ Disabled | 2D Matrix |
+| MICROPDF | ❌ Disabled | 2D Matrix |
+| USPOSTNET | ❌ Disabled | Postal |
+| USPLANET | ❌ Disabled | Postal |
+| UK POSTAL | ❌ Disabled | Postal |
+| JAPANESE POSTAL | ❌ Disabled | Postal |
+| AUSTRALIAN POSTAL | ❌ Disabled | Postal |
+| CANADIAN POSTAL | ❌ Disabled | Postal |
+| DUTCH POSTAL | ❌ Disabled | Postal |
+| US4STATE | ❌ Disabled | Postal |
+| US4STATE FICS | ❌ Disabled | Postal |
+| MSI | ❌ Disabled | Linear 1D |
+| CODE93 | ❌ Disabled | Linear 1D |
+| TRIOPTIC39 | ❌ Disabled | Linear 1D |
+| D2OF5 | ❌ Disabled | Linear 1D |
+| CHINESE 2OF5 | ❌ Disabled | Linear 1D |
+| KOREAN 3OF5 | ❌ Disabled | Linear 1D |
+| CODE11 | ❌ Disabled | Linear 1D |
+| TLC39 | ❌ Disabled | Linear 1D |
+| HANXIN | ❌ Disabled | 2D Matrix |
+| MATRIX 2OF5 | ❌ Disabled | Linear 1D |
+| UPCE1 | ❌ Disabled | EAN/UPC |
+| GS1 DATABAR LIM | ❌ Disabled | GS1 Standards |
+| FINNISH POSTAL 4S | ❌ Disabled | Postal |
+| COMPOSITE AB | ❌ Disabled | Composite |
+| COMPOSITE C | ❌ Disabled | Composite |
+
+### Configuration Notes
+
+- **Default Enabled (16 symbologies)**: The most commonly used barcode types across retail, logistics, and general applications
+- **Default Disabled (30 symbologies)**: Specialized codes for specific industries or less common applications
+- **Performance Impact**: Enabling fewer symbologies can improve detection speed and accuracy
+- **Regional Considerations**: Some postal codes are specific to certain countries/regions
+
+### Best Practices
+
+1. **Enable only needed symbologies** for optimal performance
+2. **Retail environments**: Keep EAN/UPC codes enabled
+3. **Logistics/Supply Chain**: Enable GS1 standards and common 2D codes
+4. **Postal applications**: Enable relevant postal codes for your region
+5. **Manufacturing**: Consider enabling Code 128, Code 39, and Data Matrix
+
 ## 🔧 Advanced Configuration
 
-### Camera Settings
+### Model Input Size
 
-#### Resolution Configuration
-The app uses optimized camera settings:
-- **Aspect Ratio**: 16:9 for optimal AI processing
-- **Resolution**: 1920x1080 (Full HD)
-- **Frame Rate**: 30 FPS for smooth operation
+**Description:** Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs.
+
+**Available Options:**
+- **Small (640x640)**: Fastest processing, lowest memory usage, suitable for large or nearby barcodes
+- **Medium (1280x1280)**: Balanced performance and accuracy for general use cases
+- **Large (1600x1600)**: Best accuracy for small or distant barcodes, higher processing power required
+
+**Note:** Model Input Size can be customized in increments of 32 using the SDK. The options above represent standard sizes.
+
+### Camera Resolution
+
+**Description:** Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.
+
+**Available Options:**
+- **1MP (1280 x 720)**: Large or close-up barcodes - Lower power consumption
+- **2MP (1920 x 1080)**: General barcodes - Recommended for most use cases
+- **4MP (2688 x 1512)**: Dense, faint, or small barcodes - Higher detail capture
+- **8MP (3840 x 2160)**: Tiny, distant, or low-contrast barcodes - Maximum detail
+
+### Inference (Processor) Type
+
+**Description:** This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.
+
+**Available Options:**
+- **DSP (Digital Signal Processor)**: Best Choice - Optimal performance and power efficiency
+- **GPU (Graphics Processing Unit)**: For trial use if DSP not available - Good performance
+- **CPU (Central Processing Unit)**: For trial use if DSP and GPU are not available - Fallback option
+
+### Performance Recommendations
+
+#### Optimal Settings for Different Scenarios
+
+**High Performance (Close-range, good lighting):**
+- Model Input Size: Small (640x640)
+- Camera Resolution: 1MP or 2MP
+- Inference Type: DSP
+
+**Balanced Performance (General use):**
+- Model Input Size: Medium (1280x1280)
+- Camera Resolution: 2MP
+- Inference Type: DSP
+
+**Maximum Accuracy (Small/distant barcodes):**
+- Model Input Size: Large (1600x1600)
+- Camera Resolution: 4MP or 8MP
+- Inference Type: DSP
+
+**Battery Conservation:**
+- Model Input Size: Small (640x640)
+- Camera Resolution: 1MP
+- Inference Type: DSP (if available)
 
 
 ### Session Management
