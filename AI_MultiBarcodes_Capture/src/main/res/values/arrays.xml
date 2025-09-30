@@ -3,13 +3,13 @@
 
     <!-- Processing Mode Arrays (for managed configuration only) -->
     <string-array name="processing_mode_names">
-        <item>File-based Processing</item>
+        <item>File Processing</item>
         <item>HTTP/HTTPS Post Processing</item>
     </string-array>
 
     <string-array name="processing_mode_values">
         <item>file</item>
-        <item>https_post</item>
+        <item>httpspost</item>
     </string-array>
 
 </resources>

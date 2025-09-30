@@ -178,6 +178,7 @@
     <string name="toggle_symbologies">Toggle symbologies</string>
     <string name="toggle_file_types">Toggle file types</string>
     <string name="toggle_advanced">Toggle advanced settings</string>
+    <string name="toggle_filtering">Toggle filtering</string>
     <string name="edit_item">Edit item</string>
     <string name="delete_item">Delete item</string>
 
@@ -455,6 +456,7 @@
         <item>CPU</item>
     </string-array>
 
+
     <!-- Data Processing Settings -->
     <string name="data_processing">Data Processing</string>
     <string name="processing_mode">Processing Mode</string>
@@ -474,5 +476,11 @@
 
     <!-- QR Code Endpoint Messages -->
     <string name="endpoint_updated_from_qr">Endpoint updated from QR code</string>
+
+    <!-- Filtering Settings -->
+    <string name="filtering">Filtering</string>
+    <string name="enable_filtering">Enable Filtering</string>
+    <string name="regular_expression">Regular Expression</string>
+    <string name="regular_expression_hint">e.g., ^[0-9]+$ for numbers only</string>
 
 </resources>

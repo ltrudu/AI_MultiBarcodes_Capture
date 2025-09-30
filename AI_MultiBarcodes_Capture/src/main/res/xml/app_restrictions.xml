@@ -389,4 +389,29 @@
 
     </restriction>
 
+    <!-- Filtering Configuration (Nested Bundle) -->
+    <restriction
+        android:key="filtering_settings"
+        android:title="Filtering Settings"
+        description="Configure barcode filtering using regular expressions"
+        android:restrictionType="bundle">
+
+        <!-- Enable Filtering Configuration -->
+        <restriction
+            android:key="filtering_enabled"
+            android:title="Enable Filtering"
+            description="Enable or disable barcode filtering"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
+        <!-- Regular Expression Configuration -->
+        <restriction
+            android:key="filtering_regex"
+            android:title="Regular Expression"
+            description="Regular expression pattern to filter barcodes (e.g., ^[0-9]+$ for numbers only)"
+            android:restrictionType="string"
+            android:defaultValue="" />
+
+    </restriction>
+
 </restrictions>

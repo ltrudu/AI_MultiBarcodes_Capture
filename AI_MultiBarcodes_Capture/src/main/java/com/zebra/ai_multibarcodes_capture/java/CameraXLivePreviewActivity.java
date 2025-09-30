@@ -142,6 +142,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private ImageView flashlightToggleIcon;
     private CaptureZoneOverlay captureZoneOverlay;
     private boolean isFlashlightOn = false;
+
+    // Filtering settings
+    private boolean isFilteringEnabled = false;
+    private String filteringRegex = "";
     
     private BarcodeTracker barcodeTracker;
     private EntityBarcodeTracker entityBarcodeTracker;
@@ -394,27 +398,27 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     
     private void loadFlashlightSettings() {
         LogUtils.d(TAG, "=== loadFlashlightSettings() START ===");
-        
+
         // Load flashlight enabled state
         boolean wasFlashlightEnabled = PreferencesHelper.isFlashlightEnabled(this);
-        
+
         LogUtils.d(TAG, "Loaded flashlight state from preferences: " + wasFlashlightEnabled);
         LogUtils.d(TAG, "Current camera state: " + (camera != null ? "available" : "null"));
         LogUtils.d(TAG, "Camera has flash unit: " + (camera != null && camera.getCameraInfo().hasFlashUnit()));
         LogUtils.d(TAG, "Current isFlashlightOn field: " + isFlashlightOn);
         LogUtils.d(TAG, "flashlightToggleIcon: " + (flashlightToggleIcon != null ? "available" : "null"));
-        
+
         if (wasFlashlightEnabled && camera != null && camera.getCameraInfo().hasFlashUnit()) {
             LogUtils.d(TAG, "Conditions met - restoring flashlight to ON state");
             isFlashlightOn = true;
-            
+
             try {
                 camera.getCameraControl().enableTorch(true);
                 LogUtils.d(TAG, "Camera torch enabled successfully");
             } catch (Exception e) {
                 LogUtils.e(TAG, "Failed to enable camera torch", e);
             }
-            
+
             // Update icon to reflect restored state
             if (flashlightToggleIcon != null) {
                 flashlightToggleIcon.setImageResource(R.drawable.flashlight_on_icon);
@@ -422,16 +426,16 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             } else {
                 LogUtils.w(TAG, "Cannot update icon - flashlightToggleIcon is null");
             }
-            
+
             LogUtils.d(TAG, "Flashlight restored to ON state");
         } else {
             LogUtils.d(TAG, "Conditions not met - setting flashlight to OFF state");
-            LogUtils.d(TAG, "Reason: wasEnabled=" + wasFlashlightEnabled + 
-                      ", camera=" + (camera != null) + 
+            LogUtils.d(TAG, "Reason: wasEnabled=" + wasFlashlightEnabled +
+                      ", camera=" + (camera != null) +
                       ", hasFlash=" + (camera != null && camera.getCameraInfo().hasFlashUnit()));
-                      
+
             isFlashlightOn = false;
-            
+
             if (camera != null && camera.getCameraInfo().hasFlashUnit()) {
                 try {
                     camera.getCameraControl().enableTorch(false);
@@ -440,7 +444,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                     LogUtils.e(TAG, "Failed to disable camera torch", e);
                 }
             }
-            
+
             // Update icon to reflect off state
             if (flashlightToggleIcon != null) {
                 flashlightToggleIcon.setImageResource(R.drawable.flashlight_off_icon);
@@ -448,12 +452,50 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             } else {
                 LogUtils.w(TAG, "Cannot update icon - flashlightToggleIcon is null");
             }
-            
+
             LogUtils.d(TAG, "Flashlight set to OFF state");
         }
-        
+
         LogUtils.d(TAG, "Final isFlashlightOn field value: " + isFlashlightOn);
         LogUtils.d(TAG, "=== loadFlashlightSettings() END ===");
+    }
+
+    private void loadFilteringSettings() {
+        LogUtils.d(TAG, "=== loadFilteringSettings() START ===");
+
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+
+        // Load filtering enabled state
+        isFilteringEnabled = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_FILTERING_ENABLED, Constants.SHARED_PREFERENCES_FILTERING_ENABLED_DEFAULT);
+
+        // Load filtering regex pattern
+        filteringRegex = sharedPreferences.getString(Constants.SHARED_PREFERENCES_FILTERING_REGEX, Constants.SHARED_PREFERENCES_FILTERING_REGEX_DEFAULT);
+
+        LogUtils.d(TAG, "Loaded filtering settings - enabled: " + isFilteringEnabled + ", regex: '" + filteringRegex + "'");
+        LogUtils.d(TAG, "=== loadFilteringSettings() END ===");
+    }
+
+    private boolean isValueMatchingFilteringRegex(String data)
+    {
+        if(isFilteringEnabled && filteringRegex.isEmpty() == false)
+        {
+            try {
+                // Check if data matches the filteringRegex pattern
+                boolean matches = data.matches(filteringRegex);
+                LogUtils.v(TAG, "Regex filtering - Data: '" + data + "', Pattern: '" + filteringRegex + "', Matches: " + matches);
+                return matches;
+            } catch (Exception e) {
+                // If regex is invalid, log error and allow the barcode through
+                LogUtils.e(TAG, "Invalid regex pattern '" + filteringRegex + "': " + e.getMessage());
+                return true;
+            }
+        }
+        else
+        {
+            // If filtering is disabled, return always true
+            return true;
+        }
     }
 
     private boolean isBarcodeInCaptureZone(Rect overlayRect) {
@@ -696,16 +738,25 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                             
                             // Only process barcode if it's inside the capture zone (when capture zone is enabled)
                             if (isBarcodeInCaptureZone(overlayRect)) {
-                                rects.add(overlayRect);
-                                String hashCode = String.valueOf(bEntity.hashCode());
-                                // Ensure the string has at least 4 characters
-                                if (hashCode.length() >= 4) {
-                                    // Get the last four digits
-                                    hashCode = hashCode.substring(hashCode.length() - 4);
+                                // Check if the entity is matching the filtering regex
+                                // If the filtering is not enabled, it returns always true
+                                if(isValueMatchingFilteringRegex(bEntity.getValue())) {
+                                    // Now if necessary, check if the barcode meets the
+                                    rects.add(overlayRect);
+                                    String hashCode = String.valueOf(bEntity.hashCode());
+                                    // Ensure the string has at least 4 characters
+                                    if (hashCode.length() >= 4) {
+                                        // Get the last four digits
+                                        hashCode = hashCode.substring(hashCode.length() - 4);
 
+                                    }
+                                    decodedStrings.add(bEntity.getValue());
+                                    LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
                                 }
-                                decodedStrings.add(bEntity.getValue());
-                                LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
+                                else
+                                {
+                                    LogUtils.v(TAG, "Barcode does not match regex, ignoring: " + bEntity.getValue());
+                                }
                             } else {
                                 LogUtils.v(TAG, "Barcode outside capture zone, ignoring: " + bEntity.getValue());
                             }
@@ -826,7 +877,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             LogUtils.d(TAG, "onResume - CaptureZoneOverlay dimensions: " + captureZoneOverlay.getWidth() + "x" + captureZoneOverlay.getHeight());
             loadCaptureZoneSettings();
         }
-        
+
+        // Load filtering settings
+        loadFilteringSettings();
+
         // Flashlight settings are now loaded after camera is bound in bindPreviewUseCase()
 
         int currentRotation = getWindowManager().getDefaultDisplay().getRotation();
@@ -897,8 +951,14 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                     if (boundingBox != null) {
                         Rect overlayRect = mapBoundingBoxToOverlay(boundingBox);
                         if (isBarcodeInCaptureZone(overlayRect)) {
-                            barcodeEntities.add(bEntity);
-                            LogUtils.d(TAG, "Barcode captured.\nValue:" + bEntity.getValue() + "\nSymbology:" + bEntity.getSymbology() + "\nHashcode:" + bEntity.hashCode());
+                            if(isValueMatchingFilteringRegex(bEntity.getValue())) {
+                                barcodeEntities.add(bEntity);
+                                LogUtils.d(TAG, "Barcode captured.\nValue:" + bEntity.getValue() + "\nSymbology:" + bEntity.getSymbology() + "\nHashcode:" + bEntity.hashCode());
+                            }
+                            else
+                            {
+                                LogUtils.d(TAG,"Barcode does not match filtering regex:" + filteringRegex + " with value:" + bEntity.getValue());
+                            }
                         } else {
                             LogUtils.d(TAG, "Barcode outside capture zone, not captured: " + bEntity.getValue());
                         }

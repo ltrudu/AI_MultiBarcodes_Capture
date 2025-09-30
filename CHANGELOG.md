@@ -2,6 +2,44 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+## Version 1.29 - 🔍 **Advanced Barcode Filtering System**
+
+**Enhanced barcode processing capabilities with intelligent pattern-based filtering for precision data capture.**
+
+### 🆕 **New Features:**
+• **Regular Expression Filtering**: Powerful pattern-based barcode filtering system that captures only barcodes matching specific criteria
+• **Real-time Pattern Matching**: Filtering applied during live scanning for immediate results
+• **Comprehensive Pattern Examples**: Built-in documentation with common regex patterns for various use cases
+
+### ⚙️ **Advanced Filtering Capabilities:**
+• **Numeric-Only Filtering**: Capture only numerical barcodes (UPC, EAN codes)
+• **URL Pattern Matching**: Filter for HTTPS URLs in QR codes
+• **Product Code Formats**: Match specific alphanumeric patterns for inventory systems
+• **Serial Number Validation**: Filter for standardized serial number formats
+• **Custom Pattern Support**: Create complex regex patterns for specialized applications
+• **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of regex patterns for web URLs, device identifiers, government IDs, product codes, and industry standards
+
+### 🛠 **Enterprise Management:**
+• **Managed Configuration Support**: Full enterprise MDM/EMM integration for remote filtering configuration
+• **Comprehensive Documentation**: Updated configuration guides with filtering setup instructions
+• **Error Handling**: Robust pattern validation with fallback behavior for invalid expressions
+• **Performance Optimized**: Efficient regex processing without impacting scan performance
+
+### 🔧 **Technical Implementation:**
+• **New Settings UI**: Added foldable Filtering section with enable checkbox and regex text input
+• **Constants Integration**: Added filtering preference constants for enterprise configuration
+• **SharedPreferences**: Persistent storage of filtering settings with default values
+• **Real-time Validation**: Live regex pattern matching during barcode detection
+• **Managed Config Schema**: Updated app_restrictions.xml for enterprise deployment
+
+### 📚 **Documentation Updates:**
+• **Regular Expression Guide**: Comprehensive filtering documentation with practical examples
+• **Symbologies Reference**: Complete table of all 46 supported barcode symbologies with default settings
+• **Configuration Instructions**: Step-by-step setup guides for filtering and symbology management
+• **Enterprise Integration**: Updated managed configuration documentation
+
+This release transforms the application into a precision tool for selective barcode capture, perfect for quality control, inventory management, and specialized data collection workflows.
+
 ## Version 1.27
 **🔓 Simplified Android Authentication**
 

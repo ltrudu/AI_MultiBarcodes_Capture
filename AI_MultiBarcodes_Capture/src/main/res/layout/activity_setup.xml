@@ -327,6 +327,80 @@
 
     </LinearLayout>
 
+    <!-- Filtering Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llFilteringTitle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/zebra"
+        android:background="@color/zebra"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvFilteringTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/filtering"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivToggleFiltering"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivToggleFiltering"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_expand_more_24"
+            android:contentDescription="@string/toggle_filtering"
+            android:padding="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            app:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/llFilteringContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <CheckBox
+            android:id="@+id/cbEnableFiltering"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/zebra"
+            android:text="@string/enable_filtering"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/regular_expression"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etFilteringRegex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/regular_expression_hint"
+            android:enabled="false"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llSymbologyTitle"
         android:layout_width="match_parent"

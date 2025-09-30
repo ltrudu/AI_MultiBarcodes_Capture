@@ -65,10 +65,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "SettingsActivity";
 
-    private EditText etPrefix, etHttpsEndpoint;
+    private EditText etPrefix, etHttpsEndpoint, etFilteringRegex;
     private RadioButton rbCSV, rbTXT, rbXSLX;
-    private ImageView ivToggleSymbologies, ivToggleFileTypes, ivToggleAdvanced, ivToggleHttpsPost;
-    private LinearLayout llSymbologies, llAdvancedContent, llFileProcessingContent, llHttpsPost, llFileProcessing, llHttpsPostContent;
+    private ImageView ivToggleSymbologies, ivToggleFileTypes, ivToggleAdvanced, ivToggleHttpsPost, ivToggleFiltering;
+    private LinearLayout llSymbologies, llAdvancedContent, llFileProcessingContent, llHttpsPost, llFileProcessing, llHttpsPostContent, llFilteringContent;
+    private CheckBox cbEnableFiltering;
     private RadioGroup rgFileTypes, rgModelInputSize, rgCameraResolution, rgInferenceType;
     private RadioButton rbSmallInputSize, rbMediumInputSize, rbLargeInputSize;
     private RadioButton rb1MPResolution, rb2MPResolution, rb4MPResolution, rb8MPResolution;
@@ -78,6 +79,7 @@ public class SettingsActivity extends AppCompatActivity {
     private boolean isFileTypesExpanded = false;
     private boolean isAdvancedExpanded = false;
     private boolean isHttpsPostExpanded = false;
+    private boolean isFilteringExpanded = false;
     private Spinner spinnerLanguage, spinnerProcessingMode;
     private LanguageAdapter languageAdapter;
     private List<LanguageItem> languageList;
@@ -128,6 +130,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         etPrefix = findViewById(R.id.etPrefix);
         etHttpsEndpoint = findViewById(R.id.etHttpsEndpoint);
+        etFilteringRegex = findViewById(R.id.etFilteringRegex);
         rbCSV = findViewById(R.id.rbCSV);
         rbTXT = findViewById(R.id.rbTxt);
         rbXSLX = findViewById(R.id.rbXSLX);
@@ -135,12 +138,15 @@ public class SettingsActivity extends AppCompatActivity {
         ivToggleFileTypes = findViewById(R.id.ivToggleFileTypes);
         ivToggleAdvanced = findViewById(R.id.ivToggleAdvanced);
         ivToggleHttpsPost = findViewById(R.id.ivToggleHttpsPost);
+        ivToggleFiltering = findViewById(R.id.ivToggleFiltering);
         llSymbologies = findViewById(R.id.llSymbologies);
         llAdvancedContent = findViewById(R.id.llAdvancedContent);
         llFileProcessingContent = findViewById(R.id.llFileProcessingContent);
         llFileProcessing = findViewById(R.id.llFileProcessing);
         llHttpsPost = findViewById(R.id.llHttpsPost);
         llHttpsPostContent = findViewById(R.id.llHttpsPostContent);
+        llFilteringContent = findViewById(R.id.llFilteringContent);
+        cbEnableFiltering = findViewById(R.id.cbEnableFiltering);
         rgFileTypes = findViewById(R.id.rgFileTypes);
         rgModelInputSize = findViewById(R.id.rgModelInputSize);
         rgCameraResolution = findViewById(R.id.rgCameraResolution);
@@ -236,6 +242,11 @@ public class SettingsActivity extends AppCompatActivity {
         isHttpsPostExpanded = false;
         ivToggleHttpsPost.setImageResource(R.drawable.ic_expand_less_24);
 
+        // Initially hide the Filtering content and set collapsed state
+        llFilteringContent.setVisibility(View.GONE);
+        isFilteringExpanded = false;
+        ivToggleFiltering.setImageResource(R.drawable.ic_expand_less_24);
+
         // Set up click listener for symbologies toggle
         ivToggleSymbologies.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -268,9 +279,20 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        // Set up click listener for filtering toggle
+        ivToggleFiltering.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleFiltering();
+            }
+        });
+
 
         // Setup symbology checkboxes change listeners
         setupSymbologyListeners();
+
+        // Setup filtering checkbox listener
+        setupFilteringListeners();
 
         findViewById(R.id.btCancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -345,6 +367,7 @@ public class SettingsActivity extends AppCompatActivity {
         loadInferenceType(sharedPreferences);
         loadProcessingMode(sharedPreferences);
         loadHttpsPostSettings(sharedPreferences);
+        loadFilteringSettings(sharedPreferences);
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
@@ -476,6 +499,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveInferenceType(editor);
         saveProcessingMode(editor);
         saveHttpsPostSettings(editor);
+        saveFilteringSettings(editor);
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
@@ -1082,5 +1106,40 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setupFilteringListeners() {
+        cbEnableFiltering.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                etFilteringRegex.setEnabled(isChecked);
+            }
+        });
+    }
+
+    private void loadFilteringSettings(SharedPreferences sharedPreferences) {
+        boolean filteringEnabled = sharedPreferences.getBoolean(SHARED_PREFERENCES_FILTERING_ENABLED, SHARED_PREFERENCES_FILTERING_ENABLED_DEFAULT);
+        String filteringRegex = sharedPreferences.getString(SHARED_PREFERENCES_FILTERING_REGEX, SHARED_PREFERENCES_FILTERING_REGEX_DEFAULT);
+
+        cbEnableFiltering.setChecked(filteringEnabled);
+        etFilteringRegex.setText(filteringRegex);
+        etFilteringRegex.setEnabled(filteringEnabled);
+    }
+
+    private void saveFilteringSettings(SharedPreferences.Editor editor) {
+        editor.putBoolean(SHARED_PREFERENCES_FILTERING_ENABLED, cbEnableFiltering.isChecked());
+        editor.putString(SHARED_PREFERENCES_FILTERING_REGEX, etFilteringRegex.getText().toString());
+    }
+
+    private void toggleFiltering() {
+        isFilteringExpanded = !isFilteringExpanded;
+
+        if (isFilteringExpanded) {
+            llFilteringContent.setVisibility(View.VISIBLE);
+            ivToggleFiltering.setImageResource(R.drawable.ic_expand_more_24);
+        } else {
+            llFilteringContent.setVisibility(View.GONE);
+            ivToggleFiltering.setImageResource(R.drawable.ic_expand_less_24);
+        }
     }
 }
