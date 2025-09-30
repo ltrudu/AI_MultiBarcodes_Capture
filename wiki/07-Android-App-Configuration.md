@@ -249,7 +249,7 @@ When **Regular Expression Filtering** is enabled, the application will:
 - **Case Sensitivity**: Regular expressions are case-sensitive by default
 - **Error Handling**: Invalid regex patterns are logged but won't crash the app
 - **Performance**: Complex regex patterns may slightly impact scanning speed
-- **Fallback Behavior**: If regex is invalid, all barcodes are allowed through
+- **Fallback Behavior**: If regex is empty, all barcodes are allowed through
 - **Real-time Filtering**: Filtering is applied during live scanning
 
 ### Best Practices
