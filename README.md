@@ -112,6 +112,8 @@ This release transforms the application into a precision tool for selective barc
 
 ## 📱 Screenshots
 
+### Android Application
+
 <img width="216" height="432" alt="Entry Choice Screen" src="https://github.com/user-attachments/assets/c531d739-63c0-4e59-b8c8-7fc3b3899122" />
 <img width="216" height="432" alt="Entry Choice Screen Menu" src="https://github.com/user-attachments/assets/1d02443f-b6c3-4dfe-8097-65951b6bf51f" />
 <img width="216" height="432" alt="Camera Preview with Detection" src="https://github.com/user-attachments/assets/2314b57b-f47a-4add-9d24-2da1c2488bee" />
@@ -126,7 +128,13 @@ This release transforms the application into a precision tool for selective barc
 <img width="216" height="432" alt="Session Data Editor" src="https://github.com/user-attachments/assets/c4e2279f-fb38-4211-974a-1f821e2e6307" />
 <img width="216" height="432" alt="Session Data Editor Row Swipe Left" src="https://github.com/user-attachments/assets/ac8e3dfa-e95f-4fd7-af73-ef4767eeb0d1" />
 <img width="216" height="432" alt="Barcode Quantity Editor" src="https://github.com/user-attachments/assets/030c9577-0a36-47f7-840b-685d1bf0301f" />
-<img width="308" height="235" alt="Barcode WMS WebServer" src="https://github.com/user-attachments/assets/753d4e9d-31f0-46fc-8f03-58a37e260796" />
+
+### WMS Barcode Web Server
+
+<img width="616" height="470" alt="Barcode WMS WebServer" src="https://github.com/user-attachments/assets/753d4e9d-31f0-46fc-8f03-58a37e260796" />
+<div/>
+<img width="616" height="521" alt="Barcode WMS WebServer Session Detail" src="https://github.com/user-attachments/assets/f51adeca-ed9e-4531-9184-99e668174d4b" />
+<div/>
 <img width="270" height="283" alt="Barcode WMS WebServer Settings" src="https://github.com/user-attachments/assets/95e1360a-7171-42c1-9cc6-69cde79f2714" />
 <img width="271" height="283" alt="Barcode WMS WebServer Settings Certificates" src="https://github.com/user-attachments/assets/51849efb-e487-4178-b141-0714962164c6" />
 <img width="271" height="282" alt="Barcode WMS WebServer Settings Endpoints" src="https://github.com/user-attachments/assets/dadd22ea-e9af-4ef3-80a0-d5b92ddf7575" />
