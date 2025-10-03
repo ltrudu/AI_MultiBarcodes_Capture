@@ -994,6 +994,15 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+        if(keyCode == Constants.KEYCODE_BUTTON_R1 || keyCode == Constants.KEYCODE_SCAN)
+        {
+            captureData();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
     protected void attachBaseContext(Context newBase) {
         String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
         Context context = LocaleHelper.setLocale(newBase, languageCode);

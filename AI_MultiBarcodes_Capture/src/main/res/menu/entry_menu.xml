@@ -10,4 +10,9 @@
         android:title="@string/menu_settings"
         android:icon="@drawable/ic_menu_settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:title="@string/menu_about"
+        android:icon="@drawable/ic_menu_about"
+        app:showAsAction="never" />
 </menu>

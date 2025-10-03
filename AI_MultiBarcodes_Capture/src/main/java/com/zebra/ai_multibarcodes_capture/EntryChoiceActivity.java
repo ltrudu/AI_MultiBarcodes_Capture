@@ -181,6 +181,9 @@ public class EntryChoiceActivity extends AppCompatActivity {
                          } else if (id == R.id.action_settings) {
                              Intent intent = new Intent(EntryChoiceActivity.this, SettingsActivity.class);
                              resultSettings.launch(intent);
+                         } else if (id == R.id.action_about) {
+                             Intent intent = new Intent(EntryChoiceActivity.this, AboutActivity.class);
+                             startActivity(intent);
                          }
                          return false;
                      }
