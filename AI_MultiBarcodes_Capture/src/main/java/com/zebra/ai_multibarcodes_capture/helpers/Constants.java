@@ -227,4 +227,7 @@ public class Constants {
     public static final String SHARED_PREFERENCES_FILTERING_REGEX = "SHARED_PREFERENCES_FILTERING_REGEX";
     public static final String SHARED_PREFERENCES_FILTERING_REGEX_DEFAULT = "";
 
+
+    public static final int KEYCODE_BUTTON_R1 = 103;
+    public static final int KEYCODE_SCAN = 10036;
 }
