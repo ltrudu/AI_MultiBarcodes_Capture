@@ -243,7 +243,7 @@
     <!-- About Activity -->
     <string name="about_app_version">App Version</string>
     <string name="about_open_source">Open Source</string>
-    <string name="about_open_source_description">This software is open sourced and available on GitHub</string>
+    <string name="about_open_source_description">This software is a community project that is open sourced and available on GitHub. It is not officially supported by Zebra. It is just a sample of an integration of the Zebra Vision AI SDK.</string>
     <string name="about_developer">Developer</string>
     <string name="about_developer_name">Laurent Trudu</string>
     <string name="about_developer_title">Senior Software Sales Engineer</string>
