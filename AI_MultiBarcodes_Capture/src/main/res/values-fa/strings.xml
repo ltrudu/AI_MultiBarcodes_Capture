@@ -1,234 +1,187 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ضبط چند بارکد هوش مصنوعی</string>
-    <string name="start_capture_button_text">شروع ضبط</string>
-    <string name="loading_status">بارگیری اپلیکیشن</string>
-    <string name="select_session_file">یک فایل جلسه انتخاب کنید یا یکی جدید بسازید.</string>
-    <string name="retrieving_permissions">دریافت مجوزها</string>
-    <string name="select">انتخاب</string>
-    <string name="share">اشتراک‌گذاری</string>
-    <string name="refresh">به‌روزرسانی</string>
+    <string name="app_name">Ai Multi Barcodes ضبط</string>
+    <string name="start_capture_button_text">شروع به ضبط کنید</string>
+    <string name="loading_status">برنامه بارگیری</string>
+    <string name="select_session_file">یک پرونده جلسه را انتخاب کنید یا یک پرونده جدید ایجاد کنید.</string>
+    <string name="https_post_mode_active">حالت پست HTTP (ها): آماده برای ضبط بدون پرونده های جلسه.</string>
+    <string name="no_endpoint_configured">هیچ نقطه پایانی HTTP (S) پیکربندی شده است. لطفا تنظیمات را بررسی کنید.</string>
+    <string name="endpoint">نقطه پایانی</string>
+    <string name="upload">بارگذاری</string>
+    <string name="uploading">بارگذاری ...</string>
+    <string name="upload_successful">بارگذاری موفقیت آمیز</string>
+    <string name="upload_failed">بارگذاری ناموفق بود</string>
+    <string name="upload_error">خطای بارگذاری</string>
+    <string name="retrieving_permissions">بازیابی مجوزها</string>
+    <string name="select">انتخاب کنید</string>
+    <string name="share">به اشتراک بگذارید</string>
+    <string name="refresh">تازه کردن</string>
     <string name="close">بستن</string>
-    <string name="manage_sessions">مدیریت جلسات</string>
-    <string name="create_new">ایجاد جدید</string>
-    <string name="enter_new_file_name">نام فایل جدید را وارد کنید</string>
-    <string name="default_session_name">جلسه_من_</string>
-    <string name="file_extension_txt">.txt</string>
+    <string name="manage_sessions">جلسات را مدیریت کنید</string>
+    <string name="create_new">جدید ایجاد کنید</string>
+    <string name="enter_new_file_name">نام پرونده جدید را وارد کنید</string>
+    <string name="default_session_name">mySession_</string>
     <string name="yes">بله</string>
-    <string name="no">خیر</string>
-    <string name="addtofile">اضافه به فایل</string>
-    <string name="save">ذخیره</string>
-    <string name="update">به‌روزرسانی فایل</string>
-    <string name="merge">ادغام مقادیر</string>
-    <string name="start_capture">شروع ضبط</string>
-    <string name="load_last_session">بارگیری آخرین جلسه</string>
-    <string name="create_new_session">ایجاد جلسه جدید</string>
-    <string name="view_session_data">مشاهده داده‌های جلسه</string>
-    <string name="selected_session">جلسه انتخاب‌شده</string>
-    <string name="select_session_to_start">برای شروع ضبط یک جلسه انتخاب کنید</string>
-    <string name="setup">راه‌اندازی</string>
-    <string name="prefix">پیشوند:</string>
+    <string name="no">نه</string>
+    <string name="addtofile">.txt</string>
+    <string name="save">ذخیره کنید</string>
+    <string name="update">پرونده را به روز کنید</string>
+    <string name="start_capture">شروع به ضبط کنید</string>
+    <string name="load_last_session">آخرین جلسه را بارگیری کنید</string>
+    <string name="create_new_session">جلسه جدید ایجاد کنید</string>
+    <string name="selected_session">جلسه انتخاب شده</string>
+    <string name="select_session_to_start">یک جلسه را برای شروع ضبط انتخاب کنید</string>
+    <string name="setup">تنظیم</string>
+    <string name="prefix">پیشوند</string>
     <string name="prefix_hint">پیشوند_</string>
-    <string name="file_type">نوع فایل</string>
-    <string name="text_file">فایل متنی</string>
-    <string name="csv_file">فایل CSV</string>
-    <string name="excel_file">فایل Excel</string>
-    <string name="validate">تایید</string>
+    <string name="file_type">نوع پرونده</string>
+    <string name="text_file">پرونده متنی</string>
+    <string name="csv_file">پرونده CSV</string>
+    <string name="excel_file">پرونده اکسل</string>
+    <string name="language">زبان</string>
+    <string name="system_language">زبان سیستم</string>
+    <string name="validate">اعتبارسنجی کنید</string>
     <string name="cancel">لغو</string>
     <string name="capture">ضبط</string>
-    <string name="ai_vision_sdk_init_failed">راه‌اندازی AI Vision SDK ناموفق بود</string>
-    <string name="folder_path_missing">مسیر پوشه موجود نیست!</string>
-    <string name="folder_path_missing_toast">مسیر پوشه موجود نیست !!!</string>
-    <string name="error_could_not_create_file">خطا، نمی‌توان فایل ایجاد کرد: %s</string>
-    <string name="error_could_not_open_file">خطا، نمی‌توان فایل باز کرد: %s</string>
-    <string name="error_file_does_not_exist">خطا، فایل وجود ندارد: %s</string>
-    <string name="error_file_is_empty">خطا، فایل خالی است: %s</string>
-    <string name="error_loading_data">خطا، نمی‌توان داده‌ها را در فایل بارگیری کرد: %s</string>
-    <string name="file_saved_at">فایل ذخیره شد در: %s</string>
-    <string name="error_saving_file">خطا در ذخیره فایل: %s</string>
-    <string name="error_saving_last_selected_file">خطا در ذخیره آخرین فایل انتخاب‌شده</string>
+    <string name="ai_vision_sdk_init_failed">اولیه سازی SDK AI VISION ناموفق بود</string>
+    <string name="folder_path_missing">مسیر پوشه از دست رفته است!</string>
+    <string name="folder_path_missing_toast">مسیر پوشه از دست رفته است !!!</string>
+    <string name="error_could_not_create_file">خطا ، نمی تواند پرونده ایجاد کند: ٪ s</string>
+    <string name="error_could_not_open_file">خطا ، نمی تواند پرونده را باز کند: ٪ s</string>
+    <string name="error_file_does_not_exist">خطا ، پرونده وجود ندارد: ٪ s</string>
+    <string name="error_file_is_empty">خطا ، پرونده خالی است: ٪ s</string>
+    <string name="error_loading_data">خطا ، نمی تواند داده ها را در پرونده بارگذاری کند: ٪ s</string>
+    <string name="file_saved_at">پرونده ذخیره شده در: ٪ s</string>
+    <string name="error_saving_file">پرونده ذخیره خطا: ٪ s</string>
+    <string name="error_saving_last_selected_file">خطای ذخیره آخرین پرونده انتخاب شده</string>
     <string name="settings_saved_successfully">تنظیمات با موفقیت ذخیره شد</string>
-    <string name="please_select_file_not_folder">لطفاً فایل انتخاب کنید، نه پوشه.</string>
-    <string name="please_select_file_or_folder">لطفاً فایل انتخاب کنید.</string>
-    <string name="cannot_rename_parent_folder">نمی‌توان پوشه‌ها یا پوشه والد را تغییر نام داد.</string>
-    <string name="file_already_exists">فایل از قبل وجود دارد.</string>
-    <string name="error_renaming_file">خطا در تغییر نام فایل</string>
-    <string name="folder_already_exists">پوشه از قبل وجود دارد.</string>
-    <string name="failed_to_create_folder">ایجاد پوشه ناموفق بود: %s</string>
-    <string name="failed_to_create_file">ایجاد فایل ناموفق بود</string>
-    <string name="cannot_delete_parent_folder">نمی‌توان پوشه والد را حذف کرد.</string>
-    <string name="cannot_share_folders">نمی‌توان پوشه‌ها را به اشتراک گذاشت.</string>
-    <string name="last_session_file_not_found">آخرین فایل جلسه یافت نشد.</string>
-    <string name="no_session_file_saved">هیچ فایل جلسه‌ای در ترجیحات ذخیره نشده است.</string>
-    <string name="error_creating_new_session">خطا در ایجاد جلسه جدید: %s</string>
-    <string name="missing_filename">نام فایل موجود نیست</string>
-    <string name="camera_permission_required">برای استفاده از این ویژگی مجوز دوربین مورد نیاز است</string>
-    <string name="entity_tracker_creation_time">زمان ایجاد شیء Entity Tracker BarcodeDecoder() =%d میلی‌ثانیه</string>
-    <string name="barcode_decoder_disposed">رمزگشای بارکد از بین رفته</string>
-    <string name="orientation_unlocked">جهت‌گیری برای حالت %s باز شد</string>
-    <string name="applied_viewfinder_resize_immediately">مشخصات تغییر اندازه نماگر فوراً اعمال شد</string>
-    <string name="stored_pending_viewfinder_resize">داده‌های تغییر اندازه نماگر در انتظار برای اعمال بعدی ذخیره شد</string>
-    <string name="applied_pending_viewfinder_resize">داده‌های تغییر اندازه نماگر در انتظار از مقادیر ذخیره‌شده اعمال شد</string>
-    <string name="entity_tracker_ready">EntityBarcodeTracker آماده است، تنظیمات در انتظار اعمال می‌شود</string>
-    <string name="handle_view_entity_result">مدیریت موجودیت مشاهده - نتیجه دریافت شد</string>
-    <string name="entity_tracker_decoder_available">رمزگشای EntityBarcodeTracker در دسترس است، تعداد موجودیت‌ها: %s</string>
-    <string name="processing_entities">پردازش %d موجودیت برای نمای موجودیت</string>
-    <string name="rendered_entities">موجودیت‌ها در نمای موجودیت رندر شدند</string>
-    <string name="symbologies">Symbologies</string>
-    <string name="australian_postal">AUSTRALIAN POSTAL</string>
-    <string name="aztec">AZTEC</string>
-    <string name="canadian_postal">CANADIAN POSTAL</string>
-    <string name="chinese_2of5">CHINESE 2OF5</string>
-    <string name="codabar">CODABAR</string>
-    <string name="code11">CODE11</string>
-    <string name="code39">CODE39</string>
-    <string name="code93">CODE93</string>
-    <string name="code128">CODE128</string>
-    <string name="composite_ab">COMPOSITE AB</string>
-    <string name="composite_c">COMPOSITE C</string>
-    <string name="d2of5">D2OF5</string>
-    <string name="datamatrix">DATAMATRIX</string>
-    <string name="dotcode">DOTCODE</string>
-    <string name="dutch_postal">DUTCH POSTAL</string>
-    <string name="ean_8">EAN 8</string>
-    <string name="ean_13">EAN 13</string>
-    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
-    <string name="grid_matrix">GRID MATRIX</string>
-    <string name="gs1_databar">GS1 DATABAR</string>
-    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
-    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
-    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
-    <string name="gs1_qrcode">GS1 QRCODE</string>
-    <string name="hanxin">HANXIN</string>
-    <string name="i2of5">I2OF5</string>
-    <string name="japanese_postal">JAPANESE POSTAL</string>
-    <string name="korean_3of5">KOREAN 3OF5</string>
-    <string name="mailmark">MAILMARK</string>
-    <string name="matrix_2of5">MATRIX 2OF5</string>
-    <string name="maxicode">MAXICODE</string>
-    <string name="micropdf">MICROPDF</string>
-    <string name="microqr">MICROQR</string>
-    <string name="msi">MSI</string>
-    <string name="pdf417">PDF417</string>
-    <string name="qrcode">QRCODE</string>
-    <string name="tlc39">TLC39</string>
-    <string name="trioptic39">TRIOPTIC39</string>
-    <string name="uk_postal">UK POSTAL</string>
-    <string name="upc_a">UPC A</string>
-    <string name="upc_e">UPC E</string>
-    <string name="upce1">UPCE1</string>
-    <string name="usplanet">USPLANET</string>
-    <string name="uspostnet">USPOSTNET</string>
-    <string name="us4state">US4STATE</string>
-    <string name="us4state_fics">US4STATE FICS</string>
+    <string name="please_select_file_not_folder">لطفاً یک پرونده را انتخاب کنید ، نه یک پوشه.</string>
+    <string name="please_select_file_or_folder">لطفاً یک فایل یا پوشه را انتخاب کنید.</string>
+    <string name="cannot_rename_parent_folder">نمی تواند پوشه والدین را تغییر نام دهد.</string>
+    <string name="file_already_exists">پرونده از قبل وجود دارد.</string>
+    <string name="error_renaming_file">تغییر نام خطا در پرونده</string>
+    <string name="error_renaming_folder">پوشه تغییر نام خطا</string>
+    <string name="folder_already_exists">پوشه در حال حاضر وجود دارد.</string>
+    <string name="failed_to_create_folder">نتوانست پوشه ایجاد کند: ٪ s</string>
+    <string name="failed_to_create_file">ایجاد پرونده انجام نشد</string>
+    <string name="cannot_delete_parent_folder">نمی توان پوشه والدین را حذف کرد.</string>
+    <string name="cannot_share_folders">نمی تواند پوشه ها را به اشتراک بگذارد.</string>
+    <string name="last_session_file_not_found">آخرین پرونده جلسه یافت نشد.</string>
+    <string name="no_session_file_saved">هیچ پرونده جلسه در تنظیمات برگزیده ذخیره نشده است.</string>
+    <string name="error_creating_new_session">خطا در ایجاد جلسه جدید: ٪ s</string>
+    <string name="missing_filename">نام پرونده را از دست داد</string>
+    <string name="camera_permission_required">برای استفاده از این ویژگی مجوز دوربین لازم است</string>
+    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () زمان ایجاد OBJ = ٪ D Milli Sec</string>
+    <string name="barcode_decoder_disposed">رمزگشگر بارکد دفع می شود</string>
+    <string name="orientation_unlocked">جهت گیری برای حالت ٪ s قفل شده است</string>
+    <string name="applied_viewfinder_resize_immediately">منظره یاب اعمال شده بلافاصله مشخصات</string>
+    <string name="stored_pending_viewfinder_resize">داده های تغییر اندازه منظره در انتظار را برای برنامه های بعدی ذخیره کرده است</string>
+    <string name="applied_pending_viewfinder_resize">داده های تغییر اندازه در انتظار اندازه گیری داده ها از مقادیر ذخیره شده</string>
+    <string name="handle_view_entity_result">واحد مشاهده موجودیت - نتیجه دریافت شده</string>
+    <string name="entity_tracker_decoder_available">رمزگذار موجود در موجودات موجودیت: ٪ s.</string>
+    <string name="processing_entities">پردازش ٪ D اشخاص برای نمای موجودیت</string>
+    <string name="rendered_entities">موجودات ارائه شده در نمای موجودیت</string>
+    <string name="symbologies">نمادها</string>
+    <string name="advanced">پیشرفته</string>
+    <string name="model_input_size">اندازه ورودی مدل</string>
+    <string name="model_input_size_description">اندازه ورودی مدل وضوح تصویر شما قبل از تجزیه و تحلیل AI تغییر یافته است. اندازه های کوچکتر سریعتر هستند و از حافظه کمتری استفاده می کنند ، در حالی که اندازه های بزرگتر می توانند به تشخیص بارکد های کوچکتر یا دورتر کمک کنند ، اما از قدرت و حافظه پردازش بیشتری نیز استفاده می کنند. اندازه ورودی را برای تعادل سرعت و دقت برای نیازهای خود انتخاب کنید. توجه: اندازه ورودی مدل را می توان با استفاده از SDK با افزایش 32 تنظیم کرد. گزینه های زیر نشان دهنده برخی از اندازه های عمومی است.</string>
+    <string name="camera_resolution_title">وضوح</string>
+    <string name="camera_resolution_description">وضوح دوربین تعداد پیکسل های موجود در عکس شماست (به عنوان مثال ، 1MP = 1280x720). وضوح بالاتر جزئیات بیشتری را برای متن کوچک یا دوردست ضبط می کند اما از قدرت و حافظه بیشتری استفاده می کند. اگر اندازه ورودی مدل کم باشد ، مزایا محدود است.</string>
+    <string name="inference_processor_type_title">نوع استنتاج (پردازنده)</string>
+    <string name="inference_processor_type_description">این تنظیم انتخاب می کند که تراشه در دستگاه شما وظایف AI را انجام می دهد و بر سرعت و عمر باتری تأثیر می گذارد. همه دستگاه ها DSP ندارند.</string>
+    <string name="australian_postal">پستی استرالیا</string>
     <string name="barcode_value">مقدار بارکد</string>
-    <string name="symbology">نمادشناسی</string>
+    <string name="symbology">نماد شناسی</string>
     <string name="unknown">ناشناخته</string>
-    <string name="quantity">مقدار</string>
+    <string name="quantity">کمیت</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="capture_date">تاریخ ضبط</string>
     <string name="date">تاریخ</string>
     <string name="quantity_hint">1</string>
-    <string name="toggle_flashlight">تغییر وضعیت چراغ قوه</string>
-    <string name="toggle_capture_zone">تغییر وضعیت ناحیه ضبط</string>
-    <string name="edit_item">ویرایش آیتم</string>
-    <string name="delete_item">حذف آیتم</string>
-    <string name="value_label">مقدار: %s</string>
-    <string name="symbology_label">نمادشناسی: %s</string>
-    <string name="quantity_label">مقدار: %d</string>
-    <string name="date_label">تاریخ: %s</string>
-    <string name="success_granting_permissions">موفقیت در اعطای مجوزها.</string>
-    <string name="session_data_merged">داده‌های جلسه ادغام شد.</string>
-    <string name="error_reported">خطا گزارش شد: %s</string>
-    <string name="error_reading_session_file">خطا در خواندن فایل جلسه: %s</string>
-    <string name="error_reading_csv_session_file">خطا در خواندن فایل جلسه CSV: %s</string>
-    <string name="error_reading_excel_session_file">خطا در خواندن فایل جلسه Excel: %s</string>
-    <string name="rename">تغییر نام</string>
-    <string name="rename_file">تغییر نام فایل</string>
-    <string name="create">ایجاد</string>
-    <string name="create_new_folder">ایجاد پوشه جدید</string>
-    <string name="create_new_file">ایجاد فایل جدید</string>
-    <string name="delete_file">حذف فایل</string>
-    <string name="delete_folder">حذف پوشه</string>
-    <string name="are_you_sure">آیا مطمئن هستید؟</string>
-    <string name="file_exists_already">فایل از قبل وجود دارد.</string>
-    <string name="activity_settings">تنظیمات</string>
-    <string name="activity_captured_barcodes">بارکدهای ضبط‌شده</string>
-    <string name="activity_session_data">داده‌های جلسه</string>
-    <string name="menu_manage_sessions">مدیریت جلسات</string>
-    <string name="menu_settings">تنظیمات</string>
-    <string name="menu_new_file">فایل جدید</string>
-    <string name="menu_new_folder">پوشه جدید</string>
-    <string name="menu_rename">تغییر نام</string>
-    <string name="menu_delete">حذف</string>
-    <string name="language">زبان</string>
-    <string name="system_language">زبان سیستم</string>
-    <string name="advanced">Advanced</string>
-    <string name="model_input_size">Model Input Size</string>
-    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
-    <string name="camera_resolution_title">Resolution</string>
-    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
-    <string name="inference_processor_type_title">Inference (processor) Type</string>
-    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
-    <string name="toggle_symbologies">Toggle symbologies</string>
-    <string name="toggle_file_types">Toggle file types</string>
-    <string name="toggle_advanced">Toggle advanced settings</string>
-    <string name="resolution_small">640 x 640 (small)</string>
-    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
-    <string name="resolution_medium">1280 x 1280 (medium)</string>
-    <string name="resolution_medium_description">Balanced speed and accuracy</string>
-    <string name="resolution_large">1600 x 1600 (large)</string>
-    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
-    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
-    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
-    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
-    <string name="camera_resolution_2mp_description">General barcodes</string>
-    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
-    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
-    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
-    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
-    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
-    <string name="inference_type_dsp_description">Best Choice</string>
-    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
-    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
-    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
-    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
-    <string name="managed_configuration_updated">Settings updated by administrator</string>
-    <string name="error_renaming_folder">Error renaming folder</string>
-    <string name="rename_folder">Rename a folder</string>
-    <string name="https_post_mode_active">HTTP (S) حالت پست: آماده برای ضبط بدون پرونده های جلسه.</string>
-    <string name="no_endpoint_configured">NO HTTP (S) نقطه پایانی پیکربندی شده است. لطفا تنظیمات را بررسی کنید.</string>
-    <string name="endpoint">نقطه پایانی</string>
-    <string name="upload">بارگذاری</string>
-    <string name="uploading">بارگذاری ...</string>
-    <string name="upload_successful">بارگذاری موفقیت آمیز</string>
-    <string name="upload_failed">بارگذاری نشد</string>
-    <string name="upload_error">خطای بارگذاری</string>
+    <string name="toggle_flashlight">چراغ قوه را تغییر دهید</string>
+    <string name="toggle_capture_zone">منطقه ضبط ضامن</string>
+    <string name="toggle_symbologies">هماهنگی ها را تغییر دهید</string>
+    <string name="toggle_file_types">انواع پرونده را تغییر دهید</string>
+    <string name="toggle_advanced">تنظیمات پیشرفته را تغییر دهید</string>
     <string name="toggle_filtering">فیلتر کردن</string>
+    <string name="edit_item">مورد را ویرایش کنید</string>
+    <string name="delete_item">مورد را حذف کنید</string>
+    <string name="value_label">مقدار: ٪ s</string>
+    <string name="symbology_label">نماد شناسی: ٪ s</string>
+    <string name="quantity_label">مقدار: ٪ D</string>
+    <string name="date_label">تاریخ: ٪ s</string>
+    <string name="success_granting_permissions">موفقیت اعطای مجوز.</string>
+    <string name="session_data_merged">داده های جلسه ادغام شدند.</string>
+    <string name="error_reported">خطا گزارش شده است: ٪ s</string>
+    <string name="error_reading_session_file">پرونده خواندن خطا پرونده: ٪ s</string>
+    <string name="error_reading_csv_session_file">خطا در خواندن پرونده جلسه CSV: ٪ s</string>
+    <string name="error_reading_excel_session_file">خطا در خواندن پرونده جلسه اکسل: ٪ s</string>
+    <string name="resolution_small">640 x 640 (کوچک)</string>
+    <string name="resolution_small_description">سریعترین ؛ بهترین بار برای بارکد های بزرگ یا نزدیک</string>
+    <string name="resolution_medium">1280 x 1280 (متوسط)</string>
+    <string name="resolution_medium_description">سرعت و دقت متعادل</string>
+    <string name="resolution_large">1600 x 1600 (بزرگ)</string>
+    <string name="resolution_large_description">کندتر ؛ برای بارکد های کوچک ، آسیب دیده یا دوردست استفاده کنید</string>
+    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">بارکد بزرگ یا نزدیک</string>
+    <string name="camera_resolution_2mp">2MP (1080 x 1920)</string>
+    <string name="camera_resolution_2mp_description">بارکد عمومی</string>
+    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">بارکد متراکم ، ضعیف یا کوچک</string>
+    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">بارکد های کوچک ، دوردست یا کم کنتراست</string>
+    <string name="inference_type_dsp">DSP (پردازنده سیگنال دیجیتال)</string>
+    <string name="inference_type_dsp_description">بهترین انتخاب</string>
+    <string name="inference_type_gpu">GPU (واحد پردازش گرافیک)</string>
+    <string name="inference_type_cpu">CPU (واحد پردازش مرکزی)</string>
+    <string name="inference_type_cpu_description">برای استفاده آزمایشی اگر DSP و GPU در دسترس نباشند</string>
+    <string name="rename">تغییر نام دهید</string>
+    <string name="rename_file">یک پرونده را تغییر نام دهید</string>
+    <string name="rename_folder">یک پوشه را تغییر نام دهید</string>
+    <string name="create">ایجاد</string>
+    <string name="create_new_folder">یک پوشه جدید ایجاد کنید</string>
+    <string name="create_new_file">یک فایل جدید ایجاد کنید</string>
+    <string name="delete_file">پرونده را حذف کنید</string>
+    <string name="delete_folder">پوشه را حذف کنید</string>
+    <string name="are_you_sure">مطمئن هستید؟</string>
+    <string name="file_exists_already">پرونده از قبل وجود دارد.</string>
+    <string name="activity_settings">تنظیمات</string>
+    <string name="activity_captured_barcodes">بارکد اسیر شده</string>
+    <string name="activity_session_data">داده های جلسه</string>
     <string name="activity_about">درباره</string>
     <string name="about_app_version">نسخه برنامه</string>
     <string name="about_open_source">منبع باز</string>
     <string name="about_open_source_description">این نرم افزار یک پروژه جامعه است که در GitHub باز و در دسترس است. این به طور رسمی توسط گورخر پشتیبانی نمی شود. این فقط نمونه ای از ادغام Zebra Vision Ai SDK است.</string>
     <string name="about_developer">توسعه دهنده</string>
-    <string name="about_developer_name">Laurent Trudu</string>
     <string name="about_developer_title">مهندس ارشد فروش نرم افزار</string>
-    <string name="about_repository">مخزن GitHub</string>
-    <string name="about_dependencies">وابستگی ها</string>
+    <string name="about_dependencies">لوران تروودو</string>
     <string name="about_license">مجوز</string>
     <string name="about_view_license">مشاهده مجوز ابزار توسعه گورخر</string>
+    <string name="menu_settings">تنظیمات</string>
     <string name="menu_about">درباره</string>
+    <string name="menu_new_file">پرونده جدید</string>
+    <string name="menu_rename">تغییر نام دهید</string>
+    <string name="menu_delete">مخزن GitHub</string>
     <string name="data_processing">پردازش داده ها</string>
     <string name="processing_mode">حالت پردازش</string>
     <string name="processing_mode_file">📁 پرونده</string>
-    <string name="processing_mode_https_post">🌐 HTTP (S) پست</string>
+    <string name="processing_mode_https_post">🌐 HTTP (ها) پست</string>
     <string name="file_processing">پردازش پرونده</string>
-    <string name="https_post">پست HTTP (S)</string>
-    <string name="https_endpoint">HTTP (S) نقطه پایانی</string>
+    <string name="https_post">پست HTTP (ها)</string>
     <string name="https_endpoint_hint">https://example.com/api/data یا http://192.168.1.100/api/data</string>
-    <string name="endpoint_updated_from_qr">نقطه پایانی از کد QR به روز شد</string>
-    <string name="filtering">فیلتر</string>
+    <string name="managed_configuration_updated">تنظیمات به روز شده توسط مدیر</string>
+    <string name="endpoint_updated_from_qr">نقطه پایانی به روز شده از کد QR</string>
+    <string name="filtering">HTTP (S) نقطه پایانی</string>
     <string name="enable_filtering">فیلتر را فعال کنید</string>
     <string name="regular_expression">بیان منظم</string>
-    <string name="regular_expression_hint">به عنوان مثال ، ^[0-9]+$ فقط برای اعداد</string>
+    <string name="file_extension_txt">.txt</string>
+    <string name="merge">مقادیر را ادغام کنید</string>
+    <string name="view_session_data">مشاهده داده های جلسه</string>
+    <string name="entity_tracker_ready">EntityBarcodetracker آماده است ، با استفاده از تنظیمات در انتظار</string>
+    <string name="about_developer_name">لوران تروودو</string>
+    <string name="about_repository">مخزن GitHub</string>
+    <string name="menu_manage_sessions">جلسات را مدیریت کنید</string>
+    <string name="menu_new_folder">پوشه جدید</string>
+    <string name="https_endpoint">نقطه پایانی HTTP (S)</string>
 </resources>

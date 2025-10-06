@@ -1,234 +1,188 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI ਮਲਟੀ ਬਾਰਕੋਡਜ਼ ਕੈਪਚਰ</string>
+    <string name="app_name">ਅਈ ਮਲਟੀ ਬਾਰਕੋਡਜ਼ ਕੈਪਚਰ</string>
     <string name="start_capture_button_text">ਕੈਪਚਰ ਸ਼ੁਰੂ ਕਰੋ</string>
-    <string name="loading_status">ਐਪਲੀਕੇਸ਼ਨ ਲੋਡ ਹੋ ਰਹੀ ਹੈ</string>
-    <string name="select_session_file">ਇੱਕ ਸੈਸ਼ਨ ਫਾਈਲ ਚੁਣੋ ਜਾਂ ਨਵੀਂ ਬਣਾਓ।</string>
-    <string name="retrieving_permissions">ਅਨੁਮਤੀਆਂ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ ਹੈ</string>
+    <string name="loading_status">ਲੋਡ ਹੋ ਰਹੀ ਐਪਲੀਕੇਸ਼ਨ</string>
+    <string name="select_session_file">ਇੱਕ ਸੈਸ਼ਨ ਫਾਈਲ ਦੀ ਚੋਣ ਕਰੋ ਜਾਂ ਨਵਾਂ ਬਣਾਓ.</string>
+    <string name="https_post_mode_active">http (s) ਪੋਸਟ ਮੋਡ: ਸੈਸ਼ਨ ਫਾਈਲਾਂ ਤੋਂ ਬਿਨਾਂ ਤਿਆਰ ਕਰਨ ਲਈ ਤਿਆਰ.</string>
+    <string name="no_endpoint_configured">ਕੋਈ HTTP (S) ਐਂਡ ਪੁਆਇੰਟ ਕੌਂਫਿਗਰ ਨਹੀਂ ਕੀਤਾ ਗਿਆ. ਕਿਰਪਾ ਕਰਕੇ ਸੈਟਿੰਗਾਂ ਦੀ ਜਾਂਚ ਕਰੋ.</string>
+    <string name="endpoint">ਅੰਤ ਬਿੰਦੂ</string>
+    <string name="upload">ਅਪਲੋਡ</string>
+    <string name="uploading">ਅਪਲੋਡ ਕਰਨਾ ...</string>
+    <string name="upload_successful">ਅਪਲੋਡ ਸਫਲ</string>
+    <string name="upload_failed">ਅਪਲੋਡ ਅਸਫਲ</string>
+    <string name="upload_error">ਗਲਤੀ ਅਪਲੋਡ ਕਰੋ</string>
+    <string name="retrieving_permissions">ਅਧਿਕਾਰ ਪ੍ਰਾਪਤ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ</string>
     <string name="select">ਚੁਣੋ</string>
     <string name="share">ਸਾਂਝਾ ਕਰੋ</string>
-    <string name="refresh">ਤਾਜ਼ਾ ਕਰੋ</string>
+    <string name="refresh">ਤਾਜ਼ਗੀ</string>
     <string name="close">ਬੰਦ ਕਰੋ</string>
-    <string name="manage_sessions">ਸੈਸ਼ਨਜ਼ ਪ੍ਰਬੰਧਨ</string>
+    <string name="manage_sessions">ਸੈਸ਼ਨ ਪ੍ਰਬੰਧਿਤ ਕਰੋ</string>
     <string name="create_new">ਨਵਾਂ ਬਣਾਓ</string>
     <string name="enter_new_file_name">ਨਵਾਂ ਫਾਈਲ ਨਾਮ ਦਰਜ ਕਰੋ</string>
-    <string name="default_session_name">ਮੇਰਾਸੈਸ਼ਨ_</string>
+    <string name="default_session_name">ਮਾਈਸੀਸ਼ਨ_</string>
     <string name="file_extension_txt">.txt</string>
     <string name="yes">ਹਾਂ</string>
     <string name="no">ਨਹੀਂ</string>
     <string name="addtofile">ਫਾਈਲ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
-    <string name="save">ਸੇਵ ਕਰੋ</string>
-    <string name="update">ਫਾਈਲ ਅਪਡੇਟ ਕਰੋ</string>
-    <string name="merge">ਮਾਤਰਾ ਮਿਲਾਓ</string>
+    <string name="save">ਸੇਵ</string>
+    <string name="update">ਅਪਡੇਟ ਫਾਈਲ</string>
+    <string name="merge">ਮਾਤਰਾਵਾਂ ਨੂੰ ਮਿਲਾਉਣਾ</string>
     <string name="start_capture">ਕੈਪਚਰ ਸ਼ੁਰੂ ਕਰੋ</string>
-    <string name="load_last_session">ਅੰਤਿਮ ਸੈਸ਼ਨ ਲੋਡ ਕਰੋ</string>
+    <string name="load_last_session">ਆਖਰੀ ਸੈਸ਼ਨ ਲੋਡ ਕਰੋ</string>
     <string name="create_new_session">ਨਵਾਂ ਸੈਸ਼ਨ ਬਣਾਓ</string>
     <string name="view_session_data">ਸੈਸ਼ਨ ਡੇਟਾ ਵੇਖੋ</string>
-    <string name="selected_session">ਚੁਣਿਆ ਗਿਆ ਸੈਸ਼ਨ</string>
-    <string name="select_session_to_start">ਕੈਪਚਰ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਇੱਕ ਸੈਸ਼ਨ ਚੁਣੋ</string>
-    <string name="setup">ਸੈਟਅੱਪ</string>
-    <string name="prefix">ਪ੍ਰੀਫਿਕਸ:</string>
+    <string name="selected_session">ਚੁਣਿਆ ਸ਼ੈਸ਼ਨ</string>
+    <string name="select_session_to_start">ਕੈਪਚਰ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਇੱਕ ਸੈਸ਼ਨ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="setup">ਸੈਟਅਪ</string>
+    <string name="prefix">ਅਗੇਤਰ</string>
     <string name="prefix_hint">ਪ੍ਰੀਫਿਕਸ_</string>
     <string name="file_type">ਫਾਈਲ ਕਿਸਮ</string>
-    <string name="text_file">ਟੈਕਸਟ ਫਾਈਲ</string>
     <string name="csv_file">CSV ਫਾਈਲ</string>
-    <string name="excel_file">Excel ਫਾਈਲ</string>
-    <string name="validate">ਤਸਦੀਕ ਕਰੋ</string>
+    <string name="excel_file">ਐਕਸਲ ਫਾਈਲ</string>
+    <string name="language">ਭਾਸ਼ਾ</string>
+    <string name="system_language">ਸਿਸਟਮ ਭਾਸ਼ਾ</string>
+    <string name="validate">ਪ੍ਰਮਾਣਿਤ</string>
     <string name="cancel">ਰੱਦ ਕਰੋ</string>
     <string name="capture">ਕੈਪਚਰ</string>
-    <string name="ai_vision_sdk_init_failed">AI ਵਿਜ਼ਨ SDK ਸ਼ੁਰੂਆਤ ਅਸਫਲ</string>
-    <string name="folder_path_missing">ਫੋਲਡਰ ਪਾਥ ਗੁੰਮ ਹੈ!</string>
-    <string name="folder_path_missing_toast">ਫੋਲਡਰ ਪਾਥ ਗੁੰਮ ਹੈ !!!</string>
-    <string name="error_could_not_create_file">ਗਲਤੀ, ਫਾਈਲ ਨਹੀਂ ਬਣਾਈ ਜਾ ਸਕੀ: %s</string>
-    <string name="error_could_not_open_file">ਗਲਤੀ, ਫਾਈਲ ਨਹੀਂ ਖੋਲ੍ਹੀ ਜਾ ਸਕੀ: %s</string>
-    <string name="error_file_does_not_exist">ਗਲਤੀ, ਫਾਈਲ ਮੌਜੂਦ ਨਹੀਂ ਹੈ: %s</string>
-    <string name="error_file_is_empty">ਗਲਤੀ, ਫਾਈਲ ਖਾਲੀ ਹੈ: %s</string>
-    <string name="error_loading_data">ਗਲਤੀ, ਫਾਈਲ ਵਿੱਚ ਡੇਟਾ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕਿਆ: %s</string>
-    <string name="file_saved_at">ਫਾਈਲ ਇੱਥੇ ਸੇਵ ਕੀਤੀ ਗਈ: %s</string>
-    <string name="error_saving_file">ਫਾਈਲ ਸੇਵ ਕਰਨ ਵਿੱਚ ਗਲਤੀ: %s</string>
-    <string name="error_saving_last_selected_file">ਅੰਤਿਮ ਚੁਣੀ ਗਈ ਫਾਈਲ ਸੇਵ ਕਰਨ ਵਿੱਚ ਗਲਤੀ</string>
-    <string name="settings_saved_successfully">ਸੈਟਿੰਗਜ਼ ਸਫਲਤਾਪੂਰਵਕ ਸੇਵ ਹੋਈਆਂ</string>
-    <string name="please_select_file_not_folder">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਫਾਈਲ ਚੁਣੋ, ਫੋਲਡਰ ਨਹੀਂ।</string>
-    <string name="please_select_file_or_folder">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਫਾਈਲ ਚੁਣੋ।</string>
-    <string name="cannot_rename_parent_folder">ਫੋਲਡਰਾਂ ਜਾਂ ਪੇਰੇਂਟ ਫੋਲਡਰ ਦਾ ਨਾਮ ਨਹੀਂ ਬਦਲ ਸਕਦੇ।</string>
-    <string name="file_already_exists">ਫਾਈਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
-    <string name="error_renaming_file">ਫਾਈਲ ਦਾ ਨਾਮ ਬਦਲਣ ਵਿੱਚ ਗਲਤੀ</string>
-    <string name="folder_already_exists">ਫੋਲਡਰ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
-    <string name="failed_to_create_folder">ਫੋਲਡਰ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ: %s</string>
+    <string name="ai_vision_sdk_init_failed">ਏਆਈ ਦਰਸ਼ਨ ਐਸ ਡੀ ਕੇ ਸ਼ੁਰੂਆਤੀ ਅਸਫਲ</string>
+    <string name="folder_path_missing">ਫੋਲਡਰ ਮਾਰਗ ਗੁੰਮ ਹੈ!</string>
+    <string name="folder_path_missing_toast">ਫੋਲਡਰ ਮਾਰਗ ਗੁੰਮ ਹੈ !!!</string>
+    <string name="error_could_not_create_file">ਗਲਤੀ, ਫਾਇਲ ਬਣਾਈ ਨਹੀਂ ਜਾ ਸਕੀ:% s</string>
+    <string name="error_could_not_open_file">ਗਲਤੀ, ਫਾਇਲ ਨੂੰ ਖੋਲ੍ਹ ਨਹੀ ਸਕਿਆ:% s</string>
+    <string name="error_file_does_not_exist">ਗਲਤੀ, ਫਾਇਲ ਮੌਜੂਦ ਨਹੀਂ ਹੈ:% s</string>
+    <string name="error_file_is_empty">ਗਲਤੀ, ਫਾਈਲ ਖਾਲੀ ਹੈ:% s</string>
+    <string name="error_loading_data">ਗਲਤੀ, ਫਾਈਲ ਵਿੱਚ ਡਾਟਾ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ:% s</string>
+    <string name="file_saved_at">ਫਾਈਲ ਨੂੰ ਸੁਰੱਖਿਅਤ:% s</string>
+    <string name="error_saving_file">ਫਾਇਲ ਸੰਭਾਲਣ ਦੌਰਾਨ ਗਲਤੀ:% s</string>
+    <string name="error_saving_last_selected_file">ਆਖਰੀ ਚੁਣੀ ਫਾਇਲ ਨੂੰ ਸੰਭਾਲਣ ਦੌਰਾਨ ਗਲਤੀ</string>
+    <string name="settings_saved_successfully">ਸੈਟਿੰਗਾਂ ਸਫਲਤਾਪੂਰਕ ਬਚੀਆਂ</string>
+    <string name="please_select_file_not_folder">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਫਾਇਲ ਚੁਣੋ, ਫੋਲਡਰ ਨਾ.</string>
+    <string name="please_select_file_or_folder">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਫਾਇਲ ਜਾਂ ਫੋਲਡਰ ਦੀ ਚੋਣ ਕਰੋ.</string>
+    <string name="cannot_rename_parent_folder">ਮੁੱ folder ਲਾ ਫੋਲਡਰ ਦਾ ਨਾਂ ਨਹੀਂ ਬਦਲਿਆ ਜਾ ਸਕਦਾ.</string>
+    <string name="file_already_exists">ਫਾਈਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ.</string>
+    <string name="error_renaming_file">ਫਾਈਲ ਦਾ ਨਾਮ ਬਦਲਣਾ ਗਲਤੀ</string>
+    <string name="error_renaming_folder">ਫੋਲਡਰ ਦਾ ਨਾਂ ਬਦਲਣਾ ਗਲਤੀ ਹੈ</string>
+    <string name="folder_already_exists">ਫੋਲਡਰ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ.</string>
+    <string name="failed_to_create_folder">ਫੋਲਡਰ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ:% s</string>
     <string name="failed_to_create_file">ਫਾਈਲ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ</string>
-    <string name="cannot_delete_parent_folder">ਪੇਰੇਂਟ ਫੋਲਡਰ ਨਹੀਂ ਮਿਟਾ ਸਕਦੇ।</string>
-    <string name="cannot_share_folders">ਫੋਲਡਰ ਸਾਂਝੇ ਨਹੀਂ ਕਰ ਸਕਦੇ।</string>
-    <string name="last_session_file_not_found">ਅੰਤਿਮ ਸੈਸ਼ਨ ਫਾਈਲ ਨਹੀਂ ਮਿਲੀ।</string>
-    <string name="no_session_file_saved">ਤਰਜੀਹਾਂ ਵਿੱਚ ਕੋਈ ਸੈਸ਼ਨ ਫਾਈਲ ਸੇਵ ਨਹੀਂ।</string>
-    <string name="error_creating_new_session">ਨਵਾਂ ਸੈਸ਼ਨ ਬਣਾਉਣ ਵਿੱਚ ਗਲਤੀ: %s</string>
-    <string name="missing_filename">ਫਾਈਲਨਾਮ ਗੁੰਮ</string>
-    <string name="camera_permission_required">ਇਸ ਫੀਚਰ ਦੀ ਵਰਤੋਂ ਲਈ ਕੈਮਰਾ ਅਨੁਮਤੀ ਦੀ ਲੋੜ ਹੈ</string>
-    <string name="entity_tracker_creation_time">ਐਂਟਿਟੀ ਟਰੈਕਰ BarcodeDecoder() obj ਬਣਾਉਣ ਦਾ ਸਮਾਂ =%d ਮਿਲੀ ਸੈਕ</string>
-    <string name="barcode_decoder_disposed">ਬਾਰਕੋਡ ਡੀਕੋਡਰ ਡਿਸਪੋਜ਼ ਕੀਤਾ ਗਿਆ</string>
-    <string name="orientation_unlocked">%s ਮੋਡ ਲਈ ਓਰੀਐਂਟੇਸ਼ਨ ਅਨਲਾਕ ਕੀਤਾ ਗਿਆ</string>
-    <string name="applied_viewfinder_resize_immediately">ਵਿਊਫਾਈਂਡਰ ਰੀਸਾਈਜ਼ ਸਪੈਕਸ ਤੁਰੰਤ ਲਾਗੂ ਕੀਤੇ ਗਏ</string>
-    <string name="stored_pending_viewfinder_resize">ਬਾਅਦ ਦੀ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੈਂਡਿੰਗ ਵਿਊਫਾਈਂਡਰ ਰੀਸਾਈਜ਼ ਡੇਟਾ ਸਟੋਰ ਕੀਤਾ</string>
-    <string name="applied_pending_viewfinder_resize">ਸਟੋਰ ਕੀਤੀਆਂ ਵੈਲਯੂਜ਼ ਤੋਂ ਪੈਂਡਿੰਗ ਵਿਊਫਾਈਂਡਰ ਰੀਸਾਈਜ਼ ਡੇਟਾ ਲਾਗੂ ਕੀਤਾ</string>
-    <string name="entity_tracker_ready">EntityBarcodeTracker ਤਿਆਰ ਹੈ, ਪੈਂਡਿੰਗ ਕੰਨਿਗਰੇਸ਼ਨਜ਼ ਲਾਗੂ ਕਰ ਰਿਹਾ ਹੈ</string>
-    <string name="handle_view_entity_result">ਵਿਊ ਐਂਟਿਟੀ ਹੈਂਡਲ ਕਰੋ - ਨਤੀਜਾ ਪ੍ਰਾਪਤ ਹੋਇਆ</string>
-    <string name="entity_tracker_decoder_available">EntityBarcodeTracker ਡੀਕੋਡਰ ਉਪਲਬਧ ਹੈ, ਐਂਟਿਟੀਜ਼ ਦੀ ਗਿਣਤੀ: %s</string>
-    <string name="processing_entities">ਐਂਟਿਟੀ ਵਿਊ ਲਈ %d ਐਂਟਿਟੀਜ਼ ਪ੍ਰੋਸੈਸ ਕਰ ਰਿਹਾ ਹੈ</string>
-    <string name="rendered_entities">ਐਂਟਿਟੀ ਵਿਊ ਤੇ ਐਂਟਿਟੀਜ਼ ਰੈਂਡਰ ਕੀਤੀਆਂ</string>
-    <string name="symbologies">ਸਿੰਬੋਲੌਜੀਜ਼</string>
-    <string name="australian_postal">AUSTRALIAN POSTAL</string>
-    <string name="aztec">AZTEC</string>
-    <string name="canadian_postal">CANADIAN POSTAL</string>
-    <string name="chinese_2of5">CHINESE 2OF5</string>
-    <string name="codabar">CODABAR</string>
-    <string name="code11">CODE11</string>
-    <string name="code39">CODE39</string>
-    <string name="code93">CODE93</string>
-    <string name="code128">CODE128</string>
-    <string name="composite_ab">COMPOSITE AB</string>
-    <string name="composite_c">COMPOSITE C</string>
-    <string name="d2of5">D2OF5</string>
-    <string name="datamatrix">DATAMATRIX</string>
-    <string name="dotcode">DOTCODE</string>
-    <string name="dutch_postal">DUTCH POSTAL</string>
-    <string name="ean_8">EAN 8</string>
-    <string name="ean_13">EAN 13</string>
-    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
-    <string name="grid_matrix">GRID MATRIX</string>
-    <string name="gs1_databar">GS1 DATABAR</string>
-    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
-    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
-    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
-    <string name="gs1_qrcode">GS1 QRCODE</string>
-    <string name="hanxin">HANXIN</string>
-    <string name="i2of5">I2OF5</string>
-    <string name="japanese_postal">JAPANESE POSTAL</string>
-    <string name="korean_3of5">KOREAN 3OF5</string>
-    <string name="mailmark">MAILMARK</string>
-    <string name="matrix_2of5">MATRIX 2OF5</string>
-    <string name="maxicode">MAXICODE</string>
-    <string name="micropdf">MICROPDF</string>
-    <string name="microqr">MICROQR</string>
-    <string name="msi">MSI</string>
-    <string name="pdf417">PDF417</string>
-    <string name="qrcode">QRCODE</string>
-    <string name="tlc39">TLC39</string>
-    <string name="trioptic39">TRIOPTIC39</string>
-    <string name="uk_postal">UK POSTAL</string>
-    <string name="upc_a">UPC A</string>
-    <string name="upc_e">UPC E</string>
-    <string name="upce1">UPCE1</string>
-    <string name="usplanet">USPLANET</string>
-    <string name="uspostnet">USPOSTNET</string>
-    <string name="us4state">US4STATE</string>
-    <string name="us4state_fics">US4STATE FICS</string>
-    <string name="barcode_value">ਬਾਰਕੋਡ ਵੈਲਯੂ</string>
-    <string name="symbology">ਸਿੰਬੋਲੌਜੀ</string>
+    <string name="cannot_delete_parent_folder">ਮੁੱ folder ਲਾ ਫੋਲਡਰ ਨੂੰ ਹਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ.</string>
+    <string name="cannot_share_folders">ਫੋਲਡਰਾਂ ਨੂੰ ਸਾਂਝਾ ਨਹੀਂ ਕਰ ਸਕਦੇ.</string>
+    <string name="last_session_file_not_found">ਆਖਰੀ ਸੈਸ਼ਨ ਫਾਈਲ ਨਹੀਂ ਮਿਲੀ.</string>
+    <string name="no_session_file_saved">ਤਰਜੀਹਾਂ ਵਿੱਚ ਕੋਈ ਸ਼ੈਸ਼ਨ ਫਾਈਲ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਕੀਤੀ ਗਈ.</string>
+    <string name="error_creating_new_session">ਨਵਾਂ ਸ਼ੈਸ਼ਨ ਬਣਾਉਣ ਦੌਰਾਨ ਗਲਤੀ:% s</string>
+    <string name="missing_filename">ਫਾਇਲ ਨਾਂ ਗੁੰਮ ਗਿਆ ਹੈ</string>
+    <string name="camera_permission_required">ਇਸ ਵਿਸ਼ੇਸ਼ਤਾ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ ਕੈਮਰਾ ਇਜ਼ਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ</string>
+    <string name="entity_tracker_creation_time">ਇਕਾਈ ਦਾ ਟ੍ਰੈਕਰ ਬਾਰਕੋਡੇਡੈਡੇਕੋਡਰ () ਓਪਰੇਸ਼ਨ ਟਾਈਮ =% ਡੀ ਮਿਲਿ ਸੈਕਿੰਡ</string>
+    <string name="barcode_decoder_disposed">ਬਾਰਕੋਡ ਡੀਕੋਡਰ ਨਿਪਟਾਰਾ ਕੀਤਾ ਗਿਆ ਹੈ</string>
+    <string name="orientation_unlocked">ਸਥਿਤੀ% s ਮੋਡ ਲਈ ਅਨਲੌਕ ਕੀਤੀ ਗਈ</string>
+    <string name="applied_viewfinder_resize_immediately">ਲਾਗੂ ਕੀਤੇ ਝਲਕ ਨੂੰ ਤੁਰੰਤ ਤੁਰੰਤ</string>
+    <string name="stored_pending_viewfinder_resize">ਬਾਅਦ ਦੀ ਅਰਜ਼ੀ ਲਈ ਬਕਾਇਆ ਵਿ సfFIFFEER ਰੀਸਾਈਜ਼ ਡੇਟਾ</string>
+    <string name="applied_pending_viewfinder_resize">ਸਟੋਰ ਕੀਤੇ ਮੁੱਲਾਂ ਤੋਂ ਘੱਟ ਰਹੇ ਝਲਕ ਨੂੰ ਮੁੜ ਆਕਾਰ ਦਿਓ</string>
+    <string name="entity_tracker_ready">ਏਟਿਟੀਬਾਰਟਰੋਡਟਰੈਕਰ ਤਿਆਰ ਹੈ, ਬਕਾਇਆ ਕੌਨਫਿਗਸਾਂ ਨੂੰ ਲਾਗੂ ਕਰਨਾ ਹੈ</string>
+    <string name="handle_view_entity_result">ਵੇਖਣ ਵਾਲੀ ਇਕਾਈ - ਨਤੀਜੇ ਪ੍ਰਾਪਤ ਹੋਏ</string>
+    <string name="entity_tracker_decoder_available">ਏਨਾਟੀਬਾਰਕੋਡਟਰਾਈਟਰ ਡੀਕੋਡਰ ਉਪਲਬਧ, ਇਕਾਈਆਂ ਦੀ ਗਿਣਤੀ:% s</string>
+    <string name="processing_entities">ਇਕਾਈ ਦੇ ਦ੍ਰਿਸ਼ਟੀਕੋਣ ਲਈ% d ਇਕਾਈ ਤੇ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ</string>
+    <string name="rendered_entities">ਇਕਾਈ ਦ੍ਰਿਸ਼ਟੀਕੋਣ \'ਤੇ ਪੇਸ਼ ਕੀਤੀਆਂ ਗਈਆਂ ਇਕਾਈਆਂ</string>
+    <string name="symbologies">ਪ੍ਰਤੀਕ</string>
+    <string name="advanced">ਐਡਵਾਂਸਡ</string>
+    <string name="model_input_size">ਮਾਡਲ ਇਨਪੁਟ ਅਕਾਰ</string>
+    <string name="model_input_size_description">ਮਾਡਲ ਇਨਪੁਟ ਦਾ ਆਕਾਰ ਰੈਜ਼ੋਲੂਸ਼ਨ ਹੈ ਜਿਸ ਨੂੰ ਤੁਹਾਡੀ ਤਸਵੀਰ ਨੂੰ ਆਸੀ ਵਿਸ਼ਲੇਸ਼ਣ ਤੋਂ ਪਹਿਲਾਂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ. ਛੋਟੇ ਅਕਾਰ ਤੇਜ਼ ਹੁੰਦੇ ਹਨ ਅਤੇ ਘੱਟ ਮੈਮੋਰੀ ਵਰਤਦੇ ਹਨ, ਜਦੋਂ ਕਿ ਵੱਡੇ ਅਕਾਰ ਛੋਟੇ ਜਾਂ ਵਧੇਰੇ ਬਾਰਕੋਡਸ ਨੂੰ ਖੋਜਣ ਵਿੱਚ ਸਹਾਇਤਾ ਕਰ ਸਕਦੇ ਹਨ - ਪਰ ਹੋਰ ਪ੍ਰੋਸੈਸਿੰਗ ਪਾਵਰ ਅਤੇ ਮੈਮੋਰੀ ਦੀ ਵਰਤੋਂ ਵੀ ਕਰ ਸਕਦੀ ਹੈ. ਆਪਣੀਆਂ ਜ਼ਰੂਰਤਾਂ ਲਈ ਗਤੀ ਅਤੇ ਸ਼ੁੱਧਤਾ ਨੂੰ ਸੰਤੁਲਿਤ ਕਰਨ ਲਈ ਇਨਪੁਟ ਆਕਾਰ ਦੀ ਚੋਣ ਕਰੋ. ਨੋਟ: ਮਾਡਲ ਇਨਪੁਟ ਦਾ ਆਕਾਰ 32 ਦੇ ਐਸ.ਡੀ.ਕੇ. ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਾਧੇ ਵਿੱਚ ਅਨੁਕੂਲਿਤ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ. ਹੇਠਾਂ ਦਿੱਤੇ ਵਿਕਲਪ ਕੁਝ ਸਧਾਰਣ ਅਕਾਰ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹਨ.</string>
+    <string name="camera_resolution_title">ਰੈਜ਼ੋਲੂਸ਼ਨ</string>
+    <string name="camera_resolution_description">ਕੈਮਰਾ ਰੈਜ਼ੋਲੂਸ਼ਨ ਤੁਹਾਡੀ ਫੋਟੋ ਵਿੱਚ ਪਿਕਸਲ ਦੀ ਸੰਖਿਆ ਹੈ (e.g., 1 ਐਮਪੀ.). ਉੱਚ ਰੈਜ਼ੋਲੂਸ਼ਨ ਛੋਟੇ ਜਾਂ ਦੂਰ ਦੇ ਪਾਠ ਲਈ ਵਧੇਰੇ ਵਿਸਥਾਰ ਨਾਲ ਕੈਪਚਰ ਕਰਦੇ ਹਨ ਪਰ ਵਧੇਰੇ ਸ਼ਕਤੀ ਅਤੇ ਮੈਮੋਰੀ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹਨ. ਲਾਭ ਸੀਮਤ ਹੁੰਦੇ ਹਨ ਜੇ ਮਾਡਲ ਇਨਪੁਟ ਦਾ ਆਕਾਰ ਘੱਟ ਹੁੰਦਾ ਹੈ.</string>
+    <string name="inference_processor_type_title">ਅਨੁਮਾਨ (ਪ੍ਰੋਸੈਸਰ) ਦੀ ਕਿਸਮ</string>
+    <string name="inference_processor_type_description">ਇਹ ਸੈਟਿੰਗ ਚੁਣਦੀ ਹੈ ਕਿ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਵਿੱਚ ਕਿਹੜਾ ਚਿੱਪ ਏਆਈ ਕਾਰਜਾਂ ਨੂੰ ਚਲਦਾ ਹੈ, ਗਤੀ ਅਤੇ ਬੈਟਰੀ ਦੀ ਜ਼ਿੰਦਗੀ ਨੂੰ ਪ੍ਰਭਾਵਤ ਕਰਦਾ ਹੈ. ਸਾਰੀਆਂ ਡਿਵਾਈਸਾਂ ਦੀ ਡੀਐਸਪੀ ਨਹੀਂ ਹੁੰਦੀ.</string>
+    <string name="australian_postal">ਆਸਟਰੇਲੀਆਈ ਡਾਕ</string>
+    <string name="barcode_value">ਬਾਰਕੋਡ ਮੁੱਲ</string>
+    <string name="symbology">ਪ੍ਰਤੀਕ</string>
     <string name="unknown">ਅਣਜਾਣ</string>
     <string name="quantity">ਮਾਤਰਾ</string>
-    <string name="minus">-</string>
+    <string name="minus">- -</string>
     <string name="plus">+</string>
-    <string name="capture_date">ਕੈਪਚਰ ਦੀ ਤਾਰੀਖ</string>
+    <string name="capture_date">ਕੈਪਚਰ ਦੀ ਮਿਤੀ</string>
     <string name="date">ਤਾਰੀਖ</string>
     <string name="quantity_hint">1</string>
-    <string name="toggle_flashlight">ਫਲੈਸ਼ਲਾਈਟ ਟੋਗਲ ਕਰੋ</string>
-    <string name="toggle_capture_zone">ਕੈਪਚਰ ਜ਼ੋਨ ਟੋਗਲ ਕਰੋ</string>
-    <string name="edit_item">ਆਈਟਮ ਐਡਿਟ ਕਰੋ</string>
-    <string name="delete_item">ਆਈਟਮ ਡਿਲੀਟ ਕਰੋ</string>
-    <string name="value_label">ਵੈਲਯੂ: %s</string>
-    <string name="symbology_label">ਸਿੰਬੋਲੌਜੀ: %s</string>
-    <string name="quantity_label">ਮਾਤਰਾ: %d</string>
-    <string name="date_label">ਤਾਰੀਖ: %s</string>
-    <string name="success_granting_permissions">ਅਨੁਮਤੀਆਂ ਦੇਣ ਵਿੱਚ ਸਫਲਤਾ।</string>
-    <string name="session_data_merged">ਸੈਸ਼ਨ ਡੇਟਾ ਮਿਲਾਇਆ ਗਿਆ।</string>
-    <string name="error_reported">ਗਲਤੀ ਰਿਪੋਰਟ ਕੀਤੀ ਗਈ: %s</string>
-    <string name="error_reading_session_file">ਸੈਸ਼ਨ ਫਾਈਲ ਪੜ੍ਹਨ ਵਿੱਚ ਗਲਤੀ: %s</string>
-    <string name="error_reading_csv_session_file">CSV ਸੈਸ਼ਨ ਫਾਈਲ ਪੜ੍ਹਨ ਵਿੱਚ ਗਲਤੀ: %s</string>
-    <string name="error_reading_excel_session_file">Excel ਸੈਸ਼ਨ ਫਾਈਲ ਪੜ੍ਹਨ ਵਿੱਚ ਗਲਤੀ: %s</string>
+    <string name="toggle_flashlight">ਟੌਗਲ ਲਾਈਟ</string>
+    <string name="toggle_capture_zone">ਟੌਗਲ ਕੈਪਚਰ ਜ਼ੋਨ</string>
+    <string name="toggle_symbologies">ਟੌਗਲ ਪ੍ਰਤੀਕ</string>
+    <string name="toggle_file_types">ਫਾਈਲ ਕਿਸਮਾਂ ਨੂੰ ਟੌਗਲ ਕਰੋ</string>
+    <string name="toggle_advanced">ਐਡਵਾਂਸਡ ਸੈਟਿੰਗਜ਼ ਬਦਲੋ</string>
+    <string name="toggle_filtering">ਟੌਗਲਿੰਗ ਨੂੰ ਟੌਗਲ ਕਰਨਾ</string>
+    <string name="edit_item">ਆਈਟਮ ਨੂੰ ਸੋਧੋ</string>
+    <string name="delete_item">ਇਕਾਈ ਨੂੰ ਮਿਟਾਓ</string>
+    <string name="value_label">ਮੁੱਲ:% s</string>
+    <string name="symbology_label">ਚਿੰਨ੍ਹ:% s</string>
+    <string name="quantity_label">ਮਾਤਰਾ:% d</string>
+    <string name="date_label">ਤਾਰੀਖ:% s</string>
+    <string name="success_granting_permissions">ਅਧਿਕਾਰ ਦੇਣ ਵਾਲੀਆਂ ਸਫਲਤਾ.</string>
+    <string name="session_data_merged">ਸੈਸ਼ਨ ਡਾਟਾ ਮਿਲਾਇਆ ਗਿਆ.</string>
+    <string name="error_reported">ਗਲਤੀ ਆਈ:% s</string>
+    <string name="error_reading_session_file">ਸ਼ੈਸ਼ਨ ਫਾਈਲ ਪੜਨ ਦੌਰਾਨ ਗਲਤੀ:% s</string>
+    <string name="error_reading_csv_session_file">CSV ਸ਼ੈਸ਼ਨ ਫਾਇਲ ਨੂੰ ਪੜ੍ਹਨ ਦੌਰਾਨ ਗਲਤੀ:% s</string>
+    <string name="error_reading_excel_session_file">ਐਕਸਲ ਸ਼ੈਸ਼ਨ ਫਾਇਲ ਨੂੰ ਪੜ੍ਹਨ ਦੌਰਾਨ ਗਲਤੀ:% s</string>
+    <string name="resolution_small">640 x 640 (ਛੋਟੇ)</string>
+    <string name="resolution_small_description">ਤੇਜ਼; ਵੱਡੇ ਜਾਂ ਨਜ਼ਦੀਕੀ ਬਾਰਕੋਡਾਂ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ</string>
+    <string name="resolution_medium">1280 x 1280 (ਮਾਧਿਅਮ)</string>
+    <string name="resolution_medium_description">ਸੰਤੁਲਿਤ ਗਤੀ ਅਤੇ ਸ਼ੁੱਧਤਾ</string>
+    <string name="resolution_large">1600 x 1600 (ਵੱਡੇ)</string>
+    <string name="resolution_large_description">ਹੌਲੀ; ਛੋਟੇ, ਖਰਾਬ ਜਾਂ ਦੂਰ ਦੇ ਬਾਰਕੋਡਾਂ ਲਈ ਵਰਤੋਂ</string>
+    <string name="camera_resolution_1mp">1 ਐਮਪੀ (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">ਵੱਡੇ ਜਾਂ ਨਜ਼ਦੀਕੀ ਬਾਰਕੋਡਸ</string>
+    <string name="camera_resolution_2mp">2 ਐਮਪੀ (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">ਜਨਰਲ ਬਾਰਕੋਡਸ</string>
+    <string name="camera_resolution_4mp">4 ਐਮ ਪੀ (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">ਸੰਘਣਾ, ਬੇਹੋਸ਼, ਜਾਂ ਛੋਟਾ ਬਾਰਕੋਡ</string>
+    <string name="camera_resolution_8mp">8mp (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">ਛੋਟੇ, ਦੂਰ, ਜਾਂ ਘੱਟ-ਵਿਪਰੀਤ ਬਾਰਕੋਡ</string>
+    <string name="inference_type_dsp">ਡੀਐਸਪੀ (ਡਿਜੀਟਲ ਸਿਗਨਲ ਪ੍ਰੋਸੈਸਰ)</string>
+    <string name="inference_type_dsp_description">ਵਧੀਆ ਚੋਣ</string>
+    <string name="inference_type_gpu">GPU (ਗ੍ਰਾਫਿਕਸ ਪ੍ਰੋਸੈਸਿੰਗ ਯੂਨਿਟ)</string>
+    <string name="inference_type_gpu_description">ਅਜ਼ਮਾਇਸ਼ਾਂ ਦੀ ਵਰਤੋਂ ਲਈ ਜੇ ਡੀਐਸਪੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
+    <string name="inference_type_cpu">ਸੀਪੀਯੂ (ਕੇਂਦਰੀ ਪ੍ਰੋਸੈਸਿੰਗ ਯੂਨਿਟ)</string>
+    <string name="inference_type_cpu_description">ਟਰਾਇਲ ਦੀ ਵਰਤੋਂ ਲਈ ਜੇ ਡੀਐਸਪੀ ਅਤੇ ਜੀਪੀਯੂ ਉਪਲਬਧ ਨਹੀਂ ਹਨ</string>
     <string name="rename">ਨਾਮ ਬਦਲੋ</string>
     <string name="rename_file">ਇੱਕ ਫਾਈਲ ਦਾ ਨਾਮ ਬਦਲੋ</string>
+    <string name="rename_folder">ਇੱਕ ਫੋਲਡਰ ਦਾ ਨਾਮ ਬਦਲੋ</string>
     <string name="create">ਬਣਾਓ</string>
     <string name="create_new_folder">ਨਵਾਂ ਫੋਲਡਰ ਬਣਾਓ</string>
-    <string name="create_new_file">ਨਵੀਂ ਫਾਈਲ ਬਣਾਓ</string>
-    <string name="delete_file">ਫਾਈਲ ਡਿਲੀਟ ਕਰੋ</string>
-    <string name="delete_folder">ਫੋਲਡਰ ਡਿਲੀਟ ਕਰੋ</string>
-    <string name="are_you_sure">ਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਹੋ?</string>
-    <string name="file_exists_already">ਫਾਈਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
-    <string name="activity_settings">ਸੈਟਿੰਗਜ਼</string>
-    <string name="activity_captured_barcodes">ਕੈਪਚਰ ਕੀਤੇ ਬਾਰਕੋਡਜ਼</string>
-    <string name="activity_session_data">ਸੈਸ਼ਨ ਡੇਟਾ</string>
-    <string name="menu_manage_sessions">ਸੈਸ਼ਨਜ਼ ਪ੍ਰਬੰਧਨ</string>
-    <string name="menu_settings">ਸੈਟਿੰਗਜ਼</string>
+    <string name="create_new_file">ਇੱਕ ਨਵੀਂ ਫਾਈਲ ਬਣਾਓ</string>
+    <string name="delete_file">ਫਾਈਲ ਮਿਟਾਓ</string>
+    <string name="delete_folder">ਫੋਲਡਰ ਨੂੰ ਮਿਟਾਓ</string>
+    <string name="are_you_sure">ਕੀ ਤੁਹਾਨੂੰ ਯਕੀਨ ਹੈ?</string>
+    <string name="file_exists_already">ਫਾਈਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ.</string>
+    <string name="activity_settings">ਸੈਟਿੰਗਾਂ</string>
+    <string name="activity_captured_barcodes">ਟੱਕਰ ਬੌਕਸ</string>
+    <string name="activity_session_data">ਸੈਸ਼ਨ ਡਾਟਾ</string>
+    <string name="activity_about">ਬਾਰੇ</string>
+    <string name="about_app_version">ਐਪ ਸੰਸਕਰਣ</string>
+    <string name="about_open_source">ਓਪਨ ਸੋਰਸ</string>
+    <string name="about_open_source_description">ਇਹ ਸਾੱਫਟਵੇਅਰ ਕਮਿ Community ਨਿਟੀ ਪ੍ਰੋਜੈਕਟ ਹੈ ਜੋ ਖੁੱਲਾ ਖੱਟਦਾ ਹੈ ਅਤੇ ਗੀਟਬ ਤੇ ਉਪਲਬਧ ਹੈ. ਇਹ ਜ਼ੇਬਰਾ ਦੁਆਰਾ ਅਧਿਕਾਰਤ ਤੌਰ ਤੇ ਸਮਰਥਤ ਨਹੀਂ ਹੈ. ਇਹ ਜ਼ੇਬਰਾ ਦਰਸ਼ਨ ਏ ਐਸ ਡੀ ਕੇ ਦੇ ਏਕੀਕਰਣ ਦਾ ਸਿਰਫ ਇੱਕ ਨਮੂਨਾ ਹੈ.</string>
+    <string name="about_developer">ਡਿਵੈਲਪਰ</string>
+    <string name="about_developer_name">ਲੌਰੀਨਟ ਟਰੂਡੂ</string>
+    <string name="about_developer_title">ਸੀਨੀਅਰ ਸਾੱਫਟਵੇਅਰ ਵਿਕਰੀ ਇੰਜੀਨੀਅਰ</string>
+    <string name="about_repository">ਗਿੱਟਬ ਰਿਪੋਜ਼ਟਰੀ</string>
+    <string name="about_dependencies">ਨਿਰਭਰਤਾ</string>
+    <string name="about_license">ਲਾਇਸੈਂਸ</string>
+    <string name="about_view_license">ਜ਼ੇਬਰਾ ਵਿਕਾਸ ਟੂਲ ਲਾਇਸੈਂਸ ਵੇਖੋ</string>
+    <string name="menu_manage_sessions">ਸੈਸ਼ਨਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ</string>
+    <string name="menu_settings">ਸੈਟਿੰਗਾਂ</string>
+    <string name="menu_about">ਬਾਰੇ</string>
     <string name="menu_new_file">ਨਵੀਂ ਫਾਈਲ</string>
     <string name="menu_new_folder">ਨਵਾਂ ਫੋਲਡਰ</string>
     <string name="menu_rename">ਨਾਮ ਬਦਲੋ</string>
-    <string name="menu_delete">ਡਿਲੀਟ ਕਰੋ</string>
-    <string name="language">ਭਾਸ਼ਾ</string>
-    <string name="system_language">ਸਿਸਟਮ ਭਾਸ਼ਾ</string>
-    <string name="advanced">Advanced</string>
-    <string name="model_input_size">Model Input Size</string>
-    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
-    <string name="camera_resolution_title">Resolution</string>
-    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
-    <string name="inference_processor_type_title">Inference (processor) Type</string>
-    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
-    <string name="toggle_symbologies">Toggle symbologies</string>
-    <string name="toggle_file_types">Toggle file types</string>
-    <string name="toggle_advanced">Toggle advanced settings</string>
-    <string name="resolution_small">640 x 640 (small)</string>
-    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
-    <string name="resolution_medium">1280 x 1280 (medium)</string>
-    <string name="resolution_medium_description">Balanced speed and accuracy</string>
-    <string name="resolution_large">1600 x 1600 (large)</string>
-    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
-    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
-    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
-    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
-    <string name="camera_resolution_2mp_description">General barcodes</string>
-    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
-    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
-    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
-    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
-    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
-    <string name="inference_type_dsp_description">Best Choice</string>
-    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
-    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
-    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
-    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
-    <string name="managed_configuration_updated">Settings updated by administrator</string>
-    <string name="error_renaming_folder">Error renaming folder</string>
-    <string name="rename_folder">Rename a folder</string>
-    <string name="https_post_mode_active">HTTP (S) ਪੋਸਟ ਮੋਡ ਬਿਨਾ ਸੈਸ਼ਨ ਫਾਈਲਾਂ ਦੇ ਕੈਪਚਰ ਕਰਨ ਲਈ ਤਿਆਰ.</string>
-    <string name="no_endpoint_configured">ਕੋਈ HTTP (S) ਅੰਤਮ ਬਿੰਦੂ ਨੂੰ ਸੰਰਚਿਤ ਨਹੀਂ. ਕਿਰਪਾ ਕਰਕੇ ਸੈਟਿੰਗਾਂ ਦੀ ਜਾਂਚ ਕਰੋ.</string>
-    <string name="about_app_version">ਐਪ ਸੰਸਕਰਣ</string>
-    <string name="about_open_source">ਓਪਨ ਸੋਰਸ</string>
-    <string name="data_processing">ਡੇਟਾ ਪ੍ਰੋਸੈਸਿੰਗ</string>
+    <string name="menu_delete">ਮਿਟਾਓ</string>
+    <string name="data_processing">ਡਾਟਾ ਪ੍ਰੋਸੈਸਿੰਗ</string>
     <string name="processing_mode">ਪ੍ਰੋਸੈਸਿੰਗ ਮੋਡ</string>
-    <string name="processing_mode_file">📁 File</string>
-    <string name="processing_mode_https_post">🌐 HTTP(s) Post</string>
+    <string name="processing_mode_file">📁 ਫਾਈਲ</string>
+    <string name="processing_mode_https_post">🌐 HTTP (S) ਪੋਸਟ</string>
     <string name="file_processing">ਫਾਈਲ ਪ੍ਰੋਸੈਸਿੰਗ</string>
-    <string name="enable_filtering">ਫਿਲਟਰਿੰਗ ਨੂੰ ਸਮਰੱਥ ਕਰੋ</string>
-    <string name="endpoint">ਐਂਡ ਪੁਆਇੰਟ</string>
-    <string name="upload">ਅਪਲੋਡ</string>
-    <string name="about_dependencies">ਨਿਰਭਰਤਾ</string>
-    <string name="https_endpoint">HTTP (S) ਅੰਤ ਬਿੰਦੂ</string>
-    <string name="regular_expression">ਨਿਯਮਤ ਸਮੀਕਰਨ</string>
-    <string name="uploading">ਅਪਲੋਡਿੰਗ ...</string>
-    <string name="upload_successful">ਸਫਲਤਾਪੂਰਵਕ ਅਪਲੋਡ</string>
-    <string name="upload_failed">ਅਪਲੋਡ ਅਸਫਲ</string>
-    <string name="about_open_source_description">ਇਹ ਸਾੱਫਟਵੇਅਰ ਕਮਿ community ਨਿਟੀ ਪ੍ਰੋਜੈਕਟ ਹੈ ਜੋ ਖੁੱਲਾ ਖੱਟਦਾ ਹੈ ਅਤੇ ਗਿਥਬ ਤੇ ਉਪਲਬਧ ਹੈ. ਇਹ ਜ਼ੇਬਰਾ ਦੁਆਰਾ ਅਧਿਕਾਰਤ ਤੌਰ ਤੇ ਸਮਰਥਤ ਨਹੀਂ ਹੈ. ਇਹ ਜ਼ੇਬਰਾ ਦਰਸ਼ਨ ਏ ਐਸ ਡੀ ਕੇ ਦੇ ਏਕੀਕਰਣ ਦਾ ਸਿਰਫ ਇੱਕ ਨਮੂਨਾ ਹੈ.</string>
-    <string name="about_developer_title">ਸੀਨੀਅਰ ਸਾੱਫਟਵੇਅਰ ਵਿਕਰੀ ਇੰਜੀਨੀਅਰ</string>
-    <string name="about_repository">ਗਿੱਟਬ ਰਿਪੋਜ਼ਟਰੀ</string>
-    <string name="about_view_license">ਜ਼ੇਬਰਾ ਵਿਕਾਸ ਸੰਦ ਦਾ ਲਾਇਸੈਂਸ ਵੇਖੋ</string>
-    <string name="menu_about">ਬਾਰੇ</string>
-    <string name="https_post">HTTP (S) ਪੋਸਟ</string>
-    <string name="https_endpoint_hint">https://132.168.1.100/192.168.1.100/APITA)</string>
+    <string name="https_post">http (s) ਪੋਸਟ</string>
+    <string name="https_endpoint">http (s) ਅੰਤ ਬਿੰਦੂ</string>
+    <string name="https_endpoint_hint">https://122.168.1.1192.168.1.100/APITA ).1.100/APITA)</string>
+    <string name="managed_configuration_updated">ਪ੍ਰਬੰਧਕ ਦੁਆਰਾ ਅਪਡੇਟ ਕੀਤੇ ਸੈਟਿੰਗਜ਼</string>
     <string name="endpoint_updated_from_qr">QR ਕੋਡ ਤੋਂ ਅਪਡੇਟ ਕੀਤਾ ਗਿਆ</string>
     <string name="filtering">ਫਿਲਟਰਿੰਗ</string>
-    <string name="regular_expression_hint">E.g., ^ [0-9] ਸਿਰਫ ਨੰਬਰਾਂ ਲਈ</string>
-    <string name="upload_error">ਅਪਲੋਡ ਗਲਤੀ</string>
-    <string name="activity_about">ਬਾਰੇ</string>
-    <string name="toggle_filtering">ਟੌਗਲ ਫਿਲਟਰਿੰਗ</string>
-    <string name="about_developer">ਡਿਵੈਲਪਰ</string>
-    <string name="about_developer_name">ਲੌਰੀਨਟ ਟਰਾਡੂ</string>
-    <string name="about_license">ਲਾਇਸੈਂਸ</string>
+    <string name="enable_filtering">ਫਿਲਟਰਿੰਗ ਯੋਗ</string>
+    <string name="regular_expression">ਨਿਯਮਤ ਸਮੀਕਰਨ</string>
+    <string name="text_file">ਟੈਕਸਟ ਫਾਈਲ</string>
 </resources>

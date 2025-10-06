@@ -1,128 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI മൾട്ടി ബാർകോഡ് ക്യാപ്ചർ</string>
+    <string name="app_name">AI മൾട്ടി ബാർകോഡുകൾ ക്യാപ്ചർ</string>
     <string name="start_capture_button_text">ക്യാപ്ചർ ആരംഭിക്കുക</string>
-    <string name="loading_status">ആപ്ലിക്കേഷൻ ലോഡുചെയ്യുന്നു</string>
-    <string name="select_session_file">ഒരു സെഷൻ ഫയൽ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയതൊന്ന് സൃഷ്ടിക്കുക.</string>
+    <string name="loading_status">അപ്ലിക്കേഷൻ ലോഡുചെയ്യുന്നു</string>
+    <string name="select_session_file">ഒരു സെഷൻ ഫയൽ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയത് സൃഷ്ടിക്കുക.</string>
+    <string name="https_post_mode_active">HTTP (കൾ) പോസ്റ്റ് മോഡ്: സെഷൻ ഫയലുകൾ ഇല്ലാതെ ക്യാപ്ചർ ചെയ്യാൻ തയ്യാറാണ്.</string>
+    <string name="no_endpoint_configured">http (കൾ) അവസാന പോയിന്റ് ക്രമീകരിച്ചു. ക്രമീകരണങ്ങൾ പരിശോധിക്കുക.</string>
+    <string name="endpoint">എൻഡ്പോയിന്റ്</string>
+    <string name="upload">അപ്ലോഡ് ചെയ്യുക</string>
+    <string name="uploading">അപ്ലോഡുചെയ്യുന്നത് ...</string>
+    <string name="upload_successful">വിജയിക്കുക</string>
+    <string name="upload_failed">അപ്ലോഡ് പരാജയപ്പെട്ടു</string>
+    <string name="upload_error">അപ്ലോഡ് പിശക്</string>
     <string name="retrieving_permissions">അനുമതികൾ വീണ്ടെടുക്കുന്നു</string>
     <string name="select">തിരഞ്ഞെടുക്കുക</string>
     <string name="share">പങ്കിടുക</string>
     <string name="refresh">പുതുക്കുക</string>
     <string name="close">അടയ്ക്കുക</string>
-    <string name="manage_sessions">സെഷനുകൾ കൈകാര്യം ചെയ്യുക</string>
+    <string name="manage_sessions">സെഷനുകൾ നിയന്ത്രിക്കുക</string>
     <string name="create_new">പുതിയത് സൃഷ്ടിക്കുക</string>
-    <string name="enter_new_file_name">പുതിയ ഫയൽ നാമം നൽകുക</string>
-    <string name="default_session_name">എന്റെസെഷൻ_</string>
+    <string name="enter_new_file_name">പുതിയ ഫയലിന്റെ പേര് നൽകുക</string>
+    <string name="default_session_name">myssion_</string>
     <string name="file_extension_txt">.txt</string>
     <string name="yes">അതെ</string>
-    <string name="no">അല്ല</string>
+    <string name="no">ഇല്ല</string>
     <string name="addtofile">ഫയലിലേക്ക് ചേർക്കുക</string>
     <string name="save">സംരക്ഷിക്കുക</string>
     <string name="update">ഫയൽ അപ്ഡേറ്റ് ചെയ്യുക</string>
-    <string name="merge">അളവുകൾ ലയിപ്പിക്കുക</string>
+    <string name="merge">അളവുകൾ ലയിക്കുക</string>
     <string name="start_capture">ക്യാപ്ചർ ആരംഭിക്കുക</string>
     <string name="load_last_session">അവസാന സെഷൻ ലോഡുചെയ്യുക</string>
     <string name="create_new_session">പുതിയ സെഷൻ സൃഷ്ടിക്കുക</string>
     <string name="view_session_data">സെഷൻ ഡാറ്റ കാണുക</string>
     <string name="selected_session">തിരഞ്ഞെടുത്ത സെഷൻ</string>
-    <string name="select_session_to_start">ക്യാപ്ചർ ആരംഭിക്കാൻ ഒരു സെഷൻ തിരഞ്ഞെടുക്കുക</string>
+    <string name="select_session_to_start">ക്യാപ്ചർ ആരംഭിക്കുന്നതിന് ഒരു സെഷൻ തിരഞ്ഞെടുക്കുക</string>
     <string name="setup">സജ്ജീകരണം</string>
-    <string name="prefix">പ്രിഫിക്സ്:</string>
+    <string name="prefix">പ്രിഫിക്സ്</string>
     <string name="prefix_hint">പ്രിഫിക്സ്_</string>
     <string name="file_type">ഫയൽ തരം</string>
     <string name="text_file">ടെക്സ്റ്റ് ഫയൽ</string>
     <string name="csv_file">CSV ഫയൽ</string>
     <string name="excel_file">Excel ഫയൽ</string>
-    <string name="validate">സാധൂകരിക്കുക</string>
+    <string name="language">ഭാഷ</string>
+    <string name="system_language">സിസ്റ്റം ഭാഷ</string>
+    <string name="validate">സാധനങ്ങൾ</string>
     <string name="cancel">റദ്ദാക്കുക</string>
     <string name="capture">ക്യാപ്ചർ</string>
-    <string name="ai_vision_sdk_init_failed">AI Vision SDK പ്രാരംഭീകരണം പരാജയപ്പെട്ടു</string>
-    <string name="folder_path_missing">ഫോൾഡർ പാത്ത് നഷ്ടപ്പെട്ടു!</string>
-    <string name="folder_path_missing_toast">ഫോൾഡർ പാത്ത് നഷ്ടപ്പെട്ടു !!!</string>
-    <string name="error_could_not_create_file">പിശക്, ഫയൽ സൃഷ്ടിക്കാൻ കഴിഞ്ഞില്ല: %s</string>
-    <string name="error_could_not_open_file">പിശക്, ഫയൽ തുറക്കാൻ കഴിഞ്ഞില്ല: %s</string>
-    <string name="error_file_does_not_exist">പിശക്, ഫയൽ നിലവിലില്ല: %s</string>
-    <string name="error_file_is_empty">പിശക്, ഫയൽ ശൂന്യമാണ്: %s</string>
-    <string name="error_loading_data">പിശക്, ഫയലിൽ ഡാറ്റ ലോഡുചെയ്യാൻ കഴിഞ്ഞില്ല: %s</string>
-    <string name="file_saved_at">ഫയൽ സംരക്ഷിച്ചിരിക്കുന്നു: %s</string>
-    <string name="error_saving_file">ഫയൽ സംരക്ഷിക്കുന്നതിൽ പിശക്: %s</string>
-    <string name="error_saving_last_selected_file">അവസാനം തിരഞ്ഞെടുത്ത ഫയൽ സംരക്ഷിക്കുന്നതിൽ പിശക്</string>
+    <string name="ai_vision_sdk_init_failed">AI കാഴ്ച SDK സമാരംഭിക്കൽ പരാജയപ്പെട്ടു</string>
+    <string name="folder_path_missing">ഫോൾഡർ പാത്ത് കാണുന്നില്ല!</string>
+    <string name="folder_path_missing_toast">ഫോൾഡർ പാത്ത് കാണുന്നില്ല !!!</string>
+    <string name="error_could_not_create_file">പിശക്, ഫയൽ സൃഷ്ടിക്കാൻ കഴിഞ്ഞില്ല:% s</string>
+    <string name="error_could_not_open_file">പിശക്, ഫയൽ തുറക്കാൻ കഴിഞ്ഞില്ല:% s</string>
+    <string name="error_file_does_not_exist">പിശക്, ഫയൽ നിലവിലില്ല:% s</string>
+    <string name="error_file_is_empty">പിശക്, ഫയൽ ശൂന്യമാണ്:% s</string>
+    <string name="error_loading_data">പിശക്, ഫയലിൽ ഡാറ്റ ലോഡുചെയ്യാൻ കഴിഞ്ഞില്ല:% s</string>
+    <string name="file_saved_at">സംരക്ഷിച്ച ഫയൽ:% s</string>
+    <string name="error_saving_file">ഫയൽ സംരക്ഷിക്കുന്ന പിശക്:% s</string>
+    <string name="error_saving_last_selected_file">അവസാനത്തെ തിരഞ്ഞെടുത്ത ഫയൽ സംരക്ഷിക്കുന്ന പിശക്</string>
     <string name="settings_saved_successfully">ക്രമീകരണങ്ങൾ വിജയകരമായി സംരക്ഷിച്ചു</string>
-    <string name="please_select_file_not_folder">ദയവായി ഫോൾഡറല്ല, ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
-    <string name="please_select_file_or_folder">ദയവായി ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
-    <string name="cannot_rename_parent_folder">ഫോൾഡറുകളെയോ മാതൃഫോൾഡറിനെയോ പുനർനാമകരണം ചെയ്യാൻ കഴിയില്ല.</string>
+    <string name="please_select_file_not_folder">ഒരു ഫോൾഡറല്ല, ഒരു ഫയൽ തിരഞ്ഞെടുക്കുക.</string>
+    <string name="please_select_file_or_folder">ദയവായി ഒരു ഫയൽ അല്ലെങ്കിൽ ഫോൾഡർ തിരഞ്ഞെടുക്കുക.</string>
+    <string name="cannot_rename_parent_folder">രക്ഷാകർതൃ ഫോൾഡറിന്റെ പേരുമാറ്റാൻ കഴിയില്ല.</string>
     <string name="file_already_exists">ഫയൽ ഇതിനകം നിലവിലുണ്ട്.</string>
-    <string name="error_renaming_file">ഫയൽ പുനർനാമകരണം ചെയ്യുന്നതിൽ പിശക്</string>
+    <string name="error_renaming_file">ഫയലിംഗ് ഫയലിംഗ് പിശക്</string>
+    <string name="error_renaming_folder">ഫോൾഡറിനെ പേരുമാറ്റുന്നു</string>
     <string name="folder_already_exists">ഫോൾഡർ ഇതിനകം നിലവിലുണ്ട്.</string>
-    <string name="failed_to_create_folder">ഫോൾഡർ സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു: %s</string>
+    <string name="failed_to_create_folder">ഫോൾഡർ സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു:% s</string>
     <string name="failed_to_create_file">ഫയൽ സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
-    <string name="cannot_delete_parent_folder">മാതൃഫോൾഡർ ഇല്ലാതാക്കാൻ കഴിയില്ല.</string>
+    <string name="cannot_delete_parent_folder">പാരന്റ് ഫോൾഡർ ഇല്ലാതാക്കാൻ കഴിയില്ല.</string>
     <string name="cannot_share_folders">ഫോൾഡറുകൾ പങ്കിടാൻ കഴിയില്ല.</string>
     <string name="last_session_file_not_found">അവസാന സെഷൻ ഫയൽ കണ്ടെത്തിയില്ല.</string>
-    <string name="no_session_file_saved">മുൻഗണനകളിൽ സെഷൻ ഫയൽ സംരക്ഷിച്ചിട്ടില്ല.</string>
-    <string name="error_creating_new_session">പുതിയ സെഷൻ സൃഷ്ടിക്കുന്നതിൽ പിശക്: %s</string>
-    <string name="missing_filename">ഫയൽ നാമം നഷ്ടപ്പെട്ടു</string>
-    <string name="camera_permission_required">ഈ ഫീച്ചർ ഉപയോഗിക്കുന്നതിന് ക്യാമറ അനുമതി ആവശ്യമാണ്</string>
-    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() ഒബ്ജക്റ്റ് സൃഷ്ടിക്കുന്ന സമയം =%d മില്ലിസെക്കൻഡ്</string>
-    <string name="barcode_decoder_disposed">ബാർകോഡ് ഡീകോഡർ നിർത്തലാക്കി</string>
-    <string name="orientation_unlocked">%s മോഡിനായി ഓറിയന്റേഷൻ അൺലോക്കുചെയ്തു</string>
-    <string name="applied_viewfinder_resize_immediately">വ്യൂഫൈൻഡർ റീസൈസ് സ്പെസിഫിക്കേഷനുകൾ ഉടൻ പ്രയോഗിച്ചു</string>
-    <string name="stored_pending_viewfinder_resize">പിന്നീടുള്ള പ്രയോഗത്തിനായി തീർപ്പുകൽപ്പിക്കാത്ത വ്യൂഫൈൻഡർ റീസൈസ് ഡാറ്റ സൂക്ഷിച്ചു</string>
-    <string name="applied_pending_viewfinder_resize">സൂക്ഷിച്ച മൂല്യങ്ങളിൽ നിന്ന് തീർപ്പുകൽപ്പിക്കാത്ത വ്യൂഫൈൻഡർ റീസൈസ് ഡാറ്റ പ്രയോഗിച്ചു</string>
-    <string name="entity_tracker_ready">EntityBarcodeTracker തയ്യാറായി, തീർപ്പുകൽപ്പിക്കാത്ത കോൺഫിഗറേഷനുകൾ പ്രയോഗിക്കുന്നു</string>
+    <string name="no_session_file_saved">സെഷൻ ഫയൽ മുൻഗണനകളിൽ സംരക്ഷിച്ചിട്ടില്ല.</string>
+    <string name="error_creating_new_session">പുതിയ സെഷൻ സൃഷ്ടിക്കുന്നതിൽ പിശക്:% s</string>
+    <string name="missing_filename">ഫയൽ നാമം നഷ്ടമായി</string>
+    <string name="camera_permission_required">ഈ സവിശേഷത ഉപയോഗിക്കുന്നതിന് ക്യാമറ അനുമതി ആവശ്യമാണ്</string>
+    <string name="entity_tracker_creation_time">എന്റിറ്റി ട്രാക്കർ ബാർകോഡെഡെകോഡർ () ഒബ്ജക്റ്റ് സൃഷ്ടിക്കൽ സമയം =% ഡി മില്ലി സെക്റ്റ്</string>
+    <string name="barcode_decoder_disposed">ബാർകോഡ് ഡീകോഡർ നീക്കംചെയ്യുന്നു</string>
+    <string name="orientation_unlocked">% S മോഡിനായി ഓറിയന്റേഷൻ അൺലോക്കുചെയ്തു</string>
+    <string name="applied_viewfinder_resize_immediately">അപ്ലൈഡ് വ്യൂഫൈൻഡർ സ്പെസികൾ ഉടനടി വലുപ്പം മാറ്റുക</string>
+    <string name="stored_pending_viewfinder_resize">നിരക്കിലുള്ള വ്യൂഫൈൻഡർ ഡാറ്റ പുന ord സ്ഥാപിക്കുന്ന ഡാറ്റ വലുപ്പം മാറ്റുക</string>
+    <string name="applied_pending_viewfinder_resize">സംഭരിച്ച മൂല്യങ്ങളിൽ നിന്ന് ഡാറ്റ വലുപ്പം മാറ്റുക</string>
+    <string name="entity_tracker_ready">എന്റിറ്റിബാർകോഡെട്രാക്കർ തയ്യാറാണ്, തീർച്ചപ്പെടുത്തിയിട്ട കോൺഫിഗറേഷനുകൾ പ്രയോഗിക്കുന്നു</string>
     <string name="handle_view_entity_result">വ്യൂ എന്റിറ്റി കൈകാര്യം ചെയ്യുക - ഫലം ലഭിച്ചു</string>
-    <string name="entity_tracker_decoder_available">EntityBarcodeTracker ഡീകോഡർ ലഭ്യമാണ്, എന്റിറ്റികളുടെ എണ്ണം: %s</string>
-    <string name="processing_entities">എന്റിറ്റി വ്യൂവിനായി %d എന്റിറ്റികൾ പ്രോസസ്സുചെയ്യുന്നു</string>
-    <string name="rendered_entities">എന്റിറ്റി വ്യൂവിൽ എന്റിറ്റികൾ റെൻഡർ ചെയ്തു</string>
-    <string name="symbologies">Symbologies</string>
-    <string name="australian_postal">AUSTRALIAN POSTAL</string>
-    <string name="aztec">AZTEC</string>
-    <string name="canadian_postal">CANADIAN POSTAL</string>
-    <string name="chinese_2of5">CHINESE 2OF5</string>
-    <string name="codabar">CODABAR</string>
-    <string name="code11">CODE11</string>
-    <string name="code39">CODE39</string>
-    <string name="code93">CODE93</string>
-    <string name="code128">CODE128</string>
-    <string name="composite_ab">COMPOSITE AB</string>
-    <string name="composite_c">COMPOSITE C</string>
-    <string name="d2of5">D2OF5</string>
-    <string name="datamatrix">DATAMATRIX</string>
-    <string name="dotcode">DOTCODE</string>
-    <string name="dutch_postal">DUTCH POSTAL</string>
-    <string name="ean_8">EAN 8</string>
-    <string name="ean_13">EAN 13</string>
-    <string name="finnish_postal_4s">FINNISH POSTAL 4S</string>
-    <string name="grid_matrix">GRID MATRIX</string>
-    <string name="gs1_databar">GS1 DATABAR</string>
-    <string name="gs1_databar_expanded">GS1 DATABAR EXPANDED</string>
-    <string name="gs1_databar_lim">GS1 DATABAR LIM</string>
-    <string name="gs1_datamatrix">GS1 DATAMATRIX</string>
-    <string name="gs1_qrcode">GS1 QRCODE</string>
-    <string name="hanxin">HANXIN</string>
-    <string name="i2of5">I2OF5</string>
-    <string name="japanese_postal">JAPANESE POSTAL</string>
-    <string name="korean_3of5">KOREAN 3OF5</string>
-    <string name="mailmark">MAILMARK</string>
-    <string name="matrix_2of5">MATRIX 2OF5</string>
-    <string name="maxicode">MAXICODE</string>
-    <string name="micropdf">MICROPDF</string>
-    <string name="microqr">MICROQR</string>
-    <string name="msi">MSI</string>
-    <string name="pdf417">PDF417</string>
-    <string name="qrcode">QRCODE</string>
-    <string name="tlc39">TLC39</string>
-    <string name="trioptic39">TRIOPTIC39</string>
-    <string name="uk_postal">UK POSTAL</string>
-    <string name="upc_a">UPC A</string>
-    <string name="upc_e">UPC E</string>
-    <string name="upce1">UPCE1</string>
-    <string name="usplanet">USPLANET</string>
-    <string name="uspostnet">USPOSTNET</string>
-    <string name="us4state">US4STATE</string>
-    <string name="us4state_fics">US4STATE FICS</string>
+    <string name="entity_tracker_decoder_available">എന്റിറ്റിബാർകോഡെറ്റക്കർ ഡീകോഡർ ലഭ്യമാണ്, എന്റിറ്റികൾ എണ്ണം:% സെ</string>
+    <string name="processing_entities">എന്റിറ്റി കാഴ്ചയ്ക്കായി% ഡി എന്റിറ്റികൾ പ്രോസസ്സ് ചെയ്യുക</string>
+    <string name="rendered_entities">എന്റിറ്റി കാഴ്ചയിൽ പ്രവേശിച്ചു</string>
+    <string name="symbologies">NIMELYS</string>
+    <string name="advanced">വിപുലമായത്</string>
+    <string name="model_input_size">മോഡൽ ഇൻപുട്ട് വലുപ്പം</string>
+    <string name="model_input_size_description">മോഡൽ ഇൻപുട്ട് വലുപ്പം മിഴിവാണ് AI വിശകലനത്തിന് മുമ്പ് നിങ്ങളുടെ ചിത്രം വലുപ്പം മാറിയത്. ചെറിയ വലുപ്പങ്ങൾ വേഗതയുള്ളതും കുറഞ്ഞ മെമ്മറി ഉപയോഗിക്കുന്നതുമാണ്, അതേസമയം വലിയ വലുപ്പങ്ങൾ ചെറുതോ അതിൽ കൂടുതലോ വിദൂര ബാർകോഡുകളും കണ്ടെത്താൻ സഹായിക്കും - മാത്രമല്ല കൂടുതൽ പ്രോസസ്സിംഗ് പവറും മെമ്മറിയും ഉപയോഗിക്കുന്നു. നിങ്ങളുടെ ആവശ്യങ്ങൾക്കായി വേഗതയും കൃത്യതയും സന്തുലിതമാക്കുന്നതിന് ഇൻപുട്ട് വലുപ്പം തിരഞ്ഞെടുക്കുക. കുറിപ്പ്: എസ്ഡികെ ഉപയോഗിക്കുന്നത് 32 ഇൻ ഇൻപുട്ട് വലുപ്പത്തിൽ മോഡൽ ഇൻപുട്ട് വലുപ്പം ഇച്ഛാനുസൃതമാക്കാം. ചുവടെയുള്ള ഓപ്ഷനുകൾ ചില പൊതു വലുപ്പങ്ങളെ പ്രതിനിധീകരിക്കുന്നു.</string>
+    <string name="camera_resolution_title">മിഴിവ്</string>
+    <string name="camera_resolution_description">നിങ്ങളുടെ ഫോട്ടോയിലെ പിക്സലുകളുടെ എണ്ണമാണ് ക്യാമറ റെസലൂഷൻ (ഉദാ., 1MP = 1280x720). ഉയർന്ന മിഴിവ് ചെറുതോ വിദൂര വാചകയോ കൂടുതൽ വിശദാംശങ്ങൾ പിടിച്ചെടുക്കുന്നു, പക്ഷേ കൂടുതൽ ശക്തിയും മെമ്മറിയും ഉപയോഗിക്കുന്നു. മോഡൽ ഇൻപുട്ട് വലുപ്പം കുറവാണെങ്കിൽ ആനുകൂല്യങ്ങൾ പരിമിതപ്പെടുത്തിയിരിക്കുന്നു.</string>
+    <string name="inference_processor_type_title">അനുമാനങ്ങൾ (പ്രോസസർ) തരം</string>
+    <string name="inference_processor_type_description">നിങ്ങളുടെ ഉപകരണത്തിലെ ഏത് ചിപ്പ് പ്രവർത്തിപ്പിക്കുന്നതിനും വേഗത, ബാറ്ററി ആയുസ്സ് ബാധിക്കുന്ന ഈ ക്രമീകരണം തിരഞ്ഞെടുക്കുന്നു. എല്ലാ ഉപകരണങ്ങൾക്കും ഒരു ഡിഎസ്പി ഇല്ല.</string>
+    <string name="australian_postal">ഓസ്ട്രേലിയൻ തപാൽ</string>
     <string name="barcode_value">ബാർകോഡ് മൂല്യം</string>
-    <string name="symbology">സിംബോളജി</string>
+    <string name="symbology">SIMPOLOLOLO എന്താണ്</string>
     <string name="unknown">അജ്ഞാതം</string>
     <string name="quantity">അളവ്</string>
     <string name="minus">-</string>
@@ -130,25 +103,50 @@
     <string name="capture_date">ക്യാപ്ചർ തീയതി</string>
     <string name="date">തീയതി</string>
     <string name="quantity_hint">1</string>
-    <string name="toggle_flashlight">ഫ്ലാഷ്‌ലൈറ്റ് ടോഗിൾ ചെയ്യുക</string>
+    <string name="toggle_flashlight">ഫ്ലാഷ്ലൈറ്റ് ടോഗിൾ ചെയ്യുക</string>
     <string name="toggle_capture_zone">ക്യാപ്ചർ സോൺ ടോഗിൾ ചെയ്യുക</string>
+    <string name="toggle_symbologies">സംഖ്യാനങ്ങളെ ടോഗിൾ ചെയ്യുക</string>
+    <string name="toggle_file_types">ഫയൽ തരങ്ങൾ ടോഗിൾ ചെയ്യുക</string>
+    <string name="toggle_advanced">വിപുലമായ ക്രമീകരണങ്ങൾ ടോഗിൾ ചെയ്യുക</string>
+    <string name="toggle_filtering">ഫിൽട്ടറിംഗ് ടോഗിൾ ചെയ്യുക</string>
     <string name="edit_item">ഇനം എഡിറ്റുചെയ്യുക</string>
     <string name="delete_item">ഇനം ഇല്ലാതാക്കുക</string>
-    <string name="value_label">മൂല്യം: %s</string>
-    <string name="symbology_label">സിംബോളജി: %s</string>
-    <string name="quantity_label">അളവ്: %d</string>
-    <string name="date_label">തീയതി: %s</string>
-    <string name="success_granting_permissions">അനുമതികൾ നൽകുന്നതിൽ വിജയം.</string>
-    <string name="session_data_merged">സെഷൻ ഡാറ്റ ലയിപ്പിച്ചു.</string>
-    <string name="error_reported">പിശക് റിപ്പോർട്ടുചെയ്തു: %s</string>
-    <string name="error_reading_session_file">സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്: %s</string>
-    <string name="error_reading_csv_session_file">CSV സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്: %s</string>
-    <string name="error_reading_excel_session_file">Excel സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്: %s</string>
-    <string name="rename">പുനർനാമകരണം</string>
-    <string name="rename_file">ഫയൽ പുനർനാമകരണം ചെയ്യുക</string>
+    <string name="value_label">മൂല്യം:% സെ</string>
+    <string name="symbology_label">SCH.</string>
+    <string name="quantity_label">അളവ്:% d</string>
+    <string name="date_label">തീയതി:% s</string>
+    <string name="success_granting_permissions">വിജയ പ്ലംസ് അനുമതികൾ.</string>
+    <string name="session_data_merged">സെഷൻ ഡാറ്റ ലയിച്ചു.</string>
+    <string name="error_reported">പിശക് റിപ്പോർട്ടുചെയ്തു:% s</string>
+    <string name="error_reading_session_file">സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്:% s</string>
+    <string name="error_reading_csv_session_file">CSV സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്:% s</string>
+    <string name="error_reading_excel_session_file">Excel സെഷൻ ഫയൽ വായിക്കുന്നതിൽ പിശക്:% s</string>
+    <string name="resolution_small">640 x 640 (ചെറുത്)</string>
+    <string name="resolution_small_description">വേഗതയേറിയത്; വലിയ അല്ലെങ്കിൽ ക്ലോസൾ അപ്പ് ബാർകോഡുകൾക്ക് മികച്ചത്</string>
+    <string name="resolution_medium">1280 x 1280 (മീഡിയം)</string>
+    <string name="resolution_medium_description">സമതുലിതമായ വേഗതയും കൃത്യതയും</string>
+    <string name="resolution_large">1600 x 1600 (വലുത്)</string>
+    <string name="resolution_large_description">മന്ദഗതിയിലാകുന്നു; ചെറിയ, കേടായ അല്ലെങ്കിൽ വിദൂര ബാർകോഡുകൾക്കായി ഉപയോഗിക്കുക</string>
+    <string name="camera_resolution_1mp">1mp (1280 x 720)</string>
+    <string name="camera_resolution_1mp_description">വലുതോ ക്ലോസപ്പ് ബാർകോഡുകളും</string>
+    <string name="camera_resolution_2mp">2mp (1920 x 1080)</string>
+    <string name="camera_resolution_2mp_description">പൊതു ബാർകോഡുകൾ</string>
+    <string name="camera_resolution_4mp">4mp (2688 x 1512)</string>
+    <string name="camera_resolution_4mp_description">ഇടതൂർന്ന, മങ്ങിയതോ ചെറുതോ ആയ ബാർകോഡുകൾ</string>
+    <string name="camera_resolution_8mp">8mp (3840 x 2160)</string>
+    <string name="camera_resolution_8mp_description">ചെറുതും വിദൂരമോ അല്ലെങ്കിൽ കുറഞ്ഞതോ ആയ ബാർകോഡുകൾ</string>
+    <string name="inference_type_dsp">DSP (ഡിജിറ്റൽ സിഗ്നൽ പ്രോസസർ)</string>
+    <string name="inference_type_dsp_description">മികച്ച ചോയ്സ്</string>
+    <string name="inference_type_gpu">GPU (ഗ്രാഫിക്സ് പ്രോസസ്സിംഗ് യൂണിറ്റ്)</string>
+    <string name="inference_type_gpu_description">DSP ലഭ്യമല്ലെങ്കിൽ ട്രയൽ ഉപയോഗത്തിനായി</string>
+    <string name="inference_type_cpu">സിപിയു (കേന്ദ്ര പ്രോസസ്സിംഗ് യൂണിറ്റ്)</string>
+    <string name="inference_type_cpu_description">ഡിഎസ്പിയും ജിപിയുവും ലഭ്യമല്ലെങ്കിൽ പരീക്ഷണ ഉപയോഗത്തിനായി</string>
+    <string name="rename">പേരുമാറ്റുക</string>
+    <string name="rename_file">ഒരു ഫയലിന്റെ പേരുമാറ്റുക</string>
+    <string name="rename_folder">ഒരു ഫോൾഡറിനെ പുനർനാമകരണം ചെയ്യുക</string>
     <string name="create">സൃഷ്ടിക്കുക</string>
-    <string name="create_new_folder">പുതിയ ഫോൾഡർ സൃഷ്ടിക്കുക</string>
-    <string name="create_new_file">പുതിയ ഫയൽ സൃഷ്ടിക്കുക</string>
+    <string name="create_new_folder">ഒരു പുതിയ ഫോൾഡർ സൃഷ്ടിക്കുക</string>
+    <string name="create_new_file">ഒരു പുതിയ ഫയൽ സൃഷ്ടിക്കുക</string>
     <string name="delete_file">ഫയൽ ഇല്ലാതാക്കുക</string>
     <string name="delete_folder">ഫോൾഡർ ഇല്ലാതാക്കുക</string>
     <string name="are_you_sure">നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
@@ -156,79 +154,35 @@
     <string name="activity_settings">ക്രമീകരണങ്ങൾ</string>
     <string name="activity_captured_barcodes">ക്യാപ്ചർ ചെയ്ത ബാർകോഡുകൾ</string>
     <string name="activity_session_data">സെഷൻ ഡാറ്റ</string>
-    <string name="menu_manage_sessions">സെഷനുകൾ കൈകാര്യം ചെയ്യുക</string>
-    <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
-    <string name="menu_new_file">പുതിയ ഫയൽ</string>
-    <string name="menu_new_folder">പുതിയ ഫോൾഡർ</string>
-    <string name="menu_rename">പുനർനാമകരണം</string>
-    <string name="menu_delete">ഇല്ലാതാക്കുക</string>
-    <string name="language">ഭാഷ</string>
-    <string name="system_language">സിസ്റ്റം ഭാഷ</string>
-    <string name="advanced">Advanced</string>
-    <string name="model_input_size">Model Input Size</string>
-    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
-    <string name="camera_resolution_title">Resolution</string>
-    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
-    <string name="inference_processor_type_title">Inference (processor) Type</string>
-    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
-    <string name="toggle_symbologies">Toggle symbologies</string>
-    <string name="toggle_file_types">Toggle file types</string>
-    <string name="toggle_advanced">Toggle advanced settings</string>
-    <string name="resolution_small">640 x 640 (small)</string>
-    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
-    <string name="resolution_medium">1280 x 1280 (medium)</string>
-    <string name="resolution_medium_description">Balanced speed and accuracy</string>
-    <string name="resolution_large">1600 x 1600 (large)</string>
-    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
-    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
-    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
-    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
-    <string name="camera_resolution_2mp_description">General barcodes</string>
-    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
-    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
-    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
-    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
-    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
-    <string name="inference_type_dsp_description">Best Choice</string>
-    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
-    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
-    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
-    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
-    <string name="managed_configuration_updated">Settings updated by administrator</string>
-    <string name="error_renaming_folder">Error renaming folder</string>
-    <string name="rename_folder">Rename a folder</string>
-    <string name="https_post_mode_active">http (കൾ) പോസ്റ്റ് മോഡ്: സെഷൻ ഫയലുകൾ ഇല്ലാതെ ക്യാപ്ചർ ചെയ്യാൻ തയ്യാറാണ്.</string>
-    <string name="no_endpoint_configured">http (കൾ) അവസാന പോയിന്റ് ക്രമീകരിച്ചിട്ടില്ല. ക്രമീകരണങ്ങൾ പരിശോധിക്കുക.</string>
-    <string name="upload">അപ്ലോഡ്</string>
-    <string name="uploading">അപ്ലോഡുചെയ്യുന്നു ...</string>
-    <string name="upload_successful">വിജയിക്കുക</string>
-    <string name="upload_failed">അപ്ലോഡ് പരാജയപ്പെട്ടു</string>
-    <string name="upload_error">പിശക് അപ്ലോഡുചെയ്യുക</string>
-    <string name="toggle_filtering">ഫിൽട്ടറിംഗ് ടോഗിൾ ചെയ്യുക</string>
+    <string name="activity_about">കുറിച്ച്</string>
     <string name="about_app_version">അപ്ലിക്കേഷൻ പതിപ്പ്</string>
     <string name="about_open_source">ഓപ്പൺ സോഴ്സ്</string>
     <string name="about_open_source_description">ഈ സോഫ്റ്റ്വെയർ ഒരു സമൂഹ പ്രോജക്റ്റാണ്, അത് തുറന്നതും GitHub- ൽ ലഭ്യവുമാണ്. ഇത് സെബ്രയെ official ദ്യോഗികമായി പിന്തുണയ്ക്കുന്നില്ല. ഇത് സീബ്ര വിഷൻ AI SDK- യുടെ ഒരു സംയോജനത്തിന്റെ ഒരു സാമ്പിൾ മാത്രമാണ്.</string>
     <string name="about_developer">ഡവലപ്പർ</string>
     <string name="about_developer_name">ലോറന്റ് ട്രൂഡു</string>
-    <string name="about_developer_title">മുതിർന്ന സോഫ്റ്റ്വെയർ സെയിൽസ് എഞ്ചിനീയർ</string>
-    <string name="about_repository">ജിത്താബ് ശേഖരം</string>
+    <string name="about_developer_title">സീനിയർ സോഫ്റ്റ്വെയർ സെയിൽസ് എഞ്ചിനീയർ</string>
+    <string name="about_repository">GitHUB ശേഖരം</string>
     <string name="about_dependencies">ഡിപൻഡൻസികൾ</string>
     <string name="about_license">ലൈസൻസ്</string>
-    <string name="about_view_license">സെബ്ര വികസന ഉപകരണ ലൈസൻസ് കാണുക</string>
+    <string name="about_view_license">സീബ്ര വികസന ഉപകരണ ലൈസൻസ് കാണുക</string>
+    <string name="menu_manage_sessions">സെഷനുകൾ നിയന്ത്രിക്കുക</string>
+    <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
     <string name="menu_about">കുറിച്ച്</string>
+    <string name="menu_new_file">പുതിയ ഫയൽ</string>
+    <string name="menu_new_folder">പുതിയ ഫോൾഡർ</string>
+    <string name="menu_rename">പേരുമാറ്റുക</string>
+    <string name="menu_delete">ഇല്ലാതാക്കുക</string>
     <string name="data_processing">ഡാറ്റ പ്രോസസ്സിംഗ്</string>
     <string name="processing_mode">പ്രോസസ്സിംഗ് മോഡ്</string>
-    <string name="processing_mode_https_post">🌐 http (കൾ) പോസ്റ്റ്</string>
-    <string name="file_processing">ഫയൽ പ്രോസസ്സിംഗ്</string>
-    <string name="https_post">http (കൾ) പോസ്റ്റ്</string>
-    <string name="https_endpoint">എച്ച്ടിടിപി (കൾ) അവസാന പോയിന്റ്</string>
-    <string name="https_endpoint_hint">https://example.com/API/DATA അല്ലെങ്കിൽ http://192.168.1.1.100/API/DATA</string>
-    <string name="endpoint_updated_from_qr">QR കോഡിൽ നിന്ന് അപ്ഡേറ്റുചെയ്തു</string>
-    <string name="filtering">ഫിൽട്ടർ ചെയ്യുക</string>
-    <string name="enable_filtering">ഫിൽട്ടറിംഗ് പ്രാപ്തമാക്കുക</string>
-    <string name="regular_expression">പതിവ് എക്സ്പ്രഷൻ</string>
-    <string name="regular_expression_hint">ഉദാ., ^ [0-9] + + $ അക്കങ്ങൾക്കായി മാത്രം</string>
     <string name="processing_mode_file">📁 ഫയൽ</string>
-    <string name="endpoint">എൻഡ്പോയിന്റ്</string>
-    <string name="activity_about">കുറിച്ച്</string>
-</resources>
+    <string name="processing_mode_https_post">HTTP (കൾ) പോസ്റ്റ്</string>
+    <string name="file_processing">ഫയൽ പ്രോസസ്സിംഗ്</string>
+    <string name="https_post">HTTP (കൾ) പോസ്റ്റ്</string>
+    <string name="https_endpoint">HTTP (കൾ) എൻഡ്പോയിന്റ്</string>
+    <string name="https_endpoint_hint">https://example.com/api/data അല്ലെങ്കിൽ http://192.168.1.100/API/DATA</string>
+    <string name="managed_configuration_updated">അഡ്മിനിസ്ട്രേറ്റർ പ്രകാരം അപ്ഡേറ്റുചെയ്തു</string>
+    <string name="endpoint_updated_from_qr">QR കോഡിൽ നിന്ന് അപ്ഡേറ്റുചെയ്തു</string>
+    <string name="filtering">ഫിൽട്ടറിംഗ്</string>
+    <string name="enable_filtering">ഫിൽട്ടറിംഗ് പ്രവർത്തനക്ഷമമാക്കുക</string>
+    <string name="regular_expression">പതിവ് എക്സ്പ്രഷൻ</string>
+    </resources>
