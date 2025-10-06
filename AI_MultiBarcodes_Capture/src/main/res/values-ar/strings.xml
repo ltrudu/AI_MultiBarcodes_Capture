@@ -197,4 +197,38 @@
     <string name="managed_configuration_updated">Settings updated by administrator</string>
     <string name="error_renaming_folder">Error renaming folder</string>
     <string name="rename_folder">Rename a folder</string>
+    <string name="https_post_mode_active">وضع النشر http (s): جاهز للالتقاط بدون ملفات جلسة.</string>
+    <string name="no_endpoint_configured">لا تكوين نقطة نهاية HTTP (S). يرجى التحقق من الإعدادات.</string>
+    <string name="endpoint">نقطة النهاية</string>
+    <string name="upload">تحميل</string>
+    <string name="uploading">تحميل ...</string>
+    <string name="upload_successful">تحميل ناجح</string>
+    <string name="upload_failed">فشل التحميل</string>
+    <string name="upload_error">تحميل خطأ</string>
+    <string name="toggle_filtering">تبديل التصفية</string>
+    <string name="activity_about">حول</string>
+    <string name="about_app_version">إصدار التطبيق</string>
+    <string name="about_open_source">المصدر المفتوح</string>
+    <string name="about_open_source_description">هذا البرنامج هو مشروع مجتمعي مفتوح ومتاح على Github. لا يتم دعمه رسميًا بواسطة Zebra. إنها مجرد عينة من تكامل رؤية Zebra AI SDK.</string>
+    <string name="about_developer">مطور</string>
+    <string name="about_developer_name">لوران ترودو</string>
+    <string name="about_developer_title">كبار مهندس مبيعات البرمجيات</string>
+    <string name="about_repository">مستودع جيثب</string>
+    <string name="about_dependencies">التبعيات</string>
+    <string name="about_license">ترخيص</string>
+    <string name="about_view_license">عرض رخصة أداة تطوير Zebra</string>
+    <string name="menu_about">حول</string>
+    <string name="data_processing">معالجة البيانات</string>
+    <string name="processing_mode">وضع المعالجة</string>
+    <string name="processing_mode_file">📁 ملف</string>
+    <string name="processing_mode_https_post">🌐 http (s) post</string>
+    <string name="file_processing">معالجة الملفات</string>
+    <string name="https_post">HTTP (S) Post</string>
+    <string name="https_endpoint">نقطة نهاية http (s)</string>
+    <string name="https_endpoint_hint">https://example.com/api/data أو http://192.168.1.100/api/Data</string>
+    <string name="endpoint_updated_from_qr">تحديث نقطة النهاية من رمز الاستجابة السريعة</string>
+    <string name="filtering">تصفية</string>
+    <string name="enable_filtering">تمكين التصفية</string>
+    <string name="regular_expression">تعبير منتظم</string>
+    <string name="regular_expression_hint">على سبيل المثال ، ^[0-9]+$ للأرقام فقط</string>
 </resources>

@@ -197,4 +197,38 @@
     <string name="managed_configuration_updated">Settings updated by administrator</string>
     <string name="error_renaming_folder">Error renaming folder</string>
     <string name="rename_folder">Rename a folder</string>
+    <string name="https_post_mode_active">HTTP (S) پوسٹ موڈ: سیشن فائلوں کے بغیر گرفتاری کے لئے تیار ہے۔</string>
+    <string name="no_endpoint_configured">کوئی HTTP (S) اختتامی نقطہ تشکیل نہیں ہوا۔ براہ کرم ترتیبات چیک کریں۔</string>
+    <string name="endpoint">اختتامی نقطہ</string>
+    <string name="upload">اپ لوڈ کریں</string>
+    <string name="uploading">اپ لوڈ کرنا ...</string>
+    <string name="upload_successful">کامیاب اپ لوڈ کریں</string>
+    <string name="upload_failed">اپ لوڈ ناکام</string>
+    <string name="upload_error">اپلوڈ غلطی</string>
+    <string name="toggle_filtering">ٹوگل فلٹرنگ</string>
+    <string name="activity_about">کے بارے میں</string>
+    <string name="about_app_version">ایپ ورژن</string>
+    <string name="about_open_source">اوپن سورس</string>
+    <string name="about_open_source_description">یہ سافٹ ویئر ایک کمیونٹی پروجیکٹ ہے جو کھلی کھلی ہوئی ہے اور گٹ ہب پر دستیاب ہے۔ اس کی باضابطہ طور پر زیبرا کی حمایت نہیں کی جاتی ہے۔ یہ زیبرا وژن AI SDK کے انضمام کا صرف ایک نمونہ ہے۔</string>
+    <string name="about_developer">ڈویلپر</string>
+    <string name="about_developer_name">لارینٹ ٹروڈو</string>
+    <string name="about_developer_title">سینئر سافٹ ویئر سیلز انجینئر</string>
+    <string name="about_repository">گٹ ہب ریپوزٹری</string>
+    <string name="about_dependencies">انحصار</string>
+    <string name="about_license">لائسنس</string>
+    <string name="about_view_license">زیبرا ڈویلپمنٹ ٹول لائسنس دیکھیں</string>
+    <string name="menu_about">کے بارے میں</string>
+    <string name="data_processing">ڈیٹا پروسیسنگ</string>
+    <string name="processing_mode">پروسیسنگ موڈ</string>
+    <string name="processing_mode_file">📁 فائل</string>
+    <string name="processing_mode_https_post">🌐 HTTP (s) پوسٹ</string>
+    <string name="file_processing">فائل پروسیسنگ</string>
+    <string name="https_post">HTTP (S) پوسٹ</string>
+    <string name="https_endpoint">HTTP (s) اختتامی نقطہ</string>
+    <string name="https_endpoint_hint">https://example.com/api/data یا http://192.168.1.100/api/data</string>
+    <string name="endpoint_updated_from_qr">اختتامی نقطہ QR کوڈ سے اپ ڈیٹ ہوا</string>
+    <string name="filtering">فلٹرنگ</string>
+    <string name="enable_filtering">فلٹرنگ کو فعال کریں</string>
+    <string name="regular_expression">باقاعدہ اظہار</string>
+    <string name="regular_expression_hint">مثال کے طور پر ، ^[0-9]+$ صرف نمبروں کے لئے</string>
 </resources>
