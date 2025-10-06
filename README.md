@@ -15,6 +15,8 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
+### Version 1.30 - 🔍 **Updated Translation Files**
+
 #### 📚 **Wiki Updates:**
 
 • **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of 300+ regex patterns covering web URLs, device identifiers, government IDs, license plates, postal codes, phone numbers, and industry standards

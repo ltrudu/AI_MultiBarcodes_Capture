@@ -2,6 +2,8 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+### Version 1.30 - 🔍 **Updated Translation Files**
+
 #### 📚 **Wiki Updates:**
 
 • **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of 300+ regex patterns covering web URLs, device identifiers, government IDs, license plates, postal codes, phone numbers, and industry standards
