@@ -197,4 +197,38 @@
     <string name="managed_configuration_updated">Settings updated by administrator</string>
     <string name="error_renaming_folder">Error renaming folder</string>
     <string name="rename_folder">Rename a folder</string>
+    <string name="https_post_mode_active">HTTP (S) حالت پست: آماده برای ضبط بدون پرونده های جلسه.</string>
+    <string name="no_endpoint_configured">NO HTTP (S) نقطه پایانی پیکربندی شده است. لطفا تنظیمات را بررسی کنید.</string>
+    <string name="endpoint">نقطه پایانی</string>
+    <string name="upload">بارگذاری</string>
+    <string name="uploading">بارگذاری ...</string>
+    <string name="upload_successful">بارگذاری موفقیت آمیز</string>
+    <string name="upload_failed">بارگذاری نشد</string>
+    <string name="upload_error">خطای بارگذاری</string>
+    <string name="toggle_filtering">فیلتر کردن</string>
+    <string name="activity_about">درباره</string>
+    <string name="about_app_version">نسخه برنامه</string>
+    <string name="about_open_source">منبع باز</string>
+    <string name="about_open_source_description">این نرم افزار یک پروژه جامعه است که در GitHub باز و در دسترس است. این به طور رسمی توسط گورخر پشتیبانی نمی شود. این فقط نمونه ای از ادغام Zebra Vision Ai SDK است.</string>
+    <string name="about_developer">توسعه دهنده</string>
+    <string name="about_developer_name">Laurent Trudu</string>
+    <string name="about_developer_title">مهندس ارشد فروش نرم افزار</string>
+    <string name="about_repository">مخزن GitHub</string>
+    <string name="about_dependencies">وابستگی ها</string>
+    <string name="about_license">مجوز</string>
+    <string name="about_view_license">مشاهده مجوز ابزار توسعه گورخر</string>
+    <string name="menu_about">درباره</string>
+    <string name="data_processing">پردازش داده ها</string>
+    <string name="processing_mode">حالت پردازش</string>
+    <string name="processing_mode_file">📁 پرونده</string>
+    <string name="processing_mode_https_post">🌐 HTTP (S) پست</string>
+    <string name="file_processing">پردازش پرونده</string>
+    <string name="https_post">پست HTTP (S)</string>
+    <string name="https_endpoint">HTTP (S) نقطه پایانی</string>
+    <string name="https_endpoint_hint">https://example.com/api/data یا http://192.168.1.100/api/data</string>
+    <string name="endpoint_updated_from_qr">نقطه پایانی از کد QR به روز شد</string>
+    <string name="filtering">فیلتر</string>
+    <string name="enable_filtering">فیلتر را فعال کنید</string>
+    <string name="regular_expression">بیان منظم</string>
+    <string name="regular_expression_hint">به عنوان مثال ، ^[0-9]+$ فقط برای اعداد</string>
 </resources>

@@ -197,4 +197,38 @@
     <string name="managed_configuration_updated">Settings updated by administrator</string>
     <string name="error_renaming_folder">Error renaming folder</string>
     <string name="rename_folder">Rename a folder</string>
+    <string name="https_post_mode_active">http (കൾ) പോസ്റ്റ് മോഡ്: സെഷൻ ഫയലുകൾ ഇല്ലാതെ ക്യാപ്ചർ ചെയ്യാൻ തയ്യാറാണ്.</string>
+    <string name="no_endpoint_configured">http (കൾ) അവസാന പോയിന്റ് ക്രമീകരിച്ചിട്ടില്ല. ക്രമീകരണങ്ങൾ പരിശോധിക്കുക.</string>
+    <string name="upload">അപ്ലോഡ്</string>
+    <string name="uploading">അപ്ലോഡുചെയ്യുന്നു ...</string>
+    <string name="upload_successful">വിജയിക്കുക</string>
+    <string name="upload_failed">അപ്ലോഡ് പരാജയപ്പെട്ടു</string>
+    <string name="upload_error">പിശക് അപ്ലോഡുചെയ്യുക</string>
+    <string name="toggle_filtering">ഫിൽട്ടറിംഗ് ടോഗിൾ ചെയ്യുക</string>
+    <string name="about_app_version">അപ്ലിക്കേഷൻ പതിപ്പ്</string>
+    <string name="about_open_source">ഓപ്പൺ സോഴ്സ്</string>
+    <string name="about_open_source_description">ഈ സോഫ്റ്റ്വെയർ ഒരു സമൂഹ പ്രോജക്റ്റാണ്, അത് തുറന്നതും GitHub- ൽ ലഭ്യവുമാണ്. ഇത് സെബ്രയെ official ദ്യോഗികമായി പിന്തുണയ്ക്കുന്നില്ല. ഇത് സീബ്ര വിഷൻ AI SDK- യുടെ ഒരു സംയോജനത്തിന്റെ ഒരു സാമ്പിൾ മാത്രമാണ്.</string>
+    <string name="about_developer">ഡവലപ്പർ</string>
+    <string name="about_developer_name">ലോറന്റ് ട്രൂഡു</string>
+    <string name="about_developer_title">മുതിർന്ന സോഫ്റ്റ്വെയർ സെയിൽസ് എഞ്ചിനീയർ</string>
+    <string name="about_repository">ജിത്താബ് ശേഖരം</string>
+    <string name="about_dependencies">ഡിപൻഡൻസികൾ</string>
+    <string name="about_license">ലൈസൻസ്</string>
+    <string name="about_view_license">സെബ്ര വികസന ഉപകരണ ലൈസൻസ് കാണുക</string>
+    <string name="menu_about">കുറിച്ച്</string>
+    <string name="data_processing">ഡാറ്റ പ്രോസസ്സിംഗ്</string>
+    <string name="processing_mode">പ്രോസസ്സിംഗ് മോഡ്</string>
+    <string name="processing_mode_https_post">🌐 http (കൾ) പോസ്റ്റ്</string>
+    <string name="file_processing">ഫയൽ പ്രോസസ്സിംഗ്</string>
+    <string name="https_post">http (കൾ) പോസ്റ്റ്</string>
+    <string name="https_endpoint">എച്ച്ടിടിപി (കൾ) അവസാന പോയിന്റ്</string>
+    <string name="https_endpoint_hint">https://example.com/API/DATA അല്ലെങ്കിൽ http://192.168.1.1.100/API/DATA</string>
+    <string name="endpoint_updated_from_qr">QR കോഡിൽ നിന്ന് അപ്ഡേറ്റുചെയ്തു</string>
+    <string name="filtering">ഫിൽട്ടർ ചെയ്യുക</string>
+    <string name="enable_filtering">ഫിൽട്ടറിംഗ് പ്രാപ്തമാക്കുക</string>
+    <string name="regular_expression">പതിവ് എക്സ്പ്രഷൻ</string>
+    <string name="regular_expression_hint">ഉദാ., ^ [0-9] + + $ അക്കങ്ങൾക്കായി മാത്രം</string>
+    <string name="processing_mode_file">📁 ഫയൽ</string>
+    <string name="endpoint">എൻഡ്പോയിന്റ്</string>
+    <string name="activity_about">കുറിച്ച്</string>
 </resources>
