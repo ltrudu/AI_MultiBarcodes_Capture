@@ -1,150 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="language">اللغة</string>
-    <string name="system_language">لغة النظام</string>
-    <string name="app_name">التقاط الباركود المتعدد بالذكاء الاصطناعي</string>
-    <string name="start_capture_button_text">بدء الالتقاط</string>
-    <string name="loading_status">تحميل التطبيق</string>
-    <string name="select_session_file">اختر ملف جلسة أو أنشئ جديدًا.</string>
-    <string name="retrieving_permissions">استرداد الصلاحيات</string>
-    <string name="select">اختر</string>
-    <string name="share">شارك</string>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="start_capture_button_text">ابدأ التقاط</string>
+    <string name="loading_status">تطبيق التحميل</string>
+    <string name="select_session_file">حدد ملف جلسة أو إنشاء ملف جديد.</string>
+    <string name="https_post_mode_active">وضع المنشور http (s): جاهز للالتقاط بدون ملفات جلسة.</string>
+    <string name="no_endpoint_configured">لا توجد نقطة نهاية HTTP (S). يرجى التحقق من الإعدادات.</string>
+    <string name="endpoint">نقطة النهاية</string>
+    <string name="upload">التحميل</string>
+    <string name="uploading">التحميل ...</string>
+    <string name="upload_successful">تحميل ناجح</string>
+    <string name="upload_error">تحميل الخطأ</string>
+    <string name="retrieving_permissions">استرداد الأذونات</string>
+    <string name="share">حصة</string>
     <string name="refresh">تحديث</string>
     <string name="close">إغلاق</string>
     <string name="manage_sessions">إدارة الجلسات</string>
-    <string name="create_new">إنشاء جديد</string>
     <string name="enter_new_file_name">أدخل اسم الملف الجديد</string>
-    <string name="default_session_name">جلستي_</string>
+    <string name="default_session_name">mysession_</string>
     <string name="file_extension_txt">.txt</string>
     <string name="yes">نعم</string>
-    <string name="no">لا</string>
-    <string name="addtofile">إضافة إلى الملف</string>
+    <string name="addtofile">أضف إلى ملف</string>
     <string name="save">حفظ</string>
-    <string name="update">تحديث الملف</string>
+    <string name="update">ملف التحديث</string>
     <string name="merge">دمج الكميات</string>
-    <string name="start_capture">بدء الالتقاط</string>
-    <string name="load_last_session">تحميل آخر جلسة</string>
+    <string name="load_last_session">تحميل الجلسة الأخيرة</string>
     <string name="create_new_session">إنشاء جلسة جديدة</string>
-    <string name="view_session_data">عرض بيانات الجلسة</string>
-    <string name="selected_session">الجلسة المحددة</string>
-    <string name="select_session_to_start">اختر جلسة لبدء الالتقاط</string>
-    <string name="setup">إعداد</string>
-    <string name="prefix">البادئة:</string>
-    <string name="prefix_hint">البادئة_</string>
+    <string name="selected_session">جلسة محددة</string>
+    <string name="select_session_to_start">لا</string>
+    <string name="setup">الإعداد</string>
+    <string name="prefix">بادئة</string>
+    <string name="prefix_hint">prefix_</string>
     <string name="file_type">نوع الملف</string>
     <string name="text_file">ملف نصي</string>
     <string name="csv_file">ملف CSV</string>
     <string name="excel_file">ملف Excel</string>
-    <string name="validate">تحقق</string>
+    <string name="language">اللغة</string>
+    <string name="system_language">لغة النظام</string>
+    <string name="validate">التحقق من صحة</string>
     <string name="cancel">إلغاء</string>
     <string name="capture">التقاط</string>
-    <string name="ai_vision_sdk_init_failed">فشل تهيئة SDK الرؤية الذكية</string>
+    <string name="ai_vision_sdk_init_failed">فشل تهيئة الرؤية SDK AI</string>
     <string name="folder_path_missing">مسار المجلد مفقود!</string>
     <string name="folder_path_missing_toast">مسار المجلد مفقود !!!</string>
-    <string name="error_could_not_create_file">خطأ، لا يمكن إنشاء الملف: %s</string>
-    <string name="error_could_not_open_file">خطأ، لا يمكن فتح الملف: %s</string>
-    <string name="error_file_does_not_exist">خطأ، الملف غير موجود: %s</string>
-    <string name="error_file_is_empty">خطأ، الملف فارغ: %s</string>
-    <string name="error_loading_data">خطأ، لا يمكن تحميل البيانات في الملف: %s</string>
-    <string name="file_saved_at">تم حفظ الملف في: %s</string>
-    <string name="error_saving_file">خطأ في حفظ الملف: %s</string>
-    <string name="error_saving_last_selected_file">خطأ في حفظ آخر ملف محدد</string>
+    <string name="error_could_not_create_file">خطأ ، لا يمكن إنشاء ملف: ٪ s</string>
+    <string name="error_could_not_open_file">خطأ ، لا يمكن فتح الملف: ٪ s</string>
+    <string name="error_file_is_empty">خطأ ، الملف فارغ: ٪ s</string>
+    <string name="file_saved_at">تم حفظ الملف في: ٪ s</string>
+    <string name="error_saving_file">خطأ في حفظ الخطأ: ٪ s</string>
+    <string name="error_saving_last_selected_file">خطأ في حفظ الملف المحدد آخر</string>
     <string name="settings_saved_successfully">تم حفظ الإعدادات بنجاح</string>
-    <string name="please_select_file_not_folder">يرجى تحديد ملف وليس مجلد.</string>
-    <string name="please_select_file_or_folder">يرجى تحديد ملف.</string>
-    <string name="cannot_rename_parent_folder">لا يمكن إعادة تسمية المجلدات أو المجلد الأساسي.</string>
-    <string name="file_already_exists">الملف موجود بالفعل.</string>
-    <string name="error_renaming_file">خطأ في إعادة تسمية الملف</string>
-    <string name="folder_already_exists">المجلد موجود بالفعل.</string>
-    <string name="failed_to_create_folder">فشل في إنشاء المجلد: %s</string>
-    <string name="failed_to_create_file">فشل في إنشاء الملف</string>
-    <string name="cannot_delete_parent_folder">لا يمكن حذف المجلد الأساسي.</string>
+    <string name="please_select_file_not_folder">الرجاء تحديد ملف ، وليس مجلد.</string>
+    <string name="please_select_file_or_folder">الرجاء تحديد ملف أو مجلد.</string>
+    <string name="cannot_rename_parent_folder">لا يمكن إعادة تسمية المجلد الأصل.</string>
+    <string name="file_already_exists">ملف موجود بالفعل.</string>
+    <string name="error_renaming_file">ملف إعادة تسمية الخطأ</string>
+    <string name="error_renaming_folder">مجلد إعادة تسمية الخطأ</string>
+    <string name="folder_already_exists">مجلد موجود بالفعل.</string>
+    <string name="failed_to_create_folder">فشل في إنشاء مجلد: ٪ s</string>
+    <string name="failed_to_create_file">فشل في إنشاء ملف</string>
+    <string name="cannot_delete_parent_folder">لا يمكن حذف المجلد الأصل.</string>
     <string name="cannot_share_folders">لا يمكن مشاركة المجلدات.</string>
     <string name="last_session_file_not_found">لم يتم العثور على ملف الجلسة الأخيرة.</string>
-    <string name="no_session_file_saved">لا يوجد ملف جلسة محفوظ في التفضيلات.</string>
-    <string name="error_creating_new_session">خطأ في إنشاء جلسة جديدة: %s</string>
-    <string name="missing_filename">اسم الملف مفقود</string>
-    <string name="camera_permission_required">إذن الكاميرا مطلوب لاستخدام هذه الميزة</string>
-    <string name="entity_tracker_creation_time">وقت إنشاء كائن Entity Tracker BarcodeDecoder() = %d ميلي ثانية</string>
-    <string name="barcode_decoder_disposed">تم التخلص من فاك الباركود</string>
-    <string name="orientation_unlocked">تم إلغاء قفل الاتجاه لوضع %s</string>
-    <string name="applied_viewfinder_resize_immediately">تم تطبيق مواصفات تغيير حجم محدد المنظر فورًا</string>
-    <string name="stored_pending_viewfinder_resize">تم تخزين بيانات تغيير حجم محدد المنظر المعلقة للتطبيق لاحقًا</string>
-    <string name="applied_pending_viewfinder_resize">تم تطبيق بيانات تغيير حجم محدد المنظر المعلقة من القيم المخزنة</string>
-    <string name="entity_tracker_ready">EntityBarcodeTracker جاهز، تطبيق التكوينات المعلقة</string>
-    <string name="handle_view_entity_result">التعامل مع عرض الكيان - تم استلام النتيجة</string>
-    <string name="entity_tracker_decoder_available">EntityBarcodeTracker decoder متاح، عدد الكيانات: %s</string>
-    <string name="processing_entities">معالجة %d كيانات لعرض الكيان</string>
-    <string name="rendered_entities">تم عرض الكيانات على عرض الكيان</string>
-    <string name="symbologies">الرمزيات</string>
-    <string name="australian_postal">البريد الأسترالي</string>
-    <string name="aztec">أزتك</string>
-    <string name="canadian_postal">البريد الكندي</string>
-    <string name="chinese_2of5">الصيني 2OF5</string>
-    <string name="codabar">كودابار</string>
-    <string name="code11">الكود 11</string>
-    <string name="code39">الكود 39</string>
-    <string name="code93">الكود 93</string>
-    <string name="code128">الكود 128</string>
-    <string name="composite_ab">مركب AB</string>
-    <string name="composite_c">مركب C</string>
-    <string name="d2of5">D2OF5</string>
-    <string name="datamatrix">مصفوفة البيانات</string>
-    <string name="dotcode">كود النقطة</string>
-    <string name="dutch_postal">البريد الهولندي</string>
-    <string name="ean_8">EAN 8</string>
-    <string name="ean_13">EAN 13</string>
-    <string name="finnish_postal_4s">البريد الفنلندي 4S</string>
-    <string name="grid_matrix">مصفوفة الشبكة</string>
-    <string name="gs1_databar">GS1 شريط البيانات</string>
-    <string name="gs1_databar_expanded">GS1 شريط البيانات الموسع</string>
-    <string name="gs1_databar_lim">GS1 شريط البيانات المحدود</string>
-    <string name="gs1_datamatrix">GS1 مصفوفة البيانات</string>
-    <string name="gs1_qrcode">GS1 كود QR</string>
-    <string name="hanxin">هانشين</string>
-    <string name="i2of5">I2OF5</string>
-    <string name="japanese_postal">البريد الياباني</string>
-    <string name="korean_3of5">الكوري 3OF5</string>
-    <string name="mailmark">علامة البريد</string>
-    <string name="matrix_2of5">مصفوفة 2OF5</string>
-    <string name="maxicode">ماكسي كود</string>
-    <string name="micropdf">مايكرو PDF</string>
-    <string name="microqr">مايكرو QR</string>
-    <string name="msi">MSI</string>
-    <string name="pdf417">PDF417</string>
-    <string name="qrcode">كود QR</string>
-    <string name="tlc39">TLC39</string>
-    <string name="trioptic39">ثلاثي البصريات 39</string>
-    <string name="uk_postal">البريد البريطاني</string>
-    <string name="upc_a">UPC A</string>
-    <string name="upc_e">UPC E</string>
-    <string name="upce1">UPCE1</string>
-    <string name="usplanet">كوكب الولايات المتحدة</string>
-    <string name="uspostnet">شبكة بريد الولايات المتحدة</string>
-    <string name="us4state">الولايات المتحدة 4 ولايات</string>
-    <string name="us4state_fics">الولايات المتحدة 4 ولايات FICS</string>
+    <string name="no_session_file_saved">لم يتم حفظ ملف جلسة في التفضيلات.</string>
+    <string name="error_creating_new_session">خطأ في إنشاء جلسة جديدة: ٪ s</string>
+    <string name="missing_filename">اسم الملف المفقود</string>
+    <string name="camera_permission_required">مطلوب إذن الكاميرا لاستخدام هذه الميزة</string>
+    <string name="entity_tracker_creation_time">تعقب الكيان barcodedecoder () وقت إنشاء OBJ = ٪ d milli sec</string>
+    <string name="barcode_decoder_disposed">يتم التخلص من وحدة فك ترميز الباركود</string>
+    <string name="orientation_unlocked">اتجاه غير مؤمن لوضع ٪ s</string>
+    <string name="applied_viewfinder_resize_immediately">عدسة العدسة التطبيقية تغيير حجم المواصفات على الفور</string>
+    <string name="stored_pending_viewfinder_resize">مخزنة معلقة في الجدسة تغيير البيانات للتطبيق اللاحق</string>
+    <string name="entity_tracker_ready">entitybarcodetracker جاهز ، وتطبيق التكوينات المعلقة</string>
+    <string name="handle_view_entity_result">مقبض طريقة عرض - استلام النتيجة</string>
+    <string name="entity_tracker_decoder_available">entitybarcodetracker decoder المتاحة ، الكيانات العد: ٪ s</string>
+    <string name="processing_entities">معالجة ٪ D كيانات لعرض الكيان</string>
+    <string name="rendered_entities">الكيانات المقدمة في عرض الكيان</string>
+    <string name="symbologies">symbologies</string>
+    <string name="advanced">متقدم</string>
+    <string name="model_input_size">حجم إدخال النموذج</string>
+    <string name="model_input_size_description">حجم إدخال النموذج هو الدقة التي يتم تغيير حجم صورتك قبل تحليل الذكاء الاصطناعي. تكون الأحجام الأصغر أسرع وتستخدم ذاكرة أقل ، في حين أن الأحجام الأكبر يمكن أن تساعد في اكتشاف الرموز الباركية الأصغر أو البعيدة ، ولكنها تستخدم أيضًا المزيد من قوة المعالجة والذاكرة. اختر حجم الإدخال لتحقيق التوازن بين السرعة والدقة لاحتياجاتك. ملاحظة: يمكن تخصيص حجم إدخال النموذج بزيادات 32 باستخدام SDK. تمثل الخيارات أدناه بعض الأحجام العامة.</string>
+    <string name="camera_resolution_title">القرار</string>
+    <string name="camera_resolution_description">دقة الكاميرا هي عدد وحدات البكسل في صورتك (على سبيل المثال ، 1MP = 1280 × 720). يلتقط الدقة العليا المزيد من التفاصيل للنص الصغير أو البعيدة ولكنه يستخدم المزيد من الطاقة والذاكرة. الفوائد محدودة إذا كان حجم إدخال النموذج منخفضًا.</string>
+    <string name="inference_processor_type_title">نوع الاستدلال (المعالج)</string>
+    <string name="inference_processor_type_description">يختار هذا الإعداد أي رقاقة في جهازك تعمل مهام الذكاء الاصطناعي ، مما يؤثر على السرعة وعمر البطارية. ليس كل الأجهزة لديها DSP.</string>
+    <string name="australian_postal">الأسترالي البريدي</string>
     <string name="barcode_value">قيمة الباركود</string>
-    <string name="symbology">الرمزية</string>
+    <string name="symbology">Symbology</string>
     <string name="unknown">غير معروف</string>
     <string name="quantity">الكمية</string>
-    <string name="capture_date">تاريخ الالتقاط</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="capture_date">تاريخ التقاط</string>
     <string name="date">التاريخ</string>
-    <string name="toggle_flashlight">تبديل المصباح</string>
-    <string name="toggle_capture_zone">تبديل منطقة الالتقاط</string>
-    <string name="edit_item">تعديل العنصر</string>
+    <string name="quantity_hint">1</string>
+    <string name="toggle_flashlight">تبديل مصباح يدوي</string>
+    <string name="toggle_capture_zone">منطقة التقاط التبديل</string>
+    <string name="toggle_symbologies">تبديل التايمز</string>
+    <string name="toggle_file_types">تبديل أنواع الملفات</string>
+    <string name="toggle_advanced">تبديل الإعدادات المتقدمة</string>
+    <string name="toggle_filtering">تبديل التصفية</string>
+    <string name="edit_item">تحرير العنصر</string>
     <string name="delete_item">حذف العنصر</string>
-    <string name="value_label">القيمة: %s</string>
-    <string name="symbology_label">الرمزية: %s</string>
-    <string name="quantity_label">الكمية: %d</string>
-    <string name="date_label">التاريخ: %s</string>
-    <string name="success_granting_permissions">نجح منح الصلاحيات.</string>
+    <string name="value_label">القيمة: ٪ s</string>
+    <string name="symbology_label">Symbology: ٪ s</string>
+    <string name="quantity_label">الكمية: ٪ د</string>
+    <string name="date_label">التاريخ: ٪ s</string>
+    <string name="success_granting_permissions">النجاح يمنح الأذونات.</string>
     <string name="session_data_merged">تم دمج بيانات الجلسة.</string>
-    <string name="error_reported">تم الإبلاغ عن خطأ: %s</string>
-    <string name="error_reading_session_file">خطأ في قراءة ملف الجلسة: %s</string>
-    <string name="error_reading_csv_session_file">خطأ في قراءة ملف جلسة CSV: %s</string>
-    <string name="error_reading_excel_session_file">خطأ في قراءة ملف جلسة Excel: %s</string>
+    <string name="error_reported">خطأ تم الإبلاغ عنه: ٪ s</string>
+    <string name="error_reading_session_file">خطأ في قراءة الخطأ: ٪ S</string>
+    <string name="error_reading_csv_session_file">خطأ في قراءة ملف جلسة CSV: ٪ S</string>
+    <string name="error_reading_excel_session_file">خطأ في قراءة ملف Excel Session: ٪ S</string>
+    <string name="resolution_small">640 × 640 (صغير)</string>
+    <string name="resolution_small_description">أسرع ؛ الأفضل للباركود الكبيرة أو عن قرب</string>
+    <string name="resolution_medium">1280 × 1280 (متوسط)</string>
+    <string name="resolution_medium_description">السرعة المتوازنة والدقة</string>
+    <string name="resolution_large">1600 × 1600 (كبير)</string>
+    <string name="resolution_large_description">أبطأ ؛ تستخدم الرموز الصغيرة أو التالفة أو البعيدة</string>
+    <string name="camera_resolution_1mp">1MP (1280 × 720)</string>
+    <string name="camera_resolution_1mp_description">barcodes كبيرة أو عن قرب</string>
+    <string name="camera_resolution_2mp">2MP (1920 × 1080)</string>
+    <string name="camera_resolution_2mp_description">الباركود العام</string>
+    <string name="camera_resolution_4mp">4MP (2688 × 1512)</string>
+    <string name="camera_resolution_4mp_description">الكثافة أو باهتة أو باركات صغيرة</string>
+    <string name="camera_resolution_8mp">8MP (3840 × 2160)</string>
+    <string name="camera_resolution_8mp_description">باركود صغير أو بعيد أو منخفض التباين</string>
+    <string name="inference_type_dsp">DSP (معالج الإشارة الرقمية)</string>
+    <string name="inference_type_dsp_description">أفضل خيار</string>
+    <string name="inference_type_gpu">وحدة معالجة الرسومات (وحدة معالجة الرسومات)</string>
+    <string name="inference_type_gpu_description">للاستخدام التجريبي إذا لم يكن DSP متاحًا</string>
+    <string name="inference_type_cpu">وحدة المعالجة المركزية (وحدة المعالجة المركزية)</string>
+    <string name="inference_type_cpu_description">للاستخدام التجريبي إذا لم يكن DSP و GPU متاحين</string>
     <string name="rename">إعادة تسمية</string>
-    <string name="rename_file">إعادة تسمية الملف</string>
+    <string name="rename_file">أعد تسمية ملف</string>
+    <string name="rename_folder">أعد تسمية مجلد</string>
     <string name="create">إنشاء</string>
     <string name="create_new_folder">إنشاء مجلد جديد</string>
     <string name="create_new_file">إنشاء ملف جديد</string>
@@ -152,83 +142,47 @@
     <string name="delete_folder">حذف المجلد</string>
     <string name="are_you_sure">هل أنت متأكد؟</string>
     <string name="file_exists_already">الملف موجود بالفعل.</string>
-    <string name="activity_settings">الإعدادات</string>
-    <string name="activity_captured_barcodes">الباركودات المتقطة</string>
+    <string name="activity_captured_barcodes">أسر الباركود</string>
     <string name="activity_session_data">بيانات الجلسة</string>
-    <string name="menu_manage_sessions">إدارة الجلسات</string>
-    <string name="menu_settings">الإعدادات</string>
-    <string name="menu_new_file">ملف جديد</string>
-    <string name="menu_new_folder">مجلد جديد</string>
-    <string name="menu_rename">إعادة تسمية</string>
-    <string name="menu_delete">حذف</string>
-    <string name="minus">-</string>
-    <string name="plus">+</string>
-    <string name="quantity_hint">1</string>
-    <string name="advanced">Advanced</string>
-    <string name="model_input_size">Model Input Size</string>
-    <string name="model_input_size_description">Model input size is the resolution your image is resized to before AI analysis. Smaller sizes are faster and use less memory, while larger sizes can help detect smaller or more distant barcodes—but also uses more processing power and memory. Choose the input size to balance speed and accuracy for your needs. Note: Model Input Size can be customized in increments of 32 using the SDK. The options below represent some generic sizes.</string>
-    <string name="camera_resolution_title">Resolution</string>
-    <string name="camera_resolution_description">Camera resolution is the number of pixels in your photo (e.g., 1MP = 1280x720). Higher resolution captures more detail for small or distant text but uses more power and memory. Benefits are limited if the model input size is low.</string>
-    <string name="inference_processor_type_title">Inference (processor) Type</string>
-    <string name="inference_processor_type_description">This setting chooses which chip in your device runs AI tasks, affecting speed and battery life. Not all devices have a DSP.</string>
-    <string name="toggle_symbologies">Toggle symbologies</string>
-    <string name="toggle_file_types">Toggle file types</string>
-    <string name="toggle_advanced">Toggle advanced settings</string>
-    <string name="resolution_small">640 x 640 (small)</string>
-    <string name="resolution_small_description">Fastest; best for large or close-up barcodes</string>
-    <string name="resolution_medium">1280 x 1280 (medium)</string>
-    <string name="resolution_medium_description">Balanced speed and accuracy</string>
-    <string name="resolution_large">1600 x 1600 (large)</string>
-    <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
-    <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
-    <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
-    <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
-    <string name="camera_resolution_2mp_description">General barcodes</string>
-    <string name="camera_resolution_4mp">4MP (2688 x 1512)</string>
-    <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
-    <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
-    <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
-    <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
-    <string name="inference_type_dsp_description">Best Choice</string>
-    <string name="inference_type_gpu">GPU (Graphics Processing Unit)</string>
-    <string name="inference_type_gpu_description">For trial use if DSP not available</string>
-    <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
-    <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
-    <string name="managed_configuration_updated">Settings updated by administrator</string>
-    <string name="error_renaming_folder">Error renaming folder</string>
-    <string name="rename_folder">Rename a folder</string>
-    <string name="https_post_mode_active">وضع النشر http (s): جاهز للالتقاط بدون ملفات جلسة.</string>
-    <string name="no_endpoint_configured">لا تكوين نقطة نهاية HTTP (S). يرجى التحقق من الإعدادات.</string>
-    <string name="endpoint">نقطة النهاية</string>
-    <string name="upload">تحميل</string>
-    <string name="uploading">تحميل ...</string>
-    <string name="upload_successful">تحميل ناجح</string>
-    <string name="upload_failed">فشل التحميل</string>
-    <string name="upload_error">تحميل خطأ</string>
-    <string name="toggle_filtering">تبديل التصفية</string>
     <string name="activity_about">حول</string>
     <string name="about_app_version">إصدار التطبيق</string>
     <string name="about_open_source">المصدر المفتوح</string>
     <string name="about_open_source_description">هذا البرنامج هو مشروع مجتمعي مفتوح ومتاح على Github. لا يتم دعمه رسميًا بواسطة Zebra. إنها مجرد عينة من تكامل رؤية Zebra AI SDK.</string>
     <string name="about_developer">مطور</string>
     <string name="about_developer_name">لوران ترودو</string>
-    <string name="about_developer_title">كبار مهندس مبيعات البرمجيات</string>
-    <string name="about_repository">مستودع جيثب</string>
+    <string name="about_developer_title">مهندس مبيعات برامج كبير</string>
     <string name="about_dependencies">التبعيات</string>
-    <string name="about_license">ترخيص</string>
-    <string name="about_view_license">عرض رخصة أداة تطوير Zebra</string>
+    <string name="about_license">الترخيص</string>
+    <string name="about_view_license">عرض ترخيص أداة تطوير Zebra</string>
+    <string name="menu_manage_sessions">إدارة الجلسات</string>
     <string name="menu_about">حول</string>
+    <string name="menu_new_file">ملف جديد</string>
+    <string name="menu_rename">إعادة تسمية</string>
+    <string name="menu_delete">مستودع جيثب</string>
     <string name="data_processing">معالجة البيانات</string>
     <string name="processing_mode">وضع المعالجة</string>
     <string name="processing_mode_file">📁 ملف</string>
     <string name="processing_mode_https_post">🌐 http (s) post</string>
     <string name="file_processing">معالجة الملفات</string>
-    <string name="https_post">HTTP (S) Post</string>
-    <string name="https_endpoint">نقطة نهاية http (s)</string>
+    <string name="https_post">HTTP (s) post</string>
+    <string name="https_endpoint">HTTP (S) نقطة نهاية</string>
     <string name="https_endpoint_hint">https://example.com/api/data أو http://192.168.1.100/api/Data</string>
+    <string name="managed_configuration_updated">إعدادات تم تحديثها بواسطة المسؤول</string>
     <string name="endpoint_updated_from_qr">تحديث نقطة النهاية من رمز الاستجابة السريعة</string>
     <string name="filtering">تصفية</string>
     <string name="enable_filtering">تمكين التصفية</string>
-    <string name="regular_expression">تعبير منتظم</string>
-    <string name="regular_expression_hint">على سبيل المثال ، ^[0-9]+$ للأرقام فقط</string>
+    <string name="regular_expression">التعبير العادي</string>
+    <string name="upload_failed">CODE128</string>
+    <string name="select">حدد</string>
+    <string name="create_new">إنشاء جديد</string>
+    <string name="no">لا</string>
+    <string name="start_capture">ابدأ التقاط</string>
+    <string name="view_session_data">عرض بيانات الجلسة</string>
+    <string name="error_file_does_not_exist">خطأ ، الملف غير موجود: ٪ s</string>
+    <string name="error_loading_data">خطأ ، لا يمكن تحميل البيانات في الملف: ٪ s</string>
+    <string name="applied_pending_viewfinder_resize">مطبق معلق في الاعتبار ، قم بتغيير حجم البيانات من القيم المخزنة</string>
+    <string name="activity_settings">الإعدادات</string>
+    <string name="about_repository">مستودع جيثب</string>
+    <string name="menu_settings">الإعدادات</string>
+    <string name="menu_new_folder">مجلد جديد</string>
 </resources>
