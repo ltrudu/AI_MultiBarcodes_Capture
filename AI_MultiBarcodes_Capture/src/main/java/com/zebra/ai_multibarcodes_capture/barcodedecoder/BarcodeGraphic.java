@@ -1,5 +1,5 @@
 // Copyright 2025 Zebra Technologies Corporation and/or its affiliates. All rights reserved.
-package com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker;
+package com.zebra.ai_multibarcodes_capture.barcodedecoder;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,18 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The BarcodeTrackerGraphic class extends the GraphicOverlay.Graphic class and is
- * responsible for rendering visual elements on a canvas to represent detected barcodes.
- * This includes drawing bounding boxes around detected barcodes and displaying the decoded
- * text associated with each barcode.
+ * The BarcodeGraphic class extends the GraphicOverlay.Graphic class and is responsible for
+ * rendering visual elements on a canvas to represent detected barcodes. This includes drawing
+ * bounding boxes around detected barcodes and displaying the decoded text associated with each
+ * barcode.
  *
- * This class manages the drawing of graphics using Android's Canvas and Paint classes.
- * It handles the drawing of both the bounding boxes around barcodes and the text content
- * derived from the barcodes.
+ * This class utilizes the Android Canvas and Paint classes to perform drawing operations, and
+ * it manages the rendering of both bounding boxes and text content for barcodes detected in a
+ * given overlay.
  *
  * Usage:
- * - Instantiate the BarcodeTrackerGraphic with a reference to the GraphicOverlay and lists
- *   of bounding boxes and decoded strings.
+ * - Instantiate the BarcodeGraphic with a reference to the GraphicOverlay, and lists of bounding
+ *   boxes and decoded strings.
  * - The draw(Canvas) method is called to render the graphics on the screen.
  *
  * Dependencies:
@@ -31,11 +31,11 @@ import java.util.List;
  *   on top of a camera preview or other content.
  * - Android Paint and Canvas classes: Used to perform drawing operations.
  *
- * Note: This class should be used as part of a barcode detection and visualization system,
- * typically within an Android application.
+ * Note: This class is typically used in conjunction with a barcode detection system to visually
+ * display the results of the detection process in an Android application.
  */
-public class BarcodeTrackerGraphic extends GraphicOverlay.Graphic {
-    private final Paint boxPaintValid;
+public class BarcodeGraphic extends GraphicOverlay.Graphic {
+    private final Paint boxPaint;
     private final Paint contentRectPaint;
     private final Paint contentTextPaint;
     private final List<Rect> boundingBoxes = new ArrayList<>();
@@ -44,22 +44,22 @@ public class BarcodeTrackerGraphic extends GraphicOverlay.Graphic {
     private final int contentPadding = 25;
 
     /**
-     * Constructs a new BarcodeTrackerGraphic object, initializing the Paint objects used
-     * for drawing and preparing the bounding boxes and decoded text for rendering.
+     * Constructs a new BarcodeGraphic object, initializing the Paint objects used for drawing
+     * and preparing the bounding boxes and decoded text for rendering.
      *
      * @param overlay The GraphicOverlay on which this graphic will be drawn.
      * @param boxes A list of Rect objects representing the bounding boxes of detected barcodes.
      * @param decodedStrings A list of strings representing the decoded content of each barcode.
      */
-    public BarcodeTrackerGraphic(GraphicOverlay overlay, List<Rect> boxes, List<String> decodedStrings) {
+    public BarcodeGraphic(GraphicOverlay overlay, List<Rect> boxes, List<String> decodedStrings) {
         super(overlay);
         overlay.clear();
 
         // Initialize the paint for drawing bounding boxes
-        boxPaintValid = new Paint();
-        boxPaintValid.setColor(Color.GREEN);
-        boxPaintValid.setStyle(Paint.Style.STROKE);
-        boxPaintValid.setStrokeWidth(6f);
+        boxPaint = new Paint();
+        boxPaint.setColor(Color.GREEN);
+        boxPaint.setStyle(Paint.Style.STROKE);
+        boxPaint.setStrokeWidth(6f);
 
         // Initialize the paint for drawing content rectangles
         contentRectPaint = new Paint();
@@ -108,22 +108,20 @@ public class BarcodeTrackerGraphic extends GraphicOverlay.Graphic {
      */
     @Override
     public void draw(Canvas canvas) {
+        // Draw bounding boxes
+        for (Rect rect : boundingBoxes) {
+            canvas.drawRect(rect, boxPaint);
+        }
+
         // Draw the text content of the barcode
         for (int i = 0; i < decodedValues.size(); i++) {
             if (!decodedValues.get(i).trim().isEmpty()) {
-
-                Rect bbox = boundingBoxes.get(i);
-                String decodedValue = decodedValues.get(i);
-
-
-                canvas.drawRect(bbox, boxPaintValid);
-
                 // Draw the rectangle for barcode content
                 canvas.drawRect(contentRectBoxes.get(i), contentRectPaint);
 
                 // Draw the text
                 canvas.drawText(
-                        decodedValue,
+                        decodedValues.get(i),
                         boundingBoxes.get(i).left + contentPadding,
                         boundingBoxes.get(i).bottom + contentPadding * 2,
                         contentTextPaint

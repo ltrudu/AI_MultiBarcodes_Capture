@@ -34,29 +34,21 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import com.zebra.ai.vision.analyzer.tracking.EntityTrackerAnalyzer;
 import com.zebra.ai.vision.entity.BarcodeEntity;
-import com.zebra.ai.vision.entity.Entity;
-import com.zebra.ai.vision.viewfinder.EntityViewController;
-import com.zebra.ai.vision.viewfinder.listners.EntityClickListener;
-import com.zebra.ai.vision.viewfinder.listners.EntityViewResizeListener;
-import com.zebra.ai.vision.viewfinder.listners.EntityViewResizeSpecs;
+
 import com.zebra.ai_multibarcodes_capture.CameraXViewModel;
 import com.zebra.ai_multibarcodes_capture.R;
+import com.zebra.ai_multibarcodes_capture.barcodedecoder.BarcodeAnalyzer;
+import com.zebra.ai_multibarcodes_capture.barcodedecoder.BarcodeGraphic;
+import com.zebra.ai_multibarcodes_capture.barcodedecoder.BarcodeHandler;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.ECameraResolution;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
-import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTracker;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
-import com.zebra.ai_multibarcodes_capture.java.analyzers.barcodetracker.BarcodeTrackerGraphic;
 
-
-
-import com.zebra.ai_multibarcodes_capture.java.viewfinder.EntityBarcodeTracker;
-import com.zebra.ai_multibarcodes_capture.java.viewfinder.EntityViewGraphic;
 import com.zebra.ai_multibarcodes_capture.views.CaptureZoneOverlay;
 
 import java.util.ArrayList;
@@ -91,7 +83,7 @@ import java.util.concurrent.Executors;
 
  * Note: Ensure that the appropriate permissions are configured in the AndroidManifest to utilize camera capabilities.
  */
-public class CameraXLivePreviewActivity extends AppCompatActivity implements BarcodeTracker.DetectionCallback, EntityBarcodeTracker.DetectionCallback {
+public class CameraXLivePreviewActivity extends AppCompatActivity implements BarcodeAnalyzer.DetectionCallback {
 
     private ActivityCameraXlivePreviewBinding binding;
     private final String TAG = "CameraXLivePreviewActivityJava";
@@ -121,7 +113,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     };
     
     
-    private static final String ENTITY_ANALYZER = "Tracker";
+    private static final String BARCODE_DETECTION = "Barcode";
     @Nullable
     private Camera camera;
     @Nullable
@@ -145,18 +137,13 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     // Filtering settings
     private boolean isFilteringEnabled = false;
     private String filteringRegex = "";
-    
-    private BarcodeTracker barcodeTracker;
-    private EntityBarcodeTracker entityBarcodeTracker;
-    private String selectedModel = ENTITY_ANALYZER;
-    private EntityViewController entityViewController;
-    private EntityViewGraphic entityViewGraphic;
-    private boolean isIconStyleEnable = false;
+
+    private BarcodeHandler barcodeHandler;
+
+    private String selectedModel = BARCODE_DETECTION;
+
     private Size selectedSize;
 
-    // Store pending viewfinder resize data to apply once analyzer is ready
-    private android.graphics.Matrix pendingTransformMatrix = null;
-    private android.graphics.RectF pendingCropRegion = null;
     private int initialRotation = Surface.ROTATION_0;
 
     List<BarcodeEntity> entitiesHolder;
@@ -266,80 +253,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             }
         });
 
-        initEntityView();
         initCaptureZone();
-    }
-
-    private void initEntityView() {
-        entityViewController = new EntityViewController(binding.entityView, this);
-        entityViewController.registerEntityClickListener(new EntityClickListener() {
-            @Override
-            public void onEntityClicked(Entity entity) {
-                isIconStyleEnable = !isIconStyleEnable;
-                entityViewGraphic.enableIconPen(isIconStyleEnable);
-            }
-        });
-
-        entityViewController.registerViewfinderResizeListener(new EntityViewResizeListener() {
-            @Override
-            public void onViewfinderResized(EntityViewResizeSpecs entityViewResizeSpecs) {
-                if (entityBarcodeTracker != null && entityBarcodeTracker.getEntityTrackerAnalyzer() != null) {
-                    // Analyzer is ready, apply the transform immediately
-                    entityBarcodeTracker.getEntityTrackerAnalyzer().updateTransform(entityViewResizeSpecs.getSensorToViewMatrix());
-                    entityBarcodeTracker.getEntityTrackerAnalyzer().setCropRect(entityViewResizeSpecs.getViewfinderFOVCropRegion());
-
-                    // Clear any pending data
-                    pendingTransformMatrix = null;
-                    pendingCropRegion = null;
-                    LogUtils.d(TAG, "Applied viewfinder resize specs immediately");
-                } else {
-                    // Analyzer not ready yet, extract and store the actual VALUES
-
-                    try {
-                        pendingTransformMatrix = new android.graphics.Matrix(entityViewResizeSpecs.getSensorToViewMatrix());
-                        pendingCropRegion = new android.graphics.RectF(entityViewResizeSpecs.getViewfinderFOVCropRegion());
-                        LogUtils.d(TAG, "Stored pending viewfinder resize data for later application");
-                    } catch (Exception e) {
-                        LogUtils.e(TAG, "Failed to extract resize spec values", e);
-                        pendingTransformMatrix = null;
-                        pendingCropRegion = null;
-                    }
-                }
-            }
-        });
-
-        entityViewGraphic = new EntityViewGraphic(entityViewController);
-    }
-
-    /**
-     * Apply any pending viewfinder resize data to the EntityTrackerAnalyzer
-     * This should be called after the analyzer is fully initialized
-     */
-    private void applyPendingResizeSpecs() {
-        if (pendingTransformMatrix != null && pendingCropRegion != null &&
-                entityBarcodeTracker != null && entityBarcodeTracker.getEntityTrackerAnalyzer() != null) {
-            try {
-                // Use our safely stored copies of the values
-                entityBarcodeTracker.getEntityTrackerAnalyzer().updateTransform(pendingTransformMatrix);
-                entityBarcodeTracker.getEntityTrackerAnalyzer().setCropRect(pendingCropRegion);
-                LogUtils.d(TAG, "Applied pending viewfinder resize data from stored values");
-            } catch (Exception e) {
-                LogUtils.e(TAG, "Failed to apply pending resize data", e);
-            } finally {
-                // Clear the stored values
-                pendingTransformMatrix = null;
-                pendingCropRegion = null;
-            }
-        }
-    }
-
-    /**
-     * Call this method when EntityBarcodeTracker is fully initialized
-     * This ensures proper setup of the analyzer with any pending configurations
-     */
-    public void onEntityBarcodeTrackerReady() {
-        LogUtils.d(TAG, "EntityBarcodeTracker is ready, applying pending configurations");
-        applyPendingResizeSpecs();
     }
 
     private void initCaptureZone() {
@@ -607,20 +521,22 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     private void stopAnalyzing() {
         try {
-            barcodeTracker.stopAnalyzing();
+            if (barcodeHandler != null && barcodeHandler.getBarcodeAnalyzer() != null) {
+                barcodeHandler.getBarcodeAnalyzer().stopAnalyzing();
+            }
         } catch (Exception e) {
-            LogUtils.e(TAG, "Can not stop the analyzer: " + ENTITY_ANALYZER, e);
+            LogUtils.e(TAG, "Can not stop the analyzer: " + BARCODE_DETECTION, e);
         }
     }
 
     public void disposeModels() {
         try {
-            LogUtils.i(TAG, "Disposing the entity tracker analyzer");
-            if (barcodeTracker != null) {
-                barcodeTracker.stop();
+            Log.i(TAG, "Disposing the barcode analyzer");
+            if (barcodeHandler != null) {
+                barcodeHandler.stop();
             }
       } catch (Exception e) {
-            LogUtils.e(TAG, "Can not dispose the analyzer: " + ENTITY_ANALYZER, e);
+            LogUtils.e(TAG, "Can not dispose the analyzer: " + BARCODE_DETECTION, e);
         }
     }
 
@@ -708,115 +624,55 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         }
     }
 
-    
-
-    
-
-    // Handles entity tracking results and updates the graphical overlay
+    // Handles barcode detection results and updates the graphical overlay
     @Override
-    public void handleEntities(EntityTrackerAnalyzer.Result result) {
+    public void onDetectionResult(List<BarcodeEntity> result) {
         List<Rect> rects = new ArrayList<>();
         List<String> decodedStrings = new ArrayList<>();
-        List<? extends Entity> entities;
         List<BarcodeEntity> filtered_entities = new ArrayList<>();
 
-        if(barcodeTracker.getBarcodeDecoder()!=null) {
-            entities = result.getValue(barcodeTracker.getBarcodeDecoder());
-            if(entities != null)
-            {
-                for (Entity entity : entities)
-                {
-                    if(entity instanceof BarcodeEntity)
-                    {
-                        BarcodeEntity bEntity = (BarcodeEntity) entity;
-                        Rect rect = bEntity.getBoundingBox();
-                        if (rect != null) {
-                            Rect overlayRect = mapBoundingBoxToOverlay(rect);
-                            // Only process barcode if it's inside the capture zone (when capture zone is enabled)
-                            if (isBarcodeInCaptureZone(overlayRect)) {
-                                // Check if the entity is matching the filtering regex
-                                // If the filtering is not enabled, it returns always true
-                                if(isValueMatchingFilteringRegex(bEntity.getValue())) {
-                                    // Now if necessary, check if the barcode meets the
-                                    rects.add(overlayRect);
-                                    String hashCode = String.valueOf(bEntity.hashCode());
-                                    // Ensure the string has at least 4 characters
-                                    if (hashCode.length() >= 4) {
-                                        // Get the last four digits
-                                        hashCode = hashCode.substring(hashCode.length() - 4);
+        if (result != null) {
+            for (BarcodeEntity bEntity : result) {
+                Rect rect = bEntity.getBoundingBox();
+                if (rect != null) {
+                    Rect overlayRect = mapBoundingBoxToOverlay(rect);
+                    // Only process barcode if it's inside the capture zone (when capture zone is enabled)
+                    if (isBarcodeInCaptureZone(overlayRect)) {
+                        // Check if the entity is matching the filtering regex
+                        // If the filtering is not enabled, it returns always true
+                        if(isValueMatchingFilteringRegex(bEntity.getValue())) {
+                            // Now if necessary, check if the barcode meets the
+                            rects.add(overlayRect);
+                            String hashCode = String.valueOf(bEntity.hashCode());
+                            // Ensure the string has at least 4 characters
+                            if (hashCode.length() >= 4) {
+                                // Get the last four digits
+                                hashCode = hashCode.substring(hashCode.length() - 4);
 
-                                    }
-                                    decodedStrings.add(bEntity.getValue());
-                                    LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
-                                    filtered_entities.add(bEntity);
-                                }
-                                else
-                                {
-                                    LogUtils.v(TAG, "Barcode does not match regex, ignoring: " + bEntity.getValue());
-                                }
-                            } else {
-                                LogUtils.v(TAG, "Barcode outside capture zone, ignoring: " + bEntity.getValue());
                             }
+                            decodedStrings.add(bEntity.getValue());
+                            LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
+                            filtered_entities.add(bEntity);
                         }
-                    }
-                }
-            }
-            entitiesHolder = filtered_entities;
-        } else {
-            filtered_entities = null;
-        }
-
-        if (decodedStrings.size() > 0) {
-            runOnUiThread(() -> {
-                binding.graphicOverlay.clear();
-
-                binding.graphicOverlay.add(new BarcodeTrackerGraphic(binding.graphicOverlay, rects, decodedStrings));
-
-            });
-        }
-    }
-
-    // Handles entities for the entity view tracker and updates the graphical overlay
-    @Override
-    public void handleEntitiesForEntityView(EntityTrackerAnalyzer.Result result) {
-        LogUtils.d(TAG,"Handle View Entity - Result received");
-
-        // Apply any pending resize specs now that the analyzer is ready
-        applyPendingResizeSpecs();
-
-        List<? extends Entity> entities = null;
-        if(entityBarcodeTracker != null && entityBarcodeTracker.getBarcodeDecoder() != null) {
-            entities = result.getValue(entityBarcodeTracker.getBarcodeDecoder());
-            LogUtils.d(TAG, "EntityBarcodeTracker decoder available, entities count: " + (entities != null ? entities.size() : "null"));
-        } else {
-            LogUtils.w(TAG, "EntityBarcodeTracker or decoder is null - tracker: " + (entityBarcodeTracker != null) + ", decoder: " + (entityBarcodeTracker != null && entityBarcodeTracker.getBarcodeDecoder() != null));
-        }
-
-        if(entityViewGraphic != null) {
-            entityViewGraphic.clear();
-        } else {
-            LogUtils.w(TAG, "EntityViewGraphic is null");
-        }
-
-        if (entities != null) {
-            LogUtils.d(TAG, "Processing " + entities.size() + " entities for entity view");
-            for (Entity entity : entities) {
-                if (entity instanceof BarcodeEntity) {
-                    BarcodeEntity bEntity = (BarcodeEntity) entity;
-                    Rect rect = bEntity.getBoundingBox();
-                    if (rect != null) {
-                        LogUtils.d(TAG, "Adding entity to view - Value: " + bEntity.getValue() + ", BBox: " + rect);
-                        entityViewGraphic.addEntity(bEntity);
+                        else
+                        {
+                            LogUtils.v(TAG, "Barcode does not match regex, ignoring: " + bEntity.getValue());
+                        }
                     } else {
-                        LogUtils.w(TAG, "Entity has null bounding box - Value: " + bEntity.getValue());
+                        LogUtils.v(TAG, "Barcode outside capture zone, ignoring: " + bEntity.getValue());
                     }
                 }
             }
-            entityViewGraphic.render();
-            LogUtils.d(TAG, "Rendered entities on entity view");
-        } else {
-            LogUtils.w(TAG, "No entities to process for entity view");
         }
+        entitiesHolder = filtered_entities;
+
+        runOnUiThread(() -> {
+            binding.graphicOverlay.clear();
+            if (decodedStrings.size() > 0) {
+                binding.graphicOverlay.clear();
+                binding.graphicOverlay.add(new BarcodeGraphic(binding.graphicOverlay, rects, decodedStrings));
+            }
+        });
     }
 
     private void bindAnalysisUseCase() {
@@ -826,10 +682,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         try {
             LogUtils.i(TAG, "Using Entity Analyzer");
             executors.execute(() -> {
-                barcodeTracker = new BarcodeTracker(this, this, analysisUseCase);
+                barcodeHandler = new BarcodeHandler(this, this, analysisUseCase);
             });
         } catch (Exception e) {
-            LogUtils.e(TAG, "Can not create model for : " + ENTITY_ANALYZER, e);
+            LogUtils.e(TAG, "Can not create model for : " + BARCODE_DETECTION, e);
             return;
         }
         cameraProvider.bindToLifecycle(/* lifecycleOwner= */ this, cameraSelector, analysisUseCase);
@@ -911,6 +767,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         registerReceiver(reloadPreferencesReceiver, filter, RECEIVER_NOT_EXPORTED);
         LogUtils.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
     }
+
     public void onPause() {
         super.onPause();
         LogUtils.v(TAG, "onPause called");

@@ -202,7 +202,7 @@ public class Constants {
     
     // Model Input Size preferences
     public static final String SHARED_PREFERENCES_MODEL_INPUT_SIZE = "SHARED_PREFERENCES_MODEL_INPUT_SIZE";
-    public static final String SHARED_PREFERENCES_MODEL_INPUT_SIZE_DEFAULT = "MEDIUM";
+    public static final String SHARED_PREFERENCES_MODEL_INPUT_SIZE_DEFAULT = "SMALL";
     
     // Camera Resolution preferences
     public static final String SHARED_PREFERENCES_CAMERA_RESOLUTION = "SHARED_PREFERENCES_CAMERA_RESOLUTION";
