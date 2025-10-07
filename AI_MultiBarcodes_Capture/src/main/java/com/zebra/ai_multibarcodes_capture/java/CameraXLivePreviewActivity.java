@@ -159,7 +159,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private android.graphics.RectF pendingCropRegion = null;
     private int initialRotation = Surface.ROTATION_0;
 
-    List<? extends Entity> entitiesHolder;
+    List<BarcodeEntity> entitiesHolder;
 
     private String captureFilePath;
     private String endpointUri;
@@ -718,23 +718,20 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         List<Rect> rects = new ArrayList<>();
         List<String> decodedStrings = new ArrayList<>();
         List<? extends Entity> entities;
+        List<BarcodeEntity> filtered_entities = new ArrayList<>();
+
         if(barcodeTracker.getBarcodeDecoder()!=null) {
             entities = result.getValue(barcodeTracker.getBarcodeDecoder());
-            entitiesHolder = entities;
-        } else {
-            entities = null;
-        }
-
-        runOnUiThread(() -> {
-            binding.graphicOverlay.clear();
-            if (entities != null) {
-                for (Entity entity : entities) {
-                    if (entity instanceof BarcodeEntity) {
+            if(entities != null)
+            {
+                for (Entity entity : entities)
+                {
+                    if(entity instanceof BarcodeEntity)
+                    {
                         BarcodeEntity bEntity = (BarcodeEntity) entity;
                         Rect rect = bEntity.getBoundingBox();
                         if (rect != null) {
                             Rect overlayRect = mapBoundingBoxToOverlay(rect);
-                            
                             // Only process barcode if it's inside the capture zone (when capture zone is enabled)
                             if (isBarcodeInCaptureZone(overlayRect)) {
                                 // Check if the entity is matching the filtering regex
@@ -751,6 +748,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                                     }
                                     decodedStrings.add(bEntity.getValue());
                                     LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
+                                    filtered_entities.add(bEntity);
                                 }
                                 else
                                 {
@@ -761,13 +759,21 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                             }
                         }
                     }
-
-                    //currently using same BarcodeGraphic as there are no much difference in UI
-                    binding.graphicOverlay.add(new BarcodeTrackerGraphic(binding.graphicOverlay, rects, decodedStrings));
                 }
             }
+            entitiesHolder = filtered_entities;
+        } else {
+            filtered_entities = null;
+        }
 
-        });
+        if (decodedStrings.size() > 0) {
+            runOnUiThread(() -> {
+                binding.graphicOverlay.clear();
+
+                binding.graphicOverlay.add(new BarcodeTrackerGraphic(binding.graphicOverlay, rects, decodedStrings));
+
+            });
+        }
     }
 
     // Handles entities for the entity view tracker and updates the graphical overlay
@@ -940,36 +946,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     private void captureData() {
         if(entitiesHolder != null) {
-            List<BarcodeEntity> barcodeEntities = new ArrayList<>();
-            for (Entity entity : entitiesHolder) {
-                if (entity instanceof BarcodeEntity) {
-                    BarcodeEntity bEntity = (BarcodeEntity) entity;
-                    
-                    // Check if barcode is in capture zone before adding to results
-                    Rect boundingBox = bEntity.getBoundingBox();
-                    if (boundingBox != null) {
-                        Rect overlayRect = mapBoundingBoxToOverlay(boundingBox);
-                        if (isBarcodeInCaptureZone(overlayRect)) {
-                            if(isValueMatchingFilteringRegex(bEntity.getValue())) {
-                                barcodeEntities.add(bEntity);
-                                LogUtils.d(TAG, "Barcode captured.\nValue:" + bEntity.getValue() + "\nSymbology:" + bEntity.getSymbology() + "\nHashcode:" + bEntity.hashCode());
-                            }
-                            else
-                            {
-                                LogUtils.d(TAG,"Barcode does not match filtering regex:" + filteringRegex + " with value:" + bEntity.getValue());
-                            }
-                        } else {
-                            LogUtils.d(TAG, "Barcode outside capture zone, not captured: " + bEntity.getValue());
-                        }
-                    } else {
-                        LogUtils.w(TAG, "Barcode has no bounding box, skipping: " + bEntity.getValue());
-                    }
-                }
-            }
-            if(barcodeEntities.size() > 0)
+             if(entitiesHolder.size() > 0)
             {
                 ArrayList<Bundle> barcodeDataList = new ArrayList<>();
-                for (BarcodeEntity bEntity : barcodeEntities) {
+                for (BarcodeEntity bEntity : entitiesHolder) {
                     Bundle barcodeBundle = new Bundle();
                     barcodeBundle.putString("value", bEntity.getValue());
                     barcodeBundle.putInt("symbology", bEntity.getSymbology());
