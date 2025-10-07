@@ -94,7 +94,10 @@ public class BarcodeTracker {
     public void initializeBarcodeDecoder(Context context) {
         try {
             BarcodeDecoder.Settings decoderSettings = new BarcodeDecoder.Settings(mavenModelName);
-            Integer[] rpo = new Integer[1];
+            Integer[] rpo = new Integer[3];
+            rpo[0] = InferencerOptions.DSP;
+            rpo[1] = InferencerOptions.CPU;
+            rpo[2] = InferencerOptions.GPU;
             
             // Retrieve inference type from shared preferences
             SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);

@@ -134,7 +134,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private CameraSelector cameraSelector;
     private ResolutionSelector resolutionSelector;
     private final ExecutorService executors = Executors.newFixedThreadPool(3);
-    private final ExecutorService taskExecutor = Executors.newFixedThreadPool(3);
 
     private Button captureButton;
     private Button closeButton;

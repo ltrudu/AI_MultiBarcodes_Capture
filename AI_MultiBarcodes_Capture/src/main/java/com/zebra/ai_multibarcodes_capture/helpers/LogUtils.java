@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -416,6 +417,7 @@ public class LogUtils {
                 appContext.startActivity(emailIntent);
             } else {
                 // Fallback: show toast with error info
+                Looper.prepare();
                 Toast.makeText(appContext, appContext.getString(R.string.error_reported, errorReport.substring(0, Math.min(100, errorReport.length()))), Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
