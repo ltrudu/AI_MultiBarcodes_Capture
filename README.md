@@ -1,6 +1,6 @@
 # AI MultiBarcode Capture Application
 
-[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.30-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.2-blue)](https://developer.zebra.com/)
+[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.32-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.5-blue)](https://developer.zebra.com/)
 
 [![Apache](https://img.shields.io/badge/Apache-2.4-red)](https://httpd.apache.org/) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
@@ -15,6 +15,30 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
+### Version 1.32 - ⚡ **Performance & Compatibility Enhancements**
+
+**Optimized barcode detection with enhanced device compatibility and significant performance improvements.**
+
+#### 🚀 **Core Improvements:**
+
+• **AI Vision SDK 3.0.5**: Updated to the latest Zebra AI Vision SDK for improved accuracy and stability
+
+• **Enhanced Device Compatibility**: Added comprehensive runtime processor configuration supporting all available inference targets, ensuring optimal performance on TC53E and other Zebra devices
+
+• **Asynchronous Data Processing**: Refactored filtering operations to execute on dedicated background threads, preventing UI blocking and delivering smoother real-time performance
+
+• **Decoder Architecture Migration**: Transitioned from Barcode Tracker to Barcode Decoder implementation, resulting in substantially faster barcode detection and reduced processing overhead
+
+#### 💡 **Technical Benefits:**
+
+• **Superior Performance**: Optimized detection pipeline reduces latency and improves frame processing throughput
+
+• **Broader Device Support**: Runtime processor ordering ensures compatibility across diverse hardware configurations
+
+• **Enhanced Responsiveness**: Background thread architecture maintains fluid UI interaction during intensive scanning operations
+
+This release delivers a more responsive, efficient, and compatible barcode capture experience, optimized for enterprise-grade performance across Zebra's full device portfolio.
+
 ### Version 1.30 - 🔍 **Updated Translation Files**
 
 #### 📚 **Wiki Updates:**
@@ -22,34 +46,6 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 • **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of 300+ regex patterns covering web URLs, device identifiers, government IDs, license plates, postal codes, phone numbers, and industry standards
 
 • **🔐 [Understanding Certificates for Beginners](wiki/17-Understanding-Certificates-For-Beginners.md)**: Complete beginner's guide explaining certificate creation, platform-specific requirements, and how to create self-signed certificates that Windows and Android recognize as legitimate Certificate Authority certificates
-
-### Version 1.29 - 🔍 **Advanced Barcode Filtering System**
-
-**Enhanced barcode processing capabilities with intelligent pattern-based filtering for precision data capture.**
-
-#### 🆕 **New Features:**
-• **Regular Expression Filtering**: Powerful pattern-based barcode filtering system that captures only barcodes matching specific criteria
-
-• **Real-time Pattern Matching**: Filtering applied during live scanning for immediate results
-
-• **Comprehensive Pattern Examples**: Built-in documentation with common regex patterns for various use cases
-
-#### ⚙️ **Advanced Filtering Capabilities:**
-
-• **Custom Pattern Support**: Create complex regex patterns for specialized applications
-
-• **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of regex patterns for web URLs, device identifiers, government IDs, product codes, and industry standards
-
-#### 🛠 **Enterprise Management:**
-• **Managed Configuration Support**: Full enterprise MDM/EMM integration for remote filtering configuration
-
-• **Comprehensive Documentation**: Updated configuration guides with filtering setup instructions
-
-• **Error Handling**: Robust pattern validation with fallback behavior for invalid expressions
-
-• **Performance Optimized**: Efficient regex processing without impacting scan performance
-
-This release transforms the application into a precision tool for selective barcode capture, perfect for quality control, inventory management, and specialized data collection workflows.
 
 ## 📋 [View Complete Changelog](CHANGELOG.md) for previous versions and detailed release history.
 
@@ -68,7 +64,7 @@ This release transforms the application into a precision tool for selective barc
 ### **🔍 Advanced Barcode Detection**
 - **Multi-Barcode Simultaneous Tracking**: Detect and track multiple barcodes in real-time
 - **50+ Barcode Symbologies Support**: Including QR Code, Data Matrix, Code 128, UPC/EAN, PDF417, Aztec, and many more
-- **AI-Powered Recognition**: Leverages Zebra AI Vision SDK v3.0.2 with barcode localizer model v5.0.1
+- **AI-Powered Recognition**: Leverages Zebra AI Vision SDK v3.0.5 with barcode localizer model v5.0.1
 - **Real-time Entity Tracking**: Visual overlay with bounding boxes and decoded values
 - **Configurable Detection Settings**: Customizable symbology enabling/disabling
 
@@ -170,7 +166,7 @@ This release transforms the application into a precision tool for selective barc
 - **Java 1.8**: Language compatibility
 
 ### **Dependencies**
-- **Zebra AI Vision SDK**: v3.0.2 - Core barcode detection engine
+- **Zebra AI Vision SDK**: v3.0.5 - Core barcode detection engine
 - **Barcode Localizer Model**: v5.0.1 - AI model for barcode localization
 - **CameraX**: v1.4.2 - Modern camera functionality
 - **Apache POI**: v5.2.3 - Excel export capabilities
