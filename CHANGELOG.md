@@ -2,6 +2,42 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+## Version 1.32 - ⚡ **Performance & Compatibility Enhancements**
+
+**Optimized barcode detection with enhanced device compatibility and significant performance improvements.**
+
+### 🚀 **Core Improvements:**
+
+• **AI Vision SDK 3.0.5 Integration**: Upgraded to the latest Zebra AI Vision SDK, delivering improved detection accuracy, enhanced stability, and access to the newest AI capabilities for superior barcode recognition performance
+
+• **Universal Device Compatibility**: Implemented comprehensive runtime processor ordering configuration with support for all available inference targets (DSP, GPU, CPU), ensuring optimal operation across Zebra's entire device portfolio including TC53E and other enterprise mobile computers
+
+• **Asynchronous Processing Architecture**: Completely refactored data filtering operations to execute on dedicated background threads, eliminating UI thread blocking and delivering seamless real-time scanning performance with instant visual feedback
+
+• **High-Performance Decoder Implementation**: Migrated from Barcode Tracker to the optimized Barcode Decoder architecture, achieving substantially faster barcode detection cycles, reduced computational overhead, and improved battery efficiency during extended scanning sessions
+
+### 💡 **Technical Benefits:**
+
+• **Enhanced Processing Speed**: Optimized detection pipeline significantly reduces latency between frame capture and barcode recognition
+
+• **Platform Flexibility**: Runtime processor configuration automatically adapts to available hardware accelerators for maximum efficiency
+
+• **Improved User Experience**: Background thread architecture maintains fluid UI responsiveness even during high-volume barcode processing
+
+• **Future-Proof Architecture**: Latest SDK version ensures long-term compatibility and access to upcoming AI Vision features
+
+### 🔧 **Implementation Details:**
+
+• **Thread-Optimized Filtering**: Dedicated executor service for regex pattern matching and data validation operations
+
+• **Decoder Migration**: Complete replacement of EntityBarcodeTracker with BarcodeDecoder for streamlined processing
+
+• **Processor Fallback Chain**: Intelligent runtime ordering ensures optimal inference target selection based on device capabilities
+
+• **SDK API Updates**: Leveraged new SDK 3.0.5 APIs for improved performance and reduced memory footprint
+
+This release represents a significant advancement in barcode capture performance and device compatibility, delivering enterprise-grade scanning capabilities optimized for demanding production environments across Zebra's complete mobile computing ecosystem.
+
 ### Version 1.30 - 🔍 **Updated Translation Files**
 
 #### 📚 **Wiki Updates:**
