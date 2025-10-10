@@ -2,6 +2,31 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+### Version 1.33 - 🎯 **Configurable Capture Trigger Mode**
+
+**Enhanced scanning flexibility with customizable capture trigger behavior.**
+
+#### 🔘 **Capture Trigger Mode:**
+
+• **User-Selectable Trigger Behavior**: Choose between two capture modes to match your workflow preferences:
+  - **On Scan Press** (Default): Capture barcodes immediately when the scan button is pressed
+  - **On Scan Release**: Capture barcodes when the scan button is released
+
+• **Settings Integration**: New "Capture Trigger Mode" section added to Settings Activity, positioned conveniently after the Language selection
+
+• **Managed Configuration Support**: Full EMM/MDM integration allows administrators to remotely configure the capture trigger mode across all deployed devices
+
+• **Persistent Settings**: Capture mode preference is saved and automatically restored when the app resumes
+
+• **Real-Time Updates**: Configuration changes applied through managed configuration are reflected immediately without requiring app restart
+
+#### 💡 **Use Cases:**
+
+• **Press Mode**: Ideal for rapid scanning workflows where immediate feedback is required
+• **Release Mode**: Better for scenarios requiring precise aim before capture confirmation
+
+This enhancement provides greater flexibility in barcode capture workflows, allowing users and administrators to optimize the scanning experience for specific operational requirements.
+
 ## Version 1.32 - ⚡ **Performance & Compatibility Enhancements**
 
 **Optimized barcode detection with enhanced device compatibility and significant performance improvements.**
