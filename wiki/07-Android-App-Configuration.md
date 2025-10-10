@@ -20,6 +20,64 @@ The AI MultiBarcode Capture app provides dual-mode operation:
 2. Tap the **Settings** (gear) icon in the top-right corner
 3. Configure options based on your deployment requirements
 
+### Capture Trigger Mode Configuration
+
+The Capture Trigger Mode setting allows you to customize when barcode capture occurs during the scan button press cycle.
+
+#### Available Options
+
+**On Scan Press (Default)**
+```
+Settings → Capture Trigger Mode → On Scan Press
+```
+
+**Behavior:** Captures barcodes immediately when the scan button is pressed down.
+
+**Use Cases:**
+- Rapid scanning workflows requiring immediate feedback
+- High-volume scanning environments
+- Applications where speed is prioritized over precision
+- Quick batch processing scenarios
+
+**On Scan Release**
+```
+Settings → Capture Trigger Mode → On Scan Release
+```
+
+**Behavior:** Captures barcodes when the scan button is released (on key up).
+
+**Use Cases:**
+- Scenarios requiring precise aiming before capture confirmation
+- Applications where users need time to steady their aim
+- Workflows where deliberate capture timing is important
+- Quality control processes requiring careful positioning
+
+#### Configuration Notes
+
+- **Default Setting**: On Scan Press is the default mode for maximum responsiveness
+- **Persistent Setting**: Your selection is saved and automatically restored when the app resumes
+- **Managed Configuration**: Enterprise administrators can remotely configure this setting via EMM/MDM systems
+- **Real-Time Updates**: Configuration changes through managed configuration are applied immediately without app restart
+- **Hardware Button Support**: Works with both physical scan buttons (R1 button and dedicated scan button)
+
+#### Enterprise Deployment
+
+For enterprise managed configuration:
+```xml
+<!-- In app_restrictions.xml -->
+<restriction
+    android:key="capture_trigger_mode"
+    android:title="Capture Trigger Mode"
+    android:restrictionType="choice"
+    android:defaultValue="press"
+    android:entries="@array/capture_trigger_mode_names"
+    android:entryValues="@array/capture_trigger_mode_values" />
+```
+
+Available values:
+- `press` - Capture on scan button press
+- `release` - Capture on scan button release
+
 ### Processing Mode Configuration
 
 #### File-based Processing
