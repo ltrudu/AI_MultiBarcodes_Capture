@@ -1,6 +1,6 @@
 # AI MultiBarcode Capture Application
 
-[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.32-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.5-blue)](https://developer.zebra.com/)
+[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.33-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.5-blue)](https://developer.zebra.com/)
 
 [![Apache](https://img.shields.io/badge/Apache-2.4-red)](https://httpd.apache.org/) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
@@ -14,6 +14,31 @@ Report any issues using the Issues manager of the original repository:
 https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
+
+### Version 1.33 - 🎯 **Configurable Capture Trigger Mode**
+
+**Enhanced scanning flexibility with customizable capture trigger behavior.**
+
+#### 🔘 **Capture Trigger Mode:**
+
+• **User-Selectable Trigger Behavior**: Choose between two capture modes to match your workflow preferences:
+  - **On Scan Press** (Default): Capture barcodes immediately when the scan button is pressed
+  - **On Scan Release**: Capture barcodes when the scan button is released
+
+• **Settings Integration**: New "Capture Trigger Mode" section added to Settings Activity, positioned conveniently after the Language selection
+
+• **Managed Configuration Support**: Full EMM/MDM integration allows administrators to remotely configure the capture trigger mode across all deployed devices
+
+• **Persistent Settings**: Capture mode preference is saved and automatically restored when the app resumes
+
+• **Real-Time Updates**: Configuration changes applied through managed configuration are reflected immediately without requiring app restart
+
+#### 💡 **Use Cases:**
+
+• **Press Mode**: Ideal for rapid scanning workflows where immediate feedback is required
+• **Release Mode**: Better for scenarios requiring precise aim before capture confirmation
+
+This enhancement provides greater flexibility in barcode capture workflows, allowing users and administrators to optimize the scanning experience for specific operational requirements.
 
 ### Version 1.32 - ⚡ **Performance & Compatibility Enhancements**
 
