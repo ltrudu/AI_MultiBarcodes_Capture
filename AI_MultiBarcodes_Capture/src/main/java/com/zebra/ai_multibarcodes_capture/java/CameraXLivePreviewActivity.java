@@ -51,7 +51,11 @@ import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
+import com.zebra.ai_multibarcodes_capture.settings.SettingsActivity;
 import com.zebra.ai_multibarcodes_capture.views.CaptureZoneOverlay;
+import com.zebra.datawedgeprofileintents.DWProfileBaseSettings;
+import com.zebra.datawedgeprofileintents.DWProfileCommandBase;
+import com.zebra.datawedgeprofileintents.DWScannerPluginDisable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -786,6 +790,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         IntentFilter filter = new IntentFilter(ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES);
         registerReceiver(reloadPreferencesReceiver, filter, RECEIVER_NOT_EXPORTED);
         LogUtils.d(TAG, "Registered BroadcastReceiver for managed configuration changes");
+
+        disableDatawedgePlugin();
     }
 
     public void onPause() {
@@ -804,6 +810,25 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         stopAnalyzing();
         unBindCameraX();
         disposeModels();
+    }
+
+    private void disableDatawedgePlugin()
+    {
+        DWScannerPluginDisable dwplugindisable = new DWScannerPluginDisable(this);
+        DWProfileBaseSettings settings = new DWProfileBaseSettings()
+        {{
+            mProfileName = CameraXLivePreviewActivity.this.getPackageName();
+        }};
+
+        dwplugindisable.execute(settings, new DWProfileCommandBase.onProfileCommandResult() {
+            @Override
+            public void result(String profileName, String action, String command, String result, String resultInfo, String commandidentifier) {
+            }
+            @Override
+            public void timeout(String profileName) {
+
+            }
+        });
     }
 
     @Override
