@@ -475,6 +475,9 @@
         <item>CPU</item>
     </string-array>
 
+    <!-- Capture Mode -->
+    <string name="capture_mode_press">On Scan Press</string>
+    <string name="capture_mode_release">On Scan Release</string>
 
     <!-- Data Processing Settings -->
     <string name="data_processing">Data Processing</string>
