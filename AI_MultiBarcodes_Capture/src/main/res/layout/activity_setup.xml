@@ -74,6 +74,45 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llCaptureTriggerMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/zebra"
+            android:backgroundTint="@color/zebra">
+
+            <TextView
+                android:id="@+id/tvCaptureTriggerModeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/capture_trigger_mode"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Spinner
+            android:id="@+id/spinnerCaptureTriggerMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/spinner_background"
+            android:minHeight="48dp"
+            android:popupBackground="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/llDataProcessing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

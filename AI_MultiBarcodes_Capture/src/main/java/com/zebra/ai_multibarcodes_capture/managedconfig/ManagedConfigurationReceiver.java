@@ -80,6 +80,15 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
                 }
             }
 
+            // Update capture trigger mode if provided
+            if (restrictions.containsKey("capture_trigger_mode")) {
+                String captureTriggerMode = restrictions.getString("capture_trigger_mode");
+                if (captureTriggerMode != null && !captureTriggerMode.trim().isEmpty()) {
+                    editor.putString(Constants.SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE, captureTriggerMode);
+                    LogUtils.d(TAG, "Updated capture_trigger_mode: " + captureTriggerMode);
+                }
+            }
+
             // Update barcode symbologies from nested bundle
             if (restrictions.containsKey("barcode_symbologies")) {
                 Bundle barcodeSymbologies = restrictions.getBundle("barcode_symbologies");
