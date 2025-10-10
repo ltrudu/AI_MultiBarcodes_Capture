@@ -475,7 +475,19 @@
         <item>CPU</item>
     </string-array>
 
+    <!-- Capture Trigger Mode Arrays for Managed Configuration -->
+    <string-array name="capture_trigger_mode_names">
+        <item>On Scan Press</item>
+        <item>On Scan Release</item>
+    </string-array>
+
+    <string-array name="capture_trigger_mode_values">
+        <item>press</item>
+        <item>release</item>
+    </string-array>
+
     <!-- Capture Mode -->
+    <string name="capture_trigger_mode">Capture Trigger Mode</string>
     <string name="capture_mode_press">On Scan Press</string>
     <string name="capture_mode_release">On Scan Release</string>
 

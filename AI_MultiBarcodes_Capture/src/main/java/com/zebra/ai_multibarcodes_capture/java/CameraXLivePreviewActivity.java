@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Size;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
@@ -44,6 +45,7 @@ import com.zebra.ai_multibarcodes_capture.barcodedecoder.BarcodeHandler;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.ECameraResolution;
+import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
@@ -133,6 +135,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private ImageView flashlightToggleIcon;
     private CaptureZoneOverlay captureZoneOverlay;
     private boolean isFlashlightOn = false;
+    private ECaptureTriggerMode captureTriggerMode = ECaptureTriggerMode.CAPTURE_ON_PRESS;
 
     // Filtering settings
     private boolean isFilteringEnabled = false;
@@ -387,6 +390,20 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         LogUtils.d(TAG, "Loaded filtering settings - enabled: " + isFilteringEnabled + ", regex: '" + filteringRegex + "'");
         LogUtils.d(TAG, "=== loadFilteringSettings() END ===");
+    }
+
+    private void loadCaptureModeSettings() {
+        LogUtils.d(TAG, "=== loadCaptureModeSettings() START ===");
+
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+
+        // Load capture trigger mode
+        String captureTriggerModeKey = sharedPreferences.getString(Constants.SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE, Constants.SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE_DEFAULT);
+        captureTriggerMode = ECaptureTriggerMode.fromKey(captureTriggerModeKey);
+
+        LogUtils.d(TAG, "Loaded capture trigger mode: " + captureTriggerMode.toString() + " (" + captureTriggerMode.getDisplayName(this) + ")");
+        LogUtils.d(TAG, "=== loadCaptureModeSettings() END ===");
     }
 
     private boolean isValueMatchingFilteringRegex(String data)
@@ -742,6 +759,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         // Load filtering settings
         loadFilteringSettings();
 
+        // Load capture mode settings
+        loadCaptureModeSettings();
+
         // Flashlight settings are now loaded after camera is bound in bindPreviewUseCase()
 
         int currentRotation = getWindowManager().getDefaultDisplay().getRotation();
@@ -831,11 +851,22 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     @Override
     public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
-        if(keyCode == Constants.KEYCODE_BUTTON_R1 || keyCode == Constants.KEYCODE_SCAN)
-        {
-            captureData();
+        if(captureTriggerMode == ECaptureTriggerMode.CAPTURE_ON_PRESS) {
+            if (keyCode == Constants.KEYCODE_BUTTON_R1 || keyCode == Constants.KEYCODE_SCAN) {
+                captureData();
+            }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if(captureTriggerMode == ECaptureTriggerMode.CAPTURE_ON_RELEASE) {
+            if (keyCode == Constants.KEYCODE_BUTTON_R1 || keyCode == Constants.KEYCODE_SCAN) {
+                captureData();
+            }
+        }
+        return super.onKeyUp(keyCode, event);
     }
 
     @Override
