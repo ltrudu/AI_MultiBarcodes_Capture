@@ -202,6 +202,7 @@ StageNow Barcode to download Version 1.32:
 - **Gson**: v2.13.1 - JSON serialization
 - **Material Design Components**: v1.12.0 - UI framework
 - **Critical Permission Helper**: 0.8.1 - Automatically grant critical permissions (Camera, Manage All Files) [CriticalPermissionHelper Repository](https://github.com/ltrudu/CriticalPermissionsHelper)
+- **DataWedge Intent Wrapper**: 14.10 - Simplifies the setup of DataWedge for barcode scanning in the Settings Activity [DataWedgeIntentWrapper Repository](https://github.com/ltrudu/DataWedgeIntentWrapper)
 
 ### **Build Configuration**
 - **Android Gradle Plugin**: 8.11.0
