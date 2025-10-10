@@ -31,6 +31,7 @@ import android.widget.Toast;
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.adapters.LanguageAdapter;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
+import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
 import com.zebra.ai_multibarcodes_capture.helpers.EProcessingMode;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
@@ -80,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
     private boolean isAdvancedExpanded = false;
     private boolean isHttpsPostExpanded = false;
     private boolean isFilteringExpanded = false;
-    private Spinner spinnerLanguage, spinnerProcessingMode;
+    private Spinner spinnerLanguage, spinnerProcessingMode, spinnerCaptureTriggerMode;
     private LanguageAdapter languageAdapter;
     private List<LanguageItem> languageList;
     private String pendingLanguageCode = null; // Track pending language changes
@@ -164,12 +165,16 @@ public class SettingsActivity extends AppCompatActivity {
         tvSymbologiesBadge = findViewById(R.id.tvSymbologiesBadge);
         spinnerLanguage = findViewById(R.id.spinnerLanguage);
         spinnerProcessingMode = findViewById(R.id.spinnerProcessingMode);
+        spinnerCaptureTriggerMode = findViewById(R.id.spinnerCaptureTriggerMode);
 
         // Setup language spinner
         setupLanguageSpinner();
 
         // Setup processing mode spinner
         setupProcessingModeSpinner();
+
+        // Setup capture trigger mode spinner
+        setupCaptureTriggerModeSpinner();
 
         // Setup HTTPS endpoint validation
         setupHttpsEndpointValidation();
@@ -368,6 +373,7 @@ public class SettingsActivity extends AppCompatActivity {
         loadProcessingMode(sharedPreferences);
         loadHttpsPostSettings(sharedPreferences);
         loadFilteringSettings(sharedPreferences);
+        loadCaptureTriggerMode(sharedPreferences);
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
@@ -479,6 +485,19 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    private void loadCaptureTriggerMode(SharedPreferences sharedPreferences) {
+        String captureTriggerModeKey = sharedPreferences.getString(SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE, SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE_DEFAULT);
+        ECaptureTriggerMode captureTriggerMode = ECaptureTriggerMode.fromKey(captureTriggerModeKey);
+
+        // Set the spinner selection based on the loaded capture trigger mode
+        for (int i = 0; i < ECaptureTriggerMode.values().length; i++) {
+            if (ECaptureTriggerMode.values()[i] == captureTriggerMode) {
+                spinnerCaptureTriggerMode.setSelection(i);
+                break;
+            }
+        }
+    }
+
     private void savePreferences()
     {
         // Get the SharedPreferences object
@@ -500,6 +519,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveProcessingMode(editor);
         saveHttpsPostSettings(editor);
         saveFilteringSettings(editor);
+        saveCaptureTriggerMode(editor);
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
@@ -622,6 +642,31 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Update initial visibility
         updateSectionVisibility(spinnerProcessingMode.getSelectedItemPosition());
+    }
+
+    private void setupCaptureTriggerModeSpinner() {
+        // Create array of capture trigger mode display names
+        String[] captureTriggerModeDisplayNames = new String[ECaptureTriggerMode.values().length];
+        for (int i = 0; i < ECaptureTriggerMode.values().length; i++) {
+            captureTriggerModeDisplayNames[i] = ECaptureTriggerMode.values()[i].getDisplayName(this);
+        }
+
+        // Create adapter and set to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, captureTriggerModeDisplayNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCaptureTriggerMode.setAdapter(adapter);
+
+        // Set current selection based on saved preferences
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String currentCaptureTriggerMode = sharedPreferences.getString(SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE, SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE_DEFAULT);
+
+        ECaptureTriggerMode currentMode = ECaptureTriggerMode.fromKey(currentCaptureTriggerMode);
+        for (int i = 0; i < ECaptureTriggerMode.values().length; i++) {
+            if (ECaptureTriggerMode.values()[i] == currentMode) {
+                spinnerCaptureTriggerMode.setSelection(i);
+                break;
+            }
+        }
     }
 
     private void setupHttpsEndpointValidation() {
@@ -769,6 +814,14 @@ public class SettingsActivity extends AppCompatActivity {
         if (selectedPosition >= 0 && selectedPosition < EProcessingMode.values().length) {
             EProcessingMode selectedMode = EProcessingMode.values()[selectedPosition];
             editor.putString(SHARED_PREFERENCES_PROCESSING_MODE, selectedMode.toString());
+        }
+    }
+
+    private void saveCaptureTriggerMode(SharedPreferences.Editor editor) {
+        int selectedPosition = spinnerCaptureTriggerMode.getSelectedItemPosition();
+        if (selectedPosition >= 0 && selectedPosition < ECaptureTriggerMode.values().length) {
+            ECaptureTriggerMode selectedMode = ECaptureTriggerMode.values()[selectedPosition];
+            editor.putString(SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE, selectedMode.toString());
         }
     }
 

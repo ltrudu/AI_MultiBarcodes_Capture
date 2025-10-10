@@ -29,6 +29,16 @@
         android:entries="@array/language_names"
         android:entryValues="@array/language_codes" />
 
+    <!-- Capture Trigger Mode Configuration -->
+    <restriction
+        android:key="capture_trigger_mode"
+        android:title="Capture Trigger Mode"
+        description="Select when to capture barcodes: on scan button press or on scan button release"
+        android:restrictionType="choice"
+        android:defaultValue="press"
+        android:entries="@array/capture_trigger_mode_names"
+        android:entryValues="@array/capture_trigger_mode_values" />
+
     <!-- Processing Mode Configuration -->
     <restriction
         android:key="processing_mode"

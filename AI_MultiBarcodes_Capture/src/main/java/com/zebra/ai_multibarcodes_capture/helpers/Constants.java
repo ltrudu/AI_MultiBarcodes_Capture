@@ -227,6 +227,9 @@ public class Constants {
     public static final String SHARED_PREFERENCES_FILTERING_REGEX = "SHARED_PREFERENCES_FILTERING_REGEX";
     public static final String SHARED_PREFERENCES_FILTERING_REGEX_DEFAULT = "";
 
+    // Capture Trigger Mode preferences
+    public static final String SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE = "SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE";
+    public static final String SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE_DEFAULT = "press";
 
     public static final int KEYCODE_BUTTON_R1 = 103;
     public static final int KEYCODE_SCAN = 10036;
