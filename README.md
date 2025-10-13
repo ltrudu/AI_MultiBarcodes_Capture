@@ -64,10 +64,6 @@ This enhancement provides greater flexibility in barcode capture workflows, allo
 
 This release delivers a more responsive, efficient, and compatible barcode capture experience, optimized for enterprise-grade performance across Zebra's full device portfolio.
 
-StageNow Barcode to download Version 1.32:
-
-<img width="374" height="372" alt="image" src="https://github.com/user-attachments/assets/f051b546-ac64-4f1f-ae28-76e0a56544b1" />
-
 ### Version 1.30 - 🔍 **Updated Translation Files**
 
 #### 📚 **Wiki Updates:**
