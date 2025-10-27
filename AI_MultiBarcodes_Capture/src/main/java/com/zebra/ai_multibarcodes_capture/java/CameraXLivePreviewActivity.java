@@ -228,8 +228,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                             bindAllCameraUseCases();
                         });
 
-        captureButton = findViewById(R.id.captureButton);
-        captureButton.setOnClickListener(new View.OnClickListener() {
+        binding.captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 captureData();

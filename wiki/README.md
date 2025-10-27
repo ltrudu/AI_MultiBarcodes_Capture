@@ -30,6 +30,9 @@ This wiki provides comprehensive documentation for the AI MultiBarcode Capture s
 ### 🔧 Advanced Configuration
 - **[Troubleshooting Guide](15-Troubleshooting-Guide.md)** - Common issues and solutions
 
+### 🧠 Understanding Vision SDK
+- **[Understanding Vision SDK](18-Understanding-Vision-SDK.md)** - Comprehensive guide to Zebra AI Vision SDK integration, architecture, workflow, and class interactions
+
 ## 🎯 What This System Does
 
 The AI MultiBarcode Capture system is a complete enterprise-grade solution for barcode scanning and management:
