@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">zajem AI Multi Barcodes</string>
     <string name="start_capture_button_text">Začnite zajeti</string>
     <string name="loading_status">Nalaganje aplikacije</string>
     <string name="select_session_file">Izberite datoteko seje ali ustvarite novo.</string>

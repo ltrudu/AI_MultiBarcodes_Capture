@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">acquisizione di codici a barre AI</string>
     <string name="start_capture_button_text">Avvia cattura</string>
     <string name="loading_status">Applicazione di caricamento</string>
     <string name="select_session_file">Selezionare un file di sessione o crearne uno nuovo.</string>

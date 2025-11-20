@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">captura de códigos de barras múltiples ai</string>
     <string name="start_capture_button_text">Captura de inicio</string>
     <string name="loading_status">Aplicación de carga</string>
     <string name="select_session_file">Seleccione un archivo de sesión o cree uno nuevo.</string>

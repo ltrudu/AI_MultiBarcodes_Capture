@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI മൾട്ടി ബാർകോഡുകൾ ക്യാപ്ചർ</string>
     <string name="start_capture_button_text">ക്യാപ്ചർ ആരംഭിക്കുക</string>
     <string name="loading_status">അപ്ലിക്കേഷൻ ലോഡുചെയ്യുന്നു</string>
     <string name="select_session_file">ഒരു സെഷൻ ഫയൽ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയത് സൃഷ്ടിക്കുക.</string>

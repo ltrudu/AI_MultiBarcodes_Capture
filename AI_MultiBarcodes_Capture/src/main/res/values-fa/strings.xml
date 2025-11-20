@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Ai Multi Barcodes ضبط</string>
     <string name="start_capture_button_text">شروع به ضبط کنید</string>
     <string name="loading_status">برنامه بارگیری</string>
     <string name="select_session_file">یک پرونده جلسه را انتخاب کنید یا یک پرونده جدید ایجاد کنید.</string>

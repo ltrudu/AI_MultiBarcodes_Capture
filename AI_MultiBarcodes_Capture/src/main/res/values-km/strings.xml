@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ការចាប់យកពហុមូលដ្ឋានច្រើន</string>
     <string name="start_capture_button_text">ការចាប់យក</string>
     <string name="loading_status">ការផ្ទុកកម្មវិធី</string>
     <string name="select_session_file">ជ្រើសរើសឯកសារវេនឬបង្កើតឯកសារថ្មី។</string>

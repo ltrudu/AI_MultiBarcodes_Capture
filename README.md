@@ -1,8 +1,8 @@
 # AI MultiBarcode Capture Application
 
-[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.33-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.0.5-blue)](https://developer.zebra.com/)
+[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.34-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.1.4-blue)](https://developer.zebra.com/)
 
-[![Apache](https://img.shields.io/badge/Apache-2.4-red)](https://httpd.apache.org/) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![Apache](https://img.shields.io/badge/Apache-2.4-red)](https://httpd.apache.org/) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) [![XAMPP](https://img.shields.io/badge/XAMPP-8.2-orange?logo=xampp&logoColor=white)](https://www.apachefriends.org/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 A comprehensive Android enterprise application demonstrating Zebra AI Vision SDK capabilities for simultaneous multi-barcode detection, tracking, and session-based data management with enterprise deployment features.
 
@@ -15,62 +15,78 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
-### Version 1.33 - 🎯 **Configurable Capture Trigger Mode**
+### Version 1.34 - 📱 **Android 15 Update & Enhanced UI/UX**
 
-**Enhanced scanning flexibility with customizable capture trigger behavior.**
+**Major platform update with comprehensive UI improvements and expanded deployment options.**
 
-#### 🔘 **Capture Trigger Mode:**
+#### 📱 **Android 15 (API 35) Migration:**
 
-• **User-Selectable Trigger Behavior**: Choose between two capture modes to match your workflow preferences:
-  - **On Scan Press** (Default): Capture barcodes immediately when the scan button is pressed
-  - **On Scan Release**: Capture barcodes when the scan button is released
+• **Target SDK Update**: Migrated from Android 14 (API 34) to Android 15 (API 35) for latest platform features and security enhancements
 
-• **Settings Integration**: New "Capture Trigger Mode" section added to Settings Activity, positioned conveniently after the Language selection
+• **Compile SDK Update**: Updated compile SDK to API 35 ensuring compatibility with the latest Android features
 
-• **Managed Configuration Support**: Full EMM/MDM integration allows administrators to remotely configure the capture trigger mode across all deployed devices
+• **Material Design 3 Integration**: Updated to Material Components 1.13.0 for modern Material You design language support
 
-• **Persistent Settings**: Capture mode preference is saved and automatically restored when the app resumes
+• **CameraX Updates**: Enhanced camera functionality with CameraX 1.5.1 for improved stability and performance
 
-• **Real-Time Updates**: Configuration changes applied through managed configuration are reflected immediately without requiring app restart
+#### 🔄 **SDK & Dependency Updates:**
 
-#### 💡 **Use Cases:**
+• **Zebra AI Vision SDK 3.1.4**: Updated from 3.0.5 to 3.1.4 for latest AI detection improvements and bug fixes
 
-• **Press Mode**: Ideal for rapid scanning workflows where immediate feedback is required
-• **Release Mode**: Better for scenarios requiring precise aim before capture confirmation
+• **Dynamic Version Display**: About screen now automatically reflects dependency versions from `libs.versions.toml`:
+  - No more hardcoded version strings
+  - Single source of truth for all dependency versions
+  - BuildConfig fields generated from version catalog
 
-This enhancement provides greater flexibility in barcode capture workflows, allowing users and administrators to optimize the scanning experience for specific operational requirements.
+• **Updated Dependencies**:
+  - CameraX: 1.5.1 (improved camera stability)
+  - Material Components: 1.13.0 (Material Design 3)
+  - Gson: 2.13.2 (JSON parsing improvements)
+  - Android Gradle Plugin: 8.13.0 (latest build tools)
 
-### Version 1.32 - ⚡ **Performance & Compatibility Enhancements**
+#### 🌐 **New Web Server Deployment Option:**
 
-**Optimized barcode detection with enhanced device compatibility and significant performance improvements.**
+• **XAMPP Installation Support**: Alternative deployment method for environments without Docker:
+  - **XAMPP Quick Install**: Pre-configured archive for instant setup - just extract and run
+  - **Automated Scripts**: One-click deployment with `xampp_start_server.bat`
+  - **Flexible Installation**: Supports both `C:\xampp` and `D:\xampp` with automatic detection
+  - **No Admin Rights Required**: Portable installation option for restricted environments
+  - **Full Feature Parity**: Complete web management system without Docker dependency
 
-#### 🚀 **Core Improvements:**
+• **Enhanced Database Initialization**: Improved database setup with verification and automatic schema creation
 
-• **AI Vision SDK 3.0.5**: Updated to the latest Zebra AI Vision SDK for improved accuracy and stability
+• **Smart Path Detection**: Scripts automatically detect XAMPP location (C: or D: drive) without manual configuration
 
-• **Enhanced Device Compatibility**: Added comprehensive runtime processor configuration supporting all available inference targets, ensuring optimal performance on TC53E and other Zebra devices
+• **Comprehensive Documentation**: Complete XAMPP installation guide with troubleshooting and best practices
 
-• **Asynchronous Data Processing**: Refactored filtering operations to execute on dedicated background threads, preventing UI blocking and delivering smoother real-time performance
+• **Updated Build Configuration**: Enhanced `build.gradle.kts` with BuildConfig fields for dynamic version management
 
-• **Decoder Architecture Migration**: Transitioned from Barcode Tracker to Barcode Decoder implementation, resulting in substantially faster barcode detection and reduced processing overhead
+• **Improved About Screen**: Displays real-time dependency versions from version catalog
 
-#### 💡 **Technical Benefits:**
+#### 💡 **Benefits:**
 
-• **Superior Performance**: Optimized detection pipeline reduces latency and improves frame processing throughput
+• **Latest Platform Support**: Access to Android 15 features and security improvements
+• **Modern UI**: Professional appearance with Material Design 3
+• **Better Code Quality**: Reduced duplication and improved maintainability
+• **Flexible Deployment**: Choose between Docker or XAMPP based on your environment
+• **Simplified Maintenance**: Centralized version management and automated updates
+• **Enhanced User Experience**: Consistent navigation and visual design across all screens
 
-• **Broader Device Support**: Runtime processor ordering ensures compatibility across diverse hardware configurations
-
-• **Enhanced Responsiveness**: Background thread architecture maintains fluid UI interaction during intensive scanning operations
-
-This release delivers a more responsive, efficient, and compatible barcode capture experience, optimized for enterprise-grade performance across Zebra's full device portfolio.
-
-### Version 1.30 - 🔍 **Updated Translation Files**
+---
 
 #### 📚 **Wiki Updates:**
 
 • **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of 300+ regex patterns covering web URLs, device identifiers, government IDs, license plates, postal codes, phone numbers, and industry standards
 
 • **🔐 [Understanding Certificates for Beginners](wiki/17-Understanding-Certificates-For-Beginners.md)**: Complete beginner's guide explaining certificate creation, platform-specific requirements, and how to create self-signed certificates that Windows and Android recognize as legitimate Certificate Authority certificates
+
+• **🖥️ [XAMPP Installation Guide](wiki/04-Installation-Guide-XAMPP.md)**: NEW comprehensive guide for Docker-free deployment
+  - **Method 0: XAMPP Quick Install** - Fastest setup via pre-configured 7z archive
+  - Automated installation scripts
+  - Manual step-by-step configuration
+  - Supports C:\xampp or D:\xampp with auto-detection
+  - Detailed troubleshooting section
+
 
 ## 📋 [View Complete Changelog](CHANGELOG.md) for previous versions and detailed release history.
 
@@ -79,7 +95,8 @@ This release delivers a more responsive, efficient, and compatible barcode captu
 | Guide | Description |
 |-------|-------------|
 | **[15-Minute Quick Start](wiki/01-Quick-Start-Guide.md)** | Get the system running in 15 minutes |
-| **[Installation Guide](wiki/03-Installation-Guide.md)** | Complete system installation |
+| **[Docker Installation](wiki/03-Installation-Guide-Docker.md)** | Docker-based deployment (recommended) |
+| **[XAMPP Installation](wiki/04-Installation-Guide-XAMPP.md)** | Docker-free deployment with XAMPP |
 | **[Android App Configuration](wiki/07-Android-App-Configuration.md)** | Configure the mobile barcode scanner |
 | **[Docker WMS Setup](wiki/10-Docker-WMS-Deployment.md)** | Deploy and use the web management system |
 | **[📚 All Documentation](wiki/README.md)** | Complete documentation index |
@@ -89,7 +106,7 @@ This release delivers a more responsive, efficient, and compatible barcode captu
 ### **🔍 Advanced Barcode Detection**
 - **Multi-Barcode Simultaneous Tracking**: Detect and track multiple barcodes in real-time
 - **50+ Barcode Symbologies Support**: Including QR Code, Data Matrix, Code 128, UPC/EAN, PDF417, Aztec, and many more
-- **AI-Powered Recognition**: Leverages Zebra AI Vision SDK v3.0.5 with barcode localizer model v5.0.1
+- **AI-Powered Recognition**: Leverages Zebra AI Vision SDK v3.1.4 with barcode localizer model v5.0.1
 - **Real-time Entity Tracking**: Visual overlay with bounding boxes and decoded values
 - **Configurable Detection Settings**: Customizable symbology enabling/disabling
 
@@ -115,7 +132,7 @@ This release delivers a more responsive, efficient, and compatible barcode captu
 - **🚀 Ultra-Fast Translation Pipeline**: Speed-optimized translation engine with 10-20x performance improvements, batch processing, and parallel execution
 - **🔄 Automated Translation Workflow**: AI-powered translation automation with Google Translate API integration and quality validation
 - **🌍 Dynamic Language Discovery**: Automatic detection and population of available language files in the web interface
-- **Docker Infrastructure**: Production-ready containerized deployment with Apache, MySQL, and phpMyAdmin
+- **Flexible Deployment Options**: Production-ready deployment via Docker (containerized) or XAMPP (standalone) with Apache, MySQL, and phpMyAdmin
 - **Enterprise REST API**: Comprehensive backend with session management, device tracking, and data export
 - **Real-Time Data Synchronization**: Live dashboard updates with 1-second refresh intervals
 - **Multi-Device Support**: Device hostname tracking and identification for enterprise environments

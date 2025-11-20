@@ -173,22 +173,22 @@ public class AboutActivity extends AppCompatActivity {
 
     /**
      * Gets version string for a dependency from gradle version catalog.
-     * This is a placeholder that returns the version from the libs.versions.toml
+     * Versions are dynamically loaded from BuildConfig which reads from libs.versions.toml
      *
      * @param dependencyName Name of the dependency
      * @return Version string
      */
     private String getVersionString(String dependencyName) {
-        // Version strings from gradle/libs.versions.toml
+        // Version strings dynamically loaded from gradle/libs.versions.toml via BuildConfig
         switch (dependencyName) {
             case "zebraAIVisionSdk":
-                return "3.0.2";
+                return BuildConfig.ZEBRA_AI_VISION_SDK_VERSION;
             case "barcodeLocalizer":
-                return "5.0.1";
+                return BuildConfig.BARCODE_LOCALIZER_VERSION;
             case "criticalpermissionhelper":
-                return "0.8.1";
+                return BuildConfig.CRITICAL_PERMISSION_HELPER_VERSION;
             case "datawedgeintentwrapper":
-                return "14.10";
+                return BuildConfig.DATAWEDGE_INTENT_WRAPPER_VERSION;
             default:
                 return "Unknown";
         }

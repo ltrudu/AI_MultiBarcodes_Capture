@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI მრავალ შტრიხების დაჭერა</string>
     <string name="start_capture_button_text">დაიწყეთ დაჭერა</string>
     <string name="loading_status">დატვირთვის პროგრამა</string>
     <string name="select_session_file">შეარჩიეთ სესიის ფაილი ან შექმენით ახალი.</string>

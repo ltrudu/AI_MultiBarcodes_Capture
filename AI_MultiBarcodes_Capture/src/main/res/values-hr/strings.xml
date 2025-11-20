@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI Multi Barcodes hvatanje</string>
     <string name="start_capture_button_text">Počnite hvatati</string>
     <string name="loading_status">Prijava za učitavanje</string>
     <string name="select_session_file">Odaberite datoteku sesije ili stvorite novu.</string>

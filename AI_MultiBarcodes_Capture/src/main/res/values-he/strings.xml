@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">לכידת AI Multi Barcodes</string>
     <string name="start_capture_button_text">התחל לכידת</string>
     <string name="loading_status">יישום טעינה</string>
     <string name="select_session_file">בחר קובץ הפעלה או צור חדש.</string>

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Захоп мульты -штрых -кодаў AI</string>
     <string name="start_capture_button_text">Пачніце захоп</string>
     <string name="loading_status">Дадатак для загрузкі</string>
     <string name="select_session_file">Выберыце файл сеансу альбо стварыце новы.</string>

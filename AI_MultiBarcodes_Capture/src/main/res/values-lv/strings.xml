@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI vairāku svītrkodu uztveršana</string>
     <string name="start_capture_button_text">Sākt uztveršanu</string>
     <string name="loading_status">Iekraušanas lietojumprogramma</string>
     <string name="select_session_file">Atlasiet sesijas failu vai izveidojiet jaunu.</string>

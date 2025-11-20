@@ -207,4 +207,4 @@ services:
 
 ---
 
-**Next Steps**: Review these requirements against your environment, then proceed to the [Installation Guide](03-Installation-Guide.md) for detailed setup instructions.
+**Next Steps**: Review these requirements against your environment, then proceed to the [Installation Guide (Docker)](03-Installation-Guide-Docker.md) for detailed setup instructions.

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI Multi Barcodes ຈັບ</string>
     <string name="start_capture_button_text">ເລີ່ມຈັບ</string>
     <string name="loading_status">ການໂຫຼດໃບສະຫມັກ</string>
     <string name="select_session_file">ເລືອກແຟ້ມ Session ຫຼືສ້າງແບບໃຫມ່.</string>

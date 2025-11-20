@@ -5,12 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
+import android.view.WindowInsets;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -20,10 +21,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.text.TextWatcher;
-import android.text.Editable;
-import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,13 +45,12 @@ import com.zebra.datawedgeprofileintents.DWScannerPluginDisable;
 import com.zebra.datawedgeprofileintents.DWScannerPluginEnable;
 import com.zebra.datawedgeprofileintentshelpers.CreateProfileHelper;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import java.util.HashMap;
 import java.util.List;
@@ -1028,28 +1024,79 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void configureSystemBars() {
         Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        
-        // Set status bar color to zebra blue
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.zebra));
-        
-        // Set navigation bar color to black for consistent theming
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setNavigationBarColor(ContextCompat.getColor(this, android.R.color.black));
-        }
-        
-        // Set status bar text to light (white) to contrast with blue background
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            View decorView = window.getDecorView();
-            // Remove SYSTEM_UI_FLAG_LIGHT_STATUS_BAR to use light (white) text
-            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
-        
-        // Set navigation bar text to light (white)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            View decorView = window.getDecorView();
-            // Remove SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR to use light (white) icons
-            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
+        // 1. Set the Navigation Bar Background Color to Black
+        window.setNavigationBarColor(Color.BLACK);
+
+        // 2. Control the Navigation Bar Icon Color (Light/White)
+        // Ensure the system bars are drawn over the app's content
+        WindowCompat.setDecorFitsSystemWindows(window, false);
+
+        // Use the compatibility controller for managing bar appearance
+        WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(window, window.getDecorView());
+
+        // Request light navigation bar icons (white)
+        // Setting this to 'false' tells the system to use light icons on a dark background.
+        controller.setAppearanceLightNavigationBars(false);
+
+        // Force status bar color
+        View rootLayout = findViewById(R.id.rl_setup_activity);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
+
+            // 1. Set Navigation Bar background color using the WindowInsetsListener on decorView
+            window.getDecorView().setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                @Override
+                public WindowInsets onApplyWindowInsets(View view, WindowInsets insets) {
+                    // Set the background color to the view (decorView) - BLACK for navigation bar
+                    view.setBackgroundColor(Color.BLACK);
+                    return insets;
+                }
+            });
+
+            // 2. Handle Status Bar color and Root Layout padding using ViewCompat
+            ViewCompat.setOnApplyWindowInsetsListener(rootLayout, (v, windowInsets) -> {
+                // Get the system bar insets (status bar and navigation bar area)
+                // Use getInsets(WindowInsetsCompat.Type.systemBars())
+                // equivalent to the Kotlin line
+                androidx.core.graphics.Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+                int statusBarHeight = insets.top;
+
+                // Below code is for adding padding top and bottom (setting margins on the rootLayout)
+                ViewGroup.LayoutParams lp = v.getLayoutParams();
+                if (lp instanceof ViewGroup.MarginLayoutParams) {
+                    ViewGroup.MarginLayoutParams marginLp = (ViewGroup.MarginLayoutParams) lp;
+
+                    // The Kotlin updateLayoutParams<MarginLayoutParams> block is equivalent to this:
+                    marginLp.topMargin = insets.top;
+                    marginLp.bottomMargin = insets.bottom;
+                    v.setLayoutParams(marginLp); // Apply the updated layout params
+                }
+
+
+                // 3. Create and add a separate Status Bar View
+                View statusBarView = new View(getApplicationContext());
+
+                // Below code is for setting color and height to notification bar
+                // Height is the status bar height
+                statusBarView.setLayoutParams(new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        statusBarHeight
+                ));
+
+                // Set the status bar color using ContextCompat
+                statusBarView.setBackgroundColor(getColor(R.color.zebra));
+
+                // Add the view to the activity's content view group
+                addContentView(statusBarView, statusBarView.getLayoutParams());
+
+                // Consume the insets so they aren't passed down further
+                return WindowInsetsCompat.CONSUMED;
+            });
+
+        } else {
+            // For Android 14 and below
+            window.setStatusBarColor(getColor(R.color.zebra));
         }
     }
 

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI олон баркодууд барьж авав</string>
     <string name="start_capture_button_text">Зураг авах</string>
     <string name="loading_status">Ашиглах програм</string>
     <string name="select_session_file">Сешн файлыг сонгоно уу эсвэл шинийг үүсгэнэ үү.</string>

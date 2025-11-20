@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI multi -bare captează</string>
     <string name="start_capture_button_text">Începeți capturarea</string>
     <string name="loading_status">Aplicație de încărcare</string>
     <string name="select_session_file">Selectați un fișier de sesiune sau creați unul nou.</string>

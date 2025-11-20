@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">การจับบาร์โค้ดหลายบาร์</string>
     <string name="start_capture_button_text">เริ่มจับภาพ</string>
     <string name="loading_status">แอปพลิเคชันกำลังโหลด</string>
     <string name="select_session_file">เลือกไฟล์เซสชันหรือสร้างไฟล์ใหม่</string>

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI ama-barcode amaningi wokuthwebula</string>
     <string name="loading_status">ukulayisha application</string>
     <string name="select_session_file">Khetha ifayela leseshini noma ukudala okusha.</string>
     <string name="https_post_mode_active">http (s) imodi yeposi: ilungele ukuthwebula ngaphandle kwamafayela weseshini.</string>

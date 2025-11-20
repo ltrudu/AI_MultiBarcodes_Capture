@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI మల్టీ బార్‌కోడ్‌లు సంగ్రహించబడతాయి</string>
     <string name="start_capture_button_text">సంగ్రహణ ప్రారంభించండి</string>
     <string name="loading_status">అప్లికేషన్ లోడ్ అవుతోంది</string>
     <string name="select_session_file">సెషన్ ఫైల్‌ను ఎంచుకోండి లేదా క్రొత్తదాన్ని సృష్టించండి.</string>

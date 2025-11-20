@@ -2,10 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/cl_session_viewer_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sessionmanagement.SessionViewerActivity">
+    tools:context=".sessionmanagement.SessionViewerActivity"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -13,7 +15,6 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/zebra"
         android:elevation="4dp"
-        android:fitsSystemWindows="true"
         android:theme="@style/Theme.MultiBarcodesCapture_AB"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"

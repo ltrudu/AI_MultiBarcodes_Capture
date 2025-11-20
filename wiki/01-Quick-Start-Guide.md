@@ -211,7 +211,7 @@ Now that you have a working demonstration:
 4. **Develop Custom Integrations**: Use the REST API to integrate with your existing warehouse management systems
 
 Continue with the detailed guides:
-- [Installation Guide](03-Installation-Guide.md) for complete system setup
+- [Installation Guide (Docker)](03-Installation-Guide-Docker.md) for complete system setup
 - [Docker WMS Deployment](10-Docker-WMS-Deployment.md) for web management system
 - [Android App Configuration](07-Android-App-Configuration.md) for advanced device settings
 
