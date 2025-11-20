@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ai kelių brūkšninių kodų fiksavimas</string>
     <string name="start_capture_button_text">Pradėti fiksavimą</string>
     <string name="loading_status">Įkėlimo programa</string>
     <string name="select_session_file">Pasirinkite sesijos failą arba sukurkite naują.</string>

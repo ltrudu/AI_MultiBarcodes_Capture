@@ -5,22 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EntryChoiceActivity"
-    android:background="@color/white">
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:id="@+id/cl_entry_choice_activity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbEntry"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/black"
+        android:background="@color/zebra"
         android:elevation="4dp"
-        android:fitsSystemWindows="true"
         android:textAlignment="center"
-        android:theme="@style/Theme.MultiBarcodesCapture_AB"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/app_name"
-        app:titleTextColor="@color/white"
-        android:backgroundTint="@color/zebra"/>
+        app:titleTextColor="@color/white"/>
 
     <!-- File Mode Grid Layout for Action Cards -->
     <LinearLayout

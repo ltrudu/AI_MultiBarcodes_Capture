@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">એઆઈ મલ્ટિ બારકોડ્સ કેપ્ચર</string>
     <string name="start_capture_button_text">કેપ્ચર પ્રારંભ કરો</string>
     <string name="loading_status">એપ્લિકેશન લોડ કરી રહ્યું છે</string>
     <string name="select_session_file">સત્ર ફાઇલ પસંદ કરો અથવા નવી બનાવો.</string>

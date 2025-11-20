@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI மல்டி பார்கோடுகள் பிடிப்பு</string>
     <string name="start_capture_button_text">பிடிப்பைத் தொடங்குங்கள்</string>
     <string name="loading_status">பயன்பாட்டை ஏற்றுகிறது</string>
     <string name="select_session_file">ஒரு அமர்வு கோப்பைத் தேர்ந்தெடுக்கவும் அல்லது புதிய ஒன்றை உருவாக்கவும்.</string>

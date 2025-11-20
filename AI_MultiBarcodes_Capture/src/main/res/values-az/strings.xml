@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI çox barkod tutma</string>
     <string name="start_capture_button_text">Başlatma başlayın</string>
     <string name="loading_status">Yükləmə tətbiqi</string>
     <string name="select_session_file">Sessiya faylını seçin və ya yenisini yaradın.</string>

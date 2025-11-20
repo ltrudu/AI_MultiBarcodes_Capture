@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ai multi strekkoder fangst</string>
     <string name="start_capture_button_text">Start fangst</string>
     <string name="loading_status">Lasting av applikasjon</string>
     <string name="select_session_file">Velg en øktfil eller opprett en ny.</string>

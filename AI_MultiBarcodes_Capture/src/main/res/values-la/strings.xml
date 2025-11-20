@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AI multi Barcodes captis</string>
     <string name="model_input_size_description">Model input magnitudine est resolutio tua imaginem est resized ad Analysis Analysis. Minores magnitudinum sunt citius uti minus memoria, cum maior magnitudinum potest auxilium deprehendere minor vel distant barcodes, sed etiam utitur magis processus et memoria. Eligere in input mole ad statera celeritas et accurate propter necessitates. Note: Model input magnitudine potest esse nativus in incrementa XXXII per SDK. De options infra represent quidam genericam magnitudinum.</string>
     <string name="inference_type_gpu_description">pro iudicio usus, si DSP non available</string>
     <string name="start_capture_button_text">Satus captis</string>

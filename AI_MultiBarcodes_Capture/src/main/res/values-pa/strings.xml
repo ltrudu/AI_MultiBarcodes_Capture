@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ਅਈ ਮਲਟੀ ਬਾਰਕੋਡਜ਼ ਕੈਪਚਰ</string>
     <string name="start_capture_button_text">ਕੈਪਚਰ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="loading_status">ਲੋਡ ਹੋ ਰਹੀ ਐਪਲੀਕੇਸ਼ਨ</string>
     <string name="select_session_file">ਇੱਕ ਸੈਸ਼ਨ ਫਾਈਲ ਦੀ ਚੋਣ ਕਰੋ ਜਾਂ ਨਵਾਂ ਬਣਾਓ.</string>

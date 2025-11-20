@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI Multi -viivakoodit Kaappaus</string>
     <string name="start_capture_button_text">Aloita sieppaus</string>
     <string name="loading_status">lataussovellus</string>
     <string name="select_session_file">Valitse istuntotiedosto tai luo uusi.</string>

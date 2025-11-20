@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI Multi штрихкоди захоплення</string>
     <string name="start_capture_button_text">Початок захоплення</string>
     <string name="loading_status">Застосування програми</string>
     <string name="select_session_file">Виберіть файл сеансу або створіть новий.</string>

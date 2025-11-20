@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ai multi barcode capture</string>
     <string name="start_capture_button_text">simulan ang pagkuha</string>
     <string name="loading_status">Paglo -load ng Application</string>
     <string name="select_session_file">Pumili ng isang file ng session o lumikha ng bago.</string>

@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".filemanagement.BrowserActivity">
+    tools:context=".filemanagement.BrowserActivity"
+    android:fitsSystemWindows="true">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -123,7 +124,7 @@
             android:id="@+id/tbManage"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/black"
+            android:background="@color/zebra"
             android:elevation="4dp"
             android:fitsSystemWindows="true"
             android:textAlignment="center"
@@ -131,8 +132,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:title="@string/manage_sessions"
-            app:titleTextColor="@color/white"
-            android:backgroundTint="@color/zebra"/>
+            app:titleTextColor="@color/white"/>
 
         <View
             android:id="@+id/viewOverlay"

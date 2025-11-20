@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">АИ за снимање више Барцодова</string>
     <string name="start_capture_button_text">Почните снимање</string>
     <string name="loading_status">Учитавање апликације</string>
     <string name="select_session_file">Изаберите датотеку сесије или створите нови.</string>

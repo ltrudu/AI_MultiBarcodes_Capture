@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="start_capture_button_text">Ξεκινήστε τη σύλληψη</string>
     <string name="loading_status">Εφαρμογή φόρτωσης</string>
     <string name="select_session_file">Επιλέξτε ένα αρχείο συνεδρίας ή δημιουργήστε ένα νέο.</string>

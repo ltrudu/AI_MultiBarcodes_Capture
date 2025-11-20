@@ -8,13 +8,19 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowInsets;
+import android.view.WindowManager;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +34,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.zebra.ai.vision.detector.AIVisionSDK;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityEntryChoiceBinding;
@@ -123,8 +133,12 @@ public class EntryChoiceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityEntryChoiceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // Configure system bar colors
+        configureSystemBars();
 
         // Initializing the AI Vision SDK
         try {
@@ -326,6 +340,86 @@ public class EntryChoiceActivity extends AppCompatActivity {
         );
     }
 
+
+
+    private void configureSystemBars() {
+        Window window = getWindow();
+
+        // 1. Set the Navigation Bar Background Color to Black
+        window.setNavigationBarColor(Color.BLACK);
+
+        // 2. Control the Navigation Bar Icon Color (Light/White)
+        // Ensure the system bars are drawn over the app's content
+        WindowCompat.setDecorFitsSystemWindows(window, false);
+
+        // Use the compatibility controller for managing bar appearance
+        WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(window, window.getDecorView());
+
+        // Request light navigation bar icons (white)
+        // Setting this to 'false' tells the system to use light icons on a dark background.
+        controller.setAppearanceLightNavigationBars(false);
+
+        // Force status bar color
+        View rootLayout = findViewById(R.id.cl_entry_choice_activity);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
+
+            // 1. Set Navigation Bar background color using the WindowInsetsListener on decorView
+            window.getDecorView().setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                @Override
+                public WindowInsets onApplyWindowInsets(View view, WindowInsets insets) {
+                    // Set the background color to the view (decorView) - BLACK for navigation bar
+                    view.setBackgroundColor(Color.BLACK);
+                    return insets;
+                }
+            });
+
+            // 2. Handle Status Bar color and Root Layout padding using ViewCompat
+            ViewCompat.setOnApplyWindowInsetsListener(rootLayout, (v, windowInsets) -> {
+                // Get the system bar insets (status bar and navigation bar area)
+                // Use getInsets(WindowInsetsCompat.Type.systemBars())
+                // equivalent to the Kotlin line
+                androidx.core.graphics.Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+                int statusBarHeight = insets.top;
+
+                // Below code is for adding padding top and bottom (setting margins on the rootLayout)
+                ViewGroup.LayoutParams lp = v.getLayoutParams();
+                if (lp instanceof ViewGroup.MarginLayoutParams) {
+                    ViewGroup.MarginLayoutParams marginLp = (ViewGroup.MarginLayoutParams) lp;
+
+                    // The Kotlin updateLayoutParams<MarginLayoutParams> block is equivalent to this:
+                    marginLp.topMargin = insets.top;
+                    marginLp.bottomMargin = insets.bottom;
+                    v.setLayoutParams(marginLp); // Apply the updated layout params
+                }
+
+
+                // 3. Create and add a separate Status Bar View
+                View statusBarView = new View(getApplicationContext());
+
+                // Below code is for setting color and height to notification bar
+                // Height is the status bar height
+                statusBarView.setLayoutParams(new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        statusBarHeight
+                ));
+
+                // Set the status bar color using ContextCompat
+                statusBarView.setBackgroundColor(getColor(R.color.zebra));
+
+                // Add the view to the activity's content view group
+                addContentView(statusBarView, statusBarView.getLayoutParams());
+
+                // Consume the insets so they aren't passed down further
+                return WindowInsetsCompat.CONSUMED;
+            });
+
+        } else {
+            // For Android 14 and below
+            window.setStatusBarColor(getColor(R.color.zebra));
+        }
+    }
+
     private void updateCards()
     {
         if (eProcessingMode == EProcessingMode.FILE) {
@@ -375,6 +469,9 @@ public class EntryChoiceActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Re-apply system bar appearance to ensure it persists
+        configureSystemBars();
 
         checkCameraPermission();
 

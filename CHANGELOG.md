@@ -2,6 +2,72 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+### Version 1.34 - 📱 **Android 15 Update & Enhanced UI/UX**
+
+**Major platform update with comprehensive UI improvements and expanded deployment options.**
+
+#### 📱 **Android 15 (API 35) Migration:**
+
+• **Target SDK Update**: Migrated from Android 14 (API 34) to Android 15 (API 35) for latest platform features and security enhancements
+
+• **Compile SDK Update**: Updated compile SDK to API 35 ensuring compatibility with the latest Android features
+
+• **Material Design 3 Integration**: Updated to Material Components 1.13.0 for modern Material You design language support
+
+• **CameraX Updates**: Enhanced camera functionality with CameraX 1.5.1 for improved stability and performance
+
+#### 🔄 **SDK & Dependency Updates:**
+
+• **Zebra AI Vision SDK 3.1.4**: Updated from 3.0.5 to 3.1.4 for latest AI detection improvements and bug fixes
+
+• **Dynamic Version Display**: About screen now automatically reflects dependency versions from `libs.versions.toml`:
+  - No more hardcoded version strings
+  - Single source of truth for all dependency versions
+  - BuildConfig fields generated from version catalog
+
+• **Updated Dependencies**:
+  - CameraX: 1.5.1 (improved camera stability)
+  - Material Components: 1.13.0 (Material Design 3)
+  - Gson: 2.13.2 (JSON parsing improvements)
+  - Android Gradle Plugin: 8.13.0 (latest build tools)
+
+#### 🌐 **New Web Server Deployment Option:**
+
+• **XAMPP Installation Support**: Alternative deployment method for environments without Docker:
+  - **XAMPP Quick Install**: Pre-configured archive for instant setup - just extract and run
+  - **Automated Scripts**: One-click deployment with `xampp_start_server.bat`
+  - **Flexible Installation**: Supports both `C:\xampp` and `D:\xampp` with automatic detection
+  - **No Admin Rights Required**: Portable installation option for restricted environments
+  - **Full Feature Parity**: Complete web management system without Docker dependency
+
+• **Enhanced Database Initialization**: Improved database setup with verification and automatic schema creation
+
+• **Smart Path Detection**: Scripts automatically detect XAMPP location (C: or D: drive) without manual configuration
+
+• **Comprehensive Documentation**: Complete XAMPP installation guide with troubleshooting and best practices
+
+• **Updated Build Configuration**: Enhanced `build.gradle.kts` with BuildConfig fields for dynamic version management
+
+• **Improved About Screen**: Displays real-time dependency versions from version catalog
+
+#### 💡 **Benefits:**
+
+• **Latest Platform Support**: Access to Android 15 features and security improvements
+• **Modern UI**: Professional appearance with Material Design 3
+• **Better Code Quality**: Reduced duplication and improved maintainability
+• **Flexible Deployment**: Choose between Docker or XAMPP based on your environment
+• **Simplified Maintenance**: Centralized version management and automated updates
+• **Enhanced User Experience**: Consistent navigation and visual design across all screens
+
+#### 📚 **Wiki Updates:**
+
+• **🖥️ [XAMPP Installation Guide](wiki/04-Installation-Guide-XAMPP.md)**: NEW comprehensive guide for Docker-free deployment
+  - **Method 0: XAMPP Quick Install** - Fastest setup via pre-configured 7z archive
+  - Automated installation scripts
+  - Manual step-by-step configuration
+  - Supports C:\xampp or D:\xampp with auto-detection
+  - Detailed troubleshooting section
+
 ### Version 1.33 - 🎯 **Configurable Capture Trigger Mode**
 
 **Enhanced scanning flexibility with customizable capture trigger behavior.**

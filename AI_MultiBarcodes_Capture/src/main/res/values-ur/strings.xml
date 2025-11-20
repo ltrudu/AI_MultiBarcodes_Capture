@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI ملٹی بارکوڈس کیپچر</string>
     <string name="start_capture_button_text">گرفتاری شروع کریں</string>
     <string name="loading_status">لوڈنگ ایپلی کیشن</string>
     <string name="select_session_file">سیشن فائل منتخب کریں یا کوئی نئی فلم بنائیں۔</string>

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI Multi Barkodes Kapni</string>
     <string name="start_capture_button_text">filloni kapjen</string>
     <string name="loading_status">aplikacioni i ngarkimit</string>
     <string name="select_session_file">Zgjidhni një skedar sesioni ose krijoni një të re.</string>

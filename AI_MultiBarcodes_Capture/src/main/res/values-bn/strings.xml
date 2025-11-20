@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">এআই মাল্টি বারকোড ক্যাপচার</string>
     <string name="start_capture_button_text">ক্যাপচার শুরু করুন</string>
     <string name="loading_status">লোডিং অ্যাপ্লিকেশন</string>
     <string name="select_session_file">একটি সেশন ফাইল নির্বাচন করুন বা একটি নতুন তৈরি করুন।</string>

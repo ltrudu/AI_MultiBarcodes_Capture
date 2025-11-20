@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI Multi Barcodes улавяне</string>
     <string name="start_capture_button_text">Стартиране на улавяне</string>
     <string name="loading_status">приложение за зареждане</string>
     <string name="select_session_file">Изберете файл за сесия или създайте нов.</string>

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI बहु बारकोड क्याप्चर क्याप्चर</string>
     <string name="start_capture_button_text">क्याप्चर सुरु गर्नुहोस्</string>
     <string name="loading_status">लोड गर्दै अनुप्रयोग</string>
     <string name="select_session_file">एक सत्र फाइल चयन गर्नुहोस् वा नयाँ सिर्जना गर्नुहोस्।</string>

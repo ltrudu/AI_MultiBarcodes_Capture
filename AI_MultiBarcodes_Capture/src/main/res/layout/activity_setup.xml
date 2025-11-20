@@ -2,10 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/rl_setup_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".settings.SettingsActivity">
+    android:background="@color/white"
+    tools:context=".settings.SettingsActivity"
+    android:fitsSystemWindows="true">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -14,7 +16,6 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/zebra"
         android:elevation="4dp"
-        android:fitsSystemWindows="true"
         android:theme="@style/Theme.MultiBarcodesCapture_AB"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/activity_settings"

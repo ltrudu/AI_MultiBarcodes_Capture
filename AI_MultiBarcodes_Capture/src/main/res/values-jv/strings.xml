@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">AI Multi Barkod</string>
     <string name="start_capture_button_text">Miwiti dijupuk</string>
     <string name="loading_status">loading aplikasi</string>
     <string name="select_session_file">Pilih file sesi utawa gawe anyar.</string>

@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dataeditor.BarcodeDataEditorActivity">
+    tools:context=".dataeditor.BarcodeDataEditorActivity"
+    android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -13,7 +14,6 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/zebra"
         android:elevation="4dp"
-        android:fitsSystemWindows="true"
         android:theme="@style/Theme.MultiBarcodesCapture_AB"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="Edit Barcode"

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">एआय मल्टी बारकोड्स कॅप्चर</string>
     <string name="start_capture_button_text">कॅप्चर सुरू करा</string>
     <string name="loading_status">लोडिंग अनुप्रयोग</string>
     <string name="select_session_file">सत्र फाइल निवडा किंवा नवीन तयार करा.</string>

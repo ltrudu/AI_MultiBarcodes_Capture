@@ -14,10 +14,16 @@ android {
         applicationId = "com.zebra.ai_multibarcodes_capture.dev"
         minSdk = 34
         targetSdk = 35
-        versionCode = 33
-        versionName = "1.33"
+        versionCode = 34
+        versionName = "1.34"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Add dependency versions to BuildConfig for dynamic display in About screen
+        buildConfigField("String", "ZEBRA_AI_VISION_SDK_VERSION", "\"${libs.versions.zebraAIVisionSdk.get()}\"")
+        buildConfigField("String", "BARCODE_LOCALIZER_VERSION", "\"${libs.versions.barcodeLocalizer.get()}\"")
+        buildConfigField("String", "CRITICAL_PERMISSION_HELPER_VERSION", "\"${libs.versions.criticalpermissionhelper.get()}\"")
+        buildConfigField("String", "DATAWEDGE_INTENT_WRAPPER_VERSION", "\"${libs.versions.datawedgeintentwrapper.get()}\"")
     }
 
     buildTypes {
@@ -29,6 +35,20 @@ android {
             )
         }
     }
+
+    // Configure APK output naming
+    applicationVariants.all {
+        outputs.all {
+            val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+            val versionName = defaultConfig.versionName
+            val versionCode = defaultConfig.versionCode
+            val buildType = buildType.name
+
+            // Format: AI_Multibarcode_Capture-v1.8-release.apk or AI_Multibarcode_Capture-v1.8-debug.apk
+            output.outputFileName = "AI_Multibarcode_Capture-v${versionName}-${buildType}.apk"
+        }
+    }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Capture de codes multi-barres AI</string>
     <string name="start_capture_button_text">Démarrer la capture</string>
     <string name="loading_status">Application de chargement</string>
     <string name="select_session_file">Sélectionnez un fichier de session ou créez un nouveau.</string>

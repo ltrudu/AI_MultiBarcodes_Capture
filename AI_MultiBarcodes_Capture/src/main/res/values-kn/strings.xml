@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ಎಐ ಮಲ್ಟಿ ಬಾರ್‌ಕೋಡ್‌ಗಳು ಸೆರೆಹಿಡಿಯುತ್ತವೆ</string>
     <string name="start_capture_button_text">ಸೆರೆಹಿಡಿಯಲು ಪ್ರಾರಂಭಿಸಿ</string>
     <string name="loading_status">ಅಪ್ಲಿಕೇಶನ್ ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
     <string name="select_session_file">ಸೆಷನ್ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ಹೊಸದನ್ನು ರಚಿಸಿ.</string>

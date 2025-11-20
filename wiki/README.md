@@ -7,7 +7,11 @@ This wiki provides comprehensive documentation for the AI MultiBarcode Capture s
 ### 🚀 Getting Started
 - **[Quick Start Guide](01-Quick-Start-Guide.md)** - Get up and running in 15 minutes
 - **[System Requirements](02-System-Requirements.md)** - Hardware and software prerequisites
-- **[Installation Guide](03-Installation-Guide.md)** - Step-by-step installation process
+- **[Installation Guide (Docker)](03-Installation-Guide-Docker.md)** - Step-by-step Docker installation process
+- **[Installation Guide (XAMPP)](04-Installation-Guide-XAMPP.md)** - Comprehensive XAMPP setup without admin rights
+  - **NEW**: XAMPP Quick Install - Extract pre-configured 7z archive and run (fastest method!)
+  - Automated scripts for rapid deployment
+  - Detailed manual configuration steps
 
 ### 🏗️ Development & Setup
 - **[Web Service Development](05-Web-Service-Development.md)** - Building custom web services for device posts

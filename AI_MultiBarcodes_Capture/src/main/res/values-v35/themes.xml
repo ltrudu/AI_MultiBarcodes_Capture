@@ -1,0 +1,67 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme for Android 15+ -->
+    <style name="Base.Theme.AIMultiBarcodes_Capture" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Forced light theme for consistent appearance -->
+        <item name="colorPrimary">@color/zebra</item>
+        <item name="colorSecondary">@color/zebra</item>
+        <item name="colorTertiary">@color/zebra</item>
+        <item name="android:statusBarColor">@color/zebra</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="colorAccent">@color/zebra</item>
+        <item name="colorControlActivated">@color/zebra</item>
+        <item name="android:colorControlActivated">@color/zebra</item>
+        <!-- Android 15: Explicitly set to false for light status bar icons -->
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <!-- Android 15: Enforce edge-to-edge with proper contrast -->
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <!-- Force light background colors -->
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+    </style>
+
+    <style name="Theme.MultiBarcodesCapture" parent="Base.Theme.AIMultiBarcodes_Capture" />
+
+    <!-- Base application theme with ActionBar for Android 15+ -->
+    <style name="Base.Theme.AIMultiBarcodes_Capture_ActionBar" parent="Theme.Material3.Light">
+        <!-- Forced light theme for consistent appearance -->
+        <item name="actionBarStyle">@style/MyActionBarStyle</item>
+        <item name="toolbarStyle">@style/MyToolbarStyle</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:statusBarColor">@color/zebra</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <!-- Android 15: Explicitly set to false for light status bar icons -->
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <!-- Android 15: Enforce edge-to-edge with proper contrast -->
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <!-- Force light background colors -->
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+    </style>
+
+    <style name="MyActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@color/zebra</item>
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <style name="MyActionBarTitleText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyToolbarStyle" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">@color/white</item>
+        <item name="background">@color/zebra</item>
+    </style>
+
+    <style name="Theme.MultiBarcodesCapture_AB" parent="Base.Theme.AIMultiBarcodes_Capture_ActionBar" />
+</resources>
