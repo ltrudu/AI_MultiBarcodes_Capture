@@ -17,8 +17,10 @@ class WMSApp {
     async init() {
         await this.discoverAvailableLanguages();
         await this.initializeLanguage();
+        this.initializeTheme();
         this.setupEventListeners();
         this.setupLanguageDropdown();
+        this.setupThemeDropdown();
         this.loadSessions();
         this.startAutoRefresh();
     }
@@ -65,6 +67,11 @@ class WMSApp {
         // Language selection
         document.getElementById('language-select').addEventListener('change', async (e) => {
             await this.changeLanguage(e.target.value);
+        });
+
+        // Theme selection
+        document.getElementById('theme-select').addEventListener('change', (e) => {
+            this.changeTheme(e.target.value);
         });
 
         // Note: Event listeners are now attached in attachSessionEventListeners() method
@@ -2054,6 +2061,63 @@ class WMSApp {
             localStorage.setItem('wms_language_preference', languageCode);
         } catch (error) {
             console.warn('Unable to save language preference to localStorage:', error);
+        }
+    }
+
+    // Theme Management Methods
+    initializeTheme() {
+        // Get saved theme preference, default to 'modern'
+        const savedTheme = this.getThemePreference() || 'modern';
+        this.applyTheme(savedTheme);
+    }
+
+    setupThemeDropdown() {
+        const select = document.getElementById('theme-select');
+        if (!select) {
+            return;
+        }
+
+        // Set current selection
+        const savedTheme = this.getThemePreference() || 'modern';
+        select.value = savedTheme;
+    }
+
+    changeTheme(theme) {
+        // Save preference
+        this.saveThemePreference(theme);
+
+        // Apply theme
+        this.applyTheme(theme);
+    }
+
+    applyTheme(theme) {
+        // Find the stylesheet link element
+        const stylesheetLink = document.querySelector('link[rel="stylesheet"][href*="wms-style"]');
+
+        if (stylesheetLink) {
+            // Update the href to point to the selected theme
+            const newHref = `css/wms-style-${theme}.css`;
+            stylesheetLink.href = newHref;
+            console.log(`Theme changed to: ${theme}`);
+        } else {
+            console.error('Stylesheet link not found');
+        }
+    }
+
+    getThemePreference() {
+        try {
+            return localStorage.getItem('wms_theme_preference');
+        } catch (error) {
+            console.warn('Unable to access localStorage for theme preference:', error);
+            return null;
+        }
+    }
+
+    saveThemePreference(theme) {
+        try {
+            localStorage.setItem('wms_theme_preference', theme);
+        } catch (error) {
+            console.warn('Unable to save theme preference to localStorage:', error);
         }
     }
 }
