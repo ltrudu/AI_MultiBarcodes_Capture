@@ -16,6 +16,17 @@ All notable changes to the AI MultiBarcode Capture Application are documented in
 
 • **CameraX Updates**: Enhanced camera functionality with CameraX 1.5.1 for improved stability and performance
 
+#### 🎨 **Web Interface Theming:**
+
+• **Modern/Legacy Theme Selection**: User-selectable visual themes for the web management interface:
+  - **Modern Theme** (Default): Contemporary design with updated visual elements
+  - **Legacy Theme**: Classic interface styling for users preferring traditional appearance
+  - **Persistent Preference**: Theme selection saved to browser localStorage and automatically applied on return visits
+  - **Settings Integration**: Convenient theme selector in Settings modal Configuration section
+  - **Dynamic Switching**: Instant theme application without page reload for seamless user experience
+  - **Theme Management Methods**: Complete theme initialization, switching, and storage implementation
+  - **Automatic Theme Loading**: User's saved theme preference applied on page startup
+
 #### 🔄 **SDK & Dependency Updates:**
 
 • **Zebra AI Vision SDK 3.1.4**: Updated from 3.0.5 to 3.1.4 for latest AI detection improvements and bug fixes
@@ -58,6 +69,7 @@ All notable changes to the AI MultiBarcode Capture Application are documented in
 • **Flexible Deployment**: Choose between Docker or XAMPP based on your environment
 • **Simplified Maintenance**: Centralized version management and automated updates
 • **Enhanced User Experience**: Consistent navigation and visual design across all screens
+• **Customizable Interface**: User-selectable themes for personalized web management experience
 
 #### 📚 **Wiki Updates:**
 

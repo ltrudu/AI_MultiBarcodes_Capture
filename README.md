@@ -44,6 +44,15 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
   - Gson: 2.13.2 (JSON parsing improvements)
   - Android Gradle Plugin: 8.13.0 (latest build tools)
 
+#### 🎨 **Web Interface Theming:**
+
+• **Modern/Legacy Theme Selection**: User-selectable visual themes for the web management interface:
+  - **Modern Theme** (Default): Contemporary design with updated visual elements
+  - **Legacy Theme**: Classic interface styling for users preferring traditional appearance
+  - **Persistent Preference**: Theme selection saved to browser localStorage and automatically applied on return visits
+  - **Settings Integration**: Convenient theme selector in Settings modal Configuration section
+  - **Dynamic Switching**: Instant theme application without page reload for seamless user experience
+
 #### 🌐 **New Web Server Deployment Option:**
 
 • **XAMPP Installation Support**: Alternative deployment method for environments without Docker:
@@ -71,6 +80,7 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 • **Flexible Deployment**: Choose between Docker or XAMPP based on your environment
 • **Simplified Maintenance**: Centralized version management and automated updates
 • **Enhanced User Experience**: Consistent navigation and visual design across all screens
+• **Customizable Interface**: User-selectable themes for personalized web management experience
 
 ---
 
