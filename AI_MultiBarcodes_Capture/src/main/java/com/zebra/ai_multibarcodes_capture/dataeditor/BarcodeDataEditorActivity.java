@@ -23,6 +23,9 @@ import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 
+import android.content.SharedPreferences;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
+
 public class BarcodeDataEditorActivity extends AppCompatActivity {
 
     // Private members to hold values from intent
@@ -45,6 +48,10 @@ public class BarcodeDataEditorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Apply theme before setting content view
+        applyTheme();
+
         setContentView(R.layout.activity_barcode_data_editor);
         
         // Configure system bars
@@ -194,6 +201,17 @@ public class BarcodeDataEditorActivity extends AppCompatActivity {
         resultIntent.putExtra(Constants.EXTRA_QUANTITY, barcodeQuantity);
         setResult(RESULT_OK, resultIntent);
         finish();
+    }
+
+    private void applyTheme() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        if ("modern".equals(theme)) {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
+        } else {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
+        }
     }
 
     @Override

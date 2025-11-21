@@ -15,11 +15,12 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.TAG;
+
 /**
  * Helper class for secure credential storage using Android Keystore
  */
 public class KeystoreHelper {
-    private static final String TAG = "KeystoreHelper";
     private static final String KEYSTORE_ALIAS_USERNAME = "https_username_key";
     private static final String KEYSTORE_ALIAS_PASSWORD = "https_password_key";
     private static final String ANDROID_KEYSTORE = "AndroidKeyStore";

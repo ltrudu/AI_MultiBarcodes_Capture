@@ -11,6 +11,8 @@ import android.util.Log;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.TAG;
+
 /**
  * BroadcastReceiver that handles managed configuration changes.
  * When the app receives a new managed configuration from an EMM/MDM system,
@@ -18,8 +20,6 @@ import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
  */
 public class ManagedConfigurationReceiver extends BroadcastReceiver {
 
-    private static final String TAG = "ManagedConfigReceiver";
-    
     // Action for notifying SettingsActivity about configuration changes
     public static final String ACTION_RELOAD_PREFERENCES = "com.zebra.ai_multibarcodes_capture.RELOAD_PREFERENCES";
 

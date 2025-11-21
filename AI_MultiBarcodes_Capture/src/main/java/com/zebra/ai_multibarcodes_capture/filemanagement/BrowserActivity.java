@@ -29,6 +29,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
+
 public class BrowserActivity extends AppCompatActivity {
 
     private FileAdapter fileAdapter;
@@ -58,6 +60,10 @@ public class BrowserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Apply theme before setting content view
+        applyTheme();
+
         setContentView(R.layout.activity_browser);
 
         Intent intent = getIntent();
@@ -700,6 +706,17 @@ public class BrowserActivity extends AppCompatActivity {
         int visibility = hasFileSelected ? View.VISIBLE : View.GONE;
         btnSelectOneFile.setVisibility(visibility);
         btnShare.setVisibility(visibility);
+    }
+
+    private void applyTheme() {
+        android.content.SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        if ("modern".equals(theme)) {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
+        } else {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
+        }
     }
 
     @Override

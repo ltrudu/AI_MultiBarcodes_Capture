@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#4286f4</color>
+
+    <!-- Legacy Theme Colors (Blue) -->
     <color name="zebra">#FF0073E6</color>
     <color name="pastelbluelight">#FFB6D8F4</color>
+
+    <!-- Modern Theme Colors (Green/Black) -->
+    <color name="zebra_green">#00C851</color>
+    <color name="zebra_dark_green">#00A043</color>
+    <color name="zebra_light_green">#00E85C</color>
+    <color name="zebra_black">#000000</color>
+    <color name="zebra_dark_gray">#1a1a1a</color>
+    <color name="zebra_medium_gray">#2d2d2d</color>
+    <color name="zebra_border">#404040</color>
+    <color name="zebra_border_light">#555555</color>
+    <color name="text_light">#FFFFFF</color>
+    <color name="text_muted">#B0B0B0</color>
+    <color name="text_dark">#E0E0E0</color>
+
+    <!-- Status Colors -->
+    <color name="success_green">#00C851</color>
+    <color name="warning_orange">#FFA726</color>
+    <color name="danger_red">#FF3547</color>
+
+    <!-- Line Colors -->
     <color name="line_color_light">#000000</color> <!-- Black for light theme -->
     <color name="line_color_dark">#FFFFFF</color> <!-- White for dark theme -->
 </resources>

@@ -3,6 +3,8 @@ package com.zebra.ai_multibarcodes_capture.helpers;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 
 public class Constants {
+    public static final String TAG = "AIMBCCapture";
+
     // Sharing provider
     public static final String PROVIDER_AUTHORITY = "com.zebra.ai_multibarcodes_capture.dev.fileprovider";
     public static final String PROVIDER_CACHE_FOLDER = "temp_files";
@@ -29,7 +31,9 @@ public class Constants {
     public static final String SHARED_PREFERENCES_LAST_SESSION_FILE = "lastsessionfile";
     public static final String SHARED_PREFERENCES_PREFIX = "prefix";
     public static final String SHARED_PREFERENCES_EXTENSION = "extension";
-    
+    public static final String SHARED_PREFERENCES_THEME = "theme";
+    public static final String SHARED_PREFERENCES_THEME_DEFAULT = "legacy";
+
     // Barcode symbology preferences
     public static final String SHARED_PREFERENCES_AUSTRALIAN_POSTAL = "AUSTRALIAN_POSTAL";
     public static final boolean SHARED_PREFERENCES_AUSTRALIAN_POSTAL_DEFAULT = EBarcodesSymbologies.AUSTRALIAN_POSTAL.getDefaultStatus();

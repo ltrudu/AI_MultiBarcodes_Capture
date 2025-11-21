@@ -27,19 +27,19 @@ public class LanguageAdapter extends ArrayAdapter<LanguageItem> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return createItemView(position, convertView, parent);
+        return createItemView(position, convertView, parent, R.layout.spinner_language_item);
     }
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return createItemView(position, convertView, parent);
+        return createItemView(position, convertView, parent, R.layout.spinner_language_dropdown_item);
     }
 
-    private View createItemView(int position, View convertView, ViewGroup parent) {
+    private View createItemView(int position, View convertView, ViewGroup parent, int layoutRes) {
         ViewHolder holder;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.spinner_language_item, parent, false);
+            convertView = inflater.inflate(layoutRes, parent, false);
             holder = new ViewHolder();
             holder.flagImageView = convertView.findViewById(R.id.flagImageView);
             holder.languageTextView = convertView.findViewById(R.id.languageTextView);

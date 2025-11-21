@@ -44,6 +44,9 @@ import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
 import com.zebra.ai_multibarcodes_capture.java.CapturedBarcodesActivity;
 
+import android.content.SharedPreferences;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
+
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -90,6 +93,10 @@ public class SessionViewerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Apply theme before setting content view
+        applyTheme();
+
         setContentView(R.layout.activity_session_viewer);
         
         // Configure system bars
@@ -551,6 +558,17 @@ public class SessionViewerActivity extends AppCompatActivity {
         } else {
             // For Android 14 and below
             window.setStatusBarColor(getColor(R.color.zebra));
+        }
+    }
+
+    private void applyTheme() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        if ("modern".equals(theme)) {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
+        } else {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
         }
     }
 

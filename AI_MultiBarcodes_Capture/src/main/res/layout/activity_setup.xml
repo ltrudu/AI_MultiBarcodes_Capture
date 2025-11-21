@@ -5,7 +5,7 @@
     android:id="@+id/rl_setup_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="?android:attr/colorBackground"
     tools:context=".settings.SettingsActivity"
     android:fitsSystemWindows="true">
 
@@ -14,12 +14,10 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/zebra"
+        android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        android:theme="@style/Theme.MultiBarcodesCapture_AB"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/activity_settings"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="?attr/colorOnPrimary" />
 
     <ScrollView
         android:id="@+id/svMain"
@@ -35,6 +33,48 @@
             android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/llTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="?attr/colorPrimary">
+
+            <TextView
+                android:id="@+id/tvThemeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/theme"
+                android:textColor="?attr/colorOnPrimary"
+                android:background="?attr/colorPrimary"
+                android:backgroundTint="?attr/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Spinner
+            android:id="@+id/spinnerTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/spinner_background"
+            android:minHeight="48dp"
+            android:popupBackground="?attr/colorSurface" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/llLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,8 +85,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/zebra"
-            android:backgroundTint="@color/zebra">
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="?attr/colorPrimary">
 
             <TextView
                 android:id="@+id/tvLanguageTitle"
@@ -54,7 +94,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/language"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
+                android:background="?attr/colorPrimary"
+                android:backgroundTint="?attr/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -70,7 +112,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/spinner_background"
             android:minHeight="48dp"
-            android:popupBackground="@color/white" />
+            android:popupBackground="?attr/colorSurface" />
 
     </LinearLayout>
 
@@ -84,8 +126,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/zebra"
-            android:backgroundTint="@color/zebra">
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="?attr/colorPrimary">
 
             <TextView
                 android:id="@+id/tvCaptureTriggerModeTitle"
@@ -93,7 +135,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/capture_trigger_mode"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
+                android:background="?attr/colorPrimary"
+                android:backgroundTint="?attr/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -109,7 +153,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/spinner_background"
             android:minHeight="48dp"
-            android:popupBackground="@color/white" />
+            android:popupBackground="?attr/colorSurface" />
 
     </LinearLayout>
 
@@ -123,8 +167,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/zebra"
-            android:backgroundTint="@color/zebra">
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="?attr/colorPrimary">
 
             <TextView
                 android:id="@+id/tvDataProcessingTitle"
@@ -132,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/data_processing"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -157,7 +201,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/spinner_background"
             android:minHeight="48dp"
-            android:popupBackground="@color/white" />
+            android:popupBackground="?attr/colorSurface" />
 
     </LinearLayout>
 
@@ -172,8 +216,8 @@
             android:id="@+id/llFileProcessingTitle"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:backgroundTint="@color/zebra"
-            android:background="@color/zebra">
+            android:backgroundTint="?attr/colorPrimary"
+            android:background="?attr/colorPrimary">
 
             <TextView
                 android:id="@+id/tvFileProcessingTitle"
@@ -181,7 +225,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/file_processing"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ivToggleFileTypes"
                 app:layout_constraintTop_toTopOf="parent"
@@ -195,7 +239,7 @@
                 android:contentDescription="@string/toggle_file_types"
                 android:padding="12dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                app:tint="@color/white"
+                app:tint="?attr/colorOnPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -251,8 +295,8 @@
                     android:id="@+id/rbTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/zebra"
-                    android:buttonTint="@color/zebra"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:buttonTint="?attr/colorPrimary"
                     android:checked="true"
                     android:text="@string/text_file" />
 
@@ -260,8 +304,8 @@
                     android:id="@+id/rbCSV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/zebra"
-                    android:backgroundTint="@color/zebra"
+                    android:buttonTint="?attr/colorPrimary"
+                    android:backgroundTint="?attr/colorPrimary"
                     android:text="@string/csv_file"
                     android:visibility="visible" />
 
@@ -269,8 +313,8 @@
                     android:id="@+id/rbXSLX"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/zebra"
-                    android:backgroundTint="@color/zebra"
+                    android:buttonTint="?attr/colorPrimary"
+                    android:backgroundTint="?attr/colorPrimary"
                     android:text="@string/excel_file"
                     android:visibility="visible" />
             </RadioGroup>
@@ -291,8 +335,8 @@
             android:id="@+id/llHttpsPostTitle"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/zebra"
-            android:backgroundTint="@color/zebra">
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="?attr/colorPrimary">
 
             <TextView
                 android:id="@+id/tvHttpsPostTitle"
@@ -300,7 +344,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/https_post"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ivToggleHttpsPost"
                 app:layout_constraintTop_toTopOf="parent"
@@ -314,7 +358,7 @@
                 android:contentDescription="@string/toggle_file_types"
                 android:padding="12dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                app:tint="@color/white"
+                app:tint="?attr/colorOnPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -357,7 +401,7 @@
                 android:background="@drawable/badge_background"
                 android:padding="12dp"
                 android:text="Quick Setup: Open WMS website at http://[WMS_IP]:3500 or https://[WMS_IP]:3543 → Click gear icon (top right) → Endpoint Configuration → QR Code button → Scan QR code to auto-fill endpoint"
-                android:textColor="@color/zebra"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="12sp"
                 android:focusable="false"
                 android:clickable="false" />
@@ -372,8 +416,8 @@
         android:id="@+id/llFilteringTitle"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:backgroundTint="@color/zebra"
-        android:background="@color/zebra"
+        android:backgroundTint="?attr/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:layout_marginBottom="10dp">
 
         <TextView
@@ -381,7 +425,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/filtering"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ivToggleFiltering"
@@ -396,7 +440,7 @@
             android:contentDescription="@string/toggle_filtering"
             android:padding="12dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            app:tint="@color/white"
+            app:tint="?attr/colorOnPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -418,7 +462,7 @@
             android:id="@+id/cbEnableFiltering"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/zebra"
+            android:buttonTint="?attr/colorPrimary"
             android:text="@string/enable_filtering"
             android:layout_marginBottom="8dp" />
 
@@ -445,8 +489,8 @@
         android:id="@+id/llSymbologyTitle"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:backgroundTint="@color/zebra"
-        android:background="@color/zebra"
+        android:backgroundTint="?attr/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:layout_marginBottom="10dp">
 
         <TextView
@@ -454,7 +498,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/symbologies"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvSymbologiesBadge"
@@ -474,7 +518,7 @@
             android:paddingEnd="8dp"
             android:paddingBottom="4dp"
             android:text="0"
-            android:textColor="@color/zebra"
+            android:textColor="?attr/colorPrimary"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -490,7 +534,7 @@
             android:contentDescription="@string/toggle_symbologies"
             android:padding="12dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            app:tint="@color/white"
+            app:tint="?attr/colorOnPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -507,322 +551,322 @@
                 android:id="@+id/cbAUSTRALIAN_POSTAL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/australian_postal" />
 
             <CheckBox
                 android:id="@+id/cbAZTEC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/aztec" />
 
             <CheckBox
                 android:id="@+id/cbCANADIAN_POSTAL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/canadian_postal" />
 
             <CheckBox
                 android:id="@+id/cbCHINESE_2OF5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/chinese_2of5" />
 
             <CheckBox
                 android:id="@+id/cbCODABAR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/codabar" />
 
             <CheckBox
                 android:id="@+id/cbCODE11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/code11" />
 
             <CheckBox
                 android:id="@+id/cbCODE39"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/code39" />
 
             <CheckBox
                 android:id="@+id/cbCODE93"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/code93" />
 
             <CheckBox
                 android:id="@+id/cbCODE128"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/code128" />
 
             <CheckBox
                 android:id="@+id/cbCOMPOSITE_AB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/composite_ab" />
 
             <CheckBox
                 android:id="@+id/cbCOMPOSITE_C"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/composite_c" />
 
             <CheckBox
                 android:id="@+id/cbD2OF5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/d2of5" />
 
             <CheckBox
                 android:id="@+id/cbDATAMATRIX"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/datamatrix" />
 
             <CheckBox
                 android:id="@+id/cbDOTCODE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/dotcode" />
 
             <CheckBox
                 android:id="@+id/cbDUTCH_POSTAL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/dutch_postal" />
 
             <CheckBox
                 android:id="@+id/cbEAN_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/ean_8" />
 
             <CheckBox
                 android:id="@+id/cbEAN_13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/ean_13" />
 
             <CheckBox
                 android:id="@+id/cbFINNISH_POSTAL_4S"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/finnish_postal_4s" />
 
             <CheckBox
                 android:id="@+id/cbGRID_MATRIX"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/grid_matrix" />
 
             <CheckBox
                 android:id="@+id/cbGS1_DATABAR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/gs1_databar" />
 
             <CheckBox
                 android:id="@+id/cbGS1_DATABAR_EXPANDED"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/gs1_databar_expanded" />
 
             <CheckBox
                 android:id="@+id/cbGS1_DATABAR_LIM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/gs1_databar_lim" />
 
             <CheckBox
                 android:id="@+id/cbGS1_DATAMATRIX"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/gs1_datamatrix" />
 
             <CheckBox
                 android:id="@+id/cbGS1_QRCODE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/gs1_qrcode" />
 
             <CheckBox
                 android:id="@+id/cbHANXIN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/hanxin" />
 
             <CheckBox
                 android:id="@+id/cbI2OF5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/i2of5" />
 
             <CheckBox
                 android:id="@+id/cbJAPANESE_POSTAL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/japanese_postal" />
 
             <CheckBox
                 android:id="@+id/cbKOREAN_3OF5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/korean_3of5" />
 
             <CheckBox
                 android:id="@+id/cbMAILMARK"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/mailmark" />
 
             <CheckBox
                 android:id="@+id/cbMATRIX_2OF5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/matrix_2of5" />
 
             <CheckBox
                 android:id="@+id/cbMAXICODE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/maxicode" />
 
             <CheckBox
                 android:id="@+id/cbMICROPDF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/micropdf" />
 
             <CheckBox
                 android:id="@+id/cbMICROQR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/microqr" />
 
             <CheckBox
                 android:id="@+id/cbMSI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/msi" />
 
             <CheckBox
                 android:id="@+id/cbPDF417"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/pdf417" />
 
             <CheckBox
                 android:id="@+id/cbQRCODE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/qrcode" />
 
             <CheckBox
                 android:id="@+id/cbTLC39"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/tlc39" />
 
             <CheckBox
                 android:id="@+id/cbTRIOPTIC39"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/trioptic39" />
 
             <CheckBox
                 android:id="@+id/cbUK_POSTAL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/uk_postal" />
 
             <CheckBox
                 android:id="@+id/cbUPC_A"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/upc_a" />
 
             <CheckBox
                 android:id="@+id/cbUPC_E"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/upc_e" />
 
             <CheckBox
                 android:id="@+id/cbUPCE1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/upce1" />
 
             <CheckBox
                 android:id="@+id/cbUSPLANET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/usplanet" />
 
             <CheckBox
                 android:id="@+id/cbUSPOSTNET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/uspostnet" />
 
             <CheckBox
                 android:id="@+id/cbUS4STATE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/us4state" />
 
             <CheckBox
                 android:id="@+id/cbUS4STATE_FICS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/zebra"
+                android:buttonTint="?attr/colorPrimary"
                 android:text="@string/us4state_fics" />
 
         </LinearLayout>
@@ -831,8 +875,8 @@
         android:id="@+id/llAdvancedTitle"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:backgroundTint="@color/zebra"
-        android:background="@color/zebra"
+        android:backgroundTint="?attr/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:layout_marginBottom="10dp">
 
         <TextView
@@ -840,7 +884,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/advanced"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -854,7 +898,7 @@
             android:contentDescription="@string/toggle_advanced"
             android:padding="12dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            app:tint="@color/white"
+            app:tint="?attr/colorOnPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -874,7 +918,7 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="2dp"
-            app:strokeColor="@android:color/darker_gray"
+            app:strokeColor="?android:attr/textColorSecondary"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -888,7 +932,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/model_input_size"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_marginBottom="12dp" />
@@ -910,7 +954,7 @@
                         android:id="@+id/rbSmallInputSize"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/resolution_small"
                         android:layout_marginBottom="4dp" />
 
@@ -919,7 +963,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/resolution_small_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp"
                         android:layout_marginBottom="12dp" />
 
@@ -927,7 +971,7 @@
                         android:id="@+id/rbMediumInputSize"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/resolution_medium"
                         android:checked="true"
                         android:layout_marginBottom="4dp" />
@@ -937,7 +981,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/resolution_medium_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp"
                         android:layout_marginBottom="12dp" />
 
@@ -945,7 +989,7 @@
                         android:id="@+id/rbLargeInputSize"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/resolution_large"
                         android:layout_marginBottom="4dp" />
 
@@ -954,7 +998,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/resolution_large_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp" />
 
                 </RadioGroup>
@@ -969,7 +1013,7 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="2dp"
-            app:strokeColor="@android:color/darker_gray"
+            app:strokeColor="?android:attr/textColorSecondary"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -983,7 +1027,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/camera_resolution_title"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_marginBottom="12dp" />
@@ -1005,7 +1049,7 @@
                         android:id="@+id/rb1MPResolution"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/camera_resolution_1mp"
                         android:layout_marginBottom="4dp" />
 
@@ -1014,7 +1058,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/camera_resolution_1mp_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp"
                         android:layout_marginBottom="12dp" />
 
@@ -1022,7 +1066,7 @@
                         android:id="@+id/rb2MPResolution"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/camera_resolution_2mp"
                         android:checked="true"
                         android:layout_marginBottom="4dp" />
@@ -1032,7 +1076,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/camera_resolution_2mp_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp"
                         android:layout_marginBottom="12dp" />
 
@@ -1040,7 +1084,7 @@
                         android:id="@+id/rb4MPResolution"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/camera_resolution_4mp"
                         android:layout_marginBottom="4dp" />
 
@@ -1049,7 +1093,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/camera_resolution_4mp_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp"
                         android:layout_marginBottom="12dp" />
 
@@ -1057,7 +1101,7 @@
                         android:id="@+id/rb8MPResolution"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/camera_resolution_8mp"
                         android:layout_marginBottom="4dp" />
 
@@ -1066,7 +1110,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/camera_resolution_8mp_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp" />
 
                 </RadioGroup>
@@ -1081,7 +1125,7 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="2dp"
-            app:strokeColor="@android:color/darker_gray"
+            app:strokeColor="?android:attr/textColorSecondary"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -1095,7 +1139,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/inference_processor_type_title"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_marginBottom="12dp" />
@@ -1117,7 +1161,7 @@
                         android:id="@+id/rbDSPInference"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/inference_type_dsp"
                         android:checked="true"
                         android:layout_marginBottom="4dp" />
@@ -1127,7 +1171,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/inference_type_dsp_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp"
                         android:layout_marginBottom="12dp" />
 
@@ -1135,7 +1179,7 @@
                         android:id="@+id/rbGPUInference"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/inference_type_gpu"
                         android:layout_marginBottom="4dp" />
 
@@ -1144,7 +1188,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/inference_type_gpu_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp"
                         android:layout_marginBottom="12dp" />
 
@@ -1152,7 +1196,7 @@
                         android:id="@+id/rbCPUInference"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/zebra"
+                        android:buttonTint="?attr/colorPrimary"
                         android:text="@string/inference_type_cpu"
                         android:layout_marginBottom="4dp" />
 
@@ -1161,7 +1205,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/inference_type_cpu_description"
                         android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp" />
 
                 </RadioGroup>
@@ -1189,7 +1233,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/zebra"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/cancel"
             app:cornerRadius="0dp" />
 
@@ -1200,7 +1244,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/zebra"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/validate"
             app:cornerRadius="0dp" />
     </LinearLayout>

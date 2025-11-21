@@ -5,7 +5,8 @@
     android:orientation="horizontal"
     android:padding="12dp"
     android:gravity="center_vertical"
-    android:minHeight="48dp">
+    android:minHeight="48dp"
+    android:background="?attr/colorSurface">
 
     <TextView
         android:id="@+id/flagImageView"
