@@ -26,8 +26,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.TAG;
+
 public class FileUtil {
-    private static final String TAG = "FileUtil";
     public static File getLatestModifiedFile(String directoryPath, String extension) {
         File directory = new File(directoryPath);
         List<File> files = new ArrayList<>();

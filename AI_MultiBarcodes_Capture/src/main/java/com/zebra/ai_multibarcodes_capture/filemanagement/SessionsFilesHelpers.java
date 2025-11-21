@@ -33,10 +33,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.TAG;
+
 public class SessionsFilesHelpers {
 
-    private static final String TAG = "SessionsFilesHelpers";
-    
     public static SessionData loadData(Context context, String sessionFilePath)
     {
         // Retrieve Today Folder

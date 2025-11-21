@@ -57,6 +57,8 @@ import com.zebra.datawedgeprofileintents.DWProfileBaseSettings;
 import com.zebra.datawedgeprofileintents.DWProfileCommandBase;
 import com.zebra.datawedgeprofileintents.DWScannerPluginDisable;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -92,7 +94,6 @@ import java.util.concurrent.Executors;
 public class CameraXLivePreviewActivity extends AppCompatActivity implements BarcodeAnalyzer.DetectionCallback {
 
     private ActivityCameraXlivePreviewBinding binding;
-    private final String TAG = "CameraXLivePreviewActivityJava";
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
     // BroadcastReceiver to listen for managed configuration reload requests
@@ -162,7 +163,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        // Apply theme before setting content view
+        applyTheme();
+
         // Enable immersive full-screen mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(
@@ -891,6 +895,17 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             }
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+    private void applyTheme() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        if ("modern".equals(theme)) {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
+        } else {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
+        }
     }
 
     @Override

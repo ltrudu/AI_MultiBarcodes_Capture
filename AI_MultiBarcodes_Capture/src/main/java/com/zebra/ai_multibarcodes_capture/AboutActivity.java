@@ -17,6 +17,9 @@ import androidx.core.content.FileProvider;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
+import android.content.SharedPreferences;
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,11 +32,13 @@ import java.io.OutputStream;
  */
 public class AboutActivity extends AppCompatActivity {
 
-    private static final String TAG = "AboutActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Apply theme before setting content view
+        applyTheme();
+
         setContentView(R.layout.activity_about);
 
         // Set up the toolbar and back button
@@ -191,6 +196,17 @@ public class AboutActivity extends AppCompatActivity {
                 return BuildConfig.DATAWEDGE_INTENT_WRAPPER_VERSION;
             default:
                 return "Unknown";
+        }
+    }
+
+    private void applyTheme() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        if ("modern".equals(theme)) {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
+        } else {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
         }
     }
 

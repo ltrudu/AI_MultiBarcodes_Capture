@@ -50,6 +50,9 @@
     <string name="text_file">Text File</string>
     <string name="csv_file">CSV File</string>
     <string name="excel_file">Excel File</string>
+    <string name="theme">Theme</string>
+    <string name="theme_legacy">Legacy</string>
+    <string name="theme_modern">Modern</string>
     <string name="language">Language</string>
     <string name="system_language">System Language</string>
     <string name="validate">Validate</string>

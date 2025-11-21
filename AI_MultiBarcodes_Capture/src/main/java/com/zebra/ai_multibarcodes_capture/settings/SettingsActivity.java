@@ -60,8 +60,6 @@ import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static final String TAG = "SettingsActivity";
-
     private EditText etPrefix, etHttpsEndpoint, etFilteringRegex;
     private RadioButton rbCSV, rbTXT, rbXSLX;
     private ImageView ivToggleSymbologies, ivToggleFileTypes, ivToggleAdvanced, ivToggleHttpsPost, ivToggleFiltering;
@@ -77,7 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
     private boolean isAdvancedExpanded = false;
     private boolean isHttpsPostExpanded = false;
     private boolean isFilteringExpanded = false;
-    private Spinner spinnerLanguage, spinnerProcessingMode, spinnerCaptureTriggerMode;
+    private Spinner spinnerTheme, spinnerLanguage, spinnerProcessingMode, spinnerCaptureTriggerMode;
     private LanguageAdapter languageAdapter;
     private List<LanguageItem> languageList;
     private String pendingLanguageCode = null; // Track pending language changes
@@ -116,6 +114,10 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Apply theme before setting content view
+        applyTheme();
+
         setContentView(R.layout.activity_setup);
         
         // Configure system bars
@@ -159,9 +161,13 @@ public class SettingsActivity extends AppCompatActivity {
         rbGPUInference = findViewById(R.id.rbGPUInference);
         rbCPUInference = findViewById(R.id.rbCPUInference);
         tvSymbologiesBadge = findViewById(R.id.tvSymbologiesBadge);
+        spinnerTheme = findViewById(R.id.spinnerTheme);
         spinnerLanguage = findViewById(R.id.spinnerLanguage);
         spinnerProcessingMode = findViewById(R.id.spinnerProcessingMode);
         spinnerCaptureTriggerMode = findViewById(R.id.spinnerCaptureTriggerMode);
+
+        // Setup theme spinner
+        setupThemeSpinner();
 
         // Setup language spinner
         setupLanguageSpinner();
@@ -599,6 +605,66 @@ public class SettingsActivity extends AppCompatActivity {
         pendingLanguageCode = null;
     }
 
+    private void setupThemeSpinner() {
+        // Create array of theme names
+        String[] themeNames = new String[]{
+            getString(R.string.theme_legacy),
+            getString(R.string.theme_modern)
+        };
+
+        // Create adapter and set to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, themeNames);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerTheme.setAdapter(adapter);
+
+        // Set current selection based on saved preferences
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String currentTheme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        // Set spinner selection: 0 for legacy, 1 for modern
+        int themePosition = currentTheme.equals("modern") ? 1 : 0;
+        spinnerTheme.setSelection(themePosition);
+
+        // Set up selection listener
+        spinnerTheme.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private boolean isFirstSelection = true;
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Skip the first automatic selection when spinner is initialized
+                if (isFirstSelection) {
+                    isFirstSelection = false;
+                    return;
+                }
+
+                // Determine which theme was selected
+                String selectedTheme = (position == 1) ? "modern" : "legacy";
+
+                // Get current theme from preferences
+                SharedPreferences sp = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+                String currentTheme = sp.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+                // Only apply if theme changed
+                if (!selectedTheme.equals(currentTheme)) {
+                    LogUtils.d(TAG, "Theme changed from " + currentTheme + " to " + selectedTheme);
+
+                    // Save the new theme preference
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString(SHARED_PREFERENCES_THEME, selectedTheme);
+                    editor.apply();
+
+                    // Recreate the activity to apply the new theme
+                    recreate();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+    }
+
     private void setupProcessingModeSpinner() {
         // Create array of processing mode display names
         String[] processingModeDisplayNames = new String[EProcessingMode.values().length];
@@ -607,8 +673,8 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         // Create adapter and set to spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, processingModeDisplayNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, processingModeDisplayNames);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerProcessingMode.setAdapter(adapter);
 
         // Set current selection based on saved preferences
@@ -648,8 +714,8 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         // Create adapter and set to spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, captureTriggerModeDisplayNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, captureTriggerModeDisplayNames);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerCaptureTriggerMode.setAdapter(adapter);
 
         // Set current selection based on saved preferences
@@ -1240,6 +1306,17 @@ public class SettingsActivity extends AppCompatActivity {
         } else {
             llFilteringContent.setVisibility(View.GONE);
             ivToggleFiltering.setImageResource(R.drawable.ic_expand_less_24);
+        }
+    }
+
+    private void applyTheme() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        if ("modern".equals(theme)) {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_ActionBar_Modern);
+        } else {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_ActionBar_Legacy);
         }
     }
 }

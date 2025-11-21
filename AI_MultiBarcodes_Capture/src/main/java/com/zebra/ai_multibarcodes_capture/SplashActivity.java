@@ -2,10 +2,12 @@ package com.zebra.ai_multibarcodes_capture;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,7 +20,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
+
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -31,10 +37,13 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        // Apply theme before setting content view
+        applyTheme();
+
         // Configure system bars to match the theme
         configureSystemBars();
-        
+
         setContentView(R.layout.activity_splash);
         tvStatus = findViewById(R.id.tvStatus);
         tvLoading = findViewById(R.id.tvLoading);
@@ -156,6 +165,17 @@ public class SplashActivity extends AppCompatActivity {
                 tvLoading.setText(R.string.loading_status);
             }
         });
+    }
+
+    private void applyTheme() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        if ("modern".equals(theme)) {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
+        } else {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
+        }
     }
 
     @Override

@@ -57,6 +57,7 @@ import com.zebra.ai_multibarcodes_capture.settings.SettingsActivity;
 import java.io.File;
 import java.io.IOException;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.FILE_DEFAULT_EXTENSION;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.FILE_DEFAULT_PREFIX;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_EXTENSION;
@@ -96,7 +97,6 @@ import static com.zebra.ai_multibarcodes_capture.helpers.Constants.ENDPOINT_URI;
 public class EntryChoiceActivity extends AppCompatActivity {
 
     private ActivityEntryChoiceBinding binding;
-    private final String TAG = "EntryChoiceActivity";
     // Define a request code for camera permission
     private static final int REQUEST_CAMERA_PERMISSION = 200;
 
@@ -133,6 +133,9 @@ public class EntryChoiceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Apply theme before setting content view
+        applyTheme();
 
         binding = ActivityEntryChoiceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -618,6 +621,17 @@ public class EntryChoiceActivity extends AppCompatActivity {
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    private void applyTheme() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        if ("modern".equals(theme)) {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
+        } else {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
         }
     }
 

@@ -1,8 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.AIMultiBarcodes_Capture" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Forced light theme for consistent appearance -->
+    <!-- ============================================ -->
+    <!-- LEGACY THEME (Blue - Original) -->
+    <!-- ============================================ -->
+    <style name="Base.Theme.AIMultiBarcodes_Capture.Legacy" parent="Theme.Material3.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
         <item name="colorPrimary">@color/zebra</item>
+        <item name="android:colorPrimary">@color/zebra</item>
         <item name="colorSecondary">@color/zebra</item>
         <item name="colorTertiary">@color/zebra</item>
         <item name="android:statusBarColor">@color/zebra</item>
@@ -12,7 +15,7 @@
         <item name="android:colorControlActivated">@color/zebra</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
-        <!-- Force light background colors -->
+        <!-- Light background colors -->
         <item name="android:colorBackground">@color/white</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/black</item>
@@ -21,39 +24,115 @@
         <item name="android:textColorSecondary">@color/black</item>
     </style>
 
-    <style name="Theme.MultiBarcodesCapture" parent="Base.Theme.AIMultiBarcodes_Capture" />
-
-    <!-- Base application theme with ActionBar. -->
-    <style name="Base.Theme.AIMultiBarcodes_Capture_ActionBar" parent="Theme.Material3.Light">
-        <!-- Forced light theme for consistent appearance -->
-        <item name="actionBarStyle">@style/MyActionBarStyle</item>
-        <item name="toolbarStyle">@style/MyToolbarStyle</item>
+    <style name="Base.Theme.AIMultiBarcodes_Capture_ActionBar.Legacy" parent="Theme.Material3.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--item name="actionBarStyle">@style/MyActionBarStyle.Legacy</item-->
+        <item name="toolbarStyle">@style/MyToolbarStyle.Legacy</item>
+        <item name="colorPrimary">@color/zebra</item>
+        <item name="android:colorPrimary">@color/zebra</item>
+        <item name="colorSecondary">@color/zebra</item>
+        <item name="colorTertiary">@color/zebra</item>
+        <item name="colorAccent">@color/zebra</item>
+        <item name="colorControlActivated">@color/zebra</item>
+        <item name="android:colorControlActivated">@color/zebra</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="android:statusBarColor">@color/zebra</item>
         <item name="android:navigationBarColor">@color/black</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
-        <!-- Force light background colors -->
         <item name="android:colorBackground">@color/white</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:textColorSecondary">@color/black</item>
     </style>
 
-    <style name="MyActionBarStyle" parent="Widget.AppCompat.ActionBar">
+    <style name="MyActionBarStyle.Legacy" parent="Widget.AppCompat.ActionBar">
         <item name="background">@color/zebra</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
 
-    <style name="MyActionBarTitleText" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="MyToolbarStyle" parent="Widget.Material3.Toolbar">
+    <style name="MyToolbarStyle.Legacy" parent="Widget.Material3.Toolbar">
         <item name="titleTextColor">@color/white</item>
         <item name="background">@color/zebra</item>
     </style>
 
-    <style name="Theme.MultiBarcodesCapture_AB" parent="Base.Theme.AIMultiBarcodes_Capture_ActionBar" />
+    <!-- ============================================ -->
+    <!-- MODERN THEME (Green/Black) -->
+    <!-- ============================================ -->
+    <style name="Base.Theme.AIMultiBarcodes_Capture.Modern" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/zebra_light_green</item>
+        <item name="android:colorPrimary">@color/zebra_light_green</item>
+        <item name="colorSecondary">@color/zebra_light_green</item>
+        <item name="colorTertiary">@color/zebra_light_green</item>
+        <item name="android:statusBarColor">@color/zebra_black</item>
+        <item name="android:navigationBarColor">@color/zebra_black</item>
+        <item name="colorAccent">@color/zebra_light_green</item>
+        <item name="colorControlActivated">@color/zebra_light_green</item>
+        <item name="android:colorControlActivated">@color/zebra_light_green</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <!-- Dark background colors -->
+        <item name="android:colorBackground">@color/zebra_black</item>
+        <item name="colorSurface">@color/zebra_black</item>
+        <item name="colorOnSurface">@color/text_light</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="android:textColorPrimary">@color/text_light</item>
+        <item name="android:textColorSecondary">@color/text_muted</item>
+    </style>
+
+    <style name="Base.Theme.AIMultiBarcodes_Capture_ActionBar.Modern" parent="Theme.Material3.Dark">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--item name="actionBarStyle">@style/MyActionBarStyle.Modern</item-->
+        <item name="toolbarStyle">@style/MyToolbarStyle.Modern</item>
+        <item name="colorPrimary">@color/zebra_light_green</item>
+        <item name="android:colorPrimary">@color/zebra_light_green</item>
+        <item name="colorSecondary">@color/zebra_light_green</item>
+        <item name="colorTertiary">@color/zebra_light_green</item>
+        <item name="colorAccent">@color/zebra_light_green</item>
+        <item name="colorControlActivated">@color/zebra_light_green</item>
+        <item name="android:colorControlActivated">@color/zebra_light_green</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:statusBarColor">@color/zebra_black</item>
+        <item name="android:navigationBarColor">@color/zebra_black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:colorBackground">@color/zebra_black</item>
+        <item name="colorSurface">@color/zebra_black</item>
+        <item name="colorOnSurface">@color/text_light</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="android:textColorPrimary">@color/text_light</item>
+        <item name="android:textColorSecondary">@color/text_muted</item>
+    </style>
+
+    <style name="MyActionBarStyle.Modern" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@color/zebra_light_green</item>
+        <item name="titleTextStyle">@style/MyActionBarTitleText.Modern</item>
+    </style>
+
+    <style name="MyToolbarStyle.Modern" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">@color/black</item>
+        <item name="background">@color/zebra_light_green</item>
+    </style>
+
+    <!-- ============================================ -->
+    <!-- Default Theme Aliases (Legacy by default) -->
+    <!-- ============================================ -->
+    <style name="Base.Theme.AIMultiBarcodes_Capture" parent="Base.Theme.AIMultiBarcodes_Capture.Legacy" />
+    <style name="Theme.MultiBarcodesCapture" parent="Base.Theme.AIMultiBarcodes_Capture.Legacy" />
+    <style name="Base.Theme.AIMultiBarcodes_Capture_ActionBar" parent="Base.Theme.AIMultiBarcodes_Capture_ActionBar.Legacy" />
+    <style name="Theme.MultiBarcodesCapture_AB" parent="Base.Theme.AIMultiBarcodes_Capture_ActionBar.Legacy" />
+
+    <!-- Common Styles -->
+    <style name="MyActionBarTitleText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyActionBarTitleText.Modern" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

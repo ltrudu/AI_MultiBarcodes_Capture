@@ -77,6 +77,8 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
+
 public class CapturedBarcodesActivity extends AppCompatActivity {
 
     private static class BarcodeData
@@ -134,9 +136,12 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        // Apply theme before setting content view
+        applyTheme();
+
         Date currentDate = new Date();
-        
+
         setContentView(R.layout.activity_captured_barcodes);
         
         // Configure system bars
@@ -1070,6 +1075,17 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         super.onDestroy();
         if (executorService != null && !executorService.isShutdown()) {
             executorService.shutdown();
+        }
+    }
+
+    private void applyTheme() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+
+        if ("modern".equals(theme)) {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
+        } else {
+            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
         }
     }
 

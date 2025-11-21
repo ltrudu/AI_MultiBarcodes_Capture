@@ -16,6 +16,8 @@ import android.view.View;
 
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.TAG;
+
 /**
  * Custom view that provides an interactive capture zone overlay.
  * Features:
@@ -26,9 +28,7 @@ import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
  * - Enforces boundary constraints to keep capture zone within view bounds
  */
 public class CaptureZoneOverlay extends View {
-    
-    private static final String TAG = "CaptureZoneOverlay";
-    
+
     // Default capture zone properties
     private static final float DEFAULT_ZONE_WIDTH_RATIO = 0.7f;
     private static final float DEFAULT_ZONE_HEIGHT_RATIO = 0.5f;

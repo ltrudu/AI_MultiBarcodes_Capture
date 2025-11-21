@@ -14,9 +14,10 @@ import com.zebra.criticalpermissionshelper.IResultCallbacks;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
+import static com.zebra.ai_multibarcodes_capture.helpers.Constants.TAG;
+
 public class MainApplication extends Application {
 
-    private static final String TAG = "MainApplication";
     private ManagedConfigurationReceiver managedConfigReceiver;
 
     public interface iMainApplicationCallback
@@ -51,19 +52,78 @@ public class MainApplication extends Application {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                CriticalPermissionsHelper.grantPermission(MainApplication.this, EPermissionType.ALL_DANGEROUS_PERMISSIONS, new IResultCallbacks() {
+                // Granting Manage_External_Storage permission
+                LogUtils.i(TAG, "-------------------------------------------------------------");
+                LogUtils.i(TAG, "Granting Manage_External_Storage permission");
+                LogUtils.i(TAG, "-------------------------------------------------------------");
+
+                CriticalPermissionsHelper.grantPermission(MainApplication.this, EPermissionType.MANAGE_EXTERNAL_STORAGE, new IResultCallbacks() {
                     @Override
                     public void onSuccess(String message, String resultXML) {
-                        permissionGranted = true;
                         sErrorMessage = null;
                         if(MainApplication.iMainApplicationCallback != null)
                         {
-                            MainApplication.iMainApplicationCallback.onPermissionSuccess(message);
+                            MainApplication.iMainApplicationCallback.onPermissionDebug("Succeeded aquiring MANAGE_EXTERNAL_STORAGE permission");
                         }
+                        LogUtils.i(TAG, "-------------------------------------------------------------");
+                        LogUtils.i(TAG, "SUCCEEDED Granting MANAGE_EXTERNAL_STORAGE permission");
+                        LogUtils.i(TAG, message);
+                        LogUtils.i(TAG, resultXML);
+                        LogUtils.i(TAG, "-------------------------------------------------------------");
+                        LogUtils.i(TAG, "Granting ALL_DANGEROUS_PERMISSIONS permission");
+                        LogUtils.i(TAG, "-------------------------------------------------------------");
+                        CriticalPermissionsHelper.grantPermission(MainApplication.this, EPermissionType.ALL_DANGEROUS_PERMISSIONS, new IResultCallbacks() {
+                            @Override
+                            public void onSuccess(String message, String resultXML) {
+                                permissionGranted = true;
+                                sErrorMessage = null;
+                                LogUtils.i(TAG, "-------------------------------------------------------------");
+                                LogUtils.i(TAG, "SUCCEEDED Granting ALL_DANGEROUS_PERMISSIONS permission");
+                                LogUtils.i(TAG, message);
+                                LogUtils.i(TAG, resultXML);
+                                LogUtils.i(TAG, "-------------------------------------------------------------");
+                                if(MainApplication.iMainApplicationCallback != null)
+                                {
+                                    MainApplication.iMainApplicationCallback.onPermissionSuccess(message);
+                                }
+                            }
+
+                            @Override
+                            public void onError(String message, String resultXML) {
+                                LogUtils.e(TAG, "-------------------------------------------------------------");
+                                LogUtils.e(TAG, "ERROR Granting ALL_DANGEROUS_PERMISSIONS permission");
+                                LogUtils.e(TAG, message);
+                                LogUtils.e(TAG, resultXML);
+                                LogUtils.e(TAG, "-------------------------------------------------------------");
+
+                                Toast.makeText(MainApplication.this, message, Toast.LENGTH_LONG).show();
+                                permissionGranted = true;
+                                sErrorMessage = message;
+                                if(MainApplication.iMainApplicationCallback != null)
+                                {
+                                    MainApplication.iMainApplicationCallback.onPermissionError(message);
+                                }
+                            }
+
+                            @Override
+                            public void onDebugStatus(String message) {
+                                if(MainApplication.iMainApplicationCallback != null)
+                                {
+                                    MainApplication.iMainApplicationCallback.onPermissionDebug(message);
+                                }
+                            }
+                        });
+
                     }
 
                     @Override
                     public void onError(String message, String resultXML) {
+                        LogUtils.e(TAG, "-------------------------------------------------------------");
+                        LogUtils.e(TAG, "ERROR Granting MANAGE_EXTERNAL_STORAGE permission");
+                        LogUtils.e(TAG, message);
+                        LogUtils.e(TAG, resultXML);
+                        LogUtils.e(TAG, "-------------------------------------------------------------");
+
                         Toast.makeText(MainApplication.this, message, Toast.LENGTH_LONG).show();
                         permissionGranted = true;
                         sErrorMessage = message;
