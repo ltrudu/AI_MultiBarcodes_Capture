@@ -110,6 +110,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
     EExportMode eExportMode = EExportMode.TEXT;
     EProcessingMode eProcessingMode = EProcessingMode.FILE;
     String httpsEndpoint = "";
+    private String currentTheme = null; // Track current theme to detect changes
 
     // BroadcastReceiver to listen for managed configuration reload requests
     private BroadcastReceiver reloadPreferencesReceiver = new BroadcastReceiver() {
@@ -297,7 +298,19 @@ public class EntryChoiceActivity extends AppCompatActivity {
         resultSettings = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result ->{
                     if(result.getResultCode() == RESULT_OK) {
+                        // Check if theme changed before loading preferences
+                        SharedPreferences sp = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+                        String newTheme = sp.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+                        boolean themeChanged = !newTheme.equals(currentTheme);
+
                         loadPreferences();
+
+                        // If theme changed, recreate activity to apply new theme
+                        if (themeChanged) {
+                            recreate();
+                            return;
+                        }
+
                         updateCards();
                         if (eProcessingMode == EProcessingMode.FILE && sessionFilePathString != null && sessionFilePathString.isEmpty() == false) {
                             String sessionExtension = FileUtil.getFileExtension(new File(sessionFilePathString));
@@ -523,6 +536,9 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
         // Load HTTPS endpoint
         httpsEndpoint = sharedPreferences.getString(SHARED_PREFERENCES_HTTPS_ENDPOINT, "");
+
+        // Track current theme
+        currentTheme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
     }
 
     /**

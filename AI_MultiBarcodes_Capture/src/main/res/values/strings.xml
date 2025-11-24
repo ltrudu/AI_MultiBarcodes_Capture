@@ -488,7 +488,7 @@
         <item>press</item>
         <item>release</item>
     </string-array>
-
+    
     <!-- Capture Mode -->
     <string name="capture_trigger_mode">Capture Trigger Mode</string>
     <string name="capture_mode_press">On Scan Press</string>
