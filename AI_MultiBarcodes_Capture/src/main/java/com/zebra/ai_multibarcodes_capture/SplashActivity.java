@@ -7,22 +7,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
-import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
@@ -106,7 +99,7 @@ public class SplashActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         
         // Set status bar color to zebra blue
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.zebra));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.zebra_pantone_285));
         
         // Set navigation bar color to black for consistent theming
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

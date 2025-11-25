@@ -546,7 +546,7 @@ public class SessionViewerActivity extends AppCompatActivity {
                 ));
 
                 // Set the status bar color using ContextCompat
-                statusBarView.setBackgroundColor(getColor(R.color.zebra));
+                statusBarView.setBackgroundColor(androidx.appcompat.R.attr.colorPrimary);
 
                 // Add the view to the activity's content view group
                 addContentView(statusBarView, statusBarView.getLayoutParams());
@@ -557,7 +557,7 @@ public class SessionViewerActivity extends AppCompatActivity {
 
         } else {
             // For Android 14 and below
-            window.setStatusBarColor(getColor(R.color.zebra));
+            window.setStatusBarColor(androidx.appcompat.R.attr.colorPrimary);
         }
     }
 

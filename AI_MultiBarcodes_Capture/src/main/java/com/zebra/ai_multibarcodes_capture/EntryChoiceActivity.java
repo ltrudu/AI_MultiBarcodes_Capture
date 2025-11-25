@@ -432,7 +432,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
         } else {
             // For Android 14 and below
-            window.setStatusBarColor(getColor(R.color.zebra));
+            window.setStatusBarColor(androidx.appcompat.R.attr.colorPrimary);
         }
     }
 
