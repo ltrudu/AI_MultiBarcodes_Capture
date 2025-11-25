@@ -109,7 +109,7 @@
     <string name="error_reported">Virhe ilmoitettu: %s</string>
     <string name="error_reading_session_file">Virheen lukemisistuntotiedosto: %s</string>
     <string name="error_reading_csv_session_file">Virhe CSV -istuntotiedoston lukeminen: %s</string>
-    <string name="error_reading_excel_session_file">GS1 DataMatrix</string>
+    <string name="error_reading_excel_session_file">Virhe luettaessa Excel-istuntotiedostoa: %s</string>
     <string name="resolution_small">640 x 640 (pieni)</string>
     <string name="resolution_small_description">nopein; Paras suurille tai lähikuvalle viivakoodille</string>
     <string name="resolution_medium">1280 x 1280 (keskipitkä)</string>
@@ -184,4 +184,11 @@
     <string name="menu_manage_sessions">Hallitse istuntoja</string>
     <string name="menu_new_folder">Uusi kansio</string>
     <string name="processing_mode_file">📁 tiedosto</string>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="theme">Teema</string>
+    <string name="theme_legacy">Perintö</string>
+    <string name="theme_modern">Moderni</string>
+    <string name="capture_trigger_mode">Capture Trigger Mode</string>
+    <string name="capture_mode_press">Skannauksessa Paina</string>
+    <string name="capture_mode_release">Skannaus vapautetaan</string>
 </resources>

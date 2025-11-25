@@ -70,7 +70,7 @@
     <string name="error_creating_new_session">አዲስ ክፍለ ጊዜ መፍጠር ስህተት%s</string>
     <string name="missing_filename">የሱቅ ፋይል ስም</string>
     <string name="camera_permission_required">ይህንን ባህሪ ለመጠቀም ለመጠቀም የካሜራ ፈቃድ ያስፈልጋል</string>
-    <string name="entity_tracker_creation_time">የአካል መከታተያ ባርኮደር አሞሌ</string>
+    <string name="entity_tracker_creation_time">የአካል ብቃት እንቅስቃሴ መከታተያ ባርኮደር () OBJ የፍጥረት ጊዜ = %d ሚሊ ፕሬስ</string>
     <string name="barcode_decoder_disposed">ባርኮድ ዲጂአር ይደረጋል</string>
     <string name="orientation_unlocked">ለ%s ሁናቴ ተከፍቷል</string>
     <string name="applied_viewfinder_resize_immediately">የተተገበረ አመለካከት ወዲያውኑ ዝርዝሮችን ወዲያውኑ ይቀየራል</string>
@@ -109,7 +109,7 @@
     <string name="delete_item">ንጥል ነገር</string>
     <string name="value_label">እሴት:%s</string>
     <string name="symbology_label">SHITOCOCOCT:%s</string>
-    <string name="quantity_label">ብዛቶች:% መ</string>
+    <string name="quantity_label">ብዛት: - %d</string>
     <string name="date_label">የቀን ቀን:%s</string>
     <string name="success_granting_permissions">ፈቃዶች መስጠት.</string>
     <string name="session_data_merged">የክፍለ-ጊዜ ውሂብ ተካቷል.</string>
@@ -184,4 +184,11 @@
     <string name="inference_type_cpu_description">ለሙከራ አገልግሎት የሚካሄደ ከሆነ እና ጂፒዩ የማይገኙ ከሆነ</string>
     <string name="menu_manage_sessions">ስፖንሰርኮሎችን ያቀናብሩ</string>
     <string name="menu_new_folder">አዲስ አቃፊ</string>
+    <string name="app_name">AI ብዙ የአሞሌ ኮድ ኮዶች</string>
+    <string name="theme">ጭብጥ</string>
+    <string name="theme_legacy">ቅርስ</string>
+    <string name="theme_modern">ዘመናዊ</string>
+    <string name="capture_trigger_mode">ቀረጻ ትሪጅ ሁነታን</string>
+    <string name="capture_mode_press">በቅኝት ፕሬስ ላይ</string>
+    <string name="capture_mode_release">በፍተሻ ላይ</string>
 </resources>

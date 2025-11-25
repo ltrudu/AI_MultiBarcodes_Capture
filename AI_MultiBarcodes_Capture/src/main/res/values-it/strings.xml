@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Avvia cattura</string>
     <string name="loading_status">Applicazione di caricamento</string>
@@ -184,4 +184,11 @@
     <string name="activity_settings">Impostazioni</string>
     <string name="about_developer_name">Laurent Trudu</string>
     <string name="menu_new_folder">Nuova cartella</string>
+    <string name="app_name">Acquisizione di codici a barre multipli AI</string>
+    <string name="theme">Tema</string>
+    <string name="theme_legacy">Eredità</string>
+    <string name="theme_modern">Moderno</string>
+    <string name="capture_trigger_mode">Modalità di attivazione della cattura</string>
+    <string name="capture_mode_press">Durante la scansione Premere</string>
+    <string name="capture_mode_release">Al rilascio della scansione</string>
 </resources>

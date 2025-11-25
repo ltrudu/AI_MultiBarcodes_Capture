@@ -172,7 +172,7 @@
     <string name="start_capture">filloni kapjen</string>
     <string name="view_session_data">shikoni të dhënat e sesionit</string>
     <string name="csv_file">skedari CSV</string>
-    <string name="error_file_does_not_exist">depo github</string>
+    <string name="error_file_does_not_exist">Gabim, skedari nuk ekziston: %s</string>
     <string name="camera_resolution_description">dosje e re</string>
     <string name="inference_processor_type_title">konkluzioni (procesori) lloji</string>
     <string name="about_developer_name">Laurent Trudu</string>
@@ -181,4 +181,14 @@
     <string name="https_endpoint">HTTP (s) Pika e Fundit</string>
     <string name="about_repository">depo github</string>
     <string name="menu_new_folder">dosje e re</string>
+    <string name="app_name">Regjistrimi i shumë kodeve të AI</string>
+    <string name="theme">Tema</string>
+    <string name="theme_legacy">Trashëgimia</string>
+    <string name="theme_modern">Moderne</string>
+    <string name="error_could_not_open_file">Gabim, skedari nuk mund të hapej: %s</string>
+    <string name="error_file_is_empty">Gabim, skedari është bosh: %s</string>
+    <string name="camera_resolution_title">Rezolucioni</string>
+    <string name="capture_trigger_mode">Modaliteti i aktivizimit të kapjes</string>
+    <string name="capture_mode_press">Në Skanim Shtypni</string>
+    <string name="capture_mode_release">Në lëshimin e skanimit</string>
 </resources>

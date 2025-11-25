@@ -73,7 +73,7 @@
     <string name="error_creating_new_session">പുതിയ സെഷൻ സൃഷ്ടിക്കുന്നതിൽ പിശക്:%s</string>
     <string name="missing_filename">ഫയൽ നാമം നഷ്ടമായി</string>
     <string name="camera_permission_required">ഈ സവിശേഷത ഉപയോഗിക്കുന്നതിന് ക്യാമറ അനുമതി ആവശ്യമാണ്</string>
-    <string name="entity_tracker_creation_time">എന്റിറ്റി ട്രാക്കർ ബാർകോഡെഡെകോഡർ () ഒബ്ജക്റ്റ് സൃഷ്ടിക്കൽ സമയം =% ഡി മില്ലി സെക്റ്റ്</string>
+    <string name="entity_tracker_creation_time">എൻ്റിറ്റി ട്രാക്കർ ബാർകോഡ്ഡികോഡർ() obj സൃഷ്‌ടിക്കുന്ന സമയം =%d മില്ലി സെക്കൻ്റ്</string>
     <string name="barcode_decoder_disposed">ബാർകോഡ് ഡീകോഡർ നീക്കംചെയ്യുന്നു</string>
     <string name="orientation_unlocked">%s മോഡിനായി ഓറിയന്റേഷൻ അൺലോക്കുചെയ്തു</string>
     <string name="applied_viewfinder_resize_immediately">അപ്ലൈഡ് വ്യൂഫൈൻഡർ സ്പെസികൾ ഉടനടി വലുപ്പം മാറ്റുക</string>
@@ -81,8 +81,8 @@
     <string name="applied_pending_viewfinder_resize">സംഭരിച്ച മൂല്യങ്ങളിൽ നിന്ന് ഡാറ്റ വലുപ്പം മാറ്റുക</string>
     <string name="entity_tracker_ready">എന്റിറ്റിബാർകോഡെട്രാക്കർ തയ്യാറാണ്, തീർച്ചപ്പെടുത്തിയിട്ട കോൺഫിഗറേഷനുകൾ പ്രയോഗിക്കുന്നു</string>
     <string name="handle_view_entity_result">വ്യൂ എന്റിറ്റി കൈകാര്യം ചെയ്യുക - ഫലം ലഭിച്ചു</string>
-    <string name="entity_tracker_decoder_available">എന്റിറ്റിബാർകോഡെറ്റക്കർ ഡീകോഡർ ലഭ്യമാണ്, എന്റിറ്റികൾ എണ്ണം:% സെ</string>
-    <string name="processing_entities">എന്റിറ്റി കാഴ്ചയ്ക്കായി% ഡി എന്റിറ്റികൾ പ്രോസസ്സ് ചെയ്യുക</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker ഡീകോഡർ ലഭ്യമാണ്, എൻ്റിറ്റികളുടെ എണ്ണം: %s</string>
+    <string name="processing_entities">എൻ്റിറ്റി കാഴ്‌ചയ്‌ക്കായി %d എൻ്റിറ്റികൾ പ്രോസസ്സ് ചെയ്യുന്നു</string>
     <string name="rendered_entities">എന്റിറ്റി കാഴ്ചയിൽ പ്രവേശിച്ചു</string>
     <string name="symbologies">NIMELYS</string>
     <string name="advanced">വിപുലമായത്</string>
@@ -110,8 +110,8 @@
     <string name="toggle_filtering">ഫിൽട്ടറിംഗ് ടോഗിൾ ചെയ്യുക</string>
     <string name="edit_item">ഇനം എഡിറ്റുചെയ്യുക</string>
     <string name="delete_item">ഇനം ഇല്ലാതാക്കുക</string>
-    <string name="value_label">മൂല്യം:% സെ</string>
-    <string name="symbology_label">SCH.</string>
+    <string name="value_label">മൂല്യം: %s</string>
+    <string name="symbology_label">സിംബോളജി: %s</string>
     <string name="quantity_label">അളവ്:%d</string>
     <string name="date_label">തീയതി:%s</string>
     <string name="success_granting_permissions">വിജയ പ്ലംസ് അനുമതികൾ.</string>
@@ -184,4 +184,11 @@
     <string name="filtering">ഫിൽട്ടറിംഗ്</string>
     <string name="enable_filtering">ഫിൽട്ടറിംഗ് പ്രവർത്തനക്ഷമമാക്കുക</string>
     <string name="regular_expression">പതിവ് എക്സ്പ്രഷൻ</string>
-    </resources>
+    <string name="app_name">AI മൾട്ടി ബാർകോഡ് ക്യാപ്ചർ</string>
+    <string name="theme">തീം</string>
+    <string name="theme_legacy">ലെഗസി</string>
+    <string name="theme_modern">ആധുനികം</string>
+    <string name="capture_trigger_mode">ക്യാപ്‌ചർ ട്രിഗർ മോഡ്</string>
+    <string name="capture_mode_press">സ്കാൻ അമർത്തുക</string>
+    <string name="capture_mode_release">സ്കാൻ റിലീസിൽ</string>
+</resources>

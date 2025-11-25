@@ -72,7 +72,7 @@
     <string name="error_creating_new_session">ਨਵਾਂ ਸ਼ੈਸ਼ਨ ਬਣਾਉਣ ਦੌਰਾਨ ਗਲਤੀ:%s</string>
     <string name="missing_filename">ਫਾਇਲ ਨਾਂ ਗੁੰਮ ਗਿਆ ਹੈ</string>
     <string name="camera_permission_required">ਇਸ ਵਿਸ਼ੇਸ਼ਤਾ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ ਕੈਮਰਾ ਇਜ਼ਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ</string>
-    <string name="entity_tracker_creation_time">ਇਕਾਈ ਦਾ ਟ੍ਰੈਕਰ ਬਾਰਕੋਡੇਡੈਡੇਕੋਡਰ () ਓਪਰੇਸ਼ਨ ਟਾਈਮ =% ਡੀ ਮਿਲਿ ਸੈਕਿੰਡ</string>
+    <string name="entity_tracker_creation_time">ਇਕਾਈ ਟਰੈਕਰ ਬਾਰਕੋਡ ਡੀਕੋਡਰ() ਵਸਤੂ ਬਣਾਉਣ ਦਾ ਸਮਾਂ =%d ਮਿਲੀ ਸਕਿੰਟ</string>
     <string name="barcode_decoder_disposed">ਬਾਰਕੋਡ ਡੀਕੋਡਰ ਨਿਪਟਾਰਾ ਕੀਤਾ ਗਿਆ ਹੈ</string>
     <string name="orientation_unlocked">ਸਥਿਤੀ%s ਮੋਡ ਲਈ ਅਨਲੌਕ ਕੀਤੀ ਗਈ</string>
     <string name="applied_viewfinder_resize_immediately">ਲਾਗੂ ਕੀਤੇ ਝਲਕ ਨੂੰ ਤੁਰੰਤ ਤੁਰੰਤ</string>
@@ -184,4 +184,11 @@
     <string name="enable_filtering">ਫਿਲਟਰਿੰਗ ਯੋਗ</string>
     <string name="regular_expression">ਨਿਯਮਤ ਸਮੀਕਰਨ</string>
     <string name="text_file">ਟੈਕਸਟ ਫਾਈਲ</string>
+    <string name="app_name">AI ਮਲਟੀ ਬਾਰਕੋਡ ਕੈਪਚਰ</string>
+    <string name="theme">ਥੀਮ</string>
+    <string name="theme_legacy">ਵਿਰਾਸਤ</string>
+    <string name="theme_modern">ਆਧੁਨਿਕ</string>
+    <string name="capture_trigger_mode">ਟਰਿੱਗਰ ਮੋਡ ਕੈਪਚਰ ਕਰੋ</string>
+    <string name="capture_mode_press">ਸਕੈਨ ਪ੍ਰੈਸ \'ਤੇ</string>
+    <string name="capture_mode_release">ਸਕੈਨ ਰੀਲੀਜ਼ \'ਤੇ</string>
 </resources>

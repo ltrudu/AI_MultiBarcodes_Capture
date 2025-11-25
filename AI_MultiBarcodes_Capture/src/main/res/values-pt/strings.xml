@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Comece a capturar</string>
     <string name="loading_status">Aplicação de carregamento</string>
@@ -184,4 +184,11 @@
     <string name="about_repository">Repositório do GitHub</string>
     <string name="menu_settings">Configurações</string>
     <string name="menu_new_folder">Nova pasta</string>
+    <string name="app_name">Captura de vários códigos de barras AI</string>
+    <string name="theme">Tema</string>
+    <string name="theme_legacy">Legado</string>
+    <string name="theme_modern">Moderno</string>
+    <string name="capture_trigger_mode">Modo de disparo de captura</string>
+    <string name="capture_mode_press">Ao digitalizar, pressione</string>
+    <string name="capture_mode_release">Na liberação da digitalização</string>
 </resources>

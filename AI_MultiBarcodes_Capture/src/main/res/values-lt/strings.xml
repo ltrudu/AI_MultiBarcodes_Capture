@@ -76,7 +76,7 @@
     <string name="entity_tracker_ready">„EntityBarCodetracker“ yra paruoštas, taikydamas laukiančias konfigūracijas</string>
     <string name="handle_view_entity_result">„Hand Hand View“ subjektas - gautas rezultatas</string>
     <string name="entity_tracker_decoder_available">„EntityBarCodetracker“ dekoderis galimas, subjektų skaičius: %s</string>
-    <string name="processing_entities">PRIEMONĖS DALYVAI</string>
+    <string name="processing_entities">Apdorojami %d objektai objekto rodiniui</string>
     <string name="rendered_entities">Pateikiami subjektai „Entity View“</string>
     <string name="symbologies">Simbologijos</string>
     <string name="advanced">Išplėstinė</string>
@@ -184,4 +184,11 @@
     <string name="about_dependencies">priklausomybės</string>
     <string name="menu_new_folder">Naujas aplankas</string>
     <string name="processing_mode_file">📁 failas</string>
+    <string name="app_name">AI kelių brūkšninių kodų fiksavimas</string>
+    <string name="theme">Tema</string>
+    <string name="theme_legacy">Palikimas</string>
+    <string name="theme_modern">Modernus</string>
+    <string name="capture_trigger_mode">Užfiksavimo paleidimo režimas</string>
+    <string name="capture_mode_press">Nuskaitydami paspauskite</string>
+    <string name="capture_mode_release">Išleidus nuskaitymą</string>
 </resources>

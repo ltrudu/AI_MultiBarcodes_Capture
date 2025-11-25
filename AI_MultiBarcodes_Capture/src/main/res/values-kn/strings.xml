@@ -47,12 +47,12 @@
     <string name="folder_path_missing">ಫೋಲ್ಡರ್ ಮಾರ್ಗವು ಕಾಣೆಯಾಗಿದೆ!</string>
     <string name="folder_path_missing_toast">ಫೋಲ್ಡರ್ ಮಾರ್ಗ ಕಾಣೆಯಾಗಿದೆ !!!</string>
     <string name="error_could_not_create_file">ದೋಷ, ಫೈಲ್ ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: %s</string>
-    <string name="error_could_not_open_file">ದೋಷ, ಫೈಲ್ ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: %ಸೆ</string>
+    <string name="error_could_not_open_file">ದೋಷ, ಫೈಲ್ ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: %s</string>
     <string name="error_file_does_not_exist">ದೋಷ, ಫೈಲ್ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ: %s</string>
     <string name="error_file_is_empty">ದೋಷ, ಫೈಲ್ ಖಾಲಿಯಾಗಿದೆ: %s</string>
     <string name="error_loading_data">ದೋಷ, ಫೈಲ್‌ನಲ್ಲಿ ಡೇಟಾವನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: %s</string>
     <string name="file_saved_at">ಫೈಲ್ ಅನ್ನು ಇಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ: %s</string>
-    <string name="error_saving_file">ದೋಷ ಉಳಿತಾಯ ಫೈಲ್: %ಸೆ</string>
+    <string name="error_saving_file">ಫೈಲ್ ಉಳಿಸುವಲ್ಲಿ ದೋಷ: %s</string>
     <string name="error_saving_last_selected_file">ಕೊನೆಯ ಆಯ್ದ ಫೈಲ್ ಅನ್ನು ಉಳಿಸುವಲ್ಲಿ ದೋಷ</string>
     <string name="settings_saved_successfully">ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲಾಗಿದೆ</string>
     <string name="please_select_file_not_folder">ದಯವಿಟ್ಟು ಫೈಲ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿ, ಫೋಲ್ಡರ್ ಅಲ್ಲ.</string>
@@ -71,7 +71,7 @@
     <string name="error_creating_new_session">ಹೊಸ ಅಧಿವೇಶನವನ್ನು ರಚಿಸುವಲ್ಲಿ ದೋಷ: %s</string>
     <string name="missing_filename">ಕಾಣೆಯಾದ ಫೈಲ್ ಹೆಸರು</string>
     <string name="camera_permission_required">ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಬಳಸಲು ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ</string>
-    <string name="entity_tracker_creation_time">ಎಂಟಿಟಿ ಟ್ರ್ಯಾಕರ್ ಬಾರ್‌ಕೋಡೆಕೋಡರ್ () ಒಬಿಜೆ ರಚನೆ ಸಮಯ =%ಡಿ ಮಿಲ್ಲಿ ಸೆಕೆಂಡ್</string>
+    <string name="entity_tracker_creation_time">ಎಂಟಿಟಿ ಟ್ರ್ಯಾಕರ್ ಬಾರ್‌ಕೋಡ್ ಡಿಕೋಡರ್() obj ಸೃಷ್ಟಿ ಸಮಯ =%d ಮಿಲಿ ಸೆಕೆಂಡ್</string>
     <string name="barcode_decoder_disposed">ಬಾರ್‌ಕೋಡ್ ಡಿಕೋಡರ್ ವಿಲೇವಾರಿ ಮಾಡಲಾಗಿದೆ</string>
     <string name="orientation_unlocked">%s ಮೋಡ್‌ಗೆ ದೃಷ್ಟಿಕೋನವನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಲಾಗಿದೆ</string>
     <string name="applied_viewfinder_resize_immediately">ಅನ್ವಯಿಕ ವ್ಯೂಫೈಂಡರ್ ತಕ್ಷಣವೇ ಸ್ಪೆಕ್ಸ್ ಅನ್ನು ಮರುಗಾತ್ರಗೊಳಿಸುತ್ತದೆ</string>
@@ -79,8 +79,8 @@
     <string name="applied_pending_viewfinder_resize">ಸಂಗ್ರಹಿಸಿದ ಮೌಲ್ಯಗಳಿಂದ ಬಾಕಿ ಉಳಿದಿರುವ ವ್ಯೂಫೈಂಡರ್ ಡೇಟಾವನ್ನು ಮರುಗಾತ್ರಗೊಳಿಸಿ</string>
     <string name="entity_tracker_ready">ಎಂಟಿಟಿಬಾರ್ಕೊಡೆಟ್ರಾಕರ್ ಸಿದ್ಧವಾಗಿದೆ, ಬಾಕಿ ಇರುವ ಸಂರಚನೆಗಳನ್ನು ಅನ್ವಯಿಸುತ್ತದೆ</string>
     <string name="handle_view_entity_result">ಹ್ಯಾಂಡಲ್ ವ್ಯೂ ಎಂಟಿಟಿ - ಫಲಿತಾಂಶವನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
-    <string name="entity_tracker_decoder_available">ಎಂಟಿಟಿಬಾರ್ಕೊಡೆಟ್ರಾಕರ್ ಡಿಕೋಡರ್ ಲಭ್ಯವಿದೆ, ಘಟಕಗಳು ಎಣಿಕೆ: %ಎಸ್</string>
-    <string name="processing_entities">ಅಸ್ತಿತ್ವದ ವೀಕ್ಷಣೆಗಾಗಿ %ಡಿ ಘಟಕಗಳನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸುವುದು</string>
+    <string name="entity_tracker_decoder_available">EntityBarcodeTracker ಡಿಕೋಡರ್ ಲಭ್ಯವಿದೆ, ಘಟಕಗಳ ಎಣಿಕೆ: %s</string>
+    <string name="processing_entities">ಅಸ್ತಿತ್ವದ ವೀಕ್ಷಣೆಗಾಗಿ %d ಘಟಕಗಳನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ</string>
     <string name="rendered_entities">ಅಸ್ತಿತ್ವದ ವೀಕ್ಷಣೆಯಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾದ ಘಟಕಗಳು</string>
     <string name="symbologies">ಸಂಕೇತಶಾಸ್ತ್ರಗಳು</string>
     <string name="advanced">ಸುಧಾರಿತ</string>
@@ -108,16 +108,16 @@
     <string name="toggle_filtering">ಫಿಲ್ಟರಿಂಗ್ ಅನ್ನು ಟಾಗಲ್ ಮಾಡಿ</string>
     <string name="edit_item">ಐಟಂ ಅನ್ನು ಸಂಪಾದಿಸಿ</string>
     <string name="delete_item">ಐಟಂ ಅನ್ನು ಅಳಿಸಿ</string>
-    <string name="value_label">ಮೌಲ್ಯ: %ರು</string>
-    <string name="symbology_label">ಸಂಕೇತಶಾಸ್ತ್ರ: %ರು</string>
-    <string name="quantity_label">ಪ್ರಮಾಣ: %ಡಿ</string>
-    <string name="date_label">ದಿನಾಂಕ: %ಸೆ</string>
+    <string name="value_label">ಮೌಲ್ಯ: %s</string>
+    <string name="symbology_label">ಸಂಕೇತ: %s</string>
+    <string name="quantity_label">ಪ್ರಮಾಣ: %d</string>
+    <string name="date_label">ದಿನಾಂಕ: %s</string>
     <string name="success_granting_permissions">ಅನುಮತಿಗಳನ್ನು ನೀಡುವ ಯಶಸ್ಸು.</string>
     <string name="session_data_merged">ಅಧಿವೇಶನ ಡೇಟಾ ವಿಲೀನಗೊಂಡಿದೆ.</string>
     <string name="error_reported">ದೋಷ ವರದಿಯಾಗಿದೆ: %s</string>
-    <string name="error_reading_session_file">ರೀಡಿಂಗ್ ಸೆಷನ್ ಫೈಲ್: %ಎಸ್</string>
-    <string name="error_reading_csv_session_file">ಸಿಎಸ್ವಿ ಸೆಷನ್ ಫೈಲ್ ಓದುವ ದೋಷ: %ಎಸ್</string>
-    <string name="error_reading_excel_session_file">ಎಕ್ಸೆಲ್ ಸೆಷನ್ ಫೈಲ್ ಅನ್ನು ಓದುವುದರಲ್ಲಿ ದೋಷ</string>
+    <string name="error_reading_session_file">ಸೆಷನ್ ಫೈಲ್ ಓದುವಲ್ಲಿ ದೋಷ: %s</string>
+    <string name="error_reading_csv_session_file">CSV ಸೆಶನ್ ಫೈಲ್ ಓದುವಲ್ಲಿ ದೋಷ: %s</string>
+    <string name="error_reading_excel_session_file">ಎಕ್ಸೆಲ್ ಸೆಷನ್ ಫೈಲ್ ಓದುವಲ್ಲಿ ದೋಷ: %s</string>
     <string name="resolution_small">640 x 640 (ಸಣ್ಣ)</string>
     <string name="resolution_small_description">ವೇಗವಾಗಿ; ದೊಡ್ಡ ಅಥವಾ ಕ್ಲೋಸ್-ಅಪ್ ಬಾರ್‌ಕೋಡ್‌ಗಳಿಗೆ ಉತ್ತಮವಾಗಿದೆ</string>
     <string name="resolution_medium">1280 x 1280 (ಮಧ್ಯಮ)</string>
@@ -184,4 +184,11 @@
     <string name="view_session_data">ಸೆಷನ್ ಡೇಟಾವನ್ನು ವೀಕ್ಷಿಸಿ</string>
     <string name="inference_type_gpu_description">ಡಿಎಸ್ಪಿ ಲಭ್ಯವಿಲ್ಲದಿದ್ದರೆ ಪ್ರಯೋಗ ಬಳಕೆಗಾಗಿ</string>
     <string name="activity_captured_barcodes">ಸೆರೆಹಿಡಿದ ಬಾರ್‌ಕೋಡ್‌ಗಳು</string>
+    <string name="app_name">AI ಮಲ್ಟಿ ಬಾರ್‌ಕೋಡ್‌ಗಳ ಕ್ಯಾಪ್ಚರ್</string>
+    <string name="theme">ಥೀಮ್</string>
+    <string name="theme_legacy">ಪರಂಪರೆ</string>
+    <string name="theme_modern">ಆಧುನಿಕ</string>
+    <string name="capture_trigger_mode">ಕ್ಯಾಪ್ಚರ್ ಟ್ರಿಗ್ಗರ್ ಮೋಡ್</string>
+    <string name="capture_mode_press">ಸ್ಕ್ಯಾನ್ ಪ್ರೆಸ್‌ನಲ್ಲಿ</string>
+    <string name="capture_mode_release">ಸ್ಕ್ಯಾನ್ ಬಿಡುಗಡೆಯಲ್ಲಿ</string>
 </resources>

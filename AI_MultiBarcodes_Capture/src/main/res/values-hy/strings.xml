@@ -111,7 +111,7 @@
     <string name="delete_item">Delete նջել իրը</string>
     <string name="value_label">արժեքը:%s</string>
     <string name="symbology_label">Symbology:%s</string>
-    <string name="quantity_label">Քանակ,% դ</string>
+    <string name="quantity_label">Քանակը՝ %d</string>
     <string name="date_label">Ամսաթիվ.%s</string>
     <string name="success_granting_permissions">Հաջողության թույլտվություն տալը:</string>
     <string name="session_data_merged">Նիստի տվյալները միավորվել են:</string>
@@ -184,4 +184,11 @@
     <string name="enable_filtering">Միացնել զտումը</string>
     <string name="regular_expression">Կանոնավոր արտահայտություն</string>
     <string name="camera_permission_required">Այս հատկությունը օգտագործելու համար անհրաժեշտ է տեսախցիկի թույլտվություն</string>
+    <string name="app_name">AI Multi Barcodes-ի նկարահանում</string>
+    <string name="theme">Թեմա</string>
+    <string name="theme_legacy">Ժառանգություն</string>
+    <string name="theme_modern">Ժամանակակից</string>
+    <string name="capture_trigger_mode">Նկարահանման ձգանման ռեժիմ</string>
+    <string name="capture_mode_press">Սկանավորման վրա սեղմեք</string>
+    <string name="capture_mode_release">Սկան թողարկման ժամանակ</string>
 </resources>

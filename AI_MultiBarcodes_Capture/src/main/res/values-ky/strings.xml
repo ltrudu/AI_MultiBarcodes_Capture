@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Куткарууну баштаңыз</string>
     <string name="loading_status">жүктөө</string>
@@ -183,4 +183,12 @@
     <string name="enable_filtering">чыпкалоо</string>
     <string name="regular_expression">Жөнөкөй сөз айкашы</string>
     <string name="applied_viewfinder_resize_immediately">Колдонмо ViewFinder дароо мүнөздөмөлөрдү өзгөрттү</string>
-    </resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="theme">Тема</string>
+    <string name="theme_legacy">мурас</string>
+    <string name="theme_modern">заманбап</string>
+    <string name="inference_type_gpu_description">Эгерде DSP жеткиликтүү болбосо, сыноо үчүн колдонуу үчүн</string>
+    <string name="capture_trigger_mode">Триггер режимин тартуу режими</string>
+    <string name="capture_mode_release">скандоо боюнча</string>
+    <string name="capture_mode_press">Скандоо басма сөзүндө</string>
+</resources>

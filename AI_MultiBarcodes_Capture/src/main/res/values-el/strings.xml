@@ -109,14 +109,14 @@
     <string name="delete_item">Διαγραφή αντικειμένου</string>
     <string name="value_label">τιμή: %s</string>
     <string name="symbology_label">Symbology: %s</string>
-    <string name="quantity_label">Ποσότητα: %Δ</string>
+    <string name="quantity_label">Ποσότητα: %d</string>
     <string name="date_label">Ημερομηνία: %s</string>
     <string name="success_granting_permissions">Επιτυχία που χορηγούν δικαιώματα.</string>
     <string name="session_data_merged">Συγχωνεύθηκαν τα δεδομένα περιόδου σύνδεσης.</string>
     <string name="error_reported">Αναφέρθηκε σφάλμα: %s</string>
     <string name="error_reading_session_file">Αρχείο συνεδρίας ανάγνωσης σφαλμάτων: %s</string>
     <string name="error_reading_csv_session_file">Σφάλμα ανάγνωσης CSV Αρχείο περιόδου σύνδεσης: %s</string>
-    <string name="error_reading_excel_session_file">GS1 DataMatrix</string>
+    <string name="error_reading_excel_session_file">Σφάλμα κατά την ανάγνωση του αρχείου συνεδρίας του Excel: %s</string>
     <string name="resolution_small">640 x 640 (μικρό)</string>
     <string name="resolution_small_description">ταχύτερα. Καλύτερο για μεγάλους ή κοντινούς κώδικες</string>
     <string name="resolution_medium">1280 x 1280 (Medium)</string>
@@ -183,4 +183,12 @@
     <string name="menu_manage_sessions">Διαχείριση συνεδριών</string>
     <string name="menu_new_folder">Νέος φάκελος</string>
     <string name="menu_about">περίπου</string>
+    <string name="app_name">Λήψη πολλαπλών γραμμωτών κωδίκων AI</string>
+    <string name="theme">Θέμα</string>
+    <string name="theme_legacy">Κληρονομιά</string>
+    <string name="theme_modern">Μοντέρνο</string>
+    <string name="activity_captured_barcodes">Λήψη γραμμωτών κωδίκων</string>
+    <string name="capture_trigger_mode">Λειτουργία ενεργοποίησης λήψης</string>
+    <string name="capture_mode_press">Στη σάρωση Πατήστε</string>
+    <string name="capture_mode_release">Κατά την απελευθέρωση σάρωσης</string>
 </resources>

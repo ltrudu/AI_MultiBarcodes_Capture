@@ -175,4 +175,15 @@
     <string name="rename_folder">ប្តូរឈ្មោះថតឯកសារ</string>
     <string name="activity_about">អំពី</string>
     <string name="about_app_version">កំណែកម្មវិធី</string>
+    <string name="app_name">ការចាប់យកពហុមូលដ្ឋានច្រើន</string>
+    <string name="no">ទេ</string>
+    <string name="theme_legacy">កេរដំណែល</string>
+    <string name="theme_modern">សម័យទំនើប</string>
+    <string name="symbologies">Symoolies</string>
+    <string name="minus">-</string>
+    <string name="file_exists_already">ឯកសារមានរួចហើយ។</string>
+    <string name="capture_trigger_mode">ការចាប់យករបៀបកេះ</string>
+    <string name="capture_mode_press">នៅលើស្កេនស្កេន</string>
+    <string name="theme">ស្បែក</string>
+    <string name="symbology_label">&gt; និមហ្ញាន:%s</string>
 </resources>

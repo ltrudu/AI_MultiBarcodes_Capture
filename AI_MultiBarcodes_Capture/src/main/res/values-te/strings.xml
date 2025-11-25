@@ -108,7 +108,7 @@
     <string name="delete_item">అంశాన్ని తొలగించండి</string>
     <string name="value_label">విలువ: %s</string>
     <string name="symbology_label">సింబాలజీ: %s</string>
-    <string name="quantity_label">పరిమాణం: %డి</string>
+    <string name="quantity_label">పరిమాణం: %d</string>
     <string name="date_label">తేదీ: %s</string>
     <string name="success_granting_permissions">సక్సెస్ మంజూరు అనుమతులు.</string>
     <string name="session_data_merged">సెషన్ డేటా విలీనం చేయబడింది.</string>
@@ -184,4 +184,11 @@
     <string name="menu_manage_sessions">సెషన్లను నిర్వహించండి</string>
     <string name="menu_new_folder">క్రొత్త ఫోల్డర్</string>
     <string name="about_app_version">అనువర్తన వెర్షన్</string>
+    <string name="app_name">AI బహుళ బార్‌కోడ్‌ల క్యాప్చర్</string>
+    <string name="theme">థీమ్</string>
+    <string name="theme_legacy">లెగసీ</string>
+    <string name="theme_modern">ఆధునిక</string>
+    <string name="capture_trigger_mode">క్యాప్చర్ ట్రిగ్గర్ మోడ్</string>
+    <string name="capture_mode_press">స్కాన్ ప్రెస్‌లో</string>
+    <string name="capture_mode_release">స్కాన్ విడుదలలో</string>
 </resources>

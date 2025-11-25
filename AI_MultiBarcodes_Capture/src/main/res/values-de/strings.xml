@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Start Capture</string>
     <string name="loading_status">Anwendung laden</string>
@@ -184,4 +184,11 @@
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_new_folder">neuer Ordner</string>
     <string name="processing_mode_file">📁 Datei</string>
+    <string name="app_name">AI-Multi-Barcode-Erfassung</string>
+    <string name="theme">Thema</string>
+    <string name="theme_legacy">Vermächtnis</string>
+    <string name="theme_modern">Modern</string>
+    <string name="capture_trigger_mode">Capture-Trigger-Modus</string>
+    <string name="capture_mode_press">Beim Scannen drücken</string>
+    <string name="capture_mode_release">Bei Scan-Freigabe</string>
 </resources>

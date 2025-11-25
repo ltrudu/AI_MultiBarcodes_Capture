@@ -82,7 +82,7 @@
     <string name="entity_tracker_ready">EntityBarcarcoderracker бэлэн боллоо, хүлээгдэж буй тохиргоог ашиглаж байна</string>
     <string name="handle_view_entity_result">Үзэх Аж ахуйн нэгж - Үр дүнг хүлээн авсан</string>
     <string name="entity_tracker_decoder_available">EntityBarcarcodeCacker Decoder хийх боломжтой, аж ахуйн нэгжүүд:%s</string>
-    <string name="processing_entities">Аж ахуйн нэгжийн бодит байдлыг боловсруулах</string>
+    <string name="processing_entities">%d Аж ахуйн нэгжийн эхлэлийг боловсруулах</string>
     <string name="rendered_entities">Аж ахуйн нэгжийн талаархи аж ахуйн нэгжүүдийг үзүүлэв</string>
     <string name="symbologies">тэмдэглэгээ</string>
     <string name="advanced">Нарийвчилсан</string>
@@ -184,4 +184,11 @@
     <string name="filtering">Шүүгч</string>
     <string name="enable_filtering">Шүүхийг идэвхжүүлэх</string>
     <string name="regular_expression">Тогтмол илэрхийлэл</string>
-    </resources>
+    <string name="app_name">AI олон баркодууд барьж авав</string>
+    <string name="theme">сэдэв</string>
+    <string name="theme_legacy">Хуучин</string>
+    <string name="theme_modern">орчин үеийн</string>
+    <string name="capture_trigger_mode">Триггерийн горимыг авах</string>
+    <string name="capture_mode_release">Скан хийхээр суллах</string>
+    <string name="capture_mode_press">Скан дээр дар</string>
+</resources>
