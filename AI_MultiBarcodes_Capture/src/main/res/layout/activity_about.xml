@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".AboutActivity"
+    android:id="@+id/cl_about_activity"
     android:fitsSystemWindows="true">
 
     <!-- Custom Toolbar -->
