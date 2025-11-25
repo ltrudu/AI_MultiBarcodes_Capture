@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Indítsa el a rögzítést</string>
     <string name="loading_status">Betöltési alkalmazás</string>
@@ -184,4 +184,11 @@
     <string name="about_repository">GitHub tároló</string>
     <string name="menu_settings">Beállítások</string>
     <string name="menu_new_folder">Új mappa</string>
+    <string name="app_name">AI több vonalkód rögzítése</string>
+    <string name="theme">Téma</string>
+    <string name="theme_legacy">Örökség</string>
+    <string name="theme_modern">Modern</string>
+    <string name="capture_trigger_mode">Rögzítés trigger mód</string>
+    <string name="capture_mode_press">Beolvasásnál Nyomja meg</string>
+    <string name="capture_mode_release">A szkennelés feloldásakor</string>
 </resources>

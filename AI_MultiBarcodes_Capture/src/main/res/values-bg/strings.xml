@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Стартиране на улавяне</string>
     <string name="loading_status">приложение за зареждане</string>
@@ -184,4 +184,11 @@
     <string name="regular_expression">Редовен израз</string>
     <string name="start_capture">Стартиране на улавяне</string>
     <string name="about_repository">хранилище на GitHub</string>
+    <string name="app_name">AI Улавяне на множество баркодове</string>
+    <string name="theme">Тема</string>
+    <string name="theme_legacy">Наследство</string>
+    <string name="theme_modern">Модерен</string>
+    <string name="capture_trigger_mode">Режим на задействане на заснемане</string>
+    <string name="capture_mode_press">При сканиране Натиснете</string>
+    <string name="capture_mode_release">При сканиране</string>
 </resources>

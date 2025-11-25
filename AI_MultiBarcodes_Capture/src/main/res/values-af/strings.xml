@@ -117,7 +117,7 @@
     <string name="error_reported">Fout gerapporteer: %s</string>
     <string name="error_reading_session_file">Foutlees -sessie -lêer: %s</string>
     <string name="error_reading_csv_session_file">Foutlees van CSV -sessie -lêer: %s</string>
-    <string name="error_reading_excel_session_file">GS1 Datamatrix</string>
+    <string name="error_reading_excel_session_file">Kon nie Excel-sessielêer lees nie: %s</string>
     <string name="resolution_small">640 x 640 (klein)</string>
     <string name="resolution_small_description">vinnigste; Die beste vir groot of close-up strepieskodes</string>
     <string name="resolution_medium">1280 x 1280 (medium)</string>
@@ -184,4 +184,11 @@
     <string name="merge">Samestelling van hoeveelhede</string>
     <string name="about_repository">GitHub -bewaarplek</string>
     <string name="menu_manage_sessions">Bestuur sessies</string>
+    <string name="app_name">AI Multi Barcodes Vaslegging</string>
+    <string name="theme">Tema</string>
+    <string name="theme_legacy">Erfenis</string>
+    <string name="theme_modern">Modern</string>
+    <string name="capture_trigger_mode">Vang sneller-modus</string>
+    <string name="capture_mode_press">Op Skandering Druk</string>
+    <string name="capture_mode_release">Op skandeervrystelling</string>
 </resources>

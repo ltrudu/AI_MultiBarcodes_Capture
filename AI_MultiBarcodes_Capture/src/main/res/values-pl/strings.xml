@@ -68,7 +68,7 @@
     <string name="error_creating_new_session">Błąd tworzenia nowej sesji: %s</string>
     <string name="missing_filename">Brakująca nazwy pliku</string>
     <string name="camera_permission_required">Zezwolenie na kamerę jest wymagane do użycia tej funkcji</string>
-    <string name="entity_tracker_creation_time">BARCODEDECODER () OBJ Tracker () Obj</string>
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() czas utworzenia obiektu =%d milisekund</string>
     <string name="barcode_decoder_disposed">Dekoder kodów kreskowych jest usuwany</string>
     <string name="orientation_unlocked">Orientacja odblokowana dla trybu %s</string>
     <string name="applied_viewfinder_resize_immediately">Zastosowany wizjera Zmiana Zmiana natychmiastowych</string>
@@ -77,7 +77,7 @@
     <string name="entity_tracker_ready">EntityBarCodetracker jest gotowy, stosując oczekujące konfiguracje</string>
     <string name="handle_view_entity_result">Uchwytanie widoku - Otrzymany wynik</string>
     <string name="entity_tracker_decoder_available">Dostępny Dekoder EntityBarCodetracker, liczba jednostek: %s</string>
-    <string name="processing_entities">Przetwarzanie %podmiotów dla podmiotów</string>
+    <string name="processing_entities">Przetwarzanie %d encji dla widoku encji</string>
     <string name="rendered_entities">Wydawane podmioty w sprawie widoku podmiotów</string>
     <string name="symbologies">Symbolie</string>
     <string name="advanced">Zaawansowane</string>
@@ -184,4 +184,11 @@
     <string name="menu_new_file">nowy plik</string>
     <string name="processing_mode_file">📁 plik</string>
     <string name="about_repository">Repozytorium GitHub</string>
+    <string name="app_name">Przechwytywanie wielu kodów kreskowych AI</string>
+    <string name="theme">Temat</string>
+    <string name="theme_legacy">Dziedzictwo</string>
+    <string name="theme_modern">Nowoczesne</string>
+    <string name="capture_trigger_mode">Tryb wyzwalania przechwytywania</string>
+    <string name="capture_mode_press">Podczas skanowania Naciśnij</string>
+    <string name="capture_mode_release">Po wydaniu skanu</string>
 </resources>

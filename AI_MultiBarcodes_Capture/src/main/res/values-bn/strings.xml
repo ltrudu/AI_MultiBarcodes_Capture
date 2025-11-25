@@ -46,7 +46,7 @@
     <string name="folder_path_missing">ফোল্ডার পাথ অনুপস্থিত!</string>
     <string name="folder_path_missing_toast">ফোল্ডার পাথ অনুপস্থিত !!!</string>
     <string name="error_could_not_create_file">ত্রুটি, ফাইল তৈরি করতে পারেনি: %s</string>
-    <string name="error_could_not_open_file">ত্রুটি, ফাইল খুলতে পারেনি: %এস</string>
+    <string name="error_could_not_open_file">ত্রুটি, ফাইল খুলতে পারেনি: %s</string>
     <string name="error_file_does_not_exist">ত্রুটি, ফাইলের অস্তিত্ব নেই: %s</string>
     <string name="error_file_is_empty">ত্রুটি, ফাইল খালি: %s</string>
     <string name="error_loading_data">ত্রুটি, ফাইলটিতে ডেটা লোড করতে পারেনি: %s</string>
@@ -70,16 +70,16 @@
     <string name="error_creating_new_session">নতুন অধিবেশন তৈরি করার ত্রুটি: %s</string>
     <string name="missing_filename">অনুপস্থিত ফাইলের নাম</string>
     <string name="camera_permission_required">এই বৈশিষ্ট্যটি ব্যবহার করার জন্য ক্যামেরার অনুমতি প্রয়োজন</string>
-    <string name="entity_tracker_creation_time">সত্তা ট্র্যাকার বারকোডেডিকোডার () ওবিজে তৈরির সময় =%ডি মিলি সেকেন্ড</string>
+    <string name="entity_tracker_creation_time">এন্টিটি ট্র্যাকার বারকোডডেকোডার() অবজেক্ট তৈরির সময় =%d মিলি সেকেন্ড</string>
     <string name="barcode_decoder_disposed">বারকোড ডিকোডার নিষ্পত্তি করা হয়</string>
-    <string name="orientation_unlocked">%এস মোডের জন্য ওরিয়েন্টেশন আনলক করা</string>
+    <string name="orientation_unlocked">%s মোডের জন্য ওরিয়েন্টেশন আনলক করা হয়েছে</string>
     <string name="applied_viewfinder_resize_immediately">ফলিত ভিউফাইন্ডার তাত্ক্ষণিকভাবে স্পেসগুলি পুনরায় আকার দিন</string>
     <string name="stored_pending_viewfinder_resize">পরবর্তী অ্যাপ্লিকেশনটির জন্য মুলতুবি থাকা ভিউফাইন্ডার রেজাইজ ডেটা সঞ্চিত</string>
     <string name="applied_pending_viewfinder_resize">সঞ্চিত মানগুলি থেকে প্রয়োগ করা মুলতুবি ভিউফাইন্ডার রেজাইজ ডেটা</string>
     <string name="entity_tracker_ready">সত্তাবারকোডট্র্যাকার প্রস্তুত, মুলতুবি কনফিগারেশন প্রয়োগ করে</string>
     <string name="handle_view_entity_result">হ্যান্ডেল ভিউ সত্তা - ফলাফল প্রাপ্ত</string>
     <string name="entity_tracker_decoder_available">সত্তাবারকোডট্র্যাকার ডিকোডার উপলব্ধ, সত্তা গণনা: %s</string>
-    <string name="processing_entities">সত্তা দেখার জন্য %ডি সত্তা প্রক্রিয়াজাতকরণ</string>
+    <string name="processing_entities">সত্তা দেখার জন্য %d এন্টিটি প্রসেস করা হচ্ছে</string>
     <string name="rendered_entities">সত্তা ভিউতে রেন্ডার করা সত্তা</string>
     <string name="symbologies">প্রতীক</string>
     <string name="advanced">উন্নত</string>
@@ -184,4 +184,11 @@
     <string name="about_developer_name">লরেন্ট ট্রুডু</string>
     <string name="about_view_license">জেব্রা ডেভলপমেন্ট টুল লাইসেন্স দেখুন</string>
     <string name="menu_new_folder">নতুন ফোল্ডার</string>
+    <string name="app_name">এআই মাল্টি বারকোড ক্যাপচার</string>
+    <string name="theme">থিম</string>
+    <string name="theme_legacy">উত্তরাধিকার</string>
+    <string name="theme_modern">আধুনিক</string>
+    <string name="capture_trigger_mode">ট্রিগার মোড ক্যাপচার করুন</string>
+    <string name="capture_mode_press">স্ক্যান প্রেসে</string>
+    <string name="capture_mode_release">স্ক্যান রিলিজে</string>
 </resources>

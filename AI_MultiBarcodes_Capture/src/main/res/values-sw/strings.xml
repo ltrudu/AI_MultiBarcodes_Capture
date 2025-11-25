@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Anza kukamata</string>
     <string name="loading_status">Maombi ya kupakia</string>
@@ -183,4 +183,12 @@
     <string name="about_repository">Github hazina</string>
     <string name="about_dependencies">utegemezi</string>
     <string name="menu_settings">Mipangilio</string>
+    <string name="app_name">AI Multi Barcode Capture</string>
+    <string name="theme">Mada</string>
+    <string name="theme_legacy">Urithi</string>
+    <string name="theme_modern">kisasa</string>
+    <string name="capture_trigger_mode">Capture modi ya trigger</string>
+    <string name="capture_mode_press">Kwenye vyombo vya habari vya Scan</string>
+    <string name="capture_mode_release">Juu ya kutolewa kwa skizi</string>
+    <string name="camera_permission_required">Ruhusa ya kamera inahitajika kutumia huduma hii</string>
 </resources>

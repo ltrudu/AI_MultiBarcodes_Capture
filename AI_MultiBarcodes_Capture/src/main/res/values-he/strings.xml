@@ -79,7 +79,7 @@
     <string name="entity_tracker_ready">EntityBarCodetracker מוכן ומיישם תצורות ממתינות</string>
     <string name="handle_view_entity_result">ידית תצוגה של ישות - התוצאה התקבלה</string>
     <string name="entity_tracker_decoder_available">entitybarcodetracker מפענח זמין, ישויות ספירת: %s</string>
-    <string name="processing_entities">עיבוד %ישויות D לתצוגת ישות</string>
+    <string name="processing_entities">מעבד %d ישויות לתצוגת ישות</string>
     <string name="rendered_entities">ישויות שניתנו לתצוגת ישות</string>
     <string name="symbologies">סימבולוגיות</string>
     <string name="advanced">מתקדם</string>
@@ -108,7 +108,7 @@
     <string name="delete_item">מחק פריט</string>
     <string name="value_label">ערך: %s</string>
     <string name="symbology_label">סימבולוגיה: %s</string>
-    <string name="quantity_label">כמות: %ד</string>
+    <string name="quantity_label">כמות: %d</string>
     <string name="date_label">תאריך: %s</string>
     <string name="success_granting_permissions">הצלחה מתן הרשאות.</string>
     <string name="session_data_merged">נתוני ההפעלה התמזגו.</string>
@@ -176,4 +176,19 @@
     <string name="enable_filtering">אפשר סינון</string>
     <string name="regular_expression">ביטוי רגיל</string>
     <string name="error_could_not_open_file">שגיאה, לא יכול היה לפתוח קובץ: %s</string>
-    </resources>
+    <string name="app_name">AI Multi Barcodes לכידת</string>
+    <string name="upload_failed">ההעלאה נכשלה</string>
+    <string name="theme">נושא</string>
+    <string name="theme_legacy">מורשת</string>
+    <string name="theme_modern">מודרני</string>
+    <string name="error_file_is_empty">שגיאה, הקובץ ריק: %s</string>
+    <string name="inference_processor_type_title">סוג מסקנות (מעבד).</string>
+    <string name="activity_settings">הגדרות</string>
+    <string name="about_app_version">גרסת האפליקציה</string>
+    <string name="about_developer">מפתח</string>
+    <string name="about_license">רישיון</string>
+    <string name="menu_settings">הגדרות</string>
+    <string name="capture_trigger_mode">מצב טריגר לכידת</string>
+    <string name="capture_mode_press">בסריקה לחץ</string>
+    <string name="capture_mode_release">בשחרור סריקה</string>
+</resources>

@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Початок захоплення</string>
     <string name="loading_status">Застосування програми</string>
@@ -184,4 +184,11 @@
     <string name="prefix_hint">префікс_</string>
     <string name="menu_new_folder">Нова папка</string>
     <string name="processing_mode_file">📁 файл</string>
+    <string name="app_name">Захоплення декількох штрих-кодів AI</string>
+    <string name="theme">Тема</string>
+    <string name="theme_legacy">Спадщина</string>
+    <string name="theme_modern">Сучасний</string>
+    <string name="capture_trigger_mode">Режим запуску захоплення</string>
+    <string name="capture_mode_press">Під час сканування натисніть</string>
+    <string name="capture_mode_release">При випуску сканування</string>
 </resources>

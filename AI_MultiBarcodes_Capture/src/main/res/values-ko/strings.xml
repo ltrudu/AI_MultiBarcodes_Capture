@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">캡처를 시작하십시오</string>
     <string name="loading_status">로딩 응용 프로그램</string>
@@ -184,4 +184,11 @@
     <string name="enable_filtering">필터링 활성화</string>
     <string name="regular_expression">정규 표현</string>
     <string name="file_extension_txt">.txt</string>
-    </resources>
+    <string name="app_name">AI 멀티 바코드 캡처</string>
+    <string name="theme">테마</string>
+    <string name="theme_legacy">레거시</string>
+    <string name="theme_modern">모던</string>
+    <string name="capture_trigger_mode">캡처 트리거 모드</string>
+    <string name="capture_mode_press">스캔을 누를 때</string>
+    <string name="capture_mode_release">스캔 릴리스 시</string>
+</resources>

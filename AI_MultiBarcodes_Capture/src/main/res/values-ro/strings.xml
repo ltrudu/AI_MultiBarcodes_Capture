@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Începeți capturarea</string>
     <string name="loading_status">Aplicație de încărcare</string>
@@ -184,4 +184,11 @@
     <string name="about_view_license">Vizualizați licența de instrumente de dezvoltare zebra</string>
     <string name="menu_new_folder">Folder nou</string>
     <string name="processing_mode_file">📁 Fișier</string>
+    <string name="app_name">Captură coduri de bare multiple AI</string>
+    <string name="theme">Tema</string>
+    <string name="theme_legacy">Moștenire</string>
+    <string name="theme_modern">Modern</string>
+    <string name="capture_trigger_mode">Modul de declanșare Captură</string>
+    <string name="capture_mode_press">La scanare Apăsați</string>
+    <string name="capture_mode_release">La lansarea scanării</string>
 </resources>

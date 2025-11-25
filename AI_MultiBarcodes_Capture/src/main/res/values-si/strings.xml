@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">අල්ලා ගැනීම ආරම්භ කරන්න</string>
     <string name="loading_status">යෙදුම පූරණය වේ</string>
@@ -184,4 +184,11 @@
     <string name="filtering">පෙරීම</string>
     <string name="enable_filtering">පෙරීම සක්රීය කරන්න</string>
     <string name="regular_expression">නිත්ය ප්රකාශනය</string>
-    </resources>
+    <string name="app_name">AI Multi Barcodes Capture</string>
+    <string name="theme">තේමාව</string>
+    <string name="theme_legacy">උරුමය</string>
+    <string name="theme_modern">නවීන</string>
+    <string name="capture_trigger_mode">Capture Trigger Mode</string>
+    <string name="capture_mode_press">ස්කෑන් ඔබන්න</string>
+    <string name="capture_mode_release">ස්කෑන් නිකුතුවේදී</string>
+</resources>

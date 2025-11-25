@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Démarrer la capture</string>
     <string name="loading_status">Application de chargement</string>
@@ -184,4 +184,11 @@
     <string name="file_extension_txt">.txt</string>
     <string name="view_session_data">Afficher les données de session</string>
     <string name="menu_new_folder">nouveau dossier</string>
+    <string name="app_name">Capture de plusieurs codes-barres AI</string>
+    <string name="theme">Thème</string>
+    <string name="theme_legacy">Héritage</string>
+    <string name="theme_modern">Moderne</string>
+    <string name="capture_trigger_mode">Mode de déclenchement de capture</string>
+    <string name="capture_mode_press">Lors de la numérisation, appuyez sur</string>
+    <string name="capture_mode_release">Lors de la libération de la numérisation</string>
 </resources>

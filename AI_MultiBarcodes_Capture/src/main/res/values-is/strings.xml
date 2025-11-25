@@ -111,7 +111,7 @@
     <string name="error_reported">Villa tilkynnt: %s</string>
     <string name="error_reading_session_file">Villa við lestrarlestrarskrá: %s</string>
     <string name="error_reading_csv_session_file">Villa við að lesa CSV Session File: %s</string>
-    <string name="error_reading_excel_session_file">GS1 Datamatrix</string>
+    <string name="error_reading_excel_session_file">Villa við að lesa Excel lotuskrá: %s</string>
     <string name="resolution_small">640 x 640 (lítill)</string>
     <string name="resolution_small_description">hraðast; Best fyrir stóra eða nærmynd strikamerki</string>
     <string name="resolution_medium">1280 x 1280 (miðlungs)</string>
@@ -184,4 +184,11 @@
     <string name="menu_settings">Stillingar</string>
     <string name="activity_captured_barcodes">Taktu strikamerki</string>
     <string name="about_view_license">Skoðaðu zebra þróunarverkfæri leyfi</string>
+    <string name="app_name">AI Multi Strikamerki Handtaka</string>
+    <string name="theme">Þema</string>
+    <string name="theme_legacy">Arfleifð</string>
+    <string name="theme_modern">Nútímalegt</string>
+    <string name="capture_trigger_mode">Capture Trigger Mode</string>
+    <string name="capture_mode_press">Á skönnun Ýttu á</string>
+    <string name="capture_mode_release">Við skannaútgáfu</string>
 </resources>

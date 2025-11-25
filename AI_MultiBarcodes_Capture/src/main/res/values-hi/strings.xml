@@ -69,16 +69,16 @@
     <string name="error_creating_new_session">त्रुटि नया सत्र बनाने में: %s</string>
     <string name="missing_filename">लापता फ़ाइल नाम</string>
     <string name="camera_permission_required">इस सुविधा का उपयोग करने के लिए कैमरा अनुमति की आवश्यकता है</string>
-    <string name="entity_tracker_creation_time">एंटिटी ट्रैकर बारकोडेडकोडर () ओबीजे क्रिएशन टाइम =%डी मिलि सेक</string>
+    <string name="entity_tracker_creation_time">एंटिटी ट्रैकर बारकोडडिकोडर() ओबीजे निर्माण समय =%d मिली सेकंड</string>
     <string name="barcode_decoder_disposed">बारकोड डिकोडर का निपटान किया जाता है</string>
-    <string name="orientation_unlocked">%एस मोड के लिए अभिविन्यास अनलॉक किया गया</string>
+    <string name="orientation_unlocked">%s मोड के लिए ओरिएंटेशन अनलॉक किया गया</string>
     <string name="applied_viewfinder_resize_immediately">एप्लाइड व्यूफ़ाइंडर तुरंत चश्मा का आकार बदलें</string>
     <string name="stored_pending_viewfinder_resize">संग्रहीत लंबित व्यूफ़ाइंडर बाद के एप्लिकेशन के लिए डेटा का आकार बदलें</string>
     <string name="applied_pending_viewfinder_resize">लागू किए गए लंबित दृश्यदर्शी ने संग्रहीत मानों से डेटा का पुनरुत्थान किया</string>
     <string name="entity_tracker_ready">EntityBarcodetracker तैयार है, लंबित कॉन्फ़िगरेशन लागू करना</string>
     <string name="handle_view_entity_result">हैंडल व्यू एंटिटी - परिणाम प्राप्त हुआ</string>
     <string name="entity_tracker_decoder_available">EntityBarcodetracker डिकोडर उपलब्ध, संस्थाएं गिनती: %s</string>
-    <string name="processing_entities">एंटिटी व्यू के लिए %डी संस्थाओं का प्रसंस्करण</string>
+    <string name="processing_entities">इकाई दृश्य के लिए %d इकाइयों को संसाधित करना</string>
     <string name="rendered_entities">एंटिटी व्यू पर संस्थाएं प्रदान की गईं</string>
     <string name="symbologies">सहजीवन</string>
     <string name="advanced">उन्नत</string>
@@ -107,15 +107,15 @@
     <string name="edit_item">आइटम संपादित करें</string>
     <string name="delete_item">आइटम हटाएं</string>
     <string name="value_label">मूल्य: %s</string>
-    <string name="symbology_label">सिम्बोलॉजी: %एस</string>
-    <string name="quantity_label">मात्रा: %डी</string>
-    <string name="date_label">दिनांक: %एस</string>
+    <string name="symbology_label">प्रतीकात्मकता: %s</string>
+    <string name="quantity_label">मात्रा: %d</string>
+    <string name="date_label">तारीख: %s</string>
     <string name="success_granting_permissions">सफलता अनुमत अनुमतियाँ।</string>
     <string name="session_data_merged">सत्र डेटा विलय कर दिया।</string>
     <string name="error_reported">त्रुटि की सूचना: %s</string>
     <string name="error_reading_session_file">त्रुटि पढ़ने के सत्र फ़ाइल: %s</string>
-    <string name="error_reading_csv_session_file">सीएसवी सत्र फ़ाइल पढ़ने में त्रुटि: %एस</string>
-    <string name="error_reading_excel_session_file">त्रुटि पढ़ना एक्सेल सत्र फ़ाइल: %एस</string>
+    <string name="error_reading_csv_session_file">CSV सत्र फ़ाइल पढ़ने में त्रुटि: %s</string>
+    <string name="error_reading_excel_session_file">एक्सेल सत्र फ़ाइल पढ़ने में त्रुटि: %s</string>
     <string name="resolution_small">640 x 640 (छोटा)</string>
     <string name="resolution_small_description">सबसे तेज़; बड़े या क्लोज़-अप बारकोड के लिए सबसे अच्छा</string>
     <string name="resolution_medium">1280 x 1280 (मध्यम)</string>
@@ -182,4 +182,13 @@
     <string name="about_developer_name">लॉरेंट ट्रूडु</string>
     <string name="menu_new_folder">नया फ़ोल्डर</string>
     <string name="about_view_license">ज़ेबरा विकास उपकरण लाइसेंस देखें</string>
+    <string name="app_name">एआई मल्टी बारकोड कैप्चर</string>
+    <string name="theme">थीम</string>
+    <string name="theme_legacy">विरासत</string>
+    <string name="theme_modern">आधुनिक</string>
+    <string name="inference_type_gpu_description">यदि डीएसपी उपलब्ध नहीं है तो परीक्षण उपयोग के लिए</string>
+    <string name="inference_type_cpu_description">यदि डीएसपी और जीपीयू उपलब्ध नहीं हैं तो परीक्षण उपयोग के लिए</string>
+    <string name="capture_trigger_mode">ट्रिगर मोड कैप्चर करें</string>
+    <string name="capture_mode_press">स्कैन पर दबाएँ</string>
+    <string name="capture_mode_release">स्कैन रिलीज़ पर</string>
 </resources>

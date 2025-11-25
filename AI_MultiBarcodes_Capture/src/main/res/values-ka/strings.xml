@@ -111,7 +111,7 @@
     <string name="delete_item">წაშალეთ ნივთი</string>
     <string name="value_label">ღირებულება: %s</string>
     <string name="symbology_label">სიმბოლო: %s</string>
-    <string name="quantity_label">რაოდენობა: %დ</string>
+    <string name="quantity_label">რაოდენობა: %d</string>
     <string name="date_label">თარიღი: %s</string>
     <string name="success_granting_permissions">წარმატების გაცემის შესახებ.</string>
     <string name="session_data_merged">სესიის მონაცემები გაერთიანდა.</string>
@@ -184,4 +184,11 @@
     <string name="enable_filtering">ფილტრაციის ჩართვა</string>
     <string name="regular_expression">რეგულარული გამოხატულება</string>
     <string name="enter_new_file_name">შეიყვანეთ ახალი ფაილის სახელი</string>
+    <string name="app_name">AI მრავალ შტრიხკოდების გადაღება</string>
+    <string name="theme">თემა</string>
+    <string name="theme_legacy">მემკვიდრეობა</string>
+    <string name="theme_modern">თანამედროვე</string>
+    <string name="capture_trigger_mode">გადაღების ტრიგერის რეჟიმი</string>
+    <string name="capture_mode_press">სკანირებისას დააჭირეთ</string>
+    <string name="capture_mode_release">სკანირების გამოშვებისას</string>
 </resources>

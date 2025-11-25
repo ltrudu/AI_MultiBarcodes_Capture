@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">キャプチャを開始します</string>
     <string name="loading_status">アプリケーションの読み込み</string>
@@ -183,4 +183,12 @@
     <string name="filtering">フィルタリング</string>
     <string name="enable_filtering">フィルタリングを有効にします</string>
     <string name="regular_expression">正規表現</string>
-    </resources>
+    <string name="app_name">AI マルチバーコードキャプチャ</string>
+    <string name="theme">テーマ</string>
+    <string name="theme_legacy">レガシー</string>
+    <string name="theme_modern">モダン</string>
+    <string name="inference_type_cpu_description">DSP と GPU が利用できない場合の試用用</string>
+    <string name="capture_trigger_mode">キャプチャトリガーモード</string>
+    <string name="capture_mode_press">スキャン時 を押します</string>
+    <string name="capture_mode_release">スキャンリリース時</string>
+</resources>

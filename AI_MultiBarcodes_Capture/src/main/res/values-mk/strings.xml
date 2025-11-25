@@ -65,7 +65,7 @@
     <string name="error_creating_new_session">Грешка во креирање нова сесија: %s</string>
     <string name="missing_filename">Недостасува име на датотека</string>
     <string name="camera_permission_required">е потребна дозвола за камера за да се користи оваа одлика</string>
-    <string name="entity_tracker_creation_time">Баркодедекодер () Време на создавање на ентитет ()</string>
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder() obj време на создавање =%d мили сек</string>
     <string name="barcode_decoder_disposed">декодерот за баркод е отстранет</string>
     <string name="orientation_unlocked">Ориентација отклучена за режим %s</string>
     <string name="applied_viewfinder_resize_immediately">веднаш применети спецификации за промена на визирот веднаш</string>
@@ -74,7 +74,7 @@
     <string name="entity_tracker_ready">EntityBarCodeTracker е подготвен, применувајќи ги конфигурациите во очекување</string>
     <string name="handle_view_entity_result">РАБОТНИОТ ПИВЕРСКИ ЕНТИТТ - ПРИМЕНА РЕЗУЛТАТ</string>
     <string name="entity_tracker_decoder_available">Достапен декодер на ентитетБаркодетракер, броење на субјектите: %s</string>
-    <string name="processing_entities">Обработка %Д субјекти за преглед на ентитетот</string>
+    <string name="processing_entities">Се обработуваат %d ентитети за приказ на ентитети</string>
     <string name="rendered_entities">Наведени субјекти на преглед на ентитет</string>
     <string name="symbologies">Симбологии</string>
     <string name="advanced">Напредно</string>
@@ -103,7 +103,7 @@
     <string name="delete_item">Избриши ставка</string>
     <string name="value_label">Вредност: %s</string>
     <string name="symbology_label">Симбологија: %s</string>
-    <string name="quantity_label">количина: %г.</string>
+    <string name="quantity_label">Количина: %d</string>
     <string name="date_label">Датум: %s</string>
     <string name="success_granting_permissions">GS1 Datamatrix</string>
     <string name="session_data_merged">Податоците за сесијата се споени.</string>
@@ -179,4 +179,16 @@
     <string name="toggle_filtering">Филтрирање на вклучување</string>
     <string name="activity_captured_barcodes">Заробени баркодови</string>
     <string name="about_repository">складиште на Github</string>
+    <string name="app_name">Снимање на повеќе баркодови со вештачка интелигенција</string>
+    <string name="update">Ажурирајте ја датотеката</string>
+    <string name="theme">Тема</string>
+    <string name="theme_legacy">Наследство</string>
+    <string name="theme_modern">Модерен</string>
+    <string name="folder_already_exists">Папката веќе постои.</string>
+    <string name="activity_session_data">Податоци за сесија</string>
+    <string name="menu_settings">Поставки</string>
+    <string name="capture_trigger_mode">Режим за активирање на сликање</string>
+    <string name="capture_mode_press">При скенирање Притиснете</string>
+    <string name="capture_mode_release">На ослободување од скенирање</string>
+    <string name="processing_mode_file">📁 Датотека</string>
 </resources>

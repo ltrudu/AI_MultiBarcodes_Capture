@@ -70,7 +70,7 @@
     <string name="error_creating_new_session">નવું સત્ર બનાવવામાં ભૂલ: %s</string>
     <string name="missing_filename">ફાઇલનામ ખૂટે છે</string>
     <string name="camera_permission_required">આ સુવિધાનો ઉપયોગ કરવા માટે કેમેરા પરવાનગી જરૂરી છે</string>
-    <string name="entity_tracker_creation_time">એન્ટિટી ટ્રેકર બારકોડેડકોડર () ઓબ્જેક્ટ ક્રિએશન ટાઇમ =%ડી મિલી સેકંડ</string>
+    <string name="entity_tracker_creation_time">એન્ટિટી ટ્રેકર બારકોડડેકોડર() ઑબ્જેક્ટ બનાવવાનો સમય =%d મિલી સેકન્ડ</string>
     <string name="barcode_decoder_disposed">બારકોડ ડીકોડર નિકાલ કરવામાં આવે છે</string>
     <string name="orientation_unlocked">%s મોડ માટે ઓરિએન્ટેશન અનલ ocked ક</string>
     <string name="applied_viewfinder_resize_immediately">એપ્લાઇડ વ્યૂફાઇન્ડર તરત જ સ્પેક્સનું કદ બદલી નાખે છે</string>
@@ -79,7 +79,7 @@
     <string name="entity_tracker_ready">એન્ટિટીબાર્કોડટ્રેકર તૈયાર છે, બાકી રૂપરેખાંકનો લાગુ કરે છે</string>
     <string name="handle_view_entity_result">હેન્ડલ વ્યૂ એન્ટિટી - પરિણામ પ્રાપ્ત થયું</string>
     <string name="entity_tracker_decoder_available">એન્ટિટીબાર્કોડટ્રેકર ડીકોડર ઉપલબ્ધ, એન્ટિટીઝ ગણતરી: %s</string>
-    <string name="processing_entities">એન્ટિટી વ્યૂ માટે પ્રોસેસિંગ %ડી એન્ટિટીઝ</string>
+    <string name="processing_entities">એન્ટિટી વ્યૂ માટે %d એન્ટિટી પર પ્રક્રિયા કરી રહ્યું છે</string>
     <string name="rendered_entities">એન્ટિટી વ્યૂ પર રેન્ડર કરેલી કંપનીઓ</string>
     <string name="symbologies">પ્રતીકો</string>
     <string name="advanced">અદ્યતન</string>
@@ -109,7 +109,7 @@
     <string name="delete_item">આઇટમ કા delete ી નાખો</string>
     <string name="value_label">મૂલ્ય: %s</string>
     <string name="symbology_label">પ્રતીક: %s</string>
-    <string name="quantity_label">જથ્થો: %ડી</string>
+    <string name="quantity_label">જથ્થો: %d</string>
     <string name="date_label">તારીખ: %s</string>
     <string name="success_granting_permissions">સફળતા આપતી પરવાનગી આપે છે.</string>
     <string name="session_data_merged">સત્ર ડેટા મર્જ થયો.</string>
@@ -184,4 +184,11 @@
     <string name="about_developer_name">લોરેન્ટ ટ્રુડુ</string>
     <string name="about_repository">ગિટહબ રિપોઝિટરી</string>
     <string name="menu_settings">સેટિંગ્સ</string>
+    <string name="app_name">AI મલ્ટી બારકોડ્સ કેપ્ચર</string>
+    <string name="theme">થીમ</string>
+    <string name="theme_legacy">વારસો</string>
+    <string name="theme_modern">આધુનિક</string>
+    <string name="capture_trigger_mode">ટ્રિગર મોડ કેપ્ચર કરો</string>
+    <string name="capture_mode_press">સ્કેન પ્રેસ પર</string>
+    <string name="capture_mode_release">સ્કેન રિલીઝ પર</string>
 </resources>

@@ -107,10 +107,10 @@
     <string name="toggle_filtering">Перевернуть фильтрацию</string>
     <string name="edit_item">Редактировать пункт</string>
     <string name="delete_item">Удалить элемент</string>
-    <string name="value_label">Значение: %с</string>
-    <string name="symbology_label">Симвология: %с</string>
+    <string name="value_label">Ценить: %s</string>
+    <string name="symbology_label">Символика: %s</string>
     <string name="quantity_label">Количество: %d</string>
-    <string name="date_label">Дата: %с</string>
+    <string name="date_label">Дата: %s</string>
     <string name="success_granting_permissions">Успех предоставление разрешений.</string>
     <string name="session_data_merged">Данные сеанса объединены.</string>
     <string name="error_reported">Ошибка сообщена: %s</string>
@@ -184,4 +184,11 @@
     <string name="about_dependencies">Зависимости</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_new_folder">Новая папка</string>
+    <string name="app_name">Считывание нескольких штрих-кодов AI</string>
+    <string name="theme">Тема</string>
+    <string name="theme_legacy">Наследие</string>
+    <string name="theme_modern">Современный</string>
+    <string name="capture_trigger_mode">Режим триггера съемки</string>
+    <string name="capture_mode_press">При сканировании нажмите</string>
+    <string name="capture_mode_release">При выпуске сканирования</string>
 </resources>
