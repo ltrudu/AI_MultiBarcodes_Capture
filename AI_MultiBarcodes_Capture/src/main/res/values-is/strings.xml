@@ -65,7 +65,7 @@
     <string name="error_creating_new_session">Villa við að búa til nýja lotu: %s</string>
     <string name="missing_filename">Vantar skráarheiti</string>
     <string name="camera_permission_required">Leyfi á myndavélinni er krafist til að nota þennan eiginleika</string>
-    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ sköpun tími =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ sköpun tími =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">Strikamerkjakóða er fargað</string>
     <string name="orientation_unlocked">Stefnumótun opnuð fyrir %s ham</string>
     <string name="applied_viewfinder_resize_immediately">Sameina magn</string>
@@ -110,7 +110,7 @@
     <string name="session_data_merged">Gögn um fundi sameinuð.</string>
     <string name="error_reported">Villa tilkynnt: %s</string>
     <string name="error_reading_session_file">Villa við lestrarlestrarskrá: %s</string>
-    <string name="error_reading_csv_session_file">Villa við að lesa CSV Session File: %S</string>
+    <string name="error_reading_csv_session_file">Villa við að lesa CSV Session File: %s</string>
     <string name="error_reading_excel_session_file">GS1 Datamatrix</string>
     <string name="resolution_small">640 x 640 (lítill)</string>
     <string name="resolution_small_description">hraðast; Best fyrir stóra eða nærmynd strikamerki</string>

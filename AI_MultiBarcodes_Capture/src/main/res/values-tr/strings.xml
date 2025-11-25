@@ -80,7 +80,7 @@
     <string name="applied_pending_viewfinder_resize">Uygulanan Beklemede Vizör Verileri Saklanan Değerlerden Yeniden Boyun</string>
     <string name="entity_tracker_ready">EntityBarCoDetracker hazır, bekleyen yapılandırmaları uygulayarak hazır</string>
     <string name="handle_view_entity_result">Görünüm Varlığı - Alınan Sonuç</string>
-    <string name="entity_tracker_decoder_available">EntityBarCoDetracker Decoder Mevcut, Varlıklar Sayı: %S</string>
+    <string name="entity_tracker_decoder_available">EntityBarCoDetracker Decoder Mevcut, Varlıklar Sayı: %s</string>
     <string name="processing_entities">Varlık görünümü için %d varlıkları işleme</string>
     <string name="rendered_entities">İşletme görüşünde işlenmiş varlıklar</string>
     <string name="symbologies">Sembolojiler</string>
@@ -111,7 +111,7 @@
     <string name="delete_item">Öğeyi Sil</string>
     <string name="value_label">Değer: %s</string>
     <string name="symbology_label">Semboloji: %s</string>
-    <string name="quantity_label">Miktar: %D</string>
+    <string name="quantity_label">Miktar: %d</string>
     <string name="date_label">Tarih: %s</string>
     <string name="success_granting_permissions">Başarı Getirme İzinleri.</string>
     <string name="session_data_merged">Oturum verileri birleştirildi.</string>

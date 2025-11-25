@@ -72,7 +72,7 @@
     <string name="error_creating_new_session">Грешка Създаване на нова сесия: %s</string>
     <string name="missing_filename">Липсва име на файл</string>
     <string name="camera_permission_required">Разрешение на камерата е необходимо да се използва тази функция</string>
-    <string name="entity_tracker_creation_time">PRACKER BARCODEDECODER () Време за създаване на OBJ =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">PRACKER BARCODEDECODER () Време за създаване на OBJ =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">декодерът на баркод е изхвърлен</string>
     <string name="orientation_unlocked">Ориентация, отключена за режим на %s</string>
     <string name="applied_viewfinder_resize_immediately">Приложените спецификации за оразмеряване на визьора незабавно</string>
@@ -81,7 +81,7 @@
     <string name="entity_tracker_ready">EntityBarCodeTracker е готов, прилагайки висящи конфигурации</string>
     <string name="handle_view_entity_result">Изглед на обработка - получен резултат</string>
     <string name="entity_tracker_decoder_available">EntityBarCodeTracker декодер, наличен, броя на субектите: %s</string>
-    <string name="processing_entities">Обработка %D образувания за изглед на образувание</string>
+    <string name="processing_entities">Обработка %d образувания за изглед на образувание</string>
     <string name="rendered_entities">Предавани предприятия по изглед на субекта</string>
     <string name="symbologies">Символогии</string>
     <string name="advanced">напреднал</string>

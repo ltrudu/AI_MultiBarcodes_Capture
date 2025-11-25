@@ -67,9 +67,9 @@
     <string name="error_creating_new_session">Klaida Sukurti naują sesiją: %s</string>
     <string name="missing_filename">trūkstamas failo vardas</string>
     <string name="camera_permission_required">norint naudoti šią funkciją, reikalingas fotoaparato leidimas</string>
-    <string name="entity_tracker_creation_time">Entity Tracker BarcodedeCoder () obj kūrimo laikas =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodedeCoder () obj kūrimo laikas =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">brūkšninių kodų dekoderis yra pašalintas</string>
-    <string name="orientation_unlocked">Orientacija atrakinta %S režimu</string>
+    <string name="orientation_unlocked">Orientacija atrakinta %s režimu</string>
     <string name="applied_viewfinder_resize_immediately">Taikomojo vaizdo ieškiklio dydžio dydžio specifikacijos iškart</string>
     <string name="stored_pending_viewfinder_resize">saugomi laukiantys „ViewFinder“ dydžio dydis, skirtas vėlesnei programai</string>
     <string name="applied_pending_viewfinder_resize">Taikomosios laukiančios „ViewFinder“ dydžio dydžio duomenys iš saugomų verčių</string>

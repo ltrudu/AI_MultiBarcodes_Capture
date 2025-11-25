@@ -77,7 +77,7 @@
     <string name="entity_tracker_ready">EntityBarCodeTracker está pronto, aplicando configurações pendentes</string>
     <string name="handle_view_entity_result">manipulam entidade de exibição - resultado recebido</string>
     <string name="entity_tracker_decoder_available">Decodificador de entityBarCodeTracker disponível, contagem de entidades: %s</string>
-    <string name="processing_entities">Processamento %D entidades para visualização de entidade</string>
+    <string name="processing_entities">Processamento %d entidades para visualização de entidade</string>
     <string name="rendered_entities">Entidades renderizadas na visualização da entidade</string>
     <string name="symbologies">Simbologias</string>
     <string name="advanced">Avançado</string>
@@ -113,7 +113,7 @@
     <string name="session_data_merged">Os dados da sessão mesclados.</string>
     <string name="error_reported">Erro relatado: %s</string>
     <string name="error_reading_session_file">Erro de leitura do arquivo de sessão: %s</string>
-    <string name="error_reading_csv_session_file">Erro ao ler Arquivo de sessão CSV: %S</string>
+    <string name="error_reading_csv_session_file">Erro ao ler Arquivo de sessão CSV: %s</string>
     <string name="error_reading_excel_session_file">Erro ao ler Arquivo de sessão do Excel: %s</string>
     <string name="resolution_small">640 x 640 (pequeno)</string>
     <string name="resolution_small_description">mais rápido; Melhor para códigos de barras grandes ou em close</string>

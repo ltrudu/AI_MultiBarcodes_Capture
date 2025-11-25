@@ -70,16 +70,16 @@
     <string name="error_creating_new_session">Помилка створення нового сеансу: %s</string>
     <string name="missing_filename">Відсутнє ім\'я файлу</string>
     <string name="camera_permission_required">Дозвіл на камеру необхідний для використання цієї функції</string>
-    <string name="entity_tracker_creation_time">Трекер суттєвого трекера Barcodedecoder () OBJ Час створення =%D Milli SEC</string>
+    <string name="entity_tracker_creation_time">Трекер суттєвого трекера Barcodedecoder () OBJ Час створення =%d Milli SEC</string>
     <string name="barcode_decoder_disposed">декодер штрих -коду утилізується</string>
-    <string name="orientation_unlocked">орієнтація розблокована для режиму %S</string>
+    <string name="orientation_unlocked">орієнтація розблокована для режиму %s</string>
     <string name="applied_viewfinder_resize_immediately">Накладений розмір видошука</string>
     <string name="stored_pending_viewfinder_resize">Збережене очікування даних про розмір видошука для подальшої програми</string>
     <string name="applied_pending_viewfinder_resize">Застосовувана очікувана розмір видошукачого розміру даних із збережених значень</string>
     <string name="entity_tracker_ready">entitybarcodetracker готовий, застосовуючи конфігурації, що очікують на очікування</string>
     <string name="handle_view_entity_result">ОБОВ\'ЯЗКОВА РОБОТА - Отриманий результат</string>
     <string name="entity_tracker_decoder_available">Доступний декодер entitybarcodetracker, суб\'єкти підрахунку: %s</string>
-    <string name="processing_entities">Обробка %D суб\'єктів для суб\'єкта View</string>
+    <string name="processing_entities">Обробка %d суб\'єктів для суб\'єкта View</string>
     <string name="rendered_entities">надані суб\'єкти на перегляд сутності</string>
     <string name="symbologies">Симболії</string>
     <string name="advanced">Просунута</string>
@@ -109,7 +109,7 @@
     <string name="delete_item">Видалити елемент</string>
     <string name="value_label">Значення: %s</string>
     <string name="symbology_label">Символогія: %s</string>
-    <string name="quantity_label">Кількість: %D</string>
+    <string name="quantity_label">Кількість: %d</string>
     <string name="date_label">Дата: %s</string>
     <string name="success_granting_permissions">Успіх надання дозволів.</string>
     <string name="session_data_merged">Дані сеансу об\'єдналися.</string>

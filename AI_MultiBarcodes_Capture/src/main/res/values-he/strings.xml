@@ -70,7 +70,7 @@
     <string name="error_creating_new_session">שגיאה ביצירת הפעלה חדשה: %s</string>
     <string name="missing_filename">שם קובץ חסר</string>
     <string name="camera_permission_required">הרשאת מצלמה נדרשת כדי להשתמש בתכונה זו</string>
-    <string name="entity_tracker_creation_time">גשש ישות barcodedecoder () זמן יצירה של OBJ =%D milli sec</string>
+    <string name="entity_tracker_creation_time">גשש ישות barcodedecoder () זמן יצירה של OBJ =%d milli sec</string>
     <string name="barcode_decoder_disposed">מפענח ברקוד מנוטרל</string>
     <string name="orientation_unlocked">אוריינטציה לא נעולה למצב %s</string>
     <string name="applied_viewfinder_resize_immediately">מיושם את גודל ה- Gibefinder Gade</string>

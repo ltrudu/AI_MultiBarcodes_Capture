@@ -421,7 +421,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
                 ));
 
                 // Set the status bar color using ContextCompat
-                statusBarView.setBackgroundColor(getColor(R.color.zebra));
+                statusBarView.setBackgroundColor(androidx.appcompat.R.attr.colorPrimary);
 
                 // Add the view to the activity's content view group
                 addContentView(statusBarView, statusBarView.getLayoutParams());

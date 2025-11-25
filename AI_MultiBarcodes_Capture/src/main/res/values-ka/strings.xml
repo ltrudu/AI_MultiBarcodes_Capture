@@ -80,8 +80,8 @@
     <string name="applied_pending_viewfinder_resize">გამოყენებული ViewFinder– ის ზომის შეცვლა შენახული მნიშვნელობებისგან</string>
     <string name="entity_tracker_ready">EntityBarcodeTracker მზად არის, გამოიყენებს კონფიგურაციებს</string>
     <string name="handle_view_entity_result">HANDE VIEW სუბიექტი - მიღებული შედეგი</string>
-    <string name="entity_tracker_decoder_available">ENTITYBARCODETRACKER DECODER ხელმისაწვდომია, პირები ითვლიან: %S</string>
-    <string name="processing_entities">დამუშავების %D პირები ერთეულის ხედვისთვის</string>
+    <string name="entity_tracker_decoder_available">ENTITYBARCODETRACKER DECODER ხელმისაწვდომია, პირები ითვლიან: %s</string>
+    <string name="processing_entities">დამუშავების %d პირები ერთეულის ხედვისთვის</string>
     <string name="rendered_entities">სუბიექტების განთავსება სუბიექტის თვალსაზრისით</string>
     <string name="symbologies">სიმბოლები</string>
     <string name="advanced">მოწინავე</string>

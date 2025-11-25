@@ -68,7 +68,7 @@
     <string name="error_creating_new_session">Napaka pri ustvarjanju nove seje: %s</string>
     <string name="missing_filename">Manjkajoče ime datoteke</string>
     <string name="camera_permission_required">dovoljenje za uporabo te funkcije je potrebno</string>
-    <string name="entity_tracker_creation_time">Entitet Tracker BarcodeDecoder () OBJ čas ustvarjanja =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entitet Tracker BarcodeDecoder () OBJ čas ustvarjanja =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">dekoder črtne kode je odstranjen</string>
     <string name="orientation_unlocked">orientacija odklenjena za %s način</string>
     <string name="applied_viewfinder_resize_immediately">Applied Outfinder DisIze Special Specifikacije</string>

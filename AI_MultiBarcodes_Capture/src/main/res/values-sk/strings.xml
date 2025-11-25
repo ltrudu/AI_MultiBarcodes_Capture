@@ -66,14 +66,14 @@
     <string name="camera_permission_required">Povolenie fotoaparátu je potrebné na použitie tejto funkcie</string>
     <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Čas tvorby =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">Dekódovač čiarového kódu je zlikvidovaný</string>
-    <string name="orientation_unlocked">Orientácia odomknutá pre režim %S</string>
+    <string name="orientation_unlocked">Orientácia odomknutá pre režim %s</string>
     <string name="applied_viewfinder_resize_immediately">Aplikovaný hľadáčik</string>
     <string name="stored_pending_viewfinder_resize">uložené čakajúce na údaje o zmene veľkosti hľadáčika pre neskoršiu aplikáciu</string>
     <string name="applied_pending_viewfinder_resize">Aplikované čakajúce na zmenu veľkosti hľadáňa z uložených hodnôt z uložených hodnôt</string>
     <string name="entity_tracker_ready">EntityBarCodeTracker je pripravený a používa čakajúce konfigurácie</string>
     <string name="handle_view_entity_result">Entita rukoväte - výsledok prijatý</string>
     <string name="entity_tracker_decoder_available">EntityBarCodeTracker Decoder Dostupný, počet entít: %s</string>
-    <string name="processing_entities">Spracovanie %D entít pre pohľad subjektov</string>
+    <string name="processing_entities">Spracovanie %d entít pre pohľad subjektov</string>
     <string name="rendered_entities">Vydané subjekty na stránke Entity View</string>
     <string name="symbologies">symboliky</string>
     <string name="advanced">pokročilé</string>

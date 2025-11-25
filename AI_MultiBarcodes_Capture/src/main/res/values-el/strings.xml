@@ -79,7 +79,7 @@
     <string name="entity_tracker_ready">ο EntityBarcodeTracker είναι έτοιμος, εφαρμόζοντας εκκρεμείς διαμορφώσεις</string>
     <string name="handle_view_entity_result">Λειτουργία προβολής οντότητας - Ελήφθη αποτέλεσμα</string>
     <string name="entity_tracker_decoder_available">Διατίθεται αποκωδικοποιητής EntityBarcodeTracker, οντότητες μετράει: %s</string>
-    <string name="processing_entities">Επεξεργασία %D Οντότητες για προβολή οντότητας</string>
+    <string name="processing_entities">Επεξεργασία %d Οντότητες για προβολή οντότητας</string>
     <string name="rendered_entities">Κατασκευασμένες οντότητες στην προβολή οντότητας</string>
     <string name="symbologies">Συμβολογίες</string>
     <string name="advanced">Advanced</string>
@@ -108,14 +108,14 @@
     <string name="edit_item">microPDF</string>
     <string name="delete_item">Διαγραφή αντικειμένου</string>
     <string name="value_label">τιμή: %s</string>
-    <string name="symbology_label">Symbology: %S</string>
+    <string name="symbology_label">Symbology: %s</string>
     <string name="quantity_label">Ποσότητα: %Δ</string>
     <string name="date_label">Ημερομηνία: %s</string>
     <string name="success_granting_permissions">Επιτυχία που χορηγούν δικαιώματα.</string>
     <string name="session_data_merged">Συγχωνεύθηκαν τα δεδομένα περιόδου σύνδεσης.</string>
     <string name="error_reported">Αναφέρθηκε σφάλμα: %s</string>
-    <string name="error_reading_session_file">Αρχείο συνεδρίας ανάγνωσης σφαλμάτων: %S</string>
-    <string name="error_reading_csv_session_file">Σφάλμα ανάγνωσης CSV Αρχείο περιόδου σύνδεσης: %S</string>
+    <string name="error_reading_session_file">Αρχείο συνεδρίας ανάγνωσης σφαλμάτων: %s</string>
+    <string name="error_reading_csv_session_file">Σφάλμα ανάγνωσης CSV Αρχείο περιόδου σύνδεσης: %s</string>
     <string name="error_reading_excel_session_file">GS1 DataMatrix</string>
     <string name="resolution_small">640 x 640 (μικρό)</string>
     <string name="resolution_small_description">ταχύτερα. Καλύτερο για μεγάλους ή κοντινούς κώδικες</string>

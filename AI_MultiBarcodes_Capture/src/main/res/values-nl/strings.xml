@@ -68,7 +68,7 @@
     <string name="error_creating_new_session">Fout bij het maken van nieuwe sessie: %s</string>
     <string name="missing_filename">ontbrekende bestandsnaam</string>
     <string name="camera_permission_required">cameramotor is vereist om deze functie te gebruiken</string>
-    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder () OBJ Creation Time =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder () OBJ Creation Time =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">Barcode -decoder is verwijderd</string>
     <string name="orientation_unlocked">oriëntatie ontgrendeld voor %s modus</string>
     <string name="applied_viewfinder_resize_immediately">Toegepaste zoeker wijzigen de specificaties onmiddellijk voor de wijs</string>
@@ -77,7 +77,7 @@
     <string name="entity_tracker_ready">EntityBarcodeTracker is klaar en past in afwachting van configuraties toe</string>
     <string name="handle_view_entity_result">HANDEL VOORWAARDE ENTITEIT - Resultaat ontvangen</string>
     <string name="entity_tracker_decoder_available">EntityBarcodeTracker Decoder beschikbaar, entiteiten Count: %s</string>
-    <string name="processing_entities">Verwerking %D -entiteiten voor entiteitweergave</string>
+    <string name="processing_entities">Verwerking %d -entiteiten voor entiteitweergave</string>
     <string name="rendered_entities">Gerechten entiteiten op entiteitweergave</string>
     <string name="symbologies">Symbologieën</string>
     <string name="advanced">geavanceerd</string>
@@ -112,7 +112,7 @@
     <string name="success_granting_permissions">SUCCES SCENTIE VAN MEERSCHAPPEN.</string>
     <string name="session_data_merged">Sessiegegevens samengevoegd.</string>
     <string name="error_reported">Fout gerapporteerd: %s</string>
-    <string name="error_reading_session_file">Fout lezen Sessiebestand: %S</string>
+    <string name="error_reading_session_file">Fout lezen Sessiebestand: %s</string>
     <string name="error_reading_csv_session_file">fout lezen CSV -sessiebestand: %s</string>
     <string name="error_reading_excel_session_file">fout lezen Excel Session -bestand: %s</string>
     <string name="resolution_small">640 x 640 (klein)</string>

@@ -67,7 +67,7 @@
     <string name="error_creating_new_session">ข้อผิดพลาดในการสร้างเซสชันใหม่: %s</string>
     <string name="missing_filename">ชื่อไฟล์ที่ขาดหายไป</string>
     <string name="camera_permission_required">ต้องอนุญาตให้ใช้คุณสมบัติในการใช้คุณสมบัตินี้</string>
-    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder () OBJ Creation Time =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodeDecoder () OBJ Creation Time =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">ตัวถอดรหัสบาร์โค้ดถูกกำจัด</string>
     <string name="orientation_unlocked">การวางแนวปลดล็อคสำหรับโหมด %s</string>
     <string name="applied_viewfinder_resize_immediately">ช่องมองภาพที่ใช้ปรับขนาดสเปคทันที</string>
@@ -75,8 +75,8 @@
     <string name="applied_pending_viewfinder_resize">ช่องมองภาพที่รอดำเนินการปรับขนาดข้อมูลจากค่าที่เก็บไว้</string>
     <string name="entity_tracker_ready">EntityBarcodetracker พร้อมใช้งานการกำหนดค่าที่รอดำเนินการ</string>
     <string name="handle_view_entity_result">จัดการเอนทิตีมุมมอง - ได้รับผลลัพธ์</string>
-    <string name="entity_tracker_decoder_available">ตัวถอดรหัส EntityBarcodetracker มีให้เลือกจำนวนหน่วยงาน: %S</string>
-    <string name="processing_entities">การประมวลผล %D เอนทิตีสำหรับมุมมองเอนทิตี</string>
+    <string name="entity_tracker_decoder_available">ตัวถอดรหัส EntityBarcodetracker มีให้เลือกจำนวนหน่วยงาน: %s</string>
+    <string name="processing_entities">การประมวลผล %d เอนทิตีสำหรับมุมมองเอนทิตี</string>
     <string name="rendered_entities">เอนทิตีที่แสดงผลในมุมมองเอนทิตี</string>
     <string name="symbologies">สัญลักษณ์</string>
     <string name="advanced">ขั้นสูง</string>

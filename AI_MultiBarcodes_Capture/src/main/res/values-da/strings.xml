@@ -71,9 +71,9 @@
     <string name="error_creating_new_session">Fejl ved at oprette en ny session: %s</string>
     <string name="missing_filename">Manglende filnavn</string>
     <string name="camera_permission_required">Tilladelse af kameraet kræves for at bruge denne funktion</string>
-    <string name="entity_tracker_creation_time">Entity Tracker BarcodedeCoder () OBJ Oprettelsestid =%D Milli SEC</string>
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodedeCoder () OBJ Oprettelsestid =%d Milli SEC</string>
     <string name="barcode_decoder_disposed">stregkodekoder bortskaffes</string>
-    <string name="orientation_unlocked">orientering låst op for %S -tilstand</string>
+    <string name="orientation_unlocked">orientering låst op for %s -tilstand</string>
     <string name="applied_viewfinder_resize_immediately">Anvendt søger Ændring af størrelsen Specifikationer straks</string>
     <string name="stored_pending_viewfinder_resize">Gemte i afventning af søgerstørrelsesdata til senere anvendelse</string>
     <string name="applied_pending_viewfinder_resize">Anvendt i afventning af søgernes størrelse på størrelsesdata fra lagrede værdier</string>

@@ -68,10 +68,10 @@
     <string name="cannot_share_folders">Non se pode compartir cartafoles.</string>
     <string name="last_session_file_not_found">O último ficheiro de sesión non atopado.</string>
     <string name="no_session_file_saved">Non se garda ningún ficheiro de sesión en preferencias.</string>
-    <string name="error_creating_new_session">Erro Creando nova sesión: %S</string>
+    <string name="error_creating_new_session">Erro Creando nova sesión: %s</string>
     <string name="missing_filename">Falta nome de ficheiro</string>
     <string name="camera_permission_required">O permiso da cámara é necesario para usar esta función</string>
-    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Tempo de creación =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Tempo de creación =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">Dispúxase o decodificador de códigos de barras</string>
     <string name="orientation_unlocked">A orientación desbloqueada para o modo %s</string>
     <string name="applied_viewfinder_resize_immediately">Visor aplicado redimensiona inmediatamente as especificacións</string>

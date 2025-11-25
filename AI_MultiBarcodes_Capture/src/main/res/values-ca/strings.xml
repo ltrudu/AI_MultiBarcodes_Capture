@@ -72,7 +72,7 @@
     <string name="camera_permission_required">Es necessita un permís de la càmera per utilitzar aquesta funció</string>
     <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Temps de creació =%d mili sec</string>
     <string name="barcode_decoder_disposed">El descodificador del codi de barres està disposat</string>
-    <string name="orientation_unlocked">Orientació desbloquejada per al mode S %S</string>
+    <string name="orientation_unlocked">Orientació desbloquejada per al mode S %s</string>
     <string name="applied_viewfinder_resize_immediately">Vista aplicat, redimensiona les especificacions immediatament</string>
     <string name="stored_pending_viewfinder_resize">Emmagatzemat pendent de Viewfinder redimensiona les dades per a l\'aplicació posterior</string>
     <string name="applied_pending_viewfinder_resize">Aplicat pendent de visualització redimensiona les dades dels valors emmagatzemats</string>
@@ -109,7 +109,7 @@
     <string name="delete_item">Eliminar l\'element</string>
     <string name="value_label">valor: %s</string>
     <string name="symbology_label">simbologia: %s</string>
-    <string name="quantity_label">Quantitat: %D</string>
+    <string name="quantity_label">Quantitat: %d</string>
     <string name="date_label">Data: %s</string>
     <string name="success_granting_permissions">ASSISTIMENTS D\'èxit.</string>
     <string name="session_data_merged">Dades de sessió fusionades.</string>

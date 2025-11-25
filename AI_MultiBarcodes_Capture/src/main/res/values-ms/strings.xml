@@ -63,10 +63,10 @@
     <string name="cannot_share_folders">Tidak boleh berkongsi folder.</string>
     <string name="last_session_file_not_found">Fail sesi terakhir tidak dijumpai.</string>
     <string name="no_session_file_saved">Tiada fail sesi disimpan dalam pilihan.</string>
-    <string name="error_creating_new_session">Ralat Membuat Sesi Baru: %S</string>
+    <string name="error_creating_new_session">Ralat Membuat Sesi Baru: %s</string>
     <string name="missing_filename">Nama fail yang hilang</string>
     <string name="camera_permission_required">Kebenaran kamera diperlukan untuk menggunakan ciri ini</string>
-    <string name="entity_tracker_creation_time">BarcodedeCoder Tracker Entity () OBJ Penciptaan Masa =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">BarcodedeCoder Tracker Entity () OBJ Penciptaan Masa =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">Decoder kod bar dilupuskan</string>
     <string name="applied_viewfinder_resize_immediately">Memandang Pemandangan Saiz Saiz Segera Segera</string>
     <string name="stored_pending_viewfinder_resize">disimpan data saiz semula pemidang tilik yang belum selesai untuk aplikasi kemudian</string>
@@ -74,7 +74,7 @@
     <string name="entity_tracker_ready">EntityBarCodeTracker siap, memohon konfigurasi yang belum selesai</string>
     <string name="handle_view_entity_result">Mengendalikan entiti paparan - hasil diterima</string>
     <string name="entity_tracker_decoder_available">EntityBarCodetracker Decoder tersedia, entiti kiraan: %s</string>
-    <string name="processing_entities">Pemprosesan %D Entiti untuk Paparan Entiti</string>
+    <string name="processing_entities">Pemprosesan %d Entiti untuk Paparan Entiti</string>
     <string name="rendered_entities">Entiti yang diberikan pada paparan entiti</string>
     <string name="symbologies">Symbologies</string>
     <string name="advanced">Advanced</string>
@@ -109,9 +109,9 @@
     <string name="success_granting_permissions">Kejayaan memberikan keizinan.</string>
     <string name="session_data_merged">Data sesi digabungkan.</string>
     <string name="error_reported">Ralat dilaporkan: %s</string>
-    <string name="error_reading_session_file">Fail Sesi Membaca Ralat: %S</string>
-    <string name="error_reading_csv_session_file">Ralat Membaca Fail Sesi CSV: %S</string>
-    <string name="error_reading_excel_session_file">Ralat Membaca Fail Sesi Excel: %S</string>
+    <string name="error_reading_session_file">Fail Sesi Membaca Ralat: %s</string>
+    <string name="error_reading_csv_session_file">Ralat Membaca Fail Sesi CSV: %s</string>
+    <string name="error_reading_excel_session_file">Ralat Membaca Fail Sesi Excel: %s</string>
     <string name="resolution_small">640 x 640 (kecil)</string>
     <string name="resolution_small_description">Terpantas; Terbaik untuk kod bar besar atau rapat</string>
     <string name="resolution_medium">1280 x 1280 (sederhana)</string>

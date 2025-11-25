@@ -65,14 +65,14 @@
     <string name="camera_permission_required">leja e kamerës kërkohet për të përdorur këtë veçori</string>
     <string name="entity_tracker_creation_time">BarkodeCoder i gjurmuesit të entitetit () OBJ Koha e krijimit =%d milli sec</string>
     <string name="barcode_decoder_disposed">deshifruesi i barkodit është i disponueshëm</string>
-    <string name="orientation_unlocked">orientimi i zhbllokuar për modalitetin %S</string>
+    <string name="orientation_unlocked">orientimi i zhbllokuar për modalitetin %s</string>
     <string name="applied_viewfinder_resize_immediately">Specifikimet e madhësisë së madhësisë së pamjes së aplikuar menjëherë</string>
     <string name="stored_pending_viewfinder_resize">të ruajtur në pritje të të dhënave për madhësinë e pamjes për aplikimin e mëvonshëm</string>
     <string name="applied_pending_viewfinder_resize">Aplikuar në pritje të pamjes së të dhënave për ndryshimin e të dhënave nga vlerat e ruajtura</string>
     <string name="entity_tracker_ready">EntityBarcodetracker është gati, duke aplikuar konfigurime në pritje</string>
     <string name="handle_view_entity_result">Trajtimi i Entitetit të View - Rezultati i marrë</string>
-    <string name="entity_tracker_decoder_available">Dekoderi i EntityBarcodetracker në dispozicion, Subjektet Numërojnë: %S</string>
-    <string name="processing_entities">Përpunimi %D Subjektet për pamjen e njësisë ekonomike</string>
+    <string name="entity_tracker_decoder_available">Dekoderi i EntityBarcodetracker në dispozicion, Subjektet Numërojnë: %s</string>
+    <string name="processing_entities">Përpunimi %d Subjektet për pamjen e njësisë ekonomike</string>
     <string name="rendered_entities">entitetet e bëra në pamjen e entitetit</string>
     <string name="symbologies">Simbolologjitë</string>
     <string name="advanced">avancuar</string>

@@ -63,9 +63,9 @@
     <string name="no_session_file_saved">Žádný soubor relace uložen v preferencích.</string>
     <string name="error_creating_new_session">Chyba při vytváření nových relací: %s</string>
     <string name="missing_filename">Chybějící název souboru</string>
-    <string name="entity_tracker_creation_time">Entity Tracker BarcodedeCoder () OBJ ČAS TREAKOVÁNÍ =%D MILLI SEC</string>
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodedeCoder () OBJ ČAS TREAKOVÁNÍ =%d MILLI SEC</string>
     <string name="barcode_decoder_disposed">Dekodér čárového kódu je zlikvidován</string>
-    <string name="orientation_unlocked">Orientace odemčená pro režim %S</string>
+    <string name="orientation_unlocked">Orientace odemčená pro režim %s</string>
     <string name="applied_viewfinder_resize_immediately">Applied hledáček změn změny specifikace okamžitě</string>
     <string name="stored_pending_viewfinder_resize">Uložený čekající hledáček velikosti velikosti dat pro pozdější aplikaci</string>
     <string name="applied_pending_viewfinder_resize">Aplikované čekající na hledání velikosti velikosti velikosti uložených hodnot</string>

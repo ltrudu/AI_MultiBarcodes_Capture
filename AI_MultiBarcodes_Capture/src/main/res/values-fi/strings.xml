@@ -63,16 +63,16 @@
     <string name="error_creating_new_session">Virhe Uuden istunnon luominen: %s</string>
     <string name="missing_filename">puuttuva tiedostonimi</string>
     <string name="camera_permission_required">Kameran lupa tarvitaan tämän ominaisuuden käyttämiseen</string>
-    <string name="entity_tracker_creation_time">Entity Tracker BarcodedeCoder () OBJ: n luomisaika =%D Milli sEC</string>
+    <string name="entity_tracker_creation_time">Entity Tracker BarcodedeCoder () OBJ: n luomisaika =%d Milli sEC</string>
     <string name="barcode_decoder_disposed">viivakoodin dekooderi hävitetään</string>
-    <string name="orientation_unlocked">suuntaus avataan %S -tilaan</string>
+    <string name="orientation_unlocked">suuntaus avataan %s -tilaan</string>
     <string name="applied_viewfinder_resize_immediately">Yhdistä määrät</string>
     <string name="stored_pending_viewfinder_resize">Tallennettu odotettavissa olevaa etsintä muuttaa kokoa myöhempää sovellusta varten</string>
     <string name="applied_pending_viewfinder_resize">sovellettu odotettavissa oleva etsintä Tallennettujen arvojen tietojen kokoa</string>
     <string name="entity_tracker_ready">EntitybarcodeTracker on valmis, soveltamalla vireillä olevia kokoonpanoja</string>
     <string name="handle_view_entity_result">Käsittele näkymäyksikkö - Vastaanotettu tulos</string>
     <string name="entity_tracker_decoder_available">Entitybarcodetracker -dekooderi käytettävissä, yksiköt lasketaan: %s</string>
-    <string name="processing_entities">prosessointi %D -yksiköt yksikölle</string>
+    <string name="processing_entities">prosessointi %d -yksiköt yksikölle</string>
     <string name="rendered_entities">Renderoidut yksiköt yksikönäkymässä</string>
     <string name="symbologies">symbologiat</string>
     <string name="advanced">Edistynyt</string>
@@ -102,7 +102,7 @@
     <string name="delete_item">Poista kohde</string>
     <string name="value_label">arvo: %s</string>
     <string name="symbology_label">Symbologia: %s</string>
-    <string name="quantity_label">Määrä: %D</string>
+    <string name="quantity_label">Määrä: %d</string>
     <string name="date_label">Päivämäärä: %s</string>
     <string name="success_granting_permissions">Menestysoikeuksien onnistuminen.</string>
     <string name="session_data_merged">istuntotiedot sulautuivat.</string>

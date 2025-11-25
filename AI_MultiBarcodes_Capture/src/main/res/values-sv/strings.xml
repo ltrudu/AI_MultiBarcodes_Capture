@@ -65,9 +65,9 @@
     <string name="error_creating_new_session">fel Skapa ny session: %s</string>
     <string name="missing_filename">saknade filnamn</string>
     <string name="camera_permission_required">Kameratillstånd krävs för att använda den här funktionen</string>
-    <string name="entity_tracker_creation_time">Entity Tracker BarcoDeDeCoder () OBJ Creation Time =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entity Tracker BarcoDeDeCoder () OBJ Creation Time =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">streckkodavkodare är disponerad</string>
-    <string name="orientation_unlocked">Orientering låst upp för %S -läge</string>
+    <string name="orientation_unlocked">Orientering låst upp för %s -läge</string>
     <string name="applied_viewfinder_resize_immediately">sammanslagningskvantiteter</string>
     <string name="stored_pending_viewfinder_resize">lagrad väntande sökare ändra storlek på data för senare applikation</string>
     <string name="applied_pending_viewfinder_resize">Applied Awning Viewfinder Ändra storleksdata från lagrade värden</string>
@@ -102,7 +102,7 @@
     <string name="delete_item">Radera objekt</string>
     <string name="value_label">Värde: %s</string>
     <string name="symbology_label">Symbologi: %s</string>
-    <string name="quantity_label">Kvantitet: %D</string>
+    <string name="quantity_label">Kvantitet: %d</string>
     <string name="date_label">Datum: %s</string>
     <string name="success_granting_permissions">Framgång beviljar behörigheter.</string>
     <string name="session_data_merged">Sessionuppgifter slogs samman.</string>
