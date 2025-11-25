@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:drawable="@color/zebra" android:alpha="0.3" />
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/colorPrimary" />
+            <alpha android:value="0.3" />
+        </shape>
+    </item>
     <item android:state_pressed="true" android:drawable="@android:color/transparent" />
     <item android:state_activated="true" android:drawable="@android:color/transparent" />
     <item android:state_checked="true" android:drawable="@android:color/transparent" />
     <item android:state_focused="true" android:drawable="@android:color/transparent" />
-    <item android:drawable="@android:color/white" />
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/colorSurface" />
+        </shape>
+    </item>
 </selector>
