@@ -75,7 +75,7 @@
     <string name="applied_pending_viewfinder_resize">Applicato in sospeso il ridimensionamento del mirino da valori memorizzati</string>
     <string name="entity_tracker_ready">EntityBarCodeTracker è pronto, applicando configurazioni in sospeso</string>
     <string name="handle_view_entity_result">Entità Visualizza maneggevole - Risultato ricevuto</string>
-    <string name="entity_tracker_decoder_available">EntityBarCodeTracker Decoder disponibile, Entities Count: %S</string>
+    <string name="entity_tracker_decoder_available">EntityBarCodeTracker Decoder disponibile, Entities Count: %s</string>
     <string name="processing_entities">elaborazione %d entità per la vista dell\'entità</string>
     <string name="rendered_entities">Entità rese su Entity View</string>
     <string name="symbologies">SIMBOLOGIE</string>

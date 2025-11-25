@@ -61,7 +61,7 @@
     <string name="no_session_file_saved">walang session file na nai -save sa mga kagustuhan.</string>
     <string name="error_creating_new_session">error sa paglikha ng bagong session: %s</string>
     <string name="missing_filename">nawawalang filename</string>
-    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Oras ng Paglikha =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Oras ng Paglikha =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">ang barcode decoder ay itinapon</string>
     <string name="orientation_unlocked">Ang orientation ay naka -lock para sa %s mode</string>
     <string name="applied_viewfinder_resize_immediately">Inilapat na Viewfinder baguhin ang laki ng mga specs kaagad</string>

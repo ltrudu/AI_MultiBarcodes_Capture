@@ -108,7 +108,7 @@
     <string name="delete_item">Kustuta üksus</string>
     <string name="value_label">väärtus: %s</string>
     <string name="symbology_label">Sümboloogia: %s</string>
-    <string name="quantity_label">Kogus: %D</string>
+    <string name="quantity_label">Kogus: %d</string>
     <string name="date_label">Kuupäev: %s</string>
     <string name="success_granting_permissions">Lubade võimaldamine.</string>
     <string name="session_data_merged">seansi andmed ühendasid.</string>

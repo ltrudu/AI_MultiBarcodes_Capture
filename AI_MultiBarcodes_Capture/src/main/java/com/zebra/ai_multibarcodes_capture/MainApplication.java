@@ -14,6 +14,8 @@ import com.zebra.criticalpermissionshelper.IResultCallbacks;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
+import java.util.Date;
+
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.TAG;
 
 public class MainApplication extends Application {
@@ -52,6 +54,7 @@ public class MainApplication extends Application {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
+                final Date nowDate = new Date();
                 // Granting Manage_External_Storage permission
                 LogUtils.i(TAG, "-------------------------------------------------------------");
                 LogUtils.i(TAG, "Granting Manage_External_Storage permission");
@@ -81,6 +84,10 @@ public class MainApplication extends Application {
                                 LogUtils.i(TAG, "SUCCEEDED Granting ALL_DANGEROUS_PERMISSIONS permission");
                                 LogUtils.i(TAG, message);
                                 LogUtils.i(TAG, resultXML);
+                                LogUtils.i(TAG, "-------------------------------------------------------------");
+                                LogUtils.i(TAG, "------------------TOTAL TIME ELAPSED------------------------");
+                                Long totalTime = (new Date().getTime() - nowDate.getTime());
+                                LogUtils.i(TAG, "Elapsed: " + String.valueOf(totalTime));
                                 LogUtils.i(TAG, "-------------------------------------------------------------");
                                 if(MainApplication.iMainApplicationCallback != null)
                                 {

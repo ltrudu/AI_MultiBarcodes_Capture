@@ -69,9 +69,9 @@
     <string name="error_creating_new_session">Feil ved å lage ny økt: %s</string>
     <string name="missing_filename">Mangler filnavn</string>
     <string name="camera_permission_required">Kameratillatelse kreves for å bruke denne funksjonen</string>
-    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Creation Time =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Creation Time =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">Barcode dekoder er avhendet</string>
-    <string name="orientation_unlocked">Orientering låst opp for %S -modus</string>
+    <string name="orientation_unlocked">Orientering låst opp for %s -modus</string>
     <string name="applied_viewfinder_resize_immediately">Applied søker Størrelsesstørrelse umiddelbart</string>
     <string name="stored_pending_viewfinder_resize">Lagret i påvente av data om lidelse Endre størrelse for senere søknad</string>
     <string name="applied_pending_viewfinder_resize">anvendt i påvente av data om søker størrelse på størrelse fra lagrede verdier</string>
@@ -112,7 +112,7 @@
     <string name="date_label">Dato: %s</string>
     <string name="success_granting_permissions">Suksess som gir tillatelser.</string>
     <string name="session_data_merged">Øktdata fusjonert.</string>
-    <string name="error_reported">Feil rapportert: %S</string>
+    <string name="error_reported">Feil rapportert: %s</string>
     <string name="error_reading_session_file">Feil lesningsøktfil: %s</string>
     <string name="error_reading_csv_session_file">Feil lesing av CSV -øktfil: %s</string>
     <string name="error_reading_excel_session_file">Feil lesing Excel Session File: %s</string>

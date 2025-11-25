@@ -71,7 +71,7 @@
     <string name="error_creating_new_session">Fout met die skep van nuwe sessie: %s</string>
     <string name="missing_filename">ontbrekende lêernaam</string>
     <string name="camera_permission_required">Kamera -toestemming is nodig om hierdie funksie te gebruik</string>
-    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Skepingstyd =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Entity Tracker Barcodedecoder () OBJ Skepingstyd =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">strepieskode -dekodeerder is weggedoen</string>
     <string name="orientation_unlocked">oriëntasie oopgesluit vir %s -modus</string>
     <string name="applied_viewfinder_resize_immediately">Samestelling van hoeveelhede</string>
@@ -111,7 +111,7 @@
     <string name="value_label">waarde: %s</string>
     <string name="symbology_label">simbologie: %s</string>
     <string name="quantity_label">hoeveelheid: %d</string>
-    <string name="date_label">Datum: %S</string>
+    <string name="date_label">Datum: %s</string>
     <string name="success_granting_permissions">Sukses wat toestemmings verleen.</string>
     <string name="session_data_merged">Sessie -data saamgevoeg.</string>
     <string name="error_reported">Fout gerapporteer: %s</string>

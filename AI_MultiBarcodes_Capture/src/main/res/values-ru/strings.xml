@@ -70,7 +70,7 @@
     <string name="error_creating_new_session">Ошибка Создание нового сеанса: %s</string>
     <string name="missing_filename">Отсутствует имя файла</string>
     <string name="camera_permission_required">Для использования этой функции требуется разрешение на камеру</string>
-    <string name="entity_tracker_creation_time">Трекер Entity Barcodedecoder () время создания OBJ =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">Трекер Entity Barcodedecoder () время создания OBJ =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">декодер штрих -кода утилизируется</string>
     <string name="orientation_unlocked">Ориентация разблокирована для режима %s</string>
     <string name="applied_viewfinder_resize_immediately">Применяемый видоискатель сразу же изменяйте размеры характеристики</string>

@@ -63,13 +63,13 @@
     <string name="missing_filename">Kukosa jina la faili</string>
     <string name="entity_tracker_creation_time">chombo cha tracker barcodedecoder () wakati wa uundaji wa OBJ =%d milli sec</string>
     <string name="barcode_decoder_disposed">Decoder ya Barcode imetolewa</string>
-    <string name="orientation_unlocked">Mwelekeo haujafunguliwa kwa modi ya %S.</string>
+    <string name="orientation_unlocked">Mwelekeo haujafunguliwa kwa modi ya %s.</string>
     <string name="applied_viewfinder_resize_immediately">Kutumika ViewFinder sadize specs mara moja</string>
     <string name="stored_pending_viewfinder_resize">Iliyohifadhiwa inasubiri data ya kurekebisha data ya matumizi ya baadaye</string>
     <string name="entity_tracker_ready">EntityBarCodeTracker iko tayari, kutumia usanidi unaosubiri</string>
     <string name="handle_view_entity_result">Handle ya kuona - matokeo yaliyopokelewa</string>
     <string name="entity_tracker_decoder_available">EntityBarCodeTracker Decoder inapatikana, vyombo huhesabu: %s</string>
-    <string name="processing_entities">usindikaji %D vyombo kwa mtazamo wa chombo</string>
+    <string name="processing_entities">usindikaji %d vyombo kwa mtazamo wa chombo</string>
     <string name="rendered_entities">vyombo vilivyotolewa kwenye mtazamo wa chombo</string>
     <string name="symbologies">Alama</string>
     <string name="advanced">Advanced</string>

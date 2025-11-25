@@ -70,7 +70,7 @@
     <string name="camera_permission_required">Zezwolenie na kamerę jest wymagane do użycia tej funkcji</string>
     <string name="entity_tracker_creation_time">BARCODEDECODER () OBJ Tracker () Obj</string>
     <string name="barcode_decoder_disposed">Dekoder kodów kreskowych jest usuwany</string>
-    <string name="orientation_unlocked">Orientacja odblokowana dla trybu %S</string>
+    <string name="orientation_unlocked">Orientacja odblokowana dla trybu %s</string>
     <string name="applied_viewfinder_resize_immediately">Zastosowany wizjera Zmiana Zmiana natychmiastowych</string>
     <string name="stored_pending_viewfinder_resize">Zabezpieczone oczekujące dane rozmiaru Viewfinder dla późniejszej aplikacji</string>
     <string name="applied_pending_viewfinder_resize">Zastosowane oczekujące dane zmieniające rozmiar Viewfinder na podstawie przechowywanych wartości</string>

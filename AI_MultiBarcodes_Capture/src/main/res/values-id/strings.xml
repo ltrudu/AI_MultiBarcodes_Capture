@@ -62,9 +62,9 @@
     <string name="error_creating_new_session">kesalahan membuat sesi baru: %s</string>
     <string name="missing_filename">Nama file yang hilang</string>
     <string name="camera_permission_required">izin kamera diperlukan untuk menggunakan fitur ini</string>
-    <string name="entity_tracker_creation_time">pelacak entitas Barcodedecoder () OBJ Waktu Penciptaan =%D Milli Sec</string>
+    <string name="entity_tracker_creation_time">pelacak entitas Barcodedecoder () OBJ Waktu Penciptaan =%d Milli Sec</string>
     <string name="barcode_decoder_disposed">dekoder barcode dibuang</string>
-    <string name="orientation_unlocked">Orientasi tidak terkunci untuk mode %S</string>
+    <string name="orientation_unlocked">Orientasi tidak terkunci untuk mode %s</string>
     <string name="applied_viewfinder_resize_immediately">spesifikasi ukuran viewfinder yang diterapkan segera</string>
     <string name="stored_pending_viewfinder_resize">disimpan data ukuran viewfinder yang tertunda untuk aplikasi selanjutnya</string>
     <string name="applied_pending_viewfinder_resize">Data Ubah Ukiran Viewfinder Terapan dari Nilai Tersimpan</string>

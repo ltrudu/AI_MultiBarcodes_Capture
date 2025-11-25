@@ -69,16 +69,16 @@
     <string name="error_creating_new_session">క్రొత్త సెషన్‌ను సృష్టించడం లోపం: %s</string>
     <string name="missing_filename">ఫైల్ పేరు లేదు</string>
     <string name="camera_permission_required">ఈ లక్షణాన్ని ఉపయోగించడానికి కెమెరా అనుమతి అవసరం</string>
-    <string name="entity_tracker_creation_time">ఎంటిటీ ట్రాకర్ బార్‌కోడెడెకోడర్ () OBJ సృష్టి సమయం =%D మిల్లీ సెకను</string>
+    <string name="entity_tracker_creation_time">ఎంటిటీ ట్రాకర్ బార్‌కోడెడెకోడర్ () OBJ సృష్టి సమయం =%d మిల్లీ సెకను</string>
     <string name="barcode_decoder_disposed">బార్‌కోడ్ డీకోడర్ పారవేయబడుతుంది</string>
-    <string name="orientation_unlocked">ఓరియంటేషన్ %S మోడ్ కోసం అన్‌లాక్ చేయబడింది</string>
+    <string name="orientation_unlocked">ఓరియంటేషన్ %s మోడ్ కోసం అన్‌లాక్ చేయబడింది</string>
     <string name="applied_viewfinder_resize_immediately">అప్లైడ్ వ్యూఫైండర్ వెంటనే స్పెక్స్ రీసైజ్ చేయండి</string>
     <string name="stored_pending_viewfinder_resize">తరువాత అప్లికేషన్ కోసం నిల్వ చేసిన పెండింగ్ వ్యూఫైండర్ రీజైజ్ డేటా</string>
     <string name="applied_pending_viewfinder_resize">అనువర్తిత పెండింగ్ వ్యూఫైండర్ నిల్వ చేసిన విలువల నుండి డేటాను మార్చండి</string>
     <string name="entity_tracker_ready">ఎంటిటీబార్కోడెట్రాకర్ సిద్ధంగా ఉంది, పెండింగ్‌లో ఉన్న కాన్ఫిగరేషన్లను వర్తింపజేస్తుంది</string>
     <string name="handle_view_entity_result">హ్యాండిల్ వ్యూ ఎంటిటీ - ఫలితం అందుకుంది</string>
     <string name="entity_tracker_decoder_available">ఎంటిటీబార్కోడెట్రాకర్ డీకోడర్ అందుబాటులో ఉంది, ఎంటిటీలు లెక్క: %s</string>
-    <string name="processing_entities">ఎంటిటీ వీక్షణ కోసం %D ఎంటిటీలను ప్రాసెస్ చేయడం</string>
+    <string name="processing_entities">ఎంటిటీ వీక్షణ కోసం %d ఎంటిటీలను ప్రాసెస్ చేయడం</string>
     <string name="rendered_entities">ఎంటిటీ వీక్షణపై అన్వయించబడిన ఎంటిటీలు</string>
     <string name="symbologies">సింబాలజీలు</string>
     <string name="advanced">అధునాతన</string>
