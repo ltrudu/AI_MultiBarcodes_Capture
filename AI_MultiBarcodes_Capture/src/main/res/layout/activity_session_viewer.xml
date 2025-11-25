@@ -6,25 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".sessionmanagement.SessionViewerActivity"
-    android:background="@color/white"
+    android:background="?android:attr/colorBackground"
     android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/zebra_pantone_285"
+        android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        android:theme="@style/Theme.MultiBarcodesCapture_AB"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/activity_session_data"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="?attr/colorOnPrimary" />
 
     <ListView
         android:id="@+id/session_barcodes_list_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="?android:attr/colorBackground"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="?attr/colorPrimary"
+        android:dividerHeight="1dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/session_actions"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="60dp"
+        android:background="?android:attr/colorBackground"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
@@ -43,7 +47,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="2.5dp"
-            android:backgroundTint="@color/zebra_pantone_285"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/close"
             android:textSize="12sp"
             android:gravity="center"
@@ -60,7 +65,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="2.5dp"
             android:layout_marginEnd="2.5dp"
-            android:backgroundTint="@color/zebra_pantone_285"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/merge"
             android:textSize="12sp"
             android:gravity="center"
@@ -76,7 +82,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="2.5dp"
             android:layout_marginEnd="5dp"
-            android:backgroundTint="@color/zebra_pantone_285"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/save"
             android:textSize="12sp"
             android:gravity="center"

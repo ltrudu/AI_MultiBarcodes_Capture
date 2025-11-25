@@ -164,7 +164,7 @@
     <string name="about_view_license">Afficher la licence d\'outil de développement zèbre</string>
     <string name="menu_manage_sessions">Gérer les séances</string>
     <string name="menu_settings">Paramètres</string>
-    <string name="menu_about">sur</string>
+    <string name="menu_about">A propos</string>
     <string name="menu_new_file">nouveau fichier</string>
     <string name="menu_rename">renommer</string>
     <string name="menu_delete">supprimer</string>
