@@ -4,7 +4,7 @@
     android:height="16dp"
     android:viewportWidth="24"
     android:viewportHeight="16"
-    android:tint="@color/zebra">
+    android:tint="@color/zebra_pantone_285">
     <path
         android:fillColor="@android:color/white"
         android:pathData="M14.4,6L14,4H5v17h2v-7h5.6l0.4,2h7V6z"/>

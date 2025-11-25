@@ -4,15 +4,15 @@
     <!-- ============================================ -->
     <style name="Base.Theme.AIMultiBarcodes_Capture.Legacy" parent="Theme.Material3.Light.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="colorPrimary">@color/zebra</item>
-        <item name="android:colorPrimary">@color/zebra</item>
-        <item name="colorSecondary">@color/zebra</item>
-        <item name="colorTertiary">@color/zebra</item>
-        <item name="android:statusBarColor">@color/zebra</item>
+        <item name="colorPrimary">@color/zebra_pantone_2728</item>
+        <item name="android:colorPrimary">@color/zebra_pantone_2728</item>
+        <item name="colorSecondary">@color/zebra_pantone_285</item>
+        <item name="colorTertiary">@color/zebra_pantone_2756</item>
+        <item name="android:statusBarColor">@color/zebra_pantone_285</item>
         <item name="android:navigationBarColor">@color/black</item>
-        <item name="colorAccent">@color/zebra</item>
-        <item name="colorControlActivated">@color/zebra</item>
-        <item name="android:colorControlActivated">@color/zebra</item>
+        <item name="colorAccent">@color/zebra_pantone_285</item>
+        <item name="colorControlActivated">@color/zebra_pantone_285</item>
+        <item name="android:colorControlActivated">@color/zebra_pantone_285</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
         <!-- Light background colors -->
@@ -29,15 +29,15 @@
         <item name="windowNoTitle">true</item>
         <!--item name="actionBarStyle">@style/MyActionBarStyle.Legacy</item-->
         <item name="toolbarStyle">@style/MyToolbarStyle.Legacy</item>
-        <item name="colorPrimary">@color/zebra</item>
-        <item name="android:colorPrimary">@color/zebra</item>
+        <item name="colorPrimary">@color/zebra_pantone_285</item>
+        <item name="android:colorPrimary">@color/zebra_pantone_285</item>
         <item name="colorSecondary">@color/danger_red</item>
-        <item name="colorTertiary">@color/zebra</item>
-        <item name="colorAccent">@color/zebra</item>
-        <item name="colorControlActivated">@color/zebra</item>
-        <item name="android:colorControlActivated">@color/zebra</item>
+        <item name="colorTertiary">@color/zebra_pantone_285</item>
+        <item name="colorAccent">@color/zebra_pantone_285</item>
+        <item name="colorControlActivated">@color/zebra_pantone_285</item>
+        <item name="android:colorControlActivated">@color/zebra_pantone_285</item>
         <item name="colorControlNormal">@color/white</item>
-        <item name="android:statusBarColor">@color/zebra</item>
+        <item name="android:statusBarColor">@color/zebra_pantone_285</item>
         <item name="android:navigationBarColor">@color/black</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
@@ -50,13 +50,13 @@
     </style>
 
     <style name="MyActionBarStyle.Legacy" parent="Widget.AppCompat.ActionBar">
-        <item name="background">@color/zebra</item>
+        <item name="background">@color/zebra_pantone_285</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
 
     <style name="MyToolbarStyle.Legacy" parent="Widget.Material3.Toolbar">
         <item name="titleTextColor">@color/white</item>
-        <item name="background">@color/zebra</item>
+        <item name="background">@color/zebra_pantone_285</item>
     </style>
 
     <!-- ============================================ -->
@@ -64,15 +64,15 @@
     <!-- ============================================ -->
     <style name="Base.Theme.AIMultiBarcodes_Capture.Modern" parent="Theme.Material3.Dark.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="colorPrimary">@color/zebra_light_green</item>
-        <item name="android:colorPrimary">@color/zebra_light_green</item>
-        <item name="colorSecondary">@color/zebra_dark_green</item>
-        <item name="colorTertiary">@color/zebra_green</item>
+        <item name="colorPrimary">@color/zebra_pantone_361</item>
+        <item name="android:colorPrimary">@color/zebra_pantone_361</item>
+        <item name="colorSecondary">@color/zebra_pantone_5747</item>
+        <item name="colorTertiary">@color/zebra_pantone_375</item>
         <item name="android:statusBarColor">@color/zebra_black</item>
         <item name="android:navigationBarColor">@color/zebra_black</item>
-        <item name="colorAccent">@color/zebra_light_green</item>
-        <item name="colorControlActivated">@color/zebra_dark_green</item>
-        <item name="android:colorControlActivated">@color/zebra_light_green</item>
+        <item name="colorAccent">@color/zebra_pantone_361</item>
+        <item name="colorControlActivated">@color/zebra_pantone_5747</item>
+        <item name="android:colorControlActivated">@color/zebra_pantone_361</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
         <!-- Dark background colors -->
@@ -89,13 +89,13 @@
         <item name="windowNoTitle">true</item>
         <!--item name="actionBarStyle">@style/MyActionBarStyle.Modern</item-->
         <item name="toolbarStyle">@style/MyToolbarStyle.Modern</item>
-        <item name="colorPrimary">@color/zebra_light_green</item>
-        <item name="android:colorPrimary">@color/zebra_light_green</item>
-        <item name="colorSecondary">@color/zebra_light_green</item>
-        <item name="colorTertiary">@color/zebra_light_green</item>
-        <item name="colorAccent">@color/zebra_light_green</item>
-        <item name="colorControlActivated">@color/zebra_light_green</item>
-        <item name="android:colorControlActivated">@color/zebra_light_green</item>
+        <item name="colorPrimary">@color/zebra_pantone_361</item>
+        <item name="android:colorPrimary">@color/zebra_pantone_361</item>
+        <item name="colorSecondary">@color/zebra_pantone_5747</item>
+        <item name="colorTertiary">@color/zebra_pantone_375</item>
+        <item name="colorAccent">@color/zebra_pantone_361</item>
+        <item name="colorControlActivated">@color/zebra_pantone_375</item>
+        <item name="android:colorControlActivated">@color/zebra_pantone_361</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="android:statusBarColor">@color/zebra_black</item>
         <item name="android:navigationBarColor">@color/zebra_black</item>
@@ -110,13 +110,13 @@
     </style>
 
     <style name="MyActionBarStyle.Modern" parent="Widget.AppCompat.ActionBar">
-        <item name="background">@color/zebra_light_green</item>
+        <item name="background">@color/zebra_pantone_361</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText.Modern</item>
     </style>
 
     <style name="MyToolbarStyle.Modern" parent="Widget.Material3.Toolbar">
         <item name="titleTextColor">@color/black</item>
-        <item name="background">@color/zebra_light_green</item>
+        <item name="background">@color/zebra_pantone_361</item>
     </style>
 
     <!-- ============================================ -->

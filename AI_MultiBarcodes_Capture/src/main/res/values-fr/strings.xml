@@ -151,7 +151,7 @@
     <string name="activity_settings">Paramètres</string>
     <string name="activity_captured_barcodes">Codes à barres capturées</string>
     <string name="activity_session_data">Données de session</string>
-    <string name="activity_about">sur</string>
+    <string name="activity_about">A propos</string>
     <string name="about_app_version">version de l\'application</string>
     <string name="about_open_source">open source</string>
     <string name="about_open_source_description">Ce logiciel est un projet communautaire ouvert et disponible sur GitHub. Il n\'est pas officiellement soutenu par le zèbre. Ce n\'est qu\'un échantillon d\'une intégration du SDK de la vision zèbre.</string>

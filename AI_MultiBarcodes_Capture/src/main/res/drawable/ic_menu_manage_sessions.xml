@@ -5,18 +5,18 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
     <path
-        android:strokeColor="@color/zebra"
+        android:strokeColor="?attr/colorPrimary"
         android:strokeWidth="2"
         android:strokeLineCap="round"
-        android:fillColor="@color/white"
+        android:fillColor="?attr/colorOnPrimary"
         android:pathData="M22,19a2,2 0,0 1,-2 2H4a2,2 0,0 1,-2 -2V5a2,2 0,0 1,2 -2h5l2,3h9a2,2 0,0 1,2 2z"/>
     <path
-        android:strokeColor="@color/zebra"
+        android:strokeColor="?attr/colorPrimary"
         android:strokeWidth="2"
         android:strokeLineCap="round"
         android:pathData="M9,12h6"/>
     <path
-        android:strokeColor="@color/zebra"
+        android:strokeColor="?attr/colorPrimary"
         android:strokeWidth="2"
         android:strokeLineCap="round"
         android:pathData="M9,15h6"/>

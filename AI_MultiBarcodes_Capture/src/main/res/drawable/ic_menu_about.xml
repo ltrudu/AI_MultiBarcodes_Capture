@@ -5,16 +5,16 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
     <circle
-        android:strokeColor="@color/zebra"
+        android:strokeColor="?attr/colorPrimary"
         android:strokeWidth="2"
-        android:fillColor="@color/white"
+        android:fillColor="?attr/colorOnPrimary"
         cx="12"
         cy="12"
         r="10"/>
     <path
-        android:fillColor="@color/zebra"
+        android:fillColor="?attr/colorPrimary"
         android:pathData="M11,7h2v2h-2z"/>
     <path
-        android:fillColor="@color/zebra"
+        android:fillColor="?attr/colorPrimary"
         android:pathData="M11,11h2v6h-2z"/>
 </vector>

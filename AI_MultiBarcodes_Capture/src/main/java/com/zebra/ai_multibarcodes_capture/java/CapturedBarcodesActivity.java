@@ -412,13 +412,28 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
                 holder.quantityTextView.setText(context.getString(R.string.quantity_label, barcode.quantity));
                 holder.dateTextView.setText(context.getString(R.string.date_label, barcodeDateString));
 
+                // Get current theme
+                SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+                String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
+                boolean isModernTheme = "modern".equals(theme);
+
                 if(barcode.loaded == false)
                 {
-                    holder.foregroundContainer.setBackgroundColor(context.getColor(R.color.pastelbluelight));
+                    // New barcode: dark green for modern theme, light blue for legacy theme
+                    if (isModernTheme) {
+                        holder.foregroundContainer.setBackgroundColor(context.getColor(R.color.zebra_pantone_5747));
+                    } else {
+                        holder.foregroundContainer.setBackgroundColor(context.getColor(R.color.zebra_pantone_285));
+                    }
                 }
                 else
                 {
-                    holder.foregroundContainer.setBackgroundColor(Color.WHITE);
+                    // Existing barcode: black for modern theme, white for legacy theme
+                    if (isModernTheme) {
+                        holder.foregroundContainer.setBackgroundColor(context.getColor(R.color.zebra_black));
+                    } else {
+                        holder.foregroundContainer.setBackgroundColor(Color.WHITE);
+                    }
                 }
             }
 
@@ -1055,7 +1070,7 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
                 ));
 
                 // Set the status bar color using ContextCompat
-                statusBarView.setBackgroundColor(getColor(R.color.zebra));
+                statusBarView.setBackgroundColor(androidx.appcompat.R.attr.colorPrimary);
 
                 // Add the view to the activity's content view group
                 addContentView(statusBarView, statusBarView.getLayoutParams());
@@ -1065,8 +1080,10 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
             });
 
         } else {
-            // For Android 14 and below
-            window.setStatusBarColor(getColor(R.color.zebra));
+            // For Android 14 and below - use theme primary color
+            android.util.TypedValue typedValue = new android.util.TypedValue();
+            getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true);
+            window.setStatusBarColor(typedValue.data);
         }
     }
 
