@@ -120,12 +120,12 @@
     </style>
 
     <!-- ============================================ -->
-    <!-- Default Theme Aliases (Legacy by default) -->
+    <!-- Default Theme Aliases (Modern by default) -->
     <!-- ============================================ -->
-    <style name="Base.Theme.AIMultiBarcodes_Capture" parent="Base.Theme.AIMultiBarcodes_Capture.Legacy" />
-    <style name="Theme.MultiBarcodesCapture" parent="Base.Theme.AIMultiBarcodes_Capture.Legacy" />
-    <style name="Base.Theme.AIMultiBarcodes_Capture_ActionBar" parent="Base.Theme.AIMultiBarcodes_Capture_ActionBar.Legacy" />
-    <style name="Theme.MultiBarcodesCapture_AB" parent="Base.Theme.AIMultiBarcodes_Capture_ActionBar.Legacy" />
+    <style name="Base.Theme.AIMultiBarcodes_Capture" parent="Base.Theme.AIMultiBarcodes_Capture.Modern" />
+    <style name="Theme.MultiBarcodesCapture" parent="Base.Theme.AIMultiBarcodes_Capture.Modern" />
+    <style name="Base.Theme.AIMultiBarcodes_Capture_ActionBar" parent="Base.Theme.AIMultiBarcodes_Capture_ActionBar.Modern" />
+    <style name="Theme.MultiBarcodesCapture_AB" parent="Base.Theme.AIMultiBarcodes_Capture_ActionBar.Modern" />
 
     <!-- Common Styles -->
     <style name="MyActionBarTitleText" parent="TextAppearance.AppCompat.Title">

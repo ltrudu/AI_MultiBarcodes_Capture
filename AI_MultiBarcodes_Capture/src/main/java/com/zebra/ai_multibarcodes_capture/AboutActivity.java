@@ -43,6 +43,7 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         ThemeHelpers.configureSystemBars(this, R.id.cl_about_activity);
+
         ThemeHelpers.applyCustomFont(this);
 
         // Set up the toolbar and back button
