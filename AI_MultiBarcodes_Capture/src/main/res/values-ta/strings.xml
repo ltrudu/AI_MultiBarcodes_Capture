@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">பிடிப்பைத் தொடங்குங்கள்</string>
     <string name="loading_status">பயன்பாட்டை ஏற்றுகிறது</string>
@@ -184,7 +184,6 @@
     <string name="about_open_source_description">இந்த மென்பொருள் ஒரு சமூக திட்டமாகும், இது திறந்த மூலமாகவும் கிட்ஹப்பில் கிடைக்கும். இது ஜீப்ராவால் அதிகாரப்பூர்வமாக ஆதரிக்கப்படவில்லை. இது ஜீப்ரா விஷன் AI SDK இன் ஒருங்கிணைப்பின் மாதிரி மட்டுமே.</string>
     <string name="about_developer_name">லாரன்ட் ட்ருடு</string>
     <string name="menu_new_folder">புதிய கோப்புறை</string>
-    <string name="app_name">AI மல்டி பார்கோடு பிடிப்பு</string>
     <string name="theme">தீம்</string>
     <string name="theme_legacy">மரபு</string>
     <string name="theme_modern">நவீன</string>

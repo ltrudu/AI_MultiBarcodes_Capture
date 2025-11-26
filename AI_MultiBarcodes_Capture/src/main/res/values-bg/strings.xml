@@ -184,7 +184,6 @@
     <string name="regular_expression">Редовен израз</string>
     <string name="start_capture">Стартиране на улавяне</string>
     <string name="about_repository">хранилище на GitHub</string>
-    <string name="app_name">AI Улавяне на множество баркодове</string>
     <string name="theme">Тема</string>
     <string name="theme_legacy">Наследство</string>
     <string name="theme_modern">Модерен</string>

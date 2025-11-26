@@ -183,7 +183,6 @@
     <string name="view_session_data">Oturum Verilerini Görüntüle</string>
     <string name="inference_type_cpu_description">DSP ve GPU mevcut değilse deneme kullanımı için</string>
     <string name="menu_new_folder">Yeni klasör</string>
-    <string name="app_name">AI Çoklu Barkod Yakalama</string>
     <string name="theme">Tema</string>
     <string name="theme_legacy">Eski</string>
     <string name="theme_modern">Modern</string>

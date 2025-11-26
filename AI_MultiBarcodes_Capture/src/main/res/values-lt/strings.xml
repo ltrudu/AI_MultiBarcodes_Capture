@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Pradėti fiksavimą</string>
     <string name="loading_status">Įkėlimo programa</string>
@@ -184,7 +184,6 @@
     <string name="about_dependencies">priklausomybės</string>
     <string name="menu_new_folder">Naujas aplankas</string>
     <string name="processing_mode_file">📁 failas</string>
-    <string name="app_name">AI kelių brūkšninių kodų fiksavimas</string>
     <string name="theme">Tema</string>
     <string name="theme_legacy">Palikimas</string>
     <string name="theme_modern">Modernus</string>

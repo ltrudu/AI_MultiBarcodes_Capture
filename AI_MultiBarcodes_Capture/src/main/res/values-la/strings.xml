@@ -7,7 +7,6 @@
     <string name="about_open_source_description">Hoc software est communitas project ut aperta sourced et available in GitHub. Non publice sustinetur a ferus. Est sicut sample of integration zebra vision AI SDK.</string>
     <string name="loading_status">loading applicationem</string>
     <string name="australian_postal">Australia Praesent</string>
-    <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="select_session_file">Elige fasciculum sessionis vel novam crea.</string>
     <string name="https_post_mode_active">HTTP(s) Post modum: Promptus ut capias sine files sessione.</string>
     <string name="no_endpoint_configured">Nullus HTTP(s) terminus configuratus est. Placere reprehendo occasus.</string>
@@ -187,4 +186,5 @@
     <string name="regular_expression">Regular elocutio</string>
     <string name="upload_failed">Defecit Index</string>
     <string name="endpoint_updated_from_qr">Endpoint updated ex QR code</string>
+    <string name="retrieving_permissions">Retrieving Permissionibus</string>
 </resources>

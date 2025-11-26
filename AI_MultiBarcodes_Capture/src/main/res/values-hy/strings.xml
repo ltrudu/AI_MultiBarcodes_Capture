@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Սկսել գրավել</string>
     <string name="loading_status">բեռնումը</string>
@@ -184,7 +184,6 @@
     <string name="enable_filtering">Միացնել զտումը</string>
     <string name="regular_expression">Կանոնավոր արտահայտություն</string>
     <string name="camera_permission_required">Այս հատկությունը օգտագործելու համար անհրաժեշտ է տեսախցիկի թույլտվություն</string>
-    <string name="app_name">AI Multi Barcodes-ի նկարահանում</string>
     <string name="theme">Թեմա</string>
     <string name="theme_legacy">Ժառանգություն</string>
     <string name="theme_modern">Ժամանակակից</string>

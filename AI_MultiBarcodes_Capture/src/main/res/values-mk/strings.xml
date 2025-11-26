@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Започнете со фаќање</string>
     <string name="loading_status">Апликација за вчитување</string>
@@ -179,7 +179,6 @@
     <string name="toggle_filtering">Филтрирање на вклучување</string>
     <string name="activity_captured_barcodes">Заробени баркодови</string>
     <string name="about_repository">складиште на Github</string>
-    <string name="app_name">Снимање на повеќе баркодови со вештачка интелигенција</string>
     <string name="update">Ажурирајте ја датотеката</string>
     <string name="theme">Тема</string>
     <string name="theme_legacy">Наследство</string>

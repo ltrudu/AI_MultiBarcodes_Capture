@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">ಸೆರೆಹಿಡಿಯಲು ಪ್ರಾರಂಭಿಸಿ</string>
     <string name="loading_status">ಅಪ್ಲಿಕೇಶನ್ ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
@@ -184,7 +184,6 @@
     <string name="view_session_data">ಸೆಷನ್ ಡೇಟಾವನ್ನು ವೀಕ್ಷಿಸಿ</string>
     <string name="inference_type_gpu_description">ಡಿಎಸ್ಪಿ ಲಭ್ಯವಿಲ್ಲದಿದ್ದರೆ ಪ್ರಯೋಗ ಬಳಕೆಗಾಗಿ</string>
     <string name="activity_captured_barcodes">ಸೆರೆಹಿಡಿದ ಬಾರ್‌ಕೋಡ್‌ಗಳು</string>
-    <string name="app_name">AI ಮಲ್ಟಿ ಬಾರ್‌ಕೋಡ್‌ಗಳ ಕ್ಯಾಪ್ಚರ್</string>
     <string name="theme">ಥೀಮ್</string>
     <string name="theme_legacy">ಪರಂಪರೆ</string>
     <string name="theme_modern">ಆಧುನಿಕ</string>

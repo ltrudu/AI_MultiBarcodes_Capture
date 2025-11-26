@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">شروع به ضبط کنید</string>
     <string name="loading_status">برنامه بارگیری</string>
@@ -183,7 +183,6 @@
     <string name="menu_manage_sessions">جلسات را مدیریت کنید</string>
     <string name="menu_new_folder">پوشه جدید</string>
     <string name="https_endpoint">نقطه پایانی HTTP (S)</string>
-    <string name="app_name">ضبط چند بارکد هوش مصنوعی</string>
     <string name="theme">موضوع</string>
     <string name="theme_legacy">میراث</string>
     <string name="theme_modern">مدرن</string>

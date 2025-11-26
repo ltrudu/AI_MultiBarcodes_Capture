@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Зураг авах</string>
     <string name="loading_status">Ашиглах програм</string>
@@ -184,7 +184,6 @@
     <string name="filtering">Шүүгч</string>
     <string name="enable_filtering">Шүүхийг идэвхжүүлэх</string>
     <string name="regular_expression">Тогтмол илэрхийлэл</string>
-    <string name="app_name">AI олон баркодууд барьж авав</string>
     <string name="theme">сэдэв</string>
     <string name="theme_legacy">Хуучин</string>
     <string name="theme_modern">орчин үеийн</string>

@@ -183,7 +183,6 @@
     <string name="applied_pending_viewfinder_resize">ed acted viewfinder ທີ່ຍັງຄ້າງຢູ່ໃນການປັບຂະຫນາດຂໍ້ມູນຈາກຄຸນຄ່າທີ່ເກັບໄວ້</string>
     <string name="quantity_label">ປະລິມານ:%d</string>
     <string name="about_developer_title">ວິສະວະກອນຂາຍຊອບແວອາວຸໂສ</string>
-    <string name="app_name">AI Multi Barcodes ຈັບ</string>
     <string name="theme">ຫົວຂໍ້</string>
     <string name="theme_legacy">ມໍລະດົກ</string>
     <string name="theme_modern">ທັນສະໄຫມ</string>

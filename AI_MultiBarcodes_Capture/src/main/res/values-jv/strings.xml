@@ -184,7 +184,6 @@
     <string name="capture_date">Tanggal jupuk</string>
     <string name="quantity_label">kuantitas:%d</string>
     <string name="about_open_source_description">Piranti lunak iki minangka proyek komunitas sing mbukak sumber lan kasedhiya ing Github. Ora resmi didhukung dening zebra. Iku mung minangka conto integrasi saka visi Zebra AI SDK.</string>
-    <string name="app_name">AI Multi Barkod</string>
     <string name="theme">Tema</string>
     <string name="theme_legacy">Warisan</string>
     <string name="theme_modern">Modern</string>

@@ -22,6 +22,7 @@ import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
+import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
 
 import android.content.SharedPreferences;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
@@ -50,13 +51,14 @@ public class BarcodeDataEditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Apply theme before setting content view
-        applyTheme();
+        ThemeHelpers.applyTheme(this);
 
         setContentView(R.layout.activity_barcode_data_editor);
         
         // Configure system bars
-        configureSystemBars();
-        
+        ThemeHelpers.configureSystemBars(this, R.id.rl_barcode_data_editor);
+        ThemeHelpers.applyCustomFont(this);
+
         // Setup toolbar
         setupToolbar();
         
@@ -72,14 +74,7 @@ public class BarcodeDataEditorActivity extends AppCompatActivity {
         // Setup button listeners
         setupButtonListeners();
     }
-    
-    private void configureSystemBars() {
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(androidx.appcompat.R.attr.colorPrimary);
-        window.setNavigationBarColor(ContextCompat.getColor(this, android.R.color.black));
-    }
-    
+
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -201,17 +196,6 @@ public class BarcodeDataEditorActivity extends AppCompatActivity {
         resultIntent.putExtra(Constants.EXTRA_QUANTITY, barcodeQuantity);
         setResult(RESULT_OK, resultIntent);
         finish();
-    }
-
-    private void applyTheme() {
-        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
-
-        if ("modern".equals(theme)) {
-            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
-        } else {
-            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
-        }
     }
 
     @Override

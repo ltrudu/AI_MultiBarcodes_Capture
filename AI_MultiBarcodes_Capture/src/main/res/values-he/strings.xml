@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">התחל לכידת</string>
     <string name="loading_status">יישום טעינה</string>
@@ -176,7 +176,6 @@
     <string name="enable_filtering">אפשר סינון</string>
     <string name="regular_expression">ביטוי רגיל</string>
     <string name="error_could_not_open_file">שגיאה, לא יכול היה לפתוח קובץ: %s</string>
-    <string name="app_name">AI Multi Barcodes לכידת</string>
     <string name="upload_failed">ההעלאה נכשלה</string>
     <string name="theme">נושא</string>
     <string name="theme_legacy">מורשת</string>

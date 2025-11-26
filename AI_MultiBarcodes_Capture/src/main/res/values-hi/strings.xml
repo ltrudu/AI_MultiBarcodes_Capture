@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">कैप्चर शुरू करें</string>
     <string name="loading_status">लोडिंग एप्लिकेशन</string>
@@ -182,7 +182,6 @@
     <string name="about_developer_name">लॉरेंट ट्रूडु</string>
     <string name="menu_new_folder">नया फ़ोल्डर</string>
     <string name="about_view_license">ज़ेबरा विकास उपकरण लाइसेंस देखें</string>
-    <string name="app_name">एआई मल्टी बारकोड कैप्चर</string>
     <string name="theme">थीम</string>
     <string name="theme_legacy">विरासत</string>
     <string name="theme_modern">आधुनिक</string>

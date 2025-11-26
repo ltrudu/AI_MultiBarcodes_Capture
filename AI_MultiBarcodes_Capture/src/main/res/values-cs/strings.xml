@@ -182,7 +182,6 @@
     <string name="menu_new_folder">Nová složka</string>
     <string name="https_endpoint">koncový bod http (s)</string>
     <string name="about_repository">úložiště github</string>
-    <string name="app_name">AI Multi Barcodes Capture</string>
     <string name="theme">Téma</string>
     <string name="theme_legacy">Starší</string>
     <string name="theme_modern">Moderní</string>

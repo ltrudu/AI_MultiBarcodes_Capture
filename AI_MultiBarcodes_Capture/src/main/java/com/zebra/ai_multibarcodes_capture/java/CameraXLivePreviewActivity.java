@@ -49,6 +49,7 @@ import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
+import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
 import com.zebra.ai_multibarcodes_capture.settings.SettingsActivity;
@@ -165,7 +166,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         super.onCreate(savedInstanceState);
 
         // Apply theme before setting content view
-        applyTheme();
+        ThemeHelpers.applyTheme(this);
 
         // Enable immersive full-screen mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -196,6 +197,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         binding = ActivityCameraXlivePreviewBinding.inflate(getLayoutInflater());
         cameraSelector = new CameraSelector.Builder().requireLensFacing(lensFacing).build();
         setContentView(binding.getRoot());
+
+        ThemeHelpers.applyCustomFont(this);
 
         resolutionSelector = new ResolutionSelector.Builder()
                 .setAspectRatioStrategy(

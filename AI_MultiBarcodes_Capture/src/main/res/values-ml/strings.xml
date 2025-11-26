@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">ക്യാപ്ചർ ആരംഭിക്കുക</string>
     <string name="loading_status">അപ്ലിക്കേഷൻ ലോഡുചെയ്യുന്നു</string>
@@ -184,7 +184,6 @@
     <string name="filtering">ഫിൽട്ടറിംഗ്</string>
     <string name="enable_filtering">ഫിൽട്ടറിംഗ് പ്രവർത്തനക്ഷമമാക്കുക</string>
     <string name="regular_expression">പതിവ് എക്സ്പ്രഷൻ</string>
-    <string name="app_name">AI മൾട്ടി ബാർകോഡ് ക്യാപ്ചർ</string>
     <string name="theme">തീം</string>
     <string name="theme_legacy">ലെഗസി</string>
     <string name="theme_modern">ആധുനികം</string>

@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">گرفتاری شروع کریں</string>
     <string name="loading_status">لوڈنگ ایپلی کیشن</string>
@@ -184,7 +184,6 @@
     <string name="merge">مقدار کو ضم کریں</string>
     <string name="activity_settings">ترتیبات</string>
     <string name="about_developer_name">لارینٹ ٹروڈو</string>
-    <string name="app_name">AI ملٹی بارکوڈس کیپچر</string>
     <string name="theme">تھیم</string>
     <string name="theme_legacy">میراث</string>
     <string name="theme_modern">جدید</string>
