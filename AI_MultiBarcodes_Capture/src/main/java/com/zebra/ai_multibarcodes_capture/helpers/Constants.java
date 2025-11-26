@@ -32,7 +32,7 @@ public class Constants {
     public static final String SHARED_PREFERENCES_PREFIX = "prefix";
     public static final String SHARED_PREFERENCES_EXTENSION = "extension";
     public static final String SHARED_PREFERENCES_THEME = "theme";
-    public static final String SHARED_PREFERENCES_THEME_DEFAULT = "legacy";
+    public static final String SHARED_PREFERENCES_THEME_DEFAULT = "modern";
 
     // Barcode symbology preferences
     public static final String SHARED_PREFERENCES_AUSTRALIAN_POSTAL = "AUSTRALIAN_POSTAL";
