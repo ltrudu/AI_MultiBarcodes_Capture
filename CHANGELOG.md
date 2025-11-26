@@ -2,6 +2,78 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+### Version 1.35 - 🎨 **Theme System & Custom Typography**
+
+**Comprehensive visual customization with dual theme support and Zebra brand fonts for both Android app and web interface.**
+
+#### 🎨 **Android App Theme System:**
+
+• **Dual Theme Support**: Choose between Legacy (classic blue) and Modern (Zebra green/dark) visual themes
+  - **Legacy Theme**: Traditional blue color scheme with light backgrounds and familiar UI patterns
+  - **Modern Theme**: Contemporary dark design featuring Zebra's latest brand colors
+  - **Settings Integration**: Easy theme selection in app Settings with instant preview
+  - **Persistent Preferences**: Theme choice saved and automatically restored on app launch
+  - **Centralized Theme Management**: New `ThemeHelpers` utility class for consistent theming across all activities
+
+• **Custom Zebra Typography**: Professional brand fonts integrated across the application
+  - **Smart Font Application**: Fonts automatically applied when using Modern theme
+  - **Intelligent Script Detection**: Custom fonts applied only for Latin-based languages including:
+    - Western European: English, German, French, Spanish, Italian, Portuguese, Dutch
+    - Eastern European: Polish, Czech, Slovak, Hungarian, Romanian, Croatian, Slovenian
+    - Nordic: Swedish, Norwegian, Danish, Finnish, Icelandic
+    - Baltic: Estonian, Latvian, Lithuanian
+    - Other Latin-script: Turkish, Indonesian, Vietnamese, Swahili, and 30+ more
+  - **Native Font Preservation**: Non-Latin languages automatically use optimized native system fonts:
+    - Arabic, Russian (Cyrillic), Chinese, Japanese, Korean, Hebrew, Greek, Thai, etc.
+  - **Automatic Locale Detection**: Runtime language detection ensures appropriate font selection
+  - **Graceful Fallback**: If custom fonts fail to load, system defaults are used seamlessly
+
+• **Enhanced Android 15 System Bar Management**:
+  - Full compatibility with Android 15 (API 35) edge-to-edge display
+  - Improved system bar rendering with proper window insets handling for API 35+
+  - Optimized status bar and navigation bar color management across all Android versions (11-15)
+  - Enhanced `configureSystemBars()` method with version-specific implementations
+  - Proper handling of WindowInsetsListener for Android 15 navigation bar background
+
+#### 🌐 **Web Interface Theme Consistency:**
+
+• **Modern Theme Availability**: The Modern theme introduced in v1.34 for the web interface is now complemented by matching Android app themes
+  - **Unified Design Language**: Consistent visual experience across both Android app and web management interface
+  - **Brand Alignment**: Both platforms now feature Zebra's modern brand identity with the Modern theme option
+  - **Flexible User Choice**: Users can independently select preferred themes for app and web interface
+  - **Cross-Platform Experience**: Seamless transition between Android app and web interface with familiar visual design
+
+#### 🔧 **Technical Implementation:**
+
+• **ThemeHelpers Utility Class**: Centralized theme management system
+  - `applyTheme()`: Applies selected theme based on user preferences
+  - `configureSystemBars()`: Manages system bar appearance across Android versions
+  - `applyCustomFont()`: Conditionally applies Zebra fonts based on theme and locale
+  - `isLatinScript()`: Detects whether current locale uses Latin alphabet
+
+• **Font Resource Management**:
+  - Fonts stored in `assets/` directory for runtime loading
+  - Typeface caching for improved performance
+  - Recursive font application to all TextViews and Buttons in activity layouts
+
+• **Theme Persistence**:
+  - SharedPreferences integration for theme selection storage
+  - Automatic theme restoration on app launch
+  - Real-time theme switching without activity restart
+
+#### 💡 **Benefits:**
+
+• **Professional Branding**: Zebra brand identity consistently applied across all platforms (Android app and web interface)
+• **Enhanced Readability**: Theme-appropriate typography optimized for each language script
+• **User Customization**: Choose themes that match personal preferences or corporate standards
+• **Global Accessibility**: Smart font selection ensures optimal readability for international users in 76+ languages
+• **Modern User Experience**: Contemporary design language aligned with Material Design 3 principles
+• **Cross-Platform Consistency**: Unified theme system across Android app and web management interface
+• **Improved Maintainability**: Centralized theme management reduces code duplication
+• **Future-Ready Design**: Foundation for additional themes and customization options
+
+---
+
 ### Version 1.34 - 📱 **Android 15 Update & Enhanced UI/UX**
 
 **Major platform update with comprehensive UI improvements and expanded deployment options.**
