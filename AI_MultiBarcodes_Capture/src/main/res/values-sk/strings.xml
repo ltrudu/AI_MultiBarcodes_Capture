@@ -184,7 +184,6 @@
     <string name="about_view_license">Zobraziť licenciu na vývojový nástroj Zebra</string>
     <string name="menu_manage_sessions">Spravujte relácie</string>
     <string name="menu_settings">Nastavenia</string>
-    <string name="app_name">Zachytávanie viacerých čiarových kódov AI</string>
     <string name="theme">Téma</string>
     <string name="theme_legacy">Legacy</string>
     <string name="theme_modern">Moderné</string>

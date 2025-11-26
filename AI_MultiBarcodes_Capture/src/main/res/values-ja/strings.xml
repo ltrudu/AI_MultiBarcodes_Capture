@@ -183,7 +183,6 @@
     <string name="filtering">フィルタリング</string>
     <string name="enable_filtering">フィルタリングを有効にします</string>
     <string name="regular_expression">正規表現</string>
-    <string name="app_name">AI マルチバーコードキャプチャ</string>
     <string name="theme">テーマ</string>
     <string name="theme_legacy">レガシー</string>
     <string name="theme_modern">モダン</string>

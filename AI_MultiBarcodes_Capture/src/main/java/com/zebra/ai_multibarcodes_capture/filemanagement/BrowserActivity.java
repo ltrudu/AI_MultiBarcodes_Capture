@@ -19,6 +19,7 @@ import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
+import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,9 +63,12 @@ public class BrowserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Apply theme before setting content view
-        applyTheme();
+        ThemeHelpers.applyTheme(this);
 
         setContentView(R.layout.activity_browser);
+
+        ThemeHelpers.configureSystemBars(this, R.id.cl_activity_browser);
+        ThemeHelpers.applyCustomFont(this);
 
         Intent intent = getIntent();
         String folderPath = intent.getStringExtra(Constants.FILEBROWSER_EXTRA_FOLDER_PATH);

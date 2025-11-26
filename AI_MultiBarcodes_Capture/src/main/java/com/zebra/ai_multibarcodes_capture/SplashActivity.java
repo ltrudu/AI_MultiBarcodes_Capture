@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
+import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
 
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
@@ -32,12 +33,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Apply theme before setting content view
-        applyTheme();
-
-        // Configure system bars to match the theme
-        configureSystemBars();
+        ThemeHelpers.applyTheme(this);
 
         setContentView(R.layout.activity_splash);
+
+        // Configure system bars to match the theme
+        ThemeHelpers.configureSystemBars(this, R.id.cl_activity_splash);
+
         tvStatus = findViewById(R.id.tvStatus);
         tvLoading = findViewById(R.id.tvLoading);
 
@@ -91,33 +93,6 @@ public class SplashActivity extends AppCompatActivity {
             Intent intent = new Intent(SplashActivity.this, EntryChoiceActivity.class);
             startActivity(intent);
             finish();
-        }
-    }
-
-    private void configureSystemBars() {
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        
-        // Set status bar color to zebra blue
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.zebra_pantone_285));
-        
-        // Set navigation bar color to black for consistent theming
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setNavigationBarColor(ContextCompat.getColor(this, android.R.color.black));
-        }
-        
-        // Set status bar text to light (white) to contrast with blue background
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            View decorView = window.getDecorView();
-            // Remove SYSTEM_UI_FLAG_LIGHT_STATUS_BAR to use light (white) text
-            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
-        
-        // Set navigation bar text to light (white)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            View decorView = window.getDecorView();
-            // Remove SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR to use light (white) icons
-            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
     }
 

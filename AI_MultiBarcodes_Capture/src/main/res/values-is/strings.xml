@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">Byrjaðu að handtaka</string>
     <string name="loading_status">Hleðsluumsókn</string>
@@ -184,7 +184,6 @@
     <string name="menu_settings">Stillingar</string>
     <string name="activity_captured_barcodes">Taktu strikamerki</string>
     <string name="about_view_license">Skoðaðu zebra þróunarverkfæri leyfi</string>
-    <string name="app_name">AI Multi Strikamerki Handtaka</string>
     <string name="theme">Þema</string>
     <string name="theme_legacy">Arfleifð</string>
     <string name="theme_modern">Nútímalegt</string>

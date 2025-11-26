@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">დაიწყეთ დაჭერა</string>
     <string name="loading_status">დატვირთვის პროგრამა</string>
@@ -184,7 +184,6 @@
     <string name="enable_filtering">ფილტრაციის ჩართვა</string>
     <string name="regular_expression">რეგულარული გამოხატულება</string>
     <string name="enter_new_file_name">შეიყვანეთ ახალი ფაილის სახელი</string>
-    <string name="app_name">AI მრავალ შტრიხკოდების გადაღება</string>
     <string name="theme">თემა</string>
     <string name="theme_legacy">მემკვიდრეობა</string>
     <string name="theme_modern">თანამედროვე</string>

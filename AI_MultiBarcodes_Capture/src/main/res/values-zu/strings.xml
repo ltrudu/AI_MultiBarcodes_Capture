@@ -178,7 +178,6 @@
     <string name="folder_already_exists">ifolda isivele ikhona.</string>
     <string name="toggle_symbologies">Guqula ama-symbologies</string>
     <string name="inference_type_cpu">CPU (Iyunithi Eyisisekelo Yokucubungula)</string>
-    <string name="app_name">AI ama-barcode amaningi wokuthwebula</string>
     <string name="theme_legacy">ifa</string>
     <string name="theme_modern">yesimanje</string>
     <string name="cannot_delete_parent_folder">ayikwazi ukususa ifolda yabazali.</string>
@@ -187,4 +186,6 @@
     <string name="capture_mode_release">ekukhishweni kwe-Scan</string>
     <string name="theme">Ingqikithi</string>
     <string name="capture_trigger_mode">Capture imodi ye-trigger</string>
+    <string name="file_already_exists">vele uvele ukhona.</string>
+    <string name="activity_captured_barcodes">ukunxusa kwamakhodi</string>
 </resources>

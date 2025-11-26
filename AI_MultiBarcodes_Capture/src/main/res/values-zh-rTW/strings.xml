@@ -184,7 +184,6 @@
     <string name="filtering">過濾</string>
     <string name="enable_filtering">啟用過濾</string>
     <string name="regular_expression">正則表達式</string>
-    <string name="app_name">AI多條碼採集</string>
     <string name="theme">主題</string>
     <string name="theme_legacy">遺產</string>
     <string name="theme_modern">現代</string>

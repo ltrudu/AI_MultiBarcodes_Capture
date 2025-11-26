@@ -145,6 +145,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
         // Configure system bar colors
         ThemeHelpers.configureSystemBars(this, R.id.cl_entry_choice_activity);
+        ThemeHelpers.applyCustomFont(this);
 
         // Initializing the AI Vision SDK
         try {
@@ -411,6 +412,7 @@ public class EntryChoiceActivity extends AppCompatActivity {
 
         // Re-apply system bar appearance to ensure it persists
         ThemeHelpers.configureSystemBars(this, R.id.cl_entry_choice_activity);
+        ThemeHelpers.applyCustomFont(this);
 
         checkCameraPermission();
 

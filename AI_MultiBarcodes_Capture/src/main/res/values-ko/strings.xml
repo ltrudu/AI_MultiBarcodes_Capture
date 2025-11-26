@@ -184,7 +184,6 @@
     <string name="enable_filtering">필터링 활성화</string>
     <string name="regular_expression">정규 표현</string>
     <string name="file_extension_txt">.txt</string>
-    <string name="app_name">AI 멀티 바코드 캡처</string>
     <string name="theme">테마</string>
     <string name="theme_legacy">레거시</string>
     <string name="theme_modern">모던</string>

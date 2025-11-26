@@ -102,7 +102,8 @@ public class SessionViewerActivity extends AppCompatActivity {
         
         // Configure system bars
         ThemeHelpers.configureSystemBars(this, R.id.cl_session_viewer_activity);
-        
+        ThemeHelpers.applyCustomFont(this);
+
         // Setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

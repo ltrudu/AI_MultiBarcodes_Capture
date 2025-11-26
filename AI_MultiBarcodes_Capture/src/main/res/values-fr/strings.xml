@@ -184,7 +184,6 @@
     <string name="file_extension_txt">.txt</string>
     <string name="view_session_data">Afficher les données de session</string>
     <string name="menu_new_folder">nouveau dossier</string>
-    <string name="app_name">Capture de plusieurs codes-barres AI</string>
     <string name="theme">Thème</string>
     <string name="theme_legacy">Héritage</string>
     <string name="theme_modern">Moderne</string>

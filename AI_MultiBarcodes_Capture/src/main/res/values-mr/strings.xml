@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_capture_button_text">कॅप्चर सुरू करा</string>
     <string name="loading_status">लोडिंग अनुप्रयोग</string>
@@ -184,7 +184,6 @@
     <string name="about_repository">गीथब रेपॉजिटरी</string>
     <string name="about_dependencies">अवलंबन</string>
     <string name="menu_new_folder">नवीन फोल्डर</string>
-    <string name="app_name">एआय मल्टी बारकोड कॅप्चर</string>
     <string name="theme">थीम</string>
     <string name="theme_legacy">वारसा</string>
     <string name="theme_modern">आधुनिक</string>

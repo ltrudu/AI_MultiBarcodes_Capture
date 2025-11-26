@@ -184,7 +184,6 @@
     <string name="about_dependencies">Sõltuvused</string>
     <string name="menu_manage_sessions">Hallake seansse</string>
     <string name="menu_new_folder">uus kaust</string>
-    <string name="app_name">AI mitme vöötkoodi jäädvustamine</string>
     <string name="theme">Teema</string>
     <string name="theme_legacy">Pärand</string>
     <string name="theme_modern">Kaasaegne</string>

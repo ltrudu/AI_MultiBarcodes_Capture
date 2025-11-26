@@ -43,8 +43,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="?attr/colorPrimary"
-            android:backgroundTint="?attr/colorPrimary">
+            android:background="?attr/colorTertiary"
+            android:backgroundTint="?attr/colorTertiary">
 
             <TextView
                 android:id="@+id/tvThemeTitle"
@@ -53,8 +53,8 @@
                 android:gravity="center"
                 android:text="@string/theme"
                 android:textColor="?attr/colorOnPrimary"
-                android:background="?attr/colorPrimary"
-                android:backgroundTint="?attr/colorPrimary"
+                android:background="?attr/colorTertiary"
+                android:backgroundTint="?attr/colorTertiary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -126,8 +126,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="?attr/colorPrimary"
-            android:backgroundTint="?attr/colorPrimary">
+            android:background="?attr/colorTertiary"
+            android:backgroundTint="?attr/colorTertiary">
 
             <TextView
                 android:id="@+id/tvCaptureTriggerModeTitle"
@@ -136,8 +136,8 @@
                 android:gravity="center"
                 android:text="@string/capture_trigger_mode"
                 android:textColor="?attr/colorOnPrimary"
-                android:background="?attr/colorPrimary"
-                android:backgroundTint="?attr/colorPrimary"
+                android:background="?attr/colorTertiary"
+                android:backgroundTint="?attr/colorTertiary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -216,8 +216,8 @@
             android:id="@+id/llFileProcessingTitle"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:background="?attr/colorPrimary">
+            android:backgroundTint="?attr/colorTertiary"
+            android:background="?attr/colorTertiary">
 
             <TextView
                 android:id="@+id/tvFileProcessingTitle"
@@ -489,8 +489,8 @@
         android:id="@+id/llSymbologyTitle"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:backgroundTint="?attr/colorPrimary"
-        android:background="?attr/colorPrimary"
+        android:backgroundTint="?attr/colorTertiary"
+        android:background="?attr/colorTertiary"
         android:layout_marginBottom="10dp">
 
         <TextView
