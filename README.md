@@ -1,6 +1,6 @@
 # AI MultiBarcode Capture Application
 
-[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.34-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-34%2B-yellow)](https://developer.android.com/about/versions/14) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.1.4-blue)](https://developer.zebra.com/)
+[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.35-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-35%2B-yellow)](https://developer.android.com/about/versions/15) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.1.4-blue)](https://developer.zebra.com/)
 
 [![Apache](https://img.shields.io/badge/Apache-2.4-red)](https://httpd.apache.org/) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) [![XAMPP](https://img.shields.io/badge/XAMPP-8.2-orange?logo=xampp&logoColor=white)](https://www.apachefriends.org/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
@@ -15,72 +15,43 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
 
-### Version 1.34 - 📱 **Android 15 Update & Enhanced UI/UX**
+### Version 1.35 - 🎨 **Theme System & Custom Typography**
 
-**Major platform update with comprehensive UI improvements and expanded deployment options.**
+**Comprehensive visual customization with dual theme support and Zebra brand fonts for both Android app and web interface.**
 
-#### 📱 **Android 15 (API 35) Migration:**
+#### 🎨 **Android App Theme System:**
 
-• **Target SDK Update**: Migrated from Android 14 (API 34) to Android 15 (API 35) for latest platform features and security enhancements
+• **Dual Theme Support**: Choose between Legacy (classic blue) and Modern (Zebra green/dark) visual themes
+  - **Legacy Theme**: Traditional blue color scheme with light backgrounds
+  - **Modern Theme**: Contemporary dark design featuring Zebra's latest brand colors
+  - **Settings Integration**: Easy theme selection in app Settings with instant preview
+  - **Persistent Preferences**: Theme choice saved and automatically restored on app launch
 
-• **Compile SDK Update**: Updated compile SDK to API 35 ensuring compatibility with the latest Android features
+• **Custom Zebra Typography**: Professional brand fonts integrated across the application
+  - **Smart Font Application**: Fonts automatically applied when using Modern theme
+  - **Intelligent Script Detection**: Custom fonts applied only for Latin-based languages (English, German, French, Spanish, Italian, Portuguese, Dutch, and 30+ more)
+  - **Native Font Preservation**: Non-Latin languages (Arabic, Russian, Chinese, Japanese, Korean, Hebrew, Greek, etc.) use optimized native system fonts for best readability
 
-• **Material Design 3 Integration**: Updated to Material Components 1.13.0 for modern Material You design language support
+• **Enhanced Android 15 Support**:
+  - Full compatibility with Android 15 (API 35) edge-to-edge display
+  - Improved system bar rendering with proper window insets handling
+  - Optimized status bar and navigation bar color management across all Android versions (11-15)
 
-• **CameraX Updates**: Enhanced camera functionality with CameraX 1.5.1 for improved stability and performance
+#### 🌐 **Web Interface Theme Consistency:**
 
-#### 🔄 **SDK & Dependency Updates:**
-
-• **Zebra AI Vision SDK 3.1.4**: Updated from 3.0.5 to 3.1.4 for latest AI detection improvements and bug fixes
-
-• **Dynamic Version Display**: About screen now automatically reflects dependency versions from `libs.versions.toml`:
-  - No more hardcoded version strings
-  - Single source of truth for all dependency versions
-  - BuildConfig fields generated from version catalog
-
-• **Updated Dependencies**:
-  - CameraX: 1.5.1 (improved camera stability)
-  - Material Components: 1.13.0 (Material Design 3)
-  - Gson: 2.13.2 (JSON parsing improvements)
-  - Android Gradle Plugin: 8.13.0 (latest build tools)
-
-#### 🎨 **Web Interface Theming:**
-
-• **Modern/Legacy Theme Selection**: User-selectable visual themes for the web management interface:
-  - **Modern Theme** (Default): Contemporary design with updated visual elements
-  - **Legacy Theme**: Classic interface styling for users preferring traditional appearance
-  - **Persistent Preference**: Theme selection saved to browser localStorage and automatically applied on return visits
-  - **Settings Integration**: Convenient theme selector in Settings modal Configuration section
-  - **Dynamic Switching**: Instant theme application without page reload for seamless user experience
-
-#### 🌐 **New Web Server Deployment Option:**
-
-• **XAMPP Installation Support**: Alternative deployment method for environments without Docker:
-  - **XAMPP Quick Install**: Pre-configured archive for instant setup - just extract and run
-  - **Automated Scripts**: One-click deployment with `xampp_start_server.bat`
-  - **Flexible Installation**: Supports both `C:\xampp` and `D:\xampp` with automatic detection
-  - **No Admin Rights Required**: Portable installation option for restricted environments
-  - **Full Feature Parity**: Complete web management system without Docker dependency
-
-• **Enhanced Database Initialization**: Improved database setup with verification and automatic schema creation
-
-• **Smart Path Detection**: Scripts automatically detect XAMPP location (C: or D: drive) without manual configuration
-
-• **Comprehensive Documentation**: Complete XAMPP installation guide with troubleshooting and best practices
-
-• **Updated Build Configuration**: Enhanced `build.gradle.kts` with BuildConfig fields for dynamic version management
-
-• **Improved About Screen**: Displays real-time dependency versions from version catalog
+• **Modern Theme Availability**: The Modern theme introduced in v1.34 for the web interface is now complemented by matching Android app themes
+  - **Unified Design Language**: Consistent visual experience across both Android app and web management interface
+  - **Brand Alignment**: Both platforms now feature Zebra's modern brand identity with the Modern theme
+  - **Flexible User Choice**: Users can independently select preferred themes for app and web interface
 
 #### 💡 **Benefits:**
 
-• **Latest Platform Support**: Access to Android 15 features and security improvements
-• **Modern UI**: Professional appearance with Material Design 3
-• **Better Code Quality**: Reduced duplication and improved maintainability
-• **Flexible Deployment**: Choose between Docker or XAMPP based on your environment
-• **Simplified Maintenance**: Centralized version management and automated updates
-• **Enhanced User Experience**: Consistent navigation and visual design across all screens
-• **Customizable Interface**: User-selectable themes for personalized web management experience
+• **Professional Branding**: Zebra brand identity consistently applied across all platforms
+• **Enhanced Readability**: Theme-appropriate typography optimized for each language script
+• **User Customization**: Choose themes that match personal preferences or corporate standards
+• **Global Accessibility**: Smart font selection ensures optimal readability for international users
+• **Modern User Experience**: Contemporary design language aligned with Material Design 3 principles
+• **Cross-Platform Consistency**: Unified theme system across Android app and web management interface
 
 ---
 
