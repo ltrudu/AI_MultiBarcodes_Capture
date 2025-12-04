@@ -189,6 +189,8 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
 
     /**
      * Crops the ImageProxy to the specified region and returns a Bitmap.
+     * This optimized version directly converts only the cropped YUV region to RGB,
+     * avoiding JPEG encode/decode overhead entirely.
      *
      * @param image The source ImageProxy from CameraX
      * @param cropRect The region to crop in image coordinates
@@ -197,14 +199,20 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
     @Nullable
     private Bitmap cropImageProxy(@NonNull ImageProxy image, @NonNull Rect cropRect) {
         try {
+            if (image.getFormat() != ImageFormat.YUV_420_888) {
+                Log.w(TAG, "Unsupported image format for cropping: " + image.getFormat());
+                return null;
+            }
+
             int imageWidth = image.getWidth();
             int imageHeight = image.getHeight();
 
             // Validate and constrain crop rect to image bounds
-            int left = Math.max(0, Math.min(cropRect.left, imageWidth - 1));
-            int top = Math.max(0, Math.min(cropRect.top, imageHeight - 1));
-            int right = Math.max(left + 1, Math.min(cropRect.right, imageWidth));
-            int bottom = Math.max(top + 1, Math.min(cropRect.bottom, imageHeight));
+            // Align to even boundaries for YUV chroma subsampling
+            int left = Math.max(0, Math.min(cropRect.left, imageWidth - 1)) & ~1;
+            int top = Math.max(0, Math.min(cropRect.top, imageHeight - 1)) & ~1;
+            int right = Math.min(((Math.max(left + 2, Math.min(cropRect.right, imageWidth)) + 1) & ~1), imageWidth);
+            int bottom = Math.min(((Math.max(top + 2, Math.min(cropRect.bottom, imageHeight)) + 1) & ~1), imageHeight);
 
             int cropWidth = right - left;
             int cropHeight = bottom - top;
@@ -214,21 +222,9 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                 return null;
             }
 
-            // Convert ImageProxy to Bitmap
-            Bitmap fullBitmap = imageProxyToBitmap(image);
-            if (fullBitmap == null) {
-                return null;
-            }
+            // Direct YUV to RGB conversion for cropped region only
+            return cropYuvToRgb(image, left, top, cropWidth, cropHeight);
 
-            // Crop the bitmap
-            Bitmap croppedBitmap = Bitmap.createBitmap(fullBitmap, left, top, cropWidth, cropHeight);
-
-            // Recycle the full bitmap if it's different from the cropped one
-            if (croppedBitmap != fullBitmap) {
-                fullBitmap.recycle();
-            }
-
-            return croppedBitmap;
         } catch (Exception e) {
             Log.e(TAG, "Error cropping image: " + e.getMessage());
             return null;
@@ -236,83 +232,81 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
     }
 
     /**
-     * Converts an ImageProxy to a Bitmap.
-     * Handles YUV_420_888 format which is the typical format from CameraX.
+     * Directly converts a cropped region of YUV_420_888 to RGB Bitmap.
+     * This avoids JPEG encode/decode overhead by doing direct pixel conversion.
+     * Uses integer math for speed optimization.
      *
-     * @param image The ImageProxy to convert
-     * @return A Bitmap representation of the image, or null if conversion fails
+     * @param image The source ImageProxy
+     * @param cropLeft Left coordinate of crop region (must be even)
+     * @param cropTop Top coordinate of crop region (must be even)
+     * @param cropWidth Width of crop region (must be even)
+     * @param cropHeight Height of crop region (must be even)
+     * @return A cropped RGB Bitmap
      */
     @Nullable
-    private Bitmap imageProxyToBitmap(@NonNull ImageProxy image) {
-        try {
-            if (image.getFormat() == ImageFormat.YUV_420_888) {
-                return yuv420ToBitmap(image);
-            } else {
-                Log.w(TAG, "Unsupported image format: " + image.getFormat());
-                return null;
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Error converting ImageProxy to Bitmap: " + e.getMessage());
-            return null;
-        }
-    }
-
-    /**
-     * Converts a YUV_420_888 ImageProxy to a Bitmap using NV21 conversion.
-     */
-    @Nullable
-    private Bitmap yuv420ToBitmap(@NonNull ImageProxy image) {
+    private Bitmap cropYuvToRgb(@NonNull ImageProxy image, int cropLeft, int cropTop, int cropWidth, int cropHeight) {
         try {
             ImageProxy.PlaneProxy[] planes = image.getPlanes();
-            int width = image.getWidth();
-            int height = image.getHeight();
 
-            // Get Y, U, V planes
             ByteBuffer yBuffer = planes[0].getBuffer();
             ByteBuffer uBuffer = planes[1].getBuffer();
             ByteBuffer vBuffer = planes[2].getBuffer();
 
-            int ySize = yBuffer.remaining();
-            int uSize = uBuffer.remaining();
-            int vSize = vBuffer.remaining();
-
-            byte[] nv21 = new byte[ySize + uSize + vSize];
-
-            // Copy Y plane
-            yBuffer.get(nv21, 0, ySize);
-
-            // Interleave V and U planes for NV21 format
             int yRowStride = planes[0].getRowStride();
             int uvRowStride = planes[1].getRowStride();
             int uvPixelStride = planes[1].getPixelStride();
 
-            // Reset buffers
-            yBuffer.rewind();
-            uBuffer.rewind();
-            vBuffer.rewind();
+            // Create output pixel array
+            int[] rgbPixels = new int[cropWidth * cropHeight];
 
-            // For NV21, we need VU interleaved after Y
-            // This is a simplified conversion that works for most cases
-            int uvOffset = ySize;
-            for (int row = 0; row < height / 2; row++) {
-                for (int col = 0; col < width / 2; col++) {
-                    int uvIndex = row * uvRowStride + col * uvPixelStride;
-                    if (uvIndex < vBuffer.limit() && uvIndex < uBuffer.limit()) {
-                        nv21[uvOffset++] = vBuffer.get(uvIndex); // V
-                        nv21[uvOffset++] = uBuffer.get(uvIndex); // U
-                    }
+            // Precompute UV row base for crop region
+            int uvCropLeft = cropLeft / 2;
+            int pixelIndex = 0;
+
+            // Convert only the cropped region using integer math (fixed-point, 10-bit precision)
+            // BT.601 coefficients scaled by 1024:
+            // Y: 1.164 * 1024 = 1192
+            // Cr->R: 1.596 * 1024 = 1634
+            // Cb->G: 0.392 * 1024 = 401
+            // Cr->G: 0.813 * 1024 = 833
+            // Cb->B: 2.017 * 1024 = 2066
+
+            for (int row = 0; row < cropHeight; row++) {
+                int srcY = cropTop + row;
+                int yRowOffset = srcY * yRowStride + cropLeft;
+                int uvRowOffset = (srcY >> 1) * uvRowStride;
+
+                for (int col = 0; col < cropWidth; col++) {
+                    // Get Y value
+                    int y = (yBuffer.get(yRowOffset + col) & 0xFF) - 16;
+
+                    // Get U and V values (subsampled 2x2)
+                    int uvIndex = uvRowOffset + ((uvCropLeft + (col >> 1)) * uvPixelStride);
+                    int u = (uBuffer.get(uvIndex) & 0xFF) - 128;
+                    int v = (vBuffer.get(uvIndex) & 0xFF) - 128;
+
+                    // YUV to RGB conversion using integer math (fixed-point)
+                    int y1192 = 1192 * y;
+                    int r = (y1192 + 1634 * v) >> 10;
+                    int g = (y1192 - 401 * u - 833 * v) >> 10;
+                    int b = (y1192 + 2066 * u) >> 10;
+
+                    // Clamp to [0, 255] using branchless operations
+                    r = r < 0 ? 0 : (r > 255 ? 255 : r);
+                    g = g < 0 ? 0 : (g > 255 ? 255 : g);
+                    b = b < 0 ? 0 : (b > 255 ? 255 : b);
+
+                    rgbPixels[pixelIndex++] = 0xFF000000 | (r << 16) | (g << 8) | b;
                 }
             }
 
-            // Convert NV21 to JPEG then to Bitmap
-            YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, width, height, null);
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            yuvImage.compressToJpeg(new Rect(0, 0, width, height), 90, out);
-            byte[] jpegBytes = out.toByteArray();
+            // Create bitmap from pixel array
+            Bitmap bitmap = Bitmap.createBitmap(cropWidth, cropHeight, Bitmap.Config.ARGB_8888);
+            bitmap.setPixels(rgbPixels, 0, cropWidth, 0, 0, cropWidth, cropHeight);
+            return bitmap;
 
-            return BitmapFactory.decodeByteArray(jpegBytes, 0, jpegBytes.length);
         } catch (Exception e) {
-            Log.e(TAG, "Error converting YUV to Bitmap: " + e.getMessage());
+            Log.e(TAG, "Error in cropYuvToRgb: " + e.getMessage());
             return null;
         }
     }
