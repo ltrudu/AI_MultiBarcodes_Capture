@@ -153,6 +153,14 @@ public class BarcodeHandler {
     private final BarcodeAnalyzer.DetectionCallback callback;
     private final ImageAnalysis imageAnalysis;
     private String mavenModelName = "barcode-localizer";
+    private AnalyzerReadyCallback analyzerReadyCallback;
+
+    /**
+     * Callback interface to notify when the BarcodeAnalyzer is ready.
+     */
+    public interface AnalyzerReadyCallback {
+        void onAnalyzerReady(BarcodeAnalyzer analyzer);
+    }
 
     /**
      * Constructs a new BarcodeHandler with the specified context, callback, and image analysis configuration.
@@ -204,6 +212,11 @@ public class BarcodeHandler {
                 barcodeAnalyzer = new BarcodeAnalyzer(callback, barcodeDecoder);
                 imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(context), barcodeAnalyzer);
                 Log.d(TAG, "BarcodeDecoder() obj creation time =" + (System.currentTimeMillis() - m_Start) + " milli sec");
+
+                // Notify callback that analyzer is ready
+                if (analyzerReadyCallback != null) {
+                    analyzerReadyCallback.onAnalyzerReady(barcodeAnalyzer);
+                }
             }).exceptionally(e -> {
                 if (e instanceof AIVisionSDKLicenseException) {
                     Log.e(TAG, "AIVisionSDKLicenseException: Barcode Decoder object creation failed, " + e.getMessage());
@@ -289,5 +302,20 @@ public class BarcodeHandler {
      */
     public BarcodeAnalyzer getBarcodeAnalyzer() {
         return barcodeAnalyzer;
+    }
+
+    /**
+     * Sets a callback to be notified when the BarcodeAnalyzer is ready.
+     * This is useful for setting up crop regions or other configurations
+     * that require the analyzer to be initialized first.
+     *
+     * @param callback The callback to invoke when the analyzer is ready.
+     */
+    public void setAnalyzerReadyCallback(AnalyzerReadyCallback callback) {
+        this.analyzerReadyCallback = callback;
+        // If analyzer is already ready, invoke callback immediately
+        if (barcodeAnalyzer != null && callback != null) {
+            callback.onAnalyzerReady(barcodeAnalyzer);
+        }
     }
 }
