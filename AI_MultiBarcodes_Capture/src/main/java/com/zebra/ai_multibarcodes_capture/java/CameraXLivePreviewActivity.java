@@ -130,6 +130,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     ProcessCameraProvider cameraProvider;
     private int imageWidth;
     private int imageHeight;
+    // Raw sensor dimensions (before rotation adjustment)
+    private int rawSensorWidth;
+    private int rawSensorHeight;
     private final int lensFacing = CameraSelector.LENS_FACING_BACK;
     private CameraSelector cameraSelector;
     private ResolutionSelector resolutionSelector;
@@ -222,6 +225,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
                                 Display display = getWindowManager().getDefaultDisplay();
                                 initialRotation = display != null ? display.getRotation() : Surface.ROTATION_0;
+                                // Store raw sensor dimensions (always the same regardless of rotation)
+                                rawSensorWidth = selectedSize.getWidth();
+                                rawSensorHeight = selectedSize.getHeight();
                                 if (initialRotation == 0 || initialRotation == 2) {
                                     imageWidth = selectedSize.getHeight();
                                     imageHeight = selectedSize.getWidth();
@@ -229,7 +235,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                                     imageWidth = selectedSize.getWidth();
                                     imageHeight = selectedSize.getHeight();
                                 }
-                                LogUtils.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
+                                LogUtils.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight + ", rawSensor=" + rawSensorWidth + "x" + rawSensorHeight);
 
 
                             bindAllCameraUseCases();
@@ -275,34 +281,271 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             @Override
             public void onCaptureZoneChanged(RectF captureZone) {
                 LogUtils.d(TAG, "Capture zone changed: " + captureZone.toString());
-                
+
                 int x = (int) captureZone.left;
                 int y = (int) captureZone.top;
                 int width = (int) captureZone.width();
                 int height = (int) captureZone.height();
-                
+
                 // Save capture zone dimensions to SharedPreferences
                 PreferencesHelper.saveCaptureZonePosition(CameraXLivePreviewActivity.this, x, y, width, height);
-                
+
                 LogUtils.d(TAG, "Capture zone dimensions saved to preferences: x=" + x + ", y=" + y + ", w=" + width + ", h=" + height);
+
+                // Update analyzer crop region when capture zone changes
+                updateAnalyzerCropRegion();
             }
         });
-        
+
         LogUtils.d(TAG, "Capture zone overlay initialized");
+    }
+
+    /**
+     * Converts the capture zone from overlay coordinates to RAW SENSOR image coordinates.
+     * This is needed because we crop the raw ImageProxy from CameraX.
+     *
+     * The transformation chain is:
+     * 1. Overlay coords -> remove scale/offset -> "effective" rotated image coords
+     * 2. Effective coords -> reverse rotation -> raw sensor coords
+     *
+     * @param overlayRect The capture zone rectangle in overlay coordinates
+     * @return The capture zone rectangle in raw sensor coordinates, or null if conversion fails
+     */
+    private Rect mapOverlayToRawSensorCoordinates(RectF overlayRect) {
+        if (overlayRect == null || binding == null) {
+            return null;
+        }
+
+        int overlayWidth = binding.graphicOverlay.getWidth();
+        int overlayHeight = binding.graphicOverlay.getHeight();
+
+        if (overlayWidth == 0 || overlayHeight == 0 || rawSensorWidth == 0 || rawSensorHeight == 0) {
+            LogUtils.w(TAG, "Cannot map overlay to raw sensor: invalid dimensions");
+            return null;
+        }
+
+        // Determine the rotation needed to display the raw sensor image correctly.
+        // This is based on how imageWidth/imageHeight were set relative to rawSensor dimensions.
+        // - If imageWidth == rawSensorHeight and imageHeight == rawSensorWidth, it's 90° rotation
+        // - If imageWidth == rawSensorWidth and imageHeight == rawSensorHeight, it's 0° rotation
+        int sensorToDisplayRotation = 0;
+        if (imageWidth == rawSensorHeight && imageHeight == rawSensorWidth) {
+            // Portrait display with landscape sensor - 90° rotation
+            sensorToDisplayRotation = 90;
+        } else if (imageWidth == rawSensorWidth && imageHeight == rawSensorHeight) {
+            // Same orientation - no rotation
+            sensorToDisplayRotation = 0;
+        }
+        // Note: 180° and 270° could be added if needed for other device configurations
+
+        LogUtils.d(TAG, "Sensor to display rotation: " + sensorToDisplayRotation + "° (rawSensor=" + rawSensorWidth + "x" + rawSensorHeight + ", effective=" + imageWidth + "x" + imageHeight + ")");
+
+        // Effective image dimensions (as seen in the rotated view) = imageWidth x imageHeight
+        int effectiveImageWidth = imageWidth;
+        int effectiveImageHeight = imageHeight;
+
+        // Calculate scale and offset used in mapBoundingBoxToOverlay
+        float scaleX = (float) overlayWidth / effectiveImageWidth;
+        float scaleY = (float) overlayHeight / effectiveImageHeight;
+        float scale = Math.max(scaleX, scaleY);
+
+        float offsetX = (overlayWidth - effectiveImageWidth * scale) / 2f;
+        float offsetY = (overlayHeight - effectiveImageHeight * scale) / 2f;
+
+        // Step 1: Reverse scale and offset to get "effective" rotated image coordinates
+        int effLeft = (int) ((overlayRect.left - offsetX) / scale);
+        int effTop = (int) ((overlayRect.top - offsetY) / scale);
+        int effRight = (int) ((overlayRect.right - offsetX) / scale);
+        int effBottom = (int) ((overlayRect.bottom - offsetY) / scale);
+
+        // Clamp to effective image bounds
+        effLeft = Math.max(0, Math.min(effLeft, effectiveImageWidth));
+        effTop = Math.max(0, Math.min(effTop, effectiveImageHeight));
+        effRight = Math.max(effLeft, Math.min(effRight, effectiveImageWidth));
+        effBottom = Math.max(effTop, Math.min(effBottom, effectiveImageHeight));
+
+        LogUtils.d(TAG, "Effective image coords: (" + effLeft + "," + effTop + ") - (" + effRight + "," + effBottom + ")");
+
+        // Step 2: Reverse rotation to get raw sensor coordinates
+        // The raw sensor image is always rawSensorWidth x rawSensorHeight (e.g., 1920x1080)
+        Rect rawRect = reverseRotationDegreesToRawSensor(effLeft, effTop, effRight, effBottom, sensorToDisplayRotation);
+
+        // Clamp to raw sensor bounds
+        rawRect.left = Math.max(0, Math.min(rawRect.left, rawSensorWidth));
+        rawRect.top = Math.max(0, Math.min(rawRect.top, rawSensorHeight));
+        rawRect.right = Math.max(rawRect.left, Math.min(rawRect.right, rawSensorWidth));
+        rawRect.bottom = Math.max(rawRect.top, Math.min(rawRect.bottom, rawSensorHeight));
+
+        LogUtils.d(TAG, "Mapped overlay " + overlayRect + " to raw sensor " + rawRect + " (rotation=" + sensorToDisplayRotation + "°)");
+        return rawRect;
+    }
+
+    /**
+     * Reverses the rotation (in degrees) to convert from effective (rotated) coordinates to raw sensor coordinates.
+     *
+     * @param left Left coordinate in effective image space
+     * @param top Top coordinate in effective image space
+     * @param right Right coordinate in effective image space
+     * @param bottom Bottom coordinate in effective image space
+     * @param rotationDegrees The rotation in degrees (0, 90, 180, 270)
+     * @return Rectangle in raw sensor coordinates
+     */
+    private Rect reverseRotationDegreesToRawSensor(int left, int top, int right, int bottom, int rotationDegrees) {
+        // The forward transformation (transformRawSensorToEffective) does:
+        // 90°:  eff = (rawH - raw.bottom, raw.left, rawH - raw.top, raw.right)
+        // 180°: eff = (rawW - raw.right, rawH - raw.bottom, rawW - raw.left, rawH - raw.top)
+        // 270°: eff = (raw.top, rawW - raw.right, raw.bottom, rawW - raw.left)
+
+        // We need to reverse these transformations
+        switch (rotationDegrees) {
+            case 0:
+                // No rotation - effective coords = raw coords
+                return new Rect(left, top, right, bottom);
+
+            case 90:
+                // Reverse of 90° transformation
+                // Forward: eff.left = rawH - raw.bottom, eff.top = raw.left
+                //          eff.right = rawH - raw.top, eff.bottom = raw.right
+                // Reverse: raw.left = eff.top, raw.top = rawH - eff.right
+                //          raw.right = eff.bottom, raw.bottom = rawH - eff.left
+                return new Rect(
+                        top,                       // raw.left
+                        rawSensorHeight - right,   // raw.top
+                        bottom,                    // raw.right
+                        rawSensorHeight - left     // raw.bottom
+                );
+
+            case 180:
+                // Reverse of 180° rotation
+                return new Rect(
+                        rawSensorWidth - right,
+                        rawSensorHeight - bottom,
+                        rawSensorWidth - left,
+                        rawSensorHeight - top
+                );
+
+            case 270:
+                // Reverse of 270° transformation
+                // Forward: eff.left = raw.top, eff.top = rawW - raw.right
+                //          eff.right = raw.bottom, eff.bottom = rawW - raw.left
+                // Reverse: raw.left = rawW - eff.bottom, raw.top = eff.left
+                //          raw.right = rawW - eff.top, raw.bottom = eff.right
+                return new Rect(
+                        rawSensorWidth - bottom,   // raw.left
+                        left,                      // raw.top
+                        rawSensorWidth - top,      // raw.right
+                        right                      // raw.bottom
+                );
+
+            default:
+                LogUtils.w(TAG, "Unknown rotation degrees: " + rotationDegrees);
+                return new Rect(left, top, right, bottom);
+        }
+    }
+
+    /**
+     * Transforms a bounding box from raw sensor coordinates to effective (rotated) image coordinates.
+     * This is the forward rotation transformation.
+     *
+     * When we crop and decode with rotation=0, bounding boxes are returned in raw sensor space.
+     * We need to transform them to effective image space before mapBoundingBoxToOverlay can work.
+     *
+     * @param bbox The bounding box in raw sensor coordinates
+     * @param rotationDegrees The rotation degrees from ImageProxy (0, 90, 180, 270)
+     * @return The bounding box in effective (rotated) image coordinates
+     */
+    private Rect transformRawSensorToEffective(Rect bbox, int rotationDegrees) {
+        // The rotationDegrees tells us how much to rotate the raw sensor image
+        // to display it correctly. We apply the same transformation to bounding boxes.
+        LogUtils.v(TAG, "Transforming raw bbox " + bbox + " with rotationDegrees=" + rotationDegrees);
+
+        switch (rotationDegrees) {
+            case 0:
+                // No rotation needed
+                return new Rect(bbox);
+
+            case 90:
+                // 90° CW rotation: raw sensor (1920x1080) -> effective (1080x1920)
+                // The sensor reports 90° meaning we need to rotate the image 90° CW to display correctly.
+                // For bounding boxes: point (x, y) in raw maps to (rawHeight - y, x) in effective
+                // This is actually a 90° CCW transformation of coordinates (inverse of image rotation)
+                return new Rect(
+                        rawSensorHeight - bbox.bottom,
+                        bbox.left,
+                        rawSensorHeight - bbox.top,
+                        bbox.right
+                );
+
+            case 180:
+                // 180° rotation
+                return new Rect(
+                        rawSensorWidth - bbox.right,
+                        rawSensorHeight - bbox.bottom,
+                        rawSensorWidth - bbox.left,
+                        rawSensorHeight - bbox.top
+                );
+
+            case 270:
+                // 270° CW rotation (or 90° CCW)
+                // For bounding boxes: point (x, y) in raw maps to (y, rawWidth - x) in effective
+                return new Rect(
+                        bbox.top,
+                        rawSensorWidth - bbox.right,
+                        bbox.bottom,
+                        rawSensorWidth - bbox.left
+                );
+
+            default:
+                LogUtils.w(TAG, "Unknown rotation degrees for raw->effective: " + rotationDegrees);
+                return new Rect(bbox);
+        }
+    }
+
+    /**
+     * Updates the analyzer's crop region based on the current capture zone state.
+     * Should be called when:
+     * - Capture zone visibility changes
+     * - Capture zone position/size changes
+     * - Camera is bound/rebound
+     */
+    private void updateAnalyzerCropRegion() {
+        if (barcodeHandler == null || barcodeHandler.getBarcodeAnalyzer() == null) {
+            LogUtils.d(TAG, "Cannot update crop region: analyzer not ready");
+            return;
+        }
+
+        BarcodeAnalyzer analyzer = barcodeHandler.getBarcodeAnalyzer();
+
+        if (captureZoneOverlay != null && captureZoneOverlay.isVisible()) {
+            RectF captureZone = captureZoneOverlay.getCaptureZone();
+            if (captureZone != null && !captureZone.isEmpty()) {
+                // Convert overlay coordinates to raw sensor coordinates for cropping
+                Rect rawSensorCropRegion = mapOverlayToRawSensorCoordinates(captureZone);
+                if (rawSensorCropRegion != null && rawSensorCropRegion.width() > 0 && rawSensorCropRegion.height() > 0) {
+                    analyzer.setCropRegion(rawSensorCropRegion, rawSensorWidth, rawSensorHeight);
+                    LogUtils.d(TAG, "Analyzer crop region updated to raw sensor coords: " + rawSensorCropRegion);
+                    return;
+                }
+            }
+        }
+
+        // Capture zone is disabled or invalid - clear the crop region
+        analyzer.setCropRegion(null);
+        LogUtils.d(TAG, "Analyzer crop region cleared");
     }
 
     private void loadCaptureZoneSettings() {
         // Load enabled state
         boolean isEnabled = PreferencesHelper.isCaptureZoneEnabled(this);
-        
+
         // Load dimensions if they exist
         int x = PreferencesHelper.getCaptureZoneX(this);
         int y = PreferencesHelper.getCaptureZoneY(this);
         int width = PreferencesHelper.getCaptureZoneWidth(this);
         int height = PreferencesHelper.getCaptureZoneHeight(this);
-        
+
         LogUtils.d(TAG, "Loading capture zone settings - enabled: " + isEnabled + ", x=" + x + ", y=" + y + ", w=" + width + ", h=" + height);
-        
+
         // Set visibility and icon state immediately
         captureZoneOverlay.setVisible(isEnabled);
         if (captureZoneToggleIcon != null) {
@@ -312,13 +555,15 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 captureZoneToggleIcon.setImageResource(R.drawable.capture_zone_icon_disabled);
             }
         }
-        
+
         // Store saved dimensions for later restoration
         if (x != -1 && y != -1 && width != -1 && height != -1) {
             captureZoneOverlay.setPendingDimensions(x, y, width, height);
             LogUtils.d(TAG, "Stored pending dimensions: " + x + "," + y + "," + width + "x" + height);
         }
-        
+
+        // Schedule crop region update after analyzer is ready
+        // This will be called from bindAnalysisUseCase after initialization completes
         LogUtils.d(TAG, "Capture zone settings loaded");
     }
     
@@ -470,10 +715,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             boolean isCurrentlyVisible = captureZoneOverlay.isVisible();
             boolean newVisibility = !isCurrentlyVisible;
             captureZoneOverlay.setVisible(newVisibility);
-            
+
             // Save the enabled state to SharedPreferences
             PreferencesHelper.saveCaptureZoneEnabled(this, newVisibility);
-            
+
             // Update icon drawable to reflect capture zone visibility
             if (newVisibility) {
                 // Capture zone is now enabled - show normal icon
@@ -482,7 +727,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 // Capture zone is now disabled - show disabled icon with forbidden sign
                 captureZoneToggleIcon.setImageResource(R.drawable.capture_zone_icon_disabled);
             }
-            
+
+            // Update analyzer crop region based on new visibility state
+            updateAnalyzerCropRegion();
+
             LogUtils.d(TAG, "Capture zone toggled to: " + newVisibility + ", saved to preferences");
         }
     }
@@ -658,13 +906,48 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         List<String> decodedStrings = new ArrayList<>();
         List<BarcodeEntity> filtered_entities = new ArrayList<>();
 
+        // Get crop region and rotation info if cropping is enabled
+        Rect cropRegion = null;
+        int imageRotationDegrees = 0;
+        if (barcodeHandler != null && barcodeHandler.getBarcodeAnalyzer() != null) {
+            BarcodeAnalyzer analyzer = barcodeHandler.getBarcodeAnalyzer();
+            if (analyzer.isCroppingEnabled()) {
+                cropRegion = analyzer.getCropRegion();
+                imageRotationDegrees = analyzer.getLastImageRotationDegrees();
+                LogUtils.v(TAG, "Crop region active: " + cropRegion + ", rotationDegrees: " + imageRotationDegrees);
+            }
+        }
+
         if (result != null) {
             for (BarcodeEntity bEntity : result) {
                 Rect rect = bEntity.getBoundingBox();
                 if (rect != null) {
-                    Rect overlayRect = mapBoundingBoxToOverlay(rect);
+                    Rect adjustedRect;
+                    if (cropRegion != null) {
+                        // The bounding box from the decoder is relative to the cropped image.
+                        // The crop was done in raw sensor space, so we add the crop offset
+                        // in raw sensor space to get full raw sensor coordinates.
+                        Rect rawSensorRect = new Rect(
+                                rect.left + cropRegion.left,
+                                rect.top + cropRegion.top,
+                                rect.right + cropRegion.left,
+                                rect.bottom + cropRegion.top
+                        );
+                        LogUtils.v(TAG, "Raw sensor rect: " + rawSensorRect + " (bbox " + rect + " + crop offset " + cropRegion.left + "," + cropRegion.top + ")");
+
+                        // Transform from raw sensor space to effective (rotated) image space.
+                        // This is needed because we decoded with rotation=0, so bboxes are in raw sensor coords,
+                        // but mapBoundingBoxToOverlay expects effective image coords.
+                        adjustedRect = transformRawSensorToEffective(rawSensorRect, imageRotationDegrees);
+                        LogUtils.v(TAG, "Effective rect after rotation transform: " + adjustedRect);
+                    } else {
+                        adjustedRect = rect;
+                    }
+
+                    Rect overlayRect = mapBoundingBoxToOverlay(adjustedRect);
                     // Only process barcode if it's inside the capture zone (when capture zone is enabled)
-                    if (isBarcodeInCaptureZone(overlayRect)) {
+                    // Note: When cropping is enabled, barcodes should already be within the zone,
+                    // but we keep this check for safety and for cases where cropping fails
                         // Check if the entity is matching the filtering regex
                         // If the filtering is not enabled, it returns always true
                         if(isValueMatchingFilteringRegex(bEntity.getValue())) {
@@ -685,9 +968,6 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                         {
                             LogUtils.v(TAG, "Barcode does not match regex, ignoring: " + bEntity.getValue());
                         }
-                    } else {
-                        LogUtils.v(TAG, "Barcode outside capture zone, ignoring: " + bEntity.getValue());
-                    }
                 }
             }
         }
@@ -710,6 +990,15 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             LogUtils.i(TAG, "Using Entity Analyzer");
             executors.execute(() -> {
                 barcodeHandler = new BarcodeHandler(this, this, analysisUseCase);
+                // Set callback to initialize crop region once analyzer is ready
+                barcodeHandler.setAnalyzerReadyCallback(new BarcodeHandler.AnalyzerReadyCallback() {
+                    @Override
+                    public void onAnalyzerReady(BarcodeAnalyzer analyzer) {
+                        LogUtils.d(TAG, "Analyzer ready, updating crop region");
+                        // Run on UI thread since we access UI components
+                        runOnUiThread(() -> updateAnalyzerCropRegion());
+                    }
+                });
             });
         } catch (Exception e) {
             LogUtils.e(TAG, "Can not create model for : " + BARCODE_DETECTION, e);
