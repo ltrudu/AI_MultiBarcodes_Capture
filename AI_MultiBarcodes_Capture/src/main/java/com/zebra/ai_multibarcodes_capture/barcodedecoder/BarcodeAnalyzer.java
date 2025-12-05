@@ -64,15 +64,15 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
 
     /**
      * Interface for receiving analysis timing data.
-     * Implement this interface to display performance metrics (FPS, analysis time).
+     * Implement this interface to display performance metrics (analysis count, analysis time).
      */
     public interface AnalysisTimingCallback {
         /**
          * Called with timing information after each analysis completes.
          * @param analysisTimeMs The time in milliseconds taken to analyze the frame
-         * @param fps The current frames per second (analysis rate)
+         * @param analysisPerSecond The number of analyses completed in the last second
          */
-        void onAnalysisTiming(long analysisTimeMs, float fps);
+        void onAnalysisTiming(long analysisTimeMs, int analysisPerSecond);
     }
 
     private static final String TAG = "BarcodeAnalyzer";
@@ -97,12 +97,17 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
     @Nullable
     private volatile AnalysisTimingCallback timingCallback = null;
     private volatile boolean timingEnabled = false;
-    private volatile long analysisStartTimeNanos = 0;
-    private volatile long lastAnalysisTimeMs = 0;
-    private volatile long fpsWindowStartTime = 0;
+    private volatile long apsWindowStartTime = 0;
     private volatile int frameCountInWindow = 0;
-    private volatile float currentFps = 0.0f;
-    private static final long FPS_WINDOW_MS = 1000; // Calculate FPS over 1 second window
+    private volatile int currentAnalysisPerSecond = 0;
+    private static final long APS_WINDOW_MS = 1000; // Calculate APS over 1 second window
+
+    // Average analysis time calculation
+    private static final int AVG_WINDOW_SIZE = 20; // Calculate average over 20 analyses
+    private final long[] analysisTimesBuffer = new long[AVG_WINDOW_SIZE];
+    private volatile int analysisTimesIndex = 0;
+    private volatile int analysisTimesCount = 0;
+    private volatile long averageAnalysisTimeMs = 0;
 
     /**
      * Constructs a new BarcodeAnalyzer with the specified callback and barcode decoder.
@@ -183,27 +188,39 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                             if (trackTiming) {
                                 long endTimeNanos = System.nanoTime();
                                 long analysisTimeMs = (endTimeNanos - startTimeNanos) / 1_000_000;
-                                lastAnalysisTimeMs = analysisTimeMs;
 
-                                // Update FPS calculation
+                                // Update rolling average for analysis time (over 20 samples)
+                                analysisTimesBuffer[analysisTimesIndex] = analysisTimeMs;
+                                analysisTimesIndex = (analysisTimesIndex + 1) % AVG_WINDOW_SIZE;
+                                if (analysisTimesCount < AVG_WINDOW_SIZE) {
+                                    analysisTimesCount++;
+                                }
+                                // Calculate average
+                                long sum = 0;
+                                for (int i = 0; i < analysisTimesCount; i++) {
+                                    sum += analysisTimesBuffer[i];
+                                }
+                                averageAnalysisTimeMs = sum / analysisTimesCount;
+
+                                // Update analysis per second calculation
                                 long currentTimeMs = System.currentTimeMillis();
                                 frameCountInWindow++;
 
-                                if (fpsWindowStartTime == 0) {
-                                    fpsWindowStartTime = currentTimeMs;
+                                if (apsWindowStartTime == 0) {
+                                    apsWindowStartTime = currentTimeMs;
                                 } else {
-                                    long elapsedMs = currentTimeMs - fpsWindowStartTime;
-                                    if (elapsedMs >= FPS_WINDOW_MS) {
-                                        // Calculate FPS and reset window
-                                        currentFps = (frameCountInWindow * 1000.0f) / elapsedMs;
-                                        fpsWindowStartTime = currentTimeMs;
+                                    long elapsedMs = currentTimeMs - apsWindowStartTime;
+                                    if (elapsedMs >= APS_WINDOW_MS) {
+                                        // Store count and reset window
+                                        currentAnalysisPerSecond = frameCountInWindow;
+                                        apsWindowStartTime = currentTimeMs;
                                         frameCountInWindow = 0;
                                     }
                                 }
 
-                                // Notify callback with timing data
+                                // Notify callback with average timing data
                                 if (timingCallback != null) {
-                                    timingCallback.onAnalysisTiming(analysisTimeMs, currentFps);
+                                    timingCallback.onAnalysisTiming(averageAnalysisTimeMs, currentAnalysisPerSecond);
                                 }
                             }
 
@@ -513,7 +530,7 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
 
     /**
      * Enables or disables timing tracking for performance monitoring.
-     * When enabled, the analyzer will calculate FPS and analysis time for each frame.
+     * When enabled, the analyzer will calculate analysis per second and average analysis time.
      *
      * @param enabled true to enable timing tracking, false to disable
      */
@@ -521,9 +538,13 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
         this.timingEnabled = enabled;
         if (enabled) {
             // Reset timing state when enabling
-            fpsWindowStartTime = 0;
+            apsWindowStartTime = 0;
             frameCountInWindow = 0;
-            currentFps = 0.0f;
+            currentAnalysisPerSecond = 0;
+            // Reset average calculation
+            analysisTimesIndex = 0;
+            analysisTimesCount = 0;
+            averageAnalysisTimeMs = 0;
         }
     }
 
@@ -537,20 +558,20 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
     }
 
     /**
-     * Gets the last calculated analysis time.
+     * Gets the average analysis time over the last 20 analyses.
      *
-     * @return The time in milliseconds taken to analyze the last frame
+     * @return The average time in milliseconds taken to analyze frames
      */
-    public long getLastAnalysisTimeMs() {
-        return lastAnalysisTimeMs;
+    public long getAverageAnalysisTimeMs() {
+        return averageAnalysisTimeMs;
     }
 
     /**
-     * Gets the current frames per second rate.
+     * Gets the current number of analyses per second.
      *
-     * @return The current analysis rate in frames per second
+     * @return The number of analyses completed in the last second
      */
-    public float getCurrentFps() {
-        return currentFps;
+    public int getCurrentAnalysisPerSecond() {
+        return currentAnalysisPerSecond;
     }
 }
