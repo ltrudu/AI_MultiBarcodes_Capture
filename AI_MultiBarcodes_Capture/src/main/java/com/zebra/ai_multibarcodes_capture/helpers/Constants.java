@@ -239,6 +239,10 @@ public class Constants {
     public static final String SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND = "SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND";
     public static final boolean SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND_DEFAULT = false;
 
+    // Logging Enabled preferences
+    public static final String SHARED_PREFERENCES_LOGGING_ENABLED = "SHARED_PREFERENCES_LOGGING_ENABLED";
+    public static final boolean SHARED_PREFERENCES_LOGGING_ENABLED_DEFAULT = false;
+
     public static final int KEYCODE_BUTTON_R1 = 103;
     public static final int KEYCODE_SCAN = 10036;
 }

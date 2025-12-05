@@ -4,6 +4,8 @@ package com.zebra.ai_multibarcodes_capture.barcodedecoder;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
+
 import java.nio.ByteBuffer;
 
 /**
@@ -19,10 +21,10 @@ public class NativeYuvProcessor {
         try {
             System.loadLibrary("yuvprocessor");
             isNativeLibraryLoaded = true;
-            Log.i(TAG, "Native YUV processor library loaded successfully");
+            LogUtils.i(TAG, "Native YUV processor library loaded successfully");
         } catch (UnsatisfiedLinkError e) {
             isNativeLibraryLoaded = false;
-            Log.e(TAG, "Failed to load native YUV processor library: " + e.getMessage());
+            LogUtils.e(TAG, "Failed to load native YUV processor library: " + e.getMessage());
         }
     }
 

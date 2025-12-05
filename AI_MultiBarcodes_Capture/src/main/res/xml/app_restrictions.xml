@@ -405,6 +405,14 @@
             android:restrictionType="bool"
             android:defaultValue="false" />
 
+        <!-- Logging Enabled Configuration -->
+        <restriction
+            android:key="logging_enabled"
+            android:title="Logging Enabled"
+            description="Enable or disable application logging. When disabled, only critical error reporting is performed."
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
     </restriction>
 
     <!-- Filtering Configuration (Nested Bundle) -->
