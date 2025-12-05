@@ -94,4 +94,30 @@ public class NativeYuvProcessor {
             int cropHeight,
             Bitmap bitmap
     );
+
+    /**
+     * Ultra-fast native method to crop Y plane only and create a grayscale Bitmap.
+     * This is significantly faster than full YUV to RGB conversion because:
+     * - Only reads the Y plane (no U/V processing)
+     * - No color conversion math required
+     * - Simple memory copy with grayscale expansion
+     *
+     * @param yBuffer      Y plane direct ByteBuffer
+     * @param yRowStride   Row stride for Y plane
+     * @param cropLeft     Left coordinate of crop region
+     * @param cropTop      Top coordinate of crop region
+     * @param cropWidth    Width of crop region
+     * @param cropHeight   Height of crop region
+     * @param bitmap       Pre-allocated ARGB_8888 bitmap of size cropWidth x cropHeight
+     * @return true if successful, false otherwise
+     */
+    public static native boolean cropYToGrayscaleBitmapNative(
+            ByteBuffer yBuffer,
+            int yRowStride,
+            int cropLeft,
+            int cropTop,
+            int cropWidth,
+            int cropHeight,
+            Bitmap bitmap
+    );
 }

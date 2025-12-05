@@ -188,4 +188,76 @@ Java_com_zebra_ai_1multibarcodes_1capture_barcodedecoder_NativeYuvProcessor_crop
     return JNI_TRUE;
 }
 
+/**
+ * Ultra-fast grayscale-only cropping.
+ * Only reads the Y plane (luminance) and writes it as grayscale to the bitmap.
+ * This is significantly faster than full YUV to RGB conversion since:
+ * 1. No U/V plane processing
+ * 2. No color conversion math
+ * 3. Simple memory copy with grayscale expansion
+ *
+ * The Y plane IS the grayscale image - we just need to replicate it to R, G, B channels.
+ */
+JNIEXPORT jboolean JNICALL
+Java_com_zebra_ai_1multibarcodes_1capture_barcodedecoder_NativeYuvProcessor_cropYToGrayscaleBitmapNative(
+        JNIEnv *env,
+        jclass clazz,
+        jobject yBuffer,
+        jint yRowStride,
+        jint cropLeft,
+        jint cropTop,
+        jint cropWidth,
+        jint cropHeight,
+        jobject bitmap) {
+
+    // Get direct buffer pointer for Y plane only
+    auto *yData = static_cast<uint8_t *>(env->GetDirectBufferAddress(yBuffer));
+
+    if (yData == nullptr) {
+        LOGE("Failed to get Y buffer address");
+        return JNI_FALSE;
+    }
+
+    // Lock the bitmap for writing
+    AndroidBitmapInfo bitmapInfo;
+    if (AndroidBitmap_getInfo(env, bitmap, &bitmapInfo) != ANDROID_BITMAP_RESULT_SUCCESS) {
+        LOGE("Failed to get bitmap info");
+        return JNI_FALSE;
+    }
+
+    if (bitmapInfo.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
+        LOGE("Bitmap format is not RGBA_8888");
+        return JNI_FALSE;
+    }
+
+    void *bitmapPixels;
+    if (AndroidBitmap_lockPixels(env, bitmap, &bitmapPixels) != ANDROID_BITMAP_RESULT_SUCCESS) {
+        LOGE("Failed to lock bitmap pixels");
+        return JNI_FALSE;
+    }
+
+    auto *outPixels = static_cast<uint32_t *>(bitmapPixels);
+    const int bitmapStride = bitmapInfo.stride / 4; // stride in pixels (4 bytes per pixel)
+
+    // Process each row - just copy Y values as grayscale
+    for (int row = 0; row < cropHeight; row++) {
+        const int srcY = cropTop + row;
+        const uint8_t *yRowPtr = yData + srcY * yRowStride + cropLeft;
+        uint32_t *outRowPtr = outPixels + row * bitmapStride;
+
+        // Process each column - Y value becomes R=G=B
+        for (int col = 0; col < cropWidth; col++) {
+            const uint8_t y = yRowPtr[col];
+            // Pack as ARGB with R=G=B=Y (grayscale)
+            // Android RGBA_8888 is stored as ABGR in memory
+            outRowPtr[col] = 0xFF000000 | (y << 16) | (y << 8) | y;
+        }
+    }
+
+    // Unlock the bitmap
+    AndroidBitmap_unlockPixels(env, bitmap);
+
+    return JNI_TRUE;
+}
+
 } // extern "C"
