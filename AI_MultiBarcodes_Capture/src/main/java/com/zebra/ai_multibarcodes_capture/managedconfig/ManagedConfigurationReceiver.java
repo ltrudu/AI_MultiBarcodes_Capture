@@ -225,12 +225,23 @@ public class ManagedConfigurationReceiver extends BroadcastReceiver {
 
         // Update model input size
         updateStringSetting(editor, advancedSettings, "model_input_size", Constants.SHARED_PREFERENCES_MODEL_INPUT_SIZE);
-        
+
         // Update camera resolution
         updateStringSetting(editor, advancedSettings, "camera_resolution", Constants.SHARED_PREFERENCES_CAMERA_RESOLUTION);
-        
+
         // Update inference type
         updateStringSetting(editor, advancedSettings, "inference_type", Constants.SHARED_PREFERENCES_INFERENCE_TYPE);
+
+        // Update display analysis per second
+        updateBooleanSetting(editor, advancedSettings, "display_analysis_per_second", Constants.SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND);
+
+        // Update logging enabled - also apply immediately to LogUtils
+        if (advancedSettings.containsKey("logging_enabled")) {
+            boolean loggingEnabled = advancedSettings.getBoolean("logging_enabled");
+            editor.putBoolean(Constants.SHARED_PREFERENCES_LOGGING_ENABLED, loggingEnabled);
+            LogUtils.setLoggingEnabled(loggingEnabled);
+            LogUtils.d(TAG, "Updated logging_enabled: " + loggingEnabled);
+        }
     }
 
     /**

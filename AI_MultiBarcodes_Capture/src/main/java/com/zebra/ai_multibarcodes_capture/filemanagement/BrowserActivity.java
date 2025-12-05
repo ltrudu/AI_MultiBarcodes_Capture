@@ -123,7 +123,7 @@ public class BrowserActivity extends AppCompatActivity {
                     java.lang.reflect.Method setForceIcons = menuPopupHelper.getClass().getDeclaredMethod("setForceShowIcon", boolean.class);
                     setForceIcons.invoke(menuPopupHelper, true);
                 } catch (Exception e) {
-                    Log.e("BrowserActivity", "Failed to force show icons in popup menu", e);
+                    LogUtils.e("BrowserActivity", "Failed to force show icons in popup menu", e);
                 }
                 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {

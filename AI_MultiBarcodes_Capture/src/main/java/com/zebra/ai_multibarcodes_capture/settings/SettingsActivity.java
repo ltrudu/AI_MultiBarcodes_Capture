@@ -90,6 +90,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox cbUK_POSTAL, cbUPC_A, cbUPC_E, cbUPCE1, cbUSPLANET, cbUSPOSTNET;
     private CheckBox cbUS4STATE, cbUS4STATE_FICS;
     private CheckBox cbDisplayAnalysisPerSecond;
+    private CheckBox cbLoggingEnabled;
 
     private DWScanReceiver mScanReceiver;
 
@@ -232,6 +233,7 @@ public class SettingsActivity extends AppCompatActivity {
         cbUS4STATE = findViewById(R.id.cbUS4STATE);
         cbUS4STATE_FICS = findViewById(R.id.cbUS4STATE_FICS);
         cbDisplayAnalysisPerSecond = findViewById(R.id.cbDisplayAnalysisPerSecond);
+        cbLoggingEnabled = findViewById(R.id.cbLoggingEnabled);
 
         // Initially hide the LinearLayout and set collapsed state
         llSymbologies.setVisibility(View.GONE);
@@ -381,6 +383,7 @@ public class SettingsActivity extends AppCompatActivity {
         loadFilteringSettings(sharedPreferences);
         loadCaptureTriggerMode(sharedPreferences);
         loadDisplayAnalysisPerSecond(sharedPreferences);
+        loadLoggingEnabled(sharedPreferences);
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
@@ -528,6 +531,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveFilteringSettings(editor);
         saveCaptureTriggerMode(editor);
         saveDisplayAnalysisPerSecond(editor);
+        saveLoggingEnabled(editor);
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
@@ -1245,5 +1249,17 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void saveDisplayAnalysisPerSecond(SharedPreferences.Editor editor) {
         editor.putBoolean(SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND, cbDisplayAnalysisPerSecond.isChecked());
+    }
+
+    private void loadLoggingEnabled(SharedPreferences sharedPreferences) {
+        boolean loggingEnabled = sharedPreferences.getBoolean(SHARED_PREFERENCES_LOGGING_ENABLED, SHARED_PREFERENCES_LOGGING_ENABLED_DEFAULT);
+        cbLoggingEnabled.setChecked(loggingEnabled);
+    }
+
+    private void saveLoggingEnabled(SharedPreferences.Editor editor) {
+        boolean loggingEnabled = cbLoggingEnabled.isChecked();
+        editor.putBoolean(SHARED_PREFERENCES_LOGGING_ENABLED, loggingEnabled);
+        // Apply the setting immediately to LogUtils
+        LogUtils.setLoggingEnabled(loggingEnabled);
     }
 }

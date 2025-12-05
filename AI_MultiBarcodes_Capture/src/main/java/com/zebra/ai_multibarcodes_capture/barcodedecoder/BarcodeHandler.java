@@ -11,6 +11,7 @@ import com.zebra.ai.vision.detector.BarcodeDecoder;
 import com.zebra.ai.vision.detector.InferencerOptions;
 import com.zebra.ai_multibarcodes_capture.helpers.EInferenceType;
 import com.zebra.ai_multibarcodes_capture.helpers.EModelInputSize;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -211,7 +212,7 @@ public class BarcodeHandler {
                 barcodeDecoder = decoderInstance;
                 barcodeAnalyzer = new BarcodeAnalyzer(callback, barcodeDecoder);
                 imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(context), barcodeAnalyzer);
-                Log.d(TAG, "BarcodeDecoder() obj creation time =" + (System.currentTimeMillis() - m_Start) + " milli sec");
+                LogUtils.d(TAG, "BarcodeDecoder() obj creation time =" + (System.currentTimeMillis() - m_Start) + " milli sec");
 
                 // Notify callback that analyzer is ready
                 if (analyzerReadyCallback != null) {
@@ -219,14 +220,14 @@ public class BarcodeHandler {
                 }
             }).exceptionally(e -> {
                 if (e instanceof AIVisionSDKLicenseException) {
-                    Log.e(TAG, "AIVisionSDKLicenseException: Barcode Decoder object creation failed, " + e.getMessage());
+                    LogUtils.e(TAG, "AIVisionSDKLicenseException: Barcode Decoder object creation failed, " + e.getMessage());
                 } else {
-                    Log.e(TAG, "Fatal error: decoder creation failed - " + e.getMessage());
+                    LogUtils.e(TAG, "Fatal error: decoder creation failed - " + e.getMessage());
                 }
                 return null;
             });
         } catch (AIVisionSDKException ex) {
-            Log.e(TAG, "Model Loading: Barcode decoder returned with exception " + ex.getMessage());
+            LogUtils.e(TAG, "Model Loading: Barcode decoder returned with exception " + ex.getMessage());
         }
     }
 
@@ -290,7 +291,7 @@ public class BarcodeHandler {
         executor.shutdownNow();
         if (barcodeDecoder != null) {
             barcodeDecoder.dispose();
-            Log.d(TAG, "Barcode decoder is disposed");
+            LogUtils.d(TAG, "Barcode decoder is disposed");
             barcodeDecoder = null;
         }
     }

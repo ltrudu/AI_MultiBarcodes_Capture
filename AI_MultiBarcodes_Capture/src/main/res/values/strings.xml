@@ -231,6 +231,11 @@
     <string name="display_analysis_per_second_checkbox">Show analysis rate overlay</string>
     <string name="analysis_overlay_format">%1$d APS\n%2$d ms</string>
 
+    <!-- Optimizations Settings -->
+    <string name="optimizations_title">Optimizations</string>
+    <string name="optimizations_description">Configure performance and debugging options for the application.</string>
+    <string name="logging_enabled_checkbox">Logging enabled</string>
+
     <!-- Dialog Messages (French -> English) -->
     <string name="rename">Rename</string>
     <string name="rename_file">Rename a file</string>

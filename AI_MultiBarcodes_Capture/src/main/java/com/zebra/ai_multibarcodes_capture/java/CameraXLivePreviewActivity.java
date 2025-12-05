@@ -860,7 +860,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     public void disposeModels() {
         try {
-            Log.i(TAG, "Disposing the barcode analyzer");
+            LogUtils.i(TAG, "Disposing the barcode analyzer");
             if (barcodeHandler != null) {
                 barcodeHandler.stop();
             }

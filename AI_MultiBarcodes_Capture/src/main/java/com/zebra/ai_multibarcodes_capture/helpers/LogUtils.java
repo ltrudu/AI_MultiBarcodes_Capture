@@ -34,6 +34,7 @@ public class LogUtils {
     private static Context appContext;
     private static final String FEEDBACK_EMAIL = "support@zebra.com";
     private static boolean feedbackReportingEnabled = true;
+    private static boolean loggingEnabled = false; // Disabled by default
 
     /**
      * Initialize LogUtils with application context for feedback reporting
@@ -50,56 +51,98 @@ public class LogUtils {
         feedbackReportingEnabled = enabled;
     }
 
+    /**
+     * Enable or disable application logging.
+     * When disabled, only feedback reporting (for errors) will still work.
+     * @param enabled true to enable logging, false to disable
+     */
+    public static void setLoggingEnabled(boolean enabled) {
+        loggingEnabled = enabled;
+    }
+
+    /**
+     * Check if logging is currently enabled
+     * @return true if logging is enabled, false otherwise
+     */
+    public static boolean isLoggingEnabled() {
+        return loggingEnabled;
+    }
+
     // Verbose logging
     public static void v(String TAG, String message) {
-        Log.v(TAG, message);
+        if (loggingEnabled) {
+            Log.v(TAG, message);
+        }
     }
 
     public static void v(String TAG, String message, Throwable throwable) {
-        Log.v(TAG, message, throwable);
+        if (loggingEnabled) {
+            Log.v(TAG, message, throwable);
+        }
     }
 
     // Debug logging
     public static void d(String TAG, String message) {
-        Log.d(TAG, message);
+        if (loggingEnabled) {
+            Log.d(TAG, message);
+        }
     }
 
     public static void d(String TAG, String message, Throwable throwable) {
-        Log.d(TAG, message, throwable);
+        if (loggingEnabled) {
+            Log.d(TAG, message, throwable);
+        }
     }
 
     // Info logging
     public static void i(String TAG, String message) {
-        Log.i(TAG, message);
+        if (loggingEnabled) {
+            Log.i(TAG, message);
+        }
     }
 
     public static void i(String TAG, String message, Throwable throwable) {
-        Log.i(TAG, message, throwable);
+        if (loggingEnabled) {
+            Log.i(TAG, message, throwable);
+        }
     }
 
     // Warning logging
     public static void w(String TAG, String message) {
-        Log.w(TAG, message);
+        if (loggingEnabled) {
+            Log.w(TAG, message);
+        }
     }
 
     public static void w(String TAG, String message, Throwable throwable) {
-        Log.w(TAG, message, throwable);
+        if (loggingEnabled) {
+            Log.w(TAG, message, throwable);
+        }
     }
 
     public static void w(String TAG, Throwable throwable) {
-        Log.w(TAG, throwable);
+        if (loggingEnabled) {
+            Log.w(TAG, throwable);
+        }
     }
 
     // Error logging with automatic feedback reporting
+    // Note: Feedback reporting works even when logging is disabled
     public static void e(String TAG, String message) {
-        Log.e(TAG, message);
+        if (loggingEnabled) {
+            Log.e(TAG, message);
+        }
+        // Feedback reporting works regardless of loggingEnabled setting
         if (feedbackReportingEnabled && appContext != null) {
             reportErrorToFeedbackChannel(TAG, message, null);
         }
     }
 
     public static void e(String TAG, String message, Throwable throwable) {
-        Log.e(TAG, message, throwable);
+        if (loggingEnabled) {
+            Log.e(TAG, message, throwable);
+        }
+        // Feedback reporting works regardless of loggingEnabled setting
         if (feedbackReportingEnabled && appContext != null) {
             reportErrorToFeedbackChannel(TAG, message, throwable);
         }
@@ -107,15 +150,21 @@ public class LogUtils {
 
     // What a Terrible Failure logging
     public static void wtf(String TAG, String message) {
-        Log.wtf(TAG, message);
+        if (loggingEnabled) {
+            Log.wtf(TAG, message);
+        }
     }
 
     public static void wtf(String TAG, String message, Throwable throwable) {
-        Log.wtf(TAG, message, throwable);
+        if (loggingEnabled) {
+            Log.wtf(TAG, message, throwable);
+        }
     }
 
     public static void wtf(String TAG, Throwable throwable) {
-        Log.wtf(TAG, throwable);
+        if (loggingEnabled) {
+            Log.wtf(TAG, throwable);
+        }
     }
 
     // Utility methods for checking if log levels are enabled

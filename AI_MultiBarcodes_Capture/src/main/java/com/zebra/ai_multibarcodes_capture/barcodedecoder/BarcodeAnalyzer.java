@@ -10,6 +10,7 @@ import com.zebra.ai.vision.detector.AIVisionSDKException;
 import com.zebra.ai.vision.detector.BarcodeDecoder;
 import com.zebra.ai.vision.detector.ImageData;
 import com.zebra.ai.vision.entity.BarcodeEntity;
+import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
@@ -151,11 +152,11 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
 
         Future<?> future = executorService.submit(() -> {
             try {
-                Log.d(TAG, "Starting image analysis" + (currentCropRegion != null ? " with crop region" : ""));
+                LogUtils.d(TAG, "Starting image analysis" + (currentCropRegion != null ? " with crop region" : ""));
 
                 // Get the rotation from the ImageProxy
                 int rotationDegrees = image.getImageInfo().getRotationDegrees();
-                Log.d(TAG, "Image rotation degrees: " + rotationDegrees);
+                LogUtils.d(TAG, "Image rotation degrees: " + rotationDegrees);
 
                 // Store the rotation for the activity to use when transforming bounding boxes
                 lastImageRotationDegrees = rotationDegrees;
@@ -171,10 +172,10 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                         // 2. We want bounding boxes in raw image space (so we can add raw crop offset)
                         // 3. The activity uses lastImageRotationDegrees to transform to effective space
                         imageData = ImageData.fromBitmap(croppedBitmap, 0);
-                        Log.d(TAG, "Processing grayscale cropped image: " + croppedBitmap.getWidth() + "x" + croppedBitmap.getHeight() + " (rotation=" + rotationDegrees + " stored for activity)");
+                        LogUtils.d(TAG, "Processing grayscale cropped image: " + croppedBitmap.getWidth() + "x" + croppedBitmap.getHeight() + " (rotation=" + rotationDegrees + " stored for activity)");
                     } else {
                         // Fallback to full image if cropping fails
-                        Log.w(TAG, "Cropping failed, falling back to full image");
+                        LogUtils.w(TAG, "Cropping failed, falling back to full image");
                         imageData = ImageData.fromImageProxy(image);
                     }
                 } else {
@@ -236,17 +237,17 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                             isAnalyzing = true;
                         })
                         .exceptionally(ex -> {
-                            Log.e(TAG, "Error in completable future result " + ex.getMessage());
+                            LogUtils.e(TAG, "Error in completable future result " + ex.getMessage());
                             image.close();
                             isAnalyzing = true;
                             return null;
                         });
             } catch (AIVisionSDKException e) {
-                Log.e(TAG, Objects.requireNonNull(e.getMessage()));
+                LogUtils.e(TAG, Objects.requireNonNull(e.getMessage()));
                 image.close();
                 isAnalyzing = true;
             } catch (Exception e) {
-                Log.e(TAG, "Unexpected error during analysis: " + e.getMessage());
+                LogUtils.e(TAG, "Unexpected error during analysis: " + e.getMessage());
                 image.close();
                 isAnalyzing = true;
             }
@@ -271,7 +272,7 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
     private Bitmap cropImageProxy(@NonNull ImageProxy image, @NonNull Rect cropRect) {
         try {
             if (image.getFormat() != ImageFormat.YUV_420_888) {
-                Log.w(TAG, "Unsupported image format for cropping: " + image.getFormat());
+                LogUtils.w(TAG, "Unsupported image format for cropping: " + image.getFormat());
                 return null;
             }
 
@@ -289,7 +290,7 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
             int cropHeight = bottom - top;
 
             if (cropWidth <= 0 || cropHeight <= 0) {
-                Log.w(TAG, "Invalid crop dimensions: " + cropWidth + "x" + cropHeight);
+                LogUtils.w(TAG, "Invalid crop dimensions: " + cropWidth + "x" + cropHeight);
                 return null;
             }
 
@@ -303,7 +304,7 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
             }
 
         } catch (Exception e) {
-            Log.e(TAG, "Error cropping image: " + e.getMessage());
+            LogUtils.e(TAG, "Error cropping image: " + e.getMessage());
             return null;
         }
     }
@@ -336,12 +337,12 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                 return bitmap;
             } else {
                 bitmap.recycle();
-                Log.w(TAG, "Native grayscale conversion failed, falling back to Java");
+                LogUtils.w(TAG, "Native grayscale conversion failed, falling back to Java");
                 return cropYuvToGrayscaleJava(image, cropLeft, cropTop, cropWidth, cropHeight);
             }
 
         } catch (Exception e) {
-            Log.e(TAG, "Error in cropYuvToGrayscaleNative: " + e.getMessage());
+            LogUtils.e(TAG, "Error in cropYuvToGrayscaleNative: " + e.getMessage());
             return cropYuvToGrayscaleJava(image, cropLeft, cropTop, cropWidth, cropHeight);
         }
     }
@@ -379,7 +380,7 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
             return bitmap;
 
         } catch (Exception e) {
-            Log.e(TAG, "Error in cropYuvToGrayscaleJava: " + e.getMessage());
+            LogUtils.e(TAG, "Error in cropYuvToGrayscaleJava: " + e.getMessage());
             return null;
         }
     }
@@ -446,14 +447,14 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
             this.cropOffsetY = region.top;
             this.sourceImageWidth = imageWidth;
             this.sourceImageHeight = imageHeight;
-            Log.d(TAG, "Crop region set: " + region.toString() + " for image " + imageWidth + "x" + imageHeight);
+            LogUtils.d(TAG, "Crop region set: " + region.toString() + " for image " + imageWidth + "x" + imageHeight);
         } else {
             this.cropRegion = null;
             this.cropOffsetX = 0;
             this.cropOffsetY = 0;
             this.sourceImageWidth = 0;
             this.sourceImageHeight = 0;
-            Log.d(TAG, "Crop region cleared");
+            LogUtils.d(TAG, "Crop region cleared");
         }
     }
 

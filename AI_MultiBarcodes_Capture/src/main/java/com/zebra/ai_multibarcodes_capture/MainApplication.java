@@ -1,8 +1,10 @@
 package com.zebra.ai_multibarcodes_capture;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import com.zebra.criticalpermissionshelper.CriticalPermissionsHelper;
 import com.zebra.criticalpermissionshelper.EPermissionType;
 import com.zebra.criticalpermissionshelper.IResultCallbacks;
+import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
@@ -44,6 +47,9 @@ public class MainApplication extends Application {
 
         // Initialize LogUtils for feedback reporting
         LogUtils.initialize(this);
+
+        // Load logging enabled setting from SharedPreferences and apply it to LogUtils
+        loadLoggingEnabledSetting();
 
         // Register managed configuration receiver dynamically (required for Android 8.0+)
         registerManagedConfigurationReceiver();
@@ -179,5 +185,18 @@ public class MainApplication extends Application {
                 LogUtils.d(TAG, "ManagedConfigurationReceiver was not registered, ignoring unregister attempt");
             }
         }
+    }
+
+    /**
+     * Loads the logging enabled setting from SharedPreferences and applies it to LogUtils.
+     * This ensures logging state is restored when the app starts.
+     */
+    private void loadLoggingEnabledSetting() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        boolean loggingEnabled = sharedPreferences.getBoolean(
+            Constants.SHARED_PREFERENCES_LOGGING_ENABLED,
+            Constants.SHARED_PREFERENCES_LOGGING_ENABLED_DEFAULT
+        );
+        LogUtils.setLoggingEnabled(loggingEnabled);
     }
 }
