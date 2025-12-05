@@ -1,6 +1,6 @@
 # AI MultiBarcode Capture Application
 
-[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.35-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-35%2B-yellow)](https://developer.android.com/about/versions/15) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.1.4-blue)](https://developer.zebra.com/)
+[![License](https://img.shields.io/badge/License-Zebra%20Development%20Tool-blue)](https://github.com/ZebraDevs/AISuite_Android_Samples/blob/main/Zebra%20Development%20Tool%20License.pdf) [![Platform](https://img.shields.io/badge/Platform-Android-green)](https://developer.android.com/) [![Language](https://img.shields.io/badge/Language-Java-orange)](https://www.java.com/) [![Version](https://img.shields.io/badge/Version-1.36-brightgreen)](CHANGELOG.md) [![API](https://img.shields.io/badge/API-35%2B-yellow)](https://developer.android.com/about/versions/15) [![SDK](https://img.shields.io/badge/Zebra%20AI%20Vision%20SDK-3.1.4-blue)](https://developer.zebra.com/)
 
 [![Apache](https://img.shields.io/badge/Apache-2.4-red)](https://httpd.apache.org/) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) [![XAMPP](https://img.shields.io/badge/XAMPP-8.2-orange?logo=xampp&logoColor=white)](https://www.apachefriends.org/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
@@ -14,6 +14,40 @@ Report any issues using the Issues manager of the original repository:
 https://github.com/ltrudu/AI_MutliBarcodes_Capture
 
 ## 📅 What's New
+
+### Version 1.36 - ⚡ **Performance & Android 15+ Compatibility**
+
+**High-performance native image processing with NDK/JNI and Android 15+ 16KB page size support.**
+
+#### ⚡ **Native NDK Performance Optimization:**
+
+• **JNI-Based Image Cropping**: Native C++ implementation for capture zone image processing
+  - **High-Performance YUV to RGB Conversion**: Optimized native code using integer math with fixed-point arithmetic
+  - **Direct Bitmap Writing**: Native code writes directly to Android Bitmap using `AndroidBitmap_lockPixels()` for zero-copy operation
+  - **Automatic Fallback**: Java implementation fallback when native library is unavailable
+  - **BT.601 Color Space**: Proper YUV to RGB conversion using standard broadcast coefficients
+
+• **Performance Benefits**:
+  - Significantly faster capture zone cropping compared to Java implementation
+  - Reduced CPU usage during barcode scanning with capture zone enabled
+  - Lower memory allocation overhead through direct buffer processing
+  - Optimized for real-time barcode detection workflows
+
+#### 📱 **Android 15+ 16KB Page Size Support:**
+
+• **Future-Proof Compatibility**: Native library built with 16KB page size alignment
+  - **`-Wl,-z,max-page-size=16384`**: Linker flag ensures compatibility with Android 15+ devices using 16KB memory pages
+  - **Seamless Operation**: Works on both traditional 4KB and new 16KB page size devices
+  - **No Runtime Configuration Required**: Compatibility is built into the native library
+
+#### 💡 **Benefits:**
+
+• **Faster Capture Zone Processing**: Native code provides significant speedup for capture zone image cropping
+• **Android 15+ Ready**: Application is prepared for upcoming Android devices with 16KB page sizes
+• **Battery Efficiency**: Reduced CPU usage extends battery life during extended scanning sessions
+
+
+---
 
 ### Version 1.35 - 🎨 **Theme System & Custom Typography**
 
