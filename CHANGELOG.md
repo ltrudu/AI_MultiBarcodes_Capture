@@ -2,6 +2,59 @@
 
 All notable changes to the AI MultiBarcode Capture Application are documented in this file.
 
+### Version 1.36 - ⚡ **Performance & Android 15+ Compatibility**
+
+**High-performance native image processing with NDK/JNI and Android 15+ 16KB page size support.**
+
+#### ⚡ **Native NDK Performance Optimization:**
+
+• **JNI-Based Image Cropping**: Native C++ implementation for capture zone image processing
+  - **High-Performance YUV to RGB Conversion**: Optimized native code using integer math with fixed-point arithmetic (BT.601 coefficients scaled by 1024)
+  - **Direct Bitmap Writing**: Native code writes directly to Android Bitmap using `AndroidBitmap_lockPixels()` for zero-copy operation
+  - **Automatic Fallback**: Graceful Java implementation fallback when native library is unavailable
+  - **BT.601 Color Space**: Proper YUV to RGB conversion using standard broadcast coefficients
+
+• **Performance Benefits**:
+  - Significantly faster capture zone cropping compared to pure Java implementation
+  - Reduced CPU usage during barcode scanning with capture zone enabled
+  - Lower memory allocation overhead through direct buffer processing
+  - Optimized for real-time barcode detection workflows
+
+#### 📱 **Android 15+ 16KB Page Size Support:**
+
+• **Future-Proof Compatibility**: Native library built with 16KB page size alignment for Android 15+ devices
+  - **`-Wl,-z,max-page-size=16384`**: Linker flag ensures compatibility with devices using 16KB memory pages
+  - **Seamless Operation**: Works transparently on both traditional 4KB and new 16KB page size devices
+  - **No Runtime Configuration Required**: Compatibility is built into the native library at compile time
+
+#### 🔧 **Technical Implementation:**
+
+• **Native Library (`libyuvprocessor.so`)**:
+  - `cropYuvToBitmapNative()`: Direct YUV420 to Bitmap conversion with cropping
+  - `cropYuvToRgbNative()`: YUV420 to RGB pixel array conversion with cropping
+  - ARM NEON SIMD optimization on 32-bit devices (`-mfpu=neon` for armeabi-v7a)
+  - Aggressive compiler optimizations: `-O3 -ffast-math` for maximum performance
+
+• **Build Configuration**:
+  - CMake-based native build fully integrated with Gradle build system
+  - Multi-ABI support: arm64-v8a, armeabi-v7a, x86, x86_64
+  - Automatic native library bundling in APK
+
+• **Java Integration**:
+  - `NativeYuvProcessor.java`: JNI wrapper class with static library loading
+  - `isAvailable()`: Runtime check for native library availability
+  - Transparent fallback to Java implementation in `BarcodeAnalyzer.java`
+
+#### 💡 **Benefits:**
+
+• **Faster Capture Zone Processing**: Native code provides significant speedup for capture zone image cropping
+• **Android 15+ Ready**: Application prepared for upcoming Android devices with 16KB page sizes
+• **Battery Efficiency**: Reduced CPU usage extends battery life during extended scanning sessions
+• **Consistent Performance**: Reliable operation across diverse device hardware configurations
+• **Enterprise Scalability**: Improved performance supports high-volume barcode capture workflows
+
+---
+
 ### Version 1.35 - 🎨 **Theme System & Custom Typography**
 
 **Comprehensive visual customization with dual theme support and Zebra brand fonts for both Android app and web interface.**
