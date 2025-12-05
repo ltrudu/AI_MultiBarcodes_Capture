@@ -239,6 +239,10 @@ public class Constants {
     public static final String SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND = "SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND";
     public static final boolean SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND_DEFAULT = false;
 
+    // Process as Grayscale preferences
+    public static final String SHARED_PREFERENCES_PROCESS_AS_GRAYSCALE = "SHARED_PREFERENCES_PROCESS_AS_GRAYSCALE";
+    public static final boolean SHARED_PREFERENCES_PROCESS_AS_GRAYSCALE_DEFAULT = true;
+
     public static final int KEYCODE_BUTTON_R1 = 103;
     public static final int KEYCODE_SCAN = 10036;
 }

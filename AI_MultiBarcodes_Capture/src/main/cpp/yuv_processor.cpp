@@ -260,4 +260,155 @@ Java_com_zebra_ai_1multibarcodes_1capture_barcodedecoder_NativeYuvProcessor_crop
     return JNI_TRUE;
 }
 
+/**
+ * Full image YUV to grayscale conversion (no cropping).
+ * Converts the entire Y plane to a grayscale bitmap.
+ * This is the fastest possible conversion since we only read the Y plane.
+ */
+JNIEXPORT jboolean JNICALL
+Java_com_zebra_ai_1multibarcodes_1capture_barcodedecoder_NativeYuvProcessor_yuvToGrayscaleBitmapNative(
+        JNIEnv *env,
+        jclass clazz,
+        jobject yBuffer,
+        jint yRowStride,
+        jint imageWidth,
+        jint imageHeight,
+        jobject bitmap) {
+
+    // Get direct buffer pointer for Y plane only
+    auto *yData = static_cast<uint8_t *>(env->GetDirectBufferAddress(yBuffer));
+
+    if (yData == nullptr) {
+        LOGE("Failed to get Y buffer address");
+        return JNI_FALSE;
+    }
+
+    // Lock the bitmap for writing
+    AndroidBitmapInfo bitmapInfo;
+    if (AndroidBitmap_getInfo(env, bitmap, &bitmapInfo) != ANDROID_BITMAP_RESULT_SUCCESS) {
+        LOGE("Failed to get bitmap info");
+        return JNI_FALSE;
+    }
+
+    if (bitmapInfo.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
+        LOGE("Bitmap format is not RGBA_8888");
+        return JNI_FALSE;
+    }
+
+    void *bitmapPixels;
+    if (AndroidBitmap_lockPixels(env, bitmap, &bitmapPixels) != ANDROID_BITMAP_RESULT_SUCCESS) {
+        LOGE("Failed to lock bitmap pixels");
+        return JNI_FALSE;
+    }
+
+    auto *outPixels = static_cast<uint32_t *>(bitmapPixels);
+    const int bitmapStride = bitmapInfo.stride / 4; // stride in pixels (4 bytes per pixel)
+
+    // Process each row - just copy Y values as grayscale
+    for (int row = 0; row < imageHeight; row++) {
+        const uint8_t *yRowPtr = yData + row * yRowStride;
+        uint32_t *outRowPtr = outPixels + row * bitmapStride;
+
+        // Process each column - Y value becomes R=G=B
+        for (int col = 0; col < imageWidth; col++) {
+            const uint8_t y = yRowPtr[col];
+            // Pack as ARGB with R=G=B=Y (grayscale)
+            // Android RGBA_8888 is stored as ABGR in memory
+            outRowPtr[col] = 0xFF000000 | (y << 16) | (y << 8) | y;
+        }
+    }
+
+    // Unlock the bitmap
+    AndroidBitmap_unlockPixels(env, bitmap);
+
+    return JNI_TRUE;
+}
+
+/**
+ * Full image YUV to RGB conversion (no cropping).
+ * Converts the entire image to RGB bitmap with full color.
+ */
+JNIEXPORT jboolean JNICALL
+Java_com_zebra_ai_1multibarcodes_1capture_barcodedecoder_NativeYuvProcessor_yuvToRgbBitmapNative(
+        JNIEnv *env,
+        jclass clazz,
+        jobject yBuffer,
+        jobject uBuffer,
+        jobject vBuffer,
+        jint yRowStride,
+        jint uvRowStride,
+        jint uvPixelStride,
+        jint imageWidth,
+        jint imageHeight,
+        jobject bitmap) {
+
+    // Get direct buffer pointers
+    auto *yData = static_cast<uint8_t *>(env->GetDirectBufferAddress(yBuffer));
+    auto *uData = static_cast<uint8_t *>(env->GetDirectBufferAddress(uBuffer));
+    auto *vData = static_cast<uint8_t *>(env->GetDirectBufferAddress(vBuffer));
+
+    if (yData == nullptr || uData == nullptr || vData == nullptr) {
+        LOGE("Failed to get direct buffer addresses");
+        return JNI_FALSE;
+    }
+
+    // Lock the bitmap for writing
+    AndroidBitmapInfo bitmapInfo;
+    if (AndroidBitmap_getInfo(env, bitmap, &bitmapInfo) != ANDROID_BITMAP_RESULT_SUCCESS) {
+        LOGE("Failed to get bitmap info");
+        return JNI_FALSE;
+    }
+
+    if (bitmapInfo.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
+        LOGE("Bitmap format is not RGBA_8888");
+        return JNI_FALSE;
+    }
+
+    void *bitmapPixels;
+    if (AndroidBitmap_lockPixels(env, bitmap, &bitmapPixels) != ANDROID_BITMAP_RESULT_SUCCESS) {
+        LOGE("Failed to lock bitmap pixels");
+        return JNI_FALSE;
+    }
+
+    auto *outPixels = static_cast<uint32_t *>(bitmapPixels);
+    const int bitmapStride = bitmapInfo.stride / 4;
+
+    // Process each row
+    for (int row = 0; row < imageHeight; row++) {
+        const int yRowOffset = row * yRowStride;
+        const int uvRowOffset = (row >> 1) * uvRowStride;
+        uint32_t *rowPtr = outPixels + row * bitmapStride;
+
+        // Process each column
+        for (int col = 0; col < imageWidth; col++) {
+            // Get Y value
+            const int y = static_cast<int>(yData[yRowOffset + col]) - 16;
+
+            // Get U and V values (subsampled 2x2)
+            const int uvIndex = uvRowOffset + ((col >> 1) * uvPixelStride);
+            const int u = static_cast<int>(uData[uvIndex]) - 128;
+            const int v = static_cast<int>(vData[uvIndex]) - 128;
+
+            // YUV to RGB conversion using integer math
+            const int y1192 = 1192 * y;
+            int r = (y1192 + 1634 * v) >> 10;
+            int g = (y1192 - 401 * u - 833 * v) >> 10;
+            int b = (y1192 + 2066 * u) >> 10;
+
+            // Clamp to [0, 255]
+            r = clamp(r);
+            g = clamp(g);
+            b = clamp(b);
+
+            // Write as ARGB (Android Bitmap is actually ABGR in memory for RGBA_8888)
+            rowPtr[col] = 0xFF000000 | (b << 16) | (g << 8) | r;
+        }
+    }
+
+    // Unlock the bitmap
+    AndroidBitmap_unlockPixels(env, bitmap);
+
+    return JNI_TRUE;
+}
+
 } // extern "C"

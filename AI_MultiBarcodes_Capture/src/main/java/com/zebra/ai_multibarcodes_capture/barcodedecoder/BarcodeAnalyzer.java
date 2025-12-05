@@ -109,6 +109,9 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
     private volatile int analysisTimesCount = 0;
     private volatile long averageAnalysisTimeMs = 0;
 
+    // Grayscale processing setting (default true for performance)
+    private volatile boolean processAsGrayscale = true;
+
     /**
      * Constructs a new BarcodeAnalyzer with the specified callback and barcode decoder.
      *
@@ -178,8 +181,21 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                         imageData = ImageData.fromImageProxy(image);
                     }
                 } else {
-                    // Process full image - SDK handles rotation internally
-                    imageData = ImageData.fromImageProxy(image);
+                    // Process full image
+                    if (processAsGrayscale) {
+                        // Convert full image to grayscale for faster processing
+                        Bitmap grayscaleBitmap = convertFullImageToGrayscale(image);
+                        if (grayscaleBitmap != null) {
+                            imageData = ImageData.fromBitmap(grayscaleBitmap, rotationDegrees);
+                            Log.d(TAG, "Processing full grayscale image: " + grayscaleBitmap.getWidth() + "x" + grayscaleBitmap.getHeight());
+                        } else {
+                            // Fallback to SDK's native handling
+                            imageData = ImageData.fromImageProxy(image);
+                        }
+                    } else {
+                        // Full color - SDK handles conversion internally
+                        imageData = ImageData.fromImageProxy(image);
+                    }
                 }
 
                 barcodeDecoder.process(imageData)
@@ -293,13 +309,24 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                 return null;
             }
 
-            // Use grayscale conversion - much faster than full YUV to RGB
-            // The Y plane is already grayscale, so we just copy it directly
-            if (NativeYuvProcessor.isAvailable()) {
-                return cropYuvToGrayscaleNative(image, left, top, cropWidth, cropHeight);
+            // Choose conversion method based on grayscale setting
+            if (processAsGrayscale) {
+                // Use grayscale conversion - much faster than full YUV to RGB
+                // The Y plane is already grayscale, so we just copy it directly
+                if (NativeYuvProcessor.isAvailable()) {
+                    return cropYuvToGrayscaleNative(image, left, top, cropWidth, cropHeight);
+                } else {
+                    // Fall back to Java implementation
+                    return cropYuvToGrayscaleJava(image, left, top, cropWidth, cropHeight);
+                }
             } else {
-                // Fall back to Java implementation
-                return cropYuvToGrayscaleJava(image, left, top, cropWidth, cropHeight);
+                // Use full color YUV to RGB conversion
+                if (NativeYuvProcessor.isAvailable()) {
+                    return cropYuvToRgbNative(image, left, top, cropWidth, cropHeight);
+                } else {
+                    // Fall back to Java implementation
+                    return cropYuvToRgbJava(image, left, top, cropWidth, cropHeight);
+                }
             }
 
         } catch (Exception e) {
@@ -380,6 +407,199 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
 
         } catch (Exception e) {
             Log.e(TAG, "Error in cropYuvToGrayscaleJava: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Native full-color YUV to RGB cropping.
+     * Processes all YUV planes to produce a full-color bitmap.
+     */
+    @Nullable
+    private Bitmap cropYuvToRgbNative(@NonNull ImageProxy image, int cropLeft, int cropTop, int cropWidth, int cropHeight) {
+        try {
+            ImageProxy.PlaneProxy[] planes = image.getPlanes();
+
+            ByteBuffer yBuffer = planes[0].getBuffer();
+            ByteBuffer uBuffer = planes[1].getBuffer();
+            ByteBuffer vBuffer = planes[2].getBuffer();
+
+            int yRowStride = planes[0].getRowStride();
+            int uvRowStride = planes[1].getRowStride();
+            int uvPixelStride = planes[1].getPixelStride();
+
+            // Create output bitmap
+            Bitmap bitmap = Bitmap.createBitmap(cropWidth, cropHeight, Bitmap.Config.ARGB_8888);
+
+            // Call native method with all planes
+            boolean success = NativeYuvProcessor.cropYuvToBitmapNative(
+                    yBuffer, uBuffer, vBuffer,
+                    yRowStride, uvRowStride, uvPixelStride,
+                    cropLeft, cropTop, cropWidth, cropHeight,
+                    bitmap
+            );
+
+            if (success) {
+                return bitmap;
+            } else {
+                bitmap.recycle();
+                Log.w(TAG, "Native RGB conversion failed, falling back to Java");
+                return cropYuvToRgbJava(image, cropLeft, cropTop, cropWidth, cropHeight);
+            }
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error in cropYuvToRgbNative: " + e.getMessage());
+            return cropYuvToRgbJava(image, cropLeft, cropTop, cropWidth, cropHeight);
+        }
+    }
+
+    /**
+     * Java fallback implementation for cropped YUV to RGB conversion.
+     * Full color conversion with BT.601 coefficients.
+     */
+    @Nullable
+    private Bitmap cropYuvToRgbJava(@NonNull ImageProxy image, int cropLeft, int cropTop, int cropWidth, int cropHeight) {
+        try {
+            ImageProxy.PlaneProxy[] planes = image.getPlanes();
+            ByteBuffer yBuffer = planes[0].getBuffer();
+            ByteBuffer uBuffer = planes[1].getBuffer();
+            ByteBuffer vBuffer = planes[2].getBuffer();
+
+            int yRowStride = planes[0].getRowStride();
+            int uvRowStride = planes[1].getRowStride();
+            int uvPixelStride = planes[1].getPixelStride();
+
+            // Create output pixel array
+            int[] rgbPixels = new int[cropWidth * cropHeight];
+            int pixelIndex = 0;
+
+            int uvCropLeft = cropLeft / 2;
+
+            for (int row = 0; row < cropHeight; row++) {
+                int srcY = cropTop + row;
+                int yRowOffset = srcY * yRowStride + cropLeft;
+                int uvRowOffset = (srcY >> 1) * uvRowStride;
+
+                for (int col = 0; col < cropWidth; col++) {
+                    int y = (yBuffer.get(yRowOffset + col) & 0xFF) - 16;
+
+                    int uvIndex = uvRowOffset + ((uvCropLeft + (col >> 1)) * uvPixelStride);
+                    int u = (uBuffer.get(uvIndex) & 0xFF) - 128;
+                    int v = (vBuffer.get(uvIndex) & 0xFF) - 128;
+
+                    // YUV to RGB conversion using integer math (BT.601)
+                    int y1192 = 1192 * y;
+                    int r = Math.max(0, Math.min(255, (y1192 + 1634 * v) >> 10));
+                    int g = Math.max(0, Math.min(255, (y1192 - 401 * u - 833 * v) >> 10));
+                    int b = Math.max(0, Math.min(255, (y1192 + 2066 * u) >> 10));
+
+                    rgbPixels[pixelIndex++] = 0xFF000000 | (r << 16) | (g << 8) | b;
+                }
+            }
+
+            // Create bitmap from pixel array
+            Bitmap bitmap = Bitmap.createBitmap(cropWidth, cropHeight, Bitmap.Config.ARGB_8888);
+            bitmap.setPixels(rgbPixels, 0, cropWidth, 0, 0, cropWidth, cropHeight);
+            return bitmap;
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error in cropYuvToRgbJava: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Converts a full ImageProxy to a grayscale Bitmap.
+     * Uses native implementation if available, falls back to Java.
+     */
+    @Nullable
+    private Bitmap convertFullImageToGrayscale(@NonNull ImageProxy image) {
+        try {
+            if (image.getFormat() != ImageFormat.YUV_420_888) {
+                Log.w(TAG, "Unsupported image format for grayscale conversion: " + image.getFormat());
+                return null;
+            }
+
+            int imageWidth = image.getWidth();
+            int imageHeight = image.getHeight();
+
+            if (NativeYuvProcessor.isAvailable()) {
+                return convertFullImageToGrayscaleNative(image, imageWidth, imageHeight);
+            } else {
+                return convertFullImageToGrayscaleJava(image, imageWidth, imageHeight);
+            }
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error converting full image to grayscale: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Native implementation for full-image grayscale conversion.
+     */
+    @Nullable
+    private Bitmap convertFullImageToGrayscaleNative(@NonNull ImageProxy image, int imageWidth, int imageHeight) {
+        try {
+            ImageProxy.PlaneProxy[] planes = image.getPlanes();
+            ByteBuffer yBuffer = planes[0].getBuffer();
+            int yRowStride = planes[0].getRowStride();
+
+            // Create output bitmap
+            Bitmap bitmap = Bitmap.createBitmap(imageWidth, imageHeight, Bitmap.Config.ARGB_8888);
+
+            // Call native method
+            boolean success = NativeYuvProcessor.yuvToGrayscaleBitmapNative(
+                    yBuffer,
+                    yRowStride,
+                    imageWidth, imageHeight,
+                    bitmap
+            );
+
+            if (success) {
+                return bitmap;
+            } else {
+                bitmap.recycle();
+                Log.w(TAG, "Native full-image grayscale conversion failed, falling back to Java");
+                return convertFullImageToGrayscaleJava(image, imageWidth, imageHeight);
+            }
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error in convertFullImageToGrayscaleNative: " + e.getMessage());
+            return convertFullImageToGrayscaleJava(image, imageWidth, imageHeight);
+        }
+    }
+
+    /**
+     * Java fallback for full-image grayscale conversion.
+     */
+    @Nullable
+    private Bitmap convertFullImageToGrayscaleJava(@NonNull ImageProxy image, int imageWidth, int imageHeight) {
+        try {
+            ImageProxy.PlaneProxy[] planes = image.getPlanes();
+            ByteBuffer yBuffer = planes[0].getBuffer();
+            int yRowStride = planes[0].getRowStride();
+
+            // Create output pixel array
+            int[] grayPixels = new int[imageWidth * imageHeight];
+            int pixelIndex = 0;
+
+            // Just copy Y values as grayscale (R=G=B=Y)
+            for (int row = 0; row < imageHeight; row++) {
+                int yRowOffset = row * yRowStride;
+                for (int col = 0; col < imageWidth; col++) {
+                    int y = yBuffer.get(yRowOffset + col) & 0xFF;
+                    grayPixels[pixelIndex++] = 0xFF000000 | (y << 16) | (y << 8) | y;
+                }
+            }
+
+            // Create bitmap from pixel array
+            Bitmap bitmap = Bitmap.createBitmap(imageWidth, imageHeight, Bitmap.Config.ARGB_8888);
+            bitmap.setPixels(grayPixels, 0, imageWidth, 0, 0, imageWidth, imageHeight);
+            return bitmap;
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error in convertFullImageToGrayscaleJava: " + e.getMessage());
             return null;
         }
     }
@@ -573,5 +793,25 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
      */
     public int getCurrentAnalysisPerSecond() {
         return currentAnalysisPerSecond;
+    }
+
+    /**
+     * Sets whether images should be processed as grayscale.
+     * Grayscale processing is faster because it only reads the Y plane of YUV images.
+     *
+     * @param grayscale true for grayscale processing (faster), false for full color
+     */
+    public void setProcessAsGrayscale(boolean grayscale) {
+        this.processAsGrayscale = grayscale;
+        Log.d(TAG, "Process as grayscale set to: " + grayscale);
+    }
+
+    /**
+     * Checks if grayscale processing is enabled.
+     *
+     * @return true if grayscale processing is enabled, false otherwise
+     */
+    public boolean isProcessAsGrayscale() {
+        return processAsGrayscale;
     }
 }

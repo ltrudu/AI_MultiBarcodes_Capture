@@ -689,6 +689,30 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         LogUtils.d(TAG, "=== loadDisplayAnalysisSettings() END ===");
     }
 
+    private void loadGrayscaleSettings() {
+        LogUtils.d(TAG, "=== loadGrayscaleSettings() START ===");
+
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+
+        // Load grayscale processing setting
+        boolean processAsGrayscale = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_PROCESS_AS_GRAYSCALE, Constants.SHARED_PREFERENCES_PROCESS_AS_GRAYSCALE_DEFAULT);
+
+        // Update analyzer
+        updateAnalyzerGrayscaleSetting(processAsGrayscale);
+
+        LogUtils.d(TAG, "Process as grayscale: " + processAsGrayscale);
+        LogUtils.d(TAG, "=== loadGrayscaleSettings() END ===");
+    }
+
+    private void updateAnalyzerGrayscaleSetting(boolean processAsGrayscale) {
+        if (barcodeHandler != null && barcodeHandler.getBarcodeAnalyzer() != null) {
+            BarcodeAnalyzer analyzer = barcodeHandler.getBarcodeAnalyzer();
+            analyzer.setProcessAsGrayscale(processAsGrayscale);
+            LogUtils.d(TAG, "Analyzer grayscale setting updated to: " + processAsGrayscale);
+        }
+    }
+
     private void updateAnalyzerTimingCallback() {
         if (barcodeHandler != null && barcodeHandler.getBarcodeAnalyzer() != null) {
             BarcodeAnalyzer analyzer = barcodeHandler.getBarcodeAnalyzer();
@@ -1048,11 +1072,12 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 barcodeHandler.setAnalyzerReadyCallback(new BarcodeHandler.AnalyzerReadyCallback() {
                     @Override
                     public void onAnalyzerReady(BarcodeAnalyzer analyzer) {
-                        LogUtils.d(TAG, "Analyzer ready, updating crop region and timing callback");
+                        LogUtils.d(TAG, "Analyzer ready, updating crop region, timing and grayscale settings");
                         // Run on UI thread since we access UI components
                         runOnUiThread(() -> {
                             updateAnalyzerCropRegion();
                             updateAnalyzerTimingCallback();
+                            loadGrayscaleSettings();
                         });
                     }
                 });
@@ -1120,6 +1145,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         // Load display analysis per second settings
         loadDisplayAnalysisSettings();
+
+        // Load grayscale processing settings
+        loadGrayscaleSettings();
 
         // Flashlight settings are now loaded after camera is bound in bindPreviewUseCase()
 

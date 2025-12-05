@@ -120,4 +120,50 @@ public class NativeYuvProcessor {
             int cropHeight,
             Bitmap bitmap
     );
+
+    /**
+     * Native method to convert full YUV420 image to grayscale Bitmap (no cropping).
+     * This is the fastest conversion for full-frame processing.
+     *
+     * @param yBuffer      Y plane direct ByteBuffer
+     * @param yRowStride   Row stride for Y plane
+     * @param imageWidth   Full image width
+     * @param imageHeight  Full image height
+     * @param bitmap       Pre-allocated ARGB_8888 bitmap of size imageWidth x imageHeight
+     * @return true if successful, false otherwise
+     */
+    public static native boolean yuvToGrayscaleBitmapNative(
+            ByteBuffer yBuffer,
+            int yRowStride,
+            int imageWidth,
+            int imageHeight,
+            Bitmap bitmap
+    );
+
+    /**
+     * Native method to convert full YUV420 image to RGB Bitmap (no cropping).
+     * Full color conversion for full-frame processing.
+     *
+     * @param yBuffer      Y plane direct ByteBuffer
+     * @param uBuffer      U plane direct ByteBuffer
+     * @param vBuffer      V plane direct ByteBuffer
+     * @param yRowStride   Row stride for Y plane
+     * @param uvRowStride  Row stride for UV planes
+     * @param uvPixelStride Pixel stride for UV planes
+     * @param imageWidth   Full image width
+     * @param imageHeight  Full image height
+     * @param bitmap       Pre-allocated ARGB_8888 bitmap of size imageWidth x imageHeight
+     * @return true if successful, false otherwise
+     */
+    public static native boolean yuvToRgbBitmapNative(
+            ByteBuffer yBuffer,
+            ByteBuffer uBuffer,
+            ByteBuffer vBuffer,
+            int yRowStride,
+            int uvRowStride,
+            int uvPixelStride,
+            int imageWidth,
+            int imageHeight,
+            Bitmap bitmap
+    );
 }

@@ -405,6 +405,14 @@
             android:restrictionType="bool"
             android:defaultValue="false" />
 
+        <!-- Process as Grayscale Configuration -->
+        <restriction
+            android:key="process_as_grayscale"
+            android:title="Process as Grayscale Images"
+            description="When enabled, images are processed as grayscale for faster analysis. Disable for full color processing."
+            android:restrictionType="bool"
+            android:defaultValue="true" />
+
     </restriction>
 
     <!-- Filtering Configuration (Nested Bundle) -->
