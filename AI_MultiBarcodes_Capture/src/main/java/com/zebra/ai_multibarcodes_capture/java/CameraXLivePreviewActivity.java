@@ -705,11 +705,11 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     }
 
     @Override
-    public void onAnalysisTiming(long analysisTimeMs, float fps) {
+    public void onAnalysisTiming(long analysisTimeMs, int analysisPerSecond) {
         // Update the overlay on UI thread
         runOnUiThread(() -> {
             if (analysisOverlay != null && displayAnalysisPerSecond) {
-                String text = String.format(getString(R.string.analysis_overlay_format), fps, analysisTimeMs);
+                String text = String.format(getString(R.string.analysis_overlay_format), analysisPerSecond, analysisTimeMs);
                 analysisOverlay.setText(text);
             }
         });

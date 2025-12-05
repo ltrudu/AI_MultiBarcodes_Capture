@@ -229,7 +229,7 @@
     <string name="display_analysis_per_second_title">Performance Monitoring</string>
     <string name="display_analysis_per_second_description">Display an overlay on the camera preview showing real-time performance metrics: number of image analyses per second and processing time in milliseconds.</string>
     <string name="display_analysis_per_second_checkbox">Show analysis rate overlay</string>
-    <string name="analysis_overlay_format">%1$.1f FPS\n%2$d ms</string>
+    <string name="analysis_overlay_format">%1$d APS\n%2$d ms</string>
 
     <!-- Dialog Messages (French -> English) -->
     <string name="rename">Rename</string>

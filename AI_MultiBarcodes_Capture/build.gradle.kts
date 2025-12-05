@@ -39,6 +39,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Disable native debugging to prevent dual process launch
+            // Set to true only when you need to debug native C++ code
+            isJniDebuggable = false
+            packaging {
+                jniLibs {
+                    keepDebugSymbols -= setOf("**/*.so")
+                }
+            }
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
