@@ -19,3 +19,7 @@ target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -O3 -ffast-math)
 if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
     target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -mfpu=neon)
 endif()
+
+# 16KB page size support for Android 15+ devices
+# This ensures the native library is compatible with devices using 16KB memory pages
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE "-Wl,-z,max-page-size=16384")
