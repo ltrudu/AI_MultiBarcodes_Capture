@@ -50,6 +50,10 @@ The AI MultiBarcode Capture system is a complete enterprise-grade solution for b
 
 ### Key Features
 - ✅ **Multi-barcode simultaneous scanning** using AI vision technology
+- ✅ **Native NDK Optimization** - Ultra-fast grayscale image processing with JNI/C++ for maximum performance
+- ✅ **Android 15+ Ready** - 16KB page size support for future Android devices
+- ✅ **Performance Monitoring** - Real-time APS overlay showing analysis rate and processing time
+- ✅ **Centralized Logging Control** - Enable/disable logging with EMM feedback support
 - ✅ **Advanced Multilingual Support** - Enterprise-grade translation system supporting 76+ Android languages
 - ✅ **Ultra-Fast Translation Pipeline** - Speed-optimized engine with 10-20x performance improvements
 - ✅ **Dynamic Language Discovery** - Automatic detection and management of translation files

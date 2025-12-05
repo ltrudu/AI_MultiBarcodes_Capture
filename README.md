@@ -43,60 +43,33 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 #### 💡 **Benefits:**
 
 • **Maximum Performance**: Grayscale extraction is the fastest possible approach for capture zone cropping
+
 • **Android 15+ Ready**: Application is prepared for upcoming Android devices with 16KB page sizes
+
 • **Battery Efficiency**: Minimal CPU usage extends battery life during extended scanning sessions
+
 • **SDK Compatible**: Zebra AI Vision SDK fully supports grayscale bitmap input
 
 
 ---
 
-### Version 1.35 - 🎨 **Theme System & Custom Typography**
-
-**Comprehensive visual customization with dual theme support and Zebra brand fonts for both Android app and web interface.**
-
-#### 🎨 **Android App Theme System:**
-
-• **Dual Theme Support**: Choose between Legacy (classic blue) and Modern (Zebra green/dark) visual themes
-  - **Legacy Theme**: Traditional blue color scheme with light backgrounds
-  - **Modern Theme**: Contemporary dark design featuring Zebra's latest brand colors
-  - **Settings Integration**: Easy theme selection in app Settings with instant preview
-  - **Persistent Preferences**: Theme choice saved and automatically restored on app launch
-
-• **Custom Zebra Typography**: Professional brand fonts integrated across the application
-  - **Smart Font Application**: Fonts automatically applied when using Modern theme
-  - **Intelligent Script Detection**: Custom fonts applied only for Latin-based languages (English, German, French, Spanish, Italian, Portuguese, Dutch, and 30+ more)
-  - **Native Font Preservation**: Non-Latin languages (Arabic, Russian, Chinese, Japanese, Korean, Hebrew, Greek, etc.) use optimized native system fonts for best readability
-
-• **Enhanced Android 15 Support**:
-  - Full compatibility with Android 15 (API 35) edge-to-edge display
-  - Improved system bar rendering with proper window insets handling
-  - Optimized status bar and navigation bar color management across all Android versions (11-15)
-
-#### 🌐 **Web Interface Theme Consistency:**
-
-• **Modern Theme Availability**: The Modern theme introduced in v1.34 for the web interface is now complemented by matching Android app themes
-  - **Unified Design Language**: Consistent visual experience across both Android app and web management interface
-  - **Brand Alignment**: Both platforms now feature Zebra's modern brand identity with the Modern theme
-  - **Flexible User Choice**: Users can independently select preferred themes for app and web interface
-
-#### 💡 **Benefits:**
-
-• **Professional Branding**: Zebra brand identity consistently applied across all platforms
-• **Enhanced Readability**: Theme-appropriate typography optimized for each language script
-• **User Customization**: Choose themes that match personal preferences or corporate standards
-• **Global Accessibility**: Smart font selection ensures optimal readability for international users
-• **Modern User Experience**: Contemporary design language aligned with Material Design 3 principles
-• **Cross-Platform Consistency**: Unified theme system across Android app and web management interface
-
----
-
 #### 📚 **Wiki Updates:**
+
+• **⚡ [Android App Configuration - Optimizations](wiki/07-Android-App-Configuration.md#-optimizations)**: NEW section documenting performance monitoring and logging control
+  - **Display Analysis Per Second**: Real-time APS overlay showing analysis rate and processing time
+  - **Logging Enabled**: Centralized logging control with EMM feedback support
+  - Managed configuration examples for enterprise deployment
+
+• **🧠 [Understanding Vision SDK - Native NDK Processing](wiki/18-Understanding-Vision-SDK.md#native-ndk-image-processing)**: NEW comprehensive sections covering:
+  - **Native NDK Image Processing**: Architecture, JNI methods, build configuration, and Android 15+ compatibility
+  - **Performance Monitoring**: APS overlay implementation details and callback interfaces
+  - **Centralized Logging**: LogUtils architecture and conditional logging
 
 • **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of 300+ regex patterns covering web URLs, device identifiers, government IDs, license plates, postal codes, phone numbers, and industry standards
 
 • **🔐 [Understanding Certificates for Beginners](wiki/17-Understanding-Certificates-For-Beginners.md)**: Complete beginner's guide explaining certificate creation, platform-specific requirements, and how to create self-signed certificates that Windows and Android recognize as legitimate Certificate Authority certificates
 
-• **🖥️ [XAMPP Installation Guide](wiki/04-Installation-Guide-XAMPP.md)**: NEW comprehensive guide for Docker-free deployment
+• **🖥️ [XAMPP Installation Guide](wiki/04-Installation-Guide-XAMPP.md)**: Comprehensive guide for Docker-free deployment
   - **Method 0: XAMPP Quick Install** - Fastest setup via pre-configured 7z archive
   - Automated installation scripts
   - Manual step-by-step configuration
