@@ -235,6 +235,10 @@ public class Constants {
     public static final String SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE = "SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE";
     public static final String SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE_DEFAULT = "press";
 
+    // Display Analysis Per Second preferences
+    public static final String SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND = "SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND";
+    public static final boolean SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND_DEFAULT = false;
+
     public static final int KEYCODE_BUTTON_R1 = 103;
     public static final int KEYCODE_SCAN = 10036;
 }
