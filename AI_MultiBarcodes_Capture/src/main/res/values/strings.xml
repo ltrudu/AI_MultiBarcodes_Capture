@@ -225,6 +225,12 @@
     <string name="inference_type_cpu">CPU (Central Processing Unit)</string>
     <string name="inference_type_cpu_description">For trial use if DSP and GPU are not available</string>
 
+    <!-- Display Analysis Per Second -->
+    <string name="display_analysis_per_second_title">Performance Monitoring</string>
+    <string name="display_analysis_per_second_description">Display an overlay on the camera preview showing real-time performance metrics: number of image analyses per second and processing time in milliseconds.</string>
+    <string name="display_analysis_per_second_checkbox">Show analysis rate overlay</string>
+    <string name="analysis_overlay_format">%1$.1f FPS\n%2$d ms</string>
+
     <!-- Dialog Messages (French -> English) -->
     <string name="rename">Rename</string>
     <string name="rename_file">Rename a file</string>

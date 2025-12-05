@@ -89,6 +89,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox cbMICROPDF, cbMICROQR, cbMSI, cbPDF417, cbQRCODE, cbTLC39, cbTRIOPTIC39;
     private CheckBox cbUK_POSTAL, cbUPC_A, cbUPC_E, cbUPCE1, cbUSPLANET, cbUSPOSTNET;
     private CheckBox cbUS4STATE, cbUS4STATE_FICS;
+    private CheckBox cbDisplayAnalysisPerSecond;
 
     private DWScanReceiver mScanReceiver;
 
@@ -230,6 +231,7 @@ public class SettingsActivity extends AppCompatActivity {
         cbUSPOSTNET = findViewById(R.id.cbUSPOSTNET);
         cbUS4STATE = findViewById(R.id.cbUS4STATE);
         cbUS4STATE_FICS = findViewById(R.id.cbUS4STATE_FICS);
+        cbDisplayAnalysisPerSecond = findViewById(R.id.cbDisplayAnalysisPerSecond);
 
         // Initially hide the LinearLayout and set collapsed state
         llSymbologies.setVisibility(View.GONE);
@@ -378,6 +380,7 @@ public class SettingsActivity extends AppCompatActivity {
         loadHttpsPostSettings(sharedPreferences);
         loadFilteringSettings(sharedPreferences);
         loadCaptureTriggerMode(sharedPreferences);
+        loadDisplayAnalysisPerSecond(sharedPreferences);
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
@@ -524,6 +527,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveHttpsPostSettings(editor);
         saveFilteringSettings(editor);
         saveCaptureTriggerMode(editor);
+        saveDisplayAnalysisPerSecond(editor);
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
@@ -1232,5 +1236,14 @@ public class SettingsActivity extends AppCompatActivity {
             llFilteringContent.setVisibility(View.GONE);
             ivToggleFiltering.setImageResource(R.drawable.ic_expand_less_24);
         }
+    }
+
+    private void loadDisplayAnalysisPerSecond(SharedPreferences sharedPreferences) {
+        boolean displayAnalysisPerSecond = sharedPreferences.getBoolean(SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND, SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND_DEFAULT);
+        cbDisplayAnalysisPerSecond.setChecked(displayAnalysisPerSecond);
+    }
+
+    private void saveDisplayAnalysisPerSecond(SharedPreferences.Editor editor) {
+        editor.putBoolean(SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND, cbDisplayAnalysisPerSecond.isChecked());
     }
 }

@@ -397,6 +397,14 @@
             android:entries="@array/inference_type_names"
             android:entryValues="@array/inference_type_values" />
 
+        <!-- Display Analysis Per Second Configuration -->
+        <restriction
+            android:key="display_analysis_per_second"
+            android:title="Display Analysis Per Second"
+            description="Show an overlay on the camera preview displaying the number of image analyses per second and the analysis time in milliseconds"
+            android:restrictionType="bool"
+            android:defaultValue="false" />
+
     </restriction>
 
     <!-- Filtering Configuration (Nested Bundle) -->

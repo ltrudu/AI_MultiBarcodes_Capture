@@ -62,6 +62,19 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
         void onDetectionResult(List<BarcodeEntity> list);
     }
 
+    /**
+     * Interface for receiving analysis timing data.
+     * Implement this interface to display performance metrics (FPS, analysis time).
+     */
+    public interface AnalysisTimingCallback {
+        /**
+         * Called with timing information after each analysis completes.
+         * @param analysisTimeMs The time in milliseconds taken to analyze the frame
+         * @param fps The current frames per second (analysis rate)
+         */
+        void onAnalysisTiming(long analysisTimeMs, float fps);
+    }
+
     private static final String TAG = "BarcodeAnalyzer";
     private final DetectionCallback callback;
     private final BarcodeDecoder barcodeDecoder;
@@ -79,6 +92,17 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
     private volatile int sourceImageHeight = 0;
     // Store the last image rotation degrees for coordinate transformation
     private volatile int lastImageRotationDegrees = 0;
+
+    // Timing tracking for performance monitoring
+    @Nullable
+    private volatile AnalysisTimingCallback timingCallback = null;
+    private volatile boolean timingEnabled = false;
+    private volatile long analysisStartTimeNanos = 0;
+    private volatile long lastAnalysisTimeMs = 0;
+    private volatile long fpsWindowStartTime = 0;
+    private volatile int frameCountInWindow = 0;
+    private volatile float currentFps = 0.0f;
+    private static final long FPS_WINDOW_MS = 1000; // Calculate FPS over 1 second window
 
     /**
      * Constructs a new BarcodeAnalyzer with the specified callback and barcode decoder.
@@ -116,6 +140,10 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
         final int currentOffsetX = cropOffsetX;
         final int currentOffsetY = cropOffsetY;
 
+        // Capture timing state for this analysis
+        final boolean trackTiming = timingEnabled && timingCallback != null;
+        final long startTimeNanos = trackTiming ? System.nanoTime() : 0;
+
         Future<?> future = executorService.submit(() -> {
             try {
                 Log.d(TAG, "Starting image analysis" + (currentCropRegion != null ? " with crop region" : ""));
@@ -151,6 +179,34 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
 
                 barcodeDecoder.process(imageData)
                         .thenAccept(result -> {
+                            // Calculate timing when entering thenAccept (before isStopped check)
+                            if (trackTiming) {
+                                long endTimeNanos = System.nanoTime();
+                                long analysisTimeMs = (endTimeNanos - startTimeNanos) / 1_000_000;
+                                lastAnalysisTimeMs = analysisTimeMs;
+
+                                // Update FPS calculation
+                                long currentTimeMs = System.currentTimeMillis();
+                                frameCountInWindow++;
+
+                                if (fpsWindowStartTime == 0) {
+                                    fpsWindowStartTime = currentTimeMs;
+                                } else {
+                                    long elapsedMs = currentTimeMs - fpsWindowStartTime;
+                                    if (elapsedMs >= FPS_WINDOW_MS) {
+                                        // Calculate FPS and reset window
+                                        currentFps = (frameCountInWindow * 1000.0f) / elapsedMs;
+                                        fpsWindowStartTime = currentTimeMs;
+                                        frameCountInWindow = 0;
+                                    }
+                                }
+
+                                // Notify callback with timing data
+                                if (timingCallback != null) {
+                                    timingCallback.onAnalysisTiming(analysisTimeMs, currentFps);
+                                }
+                            }
+
                             if (!isStopped) {
                                 // Adjust bounding boxes if we used a crop region
                                 List<BarcodeEntity> adjustedResult = result;
@@ -444,5 +500,57 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
      */
     public int getLastImageRotationDegrees() {
         return lastImageRotationDegrees;
+    }
+
+    /**
+     * Sets the timing callback for receiving analysis performance metrics.
+     *
+     * @param callback The callback to receive timing data, or null to disable
+     */
+    public void setTimingCallback(@Nullable AnalysisTimingCallback callback) {
+        this.timingCallback = callback;
+    }
+
+    /**
+     * Enables or disables timing tracking for performance monitoring.
+     * When enabled, the analyzer will calculate FPS and analysis time for each frame.
+     *
+     * @param enabled true to enable timing tracking, false to disable
+     */
+    public void setTimingEnabled(boolean enabled) {
+        this.timingEnabled = enabled;
+        if (enabled) {
+            // Reset timing state when enabling
+            fpsWindowStartTime = 0;
+            frameCountInWindow = 0;
+            currentFps = 0.0f;
+        }
+    }
+
+    /**
+     * Checks if timing tracking is enabled.
+     *
+     * @return true if timing tracking is enabled, false otherwise
+     */
+    public boolean isTimingEnabled() {
+        return timingEnabled;
+    }
+
+    /**
+     * Gets the last calculated analysis time.
+     *
+     * @return The time in milliseconds taken to analyze the last frame
+     */
+    public long getLastAnalysisTimeMs() {
+        return lastAnalysisTimeMs;
+    }
+
+    /**
+     * Gets the current frames per second rate.
+     *
+     * @return The current analysis rate in frames per second
+     */
+    public float getCurrentFps() {
+        return currentFps;
     }
 }

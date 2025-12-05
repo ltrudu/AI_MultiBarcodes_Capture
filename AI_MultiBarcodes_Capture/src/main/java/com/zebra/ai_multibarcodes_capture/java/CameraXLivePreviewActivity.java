@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -92,7 +93,7 @@ import java.util.concurrent.Executors;
 
  * Note: Ensure that the appropriate permissions are configured in the AndroidManifest to utilize camera capabilities.
  */
-public class CameraXLivePreviewActivity extends AppCompatActivity implements BarcodeAnalyzer.DetectionCallback {
+public class CameraXLivePreviewActivity extends AppCompatActivity implements BarcodeAnalyzer.DetectionCallback, BarcodeAnalyzer.AnalysisTimingCallback {
 
     private ActivityCameraXlivePreviewBinding binding;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
@@ -149,6 +150,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     // Filtering settings
     private boolean isFilteringEnabled = false;
     private String filteringRegex = "";
+
+    // Analysis timing overlay
+    private TextView analysisOverlay;
+    private boolean displayAnalysisPerSecond = false;
 
     private BarcodeHandler barcodeHandler;
 
@@ -271,6 +276,8 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 toggleFlashlight();
             }
         });
+
+        analysisOverlay = findViewById(R.id.analysis_overlay);
 
         initCaptureZone();
     }
@@ -661,6 +668,53 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         LogUtils.d(TAG, "=== loadCaptureModeSettings() END ===");
     }
 
+    private void loadDisplayAnalysisSettings() {
+        LogUtils.d(TAG, "=== loadDisplayAnalysisSettings() START ===");
+
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+
+        // Load display analysis per second setting
+        displayAnalysisPerSecond = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND, Constants.SHARED_PREFERENCES_DISPLAY_ANALYSIS_PER_SECOND_DEFAULT);
+
+        // Update overlay visibility
+        if (analysisOverlay != null) {
+            analysisOverlay.setVisibility(displayAnalysisPerSecond ? View.VISIBLE : View.GONE);
+        }
+
+        // Update analyzer timing callback
+        updateAnalyzerTimingCallback();
+
+        LogUtils.d(TAG, "Display analysis per second: " + displayAnalysisPerSecond);
+        LogUtils.d(TAG, "=== loadDisplayAnalysisSettings() END ===");
+    }
+
+    private void updateAnalyzerTimingCallback() {
+        if (barcodeHandler != null && barcodeHandler.getBarcodeAnalyzer() != null) {
+            BarcodeAnalyzer analyzer = barcodeHandler.getBarcodeAnalyzer();
+            if (displayAnalysisPerSecond) {
+                analyzer.setTimingCallback(this);
+                analyzer.setTimingEnabled(true);
+                LogUtils.d(TAG, "Timing callback enabled on analyzer");
+            } else {
+                analyzer.setTimingEnabled(false);
+                analyzer.setTimingCallback(null);
+                LogUtils.d(TAG, "Timing callback disabled on analyzer");
+            }
+        }
+    }
+
+    @Override
+    public void onAnalysisTiming(long analysisTimeMs, float fps) {
+        // Update the overlay on UI thread
+        runOnUiThread(() -> {
+            if (analysisOverlay != null && displayAnalysisPerSecond) {
+                String text = String.format(getString(R.string.analysis_overlay_format), fps, analysisTimeMs);
+                analysisOverlay.setText(text);
+            }
+        });
+    }
+
     private boolean isValueMatchingFilteringRegex(String data)
     {
         if(isFilteringEnabled && filteringRegex.isEmpty() == false)
@@ -994,9 +1048,12 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 barcodeHandler.setAnalyzerReadyCallback(new BarcodeHandler.AnalyzerReadyCallback() {
                     @Override
                     public void onAnalyzerReady(BarcodeAnalyzer analyzer) {
-                        LogUtils.d(TAG, "Analyzer ready, updating crop region");
+                        LogUtils.d(TAG, "Analyzer ready, updating crop region and timing callback");
                         // Run on UI thread since we access UI components
-                        runOnUiThread(() -> updateAnalyzerCropRegion());
+                        runOnUiThread(() -> {
+                            updateAnalyzerCropRegion();
+                            updateAnalyzerTimingCallback();
+                        });
                     }
                 });
             });
@@ -1060,6 +1117,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         // Load capture mode settings
         loadCaptureModeSettings();
+
+        // Load display analysis per second settings
+        loadDisplayAnalysisSettings();
 
         // Flashlight settings are now loaded after camera is bound in bindPreviewUseCase()
 
