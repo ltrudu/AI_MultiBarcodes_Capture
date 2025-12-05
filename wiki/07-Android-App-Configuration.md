@@ -481,6 +481,96 @@ Additional symbologies for specific industry applications.
 - Camera Resolution: 1MP
 - Inference Type: DSP (if available)
 
+## ⚡ Optimizations
+
+The Optimizations section provides settings for performance monitoring and debugging control.
+
+### Display Analysis Per Second
+
+**Description:** Shows a real-time overlay on the camera preview displaying performance metrics for barcode analysis.
+
+**Location:**
+```
+Settings → Advanced → Optimizations → Display Analysis Per Second
+```
+
+**Display Format:**
+```
+12 APS
+45 ms
+```
+
+Where:
+- **APS (Analysis Per Second)**: Number of complete barcode analyses performed per second
+- **ms (Milliseconds)**: Average processing time per analysis (rolling average over 20 samples)
+
+**Use Cases:**
+- Performance tuning and optimization
+- Comparing different device capabilities
+- Troubleshooting slow scanning performance
+- Validating configuration changes impact
+
+**Configuration Notes:**
+- **Default Setting**: Disabled (off)
+- **Overlay Position**: Top-center of camera preview
+- **Visual Style**: Semi-transparent background with white outline
+- **Rolling Average**: Processing time calculated as average over last 20 analyses for stability
+
+**Managed Configuration:**
+```xml
+<!-- In advanced_settings bundle -->
+<restriction
+    android:key="display_analysis_per_second"
+    android:title="Display Analysis Per Second"
+    android:restrictionType="bool"
+    android:defaultValue="false" />
+```
+
+### Logging Enabled
+
+**Description:** Controls application logging output. When disabled, only critical error reporting (feedback reporting) continues to function.
+
+**Location:**
+```
+Settings → Advanced → Optimizations → Logging Enabled
+```
+
+**Behavior:**
+- **Enabled**: All log levels (verbose, debug, info, warning, error) output to logcat
+- **Disabled**: No logging output except for feedback/error reporting to EMM systems
+
+**Use Cases:**
+- **Production Deployments**: Disable logging to reduce overhead and prevent sensitive data exposure
+- **Development/Debugging**: Enable logging for troubleshooting
+- **Performance Optimization**: Disable logging to minimize processing overhead
+- **Security Compliance**: Disable logging to prevent potential data leakage in logs
+
+**Configuration Notes:**
+- **Default Setting**: Disabled (off) for optimal production performance
+- **Feedback Reporting**: Error reporting to EMM/MDM systems continues regardless of this setting
+- **Immediate Effect**: Changes apply immediately without app restart
+- **Persistent Setting**: Selection saved and restored across app sessions
+
+**Managed Configuration:**
+```xml
+<!-- In advanced_settings bundle -->
+<restriction
+    android:key="logging_enabled"
+    android:title="Logging Enabled"
+    android:restrictionType="bool"
+    android:defaultValue="false" />
+```
+
+**LogCat Filtering (when enabled):**
+```bash
+# Monitor all app logs
+adb logcat | grep "AIMBCCapture"
+
+# Monitor specific log levels
+adb logcat *:V | grep "AIMBCCapture"  # Verbose and above
+adb logcat *:D | grep "AIMBCCapture"  # Debug and above
+adb logcat *:I | grep "AIMBCCapture"  # Info and above
+```
 
 ### Session Management
 

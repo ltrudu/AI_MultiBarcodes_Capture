@@ -12,6 +12,9 @@ This guide provides a comprehensive, didactic explanation of how the Zebra AI Vi
 6. [Lifecycle Management](#lifecycle-management)
 7. [Threading and Concurrency](#threading-and-concurrency)
 8. [Error Handling](#error-handling)
+9. [Native NDK Image Processing](#native-ndk-image-processing)
+10. [Performance Monitoring](#performance-monitoring)
+11. [Centralized Logging](#centralized-logging)
 
 ---
 
@@ -1158,6 +1161,304 @@ try {
 
 ---
 
+## Native NDK Image Processing
+
+The application includes native C++ code for high-performance image processing, particularly for capture zone cropping operations.
+
+### Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    BarcodeAnalyzer                          │
+│                  (Java/Kotlin Layer)                        │
+└────────────────────────┬────────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  NativeYuvProcessor                         │
+│                   (JNI Wrapper)                             │
+│    - isAvailable()                                          │
+│    - cropYToGrayscaleBitmapNative()                        │
+│    - cropYuvToBitmapNative()                               │
+└────────────────────────┬────────────────────────────────────┘
+                         │ JNI
+                         ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   libyuvprocessor.so                        │
+│                    (Native C++ Library)                     │
+│    - cropYToGrayscaleBitmapNative()                        │
+│    - cropYuvToBitmapNative()                               │
+│    - cropYuvToRgbNative()                                  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Native Methods
+
+#### 1. Y-Plane Grayscale Extraction (Primary Method)
+
+```cpp
+// yuv_processor.cpp
+JNIEXPORT jboolean JNICALL
+Java_com_zebra_ai_1multibarcodes_1capture_barcodedecoder_NativeYuvProcessor_cropYToGrayscaleBitmapNative(
+    JNIEnv *env,
+    jclass clazz,
+    jobject yBuffer,
+    jint yRowStride,
+    jint cropLeft,
+    jint cropTop,
+    jint cropWidth,
+    jint cropHeight,
+    jobject bitmap)
+```
+
+**Why Grayscale is Fastest:**
+- **Y-plane IS grayscale**: No color conversion math required
+- **Single plane processing**: Only reads Y-plane, skips U/V planes
+- **3x less memory I/O**: One buffer read instead of three
+- **5x fewer operations**: ~3 ops/pixel vs ~15 ops/pixel for RGB
+
+**Performance Comparison:**
+
+| Metric | YUV→RGB | Y→Grayscale | Improvement |
+|--------|---------|-------------|-------------|
+| Planes processed | 3 (Y,U,V) | 1 (Y only) | 3x less data |
+| Operations/pixel | ~15 | ~3 | 5x fewer ops |
+| Color math | Yes (BT.601) | None | No computation |
+| Memory reads | 3 buffers | 1 buffer | 3x less I/O |
+
+#### 2. Full YUV to RGB Conversion (Fallback)
+
+```cpp
+JNIEXPORT jboolean JNICALL
+Java_com_zebra_ai_1multibarcodes_1capture_barcodedecoder_NativeYuvProcessor_cropYuvToBitmapNative(
+    JNIEnv *env,
+    jclass clazz,
+    jobject yBuffer, jobject uBuffer, jobject vBuffer,
+    jint yRowStride, jint uvRowStride, jint uvPixelStride,
+    jint cropLeft, jint cropTop, jint cropWidth, jint cropHeight,
+    jobject bitmap)
+```
+
+**BT.601 Color Conversion:**
+```cpp
+int r = (int)(y + 1.402f * (v - 128));
+int g = (int)(y - 0.344136f * (u - 128) - 0.714136f * (v - 128));
+int b = (int)(y + 1.772f * (u - 128));
+```
+
+### Build Configuration
+
+**CMakeLists.txt:**
+```cmake
+cmake_minimum_required(VERSION 3.18.1)
+project("yuvprocessor")
+
+add_library(yuvprocessor SHARED yuv_processor.cpp)
+
+# Performance optimizations
+target_compile_options(yuvprocessor PRIVATE -O3 -ffast-math)
+
+# ARM NEON SIMD for 32-bit
+if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
+    target_compile_options(yuvprocessor PRIVATE -mfpu=neon)
+endif()
+
+# Android 15+ 16KB page size support
+target_link_options(yuvprocessor PRIVATE -Wl,-z,max-page-size=16384)
+
+find_library(log-lib log)
+find_library(jnigraphics-lib jnigraphics)
+target_link_libraries(yuvprocessor ${log-lib} ${jnigraphics-lib})
+```
+
+### Android 15+ Compatibility
+
+The native library includes support for Android 15+ devices with 16KB memory page sizes:
+
+```cmake
+# Linker flag for 16KB page alignment
+target_link_options(yuvprocessor PRIVATE -Wl,-z,max-page-size=16384)
+```
+
+**Key Points:**
+- Compatible with both 4KB (traditional) and 16KB page size devices
+- No runtime configuration required
+- Built into the native library at compile time
+- Ensures forward compatibility with future Android versions
+
+### Java Integration
+
+**NativeYuvProcessor.java:**
+```java
+public class NativeYuvProcessor {
+    private static boolean isNativeLibraryLoaded = false;
+
+    static {
+        try {
+            System.loadLibrary("yuvprocessor");
+            isNativeLibraryLoaded = true;
+        } catch (UnsatisfiedLinkError e) {
+            isNativeLibraryLoaded = false;
+        }
+    }
+
+    public static boolean isAvailable() {
+        return isNativeLibraryLoaded;
+    }
+
+    public static native boolean cropYToGrayscaleBitmapNative(
+        ByteBuffer yBuffer,
+        int yRowStride,
+        int cropLeft, int cropTop,
+        int cropWidth, int cropHeight,
+        Bitmap bitmap
+    );
+}
+```
+
+### Usage in BarcodeAnalyzer
+
+```java
+// Check if native library is available
+if (NativeYuvProcessor.isAvailable()) {
+    // Use native grayscale extraction (fastest)
+    NativeYuvProcessor.cropYToGrayscaleBitmapNative(
+        yBuffer, yRowStride,
+        cropLeft, cropTop, cropWidth, cropHeight,
+        bitmap
+    );
+} else {
+    // Fall back to Java implementation
+    cropYuvToGrayscaleJava(yBuffer, yRowStride, ...);
+}
+```
+
+### Automatic Fallback
+
+The system implements automatic fallback:
+
+1. **Native Available**: Use `cropYToGrayscaleBitmapNative()` for maximum performance
+2. **Native Unavailable**: Fall back to `cropYuvToGrayscaleJava()` pure Java implementation
+
+This ensures the application works on all devices regardless of native library compatibility.
+
+### Supported ABIs
+
+The native library is built for multiple architectures:
+- **arm64-v8a**: 64-bit ARM (most modern devices)
+- **armeabi-v7a**: 32-bit ARM (older devices, with NEON SIMD)
+- **x86_64**: 64-bit Intel (emulators)
+- **x86**: 32-bit Intel (older emulators)
+
+---
+
+## Performance Monitoring
+
+### Analysis Per Second (APS) Overlay
+
+The application includes a real-time performance monitoring overlay that displays:
+
+```
+12 APS
+45 ms
+```
+
+**Metrics Displayed:**
+- **APS (Analysis Per Second)**: Number of complete barcode analyses per second
+- **ms (Milliseconds)**: Average processing time per analysis
+
+**Implementation Details:**
+
+```java
+// BarcodeAnalyzer.java - Rolling average calculation
+private static final int ANALYSIS_TIME_WINDOW_SIZE = 20;
+private final LinkedList<Long> analysisTimeHistory = new LinkedList<>();
+
+private long calculateAverageAnalysisTime(long currentAnalysisTime) {
+    analysisTimeHistory.addLast(currentAnalysisTime);
+    if (analysisTimeHistory.size() > ANALYSIS_TIME_WINDOW_SIZE) {
+        analysisTimeHistory.removeFirst();
+    }
+    long sum = 0;
+    for (Long time : analysisTimeHistory) {
+        sum += time;
+    }
+    return sum / analysisTimeHistory.size();
+}
+```
+
+**Callback Interface:**
+```java
+public interface AnalysisCallback {
+    void onAnalysisUpdate(int analysisPerSecond, long averageAnalysisTimeMs);
+}
+```
+
+### Enabling Performance Overlay
+
+```
+Settings → Advanced → Optimizations → Display Analysis Per Second
+```
+
+**Use Cases:**
+- Performance tuning and optimization
+- Comparing different device capabilities
+- Validating configuration changes impact
+- Troubleshooting slow scanning
+
+---
+
+## Centralized Logging
+
+### LogUtils Architecture
+
+All application logging is centralized through the `LogUtils` class, providing:
+
+1. **Conditional Logging**: Enable/disable all logging via settings
+2. **Feedback Reporting**: Error reporting continues regardless of logging state
+3. **Consistent Tagging**: Centralized TAG management
+
+**LogUtils.java:**
+```java
+public class LogUtils {
+    private static boolean loggingEnabled = false;
+
+    public static void setLoggingEnabled(boolean enabled) {
+        loggingEnabled = enabled;
+    }
+
+    public static void d(String TAG, String message) {
+        if (loggingEnabled) {
+            Log.d(TAG, message);
+        }
+    }
+
+    public static void e(String TAG, String message) {
+        if (loggingEnabled) {
+            Log.e(TAG, message);
+        }
+        // Feedback reporting continues regardless of loggingEnabled
+        if (feedbackReportingEnabled && appContext != null) {
+            reportErrorToFeedbackChannel(TAG, message, null);
+        }
+    }
+}
+```
+
+### Configuration
+
+```
+Settings → Advanced → Optimizations → Logging Enabled
+```
+
+**Benefits:**
+- **Production**: Disable logging to reduce overhead
+- **Development**: Enable for troubleshooting
+- **Security**: Prevent sensitive data in logs
+- **EMM Integration**: Error reporting still works when disabled
+
+---
+
 ## Summary
 
 The Zebra AI Vision SDK integration in this application demonstrates a well-architected, production-ready implementation:
@@ -1170,6 +1471,9 @@ The Zebra AI Vision SDK integration in this application demonstrates a well-arch
 6. **Performance**: Backpressure handling and frame skipping
 7. **Configurability**: User-controlled settings for optimization
 8. **Visualization**: Real-time feedback with coordinate transformation
+9. **Native Optimization**: NDK/JNI grayscale processing for maximum performance
+10. **Performance Monitoring**: Real-time APS overlay for optimization
+11. **Centralized Logging**: Conditional logging with EMM feedback support
 
 This implementation can serve as a reference for integrating the Zebra AI Vision SDK into your own Android applications.
 
@@ -1181,8 +1485,10 @@ This implementation can serve as a reference for integrating the Zebra AI Vision
 - **CameraX Documentation**: https://developer.android.com/training/camerax
 - **Android Architecture Components**: https://developer.android.com/topic/architecture
 - **CompletableFuture Guide**: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+- **Android NDK Guide**: https://developer.android.com/ndk/guides
+- **Android 16KB Page Size**: https://developer.android.com/guide/practices/page-sizes
 
 ---
 
-**Last Updated**: 2025-01-22
-**Version**: 1.0
+**Last Updated**: 2025-12-05
+**Version**: 1.1
