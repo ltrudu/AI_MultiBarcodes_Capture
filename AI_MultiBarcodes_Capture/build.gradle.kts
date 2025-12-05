@@ -24,6 +24,18 @@ android {
         buildConfigField("String", "BARCODE_LOCALIZER_VERSION", "\"${libs.versions.barcodeLocalizer.get()}\"")
         buildConfigField("String", "CRITICAL_PERMISSION_HELPER_VERSION", "\"${libs.versions.criticalpermissionhelper.get()}\"")
         buildConfigField("String", "DATAWEDGE_INTENT_WRAPPER_VERSION", "\"${libs.versions.datawedgeintentwrapper.get()}\"")
+
+        // NDK configuration for native YUV processing
+        ndk {
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
 
     buildTypes {

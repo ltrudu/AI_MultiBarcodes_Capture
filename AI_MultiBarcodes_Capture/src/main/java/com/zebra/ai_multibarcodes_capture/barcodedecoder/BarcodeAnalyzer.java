@@ -189,8 +189,8 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
 
     /**
      * Crops the ImageProxy to the specified region and returns a Bitmap.
-     * This optimized version directly converts only the cropped YUV region to RGB,
-     * avoiding JPEG encode/decode overhead entirely.
+     * Uses native NDK implementation for maximum performance when available,
+     * falls back to Java implementation otherwise.
      *
      * @param image The source ImageProxy from CameraX
      * @param cropRect The region to crop in image coordinates
@@ -222,8 +222,13 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                 return null;
             }
 
-            // Direct YUV to RGB conversion for cropped region only
-            return cropYuvToRgb(image, left, top, cropWidth, cropHeight);
+            // Try native implementation first for best performance
+            if (NativeYuvProcessor.isAvailable()) {
+                return cropYuvToRgbNative(image, left, top, cropWidth, cropHeight);
+            } else {
+                // Fall back to Java implementation
+                return cropYuvToRgbJava(image, left, top, cropWidth, cropHeight);
+            }
 
         } catch (Exception e) {
             Log.e(TAG, "Error cropping image: " + e.getMessage());
@@ -232,19 +237,53 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
     }
 
     /**
-     * Directly converts a cropped region of YUV_420_888 to RGB Bitmap.
-     * This avoids JPEG encode/decode overhead by doing direct pixel conversion.
-     * Uses integer math for speed optimization.
-     *
-     * @param image The source ImageProxy
-     * @param cropLeft Left coordinate of crop region (must be even)
-     * @param cropTop Top coordinate of crop region (must be even)
-     * @param cropWidth Width of crop region (must be even)
-     * @param cropHeight Height of crop region (must be even)
-     * @return A cropped RGB Bitmap
+     * Native NDK implementation for cropped YUV to RGB conversion.
+     * Writes directly to a pre-allocated Bitmap for maximum efficiency.
      */
     @Nullable
-    private Bitmap cropYuvToRgb(@NonNull ImageProxy image, int cropLeft, int cropTop, int cropWidth, int cropHeight) {
+    private Bitmap cropYuvToRgbNative(@NonNull ImageProxy image, int cropLeft, int cropTop, int cropWidth, int cropHeight) {
+        try {
+            ImageProxy.PlaneProxy[] planes = image.getPlanes();
+
+            ByteBuffer yBuffer = planes[0].getBuffer();
+            ByteBuffer uBuffer = planes[1].getBuffer();
+            ByteBuffer vBuffer = planes[2].getBuffer();
+
+            int yRowStride = planes[0].getRowStride();
+            int uvRowStride = planes[1].getRowStride();
+            int uvPixelStride = planes[1].getPixelStride();
+
+            // Create output bitmap
+            Bitmap bitmap = Bitmap.createBitmap(cropWidth, cropHeight, Bitmap.Config.ARGB_8888);
+
+            // Call native method to write directly to bitmap
+            boolean success = NativeYuvProcessor.cropYuvToBitmapNative(
+                    yBuffer, uBuffer, vBuffer,
+                    yRowStride, uvRowStride, uvPixelStride,
+                    cropLeft, cropTop, cropWidth, cropHeight,
+                    bitmap
+            );
+
+            if (success) {
+                return bitmap;
+            } else {
+                bitmap.recycle();
+                Log.w(TAG, "Native YUV conversion failed, falling back to Java");
+                return cropYuvToRgbJava(image, cropLeft, cropTop, cropWidth, cropHeight);
+            }
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error in cropYuvToRgbNative: " + e.getMessage());
+            return cropYuvToRgbJava(image, cropLeft, cropTop, cropWidth, cropHeight);
+        }
+    }
+
+    /**
+     * Java fallback implementation for cropped YUV to RGB conversion.
+     * Uses integer math for reasonable performance.
+     */
+    @Nullable
+    private Bitmap cropYuvToRgbJava(@NonNull ImageProxy image, int cropLeft, int cropTop, int cropWidth, int cropHeight) {
         try {
             ImageProxy.PlaneProxy[] planes = image.getPlanes();
 
@@ -264,13 +303,6 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
             int pixelIndex = 0;
 
             // Convert only the cropped region using integer math (fixed-point, 10-bit precision)
-            // BT.601 coefficients scaled by 1024:
-            // Y: 1.164 * 1024 = 1192
-            // Cr->R: 1.596 * 1024 = 1634
-            // Cb->G: 0.392 * 1024 = 401
-            // Cr->G: 0.813 * 1024 = 833
-            // Cb->B: 2.017 * 1024 = 2066
-
             for (int row = 0; row < cropHeight; row++) {
                 int srcY = cropTop + row;
                 int yRowOffset = srcY * yRowStride + cropLeft;
@@ -291,7 +323,7 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                     int g = (y1192 - 401 * u - 833 * v) >> 10;
                     int b = (y1192 + 2066 * u) >> 10;
 
-                    // Clamp to [0, 255] using branchless operations
+                    // Clamp to [0, 255]
                     r = r < 0 ? 0 : (r > 255 ? 255 : r);
                     g = g < 0 ? 0 : (g > 255 ? 255 : g);
                     b = b < 0 ? 0 : (b > 255 ? 255 : b);
@@ -306,7 +338,7 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
             return bitmap;
 
         } catch (Exception e) {
-            Log.e(TAG, "Error in cropYuvToRgb: " + e.getMessage());
+            Log.e(TAG, "Error in cropYuvToRgbJava: " + e.getMessage());
             return null;
         }
     }
