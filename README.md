@@ -68,6 +68,7 @@ https://github.com/ltrudu/AI_MutliBarcodes_Capture
 • **📚 [Complete Regex Pattern Library](wiki/16-Common-Regex-Expressions.md)**: Comprehensive collection of 300+ regex patterns covering web URLs, device identifiers, government IDs, license plates, postal codes, phone numbers, and industry standards
 
 • **🔐 [Understanding Certificates for Beginners](wiki/17-Understanding-Certificates-For-Beginners.md)**: Complete beginner's guide explaining certificate creation, platform-specific requirements, and how to create self-signed certificates that Windows and Android recognize as legitimate Certificate Authority certificates
+  - 🌍 **Available in**: [Français](wiki/17-Understanding-Certificates-For-Beginners-fr.md) | [Español](wiki/17-Understanding-Certificates-For-Beginners-es.md) | [Português](wiki/17-Understanding-Certificates-For-Beginners-pt.md) | [Deutsch](wiki/17-Understanding-Certificates-For-Beginners-de.md) | [Italiano](wiki/17-Understanding-Certificates-For-Beginners-it.md)
 
 • **🖥️ [XAMPP Installation Guide](wiki/04-Installation-Guide-XAMPP.md)**: Comprehensive guide for Docker-free deployment
   - **Method 0: XAMPP Quick Install** - Fastest setup via pre-configured 7z archive

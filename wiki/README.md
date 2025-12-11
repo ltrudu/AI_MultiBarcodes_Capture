@@ -30,6 +30,7 @@ This wiki provides comprehensive documentation for the AI MultiBarcode Capture s
 - **[Generating HTTPS Certificates](13-Generating-HTTPS-Certificates.md)** - Create SSL/TLS certificates for secure HTTPS communication and Android client authentication
 - **[Installing Server Certificates on Android and Web Client](14-Installing-Server-Certificates.md)** - Install CA certificates on Windows and Android devices for secure HTTPS connections
 - **[Understanding Certificates for Beginners](17-Understanding-Certificates-For-Beginners.md)** - Complete beginner's guide to certificates, creation process, and platform-specific requirements
+  - 🌍 **Translations**: [Français](17-Understanding-Certificates-For-Beginners-fr.md) | [Español](17-Understanding-Certificates-For-Beginners-es.md) | [Português](17-Understanding-Certificates-For-Beginners-pt.md) | [Deutsch](17-Understanding-Certificates-For-Beginners-de.md) | [Italiano](17-Understanding-Certificates-For-Beginners-it.md)
 
 ### 🔧 Advanced Configuration
 - **[Troubleshooting Guide](15-Troubleshooting-Guide.md)** - Common issues and solutions
