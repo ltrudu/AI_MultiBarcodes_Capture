@@ -23,20 +23,22 @@ if exist "C:\xampp" (
 
 echo [INFO] Detecting network IP addresses...
 
-REM Get local IP address - try 192.168.x.x first
+REM 10.x.x.x range
 set LOCAL_IP=
-for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "192.168"') do (
-    set LOCAL_IP_RAW=%%a
-    goto :found_local_ip
-)
-
-REM Fallback to 10.x.x.x range
-if "%LOCAL_IP%"=="" (
     for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "10\."') do (
         set LOCAL_IP_RAW=%%a
         goto :found_local_ip
     )
+
+REM Get local IP address - try 192.168.x.x
+
+if "%LOCAL_IP%"=="" (
+	for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "192.168"') do (
+		set LOCAL_IP_RAW=%%a
+		goto :found_local_ip
+	)
 )
+
 
 :found_local_ip
 REM Trim whitespace from LOCAL_IP
