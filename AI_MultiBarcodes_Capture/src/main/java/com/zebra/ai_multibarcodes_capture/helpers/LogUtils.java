@@ -33,7 +33,7 @@ public class LogUtils {
 
     private static Context appContext;
     private static final String FEEDBACK_EMAIL = "support@zebra.com";
-    private static boolean feedbackReportingEnabled = true;
+    private static boolean feedbackReportingEnabled = false;
     private static boolean loggingEnabled = false; // Disabled by default
 
     /**
