@@ -1111,6 +1111,57 @@
                         android:text="@string/camera_resolution_8mp_description"
                         android:textSize="12sp"
                         android:textColor="?android:attr/textColorSecondary"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rb12MPResolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="?attr/colorPrimary"
+                        android:text="@string/camera_resolution_12mp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/camera_resolution_12mp_description"
+                        android:textSize="12sp"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rb12_5MPResolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="?attr/colorPrimary"
+                        android:text="@string/camera_resolution_12_5mp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/camera_resolution_12_5mp_description"
+                        android:textSize="12sp"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/rb12_6MPResolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="?attr/colorPrimary"
+                        android:text="@string/camera_resolution_12_6mp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/camera_resolution_12_6mp_description"
+                        android:textSize="12sp"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginStart="32dp" />
 
                 </RadioGroup>
@@ -1292,6 +1343,13 @@
                     android:layout_height="wrap_content"
                     android:buttonTint="?attr/colorPrimary"
                     android:text="@string/logging_enabled_checkbox" />
+
+                <CheckBox
+                    android:id="@+id/cbForceContinuousAutofocus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="?attr/colorPrimary"
+                    android:text="@string/force_continuous_autofocus_checkbox" />
 
             </LinearLayout>
 

@@ -198,7 +198,7 @@ public class Constants {
     
     // Flashlight preferences
     public static final String SHARED_PREFERENCES_FLASHLIGHT_ENABLED = "FLASHLIGHT_ENABLED";
-    public static final boolean SHARED_PREFERENCES_FLASHLIGHT_ENABLED_DEFAULT = false;
+    public static final boolean SHARED_PREFERENCES_FLASHLIGHT_ENABLED_DEFAULT = true;
     
     // Language preferences
     public static final String SHARED_PREFERENCES_LANGUAGE = "SELECTED_LANGUAGE";
@@ -242,6 +242,10 @@ public class Constants {
     // Logging Enabled preferences
     public static final String SHARED_PREFERENCES_LOGGING_ENABLED = "SHARED_PREFERENCES_LOGGING_ENABLED";
     public static final boolean SHARED_PREFERENCES_LOGGING_ENABLED_DEFAULT = false;
+
+    // Force Continuous Autofocus preferences
+    public static final String SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS = "SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS";
+    public static final boolean SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS_DEFAULT = false;
 
     public static final int KEYCODE_BUTTON_R1 = 103;
     public static final int KEYCODE_SCAN = 10036;

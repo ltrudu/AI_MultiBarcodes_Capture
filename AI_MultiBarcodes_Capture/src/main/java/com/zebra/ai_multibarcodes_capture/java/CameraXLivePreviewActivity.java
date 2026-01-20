@@ -1,6 +1,7 @@
 // Copyright 2025 Zebra Technologies Corporation and/or its affiliates. All rights reserved.
 package com.zebra.ai_multibarcodes_capture.java;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.hardware.camera2.CaptureRequest;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Size;
@@ -32,6 +34,7 @@ import androidx.camera.core.Preview;
 import androidx.camera.core.resolutionselector.AspectRatioStrategy;
 import androidx.camera.core.resolutionselector.ResolutionSelector;
 import androidx.camera.core.resolutionselector.ResolutionStrategy;
+import androidx.camera.camera2.interop.Camera2Interop;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -154,6 +157,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     // Analysis timing overlay
     private TextView analysisOverlay;
     private boolean displayAnalysisPerSecond = false;
+
+    // Force continuous autofocus setting
+    private boolean forceContinuousAutofocus = false;
 
     private BarcodeHandler barcodeHandler;
 
@@ -689,6 +695,19 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         LogUtils.d(TAG, "=== loadDisplayAnalysisSettings() END ===");
     }
 
+    private void loadForceContinuousAutofocusSettings() {
+        LogUtils.d(TAG, "=== loadForceContinuousAutofocusSettings() START ===");
+
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+
+        // Load force continuous autofocus setting
+        forceContinuousAutofocus = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS, Constants.SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS_DEFAULT);
+
+        LogUtils.d(TAG, "Force continuous autofocus: " + forceContinuousAutofocus);
+        LogUtils.d(TAG, "=== loadForceContinuousAutofocusSettings() END ===");
+    }
+
     private void updateAnalyzerTimingCallback() {
         if (barcodeHandler != null && barcodeHandler.getBarcodeAnalyzer() != null) {
             BarcodeAnalyzer analyzer = barcodeHandler.getBarcodeAnalyzer();
@@ -1065,6 +1084,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     }
 
 
+    @SuppressLint("UnsafeOptInUsageError")
     private void bindPreviewUseCase() {
         if (cameraProvider == null) {
             return;
@@ -1078,21 +1098,36 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         }
 
         Preview.Builder builder = new Preview.Builder();
-
         builder.setResolutionSelector(resolutionSelector);
 
-        analysisUseCase = new ImageAnalysis.Builder()
+        ImageAnalysis.Builder analysisBuilder = new ImageAnalysis.Builder()
                 .setResolutionSelector(resolutionSelector)
-                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .build();
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST);
 
+        // Apply continuous autofocus using Camera2Interop if enabled
+        if (forceContinuousAutofocus) {
+            LogUtils.d(TAG, "Applying forced continuous autofocus via Camera2Interop");
+            Camera2Interop.Extender<Preview> previewExtender = new Camera2Interop.Extender<>(builder);
+            previewExtender.setCaptureRequestOption(
+                    CaptureRequest.CONTROL_AF_MODE,
+                    CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE
+            );
+
+            Camera2Interop.Extender<ImageAnalysis> analysisExtender = new Camera2Interop.Extender<>(analysisBuilder);
+            analysisExtender.setCaptureRequestOption(
+                    CaptureRequest.CONTROL_AF_MODE,
+                    CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE
+            );
+        }
+
+        analysisUseCase = analysisBuilder.build();
         previewUseCase = builder.build();
         binding.previewView.setVisibility(View.VISIBLE);
         binding.entityView.setVisibility(View.GONE);
         previewUseCase.setSurfaceProvider(binding.previewView.getSurfaceProvider());
 
         camera = cameraProvider.bindToLifecycle(/* lifecycleOwner= */ this, cameraSelector, previewUseCase, analysisUseCase);
-        
+
         // Load flashlight settings after camera is bound and available
         LogUtils.d(TAG, "Camera bound successfully, loading flashlight settings");
         loadFlashlightSettings();
@@ -1120,6 +1155,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         // Load display analysis per second settings
         loadDisplayAnalysisSettings();
+
+        // Load force continuous autofocus settings
+        loadForceContinuousAutofocusSettings();
 
         // Flashlight settings are now loaded after camera is bound in bindPreviewUseCase()
 
