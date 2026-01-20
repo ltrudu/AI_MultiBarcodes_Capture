@@ -101,15 +101,15 @@ dependencies {
     implementation(libs.gson)
 
     // Get files from libs for latest release
-    implementation(fileTree("libs") {
-        include("*.jar", "*.aar")
-    })
+//    implementation(fileTree("libs") {
+//        include("*.jar", "*.aar")
+//    })
 
-    //Below dependency is to get AI Suite SDK
-    //implementation(libs.zebra.ai.vision.sdk) { artifact { type = "aar" } }
+    // Below dependency is to get AI Suite SDK
+    implementation(libs.zebra.ai.vision.sdk) { artifact { type = "aar" } }
 
-    //Below dependency is to get Barcode Localizer model for AI Suite SDK
-    //implementation(libs.barcode.localizer) { artifact { type = "aar" } }
+    // Below dependency is to get Barcode Localizer model for AI Suite SDK
+    implementation(libs.barcode.localizer) { artifact { type = "aar" } }
 
     // Dependency for CriticalPermissionHelper
     implementation(libs.criticalpermissionhelper)
