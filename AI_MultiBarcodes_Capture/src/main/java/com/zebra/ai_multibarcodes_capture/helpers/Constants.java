@@ -267,4 +267,9 @@ public class Constants {
 
     public static final int KEYCODE_BUTTON_R1 = 103;
     public static final int KEYCODE_SCAN = 10036;
+
+    // Auto Capture preferences
+    public static final String SHARED_PREFERENCES_AUTO_CAPTURE_ENABLED = "AUTO_CAPTURE_ENABLED";
+    public static final boolean SHARED_PREFERENCES_AUTO_CAPTURE_ENABLED_DEFAULT = false;
+    public static final String SHARED_PREFERENCES_AUTO_CAPTURE_CONDITIONS = "AUTO_CAPTURE_CONDITIONS";
 }

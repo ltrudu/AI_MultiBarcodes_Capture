@@ -60,6 +60,9 @@ import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationRece
 
 import com.zebra.ai_multibarcodes_capture.settings.SettingsActivity;
 import com.zebra.ai_multibarcodes_capture.views.CaptureZoneOverlay;
+import com.zebra.ai_multibarcodes_capture.autocapture.AutoCaptureEvaluator;
+import com.zebra.ai_multibarcodes_capture.autocapture.AutoCapturePreferencesHelper;
+import com.zebra.ai_multibarcodes_capture.autocapture.models.AutoCaptureConditionList;
 import com.zebra.datawedgeprofileintents.DWProfileBaseSettings;
 import com.zebra.datawedgeprofileintents.DWProfileCommandBase;
 import com.zebra.datawedgeprofileintents.DWScannerPluginDisable;
@@ -170,6 +173,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private int debounceAlgorithm = 0; // 0 = Center Distance, 1 = IOU
     private float debounceIouThreshold = 0.3f;
     private List<CachedBarcode> debounceCache = new ArrayList<>();
+
+    // Auto capture settings
+    private boolean isAutoCaptureEnabled = false;
+    private AutoCaptureConditionList autoCaptureConditions = null;
 
     private BarcodeHandler barcodeHandler;
 
@@ -739,6 +746,12 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         LogUtils.d(TAG, "=== loadDebounceSettings() END ===");
     }
 
+    private void loadAutoCaptureSettings() {
+        isAutoCaptureEnabled = AutoCapturePreferencesHelper.isAutoCaptureEnabled(this);
+        autoCaptureConditions = AutoCapturePreferencesHelper.loadConditions(this);
+        LogUtils.d(TAG, "Auto capture enabled: " + isAutoCaptureEnabled + ", conditions: " + (autoCaptureConditions != null ? autoCaptureConditions.size() : 0));
+    }
+
     /**
      * Updates an existing cache entry or adds a new one for the given barcode.
      *
@@ -1224,6 +1237,14 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         entitiesHolder = filtered_entities;
 
+        // Auto capture evaluation
+        if (isAutoCaptureEnabled && autoCaptureConditions != null && !autoCaptureConditions.isEmpty()) {
+            if (AutoCaptureEvaluator.evaluateConditions(autoCaptureConditions, filtered_entities)) {
+                runOnUiThread(() -> captureData());
+                return; // Skip overlay update since we're capturing
+            }
+        }
+
         runOnUiThread(() -> {
             binding.graphicOverlay.clear();
             if (rects.size() > 0) {
@@ -1339,6 +1360,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         // Load debounce settings
         loadDebounceSettings();
+
+        // Load auto capture settings
+        loadAutoCaptureSettings();
 
         // Flashlight settings are now loaded after camera is bound in bindPreviewUseCase()
 

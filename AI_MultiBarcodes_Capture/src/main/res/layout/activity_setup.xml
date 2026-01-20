@@ -485,6 +485,71 @@
 
     </LinearLayout>
 
+    <!-- Auto Capture Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llAutoCaptureTitle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:backgroundTint="?attr/colorTertiary"
+        android:background="?attr/colorTertiary"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvAutoCaptureTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_capture"
+            android:textColor="?attr/colorOnPrimary"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivToggleAutoCapture"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivToggleAutoCapture"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_expand_more_24"
+            android:contentDescription="@string/toggle_auto_capture"
+            android:padding="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            app:tint="?attr/colorOnPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/llAutoCaptureContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <CheckBox
+            android:id="@+id/cbEnableAutoCapture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="?attr/colorPrimary"
+            android:text="@string/enable_auto_capture"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btEditAutoCaptureConditions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_auto_capture_conditions"
+            android:backgroundTint="?attr/colorPrimary"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llSymbologyTitle"
         android:layout_width="match_parent"

@@ -26,8 +26,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.widget.Button;
+
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.adapters.LanguageAdapter;
+import com.zebra.ai_multibarcodes_capture.autocapture.AutoCaptureConditionsActivity;
+import com.zebra.ai_multibarcodes_capture.autocapture.AutoCapturePreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 import com.zebra.ai_multibarcodes_capture.helpers.CameraResolutionHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
@@ -110,6 +114,13 @@ public class SettingsActivity extends AppCompatActivity {
     private LinearLayout llDebounceIouThreshold;
     private SeekBar sbDebounceIouThreshold;
     private TextView tvDebounceIouThresholdValue;
+
+    // Auto Capture views
+    private ImageView ivToggleAutoCapture;
+    private LinearLayout llAutoCaptureContent;
+    private CheckBox cbEnableAutoCapture;
+    private Button btEditAutoCaptureConditions;
+    private boolean isAutoCaptureExpanded = false;
 
     private DWScanReceiver mScanReceiver;
 
@@ -270,6 +281,12 @@ public class SettingsActivity extends AppCompatActivity {
         sbDebounceIouThreshold = findViewById(R.id.sbDebounceIouThreshold);
         tvDebounceIouThresholdValue = findViewById(R.id.tvDebounceIouThresholdValue);
 
+        // Auto Capture views
+        ivToggleAutoCapture = findViewById(R.id.ivToggleAutoCapture);
+        llAutoCaptureContent = findViewById(R.id.llAutoCaptureContent);
+        cbEnableAutoCapture = findViewById(R.id.cbEnableAutoCapture);
+        btEditAutoCaptureConditions = findViewById(R.id.btEditAutoCaptureConditions);
+
         // Initially hide the LinearLayout and set collapsed state
         llSymbologies.setVisibility(View.GONE);
         isSymbologiesExpanded = false;
@@ -294,6 +311,11 @@ public class SettingsActivity extends AppCompatActivity {
         llFilteringContent.setVisibility(View.GONE);
         isFilteringExpanded = false;
         ivToggleFiltering.setImageResource(R.drawable.ic_expand_less_24);
+
+        // Initially hide the Auto Capture content and set collapsed state
+        llAutoCaptureContent.setVisibility(View.GONE);
+        isAutoCaptureExpanded = false;
+        ivToggleAutoCapture.setImageResource(R.drawable.ic_expand_less_24);
 
         // Set up click listener for symbologies toggle
         ivToggleSymbologies.setOnClickListener(new View.OnClickListener() {
@@ -335,6 +357,22 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        // Set up click listener for auto capture toggle
+        ivToggleAutoCapture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleAutoCapture();
+            }
+        });
+
+        // Set up click listener for edit auto capture conditions button
+        btEditAutoCaptureConditions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, AutoCaptureConditionsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Setup symbology checkboxes change listeners
         setupSymbologyListeners();
@@ -424,6 +462,7 @@ public class SettingsActivity extends AppCompatActivity {
         loadLoggingEnabled(sharedPreferences);
         loadForceContinuousAutofocus(sharedPreferences);
         loadDebounceSettings(sharedPreferences);
+        loadAutoCaptureSettings();
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
@@ -630,6 +669,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveLoggingEnabled(editor);
         saveForceContinuousAutofocus(editor);
         saveDebounceSettings(editor);
+        saveAutoCaptureSettings();
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
@@ -1510,5 +1550,26 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putInt(SHARED_PREFERENCES_DEBOUNCE_THRESHOLD, sbDebounceThreshold.getProgress());
         editor.putInt(SHARED_PREFERENCES_DEBOUNCE_ALGORITHM, spinnerDebounceAlgorithm.getSelectedItemPosition());
         editor.putInt(SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD, sbDebounceIouThreshold.getProgress());
+    }
+
+    private void toggleAutoCapture() {
+        isAutoCaptureExpanded = !isAutoCaptureExpanded;
+
+        if (isAutoCaptureExpanded) {
+            llAutoCaptureContent.setVisibility(View.VISIBLE);
+            ivToggleAutoCapture.setImageResource(R.drawable.ic_expand_more_24);
+        } else {
+            llAutoCaptureContent.setVisibility(View.GONE);
+            ivToggleAutoCapture.setImageResource(R.drawable.ic_expand_less_24);
+        }
+    }
+
+    private void loadAutoCaptureSettings() {
+        boolean autoCaptureEnabled = AutoCapturePreferencesHelper.isAutoCaptureEnabled(this);
+        cbEnableAutoCapture.setChecked(autoCaptureEnabled);
+    }
+
+    private void saveAutoCaptureSettings() {
+        AutoCapturePreferencesHelper.saveAutoCaptureEnabled(this, cbEnableAutoCapture.isChecked());
     }
 }
