@@ -41,6 +41,7 @@ public class BarcodeGraphic extends GraphicOverlay.Graphic {
     private final List<Rect> boundingBoxes = new ArrayList<>();
     private final List<Rect> contentRectBoxes = new ArrayList<>();
     private final List<String> decodedValues = new ArrayList<>();
+    private final List<Integer> boxColors = new ArrayList<>();
     private final int contentPadding = 25;
 
     /**
@@ -52,6 +53,19 @@ public class BarcodeGraphic extends GraphicOverlay.Graphic {
      * @param decodedStrings A list of strings representing the decoded content of each barcode.
      */
     public BarcodeGraphic(GraphicOverlay overlay, List<Rect> boxes, List<String> decodedStrings) {
+        this(overlay, boxes, decodedStrings, null);
+    }
+
+    /**
+     * Constructs a new BarcodeGraphic object with per-box colors, initializing the Paint objects
+     * used for drawing and preparing the bounding boxes and decoded text for rendering.
+     *
+     * @param overlay The GraphicOverlay on which this graphic will be drawn.
+     * @param boxes A list of Rect objects representing the bounding boxes of detected barcodes.
+     * @param decodedStrings A list of strings representing the decoded content of each barcode.
+     * @param colors A list of colors for each bounding box. If null, defaults to GREEN.
+     */
+    public BarcodeGraphic(GraphicOverlay overlay, List<Rect> boxes, List<String> decodedStrings, List<Integer> colors) {
         super(overlay);
         overlay.clear();
 
@@ -85,6 +99,12 @@ public class BarcodeGraphic extends GraphicOverlay.Graphic {
             decodedValues.addAll(decodedStrings);
         }
 
+        // Store colors for per-box coloring
+        boxColors.clear();
+        if (colors != null) {
+            boxColors.addAll(colors);
+        }
+
         // Calculate rectangles for the content text background
         contentRectBoxes.clear();
         for (int i = 0; i < boundingBoxes.size(); i++) {
@@ -108,9 +128,14 @@ public class BarcodeGraphic extends GraphicOverlay.Graphic {
      */
     @Override
     public void draw(Canvas canvas) {
-        // Draw bounding boxes
-        for (Rect rect : boundingBoxes) {
-            canvas.drawRect(rect, boxPaint);
+        // Draw bounding boxes with individual colors
+        for (int i = 0; i < boundingBoxes.size(); i++) {
+            if (i < boxColors.size()) {
+                boxPaint.setColor(boxColors.get(i));
+            } else {
+                boxPaint.setColor(Color.GREEN); // Default fallback
+            }
+            canvas.drawRect(boundingBoxes.get(i), boxPaint);
         }
 
         // Draw the text content of the barcode

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.camera2.CaptureRequest;
@@ -1096,6 +1097,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     public void onDetectionResult(List<BarcodeEntity> result) {
         List<Rect> rects = new ArrayList<>();
         List<String> decodedStrings = new ArrayList<>();
+        List<Integer> colors = new ArrayList<>();  // Track color for each barcode
         List<BarcodeEntity> filtered_entities = new ArrayList<>();
 
         // Track which cache entries were used this frame (for debounce)
@@ -1144,22 +1146,27 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                     // Get the barcode value and symbology
                     String barcodeValue = bEntity.getValue();
                     int symbology = bEntity.getSymbology();
+                    boolean usedCache = false;  // Track if cache was used for color coding
+                    BarcodeEntity entityToCapture = bEntity;  // Entity to use for capture
 
                     // Apply debounce logic if enabled
                     if (isDebounceEnabled) {
                         if (barcodeValue != null && !barcodeValue.isEmpty()) {
                             // Barcode has a value - update the cache
                             updateOrAddToCache(bEntity, overlayRect);
+                            // usedCache stays false - this is a fresh decode
                         } else {
                             // Barcode has no value - try to find a cached match
                             CachedBarcode cachedMatch = findCachedMatch(overlayRect, usedCacheEntries);
                             if (cachedMatch != null) {
-                                // Use cached value
+                                // Use cached value and entity
                                 barcodeValue = cachedMatch.getValue();
                                 symbology = cachedMatch.getSymbology();
+                                entityToCapture = cachedMatch.getEntity();  // Use cached entity for capture
                                 usedCacheEntries.add(cachedMatch);
                                 cachedMatch.updatePosition(overlayRect);
                                 cachedMatch.resetFrameAge();
+                                usedCache = true;  // Mark as cache hit
                                 LogUtils.v(TAG, "Debounce: Using cached value '" + barcodeValue + "' for empty barcode");
                             }
                         }
@@ -1171,17 +1178,22 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                     if (barcodeValue != null && !barcodeValue.isEmpty() && isValueMatchingFilteringRegex(barcodeValue)) {
                         // Now if necessary, check if the barcode meets the
                         rects.add(overlayRect);
-                        String hashCode = String.valueOf(bEntity.hashCode());
+                        String hashCode = String.valueOf(entityToCapture.hashCode());
                         // Ensure the string has at least 4 characters
                         if (hashCode.length() >= 4) {
                             // Get the last four digits
                             hashCode = hashCode.substring(hashCode.length() - 4);
                         }
                         decodedStrings.add(barcodeValue);
+                        colors.add(usedCache ? Color.BLUE : Color.GREEN);  // BLUE for cached, GREEN for decoded
                         LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + barcodeValue);
-                        filtered_entities.add(bEntity);
+                        filtered_entities.add(entityToCapture);
                     } else if (barcodeValue == null || barcodeValue.isEmpty()) {
-                        LogUtils.v(TAG, "Barcode has no value (and no cache match), ignoring");
+                        // Show RED box for empty barcodes (no value, no cache match)
+                        rects.add(overlayRect);
+                        decodedStrings.add("");  // Empty string for display
+                        colors.add(Color.RED);
+                        LogUtils.v(TAG, "Barcode has no value (and no cache match), showing RED box");
                     } else {
                         LogUtils.v(TAG, "Barcode does not match regex, ignoring: " + barcodeValue);
                     }
@@ -1198,6 +1210,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                 for (CachedBarcode cached : debounceCache) {
                     rects.add(cached.getOverlayRect());
                     decodedStrings.add(cached.getValue());
+                    colors.add(Color.BLUE);  // All cached entries are BLUE
                     filtered_entities.add(cached.getEntity());
                     LogUtils.v(TAG, "Debounce: Added cached barcode '" + cached.getValue() + "' at (" + cached.getCenterX() + ", " + cached.getCenterY() + ")");
                 }
@@ -1213,9 +1226,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         runOnUiThread(() -> {
             binding.graphicOverlay.clear();
-            if (decodedStrings.size() > 0) {
+            if (rects.size() > 0) {
                 binding.graphicOverlay.clear();
-                binding.graphicOverlay.add(new BarcodeGraphic(binding.graphicOverlay, rects, decodedStrings));
+                binding.graphicOverlay.add(new BarcodeGraphic(binding.graphicOverlay, rects, decodedStrings, colors));
             }
         });
     }
