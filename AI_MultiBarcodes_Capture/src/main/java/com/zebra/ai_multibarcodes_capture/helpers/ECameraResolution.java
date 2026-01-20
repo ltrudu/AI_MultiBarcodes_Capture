@@ -7,7 +7,10 @@ public enum ECameraResolution {
     MP_1(R.string.camera_resolution_1mp, R.string.camera_resolution_1mp_description,1280,720),
     MP_2(R.string.camera_resolution_2mp, R.string.camera_resolution_2mp_description,1920,1080),
     MP_4(R.string.camera_resolution_4mp, R.string.camera_resolution_4mp_description,2688,1512),
-    MP_8(R.string.camera_resolution_8mp, R.string.camera_resolution_8mp_description,3840,2160);
+    MP_8(R.string.camera_resolution_8mp, R.string.camera_resolution_8mp_description,3840,2160),
+    MP_12(R.string.camera_resolution_12mp, R.string.camera_resolution_12mp_description,4000,3000),
+    MP_12_5(R.string.camera_resolution_12_5mp, R.string.camera_resolution_12_5mp_description,4080,3060),
+    MP_12_6(R.string.camera_resolution_12_6mp, R.string.camera_resolution_12_6mp_description,4096,3072);
 
     private final int shortDescriptionResId;
     private final int longDescriptionResId;

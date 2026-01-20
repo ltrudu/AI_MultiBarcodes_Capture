@@ -208,6 +208,7 @@
     <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
 
     <!-- Camera Resolution Choices -->
+    <string name="not_supported">(Not Supported)</string>
     <string name="camera_resolution_1mp">1MP (1280 x 720)</string>
     <string name="camera_resolution_1mp_description">Large or close-up barcodes</string>
     <string name="camera_resolution_2mp">2MP (1920 x 1080)</string>
@@ -216,6 +217,12 @@
     <string name="camera_resolution_4mp_description">Dense, faint, or small barcodes</string>
     <string name="camera_resolution_8mp">8MP (3840 x 2160)</string>
     <string name="camera_resolution_8mp_description">Tiny, distant, or low-contrast barcodes</string>
+    <string name="camera_resolution_12mp">12MP (4000 x 3000)</string>
+    <string name="camera_resolution_12mp_description">Maximum detail for challenging conditions</string>
+    <string name="camera_resolution_12_5mp">12.5MP (4080 x 3060)</string>
+    <string name="camera_resolution_12_5mp_description">Full sensor resolution for edge cases</string>
+    <string name="camera_resolution_12_6mp">12.6MP (4096 x 3072)</string>
+    <string name="camera_resolution_12_6mp_description">Maximum sensor resolution</string>
 
     <!-- Inference Type Choices -->
     <string name="inference_type_dsp">DSP (Digital Signal Processor)</string>
@@ -235,6 +242,7 @@
     <string name="optimizations_title">Optimizations</string>
     <string name="optimizations_description">Configure performance and debugging options for the application.</string>
     <string name="logging_enabled_checkbox">Logging enabled</string>
+    <string name="force_continuous_autofocus_checkbox">Force continuous autofocus</string>
 
     <!-- Dialog Messages (French -> English) -->
     <string name="rename">Rename</string>

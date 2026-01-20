@@ -28,11 +28,16 @@ import android.widget.Toast;
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.adapters.LanguageAdapter;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
+import com.zebra.ai_multibarcodes_capture.helpers.CameraResolutionHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
+import com.zebra.ai_multibarcodes_capture.helpers.ECameraResolution;
 import com.zebra.ai_multibarcodes_capture.helpers.EProcessingMode;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
+
+import android.util.Size;
+import java.util.List;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 import com.zebra.ai_multibarcodes_capture.models.LanguageItem;
 import com.zebra.datawedgeprofileenums.INT_E_DELIVERY;
@@ -68,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox cbEnableFiltering;
     private RadioGroup rgFileTypes, rgModelInputSize, rgCameraResolution, rgInferenceType;
     private RadioButton rbSmallInputSize, rbMediumInputSize, rbLargeInputSize;
-    private RadioButton rb1MPResolution, rb2MPResolution, rb4MPResolution, rb8MPResolution;
+    private RadioButton rb1MPResolution, rb2MPResolution, rb4MPResolution, rb8MPResolution, rb12MPResolution, rb12_5MPResolution, rb12_6MPResolution;
     private RadioButton rbDSPInference, rbGPUInference, rbCPUInference;
     private TextView tvSymbologiesBadge;
     private boolean isSymbologiesExpanded = false;
@@ -91,6 +96,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox cbUS4STATE, cbUS4STATE_FICS;
     private CheckBox cbDisplayAnalysisPerSecond;
     private CheckBox cbLoggingEnabled;
+    private CheckBox cbForceContinuousAutofocus;
 
     private DWScanReceiver mScanReceiver;
 
@@ -161,6 +167,9 @@ public class SettingsActivity extends AppCompatActivity {
         rb2MPResolution = findViewById(R.id.rb2MPResolution);
         rb4MPResolution = findViewById(R.id.rb4MPResolution);
         rb8MPResolution = findViewById(R.id.rb8MPResolution);
+        rb12MPResolution = findViewById(R.id.rb12MPResolution);
+        rb12_5MPResolution = findViewById(R.id.rb12_5MPResolution);
+        rb12_6MPResolution = findViewById(R.id.rb12_6MPResolution);
         rbDSPInference = findViewById(R.id.rbDSPInference);
         rbGPUInference = findViewById(R.id.rbGPUInference);
         rbCPUInference = findViewById(R.id.rbCPUInference);
@@ -234,6 +243,7 @@ public class SettingsActivity extends AppCompatActivity {
         cbUS4STATE_FICS = findViewById(R.id.cbUS4STATE_FICS);
         cbDisplayAnalysisPerSecond = findViewById(R.id.cbDisplayAnalysisPerSecond);
         cbLoggingEnabled = findViewById(R.id.cbLoggingEnabled);
+        cbForceContinuousAutofocus = findViewById(R.id.cbForceContinuousAutofocus);
 
         // Initially hide the LinearLayout and set collapsed state
         llSymbologies.setVisibility(View.GONE);
@@ -384,6 +394,7 @@ public class SettingsActivity extends AppCompatActivity {
         loadCaptureTriggerMode(sharedPreferences);
         loadDisplayAnalysisPerSecond(sharedPreferences);
         loadLoggingEnabled(sharedPreferences);
+        loadForceContinuousAutofocus(sharedPreferences);
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
@@ -454,17 +465,73 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void loadCameraResolution(SharedPreferences sharedPreferences) {
         String cameraResolution = sharedPreferences.getString(SHARED_PREFERENCES_CAMERA_RESOLUTION, SHARED_PREFERENCES_CAMERA_RESOLUTION_DEFAULT);
-        
-        // Set the radio button based on saved preference
-        if ("MP_1".equals(cameraResolution)) {
+
+        // Get supported resolutions and hide unsupported ones
+        List<Size> supportedSizes = CameraResolutionHelper.getSupportedResolutions(this);
+        CameraResolutionHelper.logAllSupportedResolutions(this);
+
+        // Check which resolutions are supported
+        boolean is1MPSupported = CameraResolutionHelper.isResolutionSupported(ECameraResolution.MP_1, supportedSizes);
+        boolean is2MPSupported = CameraResolutionHelper.isResolutionSupported(ECameraResolution.MP_2, supportedSizes);
+        boolean is4MPSupported = CameraResolutionHelper.isResolutionSupported(ECameraResolution.MP_4, supportedSizes);
+        boolean is8MPSupported = CameraResolutionHelper.isResolutionSupported(ECameraResolution.MP_8, supportedSizes);
+        boolean is12MPSupported = CameraResolutionHelper.isResolutionSupported(ECameraResolution.MP_12, supportedSizes);
+        boolean is12_5MPSupported = CameraResolutionHelper.isResolutionSupported(ECameraResolution.MP_12_5, supportedSizes);
+        boolean is12_6MPSupported = CameraResolutionHelper.isResolutionSupported(ECameraResolution.MP_12_6, supportedSizes);
+
+        // Hide unsupported resolutions
+        rb1MPResolution.setVisibility(is1MPSupported ? View.VISIBLE : View.GONE);
+        rb2MPResolution.setVisibility(is2MPSupported ? View.VISIBLE : View.GONE);
+        rb4MPResolution.setVisibility(is4MPSupported ? View.VISIBLE : View.GONE);
+        rb8MPResolution.setVisibility(is8MPSupported ? View.VISIBLE : View.GONE);
+        rb12MPResolution.setVisibility(is12MPSupported ? View.VISIBLE : View.GONE);
+        // Hide exotic resolutions (12.5MP and 12.6MP) - keep code but don't show in UI
+        rb12_5MPResolution.setVisibility(View.GONE);
+        rb12_6MPResolution.setVisibility(View.GONE);
+
+        // Set the radio button based on saved preference, falling back if not supported
+        boolean selectionMade = false;
+
+        if ("MP_1".equals(cameraResolution) && is1MPSupported) {
             rb1MPResolution.setChecked(true);
-        } else if ("MP_4".equals(cameraResolution)) {
-            rb4MPResolution.setChecked(true);
-        } else if ("MP_8".equals(cameraResolution)) {
-            rb8MPResolution.setChecked(true);
-        } else {
-            // Default to MP_2 (2MP)
+            selectionMade = true;
+        } else if ("MP_2".equals(cameraResolution) && is2MPSupported) {
             rb2MPResolution.setChecked(true);
+            selectionMade = true;
+        } else if ("MP_4".equals(cameraResolution) && is4MPSupported) {
+            rb4MPResolution.setChecked(true);
+            selectionMade = true;
+        } else if ("MP_8".equals(cameraResolution) && is8MPSupported) {
+            rb8MPResolution.setChecked(true);
+            selectionMade = true;
+        } else if ("MP_12".equals(cameraResolution) && is12MPSupported) {
+            rb12MPResolution.setChecked(true);
+            selectionMade = true;
+        } else if ("MP_12_5".equals(cameraResolution) && is12_5MPSupported) {
+            rb12_5MPResolution.setChecked(true);
+            selectionMade = true;
+        } else if ("MP_12_6".equals(cameraResolution) && is12_6MPSupported) {
+            rb12_6MPResolution.setChecked(true);
+            selectionMade = true;
+        }
+
+        // If saved preference is not supported, select first available supported resolution
+        if (!selectionMade) {
+            if (is2MPSupported) {
+                rb2MPResolution.setChecked(true);
+            } else if (is1MPSupported) {
+                rb1MPResolution.setChecked(true);
+            } else if (is4MPSupported) {
+                rb4MPResolution.setChecked(true);
+            } else if (is8MPSupported) {
+                rb8MPResolution.setChecked(true);
+            } else if (is12MPSupported) {
+                rb12MPResolution.setChecked(true);
+            } else if (is12_5MPSupported) {
+                rb12_5MPResolution.setChecked(true);
+            } else if (is12_6MPSupported) {
+                rb12_6MPResolution.setChecked(true);
+            }
         }
     }
 
@@ -532,6 +599,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveCaptureTriggerMode(editor);
         saveDisplayAnalysisPerSecond(editor);
         saveLoggingEnabled(editor);
+        saveForceContinuousAutofocus(editor);
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
@@ -857,15 +925,21 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void saveCameraResolution(SharedPreferences.Editor editor) {
         String cameraResolution = "MP_2"; // Default
-        
+
         if (rb1MPResolution.isChecked()) {
             cameraResolution = "MP_1";
         } else if (rb4MPResolution.isChecked()) {
             cameraResolution = "MP_4";
         } else if (rb8MPResolution.isChecked()) {
             cameraResolution = "MP_8";
+        } else if (rb12MPResolution.isChecked()) {
+            cameraResolution = "MP_12";
+        } else if (rb12_5MPResolution.isChecked()) {
+            cameraResolution = "MP_12_5";
+        } else if (rb12_6MPResolution.isChecked()) {
+            cameraResolution = "MP_12_6";
         }
-        
+
         editor.putString(SHARED_PREFERENCES_CAMERA_RESOLUTION, cameraResolution);
     }
 
@@ -1261,5 +1335,14 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putBoolean(SHARED_PREFERENCES_LOGGING_ENABLED, loggingEnabled);
         // Apply the setting immediately to LogUtils
         LogUtils.setLoggingEnabled(loggingEnabled);
+    }
+
+    private void loadForceContinuousAutofocus(SharedPreferences sharedPreferences) {
+        boolean forceContinuousAutofocus = sharedPreferences.getBoolean(SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS, SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS_DEFAULT);
+        cbForceContinuousAutofocus.setChecked(forceContinuousAutofocus);
+    }
+
+    private void saveForceContinuousAutofocus(SharedPreferences.Editor editor) {
+        editor.putBoolean(SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS, cbForceContinuousAutofocus.isChecked());
     }
 }

@@ -14,8 +14,8 @@ android {
         applicationId = "com.zebra.ai_multibarcodes_capture.dev"
         minSdk = 34
         targetSdk = 35
-        versionCode = 36
-        versionName = "1.36"
+        versionCode = 37
+        versionName = "1.37"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -100,11 +100,16 @@ dependencies {
     implementation(libs.json)
     implementation(libs.gson)
 
+    // Get files from libs for latest release
+    implementation(fileTree("libs") {
+        include("*.jar", "*.aar")
+    })
+
     //Below dependency is to get AI Suite SDK
-    implementation(libs.zebra.ai.vision.sdk) { artifact { type = "aar" } }
+    //implementation(libs.zebra.ai.vision.sdk) { artifact { type = "aar" } }
 
     //Below dependency is to get Barcode Localizer model for AI Suite SDK
-    implementation(libs.barcode.localizer) { artifact { type = "aar" } }
+    //implementation(libs.barcode.localizer) { artifact { type = "aar" } }
 
     // Dependency for CriticalPermissionHelper
     implementation(libs.criticalpermissionhelper)
