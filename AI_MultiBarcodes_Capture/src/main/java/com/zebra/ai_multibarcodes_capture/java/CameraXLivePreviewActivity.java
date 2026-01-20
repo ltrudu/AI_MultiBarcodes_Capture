@@ -47,6 +47,7 @@ import com.zebra.ai_multibarcodes_capture.barcodedecoder.BarcodeAnalyzer;
 import com.zebra.ai_multibarcodes_capture.barcodedecoder.BarcodeGraphic;
 import com.zebra.ai_multibarcodes_capture.barcodedecoder.BarcodeHandler;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
+import com.zebra.ai_multibarcodes_capture.helpers.CachedBarcode;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.ECameraResolution;
 import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
@@ -160,6 +161,14 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     // Force continuous autofocus setting
     private boolean forceContinuousAutofocus = false;
+
+    // Debounce settings
+    private boolean isDebounceEnabled = false;
+    private int debounceMaxFrames = 10;
+    private int debounceThreshold = 50;
+    private int debounceAlgorithm = 0; // 0 = Center Distance, 1 = IOU
+    private float debounceIouThreshold = 0.3f;
+    private List<CachedBarcode> debounceCache = new ArrayList<>();
 
     private BarcodeHandler barcodeHandler;
 
@@ -708,6 +717,116 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         LogUtils.d(TAG, "=== loadForceContinuousAutofocusSettings() END ===");
     }
 
+    private void loadDebounceSettings() {
+        LogUtils.d(TAG, "=== loadDebounceSettings() START ===");
+
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+
+        // Load debounce settings
+        isDebounceEnabled = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_DEBOUNCE_ENABLED, Constants.SHARED_PREFERENCES_DEBOUNCE_ENABLED_DEFAULT);
+        debounceMaxFrames = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES, Constants.SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES_DEFAULT);
+        debounceThreshold = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_THRESHOLD, Constants.SHARED_PREFERENCES_DEBOUNCE_THRESHOLD_DEFAULT);
+        debounceAlgorithm = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_ALGORITHM, Constants.SHARED_PREFERENCES_DEBOUNCE_ALGORITHM_DEFAULT);
+        int iouThresholdInt = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD, Constants.SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD_DEFAULT);
+        debounceIouThreshold = iouThresholdInt / 100.0f;
+
+        // Clear the cache when settings are reloaded
+        debounceCache.clear();
+
+        LogUtils.d(TAG, "Debounce enabled: " + isDebounceEnabled + ", maxFrames: " + debounceMaxFrames + ", threshold: " + debounceThreshold + ", algorithm: " + debounceAlgorithm + ", iouThreshold: " + debounceIouThreshold);
+        LogUtils.d(TAG, "=== loadDebounceSettings() END ===");
+    }
+
+    /**
+     * Updates an existing cache entry or adds a new one for the given barcode.
+     *
+     * @param entity The barcode entity
+     * @param overlayRect The bounding box mapped to overlay coordinates
+     */
+    private void updateOrAddToCache(BarcodeEntity entity, Rect overlayRect) {
+        // Look for an existing cache entry using the selected algorithm
+        for (CachedBarcode cached : debounceCache) {
+            boolean isMatch = false;
+            if (debounceAlgorithm == 0) {
+                // Center Distance algorithm
+                isMatch = cached.distanceTo(overlayRect) <= debounceThreshold;
+            } else {
+                // IOU algorithm
+                isMatch = cached.calculateIOU(overlayRect) >= debounceIouThreshold;
+            }
+
+            if (isMatch) {
+                // Update existing entry
+                cached.updatePosition(overlayRect);
+                cached.resetFrameAge();
+                return;
+            }
+        }
+        // No existing entry found, add new one
+        debounceCache.add(new CachedBarcode(entity, overlayRect));
+    }
+
+    /**
+     * Finds a cached barcode that matches the given bounding box using the selected algorithm.
+     * Excludes barcodes that have already been used this frame.
+     *
+     * @param boundingBox The bounding box to match
+     * @param usedCacheEntries List of cache entries already used this frame
+     * @return The matching CachedBarcode or null if none found
+     */
+    private CachedBarcode findCachedMatch(Rect boundingBox, List<CachedBarcode> usedCacheEntries) {
+        CachedBarcode bestMatch = null;
+        double bestScore = 0;
+
+        for (CachedBarcode cached : debounceCache) {
+            // Skip if already used this frame
+            if (usedCacheEntries.contains(cached)) {
+                continue;
+            }
+
+            if (debounceAlgorithm == 0) {
+                // Center Distance algorithm
+                double distance = cached.distanceTo(boundingBox);
+                if (distance <= debounceThreshold) {
+                    double score = 1.0 / (1.0 + distance); // Higher score for closer
+                    if (score > bestScore) {
+                        bestMatch = cached;
+                        bestScore = score;
+                    }
+                }
+            } else {
+                // IOU algorithm
+                double iou = cached.calculateIOU(boundingBox);
+                if (iou >= debounceIouThreshold && iou > bestScore) {
+                    bestMatch = cached;
+                    bestScore = iou;
+                }
+            }
+        }
+
+        return bestMatch;
+    }
+
+    /**
+     * Increments the age of all cache entries and removes expired ones.
+     */
+    private void incrementAndPruneCacheAge() {
+        List<CachedBarcode> toRemove = new ArrayList<>();
+
+        for (CachedBarcode cached : debounceCache) {
+            cached.incrementFrameAge();
+            if (cached.getFrameAge() > debounceMaxFrames) {
+                toRemove.add(cached);
+            }
+        }
+
+        debounceCache.removeAll(toRemove);
+        if (toRemove.size() > 0) {
+            LogUtils.v(TAG, "Removed " + toRemove.size() + " expired cache entries");
+        }
+    }
+
     private void updateAnalyzerTimingCallback() {
         if (barcodeHandler != null && barcodeHandler.getBarcodeAnalyzer() != null) {
             BarcodeAnalyzer analyzer = barcodeHandler.getBarcodeAnalyzer();
@@ -979,6 +1098,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         List<String> decodedStrings = new ArrayList<>();
         List<BarcodeEntity> filtered_entities = new ArrayList<>();
 
+        // Track which cache entries were used this frame (for debounce)
+        List<CachedBarcode> usedCacheEntries = new ArrayList<>();
+
         // Get crop region and rotation info if cropping is enabled
         Rect cropRegion = null;
         int imageRotationDegrees = 0;
@@ -1018,32 +1140,75 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                     }
 
                     Rect overlayRect = mapBoundingBoxToOverlay(adjustedRect);
-                    // Only process barcode if it's inside the capture zone (when capture zone is enabled)
-                    // Note: When cropping is enabled, barcodes should already be within the zone,
-                    // but we keep this check for safety and for cases where cropping fails
-                        // Check if the entity is matching the filtering regex
-                        // If the filtering is not enabled, it returns always true
-                        if(isValueMatchingFilteringRegex(bEntity.getValue())) {
-                            // Now if necessary, check if the barcode meets the
-                            rects.add(overlayRect);
-                            String hashCode = String.valueOf(bEntity.hashCode());
-                            // Ensure the string has at least 4 characters
-                            if (hashCode.length() >= 4) {
-                                // Get the last four digits
-                                hashCode = hashCode.substring(hashCode.length() - 4);
 
+                    // Get the barcode value and symbology
+                    String barcodeValue = bEntity.getValue();
+                    int symbology = bEntity.getSymbology();
+
+                    // Apply debounce logic if enabled
+                    if (isDebounceEnabled) {
+                        if (barcodeValue != null && !barcodeValue.isEmpty()) {
+                            // Barcode has a value - update the cache
+                            updateOrAddToCache(bEntity, overlayRect);
+                        } else {
+                            // Barcode has no value - try to find a cached match
+                            CachedBarcode cachedMatch = findCachedMatch(overlayRect, usedCacheEntries);
+                            if (cachedMatch != null) {
+                                // Use cached value
+                                barcodeValue = cachedMatch.getValue();
+                                symbology = cachedMatch.getSymbology();
+                                usedCacheEntries.add(cachedMatch);
+                                cachedMatch.updatePosition(overlayRect);
+                                cachedMatch.resetFrameAge();
+                                LogUtils.v(TAG, "Debounce: Using cached value '" + barcodeValue + "' for empty barcode");
                             }
-                            decodedStrings.add(bEntity.getValue());
-                            LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + bEntity.getValue());
-                            filtered_entities.add(bEntity);
                         }
-                        else
-                        {
-                            LogUtils.v(TAG, "Barcode does not match regex, ignoring: " + bEntity.getValue());
+                    }
+
+
+                    // Check if the entity is matching the filtering regex
+                    // If the filtering is not enabled, it returns always true
+                    if (barcodeValue != null && !barcodeValue.isEmpty() && isValueMatchingFilteringRegex(barcodeValue)) {
+                        // Now if necessary, check if the barcode meets the
+                        rects.add(overlayRect);
+                        String hashCode = String.valueOf(bEntity.hashCode());
+                        // Ensure the string has at least 4 characters
+                        if (hashCode.length() >= 4) {
+                            // Get the last four digits
+                            hashCode = hashCode.substring(hashCode.length() - 4);
                         }
+                        decodedStrings.add(barcodeValue);
+                        LogUtils.d(TAG, "Tracker UUID: " + hashCode + " Tracker Detected entity - Value: " + barcodeValue);
+                        filtered_entities.add(bEntity);
+                    } else if (barcodeValue == null || barcodeValue.isEmpty()) {
+                        LogUtils.v(TAG, "Barcode has no value (and no cache match), ignoring");
+                    } else {
+                        LogUtils.v(TAG, "Barcode does not match regex, ignoring: " + barcodeValue);
+                    }
                 }
             }
         }
+        else
+        {
+            LogUtils.v(TAG, "Results empty.");
+
+            // If debounce is enabled, use cached barcodes when detection returns no results
+            if (isDebounceEnabled && !debounceCache.isEmpty()) {
+                LogUtils.v(TAG, "Debounce: Using " + debounceCache.size() + " cached barcodes for empty detection result");
+                for (CachedBarcode cached : debounceCache) {
+                    rects.add(cached.getOverlayRect());
+                    decodedStrings.add(cached.getValue());
+                    filtered_entities.add(cached.getEntity());
+                    LogUtils.v(TAG, "Debounce: Added cached barcode '" + cached.getValue() + "' at (" + cached.getCenterX() + ", " + cached.getCenterY() + ")");
+                }
+            }
+        }
+
+        // Age and prune cache after processing all barcodes
+        if (isDebounceEnabled) {
+            incrementAndPruneCacheAge();
+        }
+
         entitiesHolder = filtered_entities;
 
         runOnUiThread(() -> {
@@ -1158,6 +1323,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
         // Load force continuous autofocus settings
         loadForceContinuousAutofocusSettings();
+
+        // Load debounce settings
+        loadDebounceSettings();
 
         // Flashlight settings are now loaded after camera is bound in bindPreviewUseCase()
 

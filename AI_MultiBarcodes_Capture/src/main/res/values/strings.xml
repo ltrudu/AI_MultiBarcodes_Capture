@@ -539,4 +539,34 @@
     <string name="regular_expression">Regular Expression</string>
     <string name="regular_expression_hint">e.g., ^[0-9]+$ for numbers only</string>
 
+    <!-- Debounce Settings -->
+    <string name="debounce_title">Debounce Decoded Entities</string>
+    <string name="debounce_description">The application will store decoded barcodes for a defined number of frames to avoid flickering when detection conditions are not very good.</string>
+    <string name="debounce_enable">Enable debounce</string>
+    <string name="debounce_max_frames_title">Max Number of Frames</string>
+    <string name="debounce_max_frames_description">The number of frames to keep a result</string>
+    <string name="debounce_threshold_title">Debounce Threshold</string>
+    <string name="debounce_threshold_description">Distance in pixels to match old decoding bounding box with empty bounding box</string>
+    <string name="debounce_max_frames_value">%d frames</string>
+    <string name="debounce_threshold_value">%d pixels</string>
+
+    <!-- Debounce Algorithm -->
+    <string name="debounce_algorithm_title">Debounce Algorithm</string>
+    <string name="debounce_algorithm_center">Center Distance</string>
+    <string name="debounce_algorithm_iou">Intersection/Union</string>
+    <string name="debounce_iou_threshold_title">IOU Threshold</string>
+    <string name="debounce_iou_threshold_description">Minimum overlap ratio to match bounding boxes (0.1 to 1.0)</string>
+    <string name="debounce_iou_threshold_value">%.1f</string>
+
+    <!-- Debounce Algorithm Arrays -->
+    <string-array name="debounce_algorithm_names">
+        <item>Center Distance</item>
+        <item>Intersection/Union</item>
+    </string-array>
+
+    <string-array name="debounce_algorithm_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
 </resources>

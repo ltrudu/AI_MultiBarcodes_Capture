@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,6 +98,18 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox cbDisplayAnalysisPerSecond;
     private CheckBox cbLoggingEnabled;
     private CheckBox cbForceContinuousAutofocus;
+    private CheckBox cbDebounceEnabled;
+    private SeekBar sbDebounceMaxFrames;
+    private SeekBar sbDebounceThreshold;
+    private TextView tvDebounceMaxFramesValue;
+    private TextView tvDebounceThresholdValue;
+    private LinearLayout llDebounceMaxFrames;
+    private LinearLayout llDebounceThreshold;
+    private LinearLayout llDebounceAlgorithm;
+    private Spinner spinnerDebounceAlgorithm;
+    private LinearLayout llDebounceIouThreshold;
+    private SeekBar sbDebounceIouThreshold;
+    private TextView tvDebounceIouThresholdValue;
 
     private DWScanReceiver mScanReceiver;
 
@@ -244,6 +257,18 @@ public class SettingsActivity extends AppCompatActivity {
         cbDisplayAnalysisPerSecond = findViewById(R.id.cbDisplayAnalysisPerSecond);
         cbLoggingEnabled = findViewById(R.id.cbLoggingEnabled);
         cbForceContinuousAutofocus = findViewById(R.id.cbForceContinuousAutofocus);
+        cbDebounceEnabled = findViewById(R.id.cbDebounceEnabled);
+        sbDebounceMaxFrames = findViewById(R.id.sbDebounceMaxFrames);
+        sbDebounceThreshold = findViewById(R.id.sbDebounceThreshold);
+        tvDebounceMaxFramesValue = findViewById(R.id.tvDebounceMaxFramesValue);
+        tvDebounceThresholdValue = findViewById(R.id.tvDebounceThresholdValue);
+        llDebounceMaxFrames = findViewById(R.id.llDebounceMaxFrames);
+        llDebounceThreshold = findViewById(R.id.llDebounceThreshold);
+        llDebounceAlgorithm = findViewById(R.id.llDebounceAlgorithm);
+        spinnerDebounceAlgorithm = findViewById(R.id.spinnerDebounceAlgorithm);
+        llDebounceIouThreshold = findViewById(R.id.llDebounceIouThreshold);
+        sbDebounceIouThreshold = findViewById(R.id.sbDebounceIouThreshold);
+        tvDebounceIouThresholdValue = findViewById(R.id.tvDebounceIouThresholdValue);
 
         // Initially hide the LinearLayout and set collapsed state
         llSymbologies.setVisibility(View.GONE);
@@ -316,6 +341,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Setup filtering checkbox listener
         setupFilteringListeners();
+
+        // Setup debounce listeners
+        setupDebounceListeners();
 
         findViewById(R.id.btCancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -395,6 +423,7 @@ public class SettingsActivity extends AppCompatActivity {
         loadDisplayAnalysisPerSecond(sharedPreferences);
         loadLoggingEnabled(sharedPreferences);
         loadForceContinuousAutofocus(sharedPreferences);
+        loadDebounceSettings(sharedPreferences);
 
         etPrefix.setText(prefix);
         selectExtensionRadioButton(extension);
@@ -600,6 +629,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveDisplayAnalysisPerSecond(editor);
         saveLoggingEnabled(editor);
         saveForceContinuousAutofocus(editor);
+        saveDebounceSettings(editor);
 
         editor.putString(SHARED_PREFERENCES_EXTENSION, getSelectedExtension());
 
@@ -1344,5 +1374,141 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void saveForceContinuousAutofocus(SharedPreferences.Editor editor) {
         editor.putBoolean(SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS, cbForceContinuousAutofocus.isChecked());
+    }
+
+    private void setupDebounceListeners() {
+        // Setup algorithm spinner
+        setupDebounceAlgorithmSpinner();
+
+        // Checkbox listener to enable/disable sliders
+        cbDebounceEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateDebounceUIState(isChecked);
+            }
+        });
+
+        // Max Frames SeekBar listener
+        sbDebounceMaxFrames.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tvDebounceMaxFramesValue.setText(getString(R.string.debounce_max_frames_value, progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        // Threshold SeekBar listener (Center Distance)
+        sbDebounceThreshold.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tvDebounceThresholdValue.setText(getString(R.string.debounce_threshold_value, progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        // IOU Threshold SeekBar listener
+        sbDebounceIouThreshold.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                float iouValue = progress / 100.0f;
+                tvDebounceIouThresholdValue.setText(String.format(getString(R.string.debounce_iou_threshold_value), iouValue));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+    }
+
+    private void setupDebounceAlgorithmSpinner() {
+        // Create array of algorithm display names
+        String[] algorithmNames = getResources().getStringArray(R.array.debounce_algorithm_names);
+
+        // Create adapter and set to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, algorithmNames);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerDebounceAlgorithm.setAdapter(adapter);
+
+        // Set up selection listener
+        spinnerDebounceAlgorithm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateDebounceAlgorithmVisibility(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+    }
+
+    private void updateDebounceAlgorithmVisibility(int algorithmIndex) {
+        // 0 = Center Distance, 1 = IOU
+        if (algorithmIndex == 0) {
+            llDebounceThreshold.setVisibility(View.VISIBLE);
+            llDebounceIouThreshold.setVisibility(View.GONE);
+        } else {
+            llDebounceThreshold.setVisibility(View.GONE);
+            llDebounceIouThreshold.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void updateDebounceUIState(boolean enabled) {
+        float alpha = enabled ? 1.0f : 0.5f;
+        llDebounceAlgorithm.setAlpha(alpha);
+        llDebounceMaxFrames.setAlpha(alpha);
+        llDebounceThreshold.setAlpha(alpha);
+        llDebounceIouThreshold.setAlpha(alpha);
+        spinnerDebounceAlgorithm.setEnabled(enabled);
+        sbDebounceMaxFrames.setEnabled(enabled);
+        sbDebounceThreshold.setEnabled(enabled);
+        sbDebounceIouThreshold.setEnabled(enabled);
+    }
+
+    private void loadDebounceSettings(SharedPreferences sharedPreferences) {
+        boolean debounceEnabled = sharedPreferences.getBoolean(SHARED_PREFERENCES_DEBOUNCE_ENABLED, SHARED_PREFERENCES_DEBOUNCE_ENABLED_DEFAULT);
+        int maxFrames = sharedPreferences.getInt(SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES, SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES_DEFAULT);
+        int threshold = sharedPreferences.getInt(SHARED_PREFERENCES_DEBOUNCE_THRESHOLD, SHARED_PREFERENCES_DEBOUNCE_THRESHOLD_DEFAULT);
+        int algorithm = sharedPreferences.getInt(SHARED_PREFERENCES_DEBOUNCE_ALGORITHM, SHARED_PREFERENCES_DEBOUNCE_ALGORITHM_DEFAULT);
+        int iouThreshold = sharedPreferences.getInt(SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD, SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD_DEFAULT);
+
+        cbDebounceEnabled.setChecked(debounceEnabled);
+        sbDebounceMaxFrames.setProgress(maxFrames);
+        sbDebounceThreshold.setProgress(threshold);
+        spinnerDebounceAlgorithm.setSelection(algorithm);
+        sbDebounceIouThreshold.setProgress(iouThreshold);
+
+        // Update value labels
+        tvDebounceMaxFramesValue.setText(getString(R.string.debounce_max_frames_value, maxFrames));
+        tvDebounceThresholdValue.setText(getString(R.string.debounce_threshold_value, threshold));
+        float iouValue = iouThreshold / 100.0f;
+        tvDebounceIouThresholdValue.setText(String.format(getString(R.string.debounce_iou_threshold_value), iouValue));
+
+        // Update UI state based on checkbox
+        updateDebounceUIState(debounceEnabled);
+
+        // Update visibility based on algorithm selection
+        updateDebounceAlgorithmVisibility(algorithm);
+    }
+
+    private void saveDebounceSettings(SharedPreferences.Editor editor) {
+        editor.putBoolean(SHARED_PREFERENCES_DEBOUNCE_ENABLED, cbDebounceEnabled.isChecked());
+        editor.putInt(SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES, sbDebounceMaxFrames.getProgress());
+        editor.putInt(SHARED_PREFERENCES_DEBOUNCE_THRESHOLD, sbDebounceThreshold.getProgress());
+        editor.putInt(SHARED_PREFERENCES_DEBOUNCE_ALGORITHM, spinnerDebounceAlgorithm.getSelectedItemPosition());
+        editor.putInt(SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD, sbDebounceIouThreshold.getProgress());
     }
 }
