@@ -249,7 +249,7 @@ public class Constants {
 
     // Debounce preferences
     public static final String SHARED_PREFERENCES_DEBOUNCE_ENABLED = "SHARED_PREFERENCES_DEBOUNCE_ENABLED";
-    public static final boolean SHARED_PREFERENCES_DEBOUNCE_ENABLED_DEFAULT = false;
+    public static final boolean SHARED_PREFERENCES_DEBOUNCE_ENABLED_DEFAULT = true;
 
     public static final String SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES = "SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES";
     public static final int SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES_DEFAULT = 10;
@@ -257,13 +257,13 @@ public class Constants {
     public static final String SHARED_PREFERENCES_DEBOUNCE_THRESHOLD = "SHARED_PREFERENCES_DEBOUNCE_THRESHOLD";
     public static final int SHARED_PREFERENCES_DEBOUNCE_THRESHOLD_DEFAULT = 50;
 
-    // Debounce algorithm preference (0 = Center Distance, 1 = IOU)
+    // Debounce algorithm preference (0 = Center Distance, 1 = Intersection Over Union)
     public static final String SHARED_PREFERENCES_DEBOUNCE_ALGORITHM = "SHARED_PREFERENCES_DEBOUNCE_ALGORITHM";
-    public static final int SHARED_PREFERENCES_DEBOUNCE_ALGORITHM_DEFAULT = 0;
+    public static final int SHARED_PREFERENCES_DEBOUNCE_ALGORITHM_DEFAULT = 1;
 
     // IOU threshold (stored as int, divide by 100 to get float 0.1-1.0)
     public static final String SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD = "SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD";
-    public static final int SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD_DEFAULT = 30; // 0.3
+    public static final int SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD_DEFAULT = 20; // 0.2
 
     public static final int KEYCODE_BUTTON_R1 = 103;
     public static final int KEYCODE_SCAN = 10036;

@@ -553,7 +553,7 @@
     <!-- Debounce Algorithm -->
     <string name="debounce_algorithm_title">Debounce Algorithm</string>
     <string name="debounce_algorithm_center">Center Distance</string>
-    <string name="debounce_algorithm_iou">Intersection/Union</string>
+    <string name="debounce_algorithm_iou">Intersection Over Union</string>
     <string name="debounce_iou_threshold_title">IOU Threshold</string>
     <string name="debounce_iou_threshold_description">Minimum overlap ratio to match bounding boxes (0.1 to 1.0)</string>
     <string name="debounce_iou_threshold_value">%.1f</string>
@@ -561,7 +561,7 @@
     <!-- Debounce Algorithm Arrays -->
     <string-array name="debounce_algorithm_names">
         <item>Center Distance</item>
-        <item>Intersection/Union</item>
+        <item>Intersection Over Union</item>
     </string-array>
 
     <string-array name="debounce_algorithm_values">
