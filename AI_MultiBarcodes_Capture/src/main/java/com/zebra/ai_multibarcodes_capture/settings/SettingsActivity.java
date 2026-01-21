@@ -32,6 +32,8 @@ import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.adapters.LanguageAdapter;
 import com.zebra.ai_multibarcodes_capture.autocapture.AutoCaptureConditionsActivity;
 import com.zebra.ai_multibarcodes_capture.autocapture.AutoCapturePreferencesHelper;
+import com.zebra.ai_multibarcodes_capture.filtering.FilteringConditionsActivity;
+import com.zebra.ai_multibarcodes_capture.filtering.FilteringPreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 import com.zebra.ai_multibarcodes_capture.helpers.CameraResolutionHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
@@ -71,7 +73,8 @@ import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private EditText etPrefix, etHttpsEndpoint, etFilteringRegex;
+    private EditText etPrefix, etHttpsEndpoint;
+    private Button btEditFilteringConditions;
     private RadioButton rbCSV, rbTXT, rbXSLX;
     private ImageView ivToggleSymbologies, ivToggleFileTypes, ivToggleAdvanced, ivToggleHttpsPost, ivToggleFiltering;
     private LinearLayout llSymbologies, llAdvancedContent, llFileProcessingContent, llHttpsPost, llFileProcessing, llHttpsPostContent, llFilteringContent;
@@ -163,7 +166,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         etPrefix = findViewById(R.id.etPrefix);
         etHttpsEndpoint = findViewById(R.id.etHttpsEndpoint);
-        etFilteringRegex = findViewById(R.id.etFilteringRegex);
+        btEditFilteringConditions = findViewById(R.id.btEditFilteringConditions);
         rbCSV = findViewById(R.id.rbCSV);
         rbTXT = findViewById(R.id.rbTxt);
         rbXSLX = findViewById(R.id.rbXSLX);
@@ -1352,26 +1355,23 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setupFilteringListeners() {
-        cbEnableFiltering.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        // Set up click listener for edit filtering conditions button
+        btEditFilteringConditions.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                etFilteringRegex.setEnabled(isChecked);
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, FilteringConditionsActivity.class);
+                startActivity(intent);
             }
         });
     }
 
     private void loadFilteringSettings(SharedPreferences sharedPreferences) {
         boolean filteringEnabled = sharedPreferences.getBoolean(SHARED_PREFERENCES_FILTERING_ENABLED, SHARED_PREFERENCES_FILTERING_ENABLED_DEFAULT);
-        String filteringRegex = sharedPreferences.getString(SHARED_PREFERENCES_FILTERING_REGEX, SHARED_PREFERENCES_FILTERING_REGEX_DEFAULT);
-
         cbEnableFiltering.setChecked(filteringEnabled);
-        etFilteringRegex.setText(filteringRegex);
-        etFilteringRegex.setEnabled(filteringEnabled);
     }
 
     private void saveFilteringSettings(SharedPreferences.Editor editor) {
         editor.putBoolean(SHARED_PREFERENCES_FILTERING_ENABLED, cbEnableFiltering.isChecked());
-        editor.putString(SHARED_PREFERENCES_FILTERING_REGEX, etFilteringRegex.getText().toString());
     }
 
     private void toggleFiltering() {

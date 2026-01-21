@@ -573,23 +573,31 @@
     <string name="auto_capture">Auto Capture</string>
     <string name="toggle_auto_capture">Toggle auto capture</string>
     <string name="enable_auto_capture">Enable Auto Capture</string>
+    <string name="auto_capture_description">Auto capture triggers automatically when ALL configured conditions are satisfied simultaneously. Define your conditions below.</string>
     <string name="edit_auto_capture_conditions">Edit Auto Capture Conditions</string>
     <string name="auto_capture_conditions">Auto Capture Conditions</string>
     <string name="no_conditions_configured">No conditions configured. Tap + to add a condition.</string>
     <string name="add_condition">Add Condition</string>
     <string name="condition_type_number_of_barcodes">Number of Barcodes</string>
     <string name="condition_type_contains_regex">Contains Regex Pattern</string>
+    <string name="condition_type_symbology">Symbology Match</string>
+    <string name="condition_type_complex">Complex Match</string>
     <string name="number_of_barcodes">Number of Barcodes</string>
     <string name="number_of_barcodes_hint">Enter exact number of barcodes</string>
     <string name="regex_pattern">Regex Pattern</string>
     <string name="regex_pattern_hint">e.g., ^SKU-\\d{6}$</string>
     <string name="minimum_matches">Minimum Matches</string>
     <string name="minimum_matches_hint">How many barcodes must match</string>
+    <string name="condition_description">Description (optional)</string>
+    <string name="condition_description_hint">Enter a description for this condition</string>
     <string name="pick_predefined">Pick Predefined</string>
     <string name="predefined_regex_picker">Predefined Regex Picker</string>
     <string name="search_regex">Search regex patterns...</string>
     <string name="condition_number_format">Exactly %d barcodes</string>
-    <string name="condition_regex_format">%d+ matching: %s</string>
+    <string name="condition_regex_format">%1$d+ matching: %2$s</string>
+    <string name="condition_symbology_format">%1$d+ %2$s barcodes</string>
+    <string name="condition_complex_format">%1$d+ %2$s matching: %3$s</string>
+    <string name="select_symbology">Select Symbology</string>
     <string name="edit_condition">Edit Condition</string>
     <string name="delete_condition">Delete Condition</string>
     <string name="condition_already_exists">A Number of Barcodes condition already exists</string>
@@ -597,5 +605,30 @@
     <string name="invalid_count">Count must be at least 1</string>
     <string name="ok">OK</string>
     <string name="add">Add</string>
+    <string name="menu_import_json">Import from JSON</string>
+    <string name="menu_export_json">Export to JSON</string>
+    <string name="menu_delete_all">Delete All</string>
+    <string name="delete_all_conditions">Delete All Conditions</string>
+    <string name="delete_all_conditions_warning">Are you sure you want to delete all conditions? This action cannot be undone.</string>
+    <string name="all_conditions_deleted">All conditions deleted</string>
+    <string name="no_conditions_to_export">No conditions to export</string>
+    <string name="export_successful">Conditions exported successfully</string>
+    <string name="export_failed">Export failed: %s</string>
+    <string name="import_successful">Conditions imported successfully</string>
+    <string name="import_failed">Import failed: %s</string>
+    <string name="auto_capture_conditions_filename">auto_capture_conditions.json</string>
+
+    <!-- Filtering Conditions Settings -->
+    <string name="filtering_conditions_title">Filtering Conditions</string>
+    <string name="filtering_description">Only entities matching at least one condition will be detected. If no conditions are set, all entities are included.</string>
+    <string name="edit_filtering_conditions">Edit Filtering Conditions</string>
+    <string name="filtering_condition_type_regex">Contains Regex</string>
+    <string name="filtering_condition_type_symbology">Symbology Match</string>
+    <string name="filtering_condition_type_complex">Complex Match</string>
+    <string name="filtering_regex_format">Pattern: %s</string>
+    <string name="filtering_symbology_format">Symbology: %s</string>
+    <string name="filtering_complex_format">%1$s matching: %2$s</string>
+    <string name="filtering_no_conditions_configured">No filtering conditions configured. Tap + to add a condition.</string>
+    <string name="filtering_conditions_filename">filtering_conditions.json</string>
 
 </resources>

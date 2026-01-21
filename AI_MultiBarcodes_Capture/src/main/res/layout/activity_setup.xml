@@ -469,19 +469,18 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/regular_expression"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp" />
+            android:text="@string/filtering_description"
+            android:textSize="12sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginBottom="12dp" />
 
-        <EditText
-            android:id="@+id/etFilteringRegex"
+        <Button
+            android:id="@+id/btEditFilteringConditions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/regular_expression_hint"
-            android:enabled="false"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:padding="12dp" />
+            android:text="@string/edit_filtering_conditions"
+            android:backgroundTint="?attr/colorPrimary"
+            app:cornerRadius="8dp" />
 
     </LinearLayout>
 
@@ -539,6 +538,14 @@
             android:buttonTint="?attr/colorPrimary"
             android:text="@string/enable_auto_capture"
             android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_capture_description"
+            android:textSize="12sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginBottom="12dp" />
 
         <Button
             android:id="@+id/btEditAutoCaptureConditions"

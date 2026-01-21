@@ -1,14 +1,13 @@
-package com.zebra.ai_multibarcodes_capture.autocapture.models;
+package com.zebra.ai_multibarcodes_capture.filtering.models;
 
 import java.util.UUID;
 
 /**
- * Data class representing an auto capture condition.
+ * Data class representing a filtering condition.
  */
-public class AutoCaptureCondition {
+public class FilteringCondition {
     private String id;
-    private EAutoCaptureConditionType type;
-    private int count;
+    private EFilteringConditionType type;
     private String regex;
     private int symbology = -1;
     private String description;
@@ -16,45 +15,29 @@ public class AutoCaptureCondition {
     /**
      * Default constructor for Gson deserialization.
      */
-    public AutoCaptureCondition() {
+    public FilteringCondition() {
         this.id = UUID.randomUUID().toString();
-    }
-
-    /**
-     * Constructor for NUMBER_OF_BARCODES condition type.
-     *
-     * @param count The exact number of barcodes required
-     */
-    public AutoCaptureCondition(int count) {
-        this.id = UUID.randomUUID().toString();
-        this.type = EAutoCaptureConditionType.NUMBER_OF_BARCODES;
-        this.count = count;
-        this.regex = null;
     }
 
     /**
      * Constructor for CONTAINS_REGEX condition type.
      *
-     * @param count The minimum number of barcodes that must match the regex
      * @param regex The regex pattern to match
      */
-    public AutoCaptureCondition(int count, String regex) {
+    public FilteringCondition(String regex) {
         this.id = UUID.randomUUID().toString();
-        this.type = EAutoCaptureConditionType.CONTAINS_REGEX;
-        this.count = count;
+        this.type = EFilteringConditionType.CONTAINS_REGEX;
         this.regex = regex;
     }
 
     /**
      * Constructor for SYMBOLOGY condition type.
      *
-     * @param count The minimum number of barcodes that must match the symbology
      * @param symbology The symbology value to match (from EBarcodesSymbologies.getIntValue())
      */
-    public AutoCaptureCondition(int count, int symbology) {
+    public FilteringCondition(int symbology) {
         this.id = UUID.randomUUID().toString();
-        this.type = EAutoCaptureConditionType.SYMBOLOGY;
-        this.count = count;
+        this.type = EFilteringConditionType.SYMBOLOGY;
         this.symbology = symbology;
     }
 
@@ -62,14 +45,12 @@ public class AutoCaptureCondition {
      * Constructor for COMPLEX condition type.
      * Matches barcodes that satisfy both symbology AND regex criteria.
      *
-     * @param count The minimum number of barcodes that must match both criteria
      * @param symbology The symbology value to match (from EBarcodesSymbologies.getIntValue())
      * @param regex The regex pattern to match
      */
-    public AutoCaptureCondition(int count, int symbology, String regex) {
+    public FilteringCondition(int symbology, String regex) {
         this.id = UUID.randomUUID().toString();
-        this.type = EAutoCaptureConditionType.COMPLEX;
-        this.count = count;
+        this.type = EFilteringConditionType.COMPLEX;
         this.symbology = symbology;
         this.regex = regex;
     }
@@ -82,20 +63,12 @@ public class AutoCaptureCondition {
         this.id = id;
     }
 
-    public EAutoCaptureConditionType getType() {
+    public EFilteringConditionType getType() {
         return type;
     }
 
-    public void setType(EAutoCaptureConditionType type) {
+    public void setType(EFilteringConditionType type) {
         this.type = type;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public String getRegex() {
@@ -132,11 +105,7 @@ public class AutoCaptureCondition {
             return false;
         }
 
-        if (count < 1) {
-            return false;
-        }
-
-        if (type == EAutoCaptureConditionType.CONTAINS_REGEX) {
+        if (type == EFilteringConditionType.CONTAINS_REGEX) {
             if (regex == null || regex.isEmpty()) {
                 return false;
             }
@@ -148,14 +117,14 @@ public class AutoCaptureCondition {
             }
         }
 
-        if (type == EAutoCaptureConditionType.SYMBOLOGY) {
+        if (type == EFilteringConditionType.SYMBOLOGY) {
             // Symbology must be a valid value (>= 0)
             if (symbology < 0) {
                 return false;
             }
         }
 
-        if (type == EAutoCaptureConditionType.COMPLEX) {
+        if (type == EFilteringConditionType.COMPLEX) {
             // Symbology must be a valid value (>= 0)
             if (symbology < 0) {
                 return false;
@@ -178,7 +147,7 @@ public class AutoCaptureCondition {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AutoCaptureCondition that = (AutoCaptureCondition) o;
+        FilteringCondition that = (FilteringCondition) o;
         return id != null && id.equals(that.id);
     }
 

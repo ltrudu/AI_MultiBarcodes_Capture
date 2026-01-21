@@ -14,8 +14,8 @@ android {
         applicationId = "com.zebra.ai_multibarcodes_capture.dev"
         minSdk = 34
         targetSdk = 35
-        versionCode = 39
-        versionName = "1.39"
+        versionCode = 40
+        versionName = "1.40"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

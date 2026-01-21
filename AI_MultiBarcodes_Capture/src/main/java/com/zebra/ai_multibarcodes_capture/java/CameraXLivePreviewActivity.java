@@ -63,6 +63,9 @@ import com.zebra.ai_multibarcodes_capture.views.CaptureZoneOverlay;
 import com.zebra.ai_multibarcodes_capture.autocapture.AutoCaptureEvaluator;
 import com.zebra.ai_multibarcodes_capture.autocapture.AutoCapturePreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.autocapture.models.AutoCaptureConditionList;
+import com.zebra.ai_multibarcodes_capture.filtering.FilteringEvaluator;
+import com.zebra.ai_multibarcodes_capture.filtering.FilteringPreferencesHelper;
+import com.zebra.ai_multibarcodes_capture.filtering.models.FilteringConditionList;
 import com.zebra.datawedgeprofileintents.DWProfileBaseSettings;
 import com.zebra.datawedgeprofileintents.DWProfileCommandBase;
 import com.zebra.datawedgeprofileintents.DWScannerPluginDisable;
@@ -157,7 +160,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
 
     // Filtering settings
     private boolean isFilteringEnabled = false;
-    private String filteringRegex = "";
+    private FilteringConditionList filteringConditions = new FilteringConditionList();
 
     // Analysis timing overlay
     private TextView analysisOverlay;
@@ -664,16 +667,13 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     private void loadFilteringSettings() {
         LogUtils.d(TAG, "=== loadFilteringSettings() START ===");
 
-        // Get the SharedPreferences object
-        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        // Load filtering enabled state using FilteringPreferencesHelper
+        isFilteringEnabled = FilteringPreferencesHelper.isFilteringEnabled(this);
 
-        // Load filtering enabled state
-        isFilteringEnabled = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_FILTERING_ENABLED, Constants.SHARED_PREFERENCES_FILTERING_ENABLED_DEFAULT);
+        // Load filtering conditions using FilteringPreferencesHelper
+        filteringConditions = FilteringPreferencesHelper.loadConditions(this);
 
-        // Load filtering regex pattern
-        filteringRegex = sharedPreferences.getString(Constants.SHARED_PREFERENCES_FILTERING_REGEX, Constants.SHARED_PREFERENCES_FILTERING_REGEX_DEFAULT);
-
-        LogUtils.d(TAG, "Loaded filtering settings - enabled: " + isFilteringEnabled + ", regex: '" + filteringRegex + "'");
+        LogUtils.d(TAG, "Loaded filtering settings - enabled: " + isFilteringEnabled + ", conditions count: " + filteringConditions.size());
         LogUtils.d(TAG, "=== loadFilteringSettings() END ===");
     }
 
@@ -867,26 +867,25 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         });
     }
 
-    private boolean isValueMatchingFilteringRegex(String data)
+    /**
+     * Determines if an entity should be included based on the filtering conditions.
+     * Uses OR logic: entity matches if it satisfies ANY condition.
+     * Returns true if filtering is disabled or no conditions are defined.
+     *
+     * @param entity The barcode entity to evaluate
+     * @return true if the entity should be included, false otherwise
+     */
+    private boolean shouldIncludeEntity(BarcodeEntity entity)
     {
-        if(isFilteringEnabled && filteringRegex.isEmpty() == false)
-        {
-            try {
-                // Check if data matches the filteringRegex pattern
-                boolean matches = data.matches(filteringRegex);
-                LogUtils.v(TAG, "Regex filtering - Data: '" + data + "', Pattern: '" + filteringRegex + "', Matches: " + matches);
-                return matches;
-            } catch (Exception e) {
-                // If regex is invalid, log error and allow the barcode through
-                LogUtils.e(TAG, "Invalid regex pattern '" + filteringRegex + "': " + e.getMessage());
-                return true;
-            }
-        }
-        else
-        {
-            // If filtering is disabled, return always true
+        if (!isFilteringEnabled) {
+            // If filtering is disabled, include all entities
             return true;
         }
+
+        // Use FilteringEvaluator with OR logic
+        boolean shouldInclude = FilteringEvaluator.shouldIncludeEntity(entity, filteringConditions);
+        LogUtils.v(TAG, "Filtering - Entity value: '" + entity.getValue() + "', symbology: " + entity.getSymbology() + ", shouldInclude: " + shouldInclude);
+        return shouldInclude;
     }
 
     private boolean isBarcodeInCaptureZone(Rect overlayRect) {
@@ -1186,9 +1185,9 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                     }
 
 
-                    // Check if the entity is matching the filtering regex
-                    // If the filtering is not enabled, it returns always true
-                    if (barcodeValue != null && !barcodeValue.isEmpty() && isValueMatchingFilteringRegex(barcodeValue)) {
+                    // Check if the entity passes the filtering conditions
+                    // If filtering is not enabled, it returns always true
+                    if (barcodeValue != null && !barcodeValue.isEmpty() && shouldIncludeEntity(entityToCapture)) {
                         // Now if necessary, check if the barcode meets the
                         rects.add(overlayRect);
                         String hashCode = String.valueOf(entityToCapture.hashCode());
@@ -1208,7 +1207,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
                         colors.add(Color.RED);
                         LogUtils.v(TAG, "Barcode has no value (and no cache match), showing RED box");
                     } else {
-                        LogUtils.v(TAG, "Barcode does not match regex, ignoring: " + barcodeValue);
+                        LogUtils.v(TAG, "Barcode does not match filtering conditions, ignoring: " + barcodeValue);
                     }
                 }
             }

@@ -64,6 +64,10 @@
             android:name=".autocapture.PredefinedRegexPickerActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".filtering.FilteringConditionsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

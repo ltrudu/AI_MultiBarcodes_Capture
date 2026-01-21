@@ -1,4 +1,4 @@
-package com.zebra.ai_multibarcodes_capture.autocapture;
+package com.zebra.ai_multibarcodes_capture.filtering;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,31 +10,31 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zebra.ai_multibarcodes_capture.R;
-import com.zebra.ai_multibarcodes_capture.autocapture.models.AutoCaptureCondition;
-import com.zebra.ai_multibarcodes_capture.autocapture.models.EAutoCaptureConditionType;
+import com.zebra.ai_multibarcodes_capture.filtering.models.FilteringCondition;
+import com.zebra.ai_multibarcodes_capture.filtering.models.EFilteringConditionType;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * RecyclerView adapter for displaying auto capture conditions.
+ * RecyclerView adapter for displaying filtering conditions.
  */
-public class AutoCaptureConditionsAdapter extends RecyclerView.Adapter<AutoCaptureConditionsAdapter.ViewHolder> {
+public class FilteringConditionsAdapter extends RecyclerView.Adapter<FilteringConditionsAdapter.ViewHolder> {
 
-    private List<AutoCaptureCondition> conditions = new ArrayList<>();
+    private List<FilteringCondition> conditions = new ArrayList<>();
     private OnConditionClickListener listener;
 
     public interface OnConditionClickListener {
-        void onEditClick(AutoCaptureCondition condition);
-        void onDeleteClick(AutoCaptureCondition condition);
+        void onEditClick(FilteringCondition condition);
+        void onDeleteClick(FilteringCondition condition);
     }
 
     public void setOnConditionClickListener(OnConditionClickListener listener) {
         this.listener = listener;
     }
 
-    public void setConditions(List<AutoCaptureCondition> conditions) {
+    public void setConditions(List<FilteringCondition> conditions) {
         this.conditions = conditions != null ? conditions : new ArrayList<>();
         notifyDataSetChanged();
     }
@@ -49,7 +49,7 @@ public class AutoCaptureConditionsAdapter extends RecyclerView.Adapter<AutoCaptu
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        AutoCaptureCondition condition = conditions.get(position);
+        FilteringCondition condition = conditions.get(position);
         holder.bind(condition);
     }
 
@@ -74,21 +74,18 @@ public class AutoCaptureConditionsAdapter extends RecyclerView.Adapter<AutoCaptu
             btnDeleteCondition = itemView.findViewById(R.id.btnDeleteCondition);
         }
 
-        void bind(AutoCaptureCondition condition) {
-            if (condition.getType() == EAutoCaptureConditionType.NUMBER_OF_BARCODES) {
-                tvConditionType.setText(itemView.getContext().getString(R.string.condition_type_number_of_barcodes));
-                tvConditionDetails.setText(itemView.getContext().getString(R.string.condition_number_format, condition.getCount()));
-            } else if (condition.getType() == EAutoCaptureConditionType.CONTAINS_REGEX) {
-                tvConditionType.setText(itemView.getContext().getString(R.string.condition_type_contains_regex));
-                tvConditionDetails.setText(itemView.getContext().getString(R.string.condition_regex_format, condition.getCount(), condition.getRegex()));
-            } else if (condition.getType() == EAutoCaptureConditionType.SYMBOLOGY) {
-                tvConditionType.setText(itemView.getContext().getString(R.string.condition_type_symbology));
+        void bind(FilteringCondition condition) {
+            if (condition.getType() == EFilteringConditionType.CONTAINS_REGEX) {
+                tvConditionType.setText(itemView.getContext().getString(R.string.filtering_condition_type_regex));
+                tvConditionDetails.setText(itemView.getContext().getString(R.string.filtering_regex_format, condition.getRegex()));
+            } else if (condition.getType() == EFilteringConditionType.SYMBOLOGY) {
+                tvConditionType.setText(itemView.getContext().getString(R.string.filtering_condition_type_symbology));
                 EBarcodesSymbologies symbology = EBarcodesSymbologies.fromInt(condition.getSymbology());
-                tvConditionDetails.setText(itemView.getContext().getString(R.string.condition_symbology_format, condition.getCount(), symbology.getName()));
-            } else if (condition.getType() == EAutoCaptureConditionType.COMPLEX) {
-                tvConditionType.setText(itemView.getContext().getString(R.string.condition_type_complex));
+                tvConditionDetails.setText(itemView.getContext().getString(R.string.filtering_symbology_format, symbology.getName()));
+            } else if (condition.getType() == EFilteringConditionType.COMPLEX) {
+                tvConditionType.setText(itemView.getContext().getString(R.string.filtering_condition_type_complex));
                 EBarcodesSymbologies symbology = EBarcodesSymbologies.fromInt(condition.getSymbology());
-                tvConditionDetails.setText(itemView.getContext().getString(R.string.condition_complex_format, condition.getCount(), symbology.getName(), condition.getRegex()));
+                tvConditionDetails.setText(itemView.getContext().getString(R.string.filtering_complex_format, symbology.getName(), condition.getRegex()));
             }
 
             // Show description if not empty

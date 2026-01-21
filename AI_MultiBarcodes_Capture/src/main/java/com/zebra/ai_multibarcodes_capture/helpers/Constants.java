@@ -231,6 +231,9 @@ public class Constants {
     public static final String SHARED_PREFERENCES_FILTERING_REGEX = "SHARED_PREFERENCES_FILTERING_REGEX";
     public static final String SHARED_PREFERENCES_FILTERING_REGEX_DEFAULT = "";
 
+    // Filtering Conditions preferences
+    public static final String SHARED_PREFERENCES_FILTERING_CONDITIONS = "FILTERING_CONDITIONS";
+
     // Capture Trigger Mode preferences
     public static final String SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE = "SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE";
     public static final String SHARED_PREFERENCES_CAPTURE_TRIGGER_MODE_DEFAULT = "press";
@@ -249,7 +252,7 @@ public class Constants {
 
     // Debounce preferences
     public static final String SHARED_PREFERENCES_DEBOUNCE_ENABLED = "SHARED_PREFERENCES_DEBOUNCE_ENABLED";
-    public static final boolean SHARED_PREFERENCES_DEBOUNCE_ENABLED_DEFAULT = true;
+    public static final boolean SHARED_PREFERENCES_DEBOUNCE_ENABLED_DEFAULT = false;
 
     public static final String SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES = "SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES";
     public static final int SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES_DEFAULT = 10;

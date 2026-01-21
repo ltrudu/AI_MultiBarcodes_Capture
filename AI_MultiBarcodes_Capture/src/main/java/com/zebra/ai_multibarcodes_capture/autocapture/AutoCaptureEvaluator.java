@@ -70,6 +70,23 @@ public class AutoCaptureEvaluator {
             LogUtils.d(TAG, "AutoCaptureEvaluator: CONTAINS_REGEX condition - required: " +
                     condition.getCount() + "+, matching: " + matchingCount + ", result: " + result);
             return result;
+        } else if (condition.getType() == EAutoCaptureConditionType.SYMBOLOGY) {
+            // Count barcodes matching the symbology
+            int matchingCount = countMatchingSymbology(condition.getSymbology(), entities);
+            boolean result = matchingCount >= condition.getCount();
+            LogUtils.d(TAG, "AutoCaptureEvaluator: SYMBOLOGY condition - required: " +
+                    condition.getCount() + "+, symbology: " + condition.getSymbology() +
+                    ", matching: " + matchingCount + ", result: " + result);
+            return result;
+        } else if (condition.getType() == EAutoCaptureConditionType.COMPLEX) {
+            // Count barcodes matching BOTH symbology AND regex
+            int matchingCount = countMatchingComplex(condition.getSymbology(), condition.getRegex(), entities);
+            boolean result = matchingCount >= condition.getCount();
+            LogUtils.d(TAG, "AutoCaptureEvaluator: COMPLEX condition - required: " +
+                    condition.getCount() + "+, symbology: " + condition.getSymbology() +
+                    ", regex: " + condition.getRegex() +
+                    ", matching: " + matchingCount + ", result: " + result);
+            return result;
         }
 
         return false;
@@ -100,6 +117,58 @@ public class AutoCaptureEvaluator {
             String barcodeData = entity.getValue();
             if (barcodeData != null && pattern.matcher(barcodeData).matches()) {
                 count++;
+            }
+        }
+
+        return count;
+    }
+
+    /**
+     * Counts how many barcodes match the given symbology.
+     *
+     * @param symbology The symbology value to match
+     * @param entities The list of detected entities
+     * @return The count of matching barcodes
+     */
+    private static int countMatchingSymbology(int symbology, List<BarcodeEntity> entities) {
+        int count = 0;
+        for (BarcodeEntity entity : entities) {
+            if (entity.getSymbology() == symbology) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Counts how many barcodes match both the given symbology AND regex pattern.
+     *
+     * @param symbology The symbology value to match
+     * @param regex The regex pattern to match
+     * @param entities The list of detected entities
+     * @return The count of matching barcodes
+     */
+    private static int countMatchingComplex(int symbology, String regex, List<BarcodeEntity> entities) {
+        if (regex == null || regex.isEmpty()) {
+            return 0;
+        }
+
+        Pattern pattern;
+        try {
+            pattern = Pattern.compile(regex);
+        } catch (PatternSyntaxException e) {
+            LogUtils.e(TAG, "AutoCaptureEvaluator: Invalid regex pattern: " + regex, e);
+            return 0;
+        }
+
+        int count = 0;
+        for (BarcodeEntity entity : entities) {
+            // Check both symbology AND regex match
+            if (entity.getSymbology() == symbology) {
+                String barcodeData = entity.getValue();
+                if (barcodeData != null && pattern.matcher(barcodeData).matches()) {
+                    count++;
+                }
             }
         }
 

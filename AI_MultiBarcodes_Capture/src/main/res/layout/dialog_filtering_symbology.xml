@@ -8,45 +8,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/minimum_matches"
+        android:text="@string/select_symbology"
         android:textStyle="bold"
         android:layout_marginBottom="4dp" />
 
-    <EditText
-        android:id="@+id/etMinimumMatches"
+    <Spinner
+        android:id="@+id/spinnerSymbology"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/minimum_matches_hint"
-        android:inputType="number"
-        android:text="1"
         android:minHeight="48dp"
         android:padding="12dp"
         android:layout_marginBottom="16dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/regex_pattern"
-        android:textStyle="bold"
-        android:layout_marginBottom="4dp" />
-
-    <EditText
-        android:id="@+id/etRegexPattern"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/regex_pattern_hint"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:padding="12dp"
-        android:layout_marginBottom="8dp" />
-
-    <Button
-        android:id="@+id/btPickPredefined"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/pick_predefined"
-        android:layout_marginBottom="16dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
     <TextView
         android:layout_width="match_parent"

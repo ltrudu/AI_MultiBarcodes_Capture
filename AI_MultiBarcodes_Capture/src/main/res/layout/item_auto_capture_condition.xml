@@ -41,6 +41,18 @@
                 android:maxLines="2"
                 android:ellipsize="end" />
 
+            <TextView
+                android:id="@+id/tvConditionDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textStyle="italic"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:visibility="gone" />
+
         </LinearLayout>
 
         <ImageButton

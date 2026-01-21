@@ -14,7 +14,20 @@ public enum EAutoCaptureConditionType {
      * Condition based on whether barcodes match a regex pattern.
      * Multiple conditions of this type are allowed.
      */
-    CONTAINS_REGEX("contains_regex");
+    CONTAINS_REGEX("contains_regex"),
+
+    /**
+     * Condition based on whether barcodes match a specified symbology.
+     * Multiple conditions of this type are allowed.
+     */
+    SYMBOLOGY("symbology"),
+
+    /**
+     * Complex condition combining number of barcodes, symbology, and regex matching.
+     * Triggers when the specified number of barcodes match both the symbology AND regex.
+     * Multiple conditions of this type are allowed.
+     */
+    COMPLEX("complex");
 
     private final String key;
 

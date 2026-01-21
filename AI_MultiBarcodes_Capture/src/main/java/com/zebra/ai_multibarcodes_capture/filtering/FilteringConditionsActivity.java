@@ -1,4 +1,4 @@
-package com.zebra.ai_multibarcodes_capture.autocapture;
+package com.zebra.ai_multibarcodes_capture.filtering;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,9 +32,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.zebra.ai_multibarcodes_capture.R;
-import com.zebra.ai_multibarcodes_capture.autocapture.models.AutoCaptureCondition;
-import com.zebra.ai_multibarcodes_capture.autocapture.models.AutoCaptureConditionList;
-import com.zebra.ai_multibarcodes_capture.autocapture.models.EAutoCaptureConditionType;
+import com.zebra.ai_multibarcodes_capture.autocapture.PredefinedRegexPickerActivity;
+import com.zebra.ai_multibarcodes_capture.filtering.models.FilteringCondition;
+import com.zebra.ai_multibarcodes_capture.filtering.models.FilteringConditionList;
+import com.zebra.ai_multibarcodes_capture.filtering.models.EFilteringConditionType;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
@@ -45,17 +46,18 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * Activity for managing auto capture conditions.
+ * Activity for managing filtering conditions.
+ * Filtering uses OR logic - entities matching at least ONE condition will be included.
  */
-public class AutoCaptureConditionsActivity extends AppCompatActivity {
+public class FilteringConditionsActivity extends AppCompatActivity {
 
     public static final String EXTRA_SELECTED_REGEX = "selected_regex";
 
     private RecyclerView rvConditions;
     private View tvEmptyState;
     private FloatingActionButton fabAddCondition;
-    private AutoCaptureConditionsAdapter adapter;
-    private AutoCaptureConditionList conditionList;
+    private FilteringConditionsAdapter adapter;
+    private FilteringConditionList conditionList;
 
     // For regex dialog - store the EditText to update when picker returns
     private EditText currentRegexEditText;
@@ -103,7 +105,7 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeHelpers.applyTheme(this);
-        setContentView(R.layout.activity_auto_capture_conditions);
+        setContentView(R.layout.activity_filtering_conditions);
         ThemeHelpers.applyCustomFont(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -114,15 +116,15 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         tvEmptyState = findViewById(R.id.tvEmptyState);
         fabAddCondition = findViewById(R.id.fabAddCondition);
 
-        adapter = new AutoCaptureConditionsAdapter();
-        adapter.setOnConditionClickListener(new AutoCaptureConditionsAdapter.OnConditionClickListener() {
+        adapter = new FilteringConditionsAdapter();
+        adapter.setOnConditionClickListener(new FilteringConditionsAdapter.OnConditionClickListener() {
             @Override
-            public void onEditClick(AutoCaptureCondition condition) {
+            public void onEditClick(FilteringCondition condition) {
                 showEditConditionDialog(condition);
             }
 
             @Override
-            public void onDeleteClick(AutoCaptureCondition condition) {
+            public void onDeleteClick(FilteringCondition condition) {
                 showDeleteConfirmationDialog(condition);
             }
         });
@@ -144,7 +146,7 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.auto_capture_conditions_menu, menu);
+        getMenuInflater().inflate(R.menu.filtering_conditions_menu, menu);
         return true;
     }
 
@@ -173,7 +175,7 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/json");
-        intent.putExtra(Intent.EXTRA_TITLE, getString(R.string.auto_capture_conditions_filename));
+        intent.putExtra(Intent.EXTRA_TITLE, getString(R.string.filtering_conditions_filename));
         exportFileLauncher.launch(intent);
     }
 
@@ -215,7 +217,7 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
 
                 String json = stringBuilder.toString();
                 Gson gson = new Gson();
-                AutoCaptureConditionList importedList = gson.fromJson(json, AutoCaptureConditionList.class);
+                FilteringConditionList importedList = gson.fromJson(json, FilteringConditionList.class);
 
                 if (importedList != null && importedList.getConditions() != null) {
                     conditionList = importedList;
@@ -232,7 +234,7 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
 
     private void showDeleteAllConfirmationDialog() {
         if (conditionList.isEmpty()) {
-            Toast.makeText(this, getString(R.string.no_conditions_configured), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.filtering_no_conditions_configured), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -249,12 +251,12 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
     }
 
     private void loadConditions() {
-        conditionList = AutoCapturePreferencesHelper.loadConditions(this);
+        conditionList = FilteringPreferencesHelper.loadConditions(this);
         updateUI();
     }
 
     private void saveConditions() {
-        AutoCapturePreferencesHelper.saveConditions(this, conditionList);
+        FilteringPreferencesHelper.saveConditions(this, conditionList);
         updateUI();
     }
 
@@ -270,103 +272,42 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
     }
 
     private void showAddConditionMenu() {
-        boolean hasNumberCondition = conditionList.hasNumberOfBarcodesCondition();
-
-        List<String> optionsList = new ArrayList<>();
-        List<Runnable> actionsList = new ArrayList<>();
-
-        if (!hasNumberCondition) {
-            optionsList.add(getString(R.string.condition_type_number_of_barcodes));
-            actionsList.add(() -> showNumberOfBarcodesDialog(null));
-        }
-
-        optionsList.add(getString(R.string.condition_type_contains_regex));
-        actionsList.add(() -> showRegexConditionDialog(null));
-
-        optionsList.add(getString(R.string.condition_type_symbology));
-        actionsList.add(() -> showSymbologyConditionDialog(null));
-
-        optionsList.add(getString(R.string.condition_type_complex));
-        actionsList.add(() -> showComplexConditionDialog(null));
-
-        String[] options = optionsList.toArray(new String[0]);
+        String[] options = new String[]{
+                getString(R.string.filtering_condition_type_regex),
+                getString(R.string.filtering_condition_type_symbology),
+                getString(R.string.filtering_condition_type_complex)
+        };
 
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.add_condition))
                 .setItems(options, (dialog, which) -> {
-                    actionsList.get(which).run();
+                    switch (which) {
+                        case 0:
+                            showRegexConditionDialog(null);
+                            break;
+                        case 1:
+                            showSymbologyConditionDialog(null);
+                            break;
+                        case 2:
+                            showComplexConditionDialog(null);
+                            break;
+                    }
                 })
                 .show();
     }
 
-    private void showEditConditionDialog(AutoCaptureCondition condition) {
-        if (condition.getType() == EAutoCaptureConditionType.NUMBER_OF_BARCODES) {
-            showNumberOfBarcodesDialog(condition);
-        } else if (condition.getType() == EAutoCaptureConditionType.CONTAINS_REGEX) {
+    private void showEditConditionDialog(FilteringCondition condition) {
+        if (condition.getType() == EFilteringConditionType.CONTAINS_REGEX) {
             showRegexConditionDialog(condition);
-        } else if (condition.getType() == EAutoCaptureConditionType.SYMBOLOGY) {
+        } else if (condition.getType() == EFilteringConditionType.SYMBOLOGY) {
             showSymbologyConditionDialog(condition);
-        } else if (condition.getType() == EAutoCaptureConditionType.COMPLEX) {
+        } else if (condition.getType() == EFilteringConditionType.COMPLEX) {
             showComplexConditionDialog(condition);
         }
     }
 
-    private void showNumberOfBarcodesDialog(AutoCaptureCondition existingCondition) {
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_number_input, null);
-        EditText etNumber = dialogView.findViewById(R.id.etNumber);
-        EditText etDescription = dialogView.findViewById(R.id.etDescription);
-
-        if (existingCondition != null) {
-            etNumber.setText(String.valueOf(existingCondition.getCount()));
-            if (existingCondition.getDescription() != null) {
-                etDescription.setText(existingCondition.getDescription());
-            }
-        }
-
-        String title = existingCondition != null ? getString(R.string.edit_condition) : getString(R.string.add_condition);
-        String positiveButton = existingCondition != null ? getString(R.string.ok) : getString(R.string.add);
-
-        new AlertDialog.Builder(this)
-                .setTitle(title)
-                .setView(dialogView)
-                .setPositiveButton(positiveButton, (dialog, which) -> {
-                    String numberStr = etNumber.getText().toString().trim();
-                    String description = etDescription.getText().toString().trim();
-                    if (numberStr.isEmpty()) {
-                        Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    int count;
-                    try {
-                        count = Integer.parseInt(numberStr);
-                        if (count < 1) {
-                            Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    } catch (NumberFormatException e) {
-                        Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (existingCondition != null) {
-                        existingCondition.setCount(count);
-                        existingCondition.setDescription(description.isEmpty() ? null : description);
-                        conditionList.updateCondition(existingCondition);
-                    } else {
-                        AutoCaptureCondition newCondition = new AutoCaptureCondition(count);
-                        newCondition.setDescription(description.isEmpty() ? null : description);
-                        conditionList.addCondition(newCondition);
-                    }
-                    saveConditions();
-                })
-                .setNegativeButton(getString(R.string.cancel), null)
-                .show();
-    }
-
-    private void showRegexConditionDialog(AutoCaptureCondition existingCondition) {
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_regex_condition, null);
-        EditText etMinimumMatches = dialogView.findViewById(R.id.etMinimumMatches);
+    private void showRegexConditionDialog(FilteringCondition existingCondition) {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_filtering_regex, null);
         EditText etRegexPattern = dialogView.findViewById(R.id.etRegexPattern);
         Button btPickPredefined = dialogView.findViewById(R.id.btPickPredefined);
         EditText etDescription = dialogView.findViewById(R.id.etDescription);
@@ -374,7 +315,6 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         currentRegexEditText = etRegexPattern;
 
         if (existingCondition != null) {
-            etMinimumMatches.setText(String.valueOf(existingCondition.getCount()));
             etRegexPattern.setText(existingCondition.getRegex());
             if (existingCondition.getDescription() != null) {
                 etDescription.setText(existingCondition.getDescription());
@@ -401,26 +341,8 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         dialog.setOnShowListener(d -> {
             Button positiveBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             positiveBtn.setOnClickListener(v -> {
-                String matchesStr = etMinimumMatches.getText().toString().trim();
                 String regex = etRegexPattern.getText().toString().trim();
                 String description = etDescription.getText().toString().trim();
-
-                if (matchesStr.isEmpty()) {
-                    Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                int count;
-                try {
-                    count = Integer.parseInt(matchesStr);
-                    if (count < 1) {
-                        Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (NumberFormatException e) {
-                    Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 if (regex.isEmpty()) {
                     Toast.makeText(this, getString(R.string.invalid_regex), Toast.LENGTH_SHORT).show();
@@ -436,12 +358,11 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
                 }
 
                 if (existingCondition != null) {
-                    existingCondition.setCount(count);
                     existingCondition.setRegex(regex);
                     existingCondition.setDescription(description.isEmpty() ? null : description);
                     conditionList.updateCondition(existingCondition);
                 } else {
-                    AutoCaptureCondition newCondition = new AutoCaptureCondition(count, regex);
+                    FilteringCondition newCondition = new FilteringCondition(regex);
                     newCondition.setDescription(description.isEmpty() ? null : description);
                     conditionList.addCondition(newCondition);
                 }
@@ -453,9 +374,8 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void showSymbologyConditionDialog(AutoCaptureCondition existingCondition) {
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_symbology_condition, null);
-        EditText etMinimumMatches = dialogView.findViewById(R.id.etMinimumMatches);
+    private void showSymbologyConditionDialog(FilteringCondition existingCondition) {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_filtering_symbology, null);
         Spinner spinnerSymbology = dialogView.findViewById(R.id.spinnerSymbology);
         EditText etDescription = dialogView.findViewById(R.id.etDescription);
 
@@ -478,7 +398,6 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
 
         // Pre-fill values if editing existing condition
         if (existingCondition != null) {
-            etMinimumMatches.setText(String.valueOf(existingCondition.getCount()));
             // Find and select the existing symbology
             EBarcodesSymbologies existingSymbology = EBarcodesSymbologies.fromInt(existingCondition.getSymbology());
             int position = symbologyList.indexOf(existingSymbology);
@@ -503,25 +422,7 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         dialog.setOnShowListener(d -> {
             Button positiveBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             positiveBtn.setOnClickListener(v -> {
-                String matchesStr = etMinimumMatches.getText().toString().trim();
                 String description = etDescription.getText().toString().trim();
-
-                if (matchesStr.isEmpty()) {
-                    Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                int count;
-                try {
-                    count = Integer.parseInt(matchesStr);
-                    if (count < 1) {
-                        Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (NumberFormatException e) {
-                    Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 EBarcodesSymbologies selectedSymbology = (EBarcodesSymbologies) spinnerSymbology.getSelectedItem();
                 if (selectedSymbology == null) {
@@ -530,12 +431,11 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
                 }
 
                 if (existingCondition != null) {
-                    existingCondition.setCount(count);
                     existingCondition.setSymbology(selectedSymbology.getIntValue());
                     existingCondition.setDescription(description.isEmpty() ? null : description);
                     conditionList.updateCondition(existingCondition);
                 } else {
-                    AutoCaptureCondition newCondition = new AutoCaptureCondition(count, selectedSymbology.getIntValue());
+                    FilteringCondition newCondition = new FilteringCondition(selectedSymbology.getIntValue());
                     newCondition.setDescription(description.isEmpty() ? null : description);
                     conditionList.addCondition(newCondition);
                 }
@@ -547,9 +447,8 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void showComplexConditionDialog(AutoCaptureCondition existingCondition) {
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_complex_condition, null);
-        EditText etMinimumMatches = dialogView.findViewById(R.id.etMinimumMatches);
+    private void showComplexConditionDialog(FilteringCondition existingCondition) {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_filtering_complex, null);
         Spinner spinnerSymbology = dialogView.findViewById(R.id.spinnerSymbology);
         EditText etRegexPattern = dialogView.findViewById(R.id.etRegexPattern);
         Button btPickPredefined = dialogView.findViewById(R.id.btPickPredefined);
@@ -576,7 +475,6 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
 
         // Pre-fill values if editing existing condition
         if (existingCondition != null) {
-            etMinimumMatches.setText(String.valueOf(existingCondition.getCount()));
             etRegexPattern.setText(existingCondition.getRegex());
             // Find and select the existing symbology
             EBarcodesSymbologies existingSymbology = EBarcodesSymbologies.fromInt(existingCondition.getSymbology());
@@ -609,26 +507,8 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         dialog.setOnShowListener(d -> {
             Button positiveBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             positiveBtn.setOnClickListener(v -> {
-                String matchesStr = etMinimumMatches.getText().toString().trim();
                 String regex = etRegexPattern.getText().toString().trim();
                 String description = etDescription.getText().toString().trim();
-
-                if (matchesStr.isEmpty()) {
-                    Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                int count;
-                try {
-                    count = Integer.parseInt(matchesStr);
-                    if (count < 1) {
-                        Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (NumberFormatException e) {
-                    Toast.makeText(this, getString(R.string.invalid_count), Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 EBarcodesSymbologies selectedSymbology = (EBarcodesSymbologies) spinnerSymbology.getSelectedItem();
                 if (selectedSymbology == null) {
@@ -650,13 +530,12 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
                 }
 
                 if (existingCondition != null) {
-                    existingCondition.setCount(count);
                     existingCondition.setSymbology(selectedSymbology.getIntValue());
                     existingCondition.setRegex(regex);
                     existingCondition.setDescription(description.isEmpty() ? null : description);
                     conditionList.updateCondition(existingCondition);
                 } else {
-                    AutoCaptureCondition newCondition = new AutoCaptureCondition(count, selectedSymbology.getIntValue(), regex);
+                    FilteringCondition newCondition = new FilteringCondition(selectedSymbology.getIntValue(), regex);
                     newCondition.setDescription(description.isEmpty() ? null : description);
                     conditionList.addCondition(newCondition);
                 }
@@ -668,7 +547,7 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void showDeleteConfirmationDialog(AutoCaptureCondition condition) {
+    private void showDeleteConfirmationDialog(FilteringCondition condition) {
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.delete_condition))
                 .setMessage(getString(R.string.are_you_sure))
