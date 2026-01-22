@@ -23,33 +23,47 @@ if exist "C:\xampp" (
 
 echo [INFO] Detecting network IP addresses...
 
-REM 10.x.x.x range
-set LOCAL_IP=
-    for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "10\."') do (
-        set LOCAL_IP_RAW=%%a
-        goto :found_local_ip
-    )
-
-REM Get local IP address - try 192.168.x.x
-
-if "%LOCAL_IP%"=="" (
-	for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "192.168"') do (
-		set LOCAL_IP_RAW=%%a
-		goto :found_local_ip
-	)
+REM Collect all IPv4 addresses with interface names using PowerShell
+set COUNT=0
+for /f "tokens=1,2,3 delims=|" %%A in ('powershell -NoProfile -Command "Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -match '^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)' } | ForEach-Object { $iface = (Get-NetAdapter -InterfaceIndex $_.InterfaceIndex -ErrorAction SilentlyContinue).Name; if(-not $iface){ $iface='Unknown' }; Write-Output ($_.IPAddress + '|' + $iface + '|') }"') do (
+    set /a COUNT+=1
+    set "IP_!COUNT!=%%A"
+    set "IFACE_!COUNT!=%%B"
 )
 
-
-:found_local_ip
-REM Trim whitespace from LOCAL_IP
-if defined LOCAL_IP_RAW (
-    for /f "tokens=*" %%a in ("%LOCAL_IP_RAW%") do set LOCAL_IP=%%a
+REM Handle based on number of interfaces found
+if !COUNT!==0 (
+    echo [WARNING] No private IP addresses found, using localhost
+    set LOCAL_IP=127.0.0.1
+    goto :ip_selected
 )
 
-REM Set fallback if no IP detected
-if "%LOCAL_IP%"=="" set LOCAL_IP=127.0.0.1
+if !COUNT!==1 (
+    set "LOCAL_IP=!IP_1!"
+    echo [OK] Local IP detected: !LOCAL_IP! ^(!IFACE_1!^)
+    goto :ip_selected
+)
 
-echo [OK] Local IP detected: %LOCAL_IP%
+REM Multiple interfaces found - let user select
+echo.
+echo Found !COUNT! network interfaces:
+echo.
+for /L %%i in (1,1,!COUNT!) do (
+    echo   %%i. !IP_%%i! - !IFACE_%%i!
+)
+echo.
+set /p "CHOICE=Select interface [1-!COUNT!]: "
+
+REM Validate choice
+if "!CHOICE!"=="" set CHOICE=1
+if !CHOICE! LSS 1 set CHOICE=1
+if !CHOICE! GTR !COUNT! set CHOICE=!COUNT!
+
+set "LOCAL_IP=!IP_%CHOICE%!"
+echo.
+echo [OK] Selected: !LOCAL_IP! ^(!IFACE_%CHOICE%!^)
+
+:ip_selected
 
 REM Try to get external IP using PowerShell
 echo [INFO] Detecting external IP address...

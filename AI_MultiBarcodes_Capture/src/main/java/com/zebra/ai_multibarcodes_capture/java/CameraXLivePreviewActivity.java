@@ -56,6 +56,9 @@ import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
+import com.zebra.ai_multibarcodes_capture.helpers.camera.CameraResolutionProviderFactory;
+import com.zebra.ai_multibarcodes_capture.helpers.camera.DynamicCameraResolutionProvider;
+import com.zebra.ai_multibarcodes_capture.helpers.camera.ICameraResolutionProvider;
 import com.zebra.ai_multibarcodes_capture.managedconfig.ManagedConfigurationReceiver;
 
 import com.zebra.ai_multibarcodes_capture.settings.SettingsActivity;
@@ -145,7 +148,7 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
     // Raw sensor dimensions (before rotation adjustment)
     private int rawSensorWidth;
     private int rawSensorHeight;
-    private final int lensFacing = CameraSelector.LENS_FACING_BACK;
+    private ICameraResolutionProvider cameraResolutionProvider;
     private CameraSelector cameraSelector;
     private ResolutionSelector resolutionSelector;
     private final ExecutorService executors = Executors.newFixedThreadPool(3);
@@ -222,14 +225,10 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         LogUtils.d(TAG, "Camera mode: " + (isHttpsPostMode ? "HTTPS Post" : "File") +
                    ", FilePath: " + captureFilePath + ", Endpoint: " + endpointUri);
 
-        // Initialize selectedSize from shared preferences
-        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        String cameraResolutionString = sharedPreferences.getString(Constants.SHARED_PREFERENCES_CAMERA_RESOLUTION, Constants.SHARED_PREFERENCES_CAMERA_RESOLUTION_DEFAULT);
-        ECameraResolution cameraResolution = ECameraResolution.valueOf(cameraResolutionString);
-        selectedSize = new Size(cameraResolution.getWidth(), cameraResolution.getHeight());
+        // Initialize camera resolution provider and selected size
+        loadCameraSettings();
 
         binding = ActivityCameraXlivePreviewBinding.inflate(getLayoutInflater());
-        cameraSelector = new CameraSelector.Builder().requireLensFacing(lensFacing).build();
         setContentView(binding.getRoot());
 
         ThemeHelpers.applyCustomFont(this);
@@ -750,6 +749,35 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
         isAutoCaptureEnabled = AutoCapturePreferencesHelper.isAutoCaptureEnabled(this);
         autoCaptureConditions = AutoCapturePreferencesHelper.loadConditions(this);
         LogUtils.d(TAG, "Auto capture enabled: " + isAutoCaptureEnabled + ", conditions: " + (autoCaptureConditions != null ? autoCaptureConditions.size() : 0));
+    }
+
+    /**
+     * Load camera settings using the ICameraResolutionProvider strategy pattern.
+     * Creates the appropriate provider (Static or Dynamic) based on user preferences.
+     */
+    private void loadCameraSettings() {
+        LogUtils.d(TAG, "=== loadCameraSettings() START ===");
+
+        // Create the appropriate provider based on saved preferences
+        cameraResolutionProvider = CameraResolutionProviderFactory.create(this);
+
+        LogUtils.d(TAG, "Camera resolution provider mode: " + cameraResolutionProvider.getMode());
+        LogUtils.d(TAG, "Camera: " + cameraResolutionProvider.getCameraDisplayName(this));
+        LogUtils.d(TAG, "Resolution: " + cameraResolutionProvider.getResolutionDisplayName(this));
+
+        // Get the resolution from the provider
+        selectedSize = cameraResolutionProvider.getResolution();
+        LogUtils.d(TAG, "Selected size: " + selectedSize.getWidth() + "x" + selectedSize.getHeight());
+
+        // Get the camera selector from the provider
+        // For dynamic mode, we need to use the getCameraSelector(context) method
+        if (cameraResolutionProvider instanceof DynamicCameraResolutionProvider) {
+            cameraSelector = ((DynamicCameraResolutionProvider) cameraResolutionProvider).getCameraSelector(this);
+        } else {
+            cameraSelector = cameraResolutionProvider.getCameraSelector();
+        }
+
+        LogUtils.d(TAG, "=== loadCameraSettings() END ===");
     }
 
     /**

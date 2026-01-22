@@ -1,23 +1,50 @@
 @echo off
+setlocal enabledelayedexpansion
 
 echo Updating network IP in Docker container...
+echo.
 
-REM Get local IP using basic Windows commands
-for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "192.168"') do (
-    for /f "tokens=*" %%b in ("%%a") do set LOCAL_IP=%%b
+REM Collect all IPv4 addresses with interface names using PowerShell
+set COUNT=0
+for /f "tokens=1,2,3 delims=|" %%A in ('powershell -NoProfile -Command "Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -match '^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)' } | ForEach-Object { $iface = (Get-NetAdapter -InterfaceIndex $_.InterfaceIndex -ErrorAction SilentlyContinue).Name; if(-not $iface){ $iface='Unknown' }; Write-Output ($_.IPAddress + '|' + $iface + '|') }"') do (
+    set /a COUNT+=1
+    set "IP_!COUNT!=%%A"
+    set "IFACE_!COUNT!=%%B"
 )
 
-REM Fallback to other private ranges if 192.168 not found
-if "%LOCAL_IP%"=="" (
-    for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "10\."') do (
-        for /f "tokens=*" %%b in ("%%a") do set LOCAL_IP=%%b
-    )
+REM Handle based on number of interfaces found
+if !COUNT!==0 (
+    echo [WARNING] No private IP addresses found, using localhost
+    set LOCAL_IP=127.0.0.1
+    goto :ip_selected
 )
 
-REM Set fallback if no IP detected
-if "%LOCAL_IP%"=="" set LOCAL_IP=127.0.0.1
+if !COUNT!==1 (
+    set "LOCAL_IP=!IP_1!"
+    echo [OK] Detected local IP: !LOCAL_IP! ^(!IFACE_1!^)
+    goto :ip_selected
+)
 
-echo Detected local IP: %LOCAL_IP%
+REM Multiple interfaces found - let user select
+echo Found !COUNT! network interfaces:
+echo.
+for /L %%i in (1,1,!COUNT!) do (
+    echo   %%i. !IP_%%i! - !IFACE_%%i!
+)
+echo.
+set /p "CHOICE=Select interface [1-!COUNT!]: "
+
+REM Validate choice
+if "!CHOICE!"=="" set CHOICE=1
+if !CHOICE! LSS 1 set CHOICE=1
+if !CHOICE! GTR !COUNT! set CHOICE=!COUNT!
+
+set "LOCAL_IP=!IP_%CHOICE%!"
+echo.
+echo [OK] Selected: !LOCAL_IP! ^(!IFACE_%CHOICE%!^)
+
+:ip_selected
+echo.
 
 REM Update IP configuration directly in container
 docker exec multibarcode-webinterface bash -c "mkdir -p /var/www/html/config"

@@ -211,6 +211,25 @@ public class Constants {
     // Camera Resolution preferences
     public static final String SHARED_PREFERENCES_CAMERA_RESOLUTION = "SHARED_PREFERENCES_CAMERA_RESOLUTION";
     public static final String SHARED_PREFERENCES_CAMERA_RESOLUTION_DEFAULT = "MP_2";
+
+    // Resolution mode: "static" or "dynamic"
+    public static final String SHARED_PREFERENCES_RESOLUTION_MODE = "RESOLUTION_MODE";
+    public static final String SHARED_PREFERENCES_RESOLUTION_MODE_DEFAULT = "static";
+
+    // Dynamic mode settings
+    public static final String SHARED_PREFERENCES_SELECTED_CAMERA_ID = "SELECTED_CAMERA_ID";
+    public static final String SHARED_PREFERENCES_SELECTED_CAMERA_ID_DEFAULT = "0"; // Usually back camera
+
+    public static final String SHARED_PREFERENCES_DYNAMIC_RESOLUTION_WIDTH = "DYNAMIC_RESOLUTION_WIDTH";
+    public static final String SHARED_PREFERENCES_DYNAMIC_RESOLUTION_HEIGHT = "DYNAMIC_RESOLUTION_HEIGHT";
+    public static final int SHARED_PREFERENCES_DYNAMIC_RESOLUTION_WIDTH_DEFAULT = 1920;
+    public static final int SHARED_PREFERENCES_DYNAMIC_RESOLUTION_HEIGHT_DEFAULT = 1080;
+
+    // Resolution filter mode: "standard" or "all"
+    public static final String SHARED_PREFERENCES_RESOLUTION_FILTER = "RESOLUTION_FILTER";
+    public static final String SHARED_PREFERENCES_RESOLUTION_FILTER_DEFAULT = "standard";
+    public static final String RESOLUTION_FILTER_STANDARD = "standard";
+    public static final String RESOLUTION_FILTER_ALL = "all";
     
     // Inference Type preferences
     public static final String SHARED_PREFERENCES_INFERENCE_TYPE = "SHARED_PREFERENCES_INFERENCE_TYPE";

@@ -170,27 +170,50 @@ echo "✅ Docker image built successfully"
 
 # Detect host IP address for proper Android connectivity
 echo "🔍 Detecting host IP address..."
-HOST_IP=""
 
-# Method 1: Try to get 192.168.x.x IP address (most common for home/office networks)
-HOST_IP=$(hostname -I 2>/dev/null | tr ' ' '\n' | grep '^192\.168\.' | head -1)
+# Collect all private IPv4 addresses with interface names
+declare -a IPS
+declare -a IFACES
+COUNT=0
 
-# Method 2: Fallback to any private IP that's not Docker
-if [ -z "$HOST_IP" ]; then
-    HOST_IP=$(hostname -I 2>/dev/null | tr ' ' '\n' | grep -E '^(10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)'| grep -v '^172\.(1[7-9]|2[0-9]|3[0-1])\.' | head -1)
-fi
+while IFS= read -r line; do
+    # Extract interface name and IP
+    iface=$(echo "$line" | awk '{print $1}')
+    ip=$(echo "$line" | awk '{print $2}')
+    # Only include private IPs (exclude Docker bridge IPs 172.17-31.x.x)
+    if [[ "$ip" =~ ^192\.168\. ]] || [[ "$ip" =~ ^10\. ]]; then
+        IPS[$COUNT]="$ip"
+        IFACES[$COUNT]="$iface"
+        ((COUNT++))
+    fi
+done < <(ip -4 addr show 2>/dev/null | awk '/inet / {gsub(/\/.*/, "", $2); print $NF, $2}' || hostname -I 2>/dev/null | tr ' ' '\n' | grep -E '^[0-9]+\.' | while read ip; do echo "unknown $ip"; done)
 
-# Method 3: Use ip route to get source IP for external connectivity
-if [ -z "$HOST_IP" ]; then
-    HOST_IP=$(ip route get 8.8.8.8 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i=="src") print $(i+1)}' | head -1)
-fi
-
-# Method 4: Fallback to localhost
-if [ -z "$HOST_IP" ]; then
+# Handle based on number of interfaces found
+if [ $COUNT -eq 0 ]; then
     echo "⚠️  Warning: Could not detect host IP automatically, using localhost"
     HOST_IP="127.0.0.1"
+elif [ $COUNT -eq 1 ]; then
+    HOST_IP="${IPS[0]}"
+    echo "✅ Detected host IP: $HOST_IP (${IFACES[0]})"
 else
-    echo "✅ Detected host IP: $HOST_IP"
+    # Multiple interfaces found - let user select
+    echo ""
+    echo "Found $COUNT network interfaces:"
+    echo ""
+    for i in $(seq 0 $((COUNT-1))); do
+        echo "  $((i+1)). ${IPS[$i]} - ${IFACES[$i]}"
+    done
+    echo ""
+    read -p "Select interface [1-$COUNT]: " CHOICE
+
+    # Validate choice
+    if [ -z "$CHOICE" ] || [ "$CHOICE" -lt 1 ] 2>/dev/null || [ "$CHOICE" -gt "$COUNT" ] 2>/dev/null; then
+        CHOICE=1
+    fi
+
+    HOST_IP="${IPS[$((CHOICE-1))]}"
+    echo ""
+    echo "✅ Selected: $HOST_IP (${IFACES[$((CHOICE-1))]})"
 fi
 
 echo "📡 IP addresses will be detected automatically by the website"

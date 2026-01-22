@@ -36,12 +36,16 @@ import com.zebra.ai_multibarcodes_capture.filtering.FilteringConditionsActivity;
 import com.zebra.ai_multibarcodes_capture.filtering.FilteringPreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.filemanagement.EExportMode;
 import com.zebra.ai_multibarcodes_capture.helpers.CameraResolutionHelper;
+import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
 import com.zebra.ai_multibarcodes_capture.helpers.ECameraResolution;
 import com.zebra.ai_multibarcodes_capture.helpers.EProcessingMode;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
+import com.zebra.ai_multibarcodes_capture.helpers.camera.AvailableCamera;
+import com.zebra.ai_multibarcodes_capture.helpers.camera.CameraResolutionProviderFactory;
+import com.zebra.ai_multibarcodes_capture.helpers.camera.DynamicCameraResolutionProvider;
 
 import android.util.Size;
 import java.util.List;
@@ -124,6 +128,18 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox cbEnableAutoCapture;
     private Button btEditAutoCaptureConditions;
     private boolean isAutoCaptureExpanded = false;
+
+    // Dynamic Camera Selection views
+    private Spinner spinnerResolutionMode;
+    private Spinner spinnerCameraSelection;
+    private Spinner spinnerResolutionSelection;
+    private Spinner spinnerResolutionFilter;
+    private LinearLayout llStaticResolutionSection;
+    private LinearLayout llDynamicResolutionSection;
+    private TextView tvCameraInfo;
+    private List<AvailableCamera> availableCameras;
+    private DynamicCameraResolutionProvider dynamicProvider;
+    private boolean useStandardResolutions = true;
 
     private DWScanReceiver mScanReceiver;
 
@@ -289,6 +305,18 @@ public class SettingsActivity extends AppCompatActivity {
         llAutoCaptureContent = findViewById(R.id.llAutoCaptureContent);
         cbEnableAutoCapture = findViewById(R.id.cbEnableAutoCapture);
         btEditAutoCaptureConditions = findViewById(R.id.btEditAutoCaptureConditions);
+
+        // Dynamic Camera Selection views
+        spinnerResolutionMode = findViewById(R.id.spinnerResolutionMode);
+        spinnerCameraSelection = findViewById(R.id.spinnerCameraSelection);
+        spinnerResolutionSelection = findViewById(R.id.spinnerResolutionSelection);
+        spinnerResolutionFilter = findViewById(R.id.spinnerResolutionFilter);
+        llStaticResolutionSection = findViewById(R.id.llStaticResolutionSection);
+        llDynamicResolutionSection = findViewById(R.id.llDynamicResolutionSection);
+        tvCameraInfo = findViewById(R.id.tvCameraInfo);
+
+        // Setup resolution mode spinner
+        setupResolutionModeSpinner();
 
         // Initially hide the LinearLayout and set collapsed state
         llSymbologies.setVisibility(View.GONE);
@@ -886,6 +914,259 @@ public class SettingsActivity extends AppCompatActivity {
         // No automatic prefix enforcement - allow both HTTP and HTTPS
     }
 
+    private void setupResolutionModeSpinner() {
+        // Create array of resolution mode display names
+        String[] resolutionModeNames = new String[]{
+            getString(R.string.resolution_mode_static),
+            getString(R.string.resolution_mode_dynamic)
+        };
+
+        // Create adapter and set to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, resolutionModeNames);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerResolutionMode.setAdapter(adapter);
+
+        // Set current selection based on saved preferences
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String currentMode = sharedPreferences.getString(SHARED_PREFERENCES_RESOLUTION_MODE, SHARED_PREFERENCES_RESOLUTION_MODE_DEFAULT);
+
+        // Set spinner selection: 0 for static, 1 for dynamic
+        int modePosition = currentMode.equals(CameraResolutionProviderFactory.MODE_DYNAMIC) ? 1 : 0;
+        spinnerResolutionMode.setSelection(modePosition);
+
+        // Update UI visibility based on current mode
+        updateResolutionModeVisibility(modePosition);
+
+        // Set up selection listener
+        spinnerResolutionMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private boolean isFirstSelection = true;
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Skip the first automatic selection when spinner is initialized
+                if (isFirstSelection) {
+                    isFirstSelection = false;
+                    return;
+                }
+
+                updateResolutionModeVisibility(position);
+
+                // If switching to dynamic mode, initialize the dynamic camera selection
+                if (position == 1) {
+                    initializeDynamicCameraSelection();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+
+        // Initialize dynamic camera selection if already in dynamic mode
+        if (modePosition == 1) {
+            initializeDynamicCameraSelection();
+        }
+    }
+
+    private void updateResolutionModeVisibility(int modePosition) {
+        if (modePosition == 0) {
+            // Static mode
+            llStaticResolutionSection.setVisibility(View.VISIBLE);
+            llDynamicResolutionSection.setVisibility(View.GONE);
+        } else {
+            // Dynamic mode
+            llStaticResolutionSection.setVisibility(View.GONE);
+            llDynamicResolutionSection.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void initializeDynamicCameraSelection() {
+        // Get available cameras
+        availableCameras = CameraResolutionHelper.getAllAvailableCameras(this);
+
+        if (availableCameras.isEmpty()) {
+            tvCameraInfo.setText(getString(R.string.no_cameras_found));
+            return;
+        }
+
+        // Load saved resolution filter setting
+        SharedPreferences prefs = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String filterMode = prefs.getString(SHARED_PREFERENCES_RESOLUTION_FILTER, SHARED_PREFERENCES_RESOLUTION_FILTER_DEFAULT);
+        useStandardResolutions = filterMode.equals(Constants.RESOLUTION_FILTER_STANDARD);
+
+        // Create dynamic provider to load saved settings
+        dynamicProvider = new DynamicCameraResolutionProvider();
+        dynamicProvider.loadSettings(this);
+
+        // Setup camera selection spinner
+        setupCameraSelectionSpinner();
+
+        // Setup resolution filter spinner
+        setupResolutionFilterSpinner();
+
+        // Setup resolution selection spinner for the selected camera
+        setupResolutionSelectionSpinner();
+    }
+
+    private void setupResolutionFilterSpinner() {
+        // Create array of filter mode display names
+        String[] filterModeNames = new String[]{
+            getString(R.string.resolution_filter_standard),
+            getString(R.string.resolution_filter_all)
+        };
+
+        // Create adapter and set to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, filterModeNames);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerResolutionFilter.setAdapter(adapter);
+
+        // Set current selection: 0 for standard, 1 for all
+        int filterPosition = useStandardResolutions ? 0 : 1;
+        spinnerResolutionFilter.setSelection(filterPosition);
+
+        // Set up selection listener
+        spinnerResolutionFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private boolean isFirstSelection = true;
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Skip the first automatic selection when spinner is initialized
+                if (isFirstSelection) {
+                    isFirstSelection = false;
+                    return;
+                }
+
+                useStandardResolutions = (position == 0);
+                // Refresh resolution spinner with new filter
+                setupResolutionSelectionSpinner();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+    }
+
+    private void setupCameraSelectionSpinner() {
+        if (availableCameras == null || availableCameras.isEmpty()) {
+            return;
+        }
+
+        // Create array of camera display names
+        String[] cameraNames = new String[availableCameras.size()];
+        for (int i = 0; i < availableCameras.size(); i++) {
+            cameraNames[i] = availableCameras.get(i).getLocalizedDisplayName(this);
+        }
+
+        // Create adapter and set to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, cameraNames);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerCameraSelection.setAdapter(adapter);
+
+        // Find and set current selection based on saved camera ID
+        String savedCameraId = dynamicProvider.getSelectedCameraId();
+        int selectedPosition = 0;
+        for (int i = 0; i < availableCameras.size(); i++) {
+            if (availableCameras.get(i).getCameraId().equals(savedCameraId)) {
+                selectedPosition = i;
+                break;
+            }
+        }
+        spinnerCameraSelection.setSelection(selectedPosition);
+
+        // Update camera info display
+        updateCameraInfoDisplay(availableCameras.get(selectedPosition));
+
+        // Set up selection listener
+        spinnerCameraSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                AvailableCamera selectedCamera = availableCameras.get(position);
+                dynamicProvider.setSelectedCameraId(selectedCamera.getCameraId());
+
+                // Update camera info display
+                updateCameraInfoDisplay(selectedCamera);
+
+                // Update resolution spinner for the new camera
+                setupResolutionSelectionSpinner();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+    }
+
+    private void updateCameraInfoDisplay(AvailableCamera camera) {
+        if (camera != null && tvCameraInfo != null) {
+            String flashStatus = camera.hasFlash() ? getString(R.string.flash_yes) : getString(R.string.flash_no);
+            String info = String.format(getString(R.string.camera_info_format), camera.getFocalLength(), flashStatus);
+            tvCameraInfo.setText(info);
+        }
+    }
+
+    private void setupResolutionSelectionSpinner() {
+        if (dynamicProvider == null) {
+            return;
+        }
+
+        // Get resolutions for the selected camera
+        List<Size> resolutions = dynamicProvider.getResolutionsForSelectedCamera(this);
+
+        if (resolutions == null || resolutions.isEmpty()) {
+            tvCameraInfo.setText(getString(R.string.no_resolutions_found));
+            return;
+        }
+
+        // Apply filter if using standard resolutions only
+        if (useStandardResolutions) {
+            resolutions = CameraResolutionHelper.filterToStandardResolutions(resolutions);
+        }
+
+        // Create array of resolution display names
+        String[] resolutionNames = new String[resolutions.size()];
+        for (int i = 0; i < resolutions.size(); i++) {
+            resolutionNames[i] = AvailableCamera.formatResolution(resolutions.get(i));
+        }
+
+        // Create adapter and set to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, resolutionNames);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerResolutionSelection.setAdapter(adapter);
+
+        // Find and set current selection based on saved resolution
+        Size savedResolution = dynamicProvider.getResolution();
+        int selectedPosition = 0;
+        for (int i = 0; i < resolutions.size(); i++) {
+            Size res = resolutions.get(i);
+            if (res.getWidth() == savedResolution.getWidth() && res.getHeight() == savedResolution.getHeight()) {
+                selectedPosition = i;
+                break;
+            }
+        }
+        spinnerResolutionSelection.setSelection(selectedPosition);
+
+        // Set up selection listener
+        final List<Size> finalResolutions = resolutions;
+        spinnerResolutionSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position < finalResolutions.size()) {
+                    Size selectedResolution = finalResolutions.get(position);
+                    dynamicProvider.setSelectedResolution(selectedResolution);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+    }
+
     private void updateSectionVisibility(int selectedPosition) {
         if (selectedPosition >= 0 && selectedPosition < EProcessingMode.values().length) {
             EProcessingMode selectedMode = EProcessingMode.values()[selectedPosition];
@@ -997,23 +1278,40 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void saveCameraResolution(SharedPreferences.Editor editor) {
-        String cameraResolution = "MP_2"; // Default
+        // Save resolution mode
+        int modePosition = spinnerResolutionMode.getSelectedItemPosition();
+        String mode = (modePosition == 1) ? CameraResolutionProviderFactory.MODE_DYNAMIC : CameraResolutionProviderFactory.MODE_STATIC;
+        editor.putString(SHARED_PREFERENCES_RESOLUTION_MODE, mode);
 
-        if (rb1MPResolution.isChecked()) {
-            cameraResolution = "MP_1";
-        } else if (rb4MPResolution.isChecked()) {
-            cameraResolution = "MP_4";
-        } else if (rb8MPResolution.isChecked()) {
-            cameraResolution = "MP_8";
-        } else if (rb12MPResolution.isChecked()) {
-            cameraResolution = "MP_12";
-        } else if (rb12_5MPResolution.isChecked()) {
-            cameraResolution = "MP_12_5";
-        } else if (rb12_6MPResolution.isChecked()) {
-            cameraResolution = "MP_12_6";
+        if (mode.equals(CameraResolutionProviderFactory.MODE_STATIC)) {
+            // Save static resolution
+            String cameraResolution = "MP_2"; // Default
+
+            if (rb1MPResolution.isChecked()) {
+                cameraResolution = "MP_1";
+            } else if (rb4MPResolution.isChecked()) {
+                cameraResolution = "MP_4";
+            } else if (rb8MPResolution.isChecked()) {
+                cameraResolution = "MP_8";
+            } else if (rb12MPResolution.isChecked()) {
+                cameraResolution = "MP_12";
+            } else if (rb12_5MPResolution.isChecked()) {
+                cameraResolution = "MP_12_5";
+            } else if (rb12_6MPResolution.isChecked()) {
+                cameraResolution = "MP_12_6";
+            }
+
+            editor.putString(SHARED_PREFERENCES_CAMERA_RESOLUTION, cameraResolution);
+        } else {
+            // Save dynamic resolution settings
+            if (dynamicProvider != null) {
+                dynamicProvider.saveSettings(this);
+            }
+
+            // Save resolution filter setting
+            String filterMode = useStandardResolutions ? Constants.RESOLUTION_FILTER_STANDARD : Constants.RESOLUTION_FILTER_ALL;
+            editor.putString(SHARED_PREFERENCES_RESOLUTION_FILTER, filterMode);
         }
-
-        editor.putString(SHARED_PREFERENCES_CAMERA_RESOLUTION, cameraResolution);
     }
 
     private void saveInferenceType(SharedPreferences.Editor editor) {

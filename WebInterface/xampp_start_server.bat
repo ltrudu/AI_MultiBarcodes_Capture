@@ -190,29 +190,48 @@ if errorlevel 1 (
 REM Get host IP address for display
 echo.
 echo [INFO] Detecting host IP address...
-for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "192.168"') do (
-    set HOST_IP_RAW=%%a
-    goto :found_ip
-)
-:found_ip
-for /f "tokens=*" %%a in ("%HOST_IP_RAW%") do set HOST_IP=%%a
 
-if "%HOST_IP%"=="" (
-    REM Fallback: try to get any private IP
-    for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr "IPv4" ^| findstr "10\."') do (
-        set HOST_IP_RAW=%%a
-        goto :found_fallback_ip
-    )
-    :found_fallback_ip
-    for /f "tokens=*" %%a in ("%HOST_IP_RAW%") do set HOST_IP=%%a
+REM Collect all IPv4 addresses with interface names using PowerShell
+set IP_COUNT=0
+for /f "tokens=1,2,3 delims=|" %%A in ('powershell -NoProfile -Command "Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -match '^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)' } | ForEach-Object { $iface = (Get-NetAdapter -InterfaceIndex $_.InterfaceIndex -ErrorAction SilentlyContinue).Name; if(-not $iface){ $iface='Unknown' }; Write-Output ($_.IPAddress + '|' + $iface + '|') }"') do (
+    set /a IP_COUNT+=1
+    set "IP_!IP_COUNT!=%%A"
+    set "IFACE_!IP_COUNT!=%%B"
 )
 
-if "%HOST_IP%"=="" (
+REM Handle based on number of interfaces found
+if !IP_COUNT!==0 (
     echo [WARNING] Could not detect host IP automatically
     set HOST_IP=YOUR_COMPUTER_IP
-) else (
-    echo [OK] Detected host IP: %HOST_IP%
+    goto :ip_display_done
 )
+
+if !IP_COUNT!==1 (
+    set "HOST_IP=!IP_1!"
+    echo [OK] Detected host IP: !HOST_IP! ^(!IFACE_1!^)
+    goto :ip_display_done
+)
+
+REM Multiple interfaces found - let user select
+echo.
+echo Found !IP_COUNT! network interfaces:
+echo.
+for /L %%i in (1,1,!IP_COUNT!) do (
+    echo   %%i. !IP_%%i! - !IFACE_%%i!
+)
+echo.
+set /p "IP_CHOICE=Select interface [1-!IP_COUNT!]: "
+
+REM Validate choice
+if "!IP_CHOICE!"=="" set IP_CHOICE=1
+if !IP_CHOICE! LSS 1 set IP_CHOICE=1
+if !IP_CHOICE! GTR !IP_COUNT! set IP_CHOICE=!IP_COUNT!
+
+set "HOST_IP=!IP_%IP_CHOICE%!"
+echo.
+echo [OK] Selected: !HOST_IP! ^(!IFACE_%IP_CHOICE%!^)
+
+:ip_display_done
 
 echo.
 echo =========================================================

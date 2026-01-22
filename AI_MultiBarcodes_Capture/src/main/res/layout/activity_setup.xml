@@ -1111,132 +1111,241 @@
                     android:textSize="14sp"
                     android:layout_marginBottom="16dp" />
 
-                <RadioGroup
-                    android:id="@+id/rgCameraResolution"
+                <!-- Resolution Mode Selector -->
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:text="@string/resolution_mode"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
 
-                    <RadioButton
-                        android:id="@+id/rb1MPResolution"
+                <Spinner
+                    android:id="@+id/spinnerResolutionMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_rectangle_background"
+                    android:minHeight="48dp"
+                    android:popupBackground="?attr/colorSurface"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Static Mode Section -->
+                <LinearLayout
+                    android:id="@+id/llStaticResolutionSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <RadioGroup
+                        android:id="@+id/rgCameraResolution"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="?attr/colorPrimary"
-                        android:text="@string/camera_resolution_1mp"
-                        android:layout_marginBottom="4dp" />
+                        android:orientation="vertical">
 
+                        <RadioButton
+                            android:id="@+id/rb1MPResolution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="?attr/colorPrimary"
+                            android:text="@string/camera_resolution_1mp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/camera_resolution_1mp_description"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginBottom="12dp" />
+
+                        <RadioButton
+                            android:id="@+id/rb2MPResolution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="?attr/colorPrimary"
+                            android:text="@string/camera_resolution_2mp"
+                            android:checked="true"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/camera_resolution_2mp_description"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginBottom="12dp" />
+
+                        <RadioButton
+                            android:id="@+id/rb4MPResolution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="?attr/colorPrimary"
+                            android:text="@string/camera_resolution_4mp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/camera_resolution_4mp_description"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginBottom="12dp" />
+
+                        <RadioButton
+                            android:id="@+id/rb8MPResolution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="?attr/colorPrimary"
+                            android:text="@string/camera_resolution_8mp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/camera_resolution_8mp_description"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginBottom="12dp" />
+
+                        <RadioButton
+                            android:id="@+id/rb12MPResolution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="?attr/colorPrimary"
+                            android:text="@string/camera_resolution_12mp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/camera_resolution_12mp_description"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginBottom="12dp" />
+
+                        <RadioButton
+                            android:id="@+id/rb12_5MPResolution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="?attr/colorPrimary"
+                            android:text="@string/camera_resolution_12_5mp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/camera_resolution_12_5mp_description"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginBottom="12dp" />
+
+                        <RadioButton
+                            android:id="@+id/rb12_6MPResolution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="?attr/colorPrimary"
+                            android:text="@string/camera_resolution_12_6mp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/camera_resolution_12_6mp_description"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_marginStart="32dp" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <!-- Dynamic Mode Section -->
+                <LinearLayout
+                    android:id="@+id/llDynamicResolutionSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <!-- Experimental Warning -->
+                    <TextView
+                        android:id="@+id/tvDynamicModeWarning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/resolution_mode_dynamic_warning"
+                        android:textColor="@android:color/holo_orange_dark"
+                        android:textStyle="italic"
+                        android:padding="8dp"
+                        android:background="#1AFF9800"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Camera Selection -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/camera_resolution_1mp_description"
-                        android:textSize="12sp"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="12dp" />
+                        android:text="@string/camera_selection"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
 
-                    <RadioButton
-                        android:id="@+id/rb2MPResolution"
+                    <Spinner
+                        android:id="@+id/spinnerCameraSelection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="?attr/colorPrimary"
-                        android:text="@string/camera_resolution_2mp"
-                        android:checked="true"
-                        android:layout_marginBottom="4dp" />
+                        android:background="@drawable/rounded_rectangle_background"
+                        android:minHeight="48dp"
+                        android:popupBackground="?attr/colorSurface"
+                        android:layout_marginBottom="8dp" />
 
+                    <!-- Camera Info -->
+                    <TextView
+                        android:id="@+id/tvCameraInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/camera_info"
+                        android:textSize="12sp"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Resolution Filter -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/camera_resolution_2mp_description"
-                        android:textSize="12sp"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="12dp" />
+                        android:text="@string/resolution_filter"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
 
-                    <RadioButton
-                        android:id="@+id/rb4MPResolution"
+                    <Spinner
+                        android:id="@+id/spinnerResolutionFilter"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="?attr/colorPrimary"
-                        android:text="@string/camera_resolution_4mp"
-                        android:layout_marginBottom="4dp" />
+                        android:background="@drawable/rounded_rectangle_background"
+                        android:minHeight="48dp"
+                        android:popupBackground="?attr/colorSurface"
+                        android:layout_marginBottom="16dp" />
 
+                    <!-- Resolution Selection -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/camera_resolution_4mp_description"
-                        android:textSize="12sp"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="12dp" />
+                        android:text="@string/dynamic_resolution_selection"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
 
-                    <RadioButton
-                        android:id="@+id/rb8MPResolution"
+                    <Spinner
+                        android:id="@+id/spinnerResolutionSelection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="?attr/colorPrimary"
-                        android:text="@string/camera_resolution_8mp"
-                        android:layout_marginBottom="4dp" />
+                        android:background="@drawable/rounded_rectangle_background"
+                        android:minHeight="48dp"
+                        android:popupBackground="?attr/colorSurface" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/camera_resolution_8mp_description"
-                        android:textSize="12sp"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="12dp" />
-
-                    <RadioButton
-                        android:id="@+id/rb12MPResolution"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="?attr/colorPrimary"
-                        android:text="@string/camera_resolution_12mp"
-                        android:layout_marginBottom="4dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/camera_resolution_12mp_description"
-                        android:textSize="12sp"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="12dp" />
-
-                    <RadioButton
-                        android:id="@+id/rb12_5MPResolution"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="?attr/colorPrimary"
-                        android:text="@string/camera_resolution_12_5mp"
-                        android:layout_marginBottom="4dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/camera_resolution_12_5mp_description"
-                        android:textSize="12sp"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="12dp" />
-
-                    <RadioButton
-                        android:id="@+id/rb12_6MPResolution"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="?attr/colorPrimary"
-                        android:text="@string/camera_resolution_12_6mp"
-                        android:layout_marginBottom="4dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/camera_resolution_12_6mp_description"
-                        android:textSize="12sp"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:layout_marginStart="32dp" />
-
-                </RadioGroup>
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -207,6 +207,39 @@
     <string name="resolution_large">1600 x 1600 (large)</string>
     <string name="resolution_large_description">Slower; use for small, damaged or distant barcodes</string>
 
+    <!-- Camera Selection -->
+    <string name="camera_selection">Camera</string>
+    <string name="camera_back">Back</string>
+    <string name="camera_front">Front</string>
+    <string name="camera_external">External</string>
+    <string name="camera_wide">Wide</string>
+    <string name="camera_telephoto">Telephoto</string>
+    <string name="camera_ultrawide">Ultra-Wide</string>
+    <string name="camera_info_format">Focal: %.1fmm | Flash: %s</string>
+    <string name="resolution_format">%d x %d (%s)</string>
+    <string name="flash_yes">Yes</string>
+    <string name="flash_no">No</string>
+
+    <!-- Resolution Mode -->
+    <string name="resolution_mode">Resolution Mode</string>
+    <string name="resolution_mode_static">Static (Presets)</string>
+    <string name="resolution_mode_dynamic">Dynamic (Experimental)</string>
+    <string name="resolution_mode_static_description">Use predefined resolution presets</string>
+    <string name="resolution_mode_dynamic_description">Query all device cameras and resolutions</string>
+    <string name="resolution_mode_dynamic_warning">This feature is experimental. Many resolutions may not work correctly with the AI model. Use at your own risk.</string>
+
+    <!-- Dynamic Camera Selection -->
+    <string name="dynamic_camera_selection">Camera Selection</string>
+    <string name="dynamic_resolution_selection">Resolution Selection</string>
+    <string name="camera_info">Camera Info</string>
+    <string name="no_cameras_found">No cameras found</string>
+    <string name="no_resolutions_found">No resolutions found</string>
+
+    <!-- Resolution Filter -->
+    <string name="resolution_filter">Resolution Filter</string>
+    <string name="resolution_filter_standard">Standard Resolutions</string>
+    <string name="resolution_filter_all">All Resolutions (Experimental)</string>
+
     <!-- Camera Resolution Choices -->
     <string name="not_supported">(Not Supported)</string>
     <string name="camera_resolution_1mp">1MP (1280 x 720)</string>

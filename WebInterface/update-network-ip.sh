@@ -1,21 +1,53 @@
 #!/bin/bash
 
 echo "Updating network IP in Docker container..."
+echo ""
 
-# Get local IP using standard commands
-LOCAL_IP=$(hostname -I 2>/dev/null | tr ' ' '\n' | grep '^192\.168\.' | head -1)
+# Collect all private IPv4 addresses with interface names
+declare -a IPS
+declare -a IFACES
+COUNT=0
 
-# Fallback to other private ranges
-if [ -z "$LOCAL_IP" ]; then
-    LOCAL_IP=$(hostname -I 2>/dev/null | tr ' ' '\n' | grep -E '^(10\.|172\.(1[6-9]|2[0-9]|3[0-1]))' | head -1)
-fi
+while IFS= read -r line; do
+    # Extract interface name and IP
+    iface=$(echo "$line" | awk '{print $1}')
+    ip=$(echo "$line" | awk '{print $2}')
+    # Only include private IPs
+    if [[ "$ip" =~ ^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.) ]]; then
+        IPS[$COUNT]="$ip"
+        IFACES[$COUNT]="$iface"
+        ((COUNT++))
+    fi
+done < <(ip -4 addr show 2>/dev/null | awk '/inet / {gsub(/\/.*/, "", $2); print $NF, $2}' || hostname -I 2>/dev/null | tr ' ' '\n' | grep -E '^[0-9]+\.' | while read ip; do echo "unknown $ip"; done)
 
-# Final fallback
-if [ -z "$LOCAL_IP" ]; then
+# Handle based on number of interfaces found
+if [ $COUNT -eq 0 ]; then
+    echo "[WARNING] No private IP addresses found, using localhost"
     LOCAL_IP="127.0.0.1"
+elif [ $COUNT -eq 1 ]; then
+    LOCAL_IP="${IPS[0]}"
+    echo "[OK] Detected local IP: $LOCAL_IP (${IFACES[0]})"
+else
+    # Multiple interfaces found - let user select
+    echo "Found $COUNT network interfaces:"
+    echo ""
+    for i in $(seq 0 $((COUNT-1))); do
+        echo "  $((i+1)). ${IPS[$i]} - ${IFACES[$i]}"
+    done
+    echo ""
+    read -p "Select interface [1-$COUNT]: " CHOICE
+
+    # Validate choice
+    if [ -z "$CHOICE" ] || [ "$CHOICE" -lt 1 ] 2>/dev/null || [ "$CHOICE" -gt "$COUNT" ] 2>/dev/null; then
+        CHOICE=1
+    fi
+
+    LOCAL_IP="${IPS[$((CHOICE-1))]}"
+    echo ""
+    echo "[OK] Selected: $LOCAL_IP (${IFACES[$((CHOICE-1))]})"
 fi
 
-echo "Detected local IP: $LOCAL_IP"
+echo ""
 
 # Update IP configuration directly in container
 docker exec multibarcode-webinterface bash -c "mkdir -p /var/www/html/config"
