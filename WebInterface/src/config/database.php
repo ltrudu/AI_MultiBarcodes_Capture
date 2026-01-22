@@ -9,8 +9,9 @@ class Database {
     public function __construct() {
         $this->host = '127.0.0.1';
         $this->db_name = 'barcode_wms';
-        $this->username = 'wms_user';
-        $this->password = 'wms_password';
+        // Use root for XAMPP (wms_user has permission issues due to mysql system table corruption)
+        $this->username = getenv('DB_USER') ?: 'root';
+        $this->password = getenv('DB_PASS') ?: '';
     }
 
     public function getConnection() {

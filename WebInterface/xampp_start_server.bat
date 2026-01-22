@@ -177,18 +177,7 @@ echo STEP 3: Updating Network IP Configuration
 echo =========================================================
 echo.
 
-REM Update IP configuration file for web interface
-echo [INFO] Updating network IP configuration...
-call "%~dp0xampp_update_network_IP.bat" >nul 2>&1
-if errorlevel 1 (
-    echo [WARNING] IP configuration update failed - QR codes may not work correctly
-    echo [INFO] You can manually run xampp_update_network_IP.bat to update IPs
-) else (
-    echo [OK] Network IP configuration updated successfully
-)
-
-REM Get host IP address for display
-echo.
+REM Detect host IP address once
 echo [INFO] Detecting host IP address...
 
 REM Collect all IPv4 addresses with interface names using PowerShell
@@ -202,14 +191,14 @@ for /f "tokens=1,2,3 delims=|" %%A in ('powershell -NoProfile -Command "Get-NetI
 REM Handle based on number of interfaces found
 if !IP_COUNT!==0 (
     echo [WARNING] Could not detect host IP automatically
-    set HOST_IP=YOUR_COMPUTER_IP
-    goto :ip_display_done
+    set HOST_IP=127.0.0.1
+    goto :ip_selected
 )
 
 if !IP_COUNT!==1 (
     set "HOST_IP=!IP_1!"
     echo [OK] Detected host IP: !HOST_IP! ^(!IFACE_1!^)
-    goto :ip_display_done
+    goto :ip_selected
 )
 
 REM Multiple interfaces found - let user select
@@ -231,7 +220,30 @@ set "HOST_IP=!IP_%IP_CHOICE%!"
 echo.
 echo [OK] Selected: !HOST_IP! ^(!IFACE_%IP_CHOICE%!^)
 
-:ip_display_done
+:ip_selected
+
+REM Write IP configuration file directly (skip calling xampp_update_network_IP.bat)
+echo [INFO] Writing IP configuration...
+
+REM Get external IP
+set EXTERNAL_IP=Unable to detect
+for /f "usebackq delims=" %%i in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "try { (Invoke-WebRequest -Uri 'http://ipinfo.io/ip' -TimeoutSec 5 -UseBasicParsing).Content.Trim() } catch { 'Unable to detect' }" 2^>nul`) do set EXTERNAL_IP=%%i
+
+REM Get timestamp
+for /f "delims=" %%T in ('powershell -NoProfile -Command "Get-Date -Format 'yyyy-MM-ddTHH:mm:ssZ'"') do set TIMESTAMP=%%T
+
+REM Create config directory and write file
+if not exist "%XAMPP_PATH%\htdocs\config" mkdir "%XAMPP_PATH%\htdocs\config"
+(
+echo {
+echo   "local_ip": "!HOST_IP!",
+echo   "external_ip": "%EXTERNAL_IP%",
+echo   "last_updated": "%TIMESTAMP%",
+echo   "detection_method": "xampp_start_server"
+echo }
+) > "%XAMPP_PATH%\htdocs\config\ip-config.json"
+
+echo [OK] IP configuration saved to %XAMPP_PATH%\htdocs\config\ip-config.json
 
 echo.
 echo =========================================================
