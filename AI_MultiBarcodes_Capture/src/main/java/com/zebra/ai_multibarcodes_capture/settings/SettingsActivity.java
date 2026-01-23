@@ -109,6 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox cbDisplayAnalysisPerSecond;
     private CheckBox cbLoggingEnabled;
     private CheckBox cbForceContinuousAutofocus;
+    private CheckBox cbHighResStabilization;
     private CheckBox cbDebounceEnabled;
     private SeekBar sbDebounceMaxFrames;
     private SeekBar sbDebounceThreshold;
@@ -287,6 +288,7 @@ public class SettingsActivity extends AppCompatActivity {
         cbDisplayAnalysisPerSecond = findViewById(R.id.cbDisplayAnalysisPerSecond);
         cbLoggingEnabled = findViewById(R.id.cbLoggingEnabled);
         cbForceContinuousAutofocus = findViewById(R.id.cbForceContinuousAutofocus);
+        cbHighResStabilization = findViewById(R.id.cbHighResStabilization);
         cbDebounceEnabled = findViewById(R.id.cbDebounceEnabled);
         sbDebounceMaxFrames = findViewById(R.id.sbDebounceMaxFrames);
         sbDebounceThreshold = findViewById(R.id.sbDebounceThreshold);
@@ -492,6 +494,7 @@ public class SettingsActivity extends AppCompatActivity {
         loadDisplayAnalysisPerSecond(sharedPreferences);
         loadLoggingEnabled(sharedPreferences);
         loadForceContinuousAutofocus(sharedPreferences);
+        loadHighResStabilization(sharedPreferences);
         loadDebounceSettings(sharedPreferences);
         loadAutoCaptureSettings();
 
@@ -699,6 +702,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveDisplayAnalysisPerSecond(editor);
         saveLoggingEnabled(editor);
         saveForceContinuousAutofocus(editor);
+        saveHighResStabilization(editor);
         saveDebounceSettings(editor);
         saveAutoCaptureSettings();
 
@@ -1712,6 +1716,17 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void saveForceContinuousAutofocus(SharedPreferences.Editor editor) {
         editor.putBoolean(SHARED_PREFERENCES_FORCE_CONTINUOUS_AUTOFOCUS, cbForceContinuousAutofocus.isChecked());
+    }
+
+    private void loadHighResStabilization(SharedPreferences sharedPreferences) {
+        boolean highResStabilizationEnabled = sharedPreferences.getBoolean(
+            SHARED_PREFERENCES_HIGH_RES_STABILIZATION_ENABLED,
+            SHARED_PREFERENCES_HIGH_RES_STABILIZATION_ENABLED_DEFAULT);
+        cbHighResStabilization.setChecked(highResStabilizationEnabled);
+    }
+
+    private void saveHighResStabilization(SharedPreferences.Editor editor) {
+        editor.putBoolean(SHARED_PREFERENCES_HIGH_RES_STABILIZATION_ENABLED, cbHighResStabilization.isChecked());
     }
 
     private void setupDebounceListeners() {

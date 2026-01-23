@@ -3,9 +3,16 @@ package com.zebra.ai_multibarcodes_capture.barcodedecoder;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.zebra.ai.vision.detector.AIVisionSDKException;
+import com.zebra.ai.vision.detector.ImageData;
+import com.zebra.ai.vision.entity.BarcodeEntity;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import com.zebra.ai.vision.detector.AIVisionSDKLicenseException;
 import com.zebra.ai.vision.detector.BarcodeDecoder;
 import com.zebra.ai.vision.detector.InferencerOptions;
@@ -318,5 +325,38 @@ public class BarcodeHandler {
         if (barcodeAnalyzer != null && callback != null) {
             callback.onAnalyzerReady(barcodeAnalyzer);
         }
+    }
+
+    /**
+     * Decodes barcodes from a Bitmap image.
+     * This method is useful for processing high-resolution captures for validation.
+     *
+     * @param bitmap The bitmap to decode barcodes from
+     * @param rotationDegrees The rotation degrees of the image (0, 90, 180, 270)
+     * @return A CompletableFuture containing the list of detected barcode entities,
+     *         or an empty list if the decoder is not available
+     */
+    public CompletableFuture<List<BarcodeEntity>> decodeBitmap(Bitmap bitmap, int rotationDegrees) {
+        if (barcodeDecoder == null || bitmap == null) {
+            LogUtils.w(TAG, "BarcodeDecoder not available for bitmap decoding");
+            return CompletableFuture.completedFuture(new ArrayList<>());
+        }
+
+        try {
+            ImageData imageData = ImageData.fromBitmap(bitmap, rotationDegrees);
+            return barcodeDecoder.process(imageData);
+        } catch (AIVisionSDKException e) {
+            LogUtils.e(TAG, "Error decoding bitmap: " + e.getMessage());
+            return CompletableFuture.completedFuture(new ArrayList<>());
+        }
+    }
+
+    /**
+     * Checks if the barcode decoder is ready for processing.
+     *
+     * @return true if the decoder is initialized and ready, false otherwise
+     */
+    public boolean isDecoderReady() {
+        return barcodeDecoder != null;
     }
 }

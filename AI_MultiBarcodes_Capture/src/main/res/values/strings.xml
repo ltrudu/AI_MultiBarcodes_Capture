@@ -276,6 +276,7 @@
     <string name="optimizations_description">Configure performance and debugging options for the application.</string>
     <string name="logging_enabled_checkbox">Logging enabled</string>
     <string name="force_continuous_autofocus_checkbox">Force continuous autofocus</string>
+    <string name="enable_high_res_stabilization">Enable High-Res Capture Stabilization</string>
 
     <!-- Dialog Messages (French -> English) -->
     <string name="rename">Rename</string>

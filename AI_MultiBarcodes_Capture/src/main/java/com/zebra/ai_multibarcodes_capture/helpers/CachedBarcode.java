@@ -4,14 +4,22 @@ import android.graphics.Rect;
 
 import com.zebra.ai.vision.entity.BarcodeEntity;
 
+import java.util.Objects;
+
 /**
  * Represents a cached barcode entry for debouncing purposes.
- * Stores the barcode entity, overlay rect, and frame age.
+ * Stores the barcode entity, overlay rect, frame age, and stability tracking data.
  */
 public class CachedBarcode {
     private BarcodeEntity entity;
     private Rect overlayRect;
     private int frameAge;
+
+    // Stability tracking fields for high-res stabilization
+    private String lastValue;           // Previous frame's value
+    private int consistentValueCount;   // How many frames with same value
+    private int valueChangeCount;       // How many times value changed
+    private boolean needsHighResValidation;
 
     /**
      * Creates a new cached barcode entry.
@@ -23,6 +31,12 @@ public class CachedBarcode {
         this.entity = entity;
         this.overlayRect = new Rect(overlayRect);
         this.frameAge = 0;
+
+        // Initialize stability tracking
+        this.lastValue = entity.getValue();
+        this.consistentValueCount = (lastValue != null && !lastValue.isEmpty()) ? 1 : 0;
+        this.valueChangeCount = 0;
+        this.needsHighResValidation = (lastValue == null || lastValue.isEmpty());
     }
 
     public BarcodeEntity getEntity() {
@@ -111,5 +125,110 @@ public class CachedBarcode {
 
         if (unionArea == 0) return 0.0;
         return (double) intersectionArea / unionArea;
+    }
+
+    // ==================== Stability Tracking Methods ====================
+
+    /**
+     * Updates the value tracking and returns whether the value changed.
+     *
+     * @param newValue The new barcode value detected this frame
+     * @return true if the value changed from the previous frame
+     */
+    public boolean updateValue(String newValue) {
+        boolean valueChanged = !Objects.equals(lastValue, newValue);
+        if (valueChanged) {
+            valueChangeCount++;
+            consistentValueCount = 1;
+        } else {
+            consistentValueCount++;
+        }
+        lastValue = newValue;
+
+        // Mark as needing validation if value is empty or unstable
+        if (newValue == null || newValue.isEmpty()) {
+            needsHighResValidation = true;
+        }
+
+        return valueChanged;
+    }
+
+    /**
+     * Gets the stability score for this cached barcode.
+     * Score of 1.0 means perfectly stable, 0.0 means very unstable.
+     *
+     * @return Stability score between 0.0 and 1.0
+     */
+    public float getStabilityScore() {
+        int total = consistentValueCount + valueChangeCount;
+        return total == 0 ? 0f : (float) consistentValueCount / total;
+    }
+
+    /**
+     * Checks if this cached barcode has a decoded value.
+     *
+     * @return true if the entity has a non-empty value
+     */
+    public boolean hasDecodedValue() {
+        return entity.getValue() != null && !entity.getValue().isEmpty();
+    }
+
+    /**
+     * Sets a validated value from high-res capture and boosts stability.
+     *
+     * @param validatedValue The validated barcode value from high-res capture
+     */
+    public void setValidatedValue(String validatedValue) {
+        if (validatedValue != null && !validatedValue.isEmpty()) {
+            this.lastValue = validatedValue;
+            this.consistentValueCount = 5;  // Boost stability
+            this.valueChangeCount = 0;
+            this.needsHighResValidation = false;
+        }
+    }
+
+    /**
+     * Checks if this barcode needs high-res validation.
+     *
+     * @return true if validation is needed
+     */
+    public boolean needsHighResValidation() {
+        return needsHighResValidation;
+    }
+
+    /**
+     * Sets whether this barcode needs high-res validation.
+     *
+     * @param needsValidation true if validation is needed
+     */
+    public void setNeedsHighResValidation(boolean needsValidation) {
+        this.needsHighResValidation = needsValidation;
+    }
+
+    /**
+     * Gets the last tracked value.
+     *
+     * @return The last value seen for this barcode
+     */
+    public String getLastValue() {
+        return lastValue;
+    }
+
+    /**
+     * Gets the count of consecutive frames with the same value.
+     *
+     * @return The consistent value count
+     */
+    public int getConsistentValueCount() {
+        return consistentValueCount;
+    }
+
+    /**
+     * Gets the count of value changes.
+     *
+     * @return The value change count
+     */
+    public int getValueChangeCount() {
+        return valueChangeCount;
     }
 }

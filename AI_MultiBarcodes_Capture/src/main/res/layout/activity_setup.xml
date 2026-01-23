@@ -1532,6 +1532,13 @@
                     android:buttonTint="?attr/colorPrimary"
                     android:text="@string/force_continuous_autofocus_checkbox" />
 
+                <CheckBox
+                    android:id="@+id/cbHighResStabilization"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="?attr/colorPrimary"
+                    android:text="@string/enable_high_res_stabilization" />
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

@@ -298,4 +298,17 @@ public class Constants {
     // Key Injection Service Constants
     public static final long CLIPBOARD_FLUSH_INTERVAL = 500L; // 500 milliseconds
     public static final long KEY_INJECTION_SLEEP_BETWEEN_EVENTS = 100L; // 100 milliseconds
+
+    // High-Res Stabilization preferences
+    public static final String SHARED_PREFERENCES_HIGH_RES_STABILIZATION_ENABLED =
+        "HIGH_RES_STABILIZATION_ENABLED";
+    public static final boolean SHARED_PREFERENCES_HIGH_RES_STABILIZATION_ENABLED_DEFAULT = false;
+
+    public static final String SHARED_PREFERENCES_HIGH_RES_STABILITY_THRESHOLD =
+        "HIGH_RES_STABILITY_THRESHOLD";
+    public static final int SHARED_PREFERENCES_HIGH_RES_STABILITY_THRESHOLD_DEFAULT = 3;
+
+    public static final String SHARED_PREFERENCES_PERIODIC_HIGH_RES_INTERVAL =
+        "PERIODIC_HIGH_RES_INTERVAL";
+    public static final int SHARED_PREFERENCES_PERIODIC_HIGH_RES_INTERVAL_DEFAULT = 0; // 0 = disabled
 }
