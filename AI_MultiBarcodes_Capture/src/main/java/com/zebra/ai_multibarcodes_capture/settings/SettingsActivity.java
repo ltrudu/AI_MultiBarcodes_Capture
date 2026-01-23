@@ -62,6 +62,7 @@ import com.zebra.datawedgeprofileintents.DWScannerPluginDisable;
 import com.zebra.datawedgeprofileintents.DWScannerPluginEnable;
 import com.zebra.datawedgeprofileintentshelpers.CreateProfileHelper;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
@@ -415,6 +416,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Setup debounce listeners
         setupDebounceListeners();
+
+        // Setup high-res stabilization listener
+        setupHighResStabilizationListener();
 
         findViewById(R.id.btCancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1722,11 +1726,239 @@ public class SettingsActivity extends AppCompatActivity {
         boolean highResStabilizationEnabled = sharedPreferences.getBoolean(
             SHARED_PREFERENCES_HIGH_RES_STABILIZATION_ENABLED,
             SHARED_PREFERENCES_HIGH_RES_STABILIZATION_ENABLED_DEFAULT);
+
+        // Temporarily remove listener to prevent dialog from showing during load
+        cbHighResStabilization.setOnCheckedChangeListener(null);
         cbHighResStabilization.setChecked(highResStabilizationEnabled);
+        // Restore listener
+        setupHighResStabilizationListener();
+
+        // Update high resolution options state based on loaded setting
+        updateHighResolutionOptionsState(highResStabilizationEnabled);
     }
 
     private void saveHighResStabilization(SharedPreferences.Editor editor) {
         editor.putBoolean(SHARED_PREFERENCES_HIGH_RES_STABILIZATION_ENABLED, cbHighResStabilization.isChecked());
+    }
+
+    private void setupHighResStabilizationListener() {
+        cbHighResStabilization.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Check if debounce is disabled
+                    checkDebounceForHighResStabilization();
+                    // Disable high resolutions (>8MP) when high-res stabilization is enabled
+                    updateHighResolutionOptionsState(true);
+                } else {
+                    // Re-enable high resolutions when high-res stabilization is disabled
+                    updateHighResolutionOptionsState(false);
+                }
+            }
+        });
+    }
+
+    /**
+     * Updates the state of high resolution options (>8MP) based on high-res stabilization state.
+     * When high-res stabilization is enabled, resolutions above 8MP are disabled to ensure
+     * consistent coordinate mapping between preview and high-res capture.
+     *
+     * @param disableHighRes true to disable resolutions >8MP, false to re-enable them
+     */
+    private void updateHighResolutionOptionsState(boolean disableHighRes) {
+        // Disable/enable dynamic resolution mode
+        // When high-res stabilization is enabled, only static resolution mode is available
+        if (spinnerResolutionMode != null) {
+            spinnerResolutionMode.setEnabled(!disableHighRes);
+            spinnerResolutionMode.setAlpha(disableHighRes ? 0.5f : 1.0f);
+
+            // If disabling dynamic mode and it's currently selected, switch to static
+            if (disableHighRes && spinnerResolutionMode.getSelectedItemPosition() == 1) {
+                spinnerResolutionMode.setSelection(0);
+                updateResolutionModeVisibility(0);
+            }
+        }
+
+        // Disable/enable 12MP and higher resolutions (only applicable in static mode)
+        if (rb12MPResolution != null) {
+            rb12MPResolution.setEnabled(!disableHighRes);
+            rb12MPResolution.setAlpha(disableHighRes ? 0.5f : 1.0f);
+        }
+        if (rb12_5MPResolution != null) {
+            rb12_5MPResolution.setEnabled(!disableHighRes);
+            rb12_5MPResolution.setAlpha(disableHighRes ? 0.5f : 1.0f);
+        }
+        if (rb12_6MPResolution != null) {
+            rb12_6MPResolution.setEnabled(!disableHighRes);
+            rb12_6MPResolution.setAlpha(disableHighRes ? 0.5f : 1.0f);
+        }
+
+        // If disabling and one of the high resolutions is currently selected, fall back to 8MP or lower
+        if (disableHighRes) {
+            boolean needsFallback = (rb12MPResolution != null && rb12MPResolution.isChecked()) ||
+                                   (rb12_5MPResolution != null && rb12_5MPResolution.isChecked()) ||
+                                   (rb12_6MPResolution != null && rb12_6MPResolution.isChecked());
+
+            if (needsFallback) {
+                // Select the highest available resolution <= 8MP
+                if (rb8MPResolution != null && rb8MPResolution.getVisibility() == View.VISIBLE) {
+                    rb8MPResolution.setChecked(true);
+                } else if (rb4MPResolution != null && rb4MPResolution.getVisibility() == View.VISIBLE) {
+                    rb4MPResolution.setChecked(true);
+                } else if (rb2MPResolution != null && rb2MPResolution.getVisibility() == View.VISIBLE) {
+                    rb2MPResolution.setChecked(true);
+                } else if (rb1MPResolution != null && rb1MPResolution.getVisibility() == View.VISIBLE) {
+                    rb1MPResolution.setChecked(true);
+                }
+            }
+        }
+    }
+
+    private void checkDebounceForHighResStabilization() {
+        if (!cbDebounceEnabled.isChecked()) {
+            // Show warning dialog for debounce
+            new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.high_res_debounce_warning_title))
+                .setMessage(getString(R.string.high_res_debounce_warning_message))
+                .setNegativeButton(getString(R.string.cancel), (dialog, which) -> {
+                    // Cancel - uncheck high-res stabilization
+                    cbHighResStabilization.setOnCheckedChangeListener(null);
+                    cbHighResStabilization.setChecked(false);
+                    setupHighResStabilizationListener();
+                    dialog.dismiss();
+                })
+                .setNeutralButton(getString(R.string.enable_debounce), (dialog, which) -> {
+                    // Enable debounce with current settings
+                    cbDebounceEnabled.setChecked(true);
+                    updateDebounceUIState(true);
+                    dialog.dismiss();
+                    // Continue to check resolution mode
+                    checkResolutionModeForHighResStabilization();
+                })
+                .setPositiveButton(getString(R.string.enable_debounce_recommended), (dialog, which) -> {
+                    // Enable debounce with recommended settings
+                    applyRecommendedDebounceSettings();
+                    dialog.dismiss();
+                    // Continue to check resolution mode
+                    checkResolutionModeForHighResStabilization();
+                })
+                .setCancelable(false)
+                .show();
+        } else {
+            // Debounce is already enabled, check resolution mode
+            checkResolutionModeForHighResStabilization();
+        }
+    }
+
+    private void applyRecommendedDebounceSettings() {
+        // Enable debounce
+        cbDebounceEnabled.setChecked(true);
+        updateDebounceUIState(true);
+
+        // Set algorithm to IOU (index 1)
+        spinnerDebounceAlgorithm.setSelection(1);
+        updateDebounceAlgorithmVisibility(1);
+
+        // Set max frames to 30
+        sbDebounceMaxFrames.setProgress(30);
+        tvDebounceMaxFramesValue.setText(getString(R.string.debounce_max_frames_value, 30));
+
+        // Set IOU threshold to 20 (0.2)
+        sbDebounceIouThreshold.setProgress(20);
+        float iouValue = 20 / 100.0f;
+        tvDebounceIouThresholdValue.setText(String.format(getString(R.string.debounce_iou_threshold_value), iouValue));
+    }
+
+    private void checkResolutionModeForHighResStabilization() {
+        // Check if resolution mode is dynamic (position 1)
+        int modePosition = spinnerResolutionMode.getSelectedItemPosition();
+        if (modePosition == 1) {
+            // Show warning dialog for dynamic resolution
+            new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.high_res_dynamic_warning_title))
+                .setMessage(getString(R.string.high_res_dynamic_warning_message))
+                .setNegativeButton(getString(R.string.cancel), (dialog, which) -> {
+                    // Cancel - uncheck high-res stabilization
+                    cbHighResStabilization.setOnCheckedChangeListener(null);
+                    cbHighResStabilization.setChecked(false);
+                    setupHighResStabilizationListener();
+                    dialog.dismiss();
+                })
+                .setNeutralButton(getString(R.string.set_static_mode), (dialog, which) -> {
+                    // Set to static mode with current resolution
+                    spinnerResolutionMode.setSelection(0);
+                    updateResolutionModeVisibility(0);
+                    dialog.dismiss();
+                    // Continue to check if static resolution is too high
+                    checkStaticResolutionForHighResStabilization();
+                })
+                .setPositiveButton(getString(R.string.set_static_recommended), (dialog, which) -> {
+                    // Set to static mode with recommended settings (4MP)
+                    applyRecommendedResolutionSettings();
+                    dialog.dismiss();
+                    // No need to check resolution - already set to 4MP
+                })
+                .setCancelable(false)
+                .show();
+        } else {
+            // Static mode - check if resolution is too high
+            checkStaticResolutionForHighResStabilization();
+        }
+    }
+
+    private void checkStaticResolutionForHighResStabilization() {
+        // Check if a resolution higher than 8MP is selected
+        boolean isHighResSelected = (rb12MPResolution != null && rb12MPResolution.isChecked()) ||
+                                   (rb12_5MPResolution != null && rb12_5MPResolution.isChecked()) ||
+                                   (rb12_6MPResolution != null && rb12_6MPResolution.isChecked());
+
+        if (isHighResSelected) {
+            // Show warning dialog for high resolution
+            new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.high_res_resolution_warning_title))
+                .setMessage(getString(R.string.high_res_resolution_warning_message))
+                .setNegativeButton(getString(R.string.cancel), (dialog, which) -> {
+                    // Cancel - uncheck high-res stabilization
+                    cbHighResStabilization.setOnCheckedChangeListener(null);
+                    cbHighResStabilization.setChecked(false);
+                    setupHighResStabilizationListener();
+                    dialog.dismiss();
+                })
+                .setPositiveButton(getString(R.string.set_lower_resolution), (dialog, which) -> {
+                    // Set to the highest available resolution <= 8MP
+                    selectHighestAvailableResolutionUnder8MP();
+                    dialog.dismiss();
+                })
+                .setCancelable(false)
+                .show();
+        }
+    }
+
+    private void selectHighestAvailableResolutionUnder8MP() {
+        // Select the highest available resolution <= 8MP
+        if (rb8MPResolution != null && rb8MPResolution.getVisibility() == View.VISIBLE) {
+            rb8MPResolution.setChecked(true);
+        } else if (rb4MPResolution != null && rb4MPResolution.getVisibility() == View.VISIBLE) {
+            rb4MPResolution.setChecked(true);
+        } else if (rb2MPResolution != null && rb2MPResolution.getVisibility() == View.VISIBLE) {
+            rb2MPResolution.setChecked(true);
+        } else if (rb1MPResolution != null && rb1MPResolution.getVisibility() == View.VISIBLE) {
+            rb1MPResolution.setChecked(true);
+        }
+    }
+
+    private void applyRecommendedResolutionSettings() {
+        // Set to static mode
+        spinnerResolutionMode.setSelection(0);
+        updateResolutionModeVisibility(0);
+
+        // Set to 4MP resolution
+        if (rb4MPResolution != null && rb4MPResolution.getVisibility() == View.VISIBLE) {
+            rb4MPResolution.setChecked(true);
+        } else if (rb2MPResolution != null && rb2MPResolution.getVisibility() == View.VISIBLE) {
+            // Fallback to 2MP if 4MP not available
+            rb2MPResolution.setChecked(true);
+        }
     }
 
     private void setupDebounceListeners() {

@@ -278,6 +278,21 @@
     <string name="force_continuous_autofocus_checkbox">Force continuous autofocus</string>
     <string name="enable_high_res_stabilization">Enable High-Res Capture Stabilization</string>
 
+    <!-- High-Res Stabilization Warning Dialogs -->
+    <string name="high_res_debounce_warning_title">Debounce Required</string>
+    <string name="high_res_debounce_warning_message">High-Res Capture Stabilization requires Debounce to be enabled for tracking barcode positions across frames.\n\nWould you like to enable Debounce?</string>
+    <string name="enable_debounce">Enable Debounce</string>
+    <string name="enable_debounce_recommended">Recommended Settings</string>
+
+    <string name="high_res_dynamic_warning_title">Static Resolution Recommended</string>
+    <string name="high_res_dynamic_warning_message">High-Res Capture Stabilization works best with Static resolution mode for consistent coordinate mapping.\n\nWould you like to switch to Static mode?</string>
+    <string name="set_static_mode">Set Static Mode</string>
+    <string name="set_static_recommended">Recommended (4MP)</string>
+
+    <string name="high_res_resolution_warning_title">Resolution Too High</string>
+    <string name="high_res_resolution_warning_message">High-Res Capture Stabilization requires a resolution of 8MP or lower for optimal performance.\n\nWould you like to set a lower resolution?</string>
+    <string name="set_lower_resolution">Set Lower Resolution</string>
+
     <!-- Dialog Messages (French -> English) -->
     <string name="rename">Rename</string>
     <string name="rename_file">Rename a file</string>
