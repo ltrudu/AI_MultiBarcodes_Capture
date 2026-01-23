@@ -39,6 +39,7 @@ import com.zebra.ai_multibarcodes_capture.helpers.CameraResolutionHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
 import com.zebra.ai_multibarcodes_capture.helpers.ECameraResolution;
+import com.zebra.ai_multibarcodes_capture.helpers.BaseActivity;
 import com.zebra.ai_multibarcodes_capture.helpers.EProcessingMode;
 import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
@@ -63,7 +64,6 @@ import com.zebra.datawedgeprofileintents.DWScannerPluginEnable;
 import com.zebra.datawedgeprofileintentshelpers.CreateProfileHelper;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
@@ -76,7 +76,7 @@ import java.util.List;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     private EditText etPrefix, etHttpsEndpoint;
     private Button btEditFilteringConditions;
@@ -1215,13 +1215,6 @@ public class SettingsActivity extends AppCompatActivity {
         
         // Kill the current process to ensure clean restart
         android.os.Process.killProcess(android.os.Process.myPid());
-    }
-    
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
-        Context context = LocaleHelper.setLocale(newBase, languageCode);
-        super.attachBaseContext(context);
     }
 
     private void saveBarcodeSymbologies(SharedPreferences.Editor editor) {

@@ -1,7 +1,6 @@
 package com.zebra.ai_multibarcodes_capture.autocapture;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,7 +24,6 @@ import java.io.OutputStream;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,8 +33,8 @@ import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.autocapture.models.AutoCaptureCondition;
 import com.zebra.ai_multibarcodes_capture.autocapture.models.AutoCaptureConditionList;
 import com.zebra.ai_multibarcodes_capture.autocapture.models.EAutoCaptureConditionType;
+import com.zebra.ai_multibarcodes_capture.helpers.BaseActivity;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
-import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
 
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ import java.util.regex.PatternSyntaxException;
 /**
  * Activity for managing auto capture conditions.
  */
-public class AutoCaptureConditionsActivity extends AppCompatActivity {
+public class AutoCaptureConditionsActivity extends BaseActivity {
 
     public static final String EXTRA_SELECTED_REGEX = "selected_regex";
 
@@ -133,13 +131,6 @@ public class AutoCaptureConditionsActivity extends AppCompatActivity {
         fabAddCondition.setOnClickListener(v -> showAddConditionMenu());
 
         loadConditions();
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
-        Context context = LocaleHelper.setLocale(newBase, languageCode);
-        super.attachBaseContext(context);
     }
 
     @Override

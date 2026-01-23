@@ -1,6 +1,5 @@
 package com.zebra.ai_multibarcodes_capture.filemanagement;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
-import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
+import com.zebra.ai_multibarcodes_capture.helpers.BaseActivity;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
 
@@ -25,14 +24,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
 
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
-public class BrowserActivity extends AppCompatActivity {
+public class BrowserActivity extends BaseActivity {
 
     private FileAdapter fileAdapter;
     private ArrayList<File> filesList;
@@ -710,23 +708,5 @@ public class BrowserActivity extends AppCompatActivity {
         int visibility = hasFileSelected ? View.VISIBLE : View.GONE;
         btnSelectOneFile.setVisibility(visibility);
         btnShare.setVisibility(visibility);
-    }
-
-    private void applyTheme() {
-        android.content.SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
-
-        if ("modern".equals(theme)) {
-            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
-        } else {
-            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
-        }
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
-        Context context = LocaleHelper.setLocale(newBase, languageCode);
-        super.attachBaseContext(context);
     }
 }

@@ -26,7 +26,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -40,7 +39,7 @@ import com.zebra.ai_multibarcodes_capture.dataeditor.BarcodeDataEditorActivity;
 import com.zebra.ai_multibarcodes_capture.filemanagement.SessionsFilesHelpers;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
-import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
+import com.zebra.ai_multibarcodes_capture.helpers.BaseActivity;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.SessionData;
 import com.google.gson.Gson;
@@ -81,7 +80,7 @@ import android.net.NetworkInfo;
 
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
-public class CapturedBarcodesActivity extends AppCompatActivity {
+public class CapturedBarcodesActivity extends BaseActivity {
 
     private static class BarcodeData
     {
@@ -1017,23 +1016,5 @@ public class CapturedBarcodesActivity extends AppCompatActivity {
         if (executorService != null && !executorService.isShutdown()) {
             executorService.shutdown();
         }
-    }
-
-    private void applyTheme() {
-        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
-
-        if ("modern".equals(theme)) {
-            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
-        } else {
-            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
-        }
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
-        Context context = LocaleHelper.setLocale(newBase, languageCode);
-        super.attachBaseContext(context);
     }
 }

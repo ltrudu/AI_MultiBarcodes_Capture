@@ -26,7 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.camera.core.AspectRatio;
 import androidx.camera.core.Camera;
@@ -64,8 +63,8 @@ import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreview
 import com.zebra.ai_multibarcodes_capture.helpers.CachedBarcode;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
 import com.zebra.ai_multibarcodes_capture.helpers.ECameraResolution;
+import com.zebra.ai_multibarcodes_capture.helpers.BaseActivity;
 import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
-import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.PreferencesHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
@@ -120,7 +119,7 @@ import java.util.concurrent.Executors;
 
  * Note: Ensure that the appropriate permissions are configured in the AndroidManifest to utilize camera capabilities.
  */
-public class CameraXLivePreviewActivity extends AppCompatActivity implements BarcodeAnalyzer.DetectionCallback, BarcodeAnalyzer.AnalysisTimingCallback {
+public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeAnalyzer.DetectionCallback, BarcodeAnalyzer.AnalysisTimingCallback {
 
     private ActivityCameraXlivePreviewBinding binding;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
@@ -2123,23 +2122,5 @@ public class CameraXLivePreviewActivity extends AppCompatActivity implements Bar
             }
         }
         return super.onKeyUp(keyCode, event);
-    }
-
-    private void applyTheme() {
-        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        String theme = sharedPreferences.getString(SHARED_PREFERENCES_THEME, SHARED_PREFERENCES_THEME_DEFAULT);
-
-        if ("modern".equals(theme)) {
-            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Modern);
-        } else {
-            setTheme(R.style.Base_Theme_AIMultiBarcodes_Capture_Legacy);
-        }
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
-        Context context = LocaleHelper.setLocale(newBase, languageCode);
-        super.attachBaseContext(context);
     }
 }

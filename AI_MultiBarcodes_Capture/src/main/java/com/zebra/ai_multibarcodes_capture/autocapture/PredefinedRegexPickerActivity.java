@@ -1,26 +1,24 @@
 package com.zebra.ai_multibarcodes_capture.autocapture;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zebra.ai_multibarcodes_capture.R;
 import com.zebra.ai_multibarcodes_capture.autocapture.models.PredefinedRegex;
-import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
+import com.zebra.ai_multibarcodes_capture.helpers.BaseActivity;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
 
 /**
  * Activity for picking a predefined regex pattern.
  */
-public class PredefinedRegexPickerActivity extends AppCompatActivity {
+public class PredefinedRegexPickerActivity extends BaseActivity {
 
     private EditText etSearch;
     private RecyclerView rvPredefinedRegex;
@@ -68,12 +66,5 @@ public class PredefinedRegexPickerActivity extends AppCompatActivity {
                 adapter.setRegexList(PredefinedRegexProvider.filterPredefinedRegex(query));
             }
         });
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
-        Context context = LocaleHelper.setLocale(newBase, languageCode);
-        super.attachBaseContext(context);
     }
 }

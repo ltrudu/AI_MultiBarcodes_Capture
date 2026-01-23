@@ -1,7 +1,6 @@
 // Copyright 2025 Zebra Technologies Corporation and/or its affiliates. All rights reserved.
 package com.zebra.ai_multibarcodes_capture;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,14 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
+import com.zebra.ai_multibarcodes_capture.helpers.BaseActivity;
 import com.zebra.ai_multibarcodes_capture.helpers.LogUtils;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
 
-import android.content.SharedPreferences;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.*;
 
 import java.io.File;
@@ -31,7 +28,7 @@ import java.io.OutputStream;
  * AboutActivity displays information about the application and its dependencies.
  * Shows the app version and versions of key libraries used in the project.
  */
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,13 +199,5 @@ public class AboutActivity extends AppCompatActivity {
             default:
                 return "Unknown";
         }
-    }
-
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
-        Context context = LocaleHelper.setLocale(newBase, languageCode);
-        super.attachBaseContext(context);
     }
 }

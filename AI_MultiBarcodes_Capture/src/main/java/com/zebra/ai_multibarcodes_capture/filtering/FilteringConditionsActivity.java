@@ -1,7 +1,6 @@
 package com.zebra.ai_multibarcodes_capture.filtering;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,7 +24,6 @@ import java.io.OutputStream;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,8 +34,8 @@ import com.zebra.ai_multibarcodes_capture.autocapture.PredefinedRegexPickerActiv
 import com.zebra.ai_multibarcodes_capture.filtering.models.FilteringCondition;
 import com.zebra.ai_multibarcodes_capture.filtering.models.FilteringConditionList;
 import com.zebra.ai_multibarcodes_capture.filtering.models.EFilteringConditionType;
+import com.zebra.ai_multibarcodes_capture.helpers.BaseActivity;
 import com.zebra.ai_multibarcodes_capture.helpers.EBarcodesSymbologies;
-import com.zebra.ai_multibarcodes_capture.helpers.LocaleHelper;
 import com.zebra.ai_multibarcodes_capture.helpers.ThemeHelpers;
 
 import java.util.ArrayList;
@@ -49,7 +47,7 @@ import java.util.regex.PatternSyntaxException;
  * Activity for managing filtering conditions.
  * Filtering uses OR logic - entities matching at least ONE condition will be included.
  */
-public class FilteringConditionsActivity extends AppCompatActivity {
+public class FilteringConditionsActivity extends BaseActivity {
 
     public static final String EXTRA_SELECTED_REGEX = "selected_regex";
 
@@ -135,13 +133,6 @@ public class FilteringConditionsActivity extends AppCompatActivity {
         fabAddCondition.setOnClickListener(v -> showAddConditionMenu());
 
         loadConditions();
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        String languageCode = LocaleHelper.getCurrentLanguageCode(newBase);
-        Context context = LocaleHelper.setLocale(newBase, languageCode);
-        super.attachBaseContext(context);
     }
 
     @Override
