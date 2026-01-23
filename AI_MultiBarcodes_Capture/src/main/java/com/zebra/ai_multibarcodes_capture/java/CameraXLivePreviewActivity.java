@@ -62,6 +62,8 @@ import com.zebra.ai_multibarcodes_capture.barcodedecoder.BarcodeHandler;
 import com.zebra.ai_multibarcodes_capture.databinding.ActivityCameraXlivePreviewBinding;
 import com.zebra.ai_multibarcodes_capture.helpers.CachedBarcode;
 import com.zebra.ai_multibarcodes_capture.helpers.Constants;
+import com.zebra.ai_multibarcodes_capture.helpers.CoordinateMapper;
+import com.zebra.ai_multibarcodes_capture.helpers.DebounceManager;
 import com.zebra.ai_multibarcodes_capture.helpers.ECameraResolution;
 import com.zebra.ai_multibarcodes_capture.helpers.BaseActivity;
 import com.zebra.ai_multibarcodes_capture.helpers.ECaptureTriggerMode;
@@ -184,13 +186,11 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
     // Force continuous autofocus setting
     private boolean forceContinuousAutofocus = false;
 
-    // Debounce settings
-    private boolean isDebounceEnabled = false;
-    private int debounceMaxFrames = 10;
-    private int debounceThreshold = 50;
-    private int debounceAlgorithm = 0; // 0 = Center Distance, 1 = IOU
-    private float debounceIouThreshold = 0.3f;
-    private List<CachedBarcode> debounceCache = new ArrayList<>();
+    // Debounce manager
+    private final DebounceManager debounceManager = new DebounceManager();
+
+    // Coordinate mapper
+    private final CoordinateMapper coordinateMapper = new CoordinateMapper();
 
     // Auto capture settings
     private boolean isAutoCaptureEnabled = false;
@@ -286,6 +286,10 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
                                     imageWidth = selectedSize.getWidth();
                                     imageHeight = selectedSize.getHeight();
                                 }
+                                // Update coordinate mapper with dimensions
+                                coordinateMapper.setRawSensorDimensions(rawSensorWidth, rawSensorHeight);
+                                coordinateMapper.setImageDimensions(imageWidth, imageHeight);
+                                coordinateMapper.setInitialRotation(initialRotation);
                                 LogUtils.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight + ", rawSensor=" + rawSensorWidth + "x" + rawSensorHeight);
 
 
@@ -369,189 +373,12 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
             return null;
         }
 
+        // Update overlay dimensions before mapping
         int overlayWidth = binding.graphicOverlay.getWidth();
         int overlayHeight = binding.graphicOverlay.getHeight();
+        coordinateMapper.setOverlayDimensions(overlayWidth, overlayHeight);
 
-        if (overlayWidth == 0 || overlayHeight == 0 || rawSensorWidth == 0 || rawSensorHeight == 0) {
-            LogUtils.w(TAG, "Cannot map overlay to raw sensor: invalid dimensions");
-            return null;
-        }
-
-        // Determine the rotation needed to display the raw sensor image correctly.
-        // This is based on how imageWidth/imageHeight were set relative to rawSensor dimensions.
-        // - If imageWidth == rawSensorHeight and imageHeight == rawSensorWidth, it's 90° rotation
-        // - If imageWidth == rawSensorWidth and imageHeight == rawSensorHeight, it's 0° rotation
-        int sensorToDisplayRotation = 0;
-        if (imageWidth == rawSensorHeight && imageHeight == rawSensorWidth) {
-            // Portrait display with landscape sensor - 90° rotation
-            sensorToDisplayRotation = 90;
-        } else if (imageWidth == rawSensorWidth && imageHeight == rawSensorHeight) {
-            // Same orientation - no rotation
-            sensorToDisplayRotation = 0;
-        }
-        // Note: 180° and 270° could be added if needed for other device configurations
-
-        LogUtils.d(TAG, "Sensor to display rotation: " + sensorToDisplayRotation + "° (rawSensor=" + rawSensorWidth + "x" + rawSensorHeight + ", effective=" + imageWidth + "x" + imageHeight + ")");
-
-        // Effective image dimensions (as seen in the rotated view) = imageWidth x imageHeight
-        int effectiveImageWidth = imageWidth;
-        int effectiveImageHeight = imageHeight;
-
-        // Calculate scale and offset used in mapBoundingBoxToOverlay
-        float scaleX = (float) overlayWidth / effectiveImageWidth;
-        float scaleY = (float) overlayHeight / effectiveImageHeight;
-        float scale = Math.max(scaleX, scaleY);
-
-        float offsetX = (overlayWidth - effectiveImageWidth * scale) / 2f;
-        float offsetY = (overlayHeight - effectiveImageHeight * scale) / 2f;
-
-        // Step 1: Reverse scale and offset to get "effective" rotated image coordinates
-        int effLeft = (int) ((overlayRect.left - offsetX) / scale);
-        int effTop = (int) ((overlayRect.top - offsetY) / scale);
-        int effRight = (int) ((overlayRect.right - offsetX) / scale);
-        int effBottom = (int) ((overlayRect.bottom - offsetY) / scale);
-
-        // Clamp to effective image bounds
-        effLeft = Math.max(0, Math.min(effLeft, effectiveImageWidth));
-        effTop = Math.max(0, Math.min(effTop, effectiveImageHeight));
-        effRight = Math.max(effLeft, Math.min(effRight, effectiveImageWidth));
-        effBottom = Math.max(effTop, Math.min(effBottom, effectiveImageHeight));
-
-        LogUtils.d(TAG, "Effective image coords: (" + effLeft + "," + effTop + ") - (" + effRight + "," + effBottom + ")");
-
-        // Step 2: Reverse rotation to get raw sensor coordinates
-        // The raw sensor image is always rawSensorWidth x rawSensorHeight (e.g., 1920x1080)
-        Rect rawRect = reverseRotationDegreesToRawSensor(effLeft, effTop, effRight, effBottom, sensorToDisplayRotation);
-
-        // Clamp to raw sensor bounds
-        rawRect.left = Math.max(0, Math.min(rawRect.left, rawSensorWidth));
-        rawRect.top = Math.max(0, Math.min(rawRect.top, rawSensorHeight));
-        rawRect.right = Math.max(rawRect.left, Math.min(rawRect.right, rawSensorWidth));
-        rawRect.bottom = Math.max(rawRect.top, Math.min(rawRect.bottom, rawSensorHeight));
-
-        LogUtils.d(TAG, "Mapped overlay " + overlayRect + " to raw sensor " + rawRect + " (rotation=" + sensorToDisplayRotation + "°)");
-        return rawRect;
-    }
-
-    /**
-     * Reverses the rotation (in degrees) to convert from effective (rotated) coordinates to raw sensor coordinates.
-     *
-     * @param left Left coordinate in effective image space
-     * @param top Top coordinate in effective image space
-     * @param right Right coordinate in effective image space
-     * @param bottom Bottom coordinate in effective image space
-     * @param rotationDegrees The rotation in degrees (0, 90, 180, 270)
-     * @return Rectangle in raw sensor coordinates
-     */
-    private Rect reverseRotationDegreesToRawSensor(int left, int top, int right, int bottom, int rotationDegrees) {
-        // The forward transformation (transformRawSensorToEffective) does:
-        // 90°:  eff = (rawH - raw.bottom, raw.left, rawH - raw.top, raw.right)
-        // 180°: eff = (rawW - raw.right, rawH - raw.bottom, rawW - raw.left, rawH - raw.top)
-        // 270°: eff = (raw.top, rawW - raw.right, raw.bottom, rawW - raw.left)
-
-        // We need to reverse these transformations
-        switch (rotationDegrees) {
-            case 0:
-                // No rotation - effective coords = raw coords
-                return new Rect(left, top, right, bottom);
-
-            case 90:
-                // Reverse of 90° transformation
-                // Forward: eff.left = rawH - raw.bottom, eff.top = raw.left
-                //          eff.right = rawH - raw.top, eff.bottom = raw.right
-                // Reverse: raw.left = eff.top, raw.top = rawH - eff.right
-                //          raw.right = eff.bottom, raw.bottom = rawH - eff.left
-                return new Rect(
-                        top,                       // raw.left
-                        rawSensorHeight - right,   // raw.top
-                        bottom,                    // raw.right
-                        rawSensorHeight - left     // raw.bottom
-                );
-
-            case 180:
-                // Reverse of 180° rotation
-                return new Rect(
-                        rawSensorWidth - right,
-                        rawSensorHeight - bottom,
-                        rawSensorWidth - left,
-                        rawSensorHeight - top
-                );
-
-            case 270:
-                // Reverse of 270° transformation
-                // Forward: eff.left = raw.top, eff.top = rawW - raw.right
-                //          eff.right = raw.bottom, eff.bottom = rawW - raw.left
-                // Reverse: raw.left = rawW - eff.bottom, raw.top = eff.left
-                //          raw.right = rawW - eff.top, raw.bottom = eff.right
-                return new Rect(
-                        rawSensorWidth - bottom,   // raw.left
-                        left,                      // raw.top
-                        rawSensorWidth - top,      // raw.right
-                        right                      // raw.bottom
-                );
-
-            default:
-                LogUtils.w(TAG, "Unknown rotation degrees: " + rotationDegrees);
-                return new Rect(left, top, right, bottom);
-        }
-    }
-
-    /**
-     * Transforms a bounding box from raw sensor coordinates to effective (rotated) image coordinates.
-     * This is the forward rotation transformation.
-     *
-     * When we crop and decode with rotation=0, bounding boxes are returned in raw sensor space.
-     * We need to transform them to effective image space before mapBoundingBoxToOverlay can work.
-     *
-     * @param bbox The bounding box in raw sensor coordinates
-     * @param rotationDegrees The rotation degrees from ImageProxy (0, 90, 180, 270)
-     * @return The bounding box in effective (rotated) image coordinates
-     */
-    private Rect transformRawSensorToEffective(Rect bbox, int rotationDegrees) {
-        // The rotationDegrees tells us how much to rotate the raw sensor image
-        // to display it correctly. We apply the same transformation to bounding boxes.
-        LogUtils.v(TAG, "Transforming raw bbox " + bbox + " with rotationDegrees=" + rotationDegrees);
-
-        switch (rotationDegrees) {
-            case 0:
-                // No rotation needed
-                return new Rect(bbox);
-
-            case 90:
-                // 90° CW rotation: raw sensor (1920x1080) -> effective (1080x1920)
-                // The sensor reports 90° meaning we need to rotate the image 90° CW to display correctly.
-                // For bounding boxes: point (x, y) in raw maps to (rawHeight - y, x) in effective
-                // This is actually a 90° CCW transformation of coordinates (inverse of image rotation)
-                return new Rect(
-                        rawSensorHeight - bbox.bottom,
-                        bbox.left,
-                        rawSensorHeight - bbox.top,
-                        bbox.right
-                );
-
-            case 180:
-                // 180° rotation
-                return new Rect(
-                        rawSensorWidth - bbox.right,
-                        rawSensorHeight - bbox.bottom,
-                        rawSensorWidth - bbox.left,
-                        rawSensorHeight - bbox.top
-                );
-
-            case 270:
-                // 270° CW rotation (or 90° CCW)
-                // For bounding boxes: point (x, y) in raw maps to (y, rawWidth - x) in effective
-                return new Rect(
-                        bbox.top,
-                        rawSensorWidth - bbox.right,
-                        bbox.bottom,
-                        rawSensorWidth - bbox.left
-                );
-
-            default:
-                LogUtils.w(TAG, "Unknown rotation degrees for raw->effective: " + rotationDegrees);
-                return new Rect(bbox);
-        }
+        return coordinateMapper.mapOverlayToRawSensorCoordinates(overlayRect);
     }
 
     /**
@@ -752,17 +579,16 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
         // Load debounce settings
-        isDebounceEnabled = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_DEBOUNCE_ENABLED, Constants.SHARED_PREFERENCES_DEBOUNCE_ENABLED_DEFAULT);
-        debounceMaxFrames = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES, Constants.SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES_DEFAULT);
-        debounceThreshold = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_THRESHOLD, Constants.SHARED_PREFERENCES_DEBOUNCE_THRESHOLD_DEFAULT);
-        debounceAlgorithm = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_ALGORITHM, Constants.SHARED_PREFERENCES_DEBOUNCE_ALGORITHM_DEFAULT);
+        boolean isDebounceEnabled = sharedPreferences.getBoolean(Constants.SHARED_PREFERENCES_DEBOUNCE_ENABLED, Constants.SHARED_PREFERENCES_DEBOUNCE_ENABLED_DEFAULT);
+        int debounceMaxFrames = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES, Constants.SHARED_PREFERENCES_DEBOUNCE_MAX_FRAMES_DEFAULT);
+        int debounceThreshold = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_THRESHOLD, Constants.SHARED_PREFERENCES_DEBOUNCE_THRESHOLD_DEFAULT);
+        int debounceAlgorithm = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_ALGORITHM, Constants.SHARED_PREFERENCES_DEBOUNCE_ALGORITHM_DEFAULT);
         int iouThresholdInt = sharedPreferences.getInt(Constants.SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD, Constants.SHARED_PREFERENCES_DEBOUNCE_IOU_THRESHOLD_DEFAULT);
-        debounceIouThreshold = iouThresholdInt / 100.0f;
+        float debounceIouThreshold = iouThresholdInt / 100.0f;
 
-        // Clear the cache when settings are reloaded
-        debounceCache.clear();
+        // Update debounce manager with new settings
+        debounceManager.updateSettings(isDebounceEnabled, debounceMaxFrames, debounceThreshold, debounceAlgorithm, debounceIouThreshold);
 
-        LogUtils.d(TAG, "Debounce enabled: " + isDebounceEnabled + ", maxFrames: " + debounceMaxFrames + ", threshold: " + debounceThreshold + ", algorithm: " + debounceAlgorithm + ", iouThreshold: " + debounceIouThreshold);
         LogUtils.d(TAG, "=== loadDebounceSettings() END ===");
     }
 
@@ -889,7 +715,7 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
 
         List<CachedBarcode> unstableBarcodes = new ArrayList<>();
 
-        for (CachedBarcode cached : debounceCache) {
+        for (CachedBarcode cached : debounceManager.getCache()) {
             // No decoded value OR low stability
             boolean hasValue = cached.hasDecodedValue();
             float stability = cached.getStabilityScore();
@@ -1329,6 +1155,10 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
             imageHeight = actualResolution.getHeight();
         }
 
+        // Update coordinate mapper with new dimensions
+        coordinateMapper.setRawSensorDimensions(rawSensorWidth, rawSensorHeight);
+        coordinateMapper.setImageDimensions(imageWidth, imageHeight);
+
         LogUtils.d(TAG, "Updated dimensions - rawSensor: " + rawSensorWidth + "x" + rawSensorHeight +
             ", effective: " + imageWidth + "x" + imageHeight);
 
@@ -1338,97 +1168,6 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
             LogUtils.i(TAG, "Note: ImageAnalysis resolution differs from requested (" +
                 selectedSize.getWidth() + "x" + selectedSize.getHeight() + " -> " +
                 actualResolution.getWidth() + "x" + actualResolution.getHeight() + ")");
-        }
-    }
-
-    /**
-     * Updates an existing cache entry or adds a new one for the given barcode.
-     *
-     * @param entity The barcode entity
-     * @param overlayRect The bounding box mapped to overlay coordinates
-     */
-    private void updateOrAddToCache(BarcodeEntity entity, Rect overlayRect) {
-        // Look for an existing cache entry using the selected algorithm
-        for (CachedBarcode cached : debounceCache) {
-            boolean isMatch = false;
-            if (debounceAlgorithm == 0) {
-                // Center Distance algorithm
-                isMatch = cached.distanceTo(overlayRect) <= debounceThreshold;
-            } else {
-                // IOU algorithm
-                isMatch = cached.calculateIOU(overlayRect) >= debounceIouThreshold;
-            }
-
-            if (isMatch) {
-                // Update existing entry
-                cached.updatePosition(overlayRect);
-                cached.resetFrameAge();
-                // Update stability tracking with current value
-                cached.updateValue(entity.getValue());
-                return;
-            }
-        }
-        // No existing entry found, add new one
-        debounceCache.add(new CachedBarcode(entity, overlayRect));
-    }
-
-    /**
-     * Finds a cached barcode that matches the given bounding box using the selected algorithm.
-     * Excludes barcodes that have already been used this frame.
-     *
-     * @param boundingBox The bounding box to match
-     * @param usedCacheEntries List of cache entries already used this frame
-     * @return The matching CachedBarcode or null if none found
-     */
-    private CachedBarcode findCachedMatch(Rect boundingBox, List<CachedBarcode> usedCacheEntries) {
-        CachedBarcode bestMatch = null;
-        double bestScore = 0;
-
-        for (CachedBarcode cached : debounceCache) {
-            // Skip if already used this frame
-            if (usedCacheEntries.contains(cached)) {
-                continue;
-            }
-
-            if (debounceAlgorithm == 0) {
-                // Center Distance algorithm
-                double distance = cached.distanceTo(boundingBox);
-                if (distance <= debounceThreshold) {
-                    double score = 1.0 / (1.0 + distance); // Higher score for closer
-                    if (score > bestScore) {
-                        bestMatch = cached;
-                        bestScore = score;
-                    }
-                }
-            } else {
-                // IOU algorithm
-                double iou = cached.calculateIOU(boundingBox);
-                if (iou >= debounceIouThreshold && iou > bestScore) {
-                    bestMatch = cached;
-                    bestScore = iou;
-                }
-            }
-        }
-
-        return bestMatch;
-    }
-
-    /**
-     * Increments the age of all cache entries and removes expired ones.
-     */
-    private void incrementAndPruneCacheAge() {
-        List<CachedBarcode> toRemove = new ArrayList<>();
-
-        for (CachedBarcode cached : debounceCache) {
-            cached.incrementFrameAge();
-            if (cached.getFrameAge() > debounceMaxFrames) {
-                toRemove.add(cached);
-            }
-        }
-
-        debounceCache.removeAll(toRemove);
-        if (toRemove.size() > 0) {
-            LogUtils.v(TAG, "Removed " + toRemove.size() + " expired cache entries");
         }
     }
 
@@ -1611,90 +1350,6 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
         }
     }
 
-    private Rect mapBoundingBoxToOverlay(Rect bbox) {
-
-        Display display = getWindowManager().getDefaultDisplay();
-        int currentRotation = display.getRotation();
-
-        int relativeRotation = ((currentRotation - initialRotation + 4) % 4);
-
-        int overlayWidth = binding.graphicOverlay.getWidth();
-        int overlayHeight = binding.graphicOverlay.getHeight();
-
-        if (overlayWidth == 0 || overlayHeight == 0) {
-            return bbox;
-        }
-
-        Rect transformedBbox = transformBoundingBoxForRotation(bbox, relativeRotation);
-
-        int effectiveImageWidth = imageWidth;
-        int effectiveImageHeight = imageHeight;
-
-        if (relativeRotation == 1 || relativeRotation == 3) {
-            effectiveImageWidth = imageHeight;
-            effectiveImageHeight = imageWidth;
-        }
-
-        float scaleX = (float) overlayWidth / effectiveImageWidth;
-        float scaleY = (float) overlayHeight / effectiveImageHeight;
-        float scale = Math.max(scaleX, scaleY);
-
-        float offsetX = (overlayWidth - effectiveImageWidth * scale) / 2f;
-        float offsetY = (overlayHeight - effectiveImageHeight * scale) / 2f;
-
-        return new Rect(
-                (int) (transformedBbox.left * scale + offsetX),
-                (int) (transformedBbox.top * scale + offsetY),
-                (int) (transformedBbox.right * scale + offsetX),
-                (int) (transformedBbox.bottom * scale + offsetY)
-        );
-    }
-
-    private Rect transformBoundingBoxForRotation(Rect bbox, int relativeRotation) {
-        // relativeRotation values:
-        // 0: No rotation (0 degrees)
-        // 1: 90 degrees clockwise
-        // 2: 180 degrees
-        // 3: 270 degrees clockwise
-        // These values are calculated based on the difference between current and initial device rotation.
-        // The transformation is needed to map the bounding box from the image coordinate system to the display coordinate system.
-        switch (relativeRotation) {
-            case 0: // No transformation needed, image is already aligned
-                // No transformation
-                return new Rect(bbox);
-            case 1:
-                // 90 degree clockwise rotation: swap x/y and adjust for width
-                // left becomes top, top becomes (imageWidth - right), right becomes bottom, bottom becomes (imageWidth - left)
-                return new Rect(
-                        bbox.top,
-                        imageWidth - bbox.right,
-                        bbox.bottom,
-                        imageWidth - bbox.left
-                );
-            case 2:
-                // 180 degree rotation: flip both axes
-                // left becomes (imageWidth - right), top becomes (imageHeight - bottom), right becomes (imageWidth - left), bottom becomes (imageHeight - top)
-                return new Rect(
-                        imageWidth - bbox.right,
-                        imageHeight - bbox.bottom,
-                        imageWidth - bbox.left,
-                        imageHeight - bbox.top
-                );
-            case 3:
-                // 270 degree clockwise rotation: swap x/y and adjust for height
-                // left becomes (imageHeight - bottom), top becomes left, right becomes (imageHeight - top), bottom becomes right
-                return new Rect(
-                        imageHeight - bbox.bottom,
-                        bbox.left,
-                        imageHeight - bbox.top,
-                        bbox.right
-                );
-            default:
-                LogUtils.w(TAG, "Unknown relative rotation: " + relativeRotation + ", using original bbox");
-                return new Rect(bbox);
-        }
-    }
-
     // Handles barcode detection results and updates the graphical overlay
     @Override
     public void onDetectionResult(List<BarcodeEntity> result) {
@@ -1727,24 +1382,25 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
                         // The bounding box from the decoder is relative to the cropped image.
                         // The crop was done in raw sensor space, so we add the crop offset
                         // in raw sensor space to get full raw sensor coordinates.
-                        Rect rawSensorRect = new Rect(
-                                rect.left + cropRegion.left,
-                                rect.top + cropRegion.top,
-                                rect.right + cropRegion.left,
-                                rect.bottom + cropRegion.top
-                        );
+                        Rect rawSensorRect = coordinateMapper.adjustBboxForCropRegion(rect, cropRegion);
                         LogUtils.v(TAG, "Raw sensor rect: " + rawSensorRect + " (bbox " + rect + " + crop offset " + cropRegion.left + "," + cropRegion.top + ")");
 
                         // Transform from raw sensor space to effective (rotated) image space.
                         // This is needed because we decoded with rotation=0, so bboxes are in raw sensor coords,
                         // but mapBoundingBoxToOverlay expects effective image coords.
-                        adjustedRect = transformRawSensorToEffective(rawSensorRect, imageRotationDegrees);
+                        adjustedRect = coordinateMapper.transformRawSensorToEffective(rawSensorRect, imageRotationDegrees);
                         LogUtils.v(TAG, "Effective rect after rotation transform: " + adjustedRect);
                     } else {
                         adjustedRect = rect;
                     }
 
-                    Rect overlayRect = mapBoundingBoxToOverlay(adjustedRect);
+                    // Update overlay dimensions and get the overlay rect
+                    coordinateMapper.setOverlayDimensions(
+                            binding.graphicOverlay.getWidth(),
+                            binding.graphicOverlay.getHeight());
+                    Display display = getWindowManager().getDefaultDisplay();
+                    int currentRotation = display.getRotation();
+                    Rect overlayRect = coordinateMapper.mapBoundingBoxToOverlay(adjustedRect, currentRotation);
 
                     // Get the barcode value and symbology
                     String barcodeValue = bEntity.getValue();
@@ -1753,7 +1409,7 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
                     BarcodeEntity entityToCapture = bEntity;  // Entity to use for capture
 
                     // Apply debounce logic if enabled
-                    if (isDebounceEnabled) {
+                    if (debounceManager.isEnabled()) {
                         if (barcodeValue != null && !barcodeValue.isEmpty()) {
                             // Barcode has a value - update the cache
                             if (isHighResStabilizationEnabled) {
@@ -1761,13 +1417,13 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
                                 LogUtils.d(TAG, "HighRes-Preview:   Raw bbox from SDK: " + rect);
                                 LogUtils.d(TAG, "HighRes-Preview:   After adjustments: " + adjustedRect);
                                 LogUtils.d(TAG, "HighRes-Preview:   Final overlayRect: " + overlayRect);
-                                LogUtils.d(TAG, "HighRes-Preview:   imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
+                                LogUtils.d(TAG, "HighRes-Preview:   imageWidth=" + coordinateMapper.getImageWidth() + ", imageHeight=" + coordinateMapper.getImageHeight());
                             }
-                            updateOrAddToCache(bEntity, overlayRect);
+                            debounceManager.updateOrAddToCache(bEntity, overlayRect);
                             // usedCache stays false - this is a fresh decode
                         } else {
                             // Barcode has no value - try to find a cached match
-                            CachedBarcode cachedMatch = findCachedMatch(overlayRect, usedCacheEntries);
+                            CachedBarcode cachedMatch = debounceManager.findCachedMatch(overlayRect, usedCacheEntries);
                             if (cachedMatch != null) {
                                 // Use cached value and entity
                                 barcodeValue = cachedMatch.getValue();
@@ -1817,7 +1473,8 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
             LogUtils.v(TAG, "Results empty.");
 
             // If debounce is enabled, use cached barcodes when detection returns no results
-            if (isDebounceEnabled && !debounceCache.isEmpty()) {
+            List<CachedBarcode> debounceCache = debounceManager.getCache();
+            if (debounceManager.isEnabled() && !debounceCache.isEmpty()) {
                 LogUtils.v(TAG, "Debounce: Using " + debounceCache.size() + " cached barcodes for empty detection result");
                 for (CachedBarcode cached : debounceCache) {
                     rects.add(cached.getOverlayRect());
@@ -1830,12 +1487,12 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
         }
 
         // Age and prune cache after processing all barcodes
-        if (isDebounceEnabled) {
-            incrementAndPruneCacheAge();
+        if (debounceManager.isEnabled()) {
+            debounceManager.incrementAndPruneCacheAge();
         }
 
         // Check for high-res stabilization trigger (after debounce processing)
-        if (isHighResStabilizationEnabled && isDebounceEnabled && !debounceCache.isEmpty()) {
+        if (isHighResStabilizationEnabled && debounceManager.isEnabled() && !debounceManager.getCache().isEmpty()) {
             checkAndTriggerHighResCapture();
         }
 
@@ -2012,6 +1669,9 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
                 imageWidth = selectedSize.getWidth();
                 imageHeight = selectedSize.getHeight();
             }
+            // Update coordinate mapper with new dimensions and rotation
+            coordinateMapper.setImageDimensions(imageWidth, imageHeight);
+            coordinateMapper.setInitialRotation(initialRotation);
             LogUtils.d(TAG, "Updated imageWidth=" + imageWidth + ", imageHeight=" + imageHeight);
         }
         bindAllCameraUseCases();
