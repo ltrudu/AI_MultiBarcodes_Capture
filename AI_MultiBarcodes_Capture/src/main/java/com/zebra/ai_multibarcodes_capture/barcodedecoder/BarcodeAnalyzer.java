@@ -148,7 +148,7 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
 
         // Capture timing state for this analysis
         final boolean trackTiming = timingEnabled && timingCallback != null;
-        final long startTimeNanos = trackTiming ? System.nanoTime() : 0;
+        //long startTimeNanos = 0;
 
         Future<?> future = executorService.submit(() -> {
             try {
@@ -183,6 +183,7 @@ public class BarcodeAnalyzer implements ImageAnalysis.Analyzer {
                     imageData = ImageData.fromImageProxy(image);
                 }
 
+                final long startTimeNanos = trackTiming ? System.nanoTime() : 0;
                 barcodeDecoder.process(imageData)
                         .thenAccept(result -> {
                             // Calculate timing when entering thenAccept (before isStopped check)
