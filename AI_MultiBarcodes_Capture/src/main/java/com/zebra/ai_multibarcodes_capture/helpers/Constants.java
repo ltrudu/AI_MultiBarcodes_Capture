@@ -294,4 +294,8 @@ public class Constants {
     public static final String SHARED_PREFERENCES_AUTO_CAPTURE_ENABLED = "AUTO_CAPTURE_ENABLED";
     public static final boolean SHARED_PREFERENCES_AUTO_CAPTURE_ENABLED_DEFAULT = false;
     public static final String SHARED_PREFERENCES_AUTO_CAPTURE_CONDITIONS = "AUTO_CAPTURE_CONDITIONS";
+
+    // Key Injection Service Constants
+    public static final long CLIPBOARD_FLUSH_INTERVAL = 500L; // 500 milliseconds
+    public static final long KEY_INJECTION_SLEEP_BETWEEN_EVENTS = 100L; // 100 milliseconds
 }

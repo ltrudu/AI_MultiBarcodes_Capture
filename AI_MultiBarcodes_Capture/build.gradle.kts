@@ -31,6 +31,12 @@ android {
         }
     }
 
+    buildFeatures {
+        aidl = true
+    }
+
+    sourceSets["main"].aidl.srcDirs("src/main/aidl")
+
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
@@ -116,6 +122,9 @@ dependencies {
 
     // Dependency to use internal scanner for endpoint configuration
     implementation(libs.datawedgeintentwrapper)
+
+    // Depencendy to inject keys
+    implementation(libs.profilemanagerhelper)
 
     // For Excel Export
     implementation(libs.poi)

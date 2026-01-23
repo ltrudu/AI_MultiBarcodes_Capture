@@ -69,6 +69,9 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <service android:name=".eventinjection.AIMultiBarcodeCaptureInjectionService"
+            android:foregroundServiceType="specialUse"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.zebra.ai_multibarcodes_capture.dev.fileprovider"

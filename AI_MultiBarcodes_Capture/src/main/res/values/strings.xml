@@ -664,4 +664,17 @@
     <string name="filtering_no_conditions_configured">No filtering conditions configured. Tap + to add a condition.</string>
     <string name="filtering_conditions_filename">filtering_conditions.json</string>
 
+    <!-- Injection Service Strings -->
+    <string name="foreground_service_notification_title">ZebraKeyInjection Template Service</string>
+    <string name="foreground_service_notification_text">A template servide to send data as Android Keyboard or Clipboard Events.</string>
+    <string name="foreground_service_notification_tickle">ZebraKeyInjectionTemplateService</string>
+    <string name="serviceStopped">Service is stopped</string>
+    <string name="serviceStarted">Service is running</string>
+    <string name="startOnBoot">Start on boot</string>
+    <string name="doNothingOnBoot">Do nothing on boot</string>
+    <string name="startOnCharging">Start when charging \nStop when not charging</string>
+    <string name="doNothingOnCharging">Power events not\nmonitored</string>
+    <string name="foregroundservice_channel_name">Foreground Service</string>
+    <string name="foregroundservice_channel_id">Foreground Service channel</string>
+
 </resources>

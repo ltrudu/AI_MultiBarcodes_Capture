@@ -18,6 +18,7 @@ criticalpermissionhelper = "0.8.1"
 datawedgeintentwrapper = "14.10"
 poi = "5.2.3"
 poi-ooxml = "5.2.3"
+profilemanagerhelper="1.0.4"
 
 [libraries]
 androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "cameraExtensions" }
@@ -39,6 +40,7 @@ barcode-localizer = { group = "com.zebra.ai.models", name = "barcode-localizer",
 zebra-ai-vision-sdk = { group = "com.zebra.ai.vision", name = "AI-Data-Capture-SDK", version.ref = "zebraAIVisionSdk" }
 criticalpermissionhelper =  { group = "com.github.ltrudu", name = "CriticalPermissionsHelper", version.ref = "criticalpermissionhelper" }
 datawedgeintentwrapper =  { group = "com.github.ltrudu", name = "DataWedgeIntentWrapper", version.ref = "datawedgeintentwrapper" }
+profilemanagerhelper =  { group = "com.github.ltrudu", name = "EMDKProfileManagerHelper", version.ref = "profilemanagerhelper" }
 poi =  { group = "org.apache.poi", name = "poi", version.ref = "poi" }
 poiooxml =  { group = "org.apache.poi", name = "poi-ooxml", version.ref = "poi-ooxml" }
 
