@@ -22,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 import java.util.Locale;
+import java.util.Set;
 
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_THEME;
 import static com.zebra.ai_multibarcodes_capture.helpers.Constants.SHARED_PREFERENCES_THEME_DEFAULT;
@@ -50,13 +51,10 @@ public class ThemeHelpers {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
 
             // 1. Set Navigation Bar background color using the WindowInsetsListener on decorView
-            window.getDecorView().setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
-                @Override
-                public WindowInsets onApplyWindowInsets(View view, WindowInsets insets) {
-                    // Set the background color to the view (decorView) - BLACK for navigation bar
-                    view.setBackgroundColor(Color.BLACK);
-                    return insets;
-                }
+            window.getDecorView().setOnApplyWindowInsetsListener((view, insets) -> {
+                // Set the background color to the view (decorView) - BLACK for navigation bar
+                view.setBackgroundColor(Color.BLACK);
+                return insets;
             });
 
             // 2. Handle Status Bar color and Root Layout padding using ViewCompat
@@ -116,6 +114,15 @@ public class ThemeHelpers {
         }
     }
 
+    // ISO 639-1 language codes for Latin-script languages
+    private static final Set<String> LATIN_SCRIPT_LANGUAGES = Set.of(
+            "en", "de", "fr", "es", "it", "pt", "nl", "pl", "cs", "sk",
+            "hu", "ro", "fi", "sv", "no", "da", "is", "et", "lv", "lt",
+            "sl", "hr", "bs", "sq", "af", "eu", "ca", "gl", "ga", "cy",
+            "mt", "tr", "az", "uz", "tk", "id", "ms", "tl", "vi", "sw",
+            "zu", "xh"
+    );
+
     /**
      * Checks if the current device locale uses Latin script (ABCD letters).
      * Returns true for languages like English, German, French, Spanish, Italian, etc.
@@ -124,64 +131,7 @@ public class ThemeHelpers {
      * @return true if the current locale uses Latin script, false otherwise
      */
     public static boolean isLatinScript() {
-        Locale currentLocale = Locale.getDefault();
-        String language = currentLocale.getLanguage();
-
-        // List of language codes that use Latin script
-        // ISO 639-1 language codes for Latin-script languages
-        String[] latinScriptLanguages = {
-            "en", // English
-            "de", // German
-            "fr", // French
-            "es", // Spanish
-            "it", // Italian
-            "pt", // Portuguese
-            "nl", // Dutch
-            "pl", // Polish
-            "cs", // Czech
-            "sk", // Slovak
-            "hu", // Hungarian
-            "ro", // Romanian
-            "fi", // Finnish
-            "sv", // Swedish
-            "no", // Norwegian
-            "da", // Danish
-            "is", // Icelandic
-            "et", // Estonian
-            "lv", // Latvian
-            "lt", // Lithuanian
-            "sl", // Slovenian
-            "hr", // Croatian
-            "bs", // Bosnian
-            "sq", // Albanian
-            "af", // Afrikaans
-            "eu", // Basque
-            "ca", // Catalan
-            "gl", // Galician
-            "ga", // Irish
-            "cy", // Welsh
-            "mt", // Maltese
-            "tr", // Turkish
-            "az", // Azerbaijani
-            "uz", // Uzbek
-            "tk", // Turkmen
-            "id", // Indonesian
-            "ms", // Malay
-            "tl", // Tagalog
-            "vi", // Vietnamese
-            "sw", // Swahili
-            "zu", // Zulu
-            "xh"  // Xhosa
-        };
-
-        // Check if the current language is in the Latin script list
-        for (String latinLang : latinScriptLanguages) {
-            if (latinLang.equals(language)) {
-                return true;
-            }
-        }
-
-        return false;
+        return LATIN_SCRIPT_LANGUAGES.contains(Locale.getDefault().getLanguage());
     }
 
     /**

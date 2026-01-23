@@ -13,7 +13,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.camera2.CaptureRequest;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Size;
 import android.view.Display;
 import android.view.KeyEvent;
@@ -132,18 +131,15 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
         public void onReceive(Context context, Intent intent) {
             if (ManagedConfigurationReceiver.ACTION_RELOAD_PREFERENCES.equals(intent.getAction())) {
                 LogUtils.d(TAG, "Received reload preferences request from ManagedConfigurationReceiver");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(CameraXLivePreviewActivity.this, 
-                            getString(R.string.managed_configuration_updated), 
-                            Toast.LENGTH_LONG).show();
-                        
-                        // Restart the activity to apply new settings
-                        Intent restartIntent = getIntent();
-                        finish();
-                        startActivity(restartIntent);
-                    }
+                runOnUiThread(() -> {
+                    Toast.makeText(CameraXLivePreviewActivity.this,
+                        getString(R.string.managed_configuration_updated),
+                        Toast.LENGTH_LONG).show();
+
+                    // Restart the activity to apply new settings
+                    Intent restartIntent = getIntent();
+                    finish();
+                    startActivity(restartIntent);
                 });
             }
         }
@@ -296,36 +292,16 @@ public class CameraXLivePreviewActivity extends BaseActivity implements BarcodeA
                             bindAllCameraUseCases();
                         });
 
-        binding.captureButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                captureData();
-            }
-        });
+        binding.captureButton.setOnClickListener(v -> captureData());
 
         closeButton = findViewById(R.id.closeButton);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        closeButton.setOnClickListener(v -> finish());
 
         captureZoneToggleIcon = findViewById(R.id.capture_zone_toggle_icon);
-        captureZoneToggleIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggleCaptureZone();
-            }
-        });
+        captureZoneToggleIcon.setOnClickListener(v -> toggleCaptureZone());
 
         flashlightToggleIcon = findViewById(R.id.flashlight_toggle_icon);
-        flashlightToggleIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggleFlashlight();
-            }
-        });
+        flashlightToggleIcon.setOnClickListener(v -> toggleFlashlight());
 
         analysisOverlay = findViewById(R.id.analysis_overlay);
 

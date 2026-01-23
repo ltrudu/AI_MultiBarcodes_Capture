@@ -3,7 +3,6 @@ package com.zebra.ai_multibarcodes_capture.filemanagement;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -101,55 +100,45 @@ public class BrowserActivity extends BaseActivity {
 
         setSupportActionBar(tbManage);
         tbManage.setNavigationIcon(R.drawable.ic_menu_white);
-        tbManage.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(BrowserActivity.this, view);
-                MenuInflater inflater = popup.getMenuInflater();
-                inflater.inflate(R.menu.browser_menu, popup.getMenu());
-                
-                // Show/hide menu items based on selection state
-                boolean hasSelection = fileAdapter != null && fileAdapter.getSelectedPosition() != -1;
-                popup.getMenu().findItem(R.id.action_rename).setVisible(hasSelection);
-                popup.getMenu().findItem(R.id.action_delete).setVisible(hasSelection);
-                
-                // Force PopupMenu to show icons
-                try {
-                    java.lang.reflect.Field mFieldPopup = popup.getClass().getDeclaredField("mPopup");
-                    mFieldPopup.setAccessible(true);
-                    Object menuPopupHelper = mFieldPopup.get(popup);
-                    java.lang.reflect.Method setForceIcons = menuPopupHelper.getClass().getDeclaredMethod("setForceShowIcon", boolean.class);
-                    setForceIcons.invoke(menuPopupHelper, true);
-                } catch (Exception e) {
-                    LogUtils.e("BrowserActivity", "Failed to force show icons in popup menu", e);
-                }
-                
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        int id = item.getItemId();
-                        if (id == R.id.action_new_file) {
-                            createNewFile();
-                            return true;
-                        } else if (id == R.id.action_new_folder) {
-                            createNewFolder();
-                            return true;
-                        }
-                        else if(id == R.id.action_delete)
-                        {
-                            deleteSelectedFileOrFolder();
-                            return true;
-                        }
-                        else if(id == R.id.action_rename)
-                        {
-                            renameSelectedFileOrFolder();
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-                popup.show();
+        tbManage.setNavigationOnClickListener(view -> {
+            PopupMenu popup = new PopupMenu(BrowserActivity.this, view);
+            MenuInflater inflater = popup.getMenuInflater();
+            inflater.inflate(R.menu.browser_menu, popup.getMenu());
+
+            // Show/hide menu items based on selection state
+            boolean hasSelection = fileAdapter != null && fileAdapter.getSelectedPosition() != -1;
+            popup.getMenu().findItem(R.id.action_rename).setVisible(hasSelection);
+            popup.getMenu().findItem(R.id.action_delete).setVisible(hasSelection);
+
+            // Force PopupMenu to show icons
+            try {
+                java.lang.reflect.Field mFieldPopup = popup.getClass().getDeclaredField("mPopup");
+                mFieldPopup.setAccessible(true);
+                Object menuPopupHelper = mFieldPopup.get(popup);
+                java.lang.reflect.Method setForceIcons = menuPopupHelper.getClass().getDeclaredMethod("setForceShowIcon", boolean.class);
+                setForceIcons.invoke(menuPopupHelper, true);
+            } catch (Exception e) {
+                LogUtils.e("BrowserActivity", "Failed to force show icons in popup menu", e);
             }
+
+            popup.setOnMenuItemClickListener(item -> {
+                int id = item.getItemId();
+                if (id == R.id.action_new_file) {
+                    createNewFile();
+                    return true;
+                } else if (id == R.id.action_new_folder) {
+                    createNewFolder();
+                    return true;
+                } else if (id == R.id.action_delete) {
+                    deleteSelectedFileOrFolder();
+                    return true;
+                } else if (id == R.id.action_rename) {
+                    renameSelectedFileOrFolder();
+                    return true;
+                }
+                return false;
+            });
+            popup.show();
         });
 
 
@@ -179,38 +168,20 @@ public class BrowserActivity extends BaseActivity {
         listView.setFocusableInTouchMode(false); // Disable touch mode focus
 
         btnSelectOneFile = findViewById(R.id.btSelectOneFile);
-        btnSelectOneFile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finishWithFileSelectArguments();
-            }
-        });
+        btnSelectOneFile.setOnClickListener(v -> finishWithFileSelectArguments());
 
         btnReload = findViewById(R.id.btReload);
-        btnReload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFileList();
-            }
-        });
+        btnReload.setOnClickListener(v -> getFileList());
 
         btnClose = findViewById(R.id.btClose);
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent resultIntent = new Intent();
-                setResult(RESULT_CANCELED, resultIntent);
-                finish();
-            }
+        btnClose.setOnClickListener(v -> {
+            Intent resultIntent = new Intent();
+            setResult(RESULT_CANCELED, resultIntent);
+            finish();
         });
 
         btnShare = findViewById(R.id.btShare);
-        btnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shareSelectedFile();
-            }
-        });
+        btnShare.setOnClickListener(v -> shareSelectedFile());
 
         // Initially hide buttons until a file is selected
         updateButtonVisibility(false);
@@ -404,12 +375,9 @@ public class BrowserActivity extends BaseActivity {
                 }
             }
         });
-        btPopupNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewOverlay.setVisibility(View.GONE);
-                clPopup.setVisibility(View.GONE);
-            }
+        btPopupNo.setOnClickListener(v -> {
+            viewOverlay.setVisibility(View.GONE);
+            clPopup.setVisibility(View.GONE);
         });
 
         viewOverlay.setVisibility(View.VISIBLE);
@@ -451,12 +419,9 @@ public class BrowserActivity extends BaseActivity {
                 }
             }
         });
-        btPopupNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewOverlay.setVisibility(View.GONE);
-                clPopup.setVisibility(View.GONE);
-            }
+        btPopupNo.setOnClickListener(v -> {
+            viewOverlay.setVisibility(View.GONE);
+            clPopup.setVisibility(View.GONE);
         });
 
         viewOverlay.setVisibility(View.VISIBLE);
@@ -497,12 +462,9 @@ public class BrowserActivity extends BaseActivity {
                 }
             }
         });
-        btPopupNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewOverlay.setVisibility(View.GONE);
-                clPopup.setVisibility(View.GONE);
-            }
+        btPopupNo.setOnClickListener(v -> {
+            viewOverlay.setVisibility(View.GONE);
+            clPopup.setVisibility(View.GONE);
         });
 
         viewOverlay.setVisibility(View.VISIBLE);
@@ -551,12 +513,9 @@ public class BrowserActivity extends BaseActivity {
                 }
             }
         });
-        btPopupNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewOverlay.setVisibility(View.GONE);
-                clPopup.setVisibility(View.GONE);
-            }
+        btPopupNo.setOnClickListener(v -> {
+            viewOverlay.setVisibility(View.GONE);
+            clPopup.setVisibility(View.GONE);
         });
 
         viewOverlay.setVisibility(View.VISIBLE);
