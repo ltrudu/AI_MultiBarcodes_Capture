@@ -1,5 +1,7 @@
 package com.zebra.ai_multibarcodes_capture.autocapture.models;
 
+import com.zebra.ai_multibarcodes_capture.conditions.IConditionList;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * Wrapper class for managing a list of auto capture conditions with CRUD operations and validation.
  */
-public class AutoCaptureConditionList {
+public class AutoCaptureConditionList implements IConditionList<AutoCaptureCondition> {
     private List<AutoCaptureCondition> conditions;
 
     public AutoCaptureConditionList() {

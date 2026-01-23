@@ -1,11 +1,13 @@
 package com.zebra.ai_multibarcodes_capture.filtering.models;
 
+import com.zebra.ai_multibarcodes_capture.conditions.ICondition;
+
 import java.util.UUID;
 
 /**
  * Data class representing a filtering condition.
  */
-public class FilteringCondition {
+public class FilteringCondition implements ICondition {
     private String id;
     private EFilteringConditionType type;
     private String regex;

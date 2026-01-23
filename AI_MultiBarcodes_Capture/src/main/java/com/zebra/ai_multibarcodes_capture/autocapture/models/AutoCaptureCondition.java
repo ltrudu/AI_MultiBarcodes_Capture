@@ -1,11 +1,13 @@
 package com.zebra.ai_multibarcodes_capture.autocapture.models;
 
+import com.zebra.ai_multibarcodes_capture.conditions.ICondition;
+
 import java.util.UUID;
 
 /**
  * Data class representing an auto capture condition.
  */
-public class AutoCaptureCondition {
+public class AutoCaptureCondition implements ICondition {
     private String id;
     private EAutoCaptureConditionType type;
     private int count;

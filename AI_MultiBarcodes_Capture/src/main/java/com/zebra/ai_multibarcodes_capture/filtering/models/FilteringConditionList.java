@@ -1,5 +1,7 @@
 package com.zebra.ai_multibarcodes_capture.filtering.models;
 
+import com.zebra.ai_multibarcodes_capture.conditions.IConditionList;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * Wrapper class for managing a list of filtering conditions with CRUD operations and validation.
  */
-public class FilteringConditionList {
+public class FilteringConditionList implements IConditionList<FilteringCondition> {
     private List<FilteringCondition> conditions;
 
     public FilteringConditionList() {
