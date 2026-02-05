@@ -59,7 +59,7 @@ This is the fastest and easiest way to get started. No manual configuration need
 ### Step 1: Clone the Repository
 
 ```batch
-git clone https://github.com/your-repo/AI_MultiBarcode_Capture.git
+git clone https://github.com/ltrudu/AI_MultiBarcode_Capture.git
 cd AI_MultiBarcode_Capture
 ```
 
