@@ -15,16 +15,16 @@ XAMPP offers several advantages in restricted environments:
 ## 📋 Prerequisites
 
 ### Required Software
-1. **XAMPP** (v8.0 or higher)
+1. **XAMPP** (v8.0 or higher)(Optional, not needed if you use the Xampp Full Install script)
    - Download from: https://www.apachefriends.org/
    - Portable version recommended for no-admin environments
    - Includes: Apache 2.4.x, MySQL 8.x, PHP 8.x
 
-2. **Git** (for cloning repository)
+2. **Git** (for cloning repository)(mandatory)
    - Download from: https://git-scm.com/
    - Portable version available
 
-3. **Android Studio** (for building the Android app)
+3. **Android Studio** (for building the Android app)(optional if you download the latest version from the releases of this repository)
    - Download from: https://developer.android.com/studio
    - Required to build the barcode scanner APK
 
@@ -101,6 +101,19 @@ That's it! The server will:
 
 **Access the web interface at:** https://localhost:3543 or http://localhost:3500
 
+### Step 4: Configure Android App
+
+Use the QR code from the web interface:
+
+1. Open AI MultiBarcode Capture app on Android device
+2. Go to **Settings**
+3. Select Data Processing -> HTTP(s) Post
+4. Scan the QR code displayed in web interface
+5. Endpoint is automatically configured!
+
+Alternatively, manually enter:
+- **HTTP Endpoint**: `http://YOUR_IP:3500/api/barcodes.php`
+- **HTTPS Endpoint**: `https://YOUR_IP:3543/api/barcodes.php`
 ---
 
 ## 📋 XAMPP Management Scripts
