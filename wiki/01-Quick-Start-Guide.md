@@ -257,7 +257,7 @@ You've successfully set up the system if you can:
 
 1. **See secure HTTPS** connection (🔒) in your browser without warnings
 2. **See sessions** in the web interface immediately after upload
-3. **View device hostname** (e.g., "Samsung_Galaxy_S24_Android14") in the Device column
+3. **View device hostname** (e.g., "Zebra TC53 A14") in the Device column
 4. **Access session details** showing all captured barcodes with timestamps
 5. **Real-time updates** - new uploads appear within 1 second in the web interface
 
