@@ -24,7 +24,7 @@ Before starting, ensure you have:
 ## 🚀 Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/your-repo/AI_MultiBarcode_Capture.git
+git clone https://github.com/ltrudu/AI_MultiBarcode_Capture.git
 cd AI_MultiBarcode_Capture
 ```
 
