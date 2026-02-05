@@ -124,6 +124,7 @@ echo DNS.3 = %WMS_SAN_DNS3%
 echo IP.1 = %WMS_SAN_IP1%
 echo IP.2 = %WMS_SAN_IP2%
 echo IP.3 = %WMS_SAN_IP3%
+if defined WMS_SAN_IP4 echo IP.4 = %WMS_SAN_IP4%
 ) > wms.conf
 
 REM Create WMS server certificate signing request

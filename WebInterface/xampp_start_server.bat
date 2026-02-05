@@ -70,7 +70,176 @@ echo [OK] XAMPP installation updated successfully
 
 echo.
 echo =========================================================
-echo STEP 2: Starting XAMPP Services
+echo STEP 2: Detecting Network Configuration
+echo =========================================================
+echo.
+
+REM Detect host IP address
+echo [INFO] Detecting host IP address...
+
+REM Collect all IPv4 addresses with interface names using PowerShell
+set IP_COUNT=0
+for /f "tokens=1,2,3 delims=|" %%A in ('powershell -NoProfile -Command "Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -match '^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)' } | ForEach-Object { $iface = (Get-NetAdapter -InterfaceIndex $_.InterfaceIndex -ErrorAction SilentlyContinue).Name; if(-not $iface){ $iface='Unknown' }; Write-Output ($_.IPAddress + '|' + $iface + '|') }"') do (
+    set /a IP_COUNT+=1
+    set "IP_!IP_COUNT!=%%A"
+    set "IFACE_!IP_COUNT!=%%B"
+)
+
+REM Handle based on number of interfaces found
+if !IP_COUNT!==0 (
+    echo [WARNING] Could not detect host IP automatically
+    set HOST_IP=127.0.0.1
+    goto :ip_selected
+)
+
+if !IP_COUNT!==1 (
+    set "HOST_IP=!IP_1!"
+    echo [OK] Detected host IP: !HOST_IP! ^(!IFACE_1!^)
+    goto :ip_selected
+)
+
+REM Multiple interfaces found - let user select
+echo.
+echo Found !IP_COUNT! network interfaces:
+echo.
+for /L %%i in (1,1,!IP_COUNT!) do (
+    echo   %%i. !IP_%%i! - !IFACE_%%i!
+)
+echo.
+set /p "IP_CHOICE=Select interface [1-!IP_COUNT!]: "
+
+REM Validate choice
+if "!IP_CHOICE!"=="" set IP_CHOICE=1
+if !IP_CHOICE! LSS 1 set IP_CHOICE=1
+if !IP_CHOICE! GTR !IP_COUNT! set IP_CHOICE=!IP_COUNT!
+
+set "HOST_IP=!IP_%IP_CHOICE%!"
+echo.
+echo [OK] Selected: !HOST_IP! ^(!IFACE_%IP_CHOICE%!^)
+
+:ip_selected
+
+REM Get external IP
+echo [INFO] Detecting external IP address...
+set EXTERNAL_IP=Unable to detect
+for /f "usebackq delims=" %%i in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "try { (Invoke-WebRequest -Uri 'http://ipinfo.io/ip' -TimeoutSec 5 -UseBasicParsing).Content.Trim() } catch { 'Unable to detect' }" 2^>nul`) do set EXTERNAL_IP=%%i
+
+if "!EXTERNAL_IP!"=="Unable to detect" (
+    echo [WARNING] External IP could not be detected
+) else (
+    echo [OK] External IP: !EXTERNAL_IP!
+)
+
+echo.
+echo =========================================================
+echo STEP 3: Validating SSL Certificates
+echo =========================================================
+echo.
+
+REM Check if certificates.conf exists
+if not exist "%~dp0certificates.conf" (
+    echo [WARNING] certificates.conf not found, skipping certificate validation
+    goto :skip_cert_check
+)
+
+REM Read current certificate IPs from certificates.conf
+set CERT_IP2=
+set CERT_IP4=
+for /f "tokens=1,2 delims==" %%a in ('type "%~dp0certificates.conf" ^| findstr "WMS_SAN_IP2"') do (
+    set "CERT_IP2=%%b"
+    set "CERT_IP2=!CERT_IP2:"=!"
+)
+for /f "tokens=1,2 delims==" %%a in ('type "%~dp0certificates.conf" ^| findstr "WMS_SAN_IP4"') do (
+    set "CERT_IP4=%%b"
+    set "CERT_IP4=!CERT_IP4:"=!"
+)
+
+echo [INFO] Current certificate configuration:
+echo        - Local IP in cert:    !CERT_IP2!
+echo        - External IP in cert: !CERT_IP4!
+echo [INFO] Detected network IPs:
+echo        - Local IP detected:   !HOST_IP!
+echo        - External IP detected: !EXTERNAL_IP!
+
+REM Check if IPs match
+set CERT_NEEDS_UPDATE=false
+
+if not "!CERT_IP2!"=="!HOST_IP!" (
+    set CERT_NEEDS_UPDATE=true
+    echo.
+    echo [WARNING] Local IP mismatch: Certificate has !CERT_IP2!, but current IP is !HOST_IP!
+)
+
+if not "!EXTERNAL_IP!"=="Unable to detect" (
+    if not "!CERT_IP4!"=="!EXTERNAL_IP!" (
+        set CERT_NEEDS_UPDATE=true
+        echo [WARNING] External IP mismatch: Certificate has !CERT_IP4!, but current IP is !EXTERNAL_IP!
+    )
+)
+
+if "!CERT_NEEDS_UPDATE!"=="true" (
+    echo.
+    echo *** SSL certificates do not match current network configuration ***
+    echo *** HTTPS connections may fail or show security warnings ***
+    echo.
+    set /p "REGEN_CERTS=Do you want to generate new certificates? (yes/no): "
+
+    if /i "!REGEN_CERTS!"=="yes" (
+        echo.
+        echo [INFO] Updating certificates.conf with current IPs...
+
+        REM Update WMS_SAN_IP2 with local IP
+        powershell -NoProfile -Command "(Get-Content '%~dp0certificates.conf') -replace 'WMS_SAN_IP2=\"[^\"]*\"', 'WMS_SAN_IP2=\"!HOST_IP!\"' | Set-Content '%~dp0certificates.conf'"
+
+        REM Add or update WMS_SAN_IP4 with external IP if available
+        if not "!EXTERNAL_IP!"=="Unable to detect" (
+            findstr /C:"WMS_SAN_IP4" "%~dp0certificates.conf" >nul 2>&1
+            if errorlevel 1 (
+                REM Add WMS_SAN_IP4 after WMS_SAN_IP3
+                powershell -NoProfile -Command "(Get-Content '%~dp0certificates.conf') -replace '(WMS_SAN_IP3=\"[^\"]*\")', \"`$1`nWMS_SAN_IP4=`\"!EXTERNAL_IP!`\"\" | Set-Content '%~dp0certificates.conf'"
+            ) else (
+                REM Update existing WMS_SAN_IP4
+                powershell -NoProfile -Command "(Get-Content '%~dp0certificates.conf') -replace 'WMS_SAN_IP4=\"[^\"]*\"', 'WMS_SAN_IP4=\"!EXTERNAL_IP!\"' | Set-Content '%~dp0certificates.conf'"
+            )
+        )
+
+        echo [OK] certificates.conf updated
+        echo.
+        echo [INFO] Generating new SSL certificates...
+        call "%~dp0create-certificates.bat"
+        if errorlevel 1 (
+            echo [ERROR] Certificate generation failed!
+            pause
+            exit /b 1
+        )
+        echo [OK] New certificates generated
+
+        REM Copy certificates to XAMPP
+        echo [INFO] Installing certificates to XAMPP...
+        if not exist "%XAMPP_PATH%\apache\conf\ssl" mkdir "%XAMPP_PATH%\apache\conf\ssl"
+        copy /Y "%~dp0ssl\wms.crt" "%XAMPP_PATH%\apache\conf\ssl\" >nul 2>&1
+        copy /Y "%~dp0ssl\wms.key" "%XAMPP_PATH%\apache\conf\ssl\" >nul 2>&1
+        copy /Y "%~dp0ssl\wms_ca.crt" "%XAMPP_PATH%\apache\conf\ssl\" >nul 2>&1
+
+        REM Also copy to htdocs for download
+        if not exist "%XAMPP_PATH%\htdocs\certificates" mkdir "%XAMPP_PATH%\htdocs\certificates"
+        copy /Y "%~dp0ssl\wms_ca.crt" "%XAMPP_PATH%\htdocs\certificates\" >nul 2>&1
+        copy /Y "%~dp0ssl\android_ca_system.pem" "%XAMPP_PATH%\htdocs\certificates\" >nul 2>&1
+
+        echo [OK] Certificates installed to XAMPP
+    ) else (
+        echo [INFO] Skipping certificate regeneration
+        echo [WARNING] HTTPS connections may not work correctly with mismatched certificates
+    )
+) else (
+    echo [OK] SSL certificates match current network configuration
+)
+
+:skip_cert_check
+
+echo.
+echo =========================================================
+echo STEP 4: Starting MySQL Service
 echo =========================================================
 echo.
 
@@ -154,6 +323,12 @@ if "%TABLE_COUNT%"=="3" (
     echo The web interface may not work correctly
 )
 
+echo.
+echo =========================================================
+echo STEP 5: Starting Apache Web Server
+echo =========================================================
+echo.
+
 REM Start Apache
 echo [INFO] Starting Apache...
 start "" "%XAMPP_PATH%\apache\bin\httpd.exe"
@@ -173,61 +348,9 @@ if "%ERRORLEVEL%"=="0" (
 
 echo.
 echo =========================================================
-echo STEP 3: Updating Network IP Configuration
+echo STEP 6: Saving IP Configuration
 echo =========================================================
 echo.
-
-REM Detect host IP address once
-echo [INFO] Detecting host IP address...
-
-REM Collect all IPv4 addresses with interface names using PowerShell
-set IP_COUNT=0
-for /f "tokens=1,2,3 delims=|" %%A in ('powershell -NoProfile -Command "Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -match '^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)' } | ForEach-Object { $iface = (Get-NetAdapter -InterfaceIndex $_.InterfaceIndex -ErrorAction SilentlyContinue).Name; if(-not $iface){ $iface='Unknown' }; Write-Output ($_.IPAddress + '|' + $iface + '|') }"') do (
-    set /a IP_COUNT+=1
-    set "IP_!IP_COUNT!=%%A"
-    set "IFACE_!IP_COUNT!=%%B"
-)
-
-REM Handle based on number of interfaces found
-if !IP_COUNT!==0 (
-    echo [WARNING] Could not detect host IP automatically
-    set HOST_IP=127.0.0.1
-    goto :ip_selected
-)
-
-if !IP_COUNT!==1 (
-    set "HOST_IP=!IP_1!"
-    echo [OK] Detected host IP: !HOST_IP! ^(!IFACE_1!^)
-    goto :ip_selected
-)
-
-REM Multiple interfaces found - let user select
-echo.
-echo Found !IP_COUNT! network interfaces:
-echo.
-for /L %%i in (1,1,!IP_COUNT!) do (
-    echo   %%i. !IP_%%i! - !IFACE_%%i!
-)
-echo.
-set /p "IP_CHOICE=Select interface [1-!IP_COUNT!]: "
-
-REM Validate choice
-if "!IP_CHOICE!"=="" set IP_CHOICE=1
-if !IP_CHOICE! LSS 1 set IP_CHOICE=1
-if !IP_CHOICE! GTR !IP_COUNT! set IP_CHOICE=!IP_COUNT!
-
-set "HOST_IP=!IP_%IP_CHOICE%!"
-echo.
-echo [OK] Selected: !HOST_IP! ^(!IFACE_%IP_CHOICE%!^)
-
-:ip_selected
-
-REM Write IP configuration file directly (skip calling xampp_update_network_IP.bat)
-echo [INFO] Writing IP configuration...
-
-REM Get external IP
-set EXTERNAL_IP=Unable to detect
-for /f "usebackq delims=" %%i in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "try { (Invoke-WebRequest -Uri 'http://ipinfo.io/ip' -TimeoutSec 5 -UseBasicParsing).Content.Trim() } catch { 'Unable to detect' }" 2^>nul`) do set EXTERNAL_IP=%%i
 
 REM Get timestamp
 for /f "delims=" %%T in ('powershell -NoProfile -Command "Get-Date -Format 'yyyy-MM-ddTHH:mm:ssZ'"') do set TIMESTAMP=%%T
@@ -237,13 +360,13 @@ if not exist "%XAMPP_PATH%\htdocs\config" mkdir "%XAMPP_PATH%\htdocs\config"
 (
 echo {
 echo   "local_ip": "!HOST_IP!",
-echo   "external_ip": "%EXTERNAL_IP%",
+echo   "external_ip": "!EXTERNAL_IP!",
 echo   "last_updated": "%TIMESTAMP%",
 echo   "detection_method": "xampp_start_server"
 echo }
 ) > "%XAMPP_PATH%\htdocs\config\ip-config.json"
 
-echo [OK] IP configuration saved to %XAMPP_PATH%\htdocs\config\ip-config.json
+echo [OK] IP configuration saved
 
 echo.
 echo =========================================================
@@ -258,12 +381,12 @@ echo - Secure Management:      https://localhost:3543
 echo - phpMyAdmin:             http://localhost:3500/phpmyadmin
 echo.
 echo From other devices on your network:
-echo - HTTP:  http://%HOST_IP%:3500
-echo - HTTPS: https://%HOST_IP%:3543
+echo - HTTP:  http://!HOST_IP!:3500
+echo - HTTPS: https://!HOST_IP!:3543
 echo.
 echo Android App Configuration:
-echo - HTTP Endpoint:  http://%HOST_IP%:3500/api/barcodes.php
-echo - HTTPS Endpoint: https://%HOST_IP%:3543/api/barcodes.php
+echo - HTTP Endpoint:  http://!HOST_IP!:3500/api/barcodes.php
+echo - HTTPS Endpoint: https://!HOST_IP!:3543/api/barcodes.php
 echo.
 echo SSL Certificate Installation:
 echo - For Android: Install ssl\android_ca_system.pem
