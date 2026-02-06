@@ -24,8 +24,8 @@ Before starting, ensure you have:
 ## 🚀 Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/ltrudu/AI_MultiBarcode_Capture.git
-cd AI_MultiBarcode_Capture
+git clone https://github.com/ltrudu/AI_MultiBarcodes_Capture.git
+cd AI_MultiBarcodes_Capture
 ```
 
 ## ⚡ Step 2: Quick XAMPP Installation (3 Steps)
