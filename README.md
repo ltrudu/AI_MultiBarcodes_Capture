@@ -278,4 +278,4 @@ For technical questions and community support:
 
 ## License
 
-All content under this repository's root folder is subject to the [Zebra End User Agreement](https://github.com/ltrudu/AI_MutliBarcodes_Capture/blob/master/LICENSE). By accessing, using, or distributing any part of this content, you agree to comply with the terms of the Development Tool License Agreement.
+All content under this repository's root folder is subject to the [Zebra End User Agreement](https://github.com/ltrudu/AI_MutliBarcodes_Capture/blob/master/LICENSE). By accessing, using, or distributing any part of this content, you agree to comply with the terms of the EULA.
